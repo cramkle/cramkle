@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Deck /> should match snapshot 1`] = `
+<div>
+  <div
+    class="mdc-card mdc-card--outlined"
+  >
+    <div
+      class="mdc-card__primary-action"
+      style="padding: .3rem .5rem;"
+    >
+      <h3
+        class="mdc-typography--headline6"
+      >
+        Dummy
+      </h3>
+      <p
+        class="mdc-typography--body2"
+      />
+    </div>
+  </div>
+</div>
+`;

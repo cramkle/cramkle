@@ -1,0 +1,40 @@
+@import "../../styles/_variables";
+
+.register-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: $mdc-theme-primary;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-page__login-text {
+  color: $mdc-theme-on-primary;
+  margin-top: 15px;
+}
+
+.register-page__login-text a {
+  color: $mdc-theme-on-primary;
+  font-weight: bold;
+}
+
+.register-page__form {
+  width: 100%;
+  max-width: 450px;
+}
+
+.register-page__form-title {
+  text-align: center;
+}
+
+.register-page__form-content {
+  padding: 1rem;
+  padding-bottom: 0;
+}
+
+.register-page__form-content .mdc-card__actions {
+  padding: 0;
+  justify-content: flex-end;
+}
+
