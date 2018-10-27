@@ -40,14 +40,14 @@ const RegisterForm: React.StatelessComponent<RegisterFormProps> = ({ register, t
     onSubmit={register}
   >
     {({ handleSubmit, isValid, isSubmitting }) => (
-      <form className="register-page__form" onSubmit={handleSubmit}>
-        <Card className="register-page__form-content">
-          <h4 className="mdc-typography--headline4 register-page__form-title">
+      <form className="register-page__form w-100" onSubmit={handleSubmit}>
+        <Card className="register-page__form-content pa3 pb0">
+          <h4 className="mdc-typography--headline4 register-page__form-title tc">
             {title}
           </h4>
-          <InputField name="username" label="Username" box />
-          <InputField name="email" label="Email" box />
-          <InputField label="Password" name="accessKey" type="password" box />
+          <InputField className="register-page__form-input" name="username" label="Username" box />
+          <InputField className="register-page__form-input" name="email" label="Email" box />
+          <InputField className="register-page__form-input" label="Password" name="accessKey" type="password" box />
           <CardActions>
             <CardActionButtons>
               <Button raised disabled={!isValid || isSubmitting}>

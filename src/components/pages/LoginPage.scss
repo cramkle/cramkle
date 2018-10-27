@@ -1,45 +1,40 @@
+@import '~tachyons-sass/scss/_variables';
+@import '~tachyons-sass/scss/_spacing';
+@import '~tachyons-sass/scss/_widths';
+
 @import '../../styles/_variables.scss';
 
 .login-page {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 100%;
   background-color: $mdc-theme-primary;
-  align-items: center;
-  justify-content: center;
 }
 
 .login-page__sign-up-text {
-  margin-top: 15px;
   color: $mdc-theme-on-primary;
 }
 
 .login-page__sign-up-text a {
   color: $mdc-theme-on-primary;
-  font-weight: bold;
 }
 
 .login-page__form {
-  width: 100%;
   max-width: 450px;
 }
 
-.login-page__form-title {
-  text-align: center;
-}
-
-.login-page__form-content {
-  padding: 1rem;
-  padding-bottom: 0;
-}
-
 .login-page__form-input {
-  width: 100%;
+  @extend .mv2;
+  @extend .w-100;
 }
 
 .login-page__form .mdc-card__actions {
   justify-content: end;
   padding: 0 1rem;
+}
+
+.login-page__form .mdc-card__action-buttons {
+  @extend .w-100;
+}
+
+.login-page__form .mdc-button {
+  @extend .w-100;
 }
 

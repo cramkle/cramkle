@@ -1,3 +1,5 @@
+@import '~tachyons-sass/tachyons.scss';
+
 @import './styles/_variables.scss';
 
 @import '~@material/react-button/index.scss';
@@ -20,6 +22,6 @@ html, body, #root {
 }
 
 .mdc-card {
-  @include mdc-card-corner-radius(5px);
+  @include mdc-card-shape-radius(5px);
 }
 
