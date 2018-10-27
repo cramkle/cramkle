@@ -7,10 +7,10 @@ import './RegisterPage.scss'
 
 export default function RegisterPage() {
   return (
-    <div className="register-page">
+    <div className="register-page flex flex-column h-100 justify-center items-center">
       <RegisterForm />
       <span className="register-page__login-text">
-        Already have an account? <Link to="/login">Log In</Link>
+        Already have an account? <Link to="/login" className="b">Log In</Link>
       </span>
       <Helmet>
         <title>Register</title>

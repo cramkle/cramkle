@@ -7,14 +7,14 @@ import './LoginPage.scss'
 
 export default function LoginPage() {
   return (
-    <div className="login-page">
+    <div className="login-page flex flex-column h-100 w-100 items-center justify-center">
       <Helmet>
         <title>Login</title>
       </Helmet>
       <LoginForm />
 
-      <span className="login-page__sign-up-text">
-        Don&apos;t have an account? <Link to="/register">Sign Up</Link>
+      <span className="login-page__sign-up-text mt2">
+        Don&apos;t have an account? <Link to="/register" className="b">Sign Up</Link>
       </span>
     </div>
   )

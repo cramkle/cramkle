@@ -30,10 +30,10 @@ const LoginForm: React.StatelessComponent<LoginFormProps> = ({ login }) => (
     onSubmit={login}
   >
     {({ isSubmitting, isValid, handleSubmit, errors }) => (
-      <form className="login-page__form" onSubmit={handleSubmit}>
+      <form className="login-page__form w-100" onSubmit={handleSubmit}>
         <Card>
-          <div className="login-page__form-content">
-            <h4 className="mdc-typography--headline4 login-page__form-title">
+          <div className="login-page__form-content pa3 pb0">
+            <h4 className="mdc-typography--headline4 login-page__form-title tc">
               Login
             </h4>
 
