@@ -1,8 +1,8 @@
 import { ActionTypes } from '../types'
 
-const initialState = {
+export const initialState = {
   decks: [],
-  loading: false,
+  loading: true,
 }
 
 export default function deck(state = initialState, action) {

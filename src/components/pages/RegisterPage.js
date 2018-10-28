@@ -1,11 +1,11 @@
-import * as React from 'react'
+import React from 'react'
 import Helmet from 'react-helmet'
 import { Link } from 'react-router-dom'
 
 import RegisterForm from '../forms/RegisterForm'
 import './RegisterPage.scss'
 
-export default function RegisterPage() {
+const RegisterPage = () => {
   return (
     <div className="register-page flex flex-column h-100 justify-center items-center">
       <RegisterForm />
@@ -18,3 +18,5 @@ export default function RegisterPage() {
     </div>
   )
 }
+
+export default RegisterPage

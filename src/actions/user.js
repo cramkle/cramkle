@@ -1,11 +1,6 @@
-import { Action } from 'redux'
 import { ActionTypes } from '../types'
 
-export interface FetchUserAction extends Action {
-  token: string
-}
-
-export const fetchUser = (token): FetchUserAction => ({
+export const fetchUser = token => ({
   type: ActionTypes.FETCH_CURRENT_USER_REQUEST,
   token,
 })
@@ -19,15 +14,7 @@ export const fetchUserFailure = () => ({
   type: ActionTypes.FETCH_CURRENT_USER_FAILURE,
 })
 
-export interface RegisterUserAction extends Action {
-  user: {}
-  meta: {
-    setSubmitting: (boolean) => {}
-    setErrors: (object) => {}
-  }
-}
-
-export const registerNewUser = (user, meta): RegisterUserAction => ({
+export const registerNewUser = (user, meta) => ({
   type: ActionTypes.REGISTER_NEW_USER_REQUEST,
   user,
   meta,

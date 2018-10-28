@@ -4,7 +4,6 @@ import { map, head } from 'ramda'
 
 import { userLoggedIn, userLoginFailure, userLoggedOut } from '../actions/auth'
 import {
-  RegisterUserAction,
   registerNewUserSuccess,
   registerNewUserFailure,
   fetchUserSuccess,
@@ -14,15 +13,15 @@ import { UserLoginRequestAction } from '../actions/auth'
 import setAuthorizationHeader from '../utils/setAuthorizationHeader'
 import api from '../api'
 
-function storeToken(token) {
+const storeToken = token => {
   localStorage.userToken = token
 }
 
-function removeToken() {
+const removeToken = () => {
   localStorage.removeItem('userToken')
 }
 
-export function* registerUserSaga(action: RegisterUserAction) {
+export function* registerUserSaga(action) {
   const { user, meta: { setSubmitting, setErrors } } = action
 
   try {
@@ -56,7 +55,7 @@ export function* fetchUserSaga(action) {
   }
 }
 
-export function* userLoginSaga(action: UserLoginRequestAction) {
+export function* userLoginSaga(action) {
   const { credentials, meta: { setSubmitting, setErrors } } = action
   try {
     const { accessToken: token } = yield call(api.user.login, credentials)

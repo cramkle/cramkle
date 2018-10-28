@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { Formik } from 'formik'
 import { string, object } from 'yup'
@@ -9,12 +9,7 @@ import Button from '@material/react-button'
 import InputField from './InputField'
 import { registerNewUser } from '../../actions/user'
 
-interface RegisterFormProps {
-  register: () => {}
-  title?: string
-}
-
-const RegisterForm: React.StatelessComponent<RegisterFormProps> = ({ register, title }) => (
+const RegisterForm = ({ register, title }) => (
   <Formik
     initialValues={{
       username: '',

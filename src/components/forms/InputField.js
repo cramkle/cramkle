@@ -1,19 +1,8 @@
-import * as React from 'react'
+import React from 'react'
 import { Field } from 'formik'
 import TextField, { Input, HelperText } from '@material/react-text-field'
 
-interface InputFieldComponentProps {
-  field: {
-    name: string
-  }
-  form: {
-    touched: boolean
-    errors: {}
-  }
-  type: string
-}
-
-const InputFieldComponent : React.StatelessComponent<InputFieldComponentProps> = ({
+const InputFieldComponent = ({
   field,
   form: { touched, errors },
   type,
