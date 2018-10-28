@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { Fragment } from 'react'
 import Helmet from 'react-helmet'
 import { connect } from 'react-redux'
 import { Switch, withRouter } from 'react-router'
@@ -18,12 +18,8 @@ import RegisterPage from './components/pages/RegisterPage'
 import AboutPage from './components/pages/AboutPage'
 import NotFoundPage from './components/pages/NotFoundPage'
 
-interface AppProps {
-  fetchingUser: boolean
-}
-
-const App: React.StatelessComponent<AppProps> = ({ fetchingUser }) => (
-  <React.Fragment>
+const App = ({ fetchingUser }) => (
+  <Fragment>
     <Helmet defaultTitle="Cramkle" titleTemplate="%s - Cramkle" />
     <ScreenLoader loading={fetchingUser}>
       <Switch>
@@ -44,7 +40,7 @@ const App: React.StatelessComponent<AppProps> = ({ fetchingUser }) => (
         <Route component={NotFoundPage} />
       </Switch>
     </ScreenLoader>
-  </React.Fragment>
+  </Fragment>
 )
 
 const mapStateToProps = state => ({

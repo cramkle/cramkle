@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import MaterialIcon from '@material/react-material-icon'
@@ -8,26 +8,12 @@ import { CardActions, CardActionButtons } from '@material/react-card'
 import { userLogoutRequest } from '../actions/auth'
 import { getUser } from '../selectors/user'
 
-interface UserInformationCardProps {
-  user: {
-    username: string
-  }
-  logout: () => {}
-  className?: string
-}
-
-interface UserInformationCardState {
-  showCard: boolean
-}
-
-class UserInformationCard extends
-  React.Component<UserInformationCardProps, UserInformationCardState> {
-
+class UserInformationCard extends Component {
   static defaultProps = {
     user: {},
   }
 
-  private cardRef: React.RefObject<HTMLDivElement> = React.createRef()
+  cardRef = React.createRef()
 
   state = {
     showCard: false,

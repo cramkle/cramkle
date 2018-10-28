@@ -1,15 +1,10 @@
-import * as React from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { Route, Redirect } from 'react-router-dom'
 
 import { isAuthenticatedSelector } from '../../selectors/user'
 
-interface UserRouteProps {
-  isAuthenticated: boolean
-  component: React.ComponentType
-}
-
-const UserRoute: React.StatelessComponent<UserRouteProps> = ({ isAuthenticated, component: Component, ...rest }) => (
+const UserRoute = ({ isAuthenticated, component: Component, ...rest }) => (
   <Route
     {...rest}
     render={props =>
