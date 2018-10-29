@@ -1,0 +1,27 @@
+{
+  "name": "cramkle-api",
+  "version": "0.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/lucasecdb/cramkle-api",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "node index.js"
+  },
+  "devDependencies": {
+    "eslint": "^5.8.0",
+    "eslint-config-prettier": "^3.1.0"
+  },
+  "dependencies": {
+    "apollo-server": "^2.1.0",
+    "apollo-server-express": "^2.1.0",
+    "bcrypt": "^3.0.2",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "express": "^4.16.4",
+    "graphql": "^14.0.2",
+    "graphql-import": "^0.7.1",
+    "graphql-tag": "^2.10.0",
+    "ramda": "^0.25.0"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "extends": ["prettier", "eslint:recommended"],
+  "env": {
+    "es6": true,
+    "node": true,
+    "browser": false
+  },
+  "rules": {
+    "no-underscore-dangle": [1, { "allow": ["_id"] }],
+    "semi": ["error", "never"],
+    "quotes": ["error", "single"],
+    "comma-dangle": ["error", "always-multiline"]
+  }
+}
