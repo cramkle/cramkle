@@ -1,0 +1,8 @@
+type Deck {
+  id: Int
+  title: String!
+  description: String
+  notes: [Note]
+  owner: User
+  published: Boolean
+}

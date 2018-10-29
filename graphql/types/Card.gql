@@ -1,0 +1,6 @@
+type Card {
+  id: Int
+  template: Template
+  active: Boolean
+  note: Note
+}

@@ -1,0 +1,14 @@
+type Field {
+  id: Int
+  name: String!
+  isRequired: Boolean
+  type: FieldType
+  model: CardModel
+}
+
+enum FieldType {
+  STRING,
+  NUMBER,
+  DATE,
+  IMAGE
+}

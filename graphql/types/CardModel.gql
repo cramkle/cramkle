@@ -1,0 +1,7 @@
+type CardModel {
+  id: Int
+  name: String
+  owner: User
+  fields: [Field]
+  templates: [Template]
+}

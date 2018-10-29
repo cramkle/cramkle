@@ -1,0 +1,7 @@
+type Note {
+  id: Int
+  deck: Deck
+  model: CardModel
+  values: [FieldValue]
+  cards: [Card]
+}
