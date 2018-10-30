@@ -1,4 +1,4 @@
-const { importSchema } = require('graphlq-import')
+const { importSchema } = require('graphql-import')
 const { ApolloServer, gql } = require('apollo-server')
 const { registerServer } = require('apollo-server-express')
 
