@@ -1,16 +1,16 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import Helmet from 'react-helmet'
 
 import DeckList from '../DeckList'
 
 const DashboardPage = () => (
-  <React.Fragment>
+  <Fragment>
     <Helmet>
       <title>Dashboard</title>
     </Helmet>
 
     <DeckList />
-  </React.Fragment>
+  </Fragment>
 )
 
 export default DashboardPage

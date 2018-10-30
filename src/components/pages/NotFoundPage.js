@@ -1,5 +1,7 @@
-import * as React from 'react'
+import React from 'react'
 
-export default function NotFoundPage() {
+const NotFoundPage = () => {
   return <div>The page you requested wasn&apos;t found</div>
 }
+
+export default NotFoundPage

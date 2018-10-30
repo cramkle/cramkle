@@ -1,10 +1,10 @@
-import * as React from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 
 import RegisterForm from '../forms/RegisterForm'
 import './LandingPage.scss'
 
-const LandingPage : React.StatelessComponent<{}> = () => (
+const LandingPage = () => (
   <div className="landing__jumbo">
     <div>
       <h1 className="mdc-typography--headline2 landing__app-title">

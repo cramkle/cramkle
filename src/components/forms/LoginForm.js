@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { Formik } from 'formik'
 import { object, string } from 'yup'
@@ -9,11 +9,7 @@ import Button from '@material/react-button'
 import { userLoginRequest } from '../../actions/auth'
 import InputField from './InputField'
 
-interface LoginFormProps {
-  login: () => {}
-}
-
-const LoginForm: React.StatelessComponent<LoginFormProps> = ({ login }) => (
+const LoginForm = ({ login }) => (
   <Formik
     initialValues={{
       username: '',

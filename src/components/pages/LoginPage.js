@@ -1,11 +1,11 @@
-import * as React from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import Helmet from 'react-helmet'
 
 import LoginForm from '../forms/LoginForm'
 import './LoginPage.scss'
 
-export default function LoginPage() {
+const LoginPage = () => {
   return (
     <div className="login-page flex flex-column h-100 w-100 items-center justify-center">
       <Helmet>
@@ -19,3 +19,5 @@ export default function LoginPage() {
     </div>
   )
 }
+
+export default LoginPage
