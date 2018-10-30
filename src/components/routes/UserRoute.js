@@ -1,8 +1,5 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import { Route, Redirect } from 'react-router-dom'
-
-import { isAuthenticatedSelector } from '../../selectors/user'
 
 const UserRoute = ({ isAuthenticated, component: Component, ...rest }) => (
   <Route
@@ -23,8 +20,4 @@ const UserRoute = ({ isAuthenticated, component: Component, ...rest }) => (
   />
 )
 
-const mapStateToProps = state => ({
-  isAuthenticated: isAuthenticatedSelector(state),
-})
-
-export default connect(mapStateToProps)(UserRoute)
+export default UserRoute

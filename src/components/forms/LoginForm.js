@@ -1,15 +1,13 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import { Formik } from 'formik'
 import { object, string } from 'yup'
 
 import Card, { CardActions, CardActionButtons } from '@material/react-card'
 import Button from '@material/react-button'
 
-import { userLoginRequest } from '../../actions/auth'
 import InputField from './InputField'
 
-const LoginForm = ({ login }) => (
+const LoginForm = () => (
   <Formik
     initialValues={{
       username: '',
@@ -23,7 +21,7 @@ const LoginForm = ({ login }) => (
         .required('Username is required'),
       accessKey: string().required('Password is required'),
     })}
-    onSubmit={login}
+    onSubmit={() => {}}
   >
     {({ isSubmitting, isValid, handleSubmit, errors }) => (
       <form className="login-page__form w-100" onSubmit={handleSubmit}>
@@ -66,11 +64,4 @@ const LoginForm = ({ login }) => (
   </Formik>
 )
 
-const mapDispatchToProps = dispatch => ({
-  login: (credentials, meta) => dispatch(userLoginRequest(credentials, meta)),
-})
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(LoginForm)
+export default LoginForm

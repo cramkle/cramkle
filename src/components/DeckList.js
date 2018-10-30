@@ -1,13 +1,10 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 
 import Deck from './Deck'
-import { fetchDecksRequest } from '../actions/deck'
-import { loadingDecks, getDecks } from '../selectors/deck'
 
-class DeckList extends Component {
-  componentDidMount() {
-    this.props.requestDecks()
+export default class DeckList extends Component {
+  static defaultProps = {
+    loading: true,
   }
 
   render() {
@@ -41,16 +38,3 @@ class DeckList extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  decks: getDecks(state),
-  loading: loadingDecks(state),
-})
-
-const mapDispatchToProps = dispatch => ({
-  requestDecks: () => dispatch(fetchDecksRequest()),
-})
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(DeckList)
