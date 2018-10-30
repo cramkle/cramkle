@@ -1,14 +1,10 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 
 import MaterialIcon from '@material/react-material-icon'
 import Button from '@material/react-button'
 import { CardActions, CardActionButtons } from '@material/react-card'
 
-import { userLogoutRequest } from '../actions/auth'
-import { getUser } from '../selectors/user'
-
-class UserInformationCard extends Component {
+export default class UserInformationCard extends Component {
   static defaultProps = {
     user: {},
   }
@@ -79,11 +75,3 @@ class UserInformationCard extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  user: getUser(state),
-})
-
-export default connect(
-  mapStateToProps,
-  { logout: userLogoutRequest }
-)(UserInformationCard)

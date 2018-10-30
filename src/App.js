@@ -1,11 +1,9 @@
 import React, { Fragment } from 'react'
 import Helmet from 'react-helmet'
-import { connect } from 'react-redux'
 import { Switch, withRouter } from 'react-router'
 import { Route } from 'react-router-dom'
 
 import ScreenLoader from './components/ScreenLoader'
-import { isFetching } from './selectors/user'
 
 import TopBarRoute from './components/routes/TopBarRoute'
 import GuestRoute from './components/routes/GuestRoute'
@@ -43,8 +41,4 @@ const App = ({ fetchingUser }) => (
   </Fragment>
 )
 
-const mapStateToProps = state => ({
-  fetchingUser: isFetching(state),
-})
-
-export default withRouter(connect(mapStateToProps)(App))
+export default withRouter(App)

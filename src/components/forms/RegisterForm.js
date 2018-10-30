@@ -1,5 +1,4 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import { Formik } from 'formik'
 import { string, object } from 'yup'
 
@@ -7,7 +6,6 @@ import Card, { CardActions, CardActionButtons } from '@material/react-card'
 import Button from '@material/react-button'
 
 import InputField from './InputField'
-import { registerNewUser } from '../../actions/user'
 
 const RegisterForm = ({ register, title }) => (
   <Formik
@@ -32,7 +30,7 @@ const RegisterForm = ({ register, title }) => (
         .min(6)
         .required('Password is required'),
     })}
-    onSubmit={register}
+    onSubmit={() => {}}
   >
     {({ handleSubmit, isValid, isSubmitting }) => (
       <form className="register-page__form w-100" onSubmit={handleSubmit}>
@@ -60,7 +58,4 @@ RegisterForm.defaultProps = {
   title: 'Register',
 }
 
-export default connect(
-  null,
-  { register: registerNewUser }
-)(RegisterForm)
+export default RegisterForm
