@@ -1,3 +1,8 @@
+# import Card from "Card.graphql"
+# import Deck from "Deck.graphql"
+# import CardModel from "CardModel.graphql"
+# import FieldValue from "FieldValue.graphql"
+
 type Note {
   id: Int
   deck: Deck

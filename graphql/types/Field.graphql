@@ -1,3 +1,5 @@
+# import CardModel from "CardModel.graphql"
+
 type Field {
   id: Int
   name: String!

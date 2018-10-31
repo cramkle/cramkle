@@ -1,0 +1,9 @@
+# import Deck from "types/Deck.graphql"
+
+type Query {
+  decks(id: Int!): [Deck]
+}
+
+type Mutation {
+  _: Boolean
+}

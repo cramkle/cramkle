@@ -1,3 +1,6 @@
+# import Template from "Template.graphql"
+# import Note from "Note.graphql"
+
 type Card {
   id: Int
   template: Template

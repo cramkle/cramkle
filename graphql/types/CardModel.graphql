@@ -1,3 +1,7 @@
+# import User from "User.graphql"
+# import Field from "Field.graphql"
+# import Template from "Template.graphql"
+
 type CardModel {
   id: Int
   name: String
