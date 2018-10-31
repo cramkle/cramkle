@@ -1,8 +1,8 @@
 const { importSchema } = require('graphql-import')
-const { ApolloServer, gql } = require('apollo-server')
-const { registerServer } = require('apollo-server-express')
+const { ApolloServer, gql } = require('apollo-server-express')
 
-const typeDefs = gql(importSchema('./graphql/schema.gql'))
+const schema = importSchema('./graphql/schema.graphql')
+const typeDefs = gql(schema)
 const resolvers = require('../resolvers')
 
 const server = new ApolloServer({
@@ -11,7 +11,7 @@ const server = new ApolloServer({
 })
 
 module.exports = {
-  set: app => { // eslint-disable-line no-unused-vars
-    return registerServer(server)
+  set: app => {
+    return server.applyMiddleware({ app })
   },
 }
