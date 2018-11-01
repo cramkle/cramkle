@@ -5,6 +5,13 @@
     "node": true,
     "browser": false
   },
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 7,
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    }
+  },
   "rules": {
     "no-underscore-dangle": [1, { "allow": ["_id"] }],
     "semi": ["error", "never"],
