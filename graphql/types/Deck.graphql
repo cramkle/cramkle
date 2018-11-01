@@ -1,11 +1,19 @@
 # import Note from "Note.graphql"
 # import User from "User.graphql"
 
+"""
+Collection of notes
+"""
 type Deck {
   id: String
+  """ Title of the deck """
   title: String!
+  """ Description of the deck """
   description: String
+  """ Notes contained in this deck """
   notes: [Note]
+  """ Owner of the deck """
   owner: User
+  """ Whether this deck is published to the marketplace """
   published: Boolean
 }

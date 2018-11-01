@@ -2,10 +2,16 @@
 # import Field from "Field.graphql"
 # import Template from "Template.graphql"
 
+"""
+Represents a model for a collection of notes.
+"""
 type CardModel {
   id: String
+  """ Name of this card model (e.g. "Basic", "Basic with Reversed")"""
   name: String
   owner: User
+  """ Fields associated with this model """
   fields: [Field]
+  """ Templates associated with this model """
   templates: [Template]
 }

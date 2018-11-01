@@ -1,9 +1,26 @@
 # import Template from "Template.graphql"
 # import Note from "Note.graphql"
 
+"""
+Cards are what the user reviews in the study sessions.
+
+The objects of this type are auto generated when creating
+the note and depend of the number of templates that are
+associated with the card model.
+
+The number of cards on each note is always equals the
+number of templates.
+"""
 type Card {
   id: String
+  """ Template associated with this card """
   template: Template
+  """
+  Whether to be filtered of not.
+  
+  Acts like a logical deletion it when comes to the review.
+  """
   active: Boolean
+  """ Parent note of the card """
   note: Note
 }

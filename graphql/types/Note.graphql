@@ -3,10 +3,20 @@
 # import CardModel from "CardModel.graphql"
 # import FieldValue from "FieldValue.graphql"
 
+"""
+A note is what the user registers on each deck.
+
+This type auto generates a number of cards, based
+on the number of templates.
+"""
 type Note {
   id: String
+  """ Deck containing this note """
   deck: Deck
+  """ Model of this note """
   model: CardModel
+  """ Values of this note """
   values: [FieldValue]
+  """ Generated cards """
   cards: [Card]
 }
