@@ -2,7 +2,7 @@
 # import User from "User.graphql"
 
 type Deck {
-  id: Int
+  id: String
   title: String!
   description: String
   notes: [Note]

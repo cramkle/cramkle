@@ -3,7 +3,7 @@
 # import Template from "Template.graphql"
 
 type CardModel {
-  id: Int
+  id: String
   name: String
   owner: User
   fields: [Field]

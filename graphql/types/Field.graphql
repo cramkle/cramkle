@@ -1,7 +1,7 @@
 # import CardModel from "CardModel.graphql"
 
 type Field {
-  id: Int
+  id: String
   name: String!
   isRequired: Boolean
   type: FieldType

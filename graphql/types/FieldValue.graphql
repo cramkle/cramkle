@@ -1,7 +1,7 @@
 # import Field from "Field.graphql"
 
 type FieldValue {
-  id: Int
+  id: String
   data: String
   field: Field
 }

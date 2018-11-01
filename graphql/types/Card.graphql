@@ -2,7 +2,7 @@
 # import Note from "Note.graphql"
 
 type Card {
-  id: Int
+  id: String
   template: Template
   active: Boolean
   note: Note

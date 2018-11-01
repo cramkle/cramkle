@@ -4,7 +4,7 @@
 # import FieldValue from "FieldValue.graphql"
 
 type Note {
-  id: Int
+  id: String
   deck: Deck
   model: CardModel
   values: [FieldValue]
