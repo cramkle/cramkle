@@ -11,7 +11,7 @@ const ioMiddleware = require('./middlewares/io')
 ioMiddleware.set(app)
 graphqlMiddleware.set(app)
 
-mongoose.connect(MONGO_URI, { useNewUrlParser: true })
+mongoose.connect(MONGO_URI, { useNewUrlParser: true, useCreateIndex: true })
   .then(() => {
     app.listen(PORT, () => {
       console.log(`App listening on https://localhost:${PORT}`)
