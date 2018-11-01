@@ -11,7 +11,7 @@ const deckSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Note',
   }],
-  owner: {
+  ownerId: {
     type: Schema.Types.ObjectId,
     ref: 'User',
   },

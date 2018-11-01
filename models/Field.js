@@ -6,9 +6,9 @@ const fieldSchema = new Schema({
   isRequired: Boolean,
   type: {
     type: String,
-    enum: ['string', 'number', 'date', 'image'],
+    enum: ['STRING', 'NUMBER', 'DATE', 'IMAGE'],
   },
-  model: {
+  modelId: {
     type: Schema.Types.ObjectId,
     ref: 'CardModel',
   },

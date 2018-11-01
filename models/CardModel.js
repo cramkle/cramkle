@@ -3,7 +3,7 @@ const { Schema } = mongoose
 
 const cardModelSchema = new Schema({
   name: String,
-  owner: {
+  ownerId: {
     type: Schema.Types.ObjectId,
     ref: 'User',
   },

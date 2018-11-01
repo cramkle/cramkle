@@ -1,9 +1,76 @@
 # import Deck from "types/Deck.graphql"
+# import Card from "types/Card.graphql"
+# import CardModel from "types/CardModel.graphql"
+# import Field from "types/Field.graphql"
+# import FieldValue from "types/FieldValue.graphql"
+# import Template from "types/Template.graphql"
+# import Note from "types/Note.graphql"
+# import User from "types/User.graphql"
 
 type Query {
-  decks(id: Int!): [Deck]
+  """ Retrieve all decks for the logged user """
+  decks: [Deck]
+
+  deck(id: String!): Deck
+  card(id: String!): Card
+  cardModel(id: String!): CardModel
+  field(id: String!): Field
+  fieldValue(id: String!): FieldValue
+  template(id: String!): Template
+  note(id: String!): Note
+  user(id: String!): User
 }
 
 type Mutation {
-  _: Boolean
+  """ Create a deck entity """
+  createDeck(
+    """ Deck title """
+    title: String!,
+    """ Deck description """
+    description: String
+  ): Deck
+
+  """ Update a deck """
+  updateDeck(
+    """ Deck id """
+    id: String!,
+    """ New title """
+    title: String,
+    """ New description """
+    description: String
+  ): Deck
+
+  """ Publish a deck to the marketplace """
+  publishDeck(
+    """ Deck id """
+    id: String!
+  ): Deck
+
+  """ Remove a deck from the marketplace """
+  unpublishDeck(
+    """ Deck id"""
+    id: String!
+  ): Deck
+
+  """ Create a new user """
+  createUser(
+    """ User's username """
+    username: String!,
+    """ User's email """
+    email: String!,
+    """ User's password """
+    password: String!,
+  ): User
+
+  """ Update user profile information """
+  updateProfile(
+    # TODO: remove
+    id: String!,
+    """ New username """
+    username: String,
+    """ New password """
+    password: String,
+    """ Password confirmation """
+    confirmPassword: String!,
+  ): User
 }

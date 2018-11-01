@@ -5,7 +5,7 @@ const templateSchema = new Schema({
   name: String,
   frontSide: String,
   backSide: String,
-  model: {
+  modelId: {
     type: Schema.Types.ObjectId,
     ref: 'CardModel',
   },

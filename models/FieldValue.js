@@ -3,7 +3,7 @@ const { Schema } = mongoose
 
 const fieldValueSchema = new Schema({
   data: String,
-  field: {
+  fieldId: {
     type: Schema.Types.ObjectId,
     ref: 'Field',
   },

@@ -2,11 +2,11 @@ const mongoose = require('mongoose')
 const { Schema } = mongoose
 
 const noteSchema = new Schema({
-  deck: {
+  deckId: {
     type: Schema.Types.ObjectId,
     ref: 'Deck',
   },
-  model: {
+  modelId: {
     type: Schema.Types.ObjectId,
     ref: 'CardModel',
   },
