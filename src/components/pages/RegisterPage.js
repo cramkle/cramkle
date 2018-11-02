@@ -7,7 +7,7 @@ import './RegisterPage.scss'
 
 const RegisterPage = () => {
   return (
-    <div className="flex flex-column h-100 justify-center items-center bg-primary c-on-primary">
+    <div className="flex flex-column vh-100 pa3 justify-center items-center bg-primary c-on-primary">
       <Helmet>
         <title>Register</title>
       </Helmet>

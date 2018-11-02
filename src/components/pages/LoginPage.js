@@ -7,7 +7,7 @@ import './LoginPage.scss'
 
 const LoginPage = () => {
   return (
-    <div className="flex flex-column h-100 w-100 items-center justify-center bg-primary c-on-primary">
+    <div className="flex flex-column vh-100 w-100 pa3 items-center justify-center bg-primary c-on-primary">
       <Helmet>
         <title>Login</title>
       </Helmet>
