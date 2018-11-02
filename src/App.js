@@ -9,12 +9,13 @@ import TopBarRoute from './components/routes/TopBarRoute'
 // import GuestRoute from './components/routes/GuestRoute'
 // import UserRoute from './components/routes/UserRoute'
 
-import LandingPage from './components/pages/LandingPage'
-import DashboardPage from './components/pages/DashboardPage'
-import LoginPage from './components/pages/LoginPage'
-import RegisterPage from './components/pages/RegisterPage'
 import AboutPage from './components/pages/AboutPage'
+import DashboardPage from './components/pages/DashboardPage'
+import DeckPage from './components/pages/DeckPage'
+import LandingPage from './components/pages/LandingPage'
+import LoginPage from './components/pages/LoginPage'
 import NotFoundPage from './components/pages/NotFoundPage'
+import RegisterPage from './components/pages/RegisterPage'
 
 const App = ({ fetchingUser }) => (
   <Fragment>
@@ -29,6 +30,11 @@ const App = ({ fetchingUser }) => (
         <TopBarRoute
           component={DashboardPage}
           path="/dashboard"
+          exact
+        />
+        <TopBarRoute
+          component={DeckPage}
+          path="/d/:slug"
           exact
         />
         <Route component={RegisterPage} path="/register" exact />

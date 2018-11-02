@@ -1,6 +1,7 @@
 query decksQuery {
   decks {
     id
+    slug
     title
     description
   }

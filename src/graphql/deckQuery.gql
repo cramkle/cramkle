@@ -1,0 +1,8 @@
+query GetDeck($slug: String!) {
+  deck(slug: $slug) {
+    id
+    slug
+    title
+    description
+  }
+}
