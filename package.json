@@ -6,7 +6,9 @@
     "@material/layout-grid": "^0.40.1",
     "@material/react-button": "^0.6.1",
     "@material/react-card": "^0.6.1",
+    "@material/react-drawer": "^0.6.1",
     "@material/react-fab": "^0.6.1",
+    "@material/react-list": "^0.6.1",
     "@material/react-material-icon": "^0.6.1",
     "@material/react-ripple": "^0.6.1",
     "@material/react-text-field": "^0.6.1",
@@ -28,6 +30,7 @@
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "tachyons-sass": "^4.9.3",
+    "the-platform": "^0.9.3",
     "whatwg-fetch": "2.0.3",
     "yup": "^0.25.1"
   },
