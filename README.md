@@ -1,6 +1,6 @@
 # Cramkle
 
-[![Build Status](https://travis-ci.com/lucasecdb/cramkle.svg?token=xL2PCCuq2hjR3xBUzqXv&branch=master)](https://travis-ci.com/lucasecdb/cramkle)
+[![Build Status](https://travis-ci.org/lucasecdb/cramkle.svg?branch=master)](https://travis-ci.org/lucasecdb/cramkle)
 
 Cramkle is a *cross-platform* flashcard-based studying app that helps you
 organize your study using a [spaced repetition](https://en.wikipedia.org/wiki/Spaced_repetition)
