@@ -1,0 +1,61 @@
+@import './_variables.scss';
+
+.c-primary { color: $mdc-theme-primary; }
+.bg-primary { background-color: $mdc-theme-primary; }
+.b--primary { border-color: $mdc-theme-primary; }
+
+.hover-c-primary:hover,
+.hover-c-primary:focus { color: $mdc-theme-primary; }
+
+.hover-bg-primary:hover,
+.hover-bg-primary:focus { background-color: $mdc-theme-primary; }
+
+.c-on-primary { color: $mdc-theme-on-primary; }
+.bg-on-primary { background-color: $mdc-theme-on-primary; }
+.b--on-primary { border-color: $mdc-theme-on-primary; }
+
+.hover-c-on-primary:hover,
+.hover-c-on-primary:focus { color: $mdc-theme-on-primary; }
+
+.hover-bg-on-primary:hover,
+.hover-bg-on-primary:focus { background-color: $mdc-theme-on-primary; }
+
+.c-secondary { color: $mdc-theme-secondary; }
+.bg-secondary { background-color: $mdc-theme-secondary; }
+.b--secondary { border-color: $mdc-theme-secondary; }
+
+.hover-c-secondary:hover,
+.hover-c-secondary:focus { color: $mdc-theme-secondary; }
+
+.hover-bg-secondary:hover,
+.hover-bg-secondary:focus { background-color: $mdc-theme-secondary; }
+
+.c-on-secondary { color: $mdc-theme-on-secondary; }
+.bg-on-secondary { background-color: $mdc-theme-on-secondary; }
+.b--on-secondary { border-color: $mdc-theme-on-secondary; }
+
+.hover-c-on-secondary:hover,
+.hover-c-on-secondary:focus { color: $mdc-theme-on-secondary; }
+
+.hover-bg-on-secondary:hover,
+.hover-bg-on-secondary:focus { background-color: $mdc-theme-on-secondary; }
+
+.c-surface { color: $mdc-theme-surface; }
+.bg-surface { background-color: $mdc-theme-surface; }
+.b--surface { border-color: $mdc-theme-surface; }
+
+.hover-c-surface:hover,
+.hover-c-surface:focus { color: $mdc-theme-surface; }
+
+.hover-bg-surface:hover,
+.hover-bg-surface:focus { background-color: $mdc-theme-surface; }
+
+.c-on-surface { color: $mdc-theme-on-surface; }
+.bg-on-surface { background-color: $mdc-theme-on-surface; }
+.b--on-surface { border-color: $mdc-theme-on-surface; }
+
+.hover-c-on-surface:hover,
+.hover-c-on-surface:focus { color: $mdc-theme-on-surface; }
+
+.hover-bg-on-surface:hover,
+.hover-bg-on-surface:focus { background-color: $mdc-theme-on-surface; }
