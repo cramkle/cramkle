@@ -23,7 +23,7 @@ const DeckList = ({ data: { loading, decks } }) => {
 
       <div className="mdc-layout-grid__inner">
         {decks.map(deck => (
-          <div key={deck.deckId} className="mdc-layout-grid__cell">
+          <div key={deck.id} className="mdc-layout-grid__cell">
             <Deck {...deck} />
           </div>
         ))}
