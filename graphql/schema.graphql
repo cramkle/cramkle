@@ -11,7 +11,7 @@ type Query {
   """ Retrieve all decks for the logged user """
   decks: [Deck]
 
-  deck(id: String!): Deck
+  deck(slug: String!): Deck
   card(id: String!): Card
   cardModel(id: String!): CardModel
   field(id: String!): Field

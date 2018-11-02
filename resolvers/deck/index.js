@@ -14,8 +14,8 @@ module.exports = {
 
       return decks
     },
-    deck: async (_, { id }) => {
-      return await Deck.findById(id)
+    deck: async (_, { slug }) => {
+      return await Deck.findOne({ slug })
     },
   },
   mutations: {
