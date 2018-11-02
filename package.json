@@ -24,6 +24,7 @@
     "graphql-import": "^0.7.1",
     "graphql-tag": "^2.10.0",
     "mongoose": "^5.3.8",
-    "ramda": "^0.25.0"
+    "ramda": "^0.25.0",
+    "shortid": "^2.2.13"
   }
 }

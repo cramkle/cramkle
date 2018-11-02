@@ -10,6 +10,8 @@ type Deck {
   title: String!
   """ Description of the deck """
   description: String
+  """ Unique identifiable slug """
+  slug: String
   """ Notes contained in this deck """
   notes: [Note]
   """ Owner of the deck """
