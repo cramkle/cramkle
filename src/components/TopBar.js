@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { useWindowSize } from 'the-platform'
+import { withRouter } from 'react-router'
 
 import TopAppBar from '@material/react-top-app-bar'
 import MaterialIcon from '@material/react-material-icon'
 import Drawer, { DrawerContent, DrawerAppContent } from '@material/react-drawer'
 import List, { ListItem, ListItemText, ListItemGraphic } from '@material/react-list'
 
-const TopBar = ({ children }) => {
+const TopBar = ({ children, history }) => {
   const [drawerOpen, setDrawerOpen] = useState(false)
   const { width: windowWidth } = useWindowSize()
 
@@ -25,11 +26,18 @@ const TopBar = ({ children }) => {
       >
         <DrawerContent>
           <List>
-            <ListItem tabIndex={0}>
+            <ListItem
+              tabIndex={1}
+              onClick={() => history.push('/dashboard')}
+            >
+              <ListItemGraphic graphic={<MaterialIcon icon="home" />} />
+              <ListItemText primaryText="Dashboard" />
+            </ListItem>
+            <ListItem onClick={() => history.push('/marketplace')}>
               <ListItemGraphic graphic={<MaterialIcon icon="store_mall_directory" />} />
               <ListItemText primaryText="Marketplace" />
             </ListItem>
-            <ListItem tabIndex={1}>
+            <ListItem>
               <ListItemGraphic graphic={<MaterialIcon icon="exit_to_app" />} />
               <ListItemText primaryText="Logout" />
             </ListItem>
@@ -59,4 +67,4 @@ TopBar.defaultProps = {
   children: null,
 }
 
-export default TopBar
+export default withRouter(TopBar)
