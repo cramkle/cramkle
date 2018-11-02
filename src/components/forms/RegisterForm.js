@@ -1,13 +1,15 @@
 import React from 'react'
 import { Formik } from 'formik'
 import { string, object } from 'yup'
+import { graphql } from 'react-apollo'
 
 import Card, { CardActions, CardActionButtons } from '@material/react-card'
 import Button from '@material/react-button'
 
+import registerMutation from '../../graphql/registerMutation.gql'
 import InputField from './InputField'
 
-const RegisterForm = ({ register, title }) => (
+const RegisterForm = ({ mutate: register, title }) => (
   <Formik
     initialValues={{
       username: '',
@@ -26,11 +28,11 @@ const RegisterForm = ({ register, title }) => (
       email: string()
         .email()
         .required('Email is required'),
-      accessKey: string()
+      password: string()
         .min(6)
         .required('Password is required'),
     })}
-    onSubmit={() => {}}
+    onSubmit={user => register({ variables: user })}
   >
     {({ handleSubmit, isValid, isSubmitting }) => (
       <form className="register-page__form w-100" onSubmit={handleSubmit}>
@@ -58,4 +60,4 @@ RegisterForm.defaultProps = {
   title: 'Register',
 }
 
-export default RegisterForm
+export default graphql(registerMutation)(RegisterForm)
