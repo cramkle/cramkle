@@ -3,7 +3,7 @@
 exports[`<Deck /> should match snapshot 1`] = `
 <div>
   <div
-    class="mdc-card mdc-card--outlined"
+    class="mdc-card h-100 mdc-card--outlined"
   >
     <div
       class="mdc-card__primary-action pa2"

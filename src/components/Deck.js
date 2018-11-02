@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import Card, { CardPrimaryContent } from '@material/react-card'
 
 const Deck = ({ title, description, slug, history }) => (
-  <Card outlined>
+  <Card outlined className="h-100">
     <CardPrimaryContent className="pa2">
       <Link className="link c-on-surface" to={`/d/${slug}`}>
         <h3 className="mdc-typography--headline6">{title}</h3>
