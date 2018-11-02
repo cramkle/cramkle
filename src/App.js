@@ -6,8 +6,8 @@ import { Route } from 'react-router-dom'
 import ScreenLoader from './components/ScreenLoader'
 
 import TopBarRoute from './components/routes/TopBarRoute'
-import GuestRoute from './components/routes/GuestRoute'
-import UserRoute from './components/routes/UserRoute'
+// import GuestRoute from './components/routes/GuestRoute'
+// import UserRoute from './components/routes/UserRoute'
 
 import LandingPage from './components/pages/LandingPage'
 import DashboardPage from './components/pages/DashboardPage'
@@ -21,19 +21,18 @@ const App = ({ fetchingUser }) => (
     <Helmet defaultTitle="Cramkle" titleTemplate="%s - Cramkle" />
     <ScreenLoader loading={fetchingUser}>
       <Switch>
-        <GuestRoute
+        <Route
           component={LandingPage}
           path="/"
           exact
         />
         <TopBarRoute
-          RouteComponent={UserRoute}
           component={DashboardPage}
           path="/dashboard"
           exact
         />
-        <GuestRoute component={RegisterPage} path="/register" exact />
-        <GuestRoute component={LoginPage} path="/login" exact />
+        <Route component={RegisterPage} path="/register" exact />
+        <Route component={LoginPage} path="/login" exact />
         <Route component={AboutPage} path="/about" exact />
         <Route component={NotFoundPage} />
       </Switch>
