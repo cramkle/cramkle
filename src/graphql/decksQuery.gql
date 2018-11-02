@@ -1,4 +1,4 @@
-query decksQuery {
+query AllDecks {
   decks {
     id
     slug
