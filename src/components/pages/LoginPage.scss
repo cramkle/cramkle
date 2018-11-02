@@ -1,28 +1,10 @@
 @import '~tachyons-sass/scss/_variables';
-@import '~tachyons-sass/scss/_spacing';
 @import '~tachyons-sass/scss/_widths';
 
 @import '../../styles/_variables.scss';
 
-.login-page {
-  background-color: $mdc-theme-primary;
-}
-
-.login-page__sign-up-text {
-  color: $mdc-theme-on-primary;
-}
-
-.login-page__sign-up-text a {
-  color: $mdc-theme-on-primary;
-}
-
 .login-page__form {
   max-width: 450px;
-}
-
-.login-page__form-input {
-  @extend .mv2;
-  @extend .w-100;
 }
 
 .login-page__form .mdc-card__actions {
