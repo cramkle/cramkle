@@ -1,0 +1,7 @@
+query decksQuery {
+  decks {
+    id
+    title
+    description
+  }
+}
