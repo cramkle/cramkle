@@ -140,5 +140,8 @@
       "jsx",
       "node"
     ]
+  },
+  "devDependencies": {
+    "react-testing-library": "^5.2.3"
   }
 }
