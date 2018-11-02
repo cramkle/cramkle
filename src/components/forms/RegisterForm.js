@@ -34,13 +34,13 @@ const RegisterForm = ({ register, title }) => (
   >
     {({ handleSubmit, isValid, isSubmitting }) => (
       <form className="register-page__form w-100" onSubmit={handleSubmit}>
-        <Card className="register-page__form-content pa3 pb0">
-          <h4 className="mdc-typography--headline4 register-page__form-title tc">
+        <Card className="register-page__form-content pa3 pb0 c-on-surface">
+          <h4 className="mdc-typography--headline4 tc">
             {title}
           </h4>
-          <InputField className="register-page__form-input" name="username" label="Username" box />
-          <InputField className="register-page__form-input" name="email" label="Email" box />
-          <InputField className="register-page__form-input" label="Password" name="accessKey" type="password" box />
+          <InputField className="mv2" name="username" label="Username" />
+          <InputField className="mv2" name="email" label="Email" />
+          <InputField className="mv2" label="Password" name="password" type="password" />
           <CardActions>
             <CardActionButtons>
               <Button raised disabled={!isValid || isSubmitting}>

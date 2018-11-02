@@ -4,25 +4,8 @@
 
 @import "../../styles/_variables";
 
-.register-page {
-  background-color: $mdc-theme-primary;
-}
-
-.register-page__login-text {
-  color: $mdc-theme-on-primary;
-  margin-top: 15px;
-}
-
-.register-page__login-text a {
-  color: $mdc-theme-on-primary;
-}
-
 .register-page__form {
   max-width: 450px;
-}
-
-.register-page__form-input {
-  @extend .mv2;
 }
 
 .register-page__form-content .mdc-card__actions {

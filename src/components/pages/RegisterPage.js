@@ -7,14 +7,14 @@ import './RegisterPage.scss'
 
 const RegisterPage = () => {
   return (
-    <div className="register-page flex flex-column h-100 justify-center items-center">
-      <RegisterForm />
-      <span className="register-page__login-text">
-        Already have an account? <Link to="/login" className="b">Log In</Link>
-      </span>
+    <div className="flex flex-column h-100 justify-center items-center bg-primary c-on-primary">
       <Helmet>
         <title>Register</title>
       </Helmet>
+      <RegisterForm />
+      <span className="mt3">
+        Already have an account? <Link to="/login" className="b c-on-primary">Log In</Link>
+      </span>
     </div>
   )
 }

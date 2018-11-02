@@ -7,14 +7,15 @@ import './LoginPage.scss'
 
 const LoginPage = () => {
   return (
-    <div className="login-page flex flex-column h-100 w-100 items-center justify-center">
+    <div className="flex flex-column h-100 w-100 items-center justify-center bg-primary c-on-primary">
       <Helmet>
         <title>Login</title>
       </Helmet>
       <LoginForm />
 
-      <span className="login-page__sign-up-text mt2">
-        Don&apos;t have an account? <Link to="/register" className="b">Sign Up</Link>
+      <span className="mt3">
+        Don&apos;t have an account?{' '}
+        <Link to="/register" className="b c-on-primary">Sign Up</Link>
       </span>
     </div>
   )

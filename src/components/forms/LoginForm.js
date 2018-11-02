@@ -26,23 +26,21 @@ const LoginForm = () => (
     {({ isSubmitting, isValid, handleSubmit, errors }) => (
       <form className="login-page__form w-100" onSubmit={handleSubmit}>
         <Card>
-          <div className="login-page__form-content pa3 pb0">
-            <h4 className="mdc-typography--headline4 login-page__form-title tc">
+          <div className="pa3 pb0 c-on-surface">
+            <h4 className="mdc-typography--headline4 tc">
               Login
             </h4>
 
             <InputField
-              className="login-page__form-input"
+              className="w-100 mv2"
               name="username"
               label="Username"
-              box
             />
             <InputField
-              className="login-page__form-input"
+              className="w-100 mv2"
               name="accessKey"
               type="password"
               label="Password"
-              box
             />
             {errors.authentication &&
               !isSubmitting && (
@@ -51,7 +49,7 @@ const LoginForm = () => (
                 </p>
               )}
           </div>
-          <CardActions className="login-page__form-actions">
+          <CardActions>
             <CardActionButtons>
               <Button raised disabled={!isValid || isSubmitting}>
                 Login
