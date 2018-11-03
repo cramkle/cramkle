@@ -33,9 +33,17 @@ const TopBar = ({ children, history }) => {
               <ListItemGraphic graphic={<MaterialIcon icon="home" />} />
               <ListItemText primaryText="Dashboard" />
             </ListItem>
-            <ListItem onClick={() => history.push('/marketplace')}>
+            <ListItem>
               <ListItemGraphic graphic={<MaterialIcon icon="store_mall_directory" />} />
               <ListItemText primaryText="Marketplace" />
+            </ListItem>
+            <ListItem>
+              <ListItemGraphic graphic={<MaterialIcon icon="bar_chart" />} />
+              <ListItemText primaryText="Statistics" />
+            </ListItem>
+            <ListItem>
+              <ListItemGraphic graphic={<MaterialIcon icon="settings" />} />
+              <ListItemText primaryText="Settings" />
             </ListItem>
             <ListItem>
               <ListItemGraphic graphic={<MaterialIcon icon="exit_to_app" />} />
