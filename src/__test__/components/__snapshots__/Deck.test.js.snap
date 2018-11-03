@@ -6,7 +6,7 @@ exports[`<Deck /> should match snapshot 1`] = `
     class="mdc-card h-100 mdc-card--outlined"
   >
     <div
-      class="mdc-card__primary-action pa2"
+      class="mdc-card__primary-action pa2 h-100"
     >
       <a
         class="link c-on-surface"
