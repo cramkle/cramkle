@@ -86,7 +86,7 @@ module.exports = {
           // The preset includes JSX, Flow, and some ESnext features.
           {
             test: /\.(js|mjs|jsx)$/,
-            include: [paths.appSrc, paths.appServerSrc],
+            include: [paths.appSrc, paths.serverSrc],
             loader: require.resolve('babel-loader'),
             options: {
               extends: path.resolve('.babelrc.json'),

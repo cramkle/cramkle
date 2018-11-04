@@ -64,7 +64,7 @@ module.exports = {
   serverIndexJs: resolveApp('server/index.js'),
   appPackageJson: resolveApp('package.json'),
   appSrc: resolveApp('src'),
-  appServerSrc: resolveApp('server'),
+  serverSrc: resolveApp('server'),
   yarnLockFile: resolveApp('yarn.lock'),
   testsSetup: resolveModule(resolveApp, 'src/setupTests'),
   proxySetup: resolveApp('src/setupProxy.js'),
