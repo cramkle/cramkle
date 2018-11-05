@@ -67,23 +67,19 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
 // The production configuration is different and lives in a separate file.
 module.exports = {
   mode: 'development',
+  target: 'web',
   // You may want 'eval' instead if you prefer to see the compiled output in DevTools.
   // See the discussion in https://github.com/facebook/create-react-app/issues/343
   devtool: 'cheap-module-source-map',
   // These are the "entry points" to our application.
   // This means they will be the "root" imports that are included in JS bundle.
-  entry: [
-    paths.appIndexJs,
-  ],
+  entry: paths.appIndexJs,
   output: {
-    // Add /* filename */ comments to generated require()s in the output.
     pathinfo: true,
-    // This does not produce a real file. It's just the virtual path that is
-    // served by WebpackDevServer in development. This is the JS bundle
-    // containing code from all our entry points, and the Webpack runtime.
-    filename: 'static/js/bundle.js',
+    path: paths.appDevBuild,
+    filename: 'bundle.js',
     // There are also additional JS chunk files if you use code splitting.
-    chunkFilename: 'static/js/[name].chunk.js',
+    chunkFilename: '[name].chunk.js',
     // This is the URL that app is served from. We use "/" in development.
     publicPath: publicPath,
     // Point sourcemap entries to original disk location (format as URL on Windows)

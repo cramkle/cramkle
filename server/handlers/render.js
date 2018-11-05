@@ -1,4 +1,5 @@
 import React from 'react'
+import Helmet from 'react-helmet'
 import { renderToString } from 'react-dom/server'
 import { StaticRouter } from 'react-router'
 
@@ -14,12 +15,14 @@ const render = (req, res) => {
     </StaticRouter>
   )
 
+  const head = Helmet.rewind()
+
   if (ctx.url) {
     res.writeHead(302, {
       Location: ctx.url,
     })
   } else {
-    res.write(ok({ markup }))
+    res.write(ok({ markup, head }))
   }
 
   res.end()

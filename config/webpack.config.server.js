@@ -1,4 +1,5 @@
 const webpack = require('webpack')
+const nodeExternals = require('webpack-node-externals')
 const path = require('path')
 const PnpWebpackPlugin = require('pnp-webpack-plugin')
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin')
@@ -15,12 +16,13 @@ const sassRegex = /\.(scss|sass)$/
 
 module.exports = {
   mode: 'development',
-  devtool: 'cheap-module-source-map',
+  devtool: 'source-map',
   target: 'node',
   entry: [
     paths.serverIndexJs,
   ],
   output: {
+    pathinfo: true,
     filename: 'server.js',
     libraryTarget: 'commonjs2',
   },
@@ -177,4 +179,5 @@ module.exports = {
     // if (process.env.NODE_ENV === 'development') { ... }. See `./env.js`.
     new webpack.DefinePlugin(env.stringified),
   ],
+  externals: [nodeExternals()],
 }
