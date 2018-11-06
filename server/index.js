@@ -1,16 +1,20 @@
 import express from 'express'
 
+import assets from './middlewares/assets'
 import render from './handlers/render'
 
 const app = express()
 
-app.use(express.static('public'))
+let buildFolder
 
 if (process.env.NODE_ENV === 'development') {
-  app.use(express.static('.dev-build'))
+  buildFolder = '.dev-build'
 } else {
-  app.use(express.static('build'))
+  buildFolder = 'build'
 }
+
+app.use(express.static('public'))
+app.use(assets(buildFolder))
 
 app.get('/*', render)
 
