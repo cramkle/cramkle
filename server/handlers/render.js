@@ -7,6 +7,7 @@ import { ok } from '../templates'
 import App from '../../src/App'
 
 const render = (req, res) => {
+  const assetManifest = req.assets
   const ctx = {}
 
   const markup = renderToString(
@@ -15,6 +16,11 @@ const render = (req, res) => {
     </StaticRouter>
   )
 
+  const assetScripts =  [
+    assetManifest['main.js'],
+    assetManifest['runtime.js'],
+  ].filter(Boolean)
+
   const head = Helmet.rewind()
 
   if (ctx.url) {
@@ -22,7 +28,7 @@ const render = (req, res) => {
       Location: ctx.url,
     })
   } else {
-    res.write(ok({ markup, head }))
+    res.write(ok({ markup, head, assetScripts }))
   }
 
   res.end()

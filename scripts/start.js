@@ -7,11 +7,9 @@ process.on('unhandledRejection', err => {
 
 require('../config/env')
 
-const fs = require('fs')
 const chalk = require('chalk')
 const webpack = require('webpack')
 const clearConsole = require('react-dev-utils/clearConsole')
-const openBrowser = require('react-dev-utils/openBrowser')
 
 const paths = require('../config/paths')
 const serverConfig = require('../config/webpack.config.server')

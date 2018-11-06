@@ -1,4 +1,8 @@
-export const ok = ({ markup, head }) => `
+import { map } from 'ramda'
+
+const srcToScriptTag = srcUrl => `<script src="${srcUrl}"></script>`
+
+export const ok = ({ markup, head, assetScripts }) => `
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,10 +25,8 @@ export const ok = ({ markup, head }) => `
   </noscript>
   ${head.noscript.toString()}
   <div id="root">${markup}</div>
-  <script src="bundle.js"></script>
+  ${map(srcToScriptTag, assetScripts).join('\n')}
   ${head.script.toString()}
 </body>
-
-</html>
-`
+</html>`
 
