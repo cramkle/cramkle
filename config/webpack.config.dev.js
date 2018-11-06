@@ -86,7 +86,8 @@ module.exports = {
     devtoolModuleFilenameTemplate: info =>
       path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
   },
-  optimization: {
+  // TODO: figure out why the runtime isn't running
+  /*optimization: {
     // Automatically split vendor and commons
     // https://twitter.com/wSokra/status/969633336732905474
     // https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366
@@ -97,7 +98,7 @@ module.exports = {
     // Keep the runtime chunk seperated to enable long term caching
     // https://twitter.com/wSokra/status/969679223278505985
     runtimeChunk: true,
-  },
+  },*/
   resolve: {
     // This allows you to set a fallback for where Webpack should look for modules.
     // We placed these paths second because we want `node_modules` to "win"
