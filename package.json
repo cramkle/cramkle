@@ -21,6 +21,7 @@
     "apollo-link-http": "^1.5.5",
     "axios": "^0.18.0",
     "classnames": "^2.2.5",
+    "exenv": "^1.2.2",
     "express": "^4.16.4",
     "formik": "^0.11.11",
     "graphql": "^14.0.2",
