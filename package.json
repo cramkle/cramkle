@@ -34,6 +34,7 @@
     "react-apollo": "^2.2.4",
     "react-dom": "^16.7.0-alpha.2",
     "react-helmet": "^5.2.0",
+    "react-no-ssr": "^1.1.0",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "tachyons-sass": "^4.9.3",
