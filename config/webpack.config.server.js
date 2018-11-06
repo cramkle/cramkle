@@ -18,6 +18,7 @@ module.exports = {
   mode: 'development',
   devtool: 'source-map',
   target: 'node',
+  name: 'server',
   entry: [
     paths.serverIndexJs,
   ],
