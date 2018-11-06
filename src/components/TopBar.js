@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useWindowSize } from 'the-platform'
 import { withRouter } from 'react-router'
+import { canUseDOM } from 'exenv'
 
 import TopAppBar from '@material/react-top-app-bar'
 import MaterialIcon from '@material/react-material-icon'
@@ -9,7 +10,14 @@ import List, { ListItem, ListItemText, ListItemGraphic } from '@material/react-l
 
 const TopBar = ({ children, history }) => {
   const [drawerOpen, setDrawerOpen] = useState(false)
-  const { width: windowWidth } = useWindowSize()
+
+  let windowWidth
+
+  if (canUseDOM) {
+    windowWidth = useWindowSize().width
+  } else {
+    windowWidth = 800
+  }
 
   if (React.Children.count(children) === 0) {
     return null
