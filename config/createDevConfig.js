@@ -9,6 +9,7 @@ const getClientEnvironment = require('./env')
 const paths = require('./paths')
 const ManifestPlugin = require('webpack-manifest-plugin')
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin')
+const nodeExternals = require('webpack-node-externals')
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
@@ -128,6 +129,8 @@ module.exports = (server = false) => {
       ),
     },
   ]
+
+  const externals = server ? [nodeExternals()] : []
 
   const plugins = server ? [] : [
     // This gives some necessary context to module not found errors, such as
@@ -353,6 +356,7 @@ module.exports = (server = false) => {
       }),
       ...plugins,
     ],
+    externals,
     // Some libraries import Node modules but don't use them in the browser.
     // Tell Webpack to provide empty mocks for them so importing them works.
     node: !server && {
