@@ -1,8 +1,8 @@
-import { map } from 'ramda'
+const { map } = require('ramda')
 
 const srcToScriptTag = srcUrl => `<script src="${srcUrl}"></script>`
 
-export const ok = ({ markup, head, assetScripts }) => `
+const ok = ({ markup, head = {}, assetScripts = [] }) => `
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,3 +30,40 @@ export const ok = ({ markup, head, assetScripts }) => `
 </body>
 </html>`
 
+const error = ({ err, logs = [], errors = [], warnings = [] }) => `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <title>Rendering Error</title>
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/tachyons@4/css/tachyons.min.css" />
+  <style>
+    .log {
+      max-width: 80%;
+    }
+  </style>
+</head>
+<body class="flex flex-column items-center helvetica">
+  <div class="bg-light-red ph4 white w-100 overflow-x-scroll">
+    <h1>${err.message}</h1>
+    <pre>${err.stack}</pre>
+  </div>
+  <div class="mt4 pa3 w-100 log">
+    Logs:
+    <pre>${logs.join('\n')}${!logs.length && 'No normal logs were logged.'}</pre>
+  </div>
+  <div class="bg-light-yellow pa3 w-100 log">
+    Warnings:
+    <pre>${warnings.join('\n')}${!warnings.length && 'No warnings were logged.'}</pre>
+  </div>
+  <div class="pa3 w-100 log">
+    Errors:
+    <pre>${errors.join('\n')}${!errors.length && 'No errors were logged.'}</pre>
+  </div>
+</body>
+</html>`
+
+module.exports = {
+  ok,
+  error,
+}
