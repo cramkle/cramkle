@@ -13,8 +13,6 @@ const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin')
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
 const publicPath = '/'
-// Get environment variables to inject into our app.
-const env = getClientEnvironment()
 
 // style files regexes
 const cssRegex = /\.css$/
@@ -66,6 +64,9 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
 // It is focused on developer experience and fast rebuilds.
 // The production configuration is different and lives in a separate file.
 module.exports = (server = false) => {
+  // Get environment variables to inject into our app.
+  const env = getClientEnvironment(server)
+
   const cssRules = server ? [{
     test: [cssRegex, sassRegex],
     use: [
