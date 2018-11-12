@@ -98,7 +98,7 @@
   },
   "scripts": {
     "start": "node scripts/start.js",
-    "start-prod": "node dist/server.js",
+    "start-prod": "NODE_ENV=production node server/index.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
     "lint": "eslint src/**/*.js*"

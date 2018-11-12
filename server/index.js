@@ -1,23 +1,24 @@
-import express from 'express'
+const express = require('express')
 
-import assets from './middlewares/assets'
-import render from './handlers/render'
+const assets = require('./middlewares/assets')
+const render = require('./handlers/render')
 
 const app = express()
 
 let buildFolder
 
-if (process.env.NODE_ENV === 'development') {
-  buildFolder = '.dev-build'
-} else {
+if (process.env.NODE_ENV === 'production') {
   buildFolder = 'build'
+} else {
+  buildFolder = '.dev-build'
 }
 
 app.use(express.static('public'))
-app.use(assets(buildFolder))
+app.use(assets('client', buildFolder))
+app.use(assets('server', '.server-build', false))
 
 app.get('/*', render)
 
 app.listen(3000, () => {
-  console.log('Server is listening on http://localhost:3000')
+  console.log('Server is listening on port 3000')
 })

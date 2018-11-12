@@ -1,10 +1,10 @@
-import path from 'path'
-import fs from 'fs'
-import { values } from 'ramda'
+const path = require('path')
+const fs = require('fs')
+const { values } = require('ramda')
 
 const ASSET_MANIFEST_FILENAME = 'asset-manifest.json'
 
-const assetMiddleware = basePath => {
+const assetMiddleware = (name, basePath, serve = true) => {
   const assetManifestPath = path.resolve(path.join(basePath, ASSET_MANIFEST_FILENAME))
 
   try {
@@ -13,16 +13,21 @@ const assetMiddleware = basePath => {
     // middleware is used.
     fs.accessSync(assetManifestPath, fs.constants.F_OK | fs.constants.R_OK)
   } catch (e) {
-    throw new Error('The asset manifest file was not found.')
+    throw new Error(`The asset manifest file for "${name}" was not found.`)
   }
 
   const assetManifest = JSON.parse(fs.readFileSync(assetManifestPath))
   const assetList = values(assetManifest)
 
   return (req, res, next) => {
-    req.assets = assetManifest
+    req.assets = req.assets || {}
 
-    if (req.method !== 'GET') {
+    req.assets[name] = {
+      assetManifest,
+      assetBasePath: basePath,
+    }
+
+    if (req.method !== 'GET' || !serve) {
       return next()
     }
 
@@ -37,4 +42,4 @@ const assetMiddleware = basePath => {
   }
 }
 
-export default  assetMiddleware
+module.exports = assetMiddleware

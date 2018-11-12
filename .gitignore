@@ -126,5 +126,5 @@ tags
 # End of https://www.gitignore.io/api/vim,node,macos
 
 react/build
-dist
 .dev-build
+.server-build

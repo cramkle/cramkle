@@ -4,7 +4,7 @@ import { graphql } from 'react-apollo'
 import Deck from './Deck'
 import decksQuery from '../graphql/decksQuery.gql'
 
-const DeckList = ({ data: { loading, decks } }) => {
+const DeckList = ({ data: { loading, decks = [] } }) => {
   if (loading) {
     return <p>loading...</p>
   }
