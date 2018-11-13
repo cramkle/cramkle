@@ -9,7 +9,6 @@ require('../config/env')
 
 const chalk = require('chalk')
 const webpack = require('webpack')
-const clearConsole = require('react-dev-utils/clearConsole')
 
 const paths = require('../config/paths')
 const serverConfig = require('../config/webpack.config.server')
@@ -25,39 +24,31 @@ checkBrowsers(paths.appPath, isInteractive)
     const { invalid, done } = compiler.hooks
 
     invalid.tap('invalid', () => {
-      if (isInteractive) {
-        clearConsole()
-      }
-
-      console.log(chalk.cyan('Compiling...'))
+      console.log(chalk.green('webpack:'), 'Compiling...')
     })
 
     done.tap('done', stats => {
-      if (isInteractive) {
-        clearConsole()
-      }
-
       const messages = stats.toJson({ all: false, errors: true, warnings: true })
 
       const isSuccessful = !messages.errors.length && !messages.warnings.length
 
       if (isSuccessful) {
-        console.log(chalk.green('Compiled successfully!'))
+        console.log(chalk.green('webpack:'), 'Compiled successfully!')
       }
 
       if (messages.errors.length) {
-        console.log(chalk.red('Failed to compile\n'))
+        console.log(chalk.red('webpack:'), 'Failed to compile')
         console.log(messages.errors.join('\n\n'))
         return
       }
 
       if (messages.warnings.length) {
-        console.log(chalk.yellow('Compiled with warnings\n'))
+        console.log(chalk.yellow('webpack:'), 'Compiled with warnings')
         console.log(messages.warnings.join('\n\n'))
       }
     })
 
-    console.log(chalk.cyan('Starting compilation...\n'))
+    console.log(chalk.green('webpack:'), 'Starting webpack compiler')
 
     compiler.watch({}, () => {
       // do nothing
