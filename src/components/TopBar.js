@@ -22,7 +22,7 @@ const TopBar = ({ children, history }) => {
 
   return (
     <div className="vh-100 flex">
-      <NoSSR fallback={null}>
+      <NoSSR fallback={<aside className="mdc-drawer" />}>
         <Drawer
           open={drawerOpen}
           onClose={() => setDrawerOpen(false)}
