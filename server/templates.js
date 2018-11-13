@@ -1,8 +1,8 @@
 const { map } = require('ramda')
 
-const srcToScriptTag = srcUrl => `<script src="${srcUrl}"></script>`
+const srcToScriptTag = srcUrl => `<script src="${srcUrl}" async defer></script>`
 
-const ok = ({ markup, head = {}, assetScripts = [] }) => `<!DOCTYPE html>
+const ok = ({ markup, head = {}, assetScripts = [], state }) => `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -24,6 +24,9 @@ const ok = ({ markup, head = {}, assetScripts = [] }) => `<!DOCTYPE html>
   <div id="root">${markup}</div>
   ${map(srcToScriptTag, assetScripts).join('\n')}
   ${head.script.toString()}
+  <script>
+    __APOLLO_STATE__ = ${JSON.stringify(state || {})}
+  </script>
 </body>
 </html>`
 

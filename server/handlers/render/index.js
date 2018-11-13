@@ -43,7 +43,7 @@ const render = async (req, res) => {
 
     compiledScripts.forEach(script => script.runInContext(sandbox))
 
-    const { markup, head, routerContext } = await sandbox.rendered
+    const { markup, head, routerContext, state } = await sandbox.rendered
 
     const { logs } = getLogsAndErrors()
 
@@ -58,7 +58,7 @@ const render = async (req, res) => {
         Location: routerContext.url,
       })
     } else {
-      res.write(ok({ markup, head, assetScripts: clientAssetScripts }))
+      res.write(ok({ markup, head, assetScripts: clientAssetScripts, state }))
     }
   } catch (err) {
     console.error(chalk.red('An error ocurred while trying to server-side render:'), err)

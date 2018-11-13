@@ -15,9 +15,9 @@ import LandingPage from './components/pages/LandingPage'
 import LoginPage from './components/pages/LoginPage'
 import NotFoundPage from './components/pages/NotFoundPage'
 import RegisterPage from './components/pages/RegisterPage'
-import createApolloClient from './utils/createApolloClient'
+import client from './utils/apolloClient'
 
-const client = createApolloClient('http://localhost:5000/graphql')
+import './theme.scss'
 
 const App = ({ fetchingUser }) => (
   <ApolloProvider client={client}>
