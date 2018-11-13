@@ -6,6 +6,8 @@ import decksQuery from '../graphql/decksQuery.gql'
 
 const DeckList = ({ data: { loading, decks = [] } }) => {
   if (loading) {
+    console.log(decks)
+
     return <p>loading...</p>
   }
 

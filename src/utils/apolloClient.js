@@ -3,11 +3,15 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 import { HttpLink } from 'apollo-link-http'
 import { onError } from 'apollo-link-error'
 import { ApolloLink } from 'apollo-link'
+import { canUseDOM } from 'exenv'
 
 import fetch from './fetch'
 
-const createApolloClient = uri => {
+export const createApolloClient = uri => {
+  const cache = new InMemoryCache()
+
   const client = new ApolloClient({
+    ssrMode: process.env.SSR,
     link: ApolloLink.from([
       onError(({ graphQLErrors, networkError }) => {
         if (graphQLErrors) {
@@ -27,10 +31,13 @@ const createApolloClient = uri => {
         fetch,
       }),
     ]),
-    cache: new InMemoryCache(),
+    // eslint-disable-next-line no-underscore-dangle
+    cache: canUseDOM ? cache.restore(window.__APOLLO_STATE__) : cache,
   })
 
   return client
 }
 
-export default createApolloClient
+const defaultClient = createApolloClient('http://localhost:5000/graphql')
+
+export default defaultClient

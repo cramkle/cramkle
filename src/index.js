@@ -4,8 +4,7 @@ import Helmet from 'react-helmet'
 import { BrowserRouter } from 'react-router-dom'
 import { canUseDOM } from 'exenv'
 
-import './theme.scss'
-
+import client from './utils/apolloClient'
 import App from './App'
 
 const renderWithData = rootComponent => {
@@ -55,6 +54,7 @@ const start = () => {
       markup,
       routerContext,
       head: Helmet.rewind(),
+      state: client.extract(),
     }))
   } else {
     // The dynamic import is used here because the code inside `registerServiceWorker`
