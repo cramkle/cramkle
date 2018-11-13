@@ -45,6 +45,14 @@ const render = async (req, res) => {
 
     const { markup, head, routerContext } = await sandbox.rendered
 
+    const { logs } = getLogsAndErrors()
+
+    if (logs.length) {
+      logs.forEach(log => {
+        console.log(chalk.green('client log:'), log)
+      })
+    }
+
     if (routerContext.url) {
       res.writeHead(302, {
         Location: routerContext.url,

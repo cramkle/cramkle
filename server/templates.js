@@ -2,10 +2,8 @@ const { map } = require('ramda')
 
 const srcToScriptTag = srcUrl => `<script src="${srcUrl}"></script>`
 
-const ok = ({ markup, head = {}, assetScripts = [] }) => `
-<!DOCTYPE html>
+const ok = ({ markup, head = {}, assetScripts = [] }) => `<!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -18,7 +16,6 @@ const ok = ({ markup, head = {}, assetScripts = [] }) => `
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
-
 <body class="mdc-typography">
   <noscript>
     You need to enable JavaScript to run this app.
@@ -30,8 +27,7 @@ const ok = ({ markup, head = {}, assetScripts = [] }) => `
 </body>
 </html>`
 
-const error = ({ err, logs = [], errors = [], warnings = [] }) => `
-<!DOCTYPE html>
+const error = ({ err, logs = [], errors = [], warnings = [] }) => `<!DOCTYPE html>
 <html>
 <head>
   <meta name="viewport" content="width=device-width" />
