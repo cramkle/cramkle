@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const PnpWebpackPlugin = require('pnp-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin')
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin')
@@ -22,9 +23,8 @@ const sassRegex = /\.(scss|sass)$/
 const sassModuleRegex = /\.module\.(scss|sass)$/
 
 // common function to get style loaders
-const getStyleLoaders = (cssOptions, preProcessor) => {
+const getStyleLoaders = (cssOptions, preProcessor, useExtractPlugin) => {
   const loaders = [
-    require.resolve('style-loader'),
     {
       loader: require.resolve('css-loader'),
       options: cssOptions,
@@ -58,6 +58,13 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
       },
     })
   }
+  if (useExtractPlugin) {
+    loaders.unshift({
+      loader: MiniCssExtractPlugin.loader,
+    })
+  } else {
+    loaders.unshift(require.resolve('style-loader'))
+  }
   return loaders
 }
 
@@ -68,17 +75,7 @@ module.exports = (server = false) => {
   // Get environment variables to inject into our app.
   const env = getClientEnvironment(server)
 
-  const cssRules = server ? [{
-    test: [cssRegex, sassRegex],
-    use: [
-      {
-        // Since we are on the server configuration, we skip all css
-        // imports so it won't break the build.
-        loader: 'css-loader/locals',
-      },
-    ],
-  }] : [
-
+  const cssRules = [
     // "postcss" loader applies autoprefixer to our CSS.
     // "css" loader resolves paths in CSS and adds assets as dependencies.
     // "style" loader turns CSS into JS modules that inject <style> tags.
@@ -88,19 +85,27 @@ module.exports = (server = false) => {
     {
       test: cssRegex,
       exclude: cssModuleRegex,
-      use: getStyleLoaders({
-        importLoaders: 1,
-      }),
+      use: getStyleLoaders(
+        {
+          importLoaders: 1,
+        },
+        null,
+        server
+      ),
     },
     // Adds support for CSS Modules (https://github.com/css-modules/css-modules)
     // using the extension .module.css
     {
       test: cssModuleRegex,
-      use: getStyleLoaders({
-        importLoaders: 1,
-        modules: true,
-        getLocalIdent: getCSSModuleLocalIdent,
-      }),
+      use: getStyleLoaders(
+        {
+          importLoaders: 1,
+          modules: true,
+          getLocalIdent: getCSSModuleLocalIdent,
+        },
+        null,
+        server
+      ),
     },
     // Opt-in support for SASS (using .scss or .sass extensions).
     // Chains the sass-loader with the css-loader and the style-loader
@@ -112,7 +117,8 @@ module.exports = (server = false) => {
       exclude: sassModuleRegex,
       use: getStyleLoaders(
         { importLoaders: 2 },
-        'sass-loader'
+        'sass-loader',
+        server
       ),
     },
     // Adds support for CSS Modules, but using SASS
@@ -125,14 +131,20 @@ module.exports = (server = false) => {
           modules: true,
           getLocalIdent: getCSSModuleLocalIdent,
         },
-        'sass-loader'
+        'sass-loader',
+        server
       ),
     },
   ]
 
   const externals = server ? [nodeExternals()] : []
 
-  const plugins = server ? [] : [
+  const plugins = server ? [
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].chunk.css',
+    }),
+  ] : [
     // This gives some necessary context to module not found errors, such as
     // the requesting resource.
     new ModuleNotFoundPlugin(paths.appPath),

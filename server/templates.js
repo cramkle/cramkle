@@ -1,8 +1,9 @@
 const { map } = require('ramda')
 
-const srcToScriptTag = srcUrl => `<script src="${srcUrl}" async defer></script>`
+const srcToScriptTag = src => `<script src="${src}" async defer></script>`
+const srcToLinkTag = src => `<link rel="stylesheet" href="${src}" />`
 
-const ok = ({ markup, head = {}, assetScripts = [], state }) => `<!DOCTYPE html>
+const ok = ({ markup, head, scripts, styles, state }) => `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -12,6 +13,7 @@ const ok = ({ markup, head = {}, assetScripts = [], state }) => `<!DOCTYPE html>
   ${head.title.toString()}
   ${head.link.toString()}
   ${head.base.toString()}
+  ${map(srcToLinkTag, styles).join('\n')}
   <link rel="shortcut icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -22,7 +24,7 @@ const ok = ({ markup, head = {}, assetScripts = [], state }) => `<!DOCTYPE html>
   </noscript>
   ${head.noscript.toString()}
   <div id="root">${markup}</div>
-  ${map(srcToScriptTag, assetScripts).join('\n')}
+  ${map(srcToScriptTag, scripts).join('\n')}
   ${head.script.toString()}
   <script>
     __APOLLO_STATE__ = ${JSON.stringify(state || {})}
