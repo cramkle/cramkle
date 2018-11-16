@@ -24,7 +24,14 @@ const assetMiddleware = (name, basePath, serve = true) => async (req, res, next)
     assetBasePath: basePath,
   }
 
-  if (req.method !== 'GET' || !serve) {
+  if (
+    // We only serve files for GET requests
+    // TODO: should also do the same for HEAD
+    req.method !== 'GET' ||
+    // We will only serve static js if the `serve`
+    // flag is turned on (to disable serving SSR js)
+    (!serve && /.js$/.test(req.url))
+  ) {
     return next()
   }
 

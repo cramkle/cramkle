@@ -25,6 +25,10 @@ const render = async (req, res) => {
     serverAssetManifest['runtime.js'],
   ]
 
+  const styles = [
+    serverAssetManifest['main.css'],
+  ].filter(Boolean)
+
   const { sandbox, cleanUp, getLogsAndErrors } = createSandbox(serverAssetBasePath, req.url)
 
   try {
@@ -34,7 +38,9 @@ const render = async (req, res) => {
       pipe(
         filter(Boolean),
         map(filename => path.join(serverAssetBasePath, filename)),
-        map(filepath => fs.readFile(path.resolve(filepath)).then(src => new Script(src.toString())))
+        map(filepath =>
+          fs.readFile(path.resolve(filepath)).then(src => new Script(src.toString()))
+        )
       )(serverAssetScripts)
     )
 
@@ -55,7 +61,13 @@ const render = async (req, res) => {
         Location: routerContext.url,
       })
     } else {
-      res.write(ok({ markup, head, assetScripts: clientAssetScripts, state }))
+      res.write(ok({
+        markup,
+        head,
+        scripts: clientAssetScripts,
+        state,
+        styles,
+      }))
     }
   } catch (err) {
     console.error(chalk.red('An error ocurred while trying to server-side render:'), err)
