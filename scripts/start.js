@@ -7,24 +7,43 @@ process.on('unhandledRejection', err => {
 
 require('../config/env')
 
-const chalk = require('chalk')
 const webpack = require('webpack')
+const MemoryFS = require('memory-fs')
+const express = require('express')
+const { promisify } = require('util')
 
+const { info, warn, err } = require('./utils/info')
 const paths = require('../config/paths')
 const serverConfig = require('../config/webpack.config.server')
 const clientConfig = require('../config/webpack.config.dev')
+
+const server = require('../server/index')
+const fsMiddleware = require('../server/middlewares/fs')
+
+const app = express()
+
+const fs = new MemoryFS()
+
+fs.readFile = promisify(fs.readFile.bind(fs))
+
+app.use(fsMiddleware(fs))
+app.use(server)
 
 const isInteractive = process.stdout.isTTY
 
 const { checkBrowsers } = require('react-dev-utils/browsersHelper')
 checkBrowsers(paths.appPath, isInteractive)
   .then(() => {
+    let runningServer = null
+
     const compiler = webpack([serverConfig, clientConfig])
+
+    compiler.outputFileSystem = fs
 
     const { invalid, done } = compiler.hooks
 
     invalid.tap('invalid', () => {
-      console.log(chalk.green('webpack:'), 'Compiling...')
+      info('webpack', 'Compiling...')
     })
 
     done.tap('done', stats => {
@@ -33,24 +52,30 @@ checkBrowsers(paths.appPath, isInteractive)
       const isSuccessful = !messages.errors.length && !messages.warnings.length
 
       if (isSuccessful) {
-        console.log(chalk.green('webpack:'), 'Compiled successfully!')
+        info('webpack', 'Compiled successfully!')
       }
 
       if (messages.errors.length) {
-        console.log(chalk.red('webpack:'), 'Failed to compile')
-        console.log(messages.errors.join('\n\n'))
+        err('webpack', 'Failed to compile')
+        console.error(messages.errors.join('\n\n'))
         return
       }
 
       if (messages.warnings.length) {
-        console.log(chalk.yellow('webpack:'), 'Compiled with warnings')
+        warn('webpack', 'Compiled with warnings')
         console.log(messages.warnings.join('\n\n'))
       }
     })
 
-    console.log(chalk.green('webpack:'), 'Starting webpack compiler')
+    info('webpack', 'Starting webpack compiler')
 
     compiler.watch({}, () => {
-      // do nothing
+      if (runningServer === null) {
+        info('server', 'Starting development server')
+
+        runningServer = app.listen(3000, () => {
+          info('server', 'Listening on port 3000')
+        })
+      }
     })
   })

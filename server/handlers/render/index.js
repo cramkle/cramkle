@@ -1,11 +1,7 @@
 const chalk = require('chalk')
-const fs = require('fs')
 const path = require('path')
 const { pipe, map, filter } = require('ramda')
-const { promisify } = require('util')
 const { createContext, Script } = require('vm')
-
-const readFile = promisify(fs.readFile)
 
 const { ok, error } = require('../../templates')
 const createSandbox = require('./sandbox')
@@ -16,6 +12,7 @@ const render = async (req, res) => {
       client: { assetManifest: clientAssetManifest },
       server: { assetManifest: serverAssetManifest, assetBasePath: serverAssetBasePath },
     },
+    fs,
   } = req
 
   const clientAssetScripts = filter(Boolean, [
@@ -37,7 +34,7 @@ const render = async (req, res) => {
       pipe(
         filter(Boolean),
         map(filename => path.join(serverAssetBasePath, filename)),
-        map(filepath => readFile(filepath).then(src => new Script(src.toString())))
+        map(filepath => fs.readFile(path.resolve(filepath)).then(src => new Script(src.toString())))
       )(serverAssetScripts)
     )
 

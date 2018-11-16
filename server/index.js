@@ -19,6 +19,4 @@ app.use(assets('server', '.server-build', false))
 
 app.get('/*', render)
 
-app.listen(3000, () => {
-  console.log('Server is listening on port 3000')
-})
+module.exports = app
