@@ -159,6 +159,21 @@ module.exports = (server = false) => {
     new WatchMissingNodeModulesPlugin(paths.appNodeModules),
   ]
 
+  const linter = server ? {} : {
+    test: /\.(js|jsx)$/,
+    enforce: 'pre',
+    use: [
+      {
+        options: {
+          formatter: require.resolve('react-dev-utils/eslintFormatter'),
+          eslintPath: require.resolve('eslint'),
+        },
+        loader: require.resolve('eslint-loader'),
+      },
+    ],
+    include: paths.appSrc,
+  }
+
   return {
     mode: 'development',
     target: server ? 'node' : 'web',
@@ -236,22 +251,9 @@ module.exports = (server = false) => {
         // Disable require.ensure as it's not a standard language feature.
         { parser: { requireEnsure: false } },
 
-        // First, run the linter.
+        // First, run the linter, but only on the client.
         // It's important to do this before Babel processes the JS.
-        {
-          test: /\.(js|mjs|jsx)$/,
-          enforce: 'pre',
-          use: [
-            {
-              options: {
-                formatter: require.resolve('react-dev-utils/eslintFormatter'),
-                eslintPath: require.resolve('eslint'),
-              },
-              loader: require.resolve('eslint-loader'),
-            },
-          ],
-          include: paths.appSrc,
-        },
+        linter,
         {
           // "oneOf" will traverse all following loaders until one will
           // match the requirements. When no loader matches it will fall
