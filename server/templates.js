@@ -43,7 +43,7 @@ const error = ({ err, logs = [], errors = [], warnings = [] }) => `<!DOCTYPE htm
   </style>
 </head>
 <body class="flex flex-column items-center helvetica">
-  <div class="bg-light-red ph4 white w-100 overflow-x-scroll">
+  <div class="bg-light-red ph4 white w-100 overflow-x-auto">
     <h1>${err.message}</h1>
     <pre>${err.stack}</pre>
   </div>
