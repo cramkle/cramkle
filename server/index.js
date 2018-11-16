@@ -10,12 +10,12 @@ let buildFolder
 if (process.env.NODE_ENV === 'production') {
   buildFolder = 'build'
 } else {
-  buildFolder = '.dev-build'
+  buildFolder = 'dev-build'
 }
 
 app.use(express.static('public'))
 app.use(assets('client', buildFolder))
-app.use(assets('server', '.server-build', false))
+app.use(assets('server', 'server-build', false))
 
 app.get('/*', render)
 
