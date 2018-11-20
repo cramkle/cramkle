@@ -1,4 +1,5 @@
 const path = require('path')
+const mime = require('mime')
 const { values } = require('ramda')
 
 const ASSET_MANIFEST_FILENAME = 'asset-manifest.json'
@@ -36,9 +37,20 @@ const assetMiddleware = (name, basePath, serve = true) => async (req, res, next)
   }
 
   if (assetList.indexOf(req.url) !== -1) {
-    fs.createReadStream(
-      path.resolve(path.join(basePath, req.url))
-    ).pipe(res)
+    const filePath = path.resolve(path.join(basePath, req.url))
+    const type = mime.getType(filePath)
+
+    fs.stat(filePath, (err, stat) => {
+      if (err) {
+        next(err, null)
+        return
+      }
+
+      res.setHeader('Content-Type', type)
+      res.setHeader('Content-Length', stat.size)
+
+      fs.createReadStream(filePath).pipe(res)
+    })
     return
   }
 
