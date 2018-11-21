@@ -3,29 +3,44 @@ const { map } = require('ramda')
 const srcToScriptTag = src => `<script src="${src}" async defer></script>`
 const srcToLinkTag = src => `<link rel="stylesheet" href="${src}" />`
 
-const ok = ({ markup, head, scripts, styles, state }) => `<!DOCTYPE html>
+const getHeadTags = head => {
+  if (!head) {
+    return ''
+  }
+
+  return [
+    head.meta && head.meta.toString(),
+    head.title && head.title.toString(),
+    head.link && head.link.toString(),
+    head.base && head.base.toString(),
+    head.script && head.script.toString(),
+  ].filter(Boolean).join('\n')
+}
+
+const getNoScriptTags = head => {
+  if (!head || !head.noscript) {
+    return ''
+  }
+
+  return head.noscript.toString()
+}
+
+const ok = ({ markup = '', head, scripts, styles, state }) => `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="theme-color" content="#2962ff">
-  ${head.meta.toString()}
-  ${head.title.toString()}
-  ${head.link.toString()}
-  ${head.base.toString()}
+  ${getHeadTags(head)}
   ${map(srcToLinkTag, styles).join('\n')}
   <link rel="shortcut icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  ${map(srcToScriptTag, scripts).join('\n')}
 </head>
 <body class="mdc-typography">
-  <noscript>
-    You need to enable JavaScript to run this app.
-  </noscript>
-  ${head.noscript.toString()}
+  ${getNoScriptTags(head)}
   <div id="root">${markup}</div>
-  ${map(srcToScriptTag, scripts).join('\n')}
-  ${head.script.toString()}
   <script>
     __APOLLO_STATE__ = ${JSON.stringify(state || {})}
   </script>
