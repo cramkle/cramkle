@@ -100,7 +100,7 @@
     "start": "node scripts/start.js",
     "start-prod": "NODE_ENV=production node server/start.js",
     "build": "node scripts/build.js",
-    "test": "jest -c jest.config.js --watch",
+    "test": "jest -c jest.config.js",
     "lint": "eslint src/**/*.js*"
   },
   "proxy": "http://localhost:5000",
