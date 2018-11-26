@@ -12,24 +12,21 @@ process.on('unhandledRejection', err => {
 // Ensure environment variables are read.
 require('../config/env')
 
-
-const path = require('path')
 const chalk = require('chalk')
 const fs = require('fs-extra')
 const webpack = require('webpack')
 const bfj = require('bfj')
-const config = require('../config/webpack.config.prod')
+const clientConfig = require('../config/webpack.config.prod')
+const serverConfig = require('../config/webpack.config.server')
 const paths = require('../config/paths')
 const checkRequiredFiles = require('react-dev-utils/checkRequiredFiles')
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages')
-const printHostingInstructions = require('react-dev-utils/printHostingInstructions')
 const FileSizeReporter = require('react-dev-utils/FileSizeReporter')
 const printBuildError = require('react-dev-utils/printBuildError')
 
 const measureFileSizesBeforeBuild =
   FileSizeReporter.measureFileSizesBeforeBuild
 const printFileSizesAfterBuild = FileSizeReporter.printFileSizesAfterBuild
-const useYarn = fs.existsSync(paths.yarnLockFile)
 
 // These sizes are pretty large. We'll warn for bundles exceeding them.
 const WARN_AFTER_BUNDLE_GZIP_SIZE = 512 * 1024
@@ -83,26 +80,15 @@ checkBrowsers(paths.appPath, isInteractive)
         console.log(chalk.green('Compiled successfully.\n'))
       }
 
+      const [clientStats] = stats.stats
+
       console.log('File sizes after gzip:\n')
       printFileSizesAfterBuild(
-        stats,
+        clientStats,
         previousFileSizes,
         paths.appBuild,
         WARN_AFTER_BUNDLE_GZIP_SIZE,
         WARN_AFTER_CHUNK_GZIP_SIZE
-      )
-      console.log()
-
-      const appPackage = require(paths.appPackageJson)
-      const publicUrl = paths.publicUrl
-      const publicPath = config.output.publicPath
-      const buildFolder = path.relative(process.cwd(), paths.appBuild)
-      printHostingInstructions(
-        appPackage,
-        publicUrl,
-        publicPath,
-        buildFolder,
-        useYarn
       )
     },
     err => {
@@ -122,7 +108,7 @@ checkBrowsers(paths.appPath, isInteractive)
 function build(previousFileSizes) {
   console.log('Creating an optimized production build...')
 
-  let compiler = webpack(config)
+  let compiler = webpack([clientConfig, serverConfig])
   return new Promise((resolve, reject) => {
     compiler.run((err, stats) => {
       let messages
