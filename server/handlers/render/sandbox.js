@@ -71,6 +71,7 @@ const createSandbox = (basePath, requestUrl) => {
     requestUrl,
   }
 
+  sandbox.exports = module.exports
   sandbox.window = sandbox
   sandbox.self = sandbox
   sandbox.global = sandbox

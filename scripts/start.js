@@ -8,9 +8,7 @@ process.on('unhandledRejection', err => {
 require('../config/env')
 
 const webpack = require('webpack')
-const MemoryFS = require('memory-fs')
 const express = require('express')
-const { promisify } = require('util')
 
 const { info, warn, err } = require('./utils/info')
 const paths = require('../config/paths')
@@ -18,15 +16,9 @@ const serverConfig = require('../config/webpack.config.server')
 const clientConfig = require('../config/webpack.config.dev')
 
 const server = require('../server/index')
-const fsMiddleware = require('../server/middlewares/fs')
 
 const app = express()
 
-const fs = new MemoryFS()
-
-fs.readFile = promisify(fs.readFile.bind(fs))
-
-app.use(fsMiddleware(fs))
 app.use(server)
 
 const isInteractive = process.stdout.isTTY
@@ -37,8 +29,6 @@ checkBrowsers(paths.appPath, isInteractive)
     let runningServer = null
 
     const compiler = webpack([serverConfig, clientConfig])
-
-    compiler.outputFileSystem = fs
 
     const { invalid, done } = compiler.hooks
 

@@ -1,6 +1,6 @@
 const { map } = require('ramda')
 
-const srcToScriptTag = src => `<script src="${src}" async defer></script>`
+const srcToScriptTag = src => `<script src="${src}" defer></script>`
 const srcToLinkTag = src => `<link rel="stylesheet" href="${src}" />`
 
 const getHeadTags = head => {

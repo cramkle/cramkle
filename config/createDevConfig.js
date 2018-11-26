@@ -188,27 +188,18 @@ module.exports = (server = false) => {
       pathinfo: true,
       path: server ? paths.appServerBuild : paths.appDevBuild,
       filename: 'bundle.js',
-      // There are also additional JS chunk files if you use code splitting.
       chunkFilename: '[name].chunk.js',
-      // This is the URL that app is served from. We use "/" in development.
-      publicPath: publicPath,
-      // Point sourcemap entries to original disk location (format as URL on Windows)
       devtoolModuleFilenameTemplate: info =>
-      path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
+        path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
       libraryTarget: server ? 'commonjs2' : undefined,
     },
-    // TODO: figure out why the runtime isn't running
     optimization: {
       // Automatically split vendor and commons
-      // https://twitter.com/wSokra/status/969633336732905474
-      // https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366
-      // splitChunks: {
-      //   chunks: 'all',
-      //   name: false,
-      // },
-      // Keep the runtime chunk seperated to enable long term caching
-      // https://twitter.com/wSokra/status/969679223278505985
-      // runtimeChunk: true,
+      splitChunks: {
+        chunks: 'all',
+      },
+      // TODO: figure out why this isn't working with a name
+      runtimeChunk: false,
     },
     resolve: {
       // This allows you to set a fallback for where Webpack should look for modules.

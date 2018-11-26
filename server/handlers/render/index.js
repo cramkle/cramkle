@@ -1,7 +1,11 @@
+const fs = require('fs')
 const chalk = require('chalk')
 const path = require('path')
+const { promisify } = require('util')
 const { pipe, map, filter } = require('ramda')
 const { createContext, Script } = require('vm')
+
+const readFile = promisify(fs.readFile)
 
 const { ok, error } = require('../../templates')
 const createSandbox = require('./sandbox')
@@ -12,22 +16,21 @@ const render = async (req, res) => {
       client: { assetManifest: clientAssetManifest },
       server: { assetManifest: serverAssetManifest, assetBasePath: serverAssetBasePath },
     },
-    fs,
   } = req
 
-  const clientAssetScripts = filter(Boolean, [
+  const clientAssetScripts = [
+    clientAssetManifest['vendors~main.js'],
     clientAssetManifest['main.js'],
     clientAssetManifest['runtime.js'],
-  ])
+  ]
 
   const serverAssetScripts = [
     serverAssetManifest['main.js'],
     serverAssetManifest['runtime.js'],
   ]
 
-  const styles = [
-    serverAssetManifest['main.css'],
-  ].filter(Boolean)
+  const styles = Object.values(serverAssetManifest)
+    .filter(path => path.endsWith('.css'))
 
   const { sandbox, cleanUp, getLogsAndErrors } = createSandbox(serverAssetBasePath, req.url)
 
@@ -39,7 +42,7 @@ const render = async (req, res) => {
         filter(Boolean),
         map(filename => path.join(serverAssetBasePath, filename)),
         map(filepath =>
-          fs.readFile(path.resolve(filepath)).then(src => new Script(src.toString()))
+          readFile(path.resolve(filepath)).then(src => new Script(src.toString()))
         )
       )(serverAssetScripts)
     )
@@ -50,9 +53,9 @@ const render = async (req, res) => {
 
     const { logs } = getLogsAndErrors()
 
-    if (logs.length) {
+    if (logs.length && process.env.NODE_ENV !== 'production') {
       logs.forEach(log => {
-        console.log(chalk.green('client log:'), log)
+        console.log(chalk.cyan('client log:'), log)
       })
     }
 
@@ -70,7 +73,8 @@ const render = async (req, res) => {
       }))
     }
   } catch (err) {
-    console.error(chalk.red('An error ocurred while trying to server-side render:'), err)
+    console.error(chalk.red('An error ocurred while trying to server-side render'))
+    console.error(err)
 
     const { logs, errors, warnings } = getLogsAndErrors()
 
