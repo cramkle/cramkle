@@ -8,19 +8,14 @@ exports[`<Deck /> should match snapshot 1`] = `
     <div
       class="mdc-card__primary-action pa2 h-100"
     >
-      <a
-        class="link c-on-surface"
-        href="/d/undefined"
+      <h3
+        class="mdc-typography--headline6"
       >
-        <h3
-          class="mdc-typography--headline6"
-        >
-          日本語げんき
-        </h3>
-        <p
-          class="mdc-typography--body2"
-        />
-      </a>
+        日本語げんき
+      </h3>
+      <p
+        class="mdc-typography--body2"
+      />
     </div>
   </div>
 </div>
