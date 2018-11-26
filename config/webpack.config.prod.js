@@ -260,7 +260,7 @@ module.exports = {
 
             loader: require.resolve('babel-loader'),
             options: {
-              extends: path.resolve('.babelrc.json'),
+              extends: path.resolve('.babelrc'),
               customize: require.resolve(
                 'babel-preset-react-app/webpack-overrides'
               ),
