@@ -1,6 +1,7 @@
 import React from 'react'
 import { withRouter } from 'react-router'
 import Card, { CardPrimaryContent } from '@material/react-card'
+import { Body2, Headline6 } from '@material/react-typography'
 
 const Deck = ({ title, description, slug, history }) => (
   <Card outlined className="h-100">
@@ -8,8 +9,8 @@ const Deck = ({ title, description, slug, history }) => (
       className="pa2 h-100"
       onClick={() => history.push(`/d/${slug}`)}
     >
-      <h3 className="mdc-typography--headline6">{title}</h3>
-      <p className="mdc-typography--body2">{description}</p>
+      <Headline6>{title}</Headline6>
+      <Body2>{description}</Body2>
     </CardPrimaryContent>
   </Card>
 )

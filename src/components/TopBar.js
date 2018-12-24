@@ -3,7 +3,6 @@ import { useWindowSize } from 'the-platform'
 import { withRouter } from 'react-router'
 import { canUseDOM } from 'exenv'
 import NoSSR from 'react-no-ssr'
-
 import TopAppBar from '@material/react-top-app-bar'
 import MaterialIcon from '@material/react-material-icon'
 import Drawer, { DrawerContent, DrawerAppContent } from '@material/react-drawer'
