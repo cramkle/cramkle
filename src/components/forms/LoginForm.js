@@ -1,6 +1,7 @@
 import React from 'react'
 import { Formik } from 'formik'
 import { object, string } from 'yup'
+import { Headline4, Subtitle2 } from '@material/react-typography'
 
 import Card, { CardActions, CardActionButtons } from '@material/react-card'
 import Button from '@material/react-button'
@@ -27,9 +28,9 @@ const LoginForm = () => (
       <form className="login-page__form w-100" onSubmit={handleSubmit}>
         <Card>
           <div className="pa3 pb0 c-on-surface">
-            <h4 className="mdc-typography--headline4 tc">
+            <Headline4 className="tc">
               Login
-            </h4>
+            </Headline4>
 
             <InputField
               className="w-100 mv2"
@@ -44,9 +45,9 @@ const LoginForm = () => (
             />
             {errors.authentication &&
               !isSubmitting && (
-                <p className="mdc-typography--subtitle2">
+                <Subtitle2>
                   Invalid username and/or password
-                </p>
+                </Subtitle2>
               )}
           </div>
           <CardActions>

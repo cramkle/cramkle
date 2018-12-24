@@ -3,9 +3,9 @@ import { Formik } from 'formik'
 import { string, object } from 'yup'
 import { graphql } from 'react-apollo'
 import { withRouter } from 'react-router'
-
 import Card, { CardActions, CardActionButtons } from '@material/react-card'
 import Button from '@material/react-button'
+import { Headline4 } from '@material/react-typography'
 
 import registerMutation from '../../graphql/registerMutation.gql'
 import InputField from './InputField'
@@ -41,9 +41,9 @@ const RegisterForm = ({ mutate: register, title, history }) => (
     {({ handleSubmit, isValid, isSubmitting }) => (
       <form className="register-page__form w-100" onSubmit={handleSubmit}>
         <Card className="register-page__form-content pa3 pb0 c-on-surface">
-          <h4 className="mdc-typography--headline4 tc">
+          <Headline4 className="tc">
             {title}
-          </h4>
+          </Headline4>
           <InputField className="mv2" name="username" label="Username" />
           <InputField className="mv2" name="email" label="Email" />
           <InputField className="mv2" label="Password" name="password" type="password" />

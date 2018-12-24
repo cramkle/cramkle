@@ -1,5 +1,6 @@
 import React from 'react'
 import { graphql } from 'react-apollo'
+import { Caption } from '@material/react-typography'
 
 import Deck from './Deck'
 import decksQuery from '../graphql/decksQuery.gql'
@@ -11,15 +12,15 @@ const DeckList = ({ data: { loading, decks = [] } }) => {
 
   if (decks.length === 0) {
     return (
-      <p className="mdc-typography--caption">
+      <Caption>
         You haven&apos;t created any decks yet
-      </p>
+      </Caption>
     )
   }
 
   return (
     <div className="mdc-layout-grid">
-      <p className="mdc-typography--caption">Decks</p>
+      <Caption>Decks</Caption>
 
       <div className="mdc-layout-grid__inner">
         {decks.map(deck => (
