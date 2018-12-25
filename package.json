@@ -6,7 +6,7 @@
     "@material/layout-grid": "^0.41.0",
     "@material/react-button": "^0.7.1",
     "@material/react-card": "^0.7.1",
-    "@material/react-drawer": "^0.7.1",
+    "@material/react-drawer": "^0.6.2",
     "@material/react-fab": "^0.7.1",
     "@material/react-list": "^0.7.1",
     "@material/react-material-icon": "^0.7.1",
