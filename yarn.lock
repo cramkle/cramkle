@@ -985,7 +985,7 @@
     prop-types "^15.6.1"
     react "^16.4.2"
 
-"@material/react-drawer@0.6.x":
+"@material/react-drawer@^0.6.2":
   version "0.6.2"
   resolved "https://registry.yarnpkg.com/@material/react-drawer/-/react-drawer-0.6.2.tgz#e5be25ef431ab41bb3ba14ff5f722dc515fed44f"
   integrity sha512-mUmuaY9f/kQAmIay4eVgHIiRp5qIAr0HgZ3KSZQjRop9sFKUn0zT2YHD2UEkwHuRqJTD9NwQo3S7Oya545N6CA==
