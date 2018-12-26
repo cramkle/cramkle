@@ -7,8 +7,10 @@ process.on('unhandledRejection', err => {
 
 require('../config/env')
 
+const chalk = require('chalk')
 const webpack = require('webpack')
 const express = require('express')
+const path = require('path')
 
 const { info, warn, err } = require('./utils/info')
 const paths = require('../config/paths')
@@ -32,8 +34,10 @@ checkBrowsers(paths.appPath, isInteractive)
 
     const { invalid, done } = compiler.hooks
 
-    invalid.tap('invalid', () => {
-      info('webpack', 'Compiling...')
+    invalid.tap('invalid', (fileName, time) => {
+      console.log(
+        `${chalk.grey(new Date(time).toLocaleTimeString())} - ${chalk.blue('webpack updated')}: ${path.relative(paths.appPath, fileName)}`
+      )
     })
 
     done.tap('done', stats => {
