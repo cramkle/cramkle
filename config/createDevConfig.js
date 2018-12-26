@@ -186,6 +186,7 @@ module.exports = (server = false) => {
     entry: paths.appIndexJs,
     output: {
       pathinfo: true,
+      publicPath: '/',
       path: server ? paths.appServerBuild : paths.appDevBuild,
       filename: 'bundle.js',
       chunkFilename: '[name].chunk.js',
