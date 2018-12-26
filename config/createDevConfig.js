@@ -176,7 +176,6 @@ module.exports = (server = false) => {
 
   return {
     mode: 'development',
-    target: server ? 'node' : 'web',
     name: server ? 'server' : 'client',
     // You may want 'eval' instead if you prefer to see the compiled output in DevTools.
     // See the discussion in https://github.com/facebook/create-react-app/issues/343
@@ -198,9 +197,9 @@ module.exports = (server = false) => {
       // Automatically split vendor and commons
       splitChunks: {
         chunks: 'all',
+        name: true,
       },
-      // TODO: figure out why this isn't working with a name
-      runtimeChunk: false,
+      runtimeChunk: true,
     },
     resolve: {
       // This allows you to set a fallback for where Webpack should look for modules.

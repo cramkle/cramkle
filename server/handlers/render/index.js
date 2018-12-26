@@ -21,12 +21,12 @@ const render = async (req, res) => {
   const clientAssetScripts = [
     clientAssetManifest['vendors~main.js'],
     clientAssetManifest['main.js'],
-    clientAssetManifest['runtime.js'],
+    clientAssetManifest['runtime~main.js'],
   ].filter(Boolean)
 
   const serverAssetScripts = [
     serverAssetManifest['main.js'],
-    serverAssetManifest['runtime.js'],
+    serverAssetManifest['runtime~main.js'],
   ].filter(Boolean)
 
   const styles = Object.values(serverAssetManifest)

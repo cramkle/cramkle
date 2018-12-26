@@ -165,8 +165,7 @@ module.exports = {
     splitChunks: {
       chunks: 'all',
     },
-    // TODO: figure why this isn't working
-    runtimeChunk: false,
+    runtimeChunk: true,
   },
   resolve: {
     // This allows you to set a fallback for where Webpack should look for modules.
