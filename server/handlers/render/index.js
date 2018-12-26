@@ -22,12 +22,12 @@ const render = async (req, res) => {
     clientAssetManifest['vendors~main.js'],
     clientAssetManifest['main.js'],
     clientAssetManifest['runtime.js'],
-  ]
+  ].filter(Boolean)
 
   const serverAssetScripts = [
     serverAssetManifest['main.js'],
     serverAssetManifest['runtime.js'],
-  ]
+  ].filter(Boolean)
 
   const styles = Object.values(serverAssetManifest)
     .filter(path => path.endsWith('.css'))
