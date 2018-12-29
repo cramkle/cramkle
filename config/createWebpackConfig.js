@@ -9,7 +9,6 @@ const ManifestPlugin = require('webpack-manifest-plugin')
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin')
 const nodeExternals = require('webpack-node-externals')
 const TerserPlugin = require('terser-webpack-plugin')
-
 const getClientEnvironment = require('./env')
 const paths = require('./paths')
 
@@ -155,7 +154,12 @@ const getBaseWebpackConfig = ({ dev = false, isServer = false }) => {
     },
   ]
 
+  const dir = dev ? paths.appDist : paths.appBuild
+  const outputDir = isServer ? 'server' : ''
+  const outputPath = path.join(dir, outputDir)
   const webpackMode = dev ? 'development' : 'production'
+
+  const chunkFilename = dev ? '[name]' : '[name].[contenthash]'
 
   return {
     mode: webpackMode,
@@ -166,9 +170,11 @@ const getBaseWebpackConfig = ({ dev = false, isServer = false }) => {
     entry: paths.appIndexJs,
     output: {
       publicPath: '/',
-      path: isServer ? paths.appServerBuild : paths.appDevBuild,
-      filename: 'bundle.js',
-      chunkFilename: '[name].chunk.js',
+      path: outputPath,
+      filename: '[name].js',
+      chunkFilename: isServer ? `${chunkFilename}.js` : `static/chunks/${chunkFilename}.js`,
+      hotUpdateMainFilename: 'static/webpack/[hash].hot-update.json',
+      hotUpdateChunkFilename: 'static/webpack/[id].[hash].hot-update.js',
       devtoolModuleFilenameTemplate: info =>
         path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
       libraryTarget: isServer ? 'commonjs2' : 'jsonp',
@@ -298,6 +304,7 @@ const getBaseWebpackConfig = ({ dev = false, isServer = false }) => {
       // Makes some environment variables available to the JS code, for example:
       // if (process.env.NODE_ENV === 'development') { ... }. See `./env.js`.
       new webpack.DefinePlugin(env.stringified),
+      dev && !isServer && new webpack.HotModuleReplacementPlugin(),
       new ManifestPlugin({
         fileName: 'asset-manifest.json',
         publicPath: publicPath,
