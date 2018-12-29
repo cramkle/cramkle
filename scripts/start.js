@@ -14,8 +14,7 @@ const path = require('path')
 
 const { info, warn, err } = require('./utils/info')
 const paths = require('../config/paths')
-const serverConfig = require('../config/webpack.config.server')
-const clientConfig = require('../config/webpack.config.dev')
+const getBaseWebpackConfig = require('../config/createWebpackConfig.js')
 
 const server = require('../server/index')
 
@@ -30,7 +29,10 @@ checkBrowsers(paths.appPath, isInteractive)
   .then(() => {
     let runningServer = null
 
-    const compiler = webpack([serverConfig, clientConfig])
+    const compiler = webpack([
+      getBaseWebpackConfig({ dev: true, isServer: false }),
+      getBaseWebpackConfig({ dev: true, isServer: true }),
+    ])
 
     const { invalid, done } = compiler.hooks
 
