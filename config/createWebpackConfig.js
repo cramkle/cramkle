@@ -9,6 +9,7 @@ const ManifestPlugin = require('webpack-manifest-plugin')
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin')
 const nodeExternals = require('webpack-node-externals')
 const TerserPlugin = require('terser-webpack-plugin')
+const ChunkNamesPlugin = require('./webpack/plugins/ChunkNamesPlugin')
 const getClientEnvironment = require('./env')
 const paths = require('./paths')
 
@@ -309,6 +310,7 @@ const getBaseWebpackConfig = ({ dev = false, isServer = false }) => {
       }),
       // Makes some environment variables available to the JS code, for example:
       // if (process.env.NODE_ENV === 'development') { ... }. See `./env.js`.
+      new ChunkNamesPlugin(),
       new webpack.DefinePlugin(env.stringified),
       dev && !isServer && new webpack.HotModuleReplacementPlugin(),
       new ManifestPlugin({
