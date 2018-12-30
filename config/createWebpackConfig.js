@@ -12,6 +12,12 @@ const TerserPlugin = require('terser-webpack-plugin')
 const ChunkNamesPlugin = require('./webpack/plugins/ChunkNamesPlugin')
 const getClientEnvironment = require('./env')
 const paths = require('./paths')
+const {
+  STATIC_RUNTIME_MAIN,
+  STATIC_RUNTIME_WEBPACK,
+  STATIC_CHUNKS_PATH,
+  STATIC_MEDIA_PATH,
+} = require('./constants')
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
@@ -86,7 +92,9 @@ const optimizationConfig = ({ dev, isServer }) => {
   }
 
   const config = {
-    runtimeChunk: true,
+    runtimeChunk: {
+      name: STATIC_RUNTIME_WEBPACK,
+    },
     splitChunks: {
       cacheGroups: {
         default: false,
@@ -167,6 +175,7 @@ const getBaseWebpackConfig = ({ dev = false, isServer = false }) => {
   const webpackMode = dev ? 'development' : 'production'
 
   const chunkFilename = dev ? '[name]' : '[name].[contenthash]'
+  const extractedCssFilename = dev ? '[name]' : '[name].[contenthash:8]'
 
   return {
     mode: webpackMode,
@@ -174,12 +183,14 @@ const getBaseWebpackConfig = ({ dev = false, isServer = false }) => {
     target: isServer ? 'node': 'web',
     devtool: dev ? 'cheap-module-source-map' : false,
     externals: isServer ? [nodeExternals()] : [],
-    entry: paths.appIndexJs,
+    entry: {
+      [STATIC_RUNTIME_MAIN]: [paths.appIndexJs],
+    },
     output: {
       publicPath: '/',
       path: outputPath,
       filename: '[name].js',
-      chunkFilename: isServer ? `${chunkFilename}.js` : `static/chunks/${chunkFilename}.js`,
+      chunkFilename: isServer ? `${chunkFilename}.js` : `${STATIC_CHUNKS_PATH}/${chunkFilename}.js`,
       hotUpdateMainFilename: 'static/webpack/[hash].hot-update.json',
       hotUpdateChunkFilename: 'static/webpack/[id].[hash].hot-update.js',
       devtoolModuleFilenameTemplate: info =>
@@ -209,7 +220,7 @@ const getBaseWebpackConfig = ({ dev = false, isServer = false }) => {
               loader: require.resolve('url-loader'),
               options: {
                 limit: 10000,
-                name: 'static/media/[name].[hash:8].[ext]',
+                name: `${STATIC_MEDIA_PATH}/[name].[hash:8].[ext]`,
               },
             },
             {
@@ -299,12 +310,8 @@ const getBaseWebpackConfig = ({ dev = false, isServer = false }) => {
       new ExtractCssChunks({
         // Options similar to the same options in webpackOptions.output
         // both options are optional
-        filename: dev
-          ? 'static/chunks/[name].css'
-          : 'static/chunks/[name].[contenthash:8].css',
-        chunkFilename: dev
-          ? 'static/chunks/[name].chunk.css'
-          : 'static/chunks/[name].[contenthash:8].chunk.css',
+        filename: `${STATIC_CHUNKS_PATH}/${extractedCssFilename}.css`,
+        chunkFilename: `${STATIC_CHUNKS_PATH}/${extractedCssFilename}.chunk.css`,
         orderWarning: false,
         reloadAll: true,
       }),
