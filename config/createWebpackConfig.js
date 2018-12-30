@@ -187,7 +187,7 @@ const getBaseWebpackConfig = ({ dev = false, isServer = false }) => {
       libraryTarget: isServer ? 'commonjs2' : 'jsonp',
     },
     performance: { hints: false },
-    optimization: optimizationConfig(isServer),
+    optimization: optimizationConfig({ dev, isServer }),
     resolve: {
       modules: ['node_modules'].concat(
         process.env.NODE_PATH.split(path.delimiter).filter(Boolean)
