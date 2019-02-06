@@ -34,19 +34,21 @@ const RegisterForm = ({ mutate: register, title, history }) => (
         .required('Password is required'),
     })}
     onSubmit={user =>
-        register({ variables: user })
-          .then(() => history.push('/login'))
+      register({ variables: user }).then(() => history.push('/login'))
     }
   >
     {({ handleSubmit, isValid, isSubmitting }) => (
       <form className="register-page__form w-100" onSubmit={handleSubmit}>
         <Card className="register-page__form-content pa3 pb0 c-on-surface">
-          <Headline4 className="tc">
-            {title}
-          </Headline4>
+          <Headline4 className="tc">{title}</Headline4>
           <InputField className="mv2" name="username" label="Username" />
           <InputField className="mv2" name="email" label="Email" />
-          <InputField className="mv2" label="Password" name="password" type="password" />
+          <InputField
+            className="mv2"
+            label="Password"
+            name="password"
+            type="password"
+          />
           <CardActions>
             <CardActionButtons>
               <Button raised disabled={!isValid || isSubmitting}>

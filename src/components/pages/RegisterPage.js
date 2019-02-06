@@ -13,7 +13,10 @@ const RegisterPage = () => {
       </Helmet>
       <RegisterForm />
       <span className="mt3">
-        Already have an account? <Link to="/login" className="b c-on-primary">Log In</Link>
+        Already have an account?{' '}
+        <Link to="/login" className="b c-on-primary">
+          Log In
+        </Link>
       </span>
     </div>
   )

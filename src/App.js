@@ -24,21 +24,9 @@ const App = ({ fetchingUser }) => (
     <Helmet defaultTitle="Cramkle" titleTemplate="%s - Cramkle" />
     <ScreenLoader loading={fetchingUser}>
       <Switch>
-        <Route
-          component={LandingPage}
-          path="/"
-          exact
-        />
-        <TopBarRoute
-          component={DashboardPage}
-          path="/dashboard"
-          exact
-        />
-        <TopBarRoute
-          component={DeckPage}
-          path="/d/:slug"
-          exact
-        />
+        <Route component={LandingPage} path="/" exact />
+        <TopBarRoute component={DashboardPage} path="/dashboard" exact />
+        <TopBarRoute component={DeckPage} path="/d/:slug" exact />
         <Route component={RegisterPage} path="/register" exact />
         <Route component={LoginPage} path="/login" exact />
         <Route component={AboutPage} path="/about" exact />

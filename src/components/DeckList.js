@@ -11,11 +11,7 @@ const DeckList = ({ data: { loading, decks = [] } }) => {
   }
 
   if (decks.length === 0) {
-    return (
-      <Caption>
-        You haven&apos;t created any decks yet
-      </Caption>
-    )
+    return <Caption>You haven&apos;t created any decks yet</Caption>
   }
 
   return (
