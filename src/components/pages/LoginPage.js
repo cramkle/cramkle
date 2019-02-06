@@ -15,7 +15,9 @@ const LoginPage = () => {
 
       <span className="mt3">
         Don&apos;t have an account?{' '}
-        <Link to="/register" className="b c-on-primary">Sign Up</Link>
+        <Link to="/register" className="b c-on-primary">
+          Sign Up
+        </Link>
       </span>
     </div>
   )

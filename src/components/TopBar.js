@@ -6,7 +6,11 @@ import NoSSR from 'react-no-ssr'
 import TopAppBar from '@material/react-top-app-bar'
 import MaterialIcon from '@material/react-material-icon'
 import Drawer, { DrawerContent, DrawerAppContent } from '@material/react-drawer'
-import List, { ListItem, ListItemText, ListItemGraphic } from '@material/react-list'
+import List, {
+  ListItem,
+  ListItemText,
+  ListItemGraphic,
+} from '@material/react-list'
 
 const TopBar = ({ children, history }) => {
   const [drawerOpen, setDrawerOpen] = useState(false)
@@ -29,15 +33,14 @@ const TopBar = ({ children, history }) => {
         >
           <DrawerContent>
             <List>
-              <ListItem
-                tabIndex={1}
-                onClick={() => history.push('/dashboard')}
-              >
+              <ListItem tabIndex={1} onClick={() => history.push('/dashboard')}>
                 <ListItemGraphic graphic={<MaterialIcon icon="home" />} />
                 <ListItemText primaryText="Dashboard" />
               </ListItem>
               <ListItem>
-                <ListItemGraphic graphic={<MaterialIcon icon="store_mall_directory" />} />
+                <ListItemGraphic
+                  graphic={<MaterialIcon icon="store_mall_directory" />}
+                />
                 <ListItemText primaryText="Marketplace" />
               </ListItem>
               <ListItem>
@@ -49,7 +52,9 @@ const TopBar = ({ children, history }) => {
                 <ListItemText primaryText="Settings" />
               </ListItem>
               <ListItem>
-                <ListItemGraphic graphic={<MaterialIcon icon="exit_to_app" />} />
+                <ListItemGraphic
+                  graphic={<MaterialIcon icon="exit_to_app" />}
+                />
                 <ListItemText primaryText="Logout" />
               </ListItem>
             </List>
@@ -60,16 +65,16 @@ const TopBar = ({ children, history }) => {
         <TopAppBar
           title="Cramkle"
           className="absolute left-0 right-0"
-          navigationIcon={showDrawerAsModal ? (
-            <MaterialIcon
-              icon="menu"
-              onClick={() => setDrawerOpen(!drawerOpen)}
-            />
-          ) : null}
+          navigationIcon={
+            showDrawerAsModal ? (
+              <MaterialIcon
+                icon="menu"
+                onClick={() => setDrawerOpen(!drawerOpen)}
+              />
+            ) : null
+          }
         />
-        <div className="mdc-top-app-bar--fixed-adjust w-100">
-          {children}
-        </div>
+        <div className="mdc-top-app-bar--fixed-adjust w-100">{children}</div>
       </DrawerAppContent>
     </div>
   )

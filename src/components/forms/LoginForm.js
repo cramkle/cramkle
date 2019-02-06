@@ -28,9 +28,7 @@ const LoginForm = () => (
       <form className="login-page__form w-100" onSubmit={handleSubmit}>
         <Card>
           <div className="pa3 pb0 c-on-surface">
-            <Headline4 className="tc">
-              Login
-            </Headline4>
+            <Headline4 className="tc">Login</Headline4>
 
             <InputField
               className="w-100 mv2"
@@ -43,12 +41,9 @@ const LoginForm = () => (
               type="password"
               label="Password"
             />
-            {errors.authentication &&
-              !isSubmitting && (
-                <Subtitle2>
-                  Invalid username and/or password
-                </Subtitle2>
-              )}
+            {errors.authentication && !isSubmitting && (
+              <Subtitle2>Invalid username and/or password</Subtitle2>
+            )}
           </div>
           <CardActions>
             <CardActionButtons>

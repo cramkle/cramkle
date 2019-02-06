@@ -8,11 +8,7 @@ const DeckPage = ({ data: { loading, deck } }) => {
     return <div>loading...</div>
   }
 
-  return (
-    <div>
-      {deck.title}
-    </div>
-  )
+  return <div>{deck.title}</div>
 }
 
 export default graphql(deckQuery, {
