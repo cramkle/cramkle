@@ -1,5 +1,6 @@
 const path = require('path')
 const fs = require('fs')
+const { STATIC_FOLDER } = require('./constants')
 
 const appDirectory = fs.realpathSync(process.cwd())
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath)
@@ -22,8 +23,8 @@ const resolveModule = (resolveFn, filePath) => {
 module.exports = {
   dotenv: resolveApp('.env'),
   appPath: resolveApp('.'),
-  appBuild: resolveApp('build'),
   appDist: resolveApp('.dist'),
+  clientStatic: resolveApp(path.join(this.appDist, STATIC_FOLDER)),
   appPublic: resolveApp('public'),
   appIndexJs: resolveModule(resolveApp, 'src/index'),
   appPackageJson: resolveApp('package.json'),
