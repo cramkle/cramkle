@@ -27,7 +27,13 @@ const getNoScriptTags = head => {
   return head.noscript.toString()
 }
 
-const ok = ({ markup = '', head, scripts, styles, state }) => `<!DOCTYPE html>
+const ok = ({
+  markup = '',
+  head,
+  scripts = [],
+  styles = [],
+  state,
+}) => `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">

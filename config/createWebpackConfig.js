@@ -183,7 +183,7 @@ const getBaseWebpackConfig = ({ dev = false, isServer = false }) => {
     mode: webpackMode,
     name: isServer ? 'server' : 'client',
     target: isServer ? 'node' : 'web',
-    devtool: dev ? 'cheap-module-source-map' : false,
+    devtool: dev && !isServer ? 'cheap-module-source-map' : false,
     externals: isServer ? [nodeExternals()] : [],
     entry: {
       [STATIC_RUNTIME_MAIN]: [paths.appIndexJs],

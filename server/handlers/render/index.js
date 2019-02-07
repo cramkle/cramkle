@@ -2,44 +2,35 @@ const fs = require('fs')
 const chalk = require('chalk')
 const path = require('path')
 const { promisify } = require('util')
-const { pipe, map, filter } = require('ramda')
+const { pipe, map, filter, prepend, join, append } = require('ramda')
 const { createContext, Script } = require('vm')
 
 const readFile = promisify(fs.readFile)
 
+const { serverMainRuntime } = require('../../../config/paths')
+const {
+  STATIC_RUNTIME_MAIN,
+  STATIC_RUNTIME_WEBPACK,
+} = require('../../../config/constants')
 const { ok, error } = require('../../templates')
 const createSandbox = require('./sandbox')
 
 const render = async (req, res) => {
-  const {
-    assets: {
-      client: { assetManifest: clientAssetManifest },
-      server: {
-        assetManifest: serverAssetManifest,
-        assetBasePath: serverAssetBasePath,
-      },
-    },
-  } = req
+  const clientAssetScripts = map(
+    pipe(
+      prepend('/'),
+      append('.js'),
+      join('')
+    )
+  )([STATIC_RUNTIME_WEBPACK, STATIC_RUNTIME_MAIN])
 
-  const clientAssetScripts = [
-    clientAssetManifest['vendors~main.js'],
-    clientAssetManifest['main.js'],
-    clientAssetManifest['runtime~main.js'],
-  ].filter(Boolean)
+  const serverAssetScripts = [serverMainRuntime]
 
-  const serverAssetScripts = [
-    serverAssetManifest['main.js'],
-    serverAssetManifest['runtime~main.js'],
-  ].filter(Boolean)
+  //const styles = Object.values(serverAssetManifest).filter(path =>
+  //  path.endsWith('.css')
+  //)
 
-  const styles = Object.values(serverAssetManifest).filter(path =>
-    path.endsWith('.css')
-  )
-
-  const { sandbox, cleanUp, getLogsAndErrors } = createSandbox(
-    serverAssetBasePath,
-    req.url
-  )
+  const { sandbox, cleanUp, getLogsAndErrors } = createSandbox(req.url)
 
   try {
     createContext(sandbox)
@@ -47,7 +38,6 @@ const render = async (req, res) => {
     const compiledScripts = await Promise.all(
       pipe(
         filter(Boolean),
-        map(filename => path.join(serverAssetBasePath, filename)),
         map(filepath =>
           readFile(path.resolve(filepath)).then(
             src => new Script(src.toString())
@@ -79,7 +69,7 @@ const render = async (req, res) => {
           head,
           scripts: clientAssetScripts,
           state,
-          styles,
+          //styles,
         })
       )
     }

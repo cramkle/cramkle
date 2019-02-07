@@ -1,6 +1,6 @@
 const fetch = require('node-fetch')
 
-const createSandbox = (basePath, requestUrl) => {
+const createSandbox = requestUrl => {
   const timerHandlers = []
   const logs = []
   const warnings = []
