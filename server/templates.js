@@ -14,7 +14,9 @@ const getHeadTags = head => {
     head.link && head.link.toString(),
     head.base && head.base.toString(),
     head.script && head.script.toString(),
-  ].filter(Boolean).join('\n')
+  ]
+    .filter(Boolean)
+    .join('\n')
 }
 
 const getNoScriptTags = head => {
@@ -47,7 +49,12 @@ const ok = ({ markup = '', head, scripts, styles, state }) => `<!DOCTYPE html>
 </body>
 </html>`
 
-const error = ({ err, logs = [], errors = [], warnings = [] }) => `<!DOCTYPE html>
+const error = ({
+  err,
+  logs = [],
+  errors = [],
+  warnings = [],
+}) => `<!DOCTYPE html>
 <html>
 <head>
   <meta name="viewport" content="width=device-width" />
@@ -66,11 +73,13 @@ const error = ({ err, logs = [], errors = [], warnings = [] }) => `<!DOCTYPE htm
   </div>
   <div class="mt4 pa3 w-100 log">
     Logs:
-    <pre>${logs.join('\n')}${!logs.length && 'No normal logs were logged.'}</pre>
+    <pre>${logs.join('\n')}${!logs.length &&
+  'No normal logs were logged.'}</pre>
   </div>
   <div class="bg-light-yellow pa3 w-100 log">
     Warnings:
-    <pre>${warnings.join('\n')}${!warnings.length && 'No warnings were logged.'}</pre>
+    <pre>${warnings.join('\n')}${!warnings.length &&
+  'No warnings were logged.'}</pre>
   </div>
   <div class="pa3 w-100 log">
     Errors:
