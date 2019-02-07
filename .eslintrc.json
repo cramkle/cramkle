@@ -4,7 +4,7 @@
     "prettier/react",
     "react-app"
   ],
-  "plugins": ["prettier", "react"],
+  "plugins": ["prettier", "react", "react-hooks"],
   "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 2016,
@@ -23,6 +23,7 @@
     "no-underscore-dangle": [1, { "allow": ["_id"] }],
     "semi": ["error", "never"],
     "quotes": ["error", "single"],
-    "comma-dangle": ["error", "always-multiline"]
+    "comma-dangle": ["error", "always-multiline"],
+    "react-hooks/rules-of-hooks": "error"
   }
 }
