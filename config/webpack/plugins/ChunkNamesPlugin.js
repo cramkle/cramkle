@@ -1,8 +1,8 @@
 module.exports = class ChunkNamesPlugin {
-  apply (compiler) {
-    compiler.hooks.compilation.tap('ChunkNamesPlugin', (compilation) => {
+  apply(compiler) {
+    compiler.hooks.compilation.tap('ChunkNamesPlugin', compilation => {
       compilation.chunkTemplate.hooks.renderManifest.intercept({
-        register (tapInfo) {
+        register(tapInfo) {
           if (tapInfo.name === 'JavascriptModulesPlugin') {
             const originalMethod = tapInfo.fn
             tapInfo.fn = (result, options) => {

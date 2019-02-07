@@ -14,7 +14,10 @@ const render = async (req, res) => {
   const {
     assets: {
       client: { assetManifest: clientAssetManifest },
-      server: { assetManifest: serverAssetManifest, assetBasePath: serverAssetBasePath },
+      server: {
+        assetManifest: serverAssetManifest,
+        assetBasePath: serverAssetBasePath,
+      },
     },
   } = req
 
@@ -29,10 +32,14 @@ const render = async (req, res) => {
     serverAssetManifest['runtime~main.js'],
   ].filter(Boolean)
 
-  const styles = Object.values(serverAssetManifest)
-    .filter(path => path.endsWith('.css'))
+  const styles = Object.values(serverAssetManifest).filter(path =>
+    path.endsWith('.css')
+  )
 
-  const { sandbox, cleanUp, getLogsAndErrors } = createSandbox(serverAssetBasePath, req.url)
+  const { sandbox, cleanUp, getLogsAndErrors } = createSandbox(
+    serverAssetBasePath,
+    req.url
+  )
 
   try {
     createContext(sandbox)
@@ -42,7 +49,9 @@ const render = async (req, res) => {
         filter(Boolean),
         map(filename => path.join(serverAssetBasePath, filename)),
         map(filepath =>
-          readFile(path.resolve(filepath)).then(src => new Script(src.toString()))
+          readFile(path.resolve(filepath)).then(
+            src => new Script(src.toString())
+          )
         )
       )(serverAssetScripts)
     )
@@ -64,16 +73,20 @@ const render = async (req, res) => {
         Location: routerContext.url,
       })
     } else {
-      res.write(ok({
-        markup,
-        head,
-        scripts: clientAssetScripts,
-        state,
-        styles,
-      }))
+      res.write(
+        ok({
+          markup,
+          head,
+          scripts: clientAssetScripts,
+          state,
+          styles,
+        })
+      )
     }
   } catch (err) {
-    console.error(chalk.red('An error ocurred while trying to server-side render'))
+    console.error(
+      chalk.red('An error ocurred while trying to server-side render')
+    )
     console.error(err)
 
     const { logs, errors, warnings } = getLogsAndErrors()

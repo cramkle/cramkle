@@ -113,9 +113,7 @@ const optimizationConfig = ({ dev, isServer }) => {
     return config
   }
 
-  config.minimizer = [
-    new TerserPlugin(terserPluginConfig),
-  ]
+  config.minimizer = [new TerserPlugin(terserPluginConfig)]
 
   config.splitChunks.chunks = 'all'
   config.splitChunks.cacheGroups.react = {
@@ -140,7 +138,11 @@ const getBaseWebpackConfig = ({ dev = false, isServer = false }) => {
 
   const cssConfig = getStyleLoaders({ dev, isServer })
   const cssModuleConfig = getStyleLoaders({ dev, isServer, cssModules: true })
-  const sassConfig = getStyleLoaders({ dev, isServer, loaders: [sassLoaderConfig] })
+  const sassConfig = getStyleLoaders({
+    dev,
+    isServer,
+    loaders: [sassLoaderConfig],
+  })
   const sassModuleConfig = getStyleLoaders({
     dev,
     isServer,
@@ -180,7 +182,7 @@ const getBaseWebpackConfig = ({ dev = false, isServer = false }) => {
   return {
     mode: webpackMode,
     name: isServer ? 'server' : 'client',
-    target: isServer ? 'node': 'web',
+    target: isServer ? 'node' : 'web',
     devtool: dev ? 'cheap-module-source-map' : false,
     externals: isServer ? [nodeExternals()] : [],
     entry: {
@@ -190,7 +192,9 @@ const getBaseWebpackConfig = ({ dev = false, isServer = false }) => {
       publicPath: '/',
       path: outputPath,
       filename: '[name].js',
-      chunkFilename: isServer ? `${chunkFilename}.js` : `${STATIC_CHUNKS_PATH}/${chunkFilename}.js`,
+      chunkFilename: isServer
+        ? `${chunkFilename}.js`
+        : `${STATIC_CHUNKS_PATH}/${chunkFilename}.js`,
       hotUpdateMainFilename: 'static/webpack/[hash].hot-update.json',
       hotUpdateChunkFilename: 'static/webpack/[id].[hash].hot-update.js',
       devtoolModuleFilenameTemplate: info =>
@@ -204,9 +208,7 @@ const getBaseWebpackConfig = ({ dev = false, isServer = false }) => {
         process.env.NODE_PATH.split(path.delimiter).filter(Boolean)
       ),
       extensions: paths.moduleFileExtensions.map(ext => `.${ext}`),
-      plugins: [
-        new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson]),
-      ],
+      plugins: [new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson])],
     },
     module: {
       strictExportPresence: true,
@@ -239,7 +241,8 @@ const getBaseWebpackConfig = ({ dev = false, isServer = false }) => {
                     {
                       loaderMap: {
                         svg: {
-                          ReactComponent: '@svgr/webpack?-prettier,-svgo![path]',
+                          ReactComponent:
+                            '@svgr/webpack?-prettier,-svgo![path]',
                         },
                       },
                     },
@@ -336,19 +339,21 @@ const getBaseWebpackConfig = ({ dev = false, isServer = false }) => {
       // makes the discovery automatic so you don't have to restart.
       // See https://github.com/facebook/create-react-app/issues/186
       dev && new WatchMissingNodeModulesPlugin(paths.appNodeModules),
-      !dev && !isServer && new WorkboxWebpackPlugin.GenerateSW({
-        clientsClaim: true,
-        exclude: [/\.map$/, /asset-manifest\.json$/],
-        importWorkboxFrom: 'cdn',
-        navigateFallback: '/index.html',
-        navigateFallbackBlacklist: [
-          // Exclude URLs starting with /_, as they're likely an API call
-          new RegExp('^/_'),
-          // Exclude URLs containing a dot, as they're likely a resource in
-          // public/ and not a SPA route
-          new RegExp('/[^/]+\\.[^/]+$'),
-        ],
-      }),
+      !dev &&
+        !isServer &&
+        new WorkboxWebpackPlugin.GenerateSW({
+          clientsClaim: true,
+          exclude: [/\.map$/, /asset-manifest\.json$/],
+          importWorkboxFrom: 'cdn',
+          navigateFallback: '/index.html',
+          navigateFallbackBlacklist: [
+            // Exclude URLs starting with /_, as they're likely an API call
+            new RegExp('^/_'),
+            // Exclude URLs containing a dot, as they're likely a resource in
+            // public/ and not a SPA route
+            new RegExp('/[^/]+\\.[^/]+$'),
+          ],
+        }),
     ].filter(Boolean),
     node: !isServer && {
       dgram: 'empty',

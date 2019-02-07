@@ -8,8 +8,14 @@ const readFile = promisify(fs.readFile)
 
 const ASSET_MANIFEST_FILENAME = 'asset-manifest.json'
 
-const assetMiddleware = (name, basePath, serve = true) => async (req, res, next) => {
-  const assetManifestPath = path.resolve(path.join(basePath, ASSET_MANIFEST_FILENAME))
+const assetMiddleware = (name, basePath, serve = true) => async (
+  req,
+  res,
+  next
+) => {
+  const assetManifestPath = path.resolve(
+    path.join(basePath, ASSET_MANIFEST_FILENAME)
+  )
 
   let assetManifest = {}
 
