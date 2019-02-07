@@ -15,6 +15,7 @@ import List, {
 const TopBar = ({ children, history }) => {
   const [drawerOpen, setDrawerOpen] = useState(false)
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const windowWidth = canUseDOM && useWindowSize().width
 
   if (React.Children.count(children) === 0) {
