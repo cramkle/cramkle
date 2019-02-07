@@ -1,6 +1,10 @@
 const path = require('path')
 const fs = require('fs')
-const { STATIC_FOLDER } = require('./constants')
+const {
+  STATIC_FOLDER,
+  STATIC_RUNTIME_MAIN,
+  STATIC_RUNTIME_WEBPACK,
+} = require('./constants')
 
 const appDirectory = fs.realpathSync(process.cwd())
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath)
@@ -20,11 +24,26 @@ const resolveModule = (resolveFn, filePath) => {
   return resolveFn(`${filePath}.js`)
 }
 
+const distFolder = resolveApp('.dist')
+const serverDistFolder = path.join(distFolder, 'server')
+
+const clientStaticFolder = path.join(distFolder, STATIC_FOLDER)
+
+const clientMainRuntime = path.join(distFolder, `${STATIC_RUNTIME_MAIN}.js`)
+const clientWebpack = path.join(distFolder, `${STATIC_RUNTIME_WEBPACK}.js`)
+const serverMainRuntime = path.join(
+  serverDistFolder,
+  `${STATIC_RUNTIME_MAIN}.js`
+)
+
 module.exports = {
   dotenv: resolveApp('.env'),
   appPath: resolveApp('.'),
-  appDist: resolveApp('.dist'),
-  clientStatic: resolveApp(path.join(this.appDist, STATIC_FOLDER)),
+  appDist: distFolder,
+  clientStatic: clientStaticFolder,
+  clientMainRuntime,
+  clientWebpack,
+  serverMainRuntime,
   appPublic: resolveApp('public'),
   appIndexJs: resolveModule(resolveApp, 'src/index'),
   appPackageJson: resolveApp('package.json'),
