@@ -17,6 +17,7 @@ const {
   STATIC_RUNTIME_WEBPACK,
   STATIC_CHUNKS_PATH,
   STATIC_MEDIA_PATH,
+  ASSET_MANIFEST_FILE,
 } = require('./constants')
 
 // Webpack uses `publicPath` to determine where the app is being served from.
@@ -186,7 +187,7 @@ const getBaseWebpackConfig = ({ dev = false, isServer = false }) => {
     devtool: dev && !isServer ? 'cheap-module-source-map' : false,
     externals: isServer ? [nodeExternals()] : [],
     entry: {
-      [STATIC_RUNTIME_MAIN]: [paths.appIndexJs],
+      [STATIC_RUNTIME_MAIN]: paths.appIndexJs,
     },
     output: {
       publicPath: '/',
@@ -324,7 +325,7 @@ const getBaseWebpackConfig = ({ dev = false, isServer = false }) => {
       new webpack.DefinePlugin(env.stringified),
       dev && !isServer && new webpack.HotModuleReplacementPlugin(),
       new ManifestPlugin({
-        fileName: 'asset-manifest.json',
+        fileName: ASSET_MANIFEST_FILE,
         publicPath: publicPath,
       }),
       // This gives some necessary context to module not found errors, such as
