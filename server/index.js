@@ -6,10 +6,12 @@ const render = require('./handlers/render')
 
 const app = express()
 
+const publicRouteRegex = /^\/(public)?/
+
 if (process.env.NODE_ENV === 'development') {
-  app.use('/(public)', express.static('public'))
+  app.use(publicRouteRegex, express.static('public'))
 } else {
-  app.use('/(public)', express.static(appDistPublic))
+  app.use(publicRouteRegex, express.static(appDistPublic))
 }
 
 app.use('/static', express.static(clientStatic))
