@@ -126,7 +126,7 @@ const optimizationConfig = ({ dev, isServer }) => {
   return config
 }
 
-const getBaseWebpackConfig = ({ dev = false, isServer = false }) => {
+const getBaseWebpackConfig = ({ dev = false, isServer = false } = {}) => {
   // Get environment variables to inject into our app.
   const env = getClientEnvironment(isServer)
 
@@ -172,7 +172,7 @@ const getBaseWebpackConfig = ({ dev = false, isServer = false }) => {
     },
   ]
 
-  const dir = dev ? paths.appDist : paths.appBuild
+  const dir = paths.appDist
   const outputDir = isServer ? 'server' : ''
   const outputPath = path.join(dir, outputDir)
   const webpackMode = dev ? 'development' : 'production'
@@ -347,6 +347,8 @@ const getBaseWebpackConfig = ({ dev = false, isServer = false }) => {
           exclude: [/\.map$/, /asset-manifest\.json$/],
           importWorkboxFrom: 'cdn',
           navigateFallback: '/index.html',
+          swDest: 'public/service-worker.js',
+          importsDirectory: 'public',
           navigateFallbackBlacklist: [
             // Exclude URLs starting with /_, as they're likely an API call
             new RegExp('^/_'),

@@ -49,12 +49,12 @@ checkBrowsers(paths.appPath, isInteractive)
   .then(() => {
     // First, read the current file sizes in build directory.
     // This lets us display how much they changed later.
-    return measureFileSizesBeforeBuild(paths.appBuild)
+    return measureFileSizesBeforeBuild(paths.appDist)
   })
   .then(previousFileSizes => {
     // Remove all content but keep the directory so that
     // if you're in it, you don't end up in Trash
-    fs.emptyDirSync(paths.appBuild)
+    fs.emptyDirSync(paths.appDist)
     // Merge with the public folder
     copyPublicFolder()
     // Start the webpack build
@@ -85,7 +85,7 @@ checkBrowsers(paths.appPath, isInteractive)
       printFileSizesAfterBuild(
         clientStats,
         previousFileSizes,
-        paths.appBuild,
+        paths.appDist,
         WARN_AFTER_BUNDLE_GZIP_SIZE,
         WARN_AFTER_CHUNK_GZIP_SIZE
       )
@@ -158,7 +158,7 @@ function build(previousFileSizes) {
       }
       if (writeStatsJson) {
         return bfj
-          .write(paths.appBuild + '/bundle-stats.json', stats.toJson())
+          .write(paths.appDist + '/bundle-stats.json', stats.toJson())
           .then(() => resolve(resolveArgs))
           .catch(error => reject(new Error(error)))
       }
@@ -169,8 +169,7 @@ function build(previousFileSizes) {
 }
 
 function copyPublicFolder() {
-  fs.copySync(paths.appPublic, paths.appBuild, {
+  fs.copySync(paths.appPublic, paths.appDistPublic, {
     dereference: true,
-    filter: file => file !== paths.appHtml,
   })
 }
