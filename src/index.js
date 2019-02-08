@@ -1,5 +1,5 @@
 import React from 'react'
-import { createRoot } from 'react-dom'
+import { unstable_createRoot } from 'react-dom'
 import Helmet from 'react-helmet'
 import { BrowserRouter } from 'react-router-dom'
 import { canUseDOM } from 'exenv'
@@ -40,7 +40,7 @@ const render = () => {
   if (canUseDOM) {
     const elem = document.getElementById('root')
 
-    createRoot(elem, { hydrate: true }).render(
+    unstable_createRoot(elem, { hydrate: true }).render(
       <BrowserRouter>{root}</BrowserRouter>
     )
   } else {
