@@ -2,33 +2,39 @@ const fs = require('fs')
 const chalk = require('chalk')
 const path = require('path')
 const { promisify } = require('util')
-const { pipe, map, filter, prepend, join, append } = require('ramda')
+const { pipe, map, filter } = require('ramda')
 const { createContext, Script } = require('vm')
 
 const readFile = promisify(fs.readFile)
 
-const { serverMainRuntime } = require('../../../config/paths')
+const { serverMainRuntime, appDist } = require('../../../config/paths')
 const {
   STATIC_RUNTIME_MAIN,
   STATIC_RUNTIME_WEBPACK,
+  ASSET_MANIFEST_FILE,
 } = require('../../../config/constants')
 const { ok, error } = require('../../templates')
 const createSandbox = require('./sandbox')
 
 const render = async (req, res) => {
-  const clientAssetScripts = map(
-    pipe(
-      prepend('/'),
-      append('.js'),
-      join('')
-    )
-  )([STATIC_RUNTIME_WEBPACK, STATIC_RUNTIME_MAIN])
+  // TODO: read the file for every request?
+  const assetManifest = await readFile(path.join(appDist, ASSET_MANIFEST_FILE))
+    .then(file => file.toString())
+    .then(JSON.parse)
+
+  const clientAssetScripts = [
+    assetManifest[`${STATIC_RUNTIME_WEBPACK}.js`],
+    assetManifest[`${STATIC_RUNTIME_MAIN}.js`],
+    // TODO: shouldn't we find a better way to inject the styles?
+    assetManifest['styles.js'],
+  ]
 
   const serverAssetScripts = [serverMainRuntime]
 
-  //const styles = Object.values(serverAssetManifest).filter(path =>
-  //  path.endsWith('.css')
-  //)
+  // TODO: should it be injecting *all* css in every page?
+  const styles = Object.keys(assetManifest)
+    .filter(path => path.endsWith('.css'))
+    .map(path => assetManifest[path])
 
   const { sandbox, cleanUp, getLogsAndErrors } = createSandbox(req.url)
 
@@ -69,7 +75,7 @@ const render = async (req, res) => {
           head,
           scripts: clientAssetScripts,
           state,
-          //styles,
+          styles,
         })
       )
     }
