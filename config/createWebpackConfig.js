@@ -348,7 +348,7 @@ const getBaseWebpackConfig = ({ dev = false, isServer = false } = {}) => {
           importWorkboxFrom: 'cdn',
           navigateFallback: '/index.html',
           swDest: 'public/service-worker.js',
-          importsDirectory: 'public',
+          importsDirectory: 'static',
           navigateFallbackBlacklist: [
             // Exclude URLs starting with /_, as they're likely an API call
             new RegExp('^/_'),
