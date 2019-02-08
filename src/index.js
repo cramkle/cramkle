@@ -1,6 +1,6 @@
 import React from 'react'
 import { unstable_createRoot } from 'react-dom'
-import Helmet from 'react-helmet'
+import { Helmet } from 'react-helmet'
 import { BrowserRouter } from 'react-router-dom'
 import { canUseDOM } from 'exenv'
 
