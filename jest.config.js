@@ -1,11 +1,6 @@
 module.exports = {
-  collectCoverageFrom: [
-    'src/**/*.{js,jsx}',
-  ],
-  resolver: 'jest-pnp-resolver',
-  setupFiles: [
-    'react-app-polyfill/jsdom',
-  ],
+  collectCoverageFrom: ['src/**/*.{js,jsx}'],
+  setupFiles: ['react-app-polyfill/jsdom'],
   testMatch: [
     '<rootDir>/src/**/__tests__/**/*.{js,jsx}',
     '<rootDir>/src/**/?(*.)(spec|test).{js,jsx}',
@@ -25,10 +20,5 @@ module.exports = {
     '^react-native$': 'react-native-web',
     '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
   },
-  moduleFileExtensions: [
-    'js',
-    'json',
-    'jsx',
-    'node',
-  ],
+  moduleFileExtensions: ['js', 'json', 'jsx', 'node'],
 }
