@@ -7,9 +7,9 @@ const render = require('./handlers/render')
 const app = express()
 
 if (process.env.NODE_ENV === 'development') {
-  app.use('/(public)', express.static('public'))
+  app.use('/', express.static('public'))
 } else {
-  app.use('/(public)', express.static(appDistPublic))
+  app.use('/', express.static(appDistPublic))
 }
 
 app.use('/static', express.static(clientStatic))
