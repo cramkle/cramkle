@@ -4,7 +4,6 @@ import { Switch, withRouter } from 'react-router'
 import { Route } from 'react-router-dom'
 import { ApolloProvider } from 'react-apollo'
 
-import ScreenLoader from './components/ScreenLoader'
 import TopBarRoute from './components/routes/TopBarRoute'
 // import GuestRoute from './components/routes/GuestRoute'
 // import UserRoute from './components/routes/UserRoute'
@@ -19,10 +18,10 @@ import client from './utils/apolloClient'
 
 import './theme.scss'
 
-const App = ({ fetchingUser }) => (
-  <ApolloProvider client={client}>
-    <Helmet defaultTitle="Cramkle" titleTemplate="%s - Cramkle" />
-    <ScreenLoader loading={fetchingUser}>
+const App = () => {
+  return (
+    <ApolloProvider client={client}>
+      <Helmet defaultTitle="Cramkle" titleTemplate="%s - Cramkle" />
       <Switch>
         <Route component={LandingPage} path="/" exact />
         <TopBarRoute component={DashboardPage} path="/dashboard" exact />
@@ -32,8 +31,8 @@ const App = ({ fetchingUser }) => (
         <Route component={AboutPage} path="/about" exact />
         <Route component={NotFoundPage} />
       </Switch>
-    </ScreenLoader>
-  </ApolloProvider>
-)
+    </ApolloProvider>
+  )
+}
 
 export default withRouter(App)
