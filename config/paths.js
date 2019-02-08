@@ -40,6 +40,7 @@ module.exports = {
   dotenv: resolveApp('.env'),
   appPath: resolveApp('.'),
   appDist: distFolder,
+  appDistPublic: path.join(distFolder, 'public'),
   clientStatic: clientStaticFolder,
   clientMainRuntime,
   clientWebpack,
