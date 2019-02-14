@@ -1,11 +1,14 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
+import { graphql } from 'react-apollo'
 
-const GuestRoute = ({ isAuthenticated, component: Component, ...rest }) => (
+import userQuery from '../../graphql/userQuery.gql'
+
+const GuestRoute = ({ data: { user }, component: Component, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      !isAuthenticated ? (
+      user === null ? (
         <Component {...props} />
       ) : (
         <Redirect
@@ -20,4 +23,4 @@ const GuestRoute = ({ isAuthenticated, component: Component, ...rest }) => (
   />
 )
 
-export default GuestRoute
+export default graphql(userQuery)(GuestRoute)

@@ -27,7 +27,7 @@ export const createApolloClient = uri => {
       }),
       new HttpLink({
         uri,
-        credentials: 'same-origin',
+        credentials: 'include',
         fetch,
       }),
     ]),

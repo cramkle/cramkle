@@ -29,8 +29,4 @@ const DeckList = ({ data: { loading, decks = [] } }) => {
   )
 }
 
-DeckList.defaultProps = {
-  loading: true,
-}
-
 export default graphql(decksQuery)(DeckList)
