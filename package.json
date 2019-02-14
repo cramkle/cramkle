@@ -21,6 +21,7 @@
     "cookie-parser": "^1.4.4",
     "cors": "^2.8.4",
     "express": "^4.16.4",
+    "express-session": "^1.15.6",
     "graphql": "^14.0.2",
     "graphql-import": "^0.7.1",
     "graphql-tag": "^2.10.0",

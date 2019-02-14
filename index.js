@@ -1,15 +1,22 @@
 const express = require('express')
 const mongoose = require('mongoose')
+
+const graphqlMiddleware = require('./middlewares/graphql')
+const ioMiddleware = require('./middlewares/io')
+const authMiddleware = require('./middlewares/auth')
+
+const authRouter = require('./routes/auth')
+
 const app = express()
 
 const PORT = process.env.PORT || 5000
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/cramkle'
 
-const graphqlMiddleware = require('./middlewares/graphql')
-const ioMiddleware = require('./middlewares/io')
-
 ioMiddleware.set(app)
 graphqlMiddleware.set(app)
+authMiddleware.set(app)
+
+app.use(authRouter)
 
 mongoose.connect(MONGO_URI, { useNewUrlParser: true, useCreateIndex: true })
   .then(() => {
