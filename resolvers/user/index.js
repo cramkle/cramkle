@@ -10,6 +10,10 @@ module.exports = {
   },
   queries: {
     user: async (_, __, { user }) => {
+      if (!user) {
+        return null
+      }
+
       const dbUser = await User.findById(user._id).lean()
 
       return dbUser
