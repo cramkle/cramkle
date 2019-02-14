@@ -6,7 +6,8 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "prettier": "prettier --write '**/*.js'"
   },
   "devDependencies": {
     "eslint": "^5.8.0",
