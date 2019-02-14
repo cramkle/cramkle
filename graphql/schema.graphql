@@ -18,7 +18,9 @@ type Query {
   fieldValue(id: String!): FieldValue
   template(id: String!): Template
   note(id: String!): Note
-  user(id: String!): User
+
+  """ Get currently logged user """
+  user: User
 }
 
 type Mutation {
@@ -64,8 +66,6 @@ type Mutation {
 
   """ Update user profile information """
   updateProfile(
-    # TODO: remove
-    id: String!,
     """ New username """
     username: String,
     """ New password """

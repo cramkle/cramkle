@@ -9,20 +9,18 @@ module.exports = {
     },
   },
   queries: {
-    user: async (_, { id }) => {
-      const user = await User.findById(id)
+    user: async (_, __, { req: { user } }) => {
+      const dbUser = await User.findById(user._id).lean()
 
-      return user
+      return dbUser
     },
   },
   mutations: {
     updateProfile: async (
       _,
-      { id, email, username, password, confirmPassword }
+      { email, username, password, confirmPassword },
+      { req: { user } }
     ) => {
-      // TODO: retrieve id from logged user
-      const user = await User.findById(id)
-
       if (!(await User.comparePassword(confirmPassword, user.password))) {
         throw new AuthenticationError()
       }
