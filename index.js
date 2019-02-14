@@ -18,7 +18,8 @@ authMiddleware.set(app)
 
 app.use('/auth', authRouter)
 
-mongoose.connect(MONGO_URI, { useNewUrlParser: true, useCreateIndex: true })
+mongoose
+  .connect(MONGO_URI, { useNewUrlParser: true, useCreateIndex: true })
   .then(() => {
     app.listen(PORT, () => {
       console.log(`App listening on https://localhost:${PORT}`)

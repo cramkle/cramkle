@@ -12,10 +12,12 @@ const deckSchema = new Schema({
     type: String,
     unique: true,
   },
-  notes: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Note',
-  }],
+  notes: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Note',
+    },
+  ],
   ownerId: {
     type: Schema.Types.ObjectId,
     ref: 'User',

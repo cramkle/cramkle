@@ -10,14 +10,18 @@ const noteSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'CardModel',
   },
-  values: [{
-    type: Schema.Types.ObjectId,
-    ref: 'FieldValue',
-  }],
-  cards: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Card',
-  }],
+  values: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'FieldValue',
+    },
+  ],
+  cards: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Card',
+    },
+  ],
 })
 
 const Note = mongoose.model('Note', noteSchema)

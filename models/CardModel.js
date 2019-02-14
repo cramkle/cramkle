@@ -7,17 +7,20 @@ const cardModelSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User',
   },
-  fields: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Field',
-  }],
-  templates: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Template',
-  }],
+  fields: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Field',
+    },
+  ],
+  templates: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Template',
+    },
+  ],
 })
 
 const CardModel = mongoose.model('CardModel', cardModelSchema)
 
 module.exports = CardModel
-

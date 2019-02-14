@@ -16,11 +16,14 @@ module.exports = {
     },
   },
   mutations: {
-    updateProfile: async (_, { id, email, username, password, confirmPassword }) => {
+    updateProfile: async (
+      _,
+      { id, email, username, password, confirmPassword }
+    ) => {
       // TODO: retrieve id from logged user
       const user = await User.findById(id)
 
-      if (!await User.comparePassword(confirmPassword, user.password)) {
+      if (!(await User.comparePassword(confirmPassword, user.password))) {
         throw new AuthenticationError()
       }
 
