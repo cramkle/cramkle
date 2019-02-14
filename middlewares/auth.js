@@ -2,7 +2,7 @@ const passport = require('passport')
 const { Strategy } = require('passport-local')
 const session = require('express-session')
 
-const User = require('../models/user')
+const { User } = require('../models')
 
 passport.use(new Strategy(
   async (username, password, done) => {
