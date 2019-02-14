@@ -15,6 +15,12 @@ const server = new ApolloServer({
 
 module.exports = {
   set: app => {
-    return server.applyMiddleware({ app })
+    return server.applyMiddleware({
+      app,
+      cors: {
+        origin: 'http://localhost:3000',
+        credentials: true,
+      },
+    })
   },
 }
