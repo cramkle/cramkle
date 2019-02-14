@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import { useWindowSize } from 'the-platform'
 import { withRouter } from 'react-router'
 import { canUseDOM } from 'exenv'
@@ -14,6 +14,13 @@ import List, {
 
 const TopBar = ({ children, history }) => {
   const [drawerOpen, setDrawerOpen] = useState(false)
+
+  const handleLogout = useCallback(() => {
+    fetch('http://localhost:5000/auth/logout', {
+      method: 'POST',
+      credentials: 'include',
+    }).then(() => window.location.assign('/login'))
+  }, [])
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const windowWidth = canUseDOM && useWindowSize().width
@@ -52,7 +59,7 @@ const TopBar = ({ children, history }) => {
                 <ListItemGraphic graphic={<MaterialIcon icon="settings" />} />
                 <ListItemText primaryText="Settings" />
               </ListItem>
-              <ListItem>
+              <ListItem onClick={handleLogout}>
                 <ListItemGraphic
                   graphic={<MaterialIcon icon="exit_to_app" />}
                 />
