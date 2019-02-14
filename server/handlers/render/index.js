@@ -36,7 +36,12 @@ const render = async (req, res) => {
     .filter(path => path.endsWith('.css'))
     .map(path => assetManifest[path])
 
-  const { sandbox, cleanUp, getLogsAndErrors } = createSandbox(req.url)
+  const sandboxContext = {
+    requestUrl: req.url,
+    forwardCookie: req.headers.cookie,
+  }
+
+  const { sandbox, cleanUp, getLogsAndErrors } = createSandbox(sandboxContext)
 
   try {
     createContext(sandbox)
