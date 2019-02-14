@@ -16,7 +16,7 @@ ioMiddleware.set(app)
 graphqlMiddleware.set(app)
 authMiddleware.set(app)
 
-app.use(authRouter)
+app.use('/auth', authRouter)
 
 mongoose.connect(MONGO_URI, { useNewUrlParser: true, useCreateIndex: true })
   .then(() => {
