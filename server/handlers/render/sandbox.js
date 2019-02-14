@@ -1,6 +1,6 @@
 const fetch = require('node-fetch')
 
-const createSandbox = requestUrl => {
+const createSandbox = ctx => {
   const timerHandlers = []
   const logs = []
   const warnings = []
@@ -28,6 +28,17 @@ const createSandbox = requestUrl => {
       handler.unref()
     })
   }
+
+  const fetchProxy = new Proxy(fetch, {
+    apply: (target, thisArg, [urlOrRequest, init]) => {
+      init.headers = {
+        ...init.headers,
+        ...(ctx.forwardCookie && { cookie: ctx.forwardCookie }),
+      }
+
+      return target.apply(thisArg, [urlOrRequest, init])
+    },
+  })
 
   const cleanLogs = () => {
     logs.length = 0
@@ -61,14 +72,14 @@ const createSandbox = requestUrl => {
         warnings.push(args.join(' '))
       },
     },
-    fetch,
+    fetch: fetchProxy,
     clearInterval,
     clearTimeout,
     setInterval: setIntervalProxy,
     setTimeout: setTimeoutProxy,
     require,
     module: { exports: {} },
-    requestUrl,
+    requestUrl: ctx.requestUrl,
   }
 
   sandbox.exports = module.exports

@@ -5,8 +5,6 @@ import { onError } from 'apollo-link-error'
 import { ApolloLink } from 'apollo-link'
 import { canUseDOM } from 'exenv'
 
-import fetch from './fetch'
-
 export const createApolloClient = uri => {
   const cache = new InMemoryCache()
 
@@ -28,7 +26,7 @@ export const createApolloClient = uri => {
       new HttpLink({
         uri,
         credentials: 'include',
-        fetch,
+        fetch: window.fetch,
       }),
     ]),
     // eslint-disable-next-line no-underscore-dangle
