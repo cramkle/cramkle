@@ -1,5 +1,4 @@
 import React from 'react'
-import { withRouter } from 'react-router'
 import { Formik } from 'formik'
 import { object, string } from 'yup'
 import { Headline4, Subtitle2 } from '@material/react-typography'
@@ -9,7 +8,7 @@ import Button from '@material/react-button'
 
 import InputField from './InputField'
 
-const LoginForm = ({ history: router }) => (
+const LoginForm = () => (
   <Formik
     initialValues={{
       username: '',
@@ -32,7 +31,7 @@ const LoginForm = ({ history: router }) => (
       })
         .then(res => res.json())
         .then(data => {
-          router.push('/dashboard')
+          window.location.assign('/dashboard')
         })
         .catch(e => {
           console.error(e)
@@ -76,4 +75,4 @@ const LoginForm = ({ history: router }) => (
   </Formik>
 )
 
-export default withRouter(LoginForm)
+export default LoginForm
