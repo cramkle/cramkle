@@ -1,5 +1,6 @@
 {
-  "extends": ["prettier", "eslint:recommended"],
+  "extends": ["plugin:prettier/recommended", "eslint:recommended"],
+  "plugins": ["prettier"],
   "env": {
     "es6": true,
     "node": true,
@@ -7,16 +8,13 @@
   },
   "parserOptions": {
     "sourceType": "module",
-    "ecmaVersion": 7,
-    "ecmaFeatures": {
-      "experimentalObjectRestSpread": true
-    }
+    "ecmaVersion": 8
   },
   "rules": {
     "no-underscore-dangle": [1, { "allow": ["_id"] }],
     "semi": ["error", "never"],
     "quotes": ["error", "single"],
     "comma-dangle": ["error", "always-multiline"],
-    "no-console": [0]
+    "no-console": "off"
   }
 }
