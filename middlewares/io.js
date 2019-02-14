@@ -1,5 +1,5 @@
 const bodyParser = require('body-parser')
-const cookieParser = require('cookie-paser')
+const cookieParser = require('cookie-parser')
 const cors = require('cors')
 
 module.exports = {
