@@ -20,7 +20,7 @@ passport.use(new Strategy(
       return
     }
 
-    if (!await user.comparePassword(password, user.password)) {
+    if (!await User.comparePassword(password, user.password)) {
       done(null, false, { message: 'Incorrect password' })
       return
     }
