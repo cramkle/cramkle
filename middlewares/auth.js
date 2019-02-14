@@ -54,6 +54,7 @@ module.exports = {
   set: app => {
     app.use(
       session({
+        // TODO: use an actual secret value
         secret: 'hello world',
         resave: false,
         saveUninitialized: true,
