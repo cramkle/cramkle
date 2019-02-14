@@ -32,7 +32,6 @@ const LoginForm = ({ history: router }) => (
       })
         .then(res => res.json())
         .then(data => {
-          console.log(data)
           router.push('/dashboard')
         })
         .catch(e => {
