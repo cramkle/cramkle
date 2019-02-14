@@ -13,8 +13,8 @@ const PORT = process.env.PORT || 5000
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/cramkle'
 
 ioMiddleware.set(app)
-graphqlMiddleware.set(app)
 authMiddleware.set(app)
+graphqlMiddleware.set(app)
 
 app.use('/auth', authRouter)
 

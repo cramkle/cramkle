@@ -9,7 +9,7 @@ module.exports = {
     },
   },
   queries: {
-    user: async (_, __, { req: { user } }) => {
+    user: async (_, __, { user }) => {
       const dbUser = await User.findById(user._id).lean()
 
       return dbUser
@@ -19,7 +19,7 @@ module.exports = {
     updateProfile: async (
       _,
       { email, username, password, confirmPassword },
-      { req: { user } }
+      { user }
     ) => {
       if (!(await User.comparePassword(confirmPassword, user.password))) {
         throw new AuthenticationError()

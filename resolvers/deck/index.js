@@ -10,17 +10,21 @@ module.exports = {
     },
   },
   queries: {
-    decks: async (_, __, { req: { user } }) => {
+    decks: async (_, __, { user }) => {
       const decks = await Deck.find({ ownerId: user._id })
 
       return decks
     },
-    deck: async (_, { slug }, { req: { user } }) => {
+    deck: async (_, { slug }, { user }) => {
+      if (!user) {
+        throw new UnauthorizedError()
+      }
+
       return await Deck.findOne({ slug, ownerId: user._id })
     },
   },
   mutations: {
-    createDeck: async (_, { title, description }, { req: { user } }) => {
+    createDeck: async (_, { title, description }, { user }) => {
       if (!user) {
         throw new UnauthorizedError()
       }
@@ -29,7 +33,7 @@ module.exports = {
 
       return deck
     },
-    updateDeck: async (_, { id, title, description }, { req: { user } }) => {
+    updateDeck: async (_, { id, title, description }, { user }) => {
       if (!user) {
         throw new UnauthorizedError()
       }
@@ -41,7 +45,7 @@ module.exports = {
 
       return deck
     },
-    publishDeck: async (_, { id }, { req: { user } }) => {
+    publishDeck: async (_, { id }, { user }) => {
       if (!user) {
         throw new UnauthorizedError()
       }
@@ -53,7 +57,7 @@ module.exports = {
 
       return deck
     },
-    unpublishDeck: async (_, { id }, { req: { user } }) => {
+    unpublishDeck: async (_, { id }, { user }) => {
       if (!user) {
         throw new UnauthorizedError()
       }
