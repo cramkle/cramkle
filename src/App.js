@@ -5,8 +5,8 @@ import { Route } from 'react-router-dom'
 import { ApolloProvider } from 'react-apollo'
 
 import TopBarRoute from './components/routes/TopBarRoute'
-// import GuestRoute from './components/routes/GuestRoute'
-// import UserRoute from './components/routes/UserRoute'
+import GuestRoute from './components/routes/GuestRoute'
+import UserRoute from './components/routes/UserRoute'
 import AboutPage from './components/pages/AboutPage'
 import DashboardPage from './components/pages/DashboardPage'
 import DeckPage from './components/pages/DeckPage'
@@ -23,11 +23,36 @@ const App = () => {
     <ApolloProvider client={client}>
       <Helmet defaultTitle="Cramkle" titleTemplate="%s - Cramkle" />
       <Switch>
-        <Route component={LandingPage} path="/" exact />
-        <TopBarRoute component={DashboardPage} path="/dashboard" exact />
-        <TopBarRoute component={DeckPage} path="/d/:slug" exact />
-        <Route component={RegisterPage} path="/register" exact />
-        <Route component={LoginPage} path="/login" exact />
+        <Route
+          component={LandingPage}
+          RouteComponent={GuestRoute}
+          path="/"
+          exact
+        />
+        <TopBarRoute
+          component={DashboardPage}
+          RouteComponent={UserRoute}
+          path="/dashboard"
+          exact
+        />
+        <TopBarRoute
+          component={DeckPage}
+          RouteComponent={UserRoute}
+          path="/d/:slug"
+          exact
+        />
+        <Route
+          component={RegisterPage}
+          RouteComponent={GuestRoute}
+          path="/register"
+          exact
+        />
+        <Route
+          component={LoginPage}
+          RouteComponent={GuestRoute}
+          path="/login"
+          exact
+        />
         <Route component={AboutPage} path="/about" exact />
         <Route component={NotFoundPage} />
       </Switch>

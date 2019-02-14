@@ -1,4 +1,5 @@
 import React from 'react'
+import { withRouter } from 'react-router'
 import { Formik } from 'formik'
 import { object, string } from 'yup'
 import { Headline4, Subtitle2 } from '@material/react-typography'
@@ -8,21 +9,38 @@ import Button from '@material/react-button'
 
 import InputField from './InputField'
 
-const LoginForm = () => (
+const LoginForm = ({ history: router }) => (
   <Formik
     initialValues={{
       username: '',
-      accessKey: '',
-      // so typescript doesn't complain
-      authentication: '',
+      password: '',
     }}
     validationSchema={object().shape({
       username: string()
         .matches(/^[a-zA-Z0-9_]+$/, 'Invalid username')
         .required('Username is required'),
-      accessKey: string().required('Password is required'),
+      password: string().required('Password is required'),
     })}
-    onSubmit={() => {}}
+    onSubmit={(values, props) =>
+      fetch('http://localhost:5000/auth/login', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data)
+          router.push('/dashboard')
+        })
+        .catch(e => {
+          console.error(e)
+          props.setErrors({ authentication: true })
+          props.setSubmitting(false)
+        })
+    }
   >
     {({ isSubmitting, isValid, handleSubmit, errors }) => (
       <form className="login-page__form w-100" onSubmit={handleSubmit}>
@@ -37,7 +55,7 @@ const LoginForm = () => (
             />
             <InputField
               className="w-100 mv2"
-              name="accessKey"
+              name="password"
               type="password"
               label="Password"
             />
@@ -48,7 +66,7 @@ const LoginForm = () => (
           </div>
           <CardActions>
             <CardActionButtons>
-              <Button raised disabled={!isValid || isSubmitting}>
+              <Button raised disabled={!isValid || isSubmitting} type="submit">
                 Login
               </Button>
             </CardActionButtons>
@@ -59,4 +77,4 @@ const LoginForm = () => (
   </Formik>
 )
 
-export default LoginForm
+export default withRouter(LoginForm)
