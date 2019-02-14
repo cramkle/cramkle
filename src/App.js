@@ -23,12 +23,7 @@ const App = () => {
     <ApolloProvider client={client}>
       <Helmet defaultTitle="Cramkle" titleTemplate="%s - Cramkle" />
       <Switch>
-        <Route
-          component={LandingPage}
-          RouteComponent={GuestRoute}
-          path="/"
-          exact
-        />
+        <GuestRoute component={LandingPage} path="/" exact />
         <TopBarRoute
           component={DashboardPage}
           RouteComponent={UserRoute}
@@ -41,18 +36,8 @@ const App = () => {
           path="/d/:slug"
           exact
         />
-        <Route
-          component={RegisterPage}
-          RouteComponent={GuestRoute}
-          path="/register"
-          exact
-        />
-        <Route
-          component={LoginPage}
-          RouteComponent={GuestRoute}
-          path="/login"
-          exact
-        />
+        <GuestRoute component={RegisterPage} path="/register" exact />
+        <GuestRoute component={LoginPage} path="/login" exact />
         <Route component={AboutPage} path="/about" exact />
         <Route component={NotFoundPage} />
       </Switch>
