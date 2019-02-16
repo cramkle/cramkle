@@ -1,5 +1,4 @@
 const { Deck, User, Note } = require('../../models')
-const { UnauthorizedError } = require('../../models/errors')
 
 module.exports = {
   root: {
@@ -16,28 +15,16 @@ module.exports = {
       return decks
     },
     deck: async (_, { slug }, { user }) => {
-      if (!user) {
-        throw new UnauthorizedError()
-      }
-
       return await Deck.findOne({ slug, ownerId: user._id })
     },
   },
   mutations: {
     createDeck: async (_, { title, description }, { user }) => {
-      if (!user) {
-        throw new UnauthorizedError()
-      }
-
       const deck = await Deck.create({ title, description, ownerId: user._id })
 
       return deck
     },
     updateDeck: async (_, { id, title, description }, { user }) => {
-      if (!user) {
-        throw new UnauthorizedError()
-      }
-
       const deck = await Deck.findOneAndUpdate(
         { id, ownerId: user._id },
         { title, description }
@@ -46,10 +33,6 @@ module.exports = {
       return deck
     },
     publishDeck: async (_, { id }, { user }) => {
-      if (!user) {
-        throw new UnauthorizedError()
-      }
-
       const deck = await Deck.findOneAndUpdate(
         { id, ownerId: user._id },
         { published: true }
@@ -58,10 +41,6 @@ module.exports = {
       return deck
     },
     unpublishDeck: async (_, { id }, { user }) => {
-      if (!user) {
-        throw new UnauthorizedError()
-      }
-
       const deck = await Deck.findOneAndUpdate(
         { id, ownerId: user._id },
         { published: false }

@@ -1,3 +1,6 @@
+const { mapObjIndexed } = require('ramda')
+const { AuthenticationError } = require('apollo-server')
+
 const {
   queries: deckQueries,
   root: deckRoot,
@@ -21,6 +24,14 @@ const {
   root: cardModelRoot,
 } = require('./cardModel')
 
+const withAuthentication = resolver => (root, args, ctx, info) => {
+  if (!ctx.user) {
+    throw new AuthenticationError()
+  }
+
+  return resolver(root, args, ctx, info)
+}
+
 module.exports = {
   ...deckRoot,
   ...noteRoot,
@@ -31,17 +42,17 @@ module.exports = {
   ...cardModelRoot,
   ...userRoot,
   Query: {
-    ...deckQueries,
-    ...noteQueries,
-    ...templateQueries,
-    ...fieldQueries,
-    ...fieldValueQueries,
-    ...cardQueries,
-    ...cardModelQueries,
+    ...mapObjIndexed(withAuthentication, deckQueries),
+    ...mapObjIndexed(withAuthentication, noteQueries),
+    ...mapObjIndexed(withAuthentication, templateQueries),
+    ...mapObjIndexed(withAuthentication, fieldQueries),
+    ...mapObjIndexed(withAuthentication, fieldValueQueries),
+    ...mapObjIndexed(withAuthentication, cardQueries),
+    ...mapObjIndexed(withAuthentication, cardModelQueries),
     ...userQueries,
   },
   Mutation: {
-    ...deckMutations,
+    ...mapObjIndexed(withAuthentication, deckMutations),
     ...userMutations,
   },
 }
