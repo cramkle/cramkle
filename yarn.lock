@@ -1068,6 +1068,49 @@
     prop-types "^15.6.1"
     react "^16.4.2"
 
+"@material/react-tab-bar@~0.7.1":
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/@material/react-tab-bar/-/react-tab-bar-0.7.1.tgz#823ce5b7bdace64f9047c73015039516b89aaae7"
+  integrity sha512-wpcVhbz0pXyqYUpLPbMsmWRLpv0EjJnJ41txZTs34jySNKJ3OpuOejq9tvauBsmSo/kTdVkUsZOyYNImvc0/Iw==
+  dependencies:
+    "@material/react-tab-scroller" "^0.7.1"
+    "@material/tab-bar" "^0.41.0"
+    classnames "^2.2.5"
+    prop-types "^15.6.1"
+    react "^16.3.2"
+
+"@material/react-tab-indicator@^0.7.1", "@material/react-tab-indicator@~0.7.1":
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/@material/react-tab-indicator/-/react-tab-indicator-0.7.1.tgz#aa0acf5ad1fee42fa6138e153180aa7a1f705535"
+  integrity sha512-F06Hc7QgCTOdPQqp3SxGEf9I3iOtAb0qPfgSeSazsnPPfiEnR75F4kpmgGtBepePTRk10Pv41+q+jeFHF1CwiQ==
+  dependencies:
+    "@material/tab-indicator" "^0.41.0"
+    classnames "^2.2.5"
+    prop-types "^15.6.1"
+    react "^16.4.2"
+
+"@material/react-tab-scroller@^0.7.1", "@material/react-tab-scroller@~0.7.1":
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/@material/react-tab-scroller/-/react-tab-scroller-0.7.1.tgz#860eb7b8047f9b17b0b4bea4f90b0174e9a637c0"
+  integrity sha512-YsWyZlVqxK/kyujjvtNMu+je6vASouGf6ypx8YejUrDpR8l7+Nli98XVEyzJQW8YjcpbDpYyjwwoIRiNTD0gpQ==
+  dependencies:
+    "@material/tab-scroller" "^0.41.0"
+    classnames "^2.2.5"
+    prop-types "^15.6.1"
+    react "^16.4.2"
+
+"@material/react-tab@~0.7.1":
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/@material/react-tab/-/react-tab-0.7.1.tgz#82a0d4cf85b263208f7e1751687fd7ac6a1544e6"
+  integrity sha512-YanpiOdsM/PM/3pU3EGUu243eCnSpbMfcftaDwCiMGbCjCs5O2HHgY43OOTHI1IZ2dTkZ697PvzSVySWgX45Vg==
+  dependencies:
+    "@material/react-ripple" "^0.7.1"
+    "@material/react-tab-indicator" "^0.7.1"
+    "@material/tab" "^0.41.0"
+    classnames "^2.2.5"
+    prop-types "^15.6.1"
+    react "^16.3.2"
+
 "@material/react-text-field@^0.7.1":
   version "0.7.1"
   resolved "https://registry.yarnpkg.com/@material/react-text-field/-/react-text-field-0.7.1.tgz#1b2a808572a374d434f50267e292e1de99cb0e30"
@@ -1133,6 +1176,46 @@
   version "0.41.0"
   resolved "https://registry.yarnpkg.com/@material/shape/-/shape-0.41.0.tgz#2b1cb9a9e1240965ae25a107bbd6e29ca0257583"
   integrity sha512-k1K3CjOVxclfb/0r28cOa2oJpP7QMA2fP0SOS3Vh8ale5Q2jkaHTL60KX8VkHvV6rMqShpXW+60gPjoz5XRbDQ==
+
+"@material/tab-bar@^0.41.0":
+  version "0.41.0"
+  resolved "https://registry.yarnpkg.com/@material/tab-bar/-/tab-bar-0.41.0.tgz#23f54233dd0595a68a66daacf279614fba534cfb"
+  integrity sha512-RL+0CA4ZeZAmhz3vlyFsm8h9sLim8JHTLkosfZSYRnx2o9iQHQHpV58jz76ZSWG+0iuDoHFnwZ2oNKNmImn0KQ==
+  dependencies:
+    "@material/base" "^0.41.0"
+    "@material/elevation" "^0.41.0"
+    "@material/tab" "^0.41.0"
+    "@material/tab-scroller" "^0.41.0"
+
+"@material/tab-indicator@^0.41.0":
+  version "0.41.0"
+  resolved "https://registry.yarnpkg.com/@material/tab-indicator/-/tab-indicator-0.41.0.tgz#396fb0902621d1f5fff195abf77738de7d4a91d3"
+  integrity sha512-IBJEO+O8OnFVgRAn4CCGccpyNPF1bvTp5+1foD46S2u7XZLD7ejfxTQhqE5HYWtVLQ3zk1aYo3+N9+oSUkpM2w==
+  dependencies:
+    "@material/animation" "^0.41.0"
+    "@material/base" "^0.41.0"
+    "@material/theme" "^0.41.0"
+
+"@material/tab-scroller@^0.41.0":
+  version "0.41.0"
+  resolved "https://registry.yarnpkg.com/@material/tab-scroller/-/tab-scroller-0.41.0.tgz#8978def0d2ae4672d99e0b199de55473f120a522"
+  integrity sha512-dyxaxLLSiDigIUVJ0BwqnKBtBseALrOhmPgvk6BQVDbynnRQ2bOvaNZ7cbpe3A0i8zOQGOoTZF4i9D38/iubcg==
+  dependencies:
+    "@material/animation" "^0.41.0"
+    "@material/base" "^0.41.0"
+    "@material/tab" "^0.41.0"
+
+"@material/tab@^0.41.0":
+  version "0.41.0"
+  resolved "https://registry.yarnpkg.com/@material/tab/-/tab-0.41.0.tgz#df5e6b3e72f409c710262b2ff11582a282eae594"
+  integrity sha512-yM6eYD8Kgrk2cHa+zN3GYIK4Mt6EsSxDIpaArE6JopqRpalULjiOk83hWVPR1V95xphnzYAWM1YF6I6JexE9kw==
+  dependencies:
+    "@material/base" "^0.41.0"
+    "@material/ripple" "^0.41.0"
+    "@material/rtl" "^0.40.1"
+    "@material/tab-indicator" "^0.41.0"
+    "@material/theme" "^0.41.0"
+    "@material/typography" "^0.41.0"
 
 "@material/textfield@^0.41.0":
   version "0.41.0"
@@ -8649,6 +8732,16 @@ react-testing-library@^5.2.3:
   dependencies:
     dom-testing-library "^3.12.0"
 
+react@^16.3.2:
+  version "16.8.2"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.8.2.tgz#83064596feaa98d9c2857c4deae1848b542c9c0c"
+  integrity sha512-aB2ctx9uQ9vo09HVknqv3DGRpI7OIGJhCx3Bt0QqoRluEjHSaObJl+nG12GDdYH6sTgE7YiPJ6ZUyMx9kICdXw==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.2"
+    scheduler "^0.13.2"
+
 react@^16.4.2:
   version "16.6.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.6.0.tgz#b34761cfaf3e30f5508bc732fb4736730b7da246"
@@ -9190,6 +9283,14 @@ scheduler@^0.13.1:
   version "0.13.1"
   resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.13.1.tgz#1a217df1bfaabaf4f1b92a9127d5d732d85a9591"
   integrity sha512-VJKOkiKIN2/6NOoexuypwSrybx13MY7NSy9RNt8wPvZDMRT1CW6qlpF5jXRToXNHz3uWzbm2elNpZfXfGPqP9A==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+
+scheduler@^0.13.2:
+  version "0.13.2"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.13.2.tgz#969eaee2764a51d2e97b20a60963b2546beff8fa"
+  integrity sha512-qK5P8tHS7vdEMCW5IPyt8v9MJOHqTrOUgPXib7tqm9vh834ibBX5BNhwkplX/0iOzHW5sXyluehYfS9yrkz9+w==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
