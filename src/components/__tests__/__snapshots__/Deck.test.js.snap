@@ -13,9 +13,6 @@ exports[`<Deck /> should match snapshot 1`] = `
       >
         日本語げんき
       </h6>
-      <p
-        class="mdc-typography mdc-typography--body2"
-      />
     </div>
   </div>
 </div>

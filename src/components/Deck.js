@@ -10,7 +10,7 @@ const Deck = ({ title, description, slug, history }) => (
       onClick={() => history.push(`/d/${slug}`)}
     >
       <Headline6>{title}</Headline6>
-      <Body2>{description}</Body2>
+      {description && <Body2>{description}</Body2>}
     </CardPrimaryContent>
   </Card>
 )
