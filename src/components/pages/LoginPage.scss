@@ -1,6 +1,5 @@
 @import '~tachyons-sass/scss/_variables';
 @import '~tachyons-sass/scss/_widths';
-
 @import '../../styles/_variables.scss';
 
 .login-page__form {
@@ -19,4 +18,3 @@
 .login-page__form .mdc-button {
   @extend .w-100;
 }
-
