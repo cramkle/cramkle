@@ -1,8 +1,8 @@
 import React from 'react'
 import { Formik } from 'formik'
 import { object, string } from 'yup'
-import { Headline4, Subtitle2 } from '@material/react-typography'
 
+import { Headline4, Subtitle2 } from '@material/react-typography'
 import Card, { CardActions, CardActionButtons } from '@material/react-card'
 import Button from '@material/react-button'
 
