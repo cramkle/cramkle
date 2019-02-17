@@ -2,7 +2,7 @@ import React from 'react'
 import { MemoryRouter } from 'react-router'
 import { render } from 'react-testing-library'
 
-import Deck from '../../components/Deck'
+import Deck from '../Deck'
 
 describe('<Deck />', () => {
   it('should match snapshot', () => {
