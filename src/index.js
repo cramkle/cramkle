@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { StrictMode } from 'react'
 import { hydrate } from 'react-dom'
 import { Helmet } from 'react-helmet'
 import { BrowserRouter } from 'react-router-dom'
@@ -40,7 +40,12 @@ const render = () => {
   if (canUseDOM) {
     const elem = document.getElementById('root')
 
-    hydrate(<BrowserRouter>{root}</BrowserRouter>, elem)
+    hydrate(
+      <StrictMode>
+        <BrowserRouter>{root}</BrowserRouter>
+      </StrictMode>,
+      elem
+    )
   } else {
     return renderWithData(root)
   }
