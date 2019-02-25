@@ -1,5 +1,5 @@
 import { AuthenticationError } from 'apollo-server'
-import { filter, identity } from 'ramda'
+import { filter, isNil, compose, not } from 'ramda'
 import { User } from '../../models'
 
 export const root = {
@@ -30,7 +30,13 @@ export const mutations = {
       throw new AuthenticationError('User not authenticated')
     }
 
-    const updateProps = filter(identity, { email, username, password })
+    const updateProps = filter(
+      compose(
+        not,
+        isNil
+      ),
+      { email, username, password }
+    )
 
     Object.assign(user, updateProps)
 
