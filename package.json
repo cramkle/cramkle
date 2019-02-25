@@ -10,11 +10,26 @@
     "prettier": "prettier --write '**/*.js'"
   },
   "devDependencies": {
-    "eslint": "^5.8.0",
-    "eslint-config-prettier": "^3.1.0",
+    "@types/bcrypt": "^3.0.0",
+    "@types/body-parser": "^1.17.0",
+    "@types/cookie-parser": "^1.4.1",
+    "@types/express": "^4.16.1",
+    "@types/express-session": "^1.15.12",
+    "@types/mongodb": "^3.1.19",
+    "@types/mongoose": "^5.3.19",
+    "@types/node": "^11.9.5",
+    "@types/passport": "^1.0.0",
+    "@types/passport-local": "^1.0.33",
+    "@types/ramda": "types/npm-ramda#dist",
+    "@types/shortid": "^0.0.29",
+    "@typescript-eslint/eslint-plugin": "^1.4.1",
+    "@typescript-eslint/parser": "^1.4.1",
+    "eslint": "^5.14.1",
+    "eslint-config-prettier": "^4.0.0",
     "eslint-plugin-prettier": "^3.0.1",
     "nodemon": "^1.18.5",
-    "prettier": "^1.16.4"
+    "prettier": "^1.16.4",
+    "typescript": "^3.3.3333"
   },
   "dependencies": {
     "apollo-server": "^2.1.0",
