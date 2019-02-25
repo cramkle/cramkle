@@ -1,11 +1,11 @@
-const express = require('express')
-const mongoose = require('mongoose')
+import express from 'express'
+import mongoose from 'mongoose'
 
-const graphqlMiddleware = require('./middlewares/graphql')
-const ioMiddleware = require('./middlewares/io')
-const authMiddleware = require('./middlewares/auth')
+import graphqlMiddleware from './middlewares/graphql'
+import ioMiddleware from './middlewares/io'
+import authMiddleware from './middlewares/auth'
 
-const authRouter = require('./routes/auth')
+import authRouter from './routes/auth'
 
 const app = express()
 

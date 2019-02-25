@@ -1,8 +1,10 @@
-const mongoose = require('mongoose')
-const { Schema } = mongoose
-const bcrypt = require('bcrypt')
+import { Schema, model, Document } from 'mongoose'
+import bcrypt from 'bcrypt'
 
-const userSchema = new Schema({
+interface UserDocument extends Document {
+}
+
+const UserSchema = new Schema({
   username: {
     type: String,
     unique: true,
@@ -19,7 +21,7 @@ const userSchema = new Schema({
   },
 })
 
-const User = mongoose.model('user', userSchema)
+const User = model<UserDocument>('user', UserSchema)
 
 User.hashifyAndSave = user => {
   return new Promise((res, rej) => {
@@ -48,4 +50,4 @@ User.comparePassword = (candidate, hash) => {
   })
 }
 
-module.exports = User
+export default User

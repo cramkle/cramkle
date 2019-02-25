@@ -1,11 +1,12 @@
-const passport = require('passport')
-const { Strategy } = require('passport-local')
-const session = require('express-session')
+import { Application } from 'express'
+import passport from 'passport'
+import { Strategy } from 'passport-local'
+import session from 'express-session'
 
-const { User } = require('../models')
+import { User } from '../models'
 
 passport.use(
-  new Strategy(async (username, password, done) => {
+  new Strategy(async (username: string, password: string, done) => {
     let user = null
 
     try {
@@ -31,7 +32,7 @@ passport.use(
   })
 )
 
-passport.serializeUser((user, done) => {
+passport.serializeUser((user: User, done) => {
   done(null, user._id)
 })
 
@@ -50,8 +51,8 @@ passport.deserializeUser(async (id, done) => {
   done(null, user)
 })
 
-module.exports = {
-  set: app => {
+export default {
+  set: (app: Application) => {
     app.use(
       session({
         // TODO: use an actual secret value

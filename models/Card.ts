@@ -1,7 +1,6 @@
-const mongoose = require('mongoose')
-const { Schema } = mongoose
+import { Schema, model } from 'mongoose'
 
-const cardSchema = new Schema({
+const CardSchema = new Schema({
   active: Boolean,
   templateId: {
     type: Schema.Types.ObjectId,
@@ -13,6 +12,6 @@ const cardSchema = new Schema({
   },
 })
 
-const Card = mongoose.model('Card', cardSchema)
+const Card = model('Card', CardSchema)
 
-module.exports = Card
+export default Card

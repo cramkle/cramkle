@@ -1,9 +1,10 @@
-const { importSchema } = require('graphql-import')
-const { ApolloServer, gql } = require('apollo-server-express')
+import { Application } from 'express'
+import { importSchema } from 'graphql-import'
+import { ApolloServer, gql } from 'apollo-server-express'
+import resolvers from '../resolvers'
 
 const schema = importSchema('./graphql/schema.graphql')
 const typeDefs = gql(schema)
-const resolvers = require('../resolvers')
 
 const server = new ApolloServer({
   typeDefs,
@@ -13,8 +14,8 @@ const server = new ApolloServer({
   }),
 })
 
-module.exports = {
-  set: app => {
+export default {
+  set: (app: Application) => {
     return server.applyMiddleware({
       app,
       cors: {

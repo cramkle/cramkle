@@ -1,7 +1,6 @@
-const mongoose = require('mongoose')
-const { Schema } = mongoose
+import { Schema, model } from 'mongoose'
 
-const cardModelSchema = new Schema({
+const CardModelSchema = new Schema({
   name: String,
   ownerId: {
     type: Schema.Types.ObjectId,
@@ -21,6 +20,6 @@ const cardModelSchema = new Schema({
   ],
 })
 
-const CardModel = mongoose.model('CardModel', cardModelSchema)
+const CardModel = model('CardModel', CardModelSchema)
 
-module.exports = CardModel
+export default CardModel

@@ -1,7 +1,6 @@
-const mongoose = require('mongoose')
-const { Schema } = mongoose
+import { Schema, model } from 'mongoose'
 
-const fieldSchema = new Schema({
+const FieldSchema = new Schema({
   name: { type: String, required: true },
   isRequired: Boolean,
   type: {
@@ -14,6 +13,6 @@ const fieldSchema = new Schema({
   },
 })
 
-const Field = mongoose.model('Field', fieldSchema)
+const Field = model('Field', FieldSchema)
 
-module.exports = Field
+export default Field

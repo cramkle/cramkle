@@ -1,8 +1,13 @@
-const mongoose = require('mongoose')
-const shortid = require('shortid')
-const { Schema } = mongoose
+import { Schema, model, Document } from 'mongoose'
+import shortid from 'shortid'
 
-const deckSchema = new Schema({
+interface IDeck extends Document {
+  title: string
+  description?: string
+  slug: string
+}
+
+const DeckSchema = new Schema({
   title: {
     type: String,
     required: true,
@@ -25,8 +30,8 @@ const deckSchema = new Schema({
   published: Boolean,
 })
 
-deckSchema.pre('save', function(next) {
-  const deck = this
+DeckSchema.pre('save', function(next) {
+  const deck = this as IDeck
 
   if (!deck.isNew) {
     return next()
@@ -37,6 +42,6 @@ deckSchema.pre('save', function(next) {
   next()
 })
 
-const Deck = mongoose.model('Deck', deckSchema)
+const Deck = model('Deck', DeckSchema)
 
-module.exports = Deck
+export default Deck
