@@ -1,6 +1,7 @@
+import { IResolvers, IResolverObject } from 'graphql-tools'
 import { Deck, User, Note } from '../../models'
 
-export const root = {
+export const root: IResolvers = {
   Deck: {
     id: root => root._id.toString(),
     owner: root => User.findById(root.ownerId),
@@ -8,7 +9,7 @@ export const root = {
   },
 }
 
-export const queries = {
+export const queries: IResolverObject = {
   decks: async (_, __, { user }) => {
     const decks = await Deck.find({ ownerId: user._id })
 
@@ -19,7 +20,7 @@ export const queries = {
   },
 }
 
-export const mutations = {
+export const mutations: IResolverObject = {
   createDeck: async (_, { title, description }, { user }) => {
     const deck = await Deck.create({ title, description, ownerId: user._id })
 

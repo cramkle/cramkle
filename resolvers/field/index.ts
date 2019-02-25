@@ -1,13 +1,14 @@
+import { IResolvers, IResolverObject } from 'graphql-tools'
 import { Field, CardModel } from '../../models'
 
-export const root = {
+export const root: IResolvers = {
   Field: {
     id: root => root._id.toString(),
     model: root => CardModel.findById(root.modelId),
   },
 }
 
-export const queries = {
+export const queries: IResolverObject = {
   field: async (_, { id }) => {
     const field = await Field.findById(id)
 

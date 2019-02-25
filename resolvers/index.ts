@@ -1,6 +1,6 @@
 import { mapObjIndexed } from 'ramda'
-import { AuthenticationError } from 'apollo-server'
 
+import { withAuthentication } from './utils'
 import {
   queries as deckQueries,
   root as deckRoot,
@@ -20,14 +20,6 @@ import {
 } from './fieldValue'
 import { queries as cardQueries, root as cardRoot } from './card'
 import { queries as cardModelQueries, root as cardModelRoot } from './cardModel'
-
-const withAuthentication = resolver => (root, args, ctx, info) => {
-  if (!ctx.user) {
-    throw new AuthenticationError('User is not authenticated')
-  }
-
-  return resolver(root, args, ctx, info)
-}
 
 export default {
   ...deckRoot,
