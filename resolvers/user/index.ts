@@ -48,7 +48,7 @@ export const mutations = {
       return Promise.reject(error)
     }
 
-    await User.hashifyAndSave(user)
+    await user.hashifyAndSave()
 
     return user
   },

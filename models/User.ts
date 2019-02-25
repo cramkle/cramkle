@@ -2,9 +2,11 @@ import { Schema, model, Document } from 'mongoose'
 import bcrypt from 'bcrypt'
 
 interface UserDocument extends Document {
+  hashifyAndSave(): Promise<void>
+  comparePassword(candidate: string): Promise<boolean>
 }
 
-const UserSchema = new Schema({
+const UserSchema = new Schema<UserDocument>({
   username: {
     type: String,
     unique: true,
@@ -21,14 +23,15 @@ const UserSchema = new Schema({
   },
 })
 
-const User = model<UserDocument>('user', UserSchema)
+UserSchema.methods.hashifyAndSave = function() {
+  const user = this
 
-User.hashifyAndSave = user => {
   return new Promise((res, rej) => {
     bcrypt.hash(user.password, 12, (err, hash) => {
       if (err) {
         console.error(err) // eslint-disable-line no-console
-        return rej(err)
+        rej(err)
+        return
       }
 
       user.password = hash
@@ -37,9 +40,11 @@ User.hashifyAndSave = user => {
   })
 }
 
-User.comparePassword = (candidate, hash) => {
+UserSchema.methods.comparePassword = function(candidate) {
+  const user = this
+
   return new Promise((res, rej) => {
-    bcrypt.compare(candidate, hash, (err, isMatch) => {
+    bcrypt.compare(candidate, user.password, (err, isMatch) => {
       if (err) {
         console.error(err) // eslint-disable-line no-console
         return rej(err)
@@ -50,4 +55,4 @@ User.comparePassword = (candidate, hash) => {
   })
 }
 
-export default User
+export default model<UserDocument>('user', UserSchema)

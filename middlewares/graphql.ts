@@ -1,4 +1,4 @@
-import { Application } from 'express'
+import { Application, Request } from 'express'
 import { importSchema } from 'graphql-import'
 import { ApolloServer, gql } from 'apollo-server-express'
 import resolvers from '../resolvers'
@@ -9,7 +9,7 @@ const typeDefs = gql(schema)
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: ({ req }) => ({
+  context: ({ req }: { req: Request }) => ({
     user: req.user,
   }),
 })

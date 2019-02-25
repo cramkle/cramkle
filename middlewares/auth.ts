@@ -10,9 +10,7 @@ passport.use(
     let user = null
 
     try {
-      user = await User.findOne({ username })
-        .lean()
-        .exec()
+      user = await User.findOne({ username }).exec()
     } catch (e) {
       done(e)
       return
@@ -23,7 +21,7 @@ passport.use(
       return
     }
 
-    if (!(await User.comparePassword(password, user.password))) {
+    if (!(await user.comparePassword(password))) {
       done(null, false, { message: 'Incorrect password' })
       return
     }
@@ -32,7 +30,8 @@ passport.use(
   })
 )
 
-passport.serializeUser((user: User, done) => {
+// FIXME: why can't it find the name 'User'?
+passport.serializeUser((user: any, done) => {
   done(null, user._id)
 })
 
