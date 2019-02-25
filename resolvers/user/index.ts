@@ -26,7 +26,7 @@ export const mutations = {
     { email, username, password, confirmPassword },
     { user }
   ) => {
-    if (!(await User.comparePassword(confirmPassword, user.password))) {
+    if (!(await user.comparePassword(confirmPassword))) {
       throw new AuthenticationError('User not authenticated')
     }
 
