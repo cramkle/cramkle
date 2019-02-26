@@ -1,0 +1,5 @@
+query {
+  topBar @client {
+    loading
+  }
+}

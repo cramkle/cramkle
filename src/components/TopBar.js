@@ -1,10 +1,12 @@
 import React, { useState, useCallback } from 'react'
 import { useWindowSize } from 'the-platform'
 import { withRouter } from 'react-router'
+import { graphql } from 'react-apollo'
 import { canUseDOM } from 'exenv'
 import NoSSR from 'react-no-ssr'
 import TopAppBar from '@material/react-top-app-bar'
 import MaterialIcon from '@material/react-material-icon'
+import LinearProgress from '@material/react-linear-progress'
 import Drawer, { DrawerContent, DrawerAppContent } from '@material/react-drawer'
 import List, {
   ListItem,
@@ -12,7 +14,15 @@ import List, {
   ListItemGraphic,
 } from '@material/react-list'
 
-const TopBar = ({ children, history }) => {
+import loadingQuery from '../graphql/topBarLoadingQuery.gql'
+
+const TopBar = ({
+  children,
+  history,
+  data: {
+    topBar: { loading },
+  },
+}) => {
   const [drawerOpen, setDrawerOpen] = useState(false)
 
   const handleLogout = useCallback(() => {
@@ -21,6 +31,13 @@ const TopBar = ({ children, history }) => {
       credentials: 'include',
     }).then(() => window.location.assign('/login'))
   }, [])
+
+  const handleTopBarIconClick = useCallback(
+    () => {
+      setDrawerOpen(!drawerOpen)
+    },
+    [drawerOpen]
+  )
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const windowWidth = canUseDOM && useWindowSize().width
@@ -75,14 +92,14 @@ const TopBar = ({ children, history }) => {
           className="absolute left-0 right-0"
           navigationIcon={
             showDrawerAsModal ? (
-              <MaterialIcon
-                icon="menu"
-                onClick={() => setDrawerOpen(!drawerOpen)}
-              />
+              <MaterialIcon icon="menu" onClick={handleTopBarIconClick} />
             ) : null
           }
         />
-        <div className="mdc-top-app-bar--fixed-adjust w-100">{children}</div>
+        <div className="mdc-top-app-bar--fixed-adjust w-100">
+          {loading && <LinearProgress indeterminate />}
+          {children}
+        </div>
       </DrawerAppContent>
     </div>
   )
@@ -92,4 +109,4 @@ TopBar.defaultProps = {
   children: null,
 }
 
-export default withRouter(TopBar)
+export default withRouter(graphql(loadingQuery)(TopBar))
