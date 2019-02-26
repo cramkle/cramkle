@@ -1103,6 +1103,15 @@
     classnames "^2.2.5"
     react "^16.4.2"
 
+"@material/react-layout-grid@^0.8.0":
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/@material/react-layout-grid/-/react-layout-grid-0.8.0.tgz#b0f73a3342b56badb0be4fe40b2f969962ca8263"
+  integrity sha512-fRjAF3vltejpI8ffSS01UJDdeBv8mwNbLIR6Qu8bMP9PE78C4hwZpUeols1eYCEU2VQlUGaMADSgnA1lbQG1jg==
+  dependencies:
+    "@material/layout-grid" "^0.41.0"
+    classnames "^2.2.5"
+    react "^16.4.2"
+
 "@material/react-line-ripple@^0.8.0":
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/@material/react-line-ripple/-/react-line-ripple-0.8.0.tgz#ea22e8234ac8cc9f0dedec5806698fc874a25dcf"

@@ -1,10 +1,11 @@
 @import './styles/_variables.scss';
 @import './styles/_tachyons-material.scss';
-@import '@material/layout-grid/mdc-layout-grid';
+
 @import '@material/react-button/index.scss';
 @import '@material/react-card/index.scss';
 @import '@material/react-drawer/index.scss';
 @import '@material/react-fab/index.scss';
+@import '@material/react-layout-grid/index.scss';
 @import '@material/react-linear-progress/index.scss';
 @import '@material/react-list/index.scss';
 @import '@material/react-material-icon/index.scss';
@@ -15,6 +16,7 @@
 @import '@material/react-text-field/index.scss';
 @import '@material/react-top-app-bar/index.scss';
 @import '@material/react-typography/index.scss';
+
 @import 'tachyons-sass/tachyons.scss';
 
 * {

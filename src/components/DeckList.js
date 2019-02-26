@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { compose, graphql } from 'react-apollo'
 import { Caption } from '@material/react-typography'
+import { Grid, Row, Cell } from '@material/react-layout-grid'
 
 import Deck from './Deck'
 import decksQuery from '../graphql/decksQuery.gql'
@@ -23,17 +24,16 @@ const DeckList = ({ data: { loading, decks = [] }, mutate }) => {
   }
 
   return (
-    <div className="mdc-layout-grid">
+    <Grid>
       <Caption>Decks</Caption>
-
-      <div className="mdc-layout-grid__inner">
+      <Row>
         {decks.map(deck => (
-          <div key={deck.id} className="mdc-layout-grid__cell">
+          <Cell key={deck.id}>
             <Deck {...deck} />
-          </div>
+          </Cell>
         ))}
-      </div>
-    </div>
+      </Row>
+    </Grid>
   )
 }
 
