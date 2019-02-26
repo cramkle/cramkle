@@ -21,7 +21,7 @@
   },
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "no-underscore-dangle": [1, { "allow": ["_id"] }],
+    "no-underscore-dangle": [1, { "allow": ["_id", "__NAME__"] }],
     "semi": ["error", "never"],
     "quotes": ["error", "single"],
     "comma-dangle": ["error", "always-multiline"],
