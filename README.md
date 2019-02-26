@@ -12,7 +12,7 @@ algorithm, used in many flashcard apps and learning websites, such as
 In order to install the required dependencies and
 start the development server, run the following commands
 
-> We recommend using yarn as a dependency manager, but you're free to use whatever you like
+> We recommend using yarn as a dependency manager
 
 ```sh
 yarn install
