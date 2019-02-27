@@ -4,7 +4,7 @@ import { Headline2, Headline4 } from '@material/react-typography'
 
 import RegisterForm from '../forms/RegisterForm'
 
-const LandingPage = () => (
+const LandingPage: React.FunctionComponent = () => (
   <div className="bg-primary c-on-primary flex flex-column flex-row-l pa3 justify-around items-center vh-100 w-100">
     <div>
       <Headline2 className="b">Cramkle</Headline2>

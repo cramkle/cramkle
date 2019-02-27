@@ -7,7 +7,7 @@ import { canUseDOM } from 'exenv'
 import client from './utils/apolloClient'
 import App from './App'
 
-const renderWithData = rootComponent => {
+const renderWithData = (rootComponent: any) => {
   // We use dynamic import here to avoid placing these
   // dependencies in the client bundle.
   return Promise.all([

@@ -4,7 +4,9 @@ import { compose, graphql } from 'react-apollo'
 import deckQuery from '../../graphql/deckQuery.gql'
 import loadingMutation from '../../graphql/topBarLoadingMutation.gql'
 
-const DeckPage = ({ data: { loading, deck }, mutate }) => {
+interface Props {}
+
+const DeckPage: React.FunctionComponent<Props> = ({ data: { loading, deck }, mutate }) => {
   useEffect(
     () => {
       mutate({ variables: { loading } })

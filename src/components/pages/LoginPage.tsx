@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet'
 import LoginForm from '../forms/LoginForm'
 import './LoginPage.scss'
 
-const LoginPage = () => {
+const LoginPage: React.FunctionComponent = () => {
   return (
     <div className="flex flex-column vh-100 w-100 pa3 items-center justify-center bg-primary c-on-primary">
       <Helmet>

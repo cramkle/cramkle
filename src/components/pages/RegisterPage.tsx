@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import RegisterForm from '../forms/RegisterForm'
 import './RegisterPage.scss'
 
-const RegisterPage = () => {
+const RegisterPage: React.FunctionComponent = () => {
   return (
     <div className="flex flex-column vh-100 pa3 justify-center items-center bg-primary c-on-primary">
       <Helmet>

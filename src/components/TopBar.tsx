@@ -16,7 +16,10 @@ import List, {
 
 import loadingQuery from '../graphql/topBarLoadingQuery.gql'
 
-const TopBar = ({
+interface Props {
+}
+
+const TopBar: React.FunctionComponent<Props> = ({
   children,
   history,
   data: {

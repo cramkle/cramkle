@@ -1,9 +1,13 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { Route, RouteProps } from 'react-router-dom'
 
 import TopBar from '../TopBar'
 
-const TopBarRoute = ({ RouteComponent, path, exact, ...props }) => (
+interface Props extends RouteProps {
+  RouteComponent: React.Component
+}
+
+const TopBarRoute: React.FunctionComponent<Props> = ({ RouteComponent, path, exact, ...props }) => (
   <Route path={path} exact={exact}>
     {({ match }) =>
       match ? (

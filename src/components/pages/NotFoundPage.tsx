@@ -1,6 +1,6 @@
 import React from 'react'
 
-const NotFoundPage = () => {
+const NotFoundPage: React.FunctionComponent = () => {
   return <div>The page you requested wasn&apos;t found</div>
 }
 
