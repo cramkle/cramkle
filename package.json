@@ -13,8 +13,8 @@
     "watch-ts": "tsc --watch"
   },
   "dependencies": {
-    "apollo-server": "^2.1.0",
-    "apollo-server-express": "^2.1.0",
+    "apollo-server": "^2.4.8",
+    "apollo-server-express": "^2.4.8",
     "bcrypt": "^3.0.2",
     "body-parser": "^1.18.3",
     "cookie-parser": "^1.4.4",
@@ -29,7 +29,7 @@
     "mongoose": "^5.3.8",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
-    "ramda": "^0.25.0",
+    "ramda": "^0.26.1",
     "shortid": "^2.2.13"
   },
   "devDependencies": {
