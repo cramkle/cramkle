@@ -3,10 +3,9 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 import { HttpLink } from 'apollo-link-http'
 import { onError } from 'apollo-link-error'
 import { ApolloLink } from 'apollo-link'
-import { withClientState } from 'apollo-link-state'
 import { canUseDOM } from 'exenv'
 
-import clientResolvers from '../resolvers'
+import { resolvers, defaults } from '../resolvers'
 
 export const createApolloClient = uri => {
   const cache = new InMemoryCache()
@@ -24,11 +23,6 @@ export const createApolloClient = uri => {
     }
   })
 
-  const localStateLink = withClientState({
-    ...clientResolvers,
-    cache,
-  })
-
   const httpLink = new HttpLink({
     uri,
     credentials: 'include',
@@ -37,10 +31,13 @@ export const createApolloClient = uri => {
 
   const client = new ApolloClient({
     ssrMode: process.env.SSR,
-    link: ApolloLink.from([errorLink, localStateLink, httpLink]),
+    link: ApolloLink.from([errorLink, httpLink]),
+    resolvers,
     // eslint-disable-next-line no-underscore-dangle
     cache: canUseDOM ? cache.restore(window.__APOLLO_STATE__) : cache,
   })
+
+  cache.writeData({ data: defaults })
 
   return client
 }
