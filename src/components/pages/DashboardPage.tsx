@@ -8,7 +8,7 @@ import Fab from '@material/react-fab'
 
 import DeckList from '../DeckList'
 
-const DashboardPage = () => {
+const DashboardPage: React.FunctionComponent = () => {
   const [index, setIndex] = useState(0)
   return (
     <Fragment>

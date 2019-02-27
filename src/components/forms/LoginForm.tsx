@@ -8,12 +8,20 @@ import Button from '@material/react-button'
 
 import InputField from './InputField'
 
-const LoginForm = () => (
+interface LoginFormValues {
+  username: string
+  password: string
+  authentication?: any
+}
+
+const LoginForm: React.FunctionComponent = () => (
   <Formik
-    initialValues={{
-      username: '',
-      password: '',
-    }}
+    initialValues={
+      {
+        username: '',
+        password: '',
+      } as LoginFormValues
+    }
     validationSchema={object().shape({
       username: string()
         .matches(/^[a-zA-Z0-9_]+$/, 'Invalid username')
@@ -35,7 +43,9 @@ const LoginForm = () => (
         })
         .catch(e => {
           console.error(e)
-          props.setErrors({ authentication: true })
+          props.setErrors({
+            authentication: '',
+          })
           props.setSubmitting(false)
         })
     }

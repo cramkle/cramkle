@@ -7,7 +7,10 @@ import Deck from './Deck'
 import decksQuery from '../graphql/decksQuery.gql'
 import loadingMutation from '../graphql/topBarLoadingMutation.gql'
 
-const DeckList = ({ data: { loading, decks = [] }, mutate }) => {
+interface Props {
+}
+
+const DeckList: React.FunctionComponent<Props> = ({ data: { loading, decks = [] }, mutate }) => {
   useEffect(
     () => {
       mutate({ variables: { loading } })

@@ -1,8 +1,9 @@
 import React from 'react'
+import { History } from 'history'
 import { Formik } from 'formik'
 import { string, object } from 'yup'
 import { graphql } from 'react-apollo'
-import { withRouter } from 'react-router'
+import { withRouter, RouteComponentProps } from 'react-router'
 import Card, { CardActions, CardActionButtons } from '@material/react-card'
 import Button from '@material/react-button'
 import { Headline4 } from '@material/react-typography'
@@ -10,7 +11,12 @@ import { Headline4 } from '@material/react-typography'
 import registerMutation from '../../graphql/registerMutation.gql'
 import InputField from './InputField'
 
-const RegisterForm = ({ mutate: register, title, history }) => (
+interface Props extends RouteComponentProps {
+  title: string
+  mutate: (a: any) => any
+}
+
+const RegisterForm: React.FunctionComponent<Props> = ({ mutate: register, title, history }) => (
   <Formik
     initialValues={{
       username: '',

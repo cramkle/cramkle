@@ -18,7 +18,7 @@ import client from './utils/apolloClient'
 
 import './theme.scss'
 
-const App = () => {
+const App: React.FunctionComponent<{}> = () => {
   return (
     <ApolloProvider client={client}>
       <Helmet defaultTitle="Cramkle" titleTemplate="%s - Cramkle" />

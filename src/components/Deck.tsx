@@ -1,9 +1,15 @@
 import React from 'react'
-import { withRouter } from 'react-router'
+import { withRouter, RouteComponentProps } from 'react-router'
 import Card, { CardPrimaryContent } from '@material/react-card'
 import { Body2, Headline6 } from '@material/react-typography'
 
-const Deck = ({ title, description, slug, history }) => (
+interface Props extends RouteComponentProps {
+  title: string
+  description?: string
+  slug: string
+}
+
+const Deck: React.FunctionComponent<Props> = ({ title, description, slug, history }) => (
   <Card outlined className="h-100">
     <CardPrimaryContent
       className="pa2 h-100"

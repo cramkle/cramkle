@@ -1,19 +1,22 @@
 import React from 'react'
-import { Route, Redirect } from 'react-router-dom'
+import { Route, Redirect, RouteProps } from 'react-router-dom'
 import { graphql } from 'react-apollo'
 
 import userQuery from '../../graphql/userQuery.gql'
 
-const GuestRoute = ({ data: { user }, component: Component, ...rest }) => (
+interface Props extends RouteProps {
+}
+
+const UserRoute: React.FunctionComponent<Props> = ({ data: { user }, component: Component, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      user === null ? (
+      user !== null ? (
         <Component {...props} />
       ) : (
         <Redirect
           to={{
-            pathname: '/dashboard',
+            pathname: '/login',
             // eslint-disable-next-line react/prop-types
             state: { from: props.location },
           }}
@@ -23,4 +26,4 @@ const GuestRoute = ({ data: { user }, component: Component, ...rest }) => (
   />
 )
 
-export default graphql(userQuery)(GuestRoute)
+export default graphql(userQuery)(UserRoute)
