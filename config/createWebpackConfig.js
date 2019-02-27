@@ -227,15 +227,11 @@ const getBaseWebpackConfig = ({ dev = false, isServer = false } = {}) => {
               },
             },
             {
-              test: /\.(js|mjs|jsx)$/,
+              test: /\.(js|mjs|jsx|ts|tsx)$/,
               include: paths.appSrc,
               loader: require.resolve('babel-loader'),
               options: {
                 extends: path.resolve('.babelrc'),
-                customize: require.resolve(
-                  'babel-preset-react-app/webpack-overrides'
-                ),
-
                 plugins: [
                   [
                     require.resolve('babel-plugin-named-asset-import'),
@@ -265,12 +261,6 @@ const getBaseWebpackConfig = ({ dev = false, isServer = false } = {}) => {
                 babelrc: false,
                 configFile: false,
                 compact: false,
-                presets: [
-                  [
-                    require.resolve('babel-preset-react-app/dependencies'),
-                    { helpers: true },
-                  ],
-                ],
                 cacheDirectory: true,
                 // Don't waste time on Gzipping the cache
                 cacheCompression: false,
