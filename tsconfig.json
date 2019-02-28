@@ -8,13 +8,6 @@
     "allowJs": true,
     "jsx": "react",
     "noImplicitAny": true,
-    "moduleResolution": "node",
-    "rootDir": "src"
-  },
-  "exclude": [
-    "node_modules",
-    "config",
-    "scripts",
-    "server"
-  ]
+    "moduleResolution": "node"
+  }
 }
