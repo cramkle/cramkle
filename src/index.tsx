@@ -7,7 +7,9 @@ import { canUseDOM } from 'exenv'
 import client from './utils/apolloClient'
 import App from './App'
 
-const renderWithData = (rootComponent: any) => {
+const renderWithData = (
+  rootComponent: React.ReactElement
+): Promise<RenderResult> => {
   // We use dynamic import here to avoid placing these
   // dependencies in the client bundle.
   return Promise.all([
@@ -34,7 +36,7 @@ const renderWithData = (rootComponent: any) => {
   })
 }
 
-const render = () => {
+const render = (): Promise<RenderResult> | void => {
   const root = <App />
 
   if (canUseDOM) {
@@ -51,16 +53,18 @@ const render = () => {
   }
 }
 
-const start = () => {
+const start = (): void => {
   const maybeRenderPromise = render()
 
   if (!canUseDOM) {
-    window.rendered = maybeRenderPromise.then(({ markup, routerContext }) => ({
-      markup,
-      routerContext,
-      head: Helmet.rewind(),
-      state: client.extract(),
-    }))
+    window.rendered = (maybeRenderPromise as Promise<RenderResult>).then(
+      ({ markup, routerContext }) => ({
+        markup,
+        routerContext,
+        head: Helmet.rewind(),
+        state: client.extract(),
+      })
+    )
   } else {
     // The dynamic import is used here because the code inside `registerServiceWorker`
     // needs access to the `window` object, and since we don't have it on the server,
