@@ -38,3 +38,8 @@ body,
 .mdc-card {
   @include mdc-card-shape-radius(5px);
 }
+
+@at-root {
+  @include mdc-linear-progress-bar-color(secondary);
+  @include mdc-linear-progress-buffer-color($mdc-linear-progress-baseline-buffer-color);
+}
