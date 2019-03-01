@@ -44,6 +44,7 @@
     "ramda": "^0.26.1",
     "react": "^16.8.3",
     "react-apollo": "^2.5.0",
+    "react-cache": "^2.0.0-alpha.1",
     "react-dom": "^16.8.3",
     "react-helmet": "^6.0.0-beta",
     "react-router": "^4.4.0-beta.6",
