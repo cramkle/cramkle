@@ -1,4 +1,5 @@
 import { HelmetData } from 'react-helmet'
+import { NormalizedCacheObject } from 'apollo-cache-inmemory'
 
 declare global {
   interface RenderResult {
@@ -11,5 +12,6 @@ declare global {
   interface Window {
     requestUrl?: string
     rendered?: Promise<RenderResult>
+    __APOLLO_STATE__: NormalizedCacheObject
   }
 }

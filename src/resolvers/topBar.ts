@@ -1,3 +1,5 @@
+import { Resolvers } from 'apollo-client'
+
 const __NAME__ = 'TopBar'
 
 export const initialState = {
@@ -9,7 +11,7 @@ export const initialState = {
 
 export const queries = {}
 
-export const mutations = {
+export const mutations: Resolvers['Mutation'] = {
   setTopBarLoading: (_, { loading }, { cache }) => {
     const data = {
       topBar: {

@@ -7,7 +7,7 @@
     "start-prod": "NODE_ENV=production node server/start.js",
     "build": "node scripts/build.js",
     "test": "jest -c jest.config.js",
-    "lint": "eslint 'src/**/*.ts*'"
+    "lint": "eslint 'src/**/*.ts' 'src/**/*.tsx' && tsc --noEmit"
   },
   "dependencies": {
     "@material/react-button": "^0.7.1",
@@ -46,7 +46,6 @@
     "react-apollo": "^2.5.0",
     "react-dom": "^16.8.3",
     "react-helmet": "^6.0.0-beta",
-    "react-no-ssr": "^1.1.0",
     "react-router": "^4.4.0-beta.6",
     "react-router-dom": "^4.4.0-beta.6",
     "stylelint-config-recommended-scss": "^3.2.0",
@@ -72,6 +71,7 @@
     "@types/react-helmet": "^5.0.8",
     "@types/react-router": "^4.4.4",
     "@types/react-router-dom": "^4.3.1",
+    "@types/webpack": "^4.4.25",
     "@types/yup": "^0.26.10",
     "@typescript-eslint/eslint-plugin": "^1.4.2",
     "@typescript-eslint/parser": "^1.4.2",

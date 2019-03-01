@@ -8,7 +8,7 @@ describe('<Deck />', () => {
   it('should match snapshot', () => {
     const comp = render(
       <MemoryRouter>
-        <Deck title="日本語げんき" />
+        <Deck title="日本語げんき" slug="nihongo-genki" />
       </MemoryRouter>
     )
 
