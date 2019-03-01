@@ -1,13 +1,16 @@
 import { Schema, model, Document } from 'mongoose'
 import shortid from 'shortid'
 
-interface IDeck extends Document {
+interface Deck {
   title: string
   description?: string
   slug: string
+  published: boolean
 }
 
-const DeckSchema = new Schema({
+interface DeckDocument extends Deck, Document {}
+
+const DeckSchema = new Schema<DeckDocument>({
   title: {
     type: String,
     required: true,
@@ -31,7 +34,7 @@ const DeckSchema = new Schema({
 })
 
 DeckSchema.pre('save', function(next) {
-  const deck = this as IDeck
+  const deck = this as DeckDocument
 
   if (!deck.isNew) {
     return next()
@@ -42,6 +45,4 @@ DeckSchema.pre('save', function(next) {
   next()
 })
 
-const Deck = model('Deck', DeckSchema)
-
-export default Deck
+export default model<DeckDocument>('Deck', DeckSchema)

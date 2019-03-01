@@ -1,6 +1,13 @@
-import { Schema, model } from 'mongoose'
+import { Schema, model, Document } from 'mongoose'
 
-const FieldValueSchema = new Schema({
+interface FieldValue {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  data: any
+}
+
+interface FieldValueDocument extends FieldValue, Document {}
+
+const FieldValueSchema = new Schema<FieldValueDocument>({
   data: String,
   fieldId: {
     type: Schema.Types.ObjectId,
@@ -8,6 +15,4 @@ const FieldValueSchema = new Schema({
   },
 })
 
-const FieldValue = model('FieldValue', FieldValueSchema)
-
-export default FieldValue
+export default model<FieldValueDocument>('FieldValue', FieldValueSchema)

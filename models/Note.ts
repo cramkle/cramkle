@@ -1,6 +1,11 @@
-import { Schema, model } from 'mongoose'
+import { Schema, model, Document } from 'mongoose'
 
-const NoteSchema = new Schema({
+// eslint-disable-next-line
+interface Note {}
+
+interface NoteDocument extends Note, Document {}
+
+const NoteSchema = new Schema<NoteDocument>({
   deckId: {
     type: Schema.Types.ObjectId,
     ref: 'Deck',
@@ -23,6 +28,4 @@ const NoteSchema = new Schema({
   ],
 })
 
-const Note = model('Note', NoteSchema)
-
-export default Note
+export default model<NoteDocument>('Note', NoteSchema)

@@ -1,7 +1,13 @@
 import { Schema, model, Document } from 'mongoose'
 import bcrypt from 'bcrypt'
 
-interface UserDocument extends Document {
+interface User {
+  username: string
+  password: string
+  email: string
+}
+
+interface UserDocument extends User, Document {
   hashifyAndSave(): Promise<void>
   comparePassword(candidate: string): Promise<boolean>
 }
@@ -55,4 +61,4 @@ UserSchema.methods.comparePassword = function(candidate) {
   })
 }
 
-export default model<UserDocument>('user', UserSchema)
+export default model<UserDocument>('User', UserSchema)

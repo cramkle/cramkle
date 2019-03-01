@@ -15,7 +15,7 @@ export const queries: IResolverObject = {
       return null
     }
 
-    const dbUser = await User.findById(user._id).lean()
+    const dbUser = await User.findById(user._id).exec()
 
     return dbUser
   },

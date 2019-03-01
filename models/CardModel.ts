@@ -1,6 +1,12 @@
-import { Schema, model } from 'mongoose'
+import { Schema, model, Document } from 'mongoose'
 
-const CardModelSchema = new Schema({
+interface CardModel {
+  name: string
+}
+
+interface CardModelDocument extends CardModel, Document {}
+
+const CardModelSchema = new Schema<CardModelDocument>({
   name: String,
   ownerId: {
     type: Schema.Types.ObjectId,
@@ -20,6 +26,4 @@ const CardModelSchema = new Schema({
   ],
 })
 
-const CardModel = model('CardModel', CardModelSchema)
-
-export default CardModel
+export default model<CardModelDocument>('CardModel', CardModelSchema)

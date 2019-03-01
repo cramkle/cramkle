@@ -1,6 +1,14 @@
-import { Schema, model } from 'mongoose'
+import { Schema, model, Document } from 'mongoose'
 
-const FieldSchema = new Schema({
+interface Field {
+  name: string
+  isRequired: boolean
+  type: 'STRING' | 'NUMBER' | 'DATE' | 'IMAGE'
+}
+
+interface FieldDocument extends Field, Document {}
+
+const FieldSchema = new Schema<FieldDocument>({
   name: { type: String, required: true },
   isRequired: Boolean,
   type: {
@@ -13,6 +21,4 @@ const FieldSchema = new Schema({
   },
 })
 
-const Field = model('Field', FieldSchema)
-
-export default Field
+export default model<FieldDocument>('Field', FieldSchema)
