@@ -2,7 +2,12 @@ import React from 'react'
 import { Field, FieldProps, FieldConfig } from 'formik'
 import TextField, { Input, HelperText } from '@material/react-text-field'
 
-interface FieldComponentProps extends FieldProps {
+interface InputFieldProps {
+  className?: string
+  label: string
+}
+
+interface FieldComponentProps extends FieldProps, InputFieldProps {
   type?: string
 }
 
@@ -30,13 +35,8 @@ InputFieldComponent.defaultProps = {
   type: 'text',
 }
 
-interface InputFieldProps extends FieldConfig {
-  className?: string
-  label?: string
-}
-
-const InputField: React.FunctionComponent<InputFieldProps> = props => (
-  <Field {...props} component={InputFieldComponent} />
-)
+const InputField: React.FunctionComponent<
+  InputFieldProps & FieldConfig
+> = props => <Field {...props} component={InputFieldComponent} />
 
 export default InputField
