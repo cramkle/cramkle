@@ -19,12 +19,9 @@ const DeckList: React.FunctionComponent<ChildProps<{}, Data>> = ({
   data: { loading, decks = [] },
   mutate,
 }) => {
-  useEffect(
-    () => {
-      mutate({ variables: { loading } })
-    },
-    [loading]
-  )
+  useEffect(() => {
+    mutate({ variables: { loading } })
+  }, [loading])
 
   if (loading) {
     return null

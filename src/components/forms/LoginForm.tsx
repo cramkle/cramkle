@@ -67,10 +67,9 @@ const LoginForm: React.FunctionComponent = () => (
               type="password"
               label="Password"
             />
-            {errors.authentication &&
-              !isSubmitting && (
-                <Subtitle2>Invalid username and/or password</Subtitle2>
-              )}
+            {errors.authentication && !isSubmitting && (
+              <Subtitle2>Invalid username and/or password</Subtitle2>
+            )}
           </div>
           <CardActions>
             <CardActionButtons>

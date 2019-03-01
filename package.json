@@ -6,6 +6,7 @@
     "start": "node scripts/start.js",
     "start-prod": "NODE_ENV=production node server/start.js",
     "build": "node scripts/build.js",
+    "prettier": "prettier --write 'src/**/*.ts' 'src/**/*.tsx'",
     "test": "jest -c jest.config.js",
     "lint": "eslint 'src/**/*.ts' 'src/**/*.tsx' && tsc --noEmit"
   },
