@@ -41,12 +41,9 @@ const TopBar: React.FunctionComponent<
     }).then(() => window.location.assign('/login'))
   }, [])
 
-  const handleTopBarIconClick = useCallback(
-    () => {
-      setDrawerOpen(!drawerOpen)
-    },
-    [drawerOpen]
-  )
+  const handleTopBarIconClick = useCallback(() => {
+    setDrawerOpen(!drawerOpen)
+  }, [drawerOpen])
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const windowWidth = canUseDOM && useWindowSize().width

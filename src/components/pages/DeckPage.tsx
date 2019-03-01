@@ -29,12 +29,9 @@ interface Data extends TopbarQueryData, DeckData {}
 const DeckPage: React.FunctionComponent<
   ChildProps<RouteComponentProps, Data>
 > = ({ data: { loading, deck }, mutate }) => {
-  useEffect(
-    () => {
-      mutate({ variables: { loading } })
-    },
-    [loading]
-  )
+  useEffect(() => {
+    mutate({ variables: { loading } })
+  }, [loading])
 
   if (loading) {
     return null
