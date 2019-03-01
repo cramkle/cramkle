@@ -20,11 +20,14 @@
   },
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".tsx"] }],
+    "react/prop-types": "off",
     "no-underscore-dangle": [1, { "allow": ["_id", "__NAME__"] }],
     "semi": ["error", "never"],
     "quotes": ["error", "single"],
     "comma-dangle": ["error", "always-multiline"],
-    "react-hooks/rules-of-hooks": "error"
+    "react-hooks/rules-of-hooks": "error",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/interface-name-prefix": "off"
   },
   "settings": {
     "react": {

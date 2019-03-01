@@ -9,7 +9,12 @@ interface Props extends RouteComponentProps {
   slug: string
 }
 
-const Deck: React.FunctionComponent<Props> = ({ title, description, slug, history }) => (
+const Deck: React.FunctionComponent<Props> = ({
+  title,
+  description,
+  slug,
+  history,
+}) => (
   <Card outlined className="h-100">
     <CardPrimaryContent
       className="pa2 h-100"

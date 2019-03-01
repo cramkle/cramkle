@@ -5,8 +5,8 @@ import { Route } from 'react-router-dom'
 import { ApolloProvider } from 'react-apollo'
 
 import TopBarRoute from './components/routes/TopBarRoute'
-import GuestRoute from './components/routes/GuestRoute'
-import UserRoute from './components/routes/UserRoute'
+import { UserRoute, GuestRoute } from './components/routes/AuthRoute'
+
 import AboutPage from './components/pages/AboutPage'
 import DashboardPage from './components/pages/DashboardPage'
 import DeckPage from './components/pages/DeckPage'

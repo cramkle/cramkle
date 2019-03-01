@@ -8,7 +8,7 @@ import client from './utils/apolloClient'
 import App from './App'
 
 const renderWithData = (
-  rootComponent: React.ReactElement
+  rootComponent: React.ReactNode
 ): Promise<RenderResult> => {
   // We use dynamic import here to avoid placing these
   // dependencies in the client bundle.

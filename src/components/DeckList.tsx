@@ -1,16 +1,24 @@
 import React, { useEffect } from 'react'
-import { compose, graphql } from 'react-apollo'
+import { compose, graphql, ChildProps } from 'react-apollo'
 import { Caption } from '@material/react-typography'
 import { Grid, Row, Cell } from '@material/react-layout-grid'
 
+import { IDeck } from '../types/Deck'
 import Deck from './Deck'
 import decksQuery from '../graphql/decksQuery.gql'
 import loadingMutation from '../graphql/topBarLoadingMutation.gql'
 
-interface Props {
+interface Data {
+  topBar: {
+    loading: boolean
+  }
+  decks: IDeck[]
 }
 
-const DeckList: React.FunctionComponent<Props> = ({ data: { loading, decks = [] }, mutate }) => {
+const DeckList: React.FunctionComponent<ChildProps<{}, Data>> = ({
+  data: { loading, decks = [] },
+  mutate,
+}) => {
   useEffect(
     () => {
       mutate({ variables: { loading } })
@@ -41,6 +49,6 @@ const DeckList: React.FunctionComponent<Props> = ({ data: { loading, decks = [] 
 }
 
 export default compose(
-  graphql(decksQuery),
-  graphql(loadingMutation)
+  graphql<{}, Data>(decksQuery),
+  graphql<{}, Data>(loadingMutation)
 )(DeckList)

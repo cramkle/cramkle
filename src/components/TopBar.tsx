@@ -1,9 +1,8 @@
 import React, { useState, useCallback } from 'react'
 import { useWindowSize } from 'the-platform'
-import { withRouter } from 'react-router'
-import { graphql } from 'react-apollo'
+import { withRouter, RouteComponentProps } from 'react-router'
+import { graphql, ChildDataProps } from 'react-apollo'
 import { canUseDOM } from 'exenv'
-import NoSSR from 'react-no-ssr'
 import TopAppBar from '@material/react-top-app-bar'
 import MaterialIcon from '@material/react-material-icon'
 import LinearProgress from '@material/react-linear-progress'
@@ -14,12 +13,19 @@ import List, {
   ListItemGraphic,
 } from '@material/react-list'
 
+import NoSSR from './NoSSR'
+
 import loadingQuery from '../graphql/topBarLoadingQuery.gql'
 
-interface Props {
+interface Data {
+  topBar: {
+    loading: boolean
+  }
 }
 
-const TopBar: React.FunctionComponent<Props> = ({
+const TopBar: React.FunctionComponent<
+  ChildDataProps<RouteComponentProps, Data>
+> = ({
   children,
   history,
   data: {
@@ -108,8 +114,6 @@ const TopBar: React.FunctionComponent<Props> = ({
   )
 }
 
-TopBar.defaultProps = {
-  children: null,
-}
-
-export default withRouter(graphql(loadingQuery)(TopBar))
+export default withRouter(
+  graphql<RouteComponentProps, Data>(loadingQuery)(TopBar)
+)

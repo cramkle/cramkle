@@ -1,12 +1,34 @@
 import React, { useEffect } from 'react'
-import { compose, graphql } from 'react-apollo'
+import { RouteComponentProps } from 'react-router'
+import { compose, graphql, ChildProps } from 'react-apollo'
 
 import deckQuery from '../../graphql/deckQuery.gql'
 import loadingMutation from '../../graphql/topBarLoadingMutation.gql'
 
-interface Props {}
+interface TopbarQueryData {
+  topBar: {
+    loading: boolean
+  }
+}
 
-const DeckPage: React.FunctionComponent<Props> = ({ data: { loading, deck }, mutate }) => {
+interface DeckOptions {
+  slug: string
+}
+
+interface DeckData {
+  deck: {
+    id: string
+    slug: string
+    title: string
+    description: string
+  }
+}
+
+interface Data extends TopbarQueryData, DeckData {}
+
+const DeckPage: React.FunctionComponent<
+  ChildProps<RouteComponentProps, Data>
+> = ({ data: { loading, deck }, mutate }) => {
   useEffect(
     () => {
       mutate({ variables: { loading } })
@@ -21,12 +43,13 @@ const DeckPage: React.FunctionComponent<Props> = ({ data: { loading, deck }, mut
 }
 
 export default compose(
-  graphql(deckQuery, {
+  graphql<RouteComponentProps, DeckData, DeckOptions>(deckQuery, {
     options: props => ({
       variables: {
-        slug: props.match.params.slug,
+        // gambs 🤷
+        slug: (props.match.params as { slug: string }).slug,
       },
     }),
   }),
-  graphql(loadingMutation)
+  graphql<RouteComponentProps, TopbarQueryData>(loadingMutation)
 )(DeckPage)

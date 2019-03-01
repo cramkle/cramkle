@@ -11,17 +11,17 @@ import InputField from './InputField'
 interface LoginFormValues {
   username: string
   password: string
-  authentication?: any
+  authentication?: boolean
 }
 
+class FormikLogin extends Formik<LoginFormValues> {}
+
 const LoginForm: React.FunctionComponent = () => (
-  <Formik
-    initialValues={
-      {
-        username: '',
-        password: '',
-      } as LoginFormValues
-    }
+  <FormikLogin
+    initialValues={{
+      username: '',
+      password: '',
+    }}
     validationSchema={object().shape({
       username: string()
         .matches(/^[a-zA-Z0-9_]+$/, 'Invalid username')
@@ -38,7 +38,7 @@ const LoginForm: React.FunctionComponent = () => (
         body: JSON.stringify(values),
       })
         .then(res => res.json())
-        .then(data => {
+        .then(() => {
           window.location.assign('/dashboard')
         })
         .catch(e => {
@@ -82,7 +82,7 @@ const LoginForm: React.FunctionComponent = () => (
         </Card>
       </form>
     )}
-  </Formik>
+  </FormikLogin>
 )
 
 export default LoginForm

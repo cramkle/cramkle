@@ -7,7 +7,7 @@ import { canUseDOM } from 'exenv'
 
 import { resolvers, defaults } from '../resolvers'
 
-export const createApolloClient = uri => {
+export const createApolloClient = (uri: string) => {
   const cache = new InMemoryCache()
 
   const errorLink = onError(({ graphQLErrors, networkError }) => {
@@ -30,7 +30,7 @@ export const createApolloClient = uri => {
   })
 
   const client = new ApolloClient({
-    ssrMode: process.env.SSR,
+    ssrMode: !process.browser,
     link: ApolloLink.from([errorLink, httpLink]),
     resolvers,
     // eslint-disable-next-line no-underscore-dangle
