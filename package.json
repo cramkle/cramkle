@@ -13,6 +13,7 @@
   "dependencies": {
     "@material/react-button": "^0.10.0",
     "@material/react-card": "^0.10.0",
+    "@material/react-dialog": "^0.10.0",
     "@material/react-drawer": "^0.10.0",
     "@material/react-fab": "^0.10.0",
     "@material/react-layout-grid": "^0.8.0",

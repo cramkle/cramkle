@@ -774,6 +774,22 @@
     "@material/shape" "^0.41.0"
     "@material/theme" "^0.41.0"
 
+"@material/dialog@0.43.0":
+  version "0.43.0"
+  resolved "https://registry.yarnpkg.com/@material/dialog/-/dialog-0.43.0.tgz#e1d9791c0f96627d9963f8540c7e4b64de855726"
+  integrity sha512-1WDYfzs7393Zj2BZyyix1NScUMHC+Je5gjXDTjNgmTJ54fC7izkbTeKtllczehnIOqRLPzwiWEtu4JWd+1SWgQ==
+  dependencies:
+    "@material/animation" "^0.41.0"
+    "@material/base" "^0.41.0"
+    "@material/dom" "^0.41.0"
+    "@material/elevation" "^0.43.0"
+    "@material/ripple" "^0.43.0"
+    "@material/rtl" "^0.42.0"
+    "@material/shape" "^0.43.0"
+    "@material/theme" "^0.43.0"
+    "@material/typography" "^0.43.0"
+    focus-trap "^4.0.2"
+
 "@material/dom@^0.41.0":
   version "0.41.0"
   resolved "https://registry.yarnpkg.com/@material/dom/-/dom-0.41.0.tgz#6756865f97bad4c91ee75e69d769d7cdc25398ae"
@@ -937,6 +953,18 @@
     "@material/card" "^0.41.0"
     "@material/react-ripple" "^0.10.0"
     classnames "^2.2.5"
+    react "^16.4.2"
+
+"@material/react-dialog@^0.10.0":
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/@material/react-dialog/-/react-dialog-0.10.0.tgz#71eea8ba8dd85960423aefa0268645d5e406a75d"
+  integrity sha512-rbz/OU6DusJUxvoF7ng8YbGZJmAoqgP5MGqBJx6aIclH4MtHG3dhHEAML54GXXJpZPB3YcfeY/eFQZ2690pB1w==
+  dependencies:
+    "@material/dialog" "0.43.0"
+    "@material/dom" "^0.41.0"
+    "@material/react-button" "^0.10.0"
+    classnames "^2.2.5"
+    focus-trap "^4.0.2"
     react "^16.4.2"
 
 "@material/react-drawer@^0.10.0":
