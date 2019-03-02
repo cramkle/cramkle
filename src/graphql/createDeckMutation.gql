@@ -1,0 +1,5 @@
+mutation addDeck($title: String!, $description: String) {
+  createDeck(title: $title, description: $description) {
+    slug
+  }
+}
