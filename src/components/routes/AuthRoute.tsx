@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Redirect, RouteProps } from 'react-router-dom'
-import { graphql } from 'react-apollo'
+import { graphql, ChildProps } from 'react-apollo'
 
 import userQuery from '../../graphql/userQuery.gql'
 
@@ -8,10 +8,20 @@ interface Data {
   user: object
 }
 
+interface Input {
+  matches: (user: Data['user']) => boolean
+  path: string
+  displayName: string
+}
+
 const withUser = graphql<RouteProps, Data>(userQuery)
 
-const createRoute = (matches: (user: Data['user']) => boolean, path: string) =>
-  withUser(({ data: { user }, component: Component, ...rest }) => (
+const createRoute = ({ matches, path, displayName }: Input) => {
+  const CustomRoute: React.FunctionComponent<ChildProps<RouteProps, Data>> = ({
+    data: { user },
+    component: Component,
+    ...rest
+  }) => (
     <Route
       {...rest}
       render={props =>
@@ -28,8 +38,21 @@ const createRoute = (matches: (user: Data['user']) => boolean, path: string) =>
         )
       }
     />
-  ))
+  )
 
-export const GuestRoute = createRoute(user => user === null, '/dashboard')
+  CustomRoute.displayName = displayName
 
-export const UserRoute = createRoute(user => user !== null, '/login')
+  return withUser(CustomRoute)
+}
+
+export const GuestRoute = createRoute({
+  matches: user => user === null,
+  path: '/dashboard',
+  displayName: 'GuestRoute',
+})
+
+export const UserRoute = createRoute({
+  matches: user => user !== null,
+  path: '/login',
+  displayName: 'UserRoute',
+})
