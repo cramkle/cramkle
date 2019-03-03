@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet'
 import { Switch, withRouter } from 'react-router'
 import { Route } from 'react-router-dom'
 import { ApolloProvider } from 'react-apollo'
+import { hot } from 'react-hot-loader/root'
 
 import TopBarRoute from './components/routes/TopBarRoute'
 import { UserRoute, GuestRoute } from './components/routes/AuthRoute'
@@ -45,4 +46,4 @@ const App: React.FunctionComponent<{}> = () => {
   )
 }
 
-export default withRouter(App)
+export default hot(withRouter(App))
