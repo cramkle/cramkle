@@ -80,7 +80,7 @@ const AddDeckForm: React.FunctionComponent<
           onClose={onClose}
         >
           <DialogTitle>Add deck</DialogTitle>
-          <DialogContent>
+          <DialogContent style={{ width: '320px' }}>
             <InputField className="w-100" name="title" label="Title" />
             <InputField
               className="w-100 mt3"
