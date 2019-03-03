@@ -1,12 +1,17 @@
-const fetch = require('node-fetch')
+import fetch from 'node-fetch'
 
-const createSandbox = ctx => {
-  const timerHandlers = []
-  const logs = []
-  const warnings = []
-  const errors = []
+interface SandboxContext {
+  requestUrl: string
+  forwardCookie?: string
+}
 
-  const timerProxy = (target, thisArg, argumentList) => {
+const createSandbox = (ctx: SandboxContext) => {
+  const timerHandlers: NodeJS.Timer[] = []
+  const logs: string[] = []
+  const warnings: string[] = []
+  const errors: string[] = []
+
+  const timerProxy = (target: Function, thisArg: any, argumentList: any) => {
     const handler = target.apply(thisArg, argumentList)
 
     timerHandlers.push(handler)
@@ -62,13 +67,13 @@ const createSandbox = ctx => {
   const sandbox = {
     Promise,
     console: {
-      log: (...args) => {
+      log: (...args: any[]) => {
         logs.push(args.join(' '))
       },
-      error: (...args) => {
+      error: (...args: any[]) => {
         errors.push(args.join(' '))
       },
-      warn: (...args) => {
+      warn: (...args: any[]) => {
         warnings.push(args.join(' '))
       },
     },
@@ -80,6 +85,7 @@ const createSandbox = ctx => {
     require,
     module: { exports: {} },
     requestUrl: ctx.requestUrl,
+    rendered: null as Promise<RenderResult>,
   }
 
   sandbox.exports = module.exports
@@ -90,4 +96,4 @@ const createSandbox = ctx => {
   return { sandbox, cleanUp, getLogsAndErrors }
 }
 
-module.exports = createSandbox
+export default createSandbox
