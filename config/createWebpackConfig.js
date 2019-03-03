@@ -187,6 +187,9 @@ const getBaseWebpackConfig = ({ dev = false, isServer = false } = {}) => {
     devtool: dev && !isServer ? 'cheap-module-source-map' : false,
     externals: isServer ? [nodeExternals()] : [],
     entry: {
+      ...(dev && !isServer
+        ? { 'static/hot-runtime': 'webpack-hot-middleware/client' }
+        : {}),
       [STATIC_RUNTIME_MAIN]: paths.appIndexJs,
     },
     output: {
@@ -210,6 +213,9 @@ const getBaseWebpackConfig = ({ dev = false, isServer = false } = {}) => {
       ),
       extensions: paths.moduleFileExtensions.map(ext => `.${ext}`),
       plugins: [new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson])],
+      alias: {
+        'react-dom': dev ? '@hot-loader/react-dom' : 'react-dom',
+      },
     },
     module: {
       strictExportPresence: true,
@@ -233,6 +239,7 @@ const getBaseWebpackConfig = ({ dev = false, isServer = false } = {}) => {
               options: {
                 extends: path.resolve('.babelrc'),
                 plugins: [
+                  dev && require.resolve('react-hot-loader/babel'),
                   [
                     require.resolve('babel-plugin-named-asset-import'),
                     {
@@ -244,7 +251,7 @@ const getBaseWebpackConfig = ({ dev = false, isServer = false } = {}) => {
                       },
                     },
                   ],
-                ],
+                ].filter(Boolean),
                 // This is a feature of `babel-loader` for webpack (not Babel itself).
                 // It enables caching results in ./node_modules/.cache/babel-loader/
                 // directory for faster rebuilds.
@@ -353,6 +360,7 @@ const getBaseWebpackConfig = ({ dev = false, isServer = false } = {}) => {
       fs: 'empty',
       net: 'empty',
       tls: 'empty',
+      // eslint-disable-next-line
       child_process: 'empty',
     },
   }

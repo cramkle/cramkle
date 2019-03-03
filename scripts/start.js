@@ -16,7 +16,7 @@ const { info, warn, err } = require('./utils/info')
 const paths = require('../config/paths')
 const getBaseWebpackConfig = require('../config/createWebpackConfig.js')
 
-const server = require('../server/index')
+const server = require('../dist/index').default
 
 const app = express()
 
