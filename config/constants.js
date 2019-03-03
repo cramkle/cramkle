@@ -7,6 +7,7 @@ const STATIC_MEDIA_PATH = path.join(STATIC_FOLDER, 'media')
 
 const STATIC_RUNTIME_MAIN = path.join(STATIC_RUNTIME_PATH, 'main')
 const STATIC_RUNTIME_WEBPACK = path.join(STATIC_RUNTIME_PATH, 'webpack')
+const STATIC_RUNTIME_HOT = path.join(STATIC_RUNTIME_PATH, 'hot')
 
 const ASSET_MANIFEST_FILE = 'asset-manifest.json'
 
@@ -17,5 +18,6 @@ module.exports = {
   STATIC_RUNTIME_PATH,
   STATIC_RUNTIME_MAIN,
   STATIC_RUNTIME_WEBPACK,
+  STATIC_RUNTIME_HOT,
   ASSET_MANIFEST_FILE,
 }

@@ -9,6 +9,7 @@ import { serverMainRuntime, appDist } from '../../../config/paths'
 import {
   STATIC_RUNTIME_MAIN,
   STATIC_RUNTIME_WEBPACK,
+  STATIC_RUNTIME_HOT,
   ASSET_MANIFEST_FILE,
 } from '../../../config/constants'
 import { ok, error } from '../../templates'
@@ -25,7 +26,7 @@ const render = async (req: Request, res: Response) => {
   const clientAssetScripts = [
     assetManifest[`${STATIC_RUNTIME_WEBPACK}.js`],
     assetManifest[`${STATIC_RUNTIME_MAIN}.js`],
-    assetManifest['static/hot-runtime.js'],
+    assetManifest[`${STATIC_RUNTIME_HOT}.js`],
     // TODO: shouldn't we find a better way to inject the styles?
     assetManifest['styles.js'],
   ].filter(Boolean)
