@@ -10,9 +10,6 @@
     "react-hooks"
   ],
   "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "project": "./tsconfig.json"
-  },
   "env": {
     "es6": true,
     "browser": true,
