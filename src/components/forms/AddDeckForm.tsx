@@ -1,7 +1,6 @@
 import { Formik } from 'formik'
-import { isEmpty } from 'ramda'
 import { graphql, ChildMutateProps } from 'react-apollo'
-import React, { useCallback, useRef } from 'react'
+import React, { useRef } from 'react'
 import * as yup from 'yup'
 import Dialog, {
   DialogContent,
@@ -10,39 +9,28 @@ import Dialog, {
   DialogButton,
 } from '@material/react-dialog'
 
+import { IDeck } from '../../types/Deck'
 import InputField from './InputField'
+import decksQuery from '../../graphql/decksQuery.gql'
 import createDeckMutation from '../../graphql/createDeckMutation.gql'
 
 interface Props {
   open: boolean
-  onClose: () => void
+  onClose: (action: string) => void
 }
 
-const AddDeckForm: React.FunctionComponent<ChildMutateProps<Props>> = ({
-  open,
-  onClose,
-  mutate,
-}) => {
-  const formRef = useRef<Formik>(null)
+interface MutationData {
+  createDeck: IDeck
+}
 
-  const handleClose = useCallback(
-    (action: string) => {
-      return new Promise((resolve, reject) => {
-        if (action === 'create') {
-          return formRef.current.runValidations().then(errors => {
-            if (isEmpty(errors)) {
-              return formRef.current.submitForm()
-            } else {
-              return reject('Form submit with errors')
-            }
-          })
-        } else {
-          resolve()
-        }
-      }).then(onClose)
-    },
-    [onClose, formRef.current]
-  )
+interface QueryData {
+  decks: IDeck[]
+}
+
+const AddDeckForm: React.FunctionComponent<
+  ChildMutateProps<Props, MutationData>
+> = ({ open, onClose, mutate }) => {
+  const submittingRef = useRef(false)
 
   return (
     <Formik
@@ -54,30 +42,60 @@ const AddDeckForm: React.FunctionComponent<ChildMutateProps<Props>> = ({
         title: yup.string().required('The title is required'),
         description: yup.string(),
       })}
-      onSubmit={({ title, description }) => {
-        console.log('on submit')
-        mutate({ variables: { title, description } }).then(() => {
-          onClose()
+      onSubmit={(values, props) => {
+        // avoid double submits on enter keypress
+        if (submittingRef.current) {
+          return
+        }
+
+        submittingRef.current = true
+
+        mutate({
+          variables: values,
+          update: (proxy, { data: { createDeck } }) => {
+            const data = proxy.readQuery<QueryData>({ query: decksQuery })
+
+            data.decks.push(createDeck)
+
+            proxy.writeQuery({ query: decksQuery, data })
+          },
         })
+          .then(() => {
+            props.resetForm()
+            submittingRef.current = false
+            onClose('created')
+          })
+          .finally(() => {
+            props.setSubmitting(false)
+          })
       }}
       isInitialValid={false}
-      ref={formRef}
     >
       {({ handleSubmit }) => (
-        <Dialog open={open} onClose={handleClose}>
+        <Dialog
+          tag="form"
+          scrimClickAction="dismiss"
+          open={open}
+          onSubmit={handleSubmit}
+          onClose={onClose}
+        >
           <DialogTitle>Add deck</DialogTitle>
           <DialogContent>
-            <form className="w-100" onSubmit={handleSubmit}>
-              <InputField className="w-100" name="title" label="Title" />
-              <InputField
-                className="w-100 mt3"
-                name="description"
-                label="Description"
-              />
-            </form>
+            <InputField className="w-100" name="title" label="Title" />
+            <InputField
+              className="w-100 mt3"
+              name="description"
+              label="Description"
+            />
           </DialogContent>
           <DialogFooter>
-            <DialogButton action="create" isDefault>
+            <DialogButton
+              action="create"
+              isDefault
+              // @ts-ignore
+              onClick={handleSubmit}
+              type="submit"
+            >
               Create
             </DialogButton>
           </DialogFooter>
@@ -87,4 +105,4 @@ const AddDeckForm: React.FunctionComponent<ChildMutateProps<Props>> = ({
   )
 }
 
-export default graphql<Props>(createDeckMutation)(AddDeckForm)
+export default graphql<Props, MutationData>(createDeckMutation)(AddDeckForm)
