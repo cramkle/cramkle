@@ -13,8 +13,6 @@ import List, {
   ListItemGraphic,
 } from '@material/react-list'
 
-import NoSSR from './NoSSR'
-
 import loadingQuery from '../graphql/topBarLoadingQuery.gql'
 
 interface Data {
@@ -56,42 +54,38 @@ const TopBar: React.FunctionComponent<
 
   return (
     <div className="vh-100 flex">
-      <NoSSR fallback={<aside className="mdc-drawer" />}>
-        <Drawer
-          open={drawerOpen}
-          onClose={() => setDrawerOpen(false)}
-          modal={showDrawerAsModal}
-        >
-          <DrawerContent>
-            <List>
-              <ListItem tabIndex={1} onClick={() => history.push('/dashboard')}>
-                <ListItemGraphic graphic={<MaterialIcon icon="home" />} />
-                <ListItemText primaryText="Dashboard" />
-              </ListItem>
-              <ListItem>
-                <ListItemGraphic
-                  graphic={<MaterialIcon icon="store_mall_directory" />}
-                />
-                <ListItemText primaryText="Marketplace" />
-              </ListItem>
-              <ListItem>
-                <ListItemGraphic graphic={<MaterialIcon icon="bar_chart" />} />
-                <ListItemText primaryText="Statistics" />
-              </ListItem>
-              <ListItem>
-                <ListItemGraphic graphic={<MaterialIcon icon="settings" />} />
-                <ListItemText primaryText="Settings" />
-              </ListItem>
-              <ListItem onClick={handleLogout}>
-                <ListItemGraphic
-                  graphic={<MaterialIcon icon="exit_to_app" />}
-                />
-                <ListItemText primaryText="Logout" />
-              </ListItem>
-            </List>
-          </DrawerContent>
-        </Drawer>
-      </NoSSR>
+      <Drawer
+        open={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
+        modal={showDrawerAsModal}
+      >
+        <DrawerContent>
+          <List>
+            <ListItem tabIndex={1} onClick={() => history.push('/dashboard')}>
+              <ListItemGraphic graphic={<MaterialIcon icon="home" />} />
+              <ListItemText primaryText="Dashboard" />
+            </ListItem>
+            <ListItem>
+              <ListItemGraphic
+                graphic={<MaterialIcon icon="store_mall_directory" />}
+              />
+              <ListItemText primaryText="Marketplace" />
+            </ListItem>
+            <ListItem>
+              <ListItemGraphic graphic={<MaterialIcon icon="bar_chart" />} />
+              <ListItemText primaryText="Statistics" />
+            </ListItem>
+            <ListItem>
+              <ListItemGraphic graphic={<MaterialIcon icon="settings" />} />
+              <ListItemText primaryText="Settings" />
+            </ListItem>
+            <ListItem onClick={handleLogout}>
+              <ListItemGraphic graphic={<MaterialIcon icon="exit_to_app" />} />
+              <ListItemText primaryText="Logout" />
+            </ListItem>
+          </List>
+        </DrawerContent>
+      </Drawer>
       <DrawerAppContent className="w-100">
         <TopAppBar
           title="Cramkle"
