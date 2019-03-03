@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "node scripts/start.js",
-    "start-prod": "NODE_ENV=production node server/start.js",
+    "start": "NODE_ENV=development node dist/start.js",
+    "start-prod": "NODE_ENV=production node dist/start.js",
     "build": "yarn run build-client && yarn run build-server",
     "build-client": "node scripts/build.js",
     "build-server": "tsc server/start.ts --outDir dist",
