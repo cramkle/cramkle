@@ -1,7 +1,7 @@
 import express = require('express')
 
 import render from './handlers/render'
-import hotMiddleware from './middlewares/hot-reload'
+import hotMiddleware from './middlewares/hot'
 
 const DIST_PUBLIC = '.dist/public'
 const DIST_STATIC = '.dist/static'
