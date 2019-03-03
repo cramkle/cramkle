@@ -1,6 +1,6 @@
-const express = require('express')
+import express = require('express')
 
-const server = require('./index')
+import server from './index'
 
 const app = express()
 

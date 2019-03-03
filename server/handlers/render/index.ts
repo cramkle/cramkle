@@ -1,22 +1,22 @@
-const fs = require('fs')
-const chalk = require('chalk')
-const path = require('path')
-const { promisify } = require('util')
-const { pipe, map, filter } = require('ramda')
-const { createContext, Script } = require('vm')
+import { Request, Response } from 'express'
+import * as fs from 'fs'
+import chalk from 'chalk'
+import * as path from 'path'
+import { promisify } from 'util'
+import { createContext, Script } from 'vm'
 
-const readFile = promisify(fs.readFile)
-
-const { serverMainRuntime, appDist } = require('../../../config/paths')
-const {
+import { serverMainRuntime, appDist } from '../../../config/paths'
+import {
   STATIC_RUNTIME_MAIN,
   STATIC_RUNTIME_WEBPACK,
   ASSET_MANIFEST_FILE,
-} = require('../../../config/constants')
-const { ok, error } = require('../../templates')
-const createSandbox = require('./sandbox')
+} from '../../../config/constants'
+import { ok, error } from '../../templates'
+import createSandbox from './sandbox'
 
-const render = async (req, res) => {
+const readFile = promisify(fs.readFile)
+
+const render = async (req: Request, res: Response) => {
   // TODO: read the file for every request?
   const assetManifest = await readFile(path.join(appDist, ASSET_MANIFEST_FILE))
     .then(file => file.toString())
@@ -25,9 +25,10 @@ const render = async (req, res) => {
   const clientAssetScripts = [
     assetManifest[`${STATIC_RUNTIME_WEBPACK}.js`],
     assetManifest[`${STATIC_RUNTIME_MAIN}.js`],
+    assetManifest['static/hot-runtime.js'],
     // TODO: shouldn't we find a better way to inject the styles?
     assetManifest['styles.js'],
-  ]
+  ].filter(Boolean)
 
   const serverAssetScripts = [serverMainRuntime]
 
@@ -47,14 +48,13 @@ const render = async (req, res) => {
     createContext(sandbox)
 
     const compiledScripts = await Promise.all(
-      pipe(
-        filter(Boolean),
-        map(filepath =>
+      serverAssetScripts
+        .filter(Boolean)
+        .map(filepath =>
           readFile(path.resolve(filepath)).then(
             src => new Script(src.toString())
           )
         )
-      )(serverAssetScripts)
     )
 
     compiledScripts.forEach(script => script.runInContext(sandbox))
@@ -99,4 +99,4 @@ const render = async (req, res) => {
   }
 }
 
-module.exports = render
+export default render

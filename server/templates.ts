@@ -1,9 +1,10 @@
-const { map } = require('ramda')
+import { HelmetData } from 'react-helmet'
+import { map } from 'ramda'
 
-const srcToScriptTag = src => `<script src="${src}" defer></script>`
-const srcToLinkTag = src => `<link rel="stylesheet" href="${src}" />`
+const srcToScriptTag = (src: string) => `<script src="${src}" defer></script>`
+const srcToLinkTag = (src: string) => `<link rel="stylesheet" href="${src}" />`
 
-const getHeadTags = head => {
+const getHeadTags = (head: HelmetData) => {
   if (!head) {
     return ''
   }
@@ -19,7 +20,7 @@ const getHeadTags = head => {
     .join('\n')
 }
 
-const getNoScriptTags = head => {
+const getNoScriptTags = (head: HelmetData) => {
   if (!head || !head.noscript) {
     return ''
   }
@@ -27,13 +28,21 @@ const getNoScriptTags = head => {
   return head.noscript.toString()
 }
 
-const ok = ({
+interface TemplateInput {
+  markup: string
+  head: HelmetData
+  scripts: string[]
+  styles: string[]
+  state: object
+}
+
+export const ok = ({
   markup = '',
   head,
   scripts = [],
   styles = [],
   state,
-}) => `<!DOCTYPE html>
+}: TemplateInput) => `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -55,12 +64,19 @@ const ok = ({
 </body>
 </html>`
 
-const error = ({
+interface ErrorInput {
+  err: Error
+  logs: string[]
+  errors: string[]
+  warnings: string[]
+}
+
+export const error = ({
   err,
   logs = [],
   errors = [],
   warnings = [],
-}) => `<!DOCTYPE html>
+}: ErrorInput) => `<!DOCTYPE html>
 <html>
 <head>
   <meta name="viewport" content="width=device-width" />
@@ -93,8 +109,3 @@ const error = ({
   </div>
 </body>
 </html>`
-
-module.exports = {
-  ok,
-  error,
-}
