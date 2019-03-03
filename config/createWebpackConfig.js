@@ -15,6 +15,7 @@ const paths = require('./paths')
 const {
   STATIC_RUNTIME_MAIN,
   STATIC_RUNTIME_WEBPACK,
+  STATIC_RUNTIME_HOT,
   STATIC_CHUNKS_PATH,
   STATIC_MEDIA_PATH,
   ASSET_MANIFEST_FILE,
@@ -188,7 +189,7 @@ const getBaseWebpackConfig = ({ dev = false, isServer = false } = {}) => {
     externals: isServer ? [nodeExternals()] : [],
     entry: {
       ...(dev && !isServer
-        ? { 'static/hot-runtime': 'webpack-hot-middleware/client' }
+        ? { [STATIC_RUNTIME_HOT]: 'webpack-hot-middleware/client' }
         : {}),
       [STATIC_RUNTIME_MAIN]: paths.appIndexJs,
     },
