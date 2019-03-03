@@ -15,6 +15,7 @@ start the development server, run the following commands
 > We recommend using yarn as a dependency manager
 
 ```sh
-yarn install
+yarn
+yarn build-server
 yarn start
 ```
