@@ -40,7 +40,9 @@ const RegisterForm: React.FunctionComponent<
         .required('Password is required'),
     })}
     onSubmit={user =>
-      register({ variables: user }).then(() => history.push('/login'))
+      register({ variables: user }).then(() =>
+        history.push('/login', { newUser: true })
+      )
     }
   >
     {({ handleSubmit, isValid, isSubmitting }) => (
