@@ -84,16 +84,12 @@ const createSandbox = (ctx: SandboxContext) => {
     setTimeout: setTimeoutProxy,
     require,
     module: { exports: {} },
-    exports: this.module.exports,
+    exports: module.exports,
     requestUrl: ctx.requestUrl,
     // @ts-ignore
     rendered: null as Promise<RenderResult>,
-    window: this,
-    self: this,
-    global: this,
-  }
+  } as any
 
-  sandbox.exports = module.exports
   sandbox.window = sandbox
   sandbox.self = sandbox
   sandbox.global = sandbox
