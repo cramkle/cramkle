@@ -1,10 +1,11 @@
 import { HelmetData } from 'react-helmet'
 import { NormalizedCacheObject } from 'apollo-cache-inmemory'
+import { StaticRouterContext } from 'react-router'
 
 declare global {
   interface RenderResult {
     markup: string
-    routerContext: object
+    routerContext: StaticRouterContext
     head?: HelmetData
     state?: object
   }
