@@ -1,8 +1,6 @@
 import React, { useState, useCallback } from 'react'
-import { useWindowSize } from 'the-platform'
 import { withRouter, RouteComponentProps } from 'react-router'
 import { graphql, ChildDataProps } from 'react-apollo'
-import { canUseDOM } from 'exenv'
 import TopAppBar from '@material/react-top-app-bar'
 import MaterialIcon from '@material/react-material-icon'
 import LinearProgress from '@material/react-linear-progress'
@@ -43,22 +41,17 @@ const TopBar: React.FunctionComponent<
     setDrawerOpen(!drawerOpen)
   }, [drawerOpen])
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const windowWidth = canUseDOM && useWindowSize().width
+  const handleDrawerClose = useCallback(() => {
+    setDrawerOpen(false)
+  }, [])
 
   if (React.Children.count(children) === 0) {
     return null
   }
 
-  const showDrawerAsModal = canUseDOM && windowWidth <= 900
-
   return (
     <div className="vh-100 flex">
-      <Drawer
-        open={drawerOpen}
-        onClose={() => setDrawerOpen(false)}
-        modal={showDrawerAsModal}
-      >
+      <Drawer open={drawerOpen} onClose={handleDrawerClose} modal>
         <DrawerContent>
           <List>
             <ListItem tabIndex={1} onClick={() => history.push('/dashboard')}>
@@ -91,9 +84,7 @@ const TopBar: React.FunctionComponent<
           title="Cramkle"
           className="absolute left-0 right-0"
           navigationIcon={
-            showDrawerAsModal ? (
-              <MaterialIcon icon="menu" onClick={handleTopBarIconClick} />
-            ) : null
+            <MaterialIcon icon="menu" onClick={handleTopBarIconClick} />
           }
         />
         <div className="mdc-top-app-bar--fixed-adjust w-100">
