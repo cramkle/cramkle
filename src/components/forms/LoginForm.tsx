@@ -1,12 +1,12 @@
 import React from 'react'
-import { Formik } from 'formik'
+import { Formik, Field } from 'formik'
 import { object, string } from 'yup'
 
 import { Headline4, Subtitle2 } from '@material/react-typography'
 import Card, { CardActions, CardActionButtons } from '@material/react-card'
 import Button from '@material/react-button'
 
-import InputField from './InputField'
+import { TextInput } from './Fields'
 
 interface LoginFormValues {
   username: string
@@ -56,12 +56,14 @@ const LoginForm: React.FunctionComponent = () => (
           <div className="pa3 pb0 c-on-surface">
             <Headline4 className="tc">Login</Headline4>
 
-            <InputField
+            <Field
+              component={TextInput}
               className="w-100 mv2"
               name="username"
               label="Username"
             />
-            <InputField
+            <Field
+              component={TextInput}
               className="w-100 mv2"
               name="password"
               type="password"

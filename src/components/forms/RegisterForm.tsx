@@ -1,5 +1,5 @@
+import { Formik, Field } from 'formik'
 import React from 'react'
-import { Formik } from 'formik'
 import { string, object } from 'yup'
 import { graphql, ChildMutateProps } from 'react-apollo'
 import { withRouter, RouteComponentProps } from 'react-router'
@@ -8,7 +8,7 @@ import Button from '@material/react-button'
 import { Headline4 } from '@material/react-typography'
 
 import registerMutation from '../../graphql/registerMutation.gql'
-import InputField from './InputField'
+import { TextInput } from './Fields'
 
 interface Props {
   title?: string
@@ -49,9 +49,20 @@ const RegisterForm: React.FunctionComponent<
       <form className="register-page__form w-100" onSubmit={handleSubmit}>
         <Card className="register-page__form-content pa3 pb0 c-on-surface">
           <Headline4 className="tc">{title}</Headline4>
-          <InputField className="mv2" name="username" label="Username" />
-          <InputField className="mv2" name="email" label="Email" />
-          <InputField
+          <Field
+            component={TextInput}
+            className="mv2"
+            name="username"
+            label="Username"
+          />
+          <Field
+            component={TextInput}
+            className="mv2"
+            name="email"
+            label="Email"
+          />
+          <Field
+            component={TextInput}
             className="mv2"
             label="Password"
             name="password"
