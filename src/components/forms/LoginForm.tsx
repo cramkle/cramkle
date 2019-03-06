@@ -14,10 +14,8 @@ interface LoginFormValues {
   authentication?: boolean
 }
 
-class FormikLogin extends Formik<LoginFormValues> {}
-
 const LoginForm: React.FunctionComponent = () => (
-  <FormikLogin
+  <Formik<LoginFormValues>
     initialValues={{
       username: '',
       password: '',
@@ -83,7 +81,7 @@ const LoginForm: React.FunctionComponent = () => (
         </Card>
       </form>
     )}
-  </FormikLogin>
+  </Formik>
 )
 
 export default LoginForm
