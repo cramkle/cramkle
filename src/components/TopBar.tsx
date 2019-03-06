@@ -87,9 +87,9 @@ const TopBar: React.FunctionComponent<
             <MaterialIcon icon="menu" onClick={handleTopBarIconClick} />
           }
         />
-        <div className="mdc-top-app-bar--fixed-adjust w-100">
+        <div className="mdc-top-app-bar--fixed-adjust w-100 h-100">
           {loading && <LinearProgress indeterminate />}
-          {children}
+          <div className="h-100 overflow-auto">{children}</div>
         </div>
       </DrawerAppContent>
     </div>
