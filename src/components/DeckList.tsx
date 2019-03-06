@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react'
 import { compose, graphql, ChildProps } from 'react-apollo'
-import { Caption } from '@material/react-typography'
+import { Caption, Body1 } from '@material/react-typography'
 import { Grid, Row, Cell } from '@material/react-layout-grid'
 
 import { IDeck } from '../types/Deck'
-import Deck from './Deck'
 import decksQuery from '../graphql/decksQuery.gql'
 import loadingMutation from '../graphql/topBarLoadingMutation.gql'
+import cardsImage from '../assets/cards.svg'
+import Deck from './Deck'
 
 interface Data {
   topBar: {
@@ -28,7 +29,15 @@ const DeckList: React.FunctionComponent<ChildProps<{}, Data>> = ({
   }
 
   if (decks.length === 0) {
-    return <Caption>You haven&apos;t created any decks yet</Caption>
+    return (
+      <div
+        className="flex flex-column items-center"
+        style={{ marginTop: 'auto', marginBottom: 'auto' }}
+      >
+        <img width="64" src={cardsImage} alt="Flashcards" />
+        <Body1 className="mt4">You haven&apos;t created any decks yet</Body1>
+      </div>
+    )
   }
 
   return (

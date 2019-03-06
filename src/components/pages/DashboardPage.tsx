@@ -31,15 +31,17 @@ const DashboardPage: React.FunctionComponent = () => {
         <title>Dashboard</title>
       </Helmet>
 
-      <TabBar
-        activeIndex={index}
-        handleActiveIndexUpdate={handleActiveIndexUpdate}
-      >
-        <Tab>Study</Tab>
-        <Tab>Decks</Tab>
-      </TabBar>
+      <div className="h-100 flex flex-column">
+        <TabBar
+          activeIndex={index}
+          handleActiveIndexUpdate={handleActiveIndexUpdate}
+        >
+          <Tab>Study</Tab>
+          <Tab>Decks</Tab>
+        </TabBar>
 
-      <DeckList />
+        <DeckList />
+      </div>
 
       <AddDeckForm open={dialogOpen} onClose={handleDialogClose} />
 
