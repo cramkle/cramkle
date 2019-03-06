@@ -1,10 +1,11 @@
-import React from 'react'
-import { FieldProps } from 'formik'
+import Checkbox, { CheckboxProps } from '@material/react-checkbox'
 import TextField, {
   Input,
   HelperText,
   Props as TextFieldProps,
 } from '@material/react-text-field'
+import { FieldProps } from 'formik'
+import React from 'react'
 
 interface TextInputProps<T> extends FieldProps, TextFieldProps<T> {
   label: string
@@ -33,4 +34,10 @@ export const TextInput = <T extends {}>({
 
 TextInput.defaultProps = {
   type: 'text',
+}
+
+export const CheckboxInput: React.FunctionComponent<
+  FieldProps<boolean> & CheckboxProps
+> = ({ field }) => {
+  return <Checkbox checked={field.value} {...field} />
 }

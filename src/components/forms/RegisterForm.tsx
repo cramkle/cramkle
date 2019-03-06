@@ -1,6 +1,6 @@
 import { Formik, Field } from 'formik'
 import React from 'react'
-import { string, object } from 'yup'
+import * as yup from 'yup'
 import { graphql, ChildMutateProps } from 'react-apollo'
 import { withRouter, RouteComponentProps } from 'react-router'
 import Card, { CardActions, CardActionButtons } from '@material/react-card'
@@ -8,7 +8,7 @@ import Button from '@material/react-button'
 import { Headline4 } from '@material/react-typography'
 
 import registerMutation from '../../graphql/registerMutation.gql'
-import { TextInput } from './Fields'
+import { TextInput, CheckboxInput } from './Fields'
 
 interface Props {
   title?: string
@@ -21,10 +21,12 @@ const RegisterForm: React.FunctionComponent<
     initialValues={{
       username: '',
       email: '',
-      accessKey: '',
+      password: '',
+      consent: false,
     }}
-    validationSchema={object().shape({
-      username: string()
+    validationSchema={yup.object().shape({
+      username: yup
+        .string()
         .min(4)
         .max(20)
         .matches(
@@ -32,12 +34,18 @@ const RegisterForm: React.FunctionComponent<
           'Username must consist only of alphanumeric characters and underscores'
         )
         .required('Username is required'),
-      email: string()
+      email: yup
+        .string()
         .email()
-        .required('Email is required'),
-      password: string()
+        .required('E-mail is required'),
+      password: yup
+        .string()
         .min(6)
         .required('Password is required'),
+      consent: yup
+        .bool()
+        .test('consent', 'Agreement is required', value => value === true)
+        .required('Agreement is required'),
     })}
     onSubmit={user =>
       register({ variables: user }).then(() =>
@@ -59,7 +67,7 @@ const RegisterForm: React.FunctionComponent<
             component={TextInput}
             className="mv2"
             name="email"
-            label="Email"
+            label="E-mail"
           />
           <Field
             component={TextInput}
@@ -68,6 +76,15 @@ const RegisterForm: React.FunctionComponent<
             name="password"
             type="password"
           />
+          <label className="flex items-center">
+            <Field component={CheckboxInput} name="consent" />
+            <span className="ml2">
+              I agree to the{' '}
+              <a href="#" target="_blank">
+                Terms & Conditions
+              </a>
+            </span>
+          </label>
           <CardActions>
             <CardActionButtons>
               <Button raised disabled={!isValid || isSubmitting}>
