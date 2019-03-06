@@ -797,6 +797,18 @@
     "@material/shape" "^0.41.0"
     "@material/theme" "^0.41.0"
 
+"@material/checkbox@^0.41.0":
+  version "0.41.0"
+  resolved "https://registry.yarnpkg.com/@material/checkbox/-/checkbox-0.41.0.tgz#7d1dfa0468fd12b32b459741f7d5cd695d4e4c8d"
+  integrity sha512-Zz6e5WRpziO7Z+4rbEs8GHNNBf1UuttniLp6/RvwPSQRaD8G04sdg4HcP/aDCY1KGMwivkuDPc2Bsgs6j+rD7Q==
+  dependencies:
+    "@material/animation" "^0.41.0"
+    "@material/base" "^0.41.0"
+    "@material/ripple" "^0.41.0"
+    "@material/rtl" "^0.40.1"
+    "@material/selection-control" "^0.41.0"
+    "@material/theme" "^0.41.0"
+
 "@material/dialog@0.43.0":
   version "0.43.0"
   resolved "https://registry.yarnpkg.com/@material/dialog/-/dialog-0.43.0.tgz#e1d9791c0f96627d9963f8540c7e4b64de855726"
@@ -995,6 +1007,16 @@
     "@material/react-ripple" "^0.10.0"
     classnames "^2.2.5"
     react "^16.4.2"
+
+"@material/react-checkbox@^0.10.0":
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/@material/react-checkbox/-/react-checkbox-0.10.0.tgz#4db31afafeaf023854d872e1360aeb1c204f810f"
+  integrity sha512-sy83t8ivVJWwkpDpCGeRQIRwlYuvUDfsbrpw6XlDqUxUt5fY5f6rbpn9DcojNRIVuCt3Elns7IivGc/eXGzE+Q==
+  dependencies:
+    "@material/checkbox" "^0.41.0"
+    "@material/react-ripple" "^0.10.0"
+    classnames "^2.2.5"
+    react "^16.3.2"
 
 "@material/react-dialog@^0.10.0":
   version "0.10.0"
@@ -1201,6 +1223,13 @@
   version "0.42.0"
   resolved "https://registry.yarnpkg.com/@material/rtl/-/rtl-0.42.0.tgz#1836e78186c2d8b996f6fbf97adab203535335bc"
   integrity sha512-VrnrKJzhmspsN8WXHuxxBZ69yM5IwhCUqWr1t1eNfw3ZEvEj7i1g3P31HGowKThIN1dc1Wh4LE14rCISWCtv5w==
+
+"@material/selection-control@^0.41.0":
+  version "0.41.0"
+  resolved "https://registry.yarnpkg.com/@material/selection-control/-/selection-control-0.41.0.tgz#2705d77291c2e6c9db01c4f185a4966d95fd9fa4"
+  integrity sha512-rRHGiZVPoP4nxAAoeqsgTsxz9GwInGs7HIlEhPfMFygmSZVUHHsuOJXSTpOKYi8GCoKHpB0RKZsAtxM0BYAelw==
+  dependencies:
+    "@material/ripple" "^0.41.0"
 
 "@material/shape@^0.41.0":
   version "0.41.0"
