@@ -43,7 +43,7 @@ const DashboardPage: React.FunctionComponent = () => {
 
       <AddDeckForm open={dialogOpen} onClose={handleDialogClose} />
 
-      <div className="absolute right-0 bottom-0 pa4">
+      <div className="fixed right-0 bottom-0 pa4">
         <Fab
           icon={<MaterialIcon icon="add" />}
           textLabel="Add Deck"
