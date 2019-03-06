@@ -70,7 +70,7 @@ const DeleteDeckButton: React.FunctionComponent<
       >
         Delete
       </Button>
-      <Dialog open={dialogOpen} onClose={handleClose}>
+      <Dialog open={dialogOpen} onClose={handleClose} role="alertdialog">
         <DialogTitle>Delete deck</DialogTitle>
         <DialogContent>
           Are you sure you want to delete this deck?
