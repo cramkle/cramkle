@@ -1152,7 +1152,7 @@
     classnames "^2.2.5"
     react "^16.4.2"
 
-"@material/react-tab-scroller@^0.8.0", "@material/react-tab-scroller@~0.8.0":
+"@material/react-tab-scroller@^0.8.0":
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/@material/react-tab-scroller/-/react-tab-scroller-0.8.0.tgz#3151a49ea819e3dcf343a7a65aa04a28f435576a"
   integrity sha512-BGUhSiQd0UYUMIc8daBG06oPYQdtPaHYrEjw/o8smE8Lkk7usudjXZyeygaWNsyzi26SxEHsCy7/KC72IjSQow==
