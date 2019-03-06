@@ -1,0 +1,5 @@
+mutation deleteDeck($deckId: String!) {
+  deleteDeck(id: $deckId) {
+    id
+  }
+}
