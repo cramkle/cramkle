@@ -26,28 +26,25 @@ export const mutations: IResolverObject = {
 
     return deck
   },
-  updateDeck: async (_, { id, title, description }, { user }) => {
-    const deck = await Deck.findOneAndUpdate(
-      { id, ownerId: user._id },
+  updateDeck: (_, { id: _id, title, description }, { user }) => {
+    return Deck.findOneAndUpdate(
+      { _id, ownerId: user._id },
       { title, description }
     )
-
-    return deck
   },
-  publishDeck: async (_, { id }, { user }) => {
-    const deck = await Deck.findOneAndUpdate(
-      { id, ownerId: user._id },
+  deleteDeck: async (_, { id: _id }, { user }) => {
+    return await Deck.findOneAndDelete({ _id, ownerId: user._id }).exec()
+  },
+  publishDeck: (_, { id: _id }, { user }) => {
+    return Deck.findOneAndUpdate(
+      { _id, ownerId: user._id },
       { published: true }
     )
-
-    return deck
   },
-  unpublishDeck: async (_, { id }, { user }) => {
-    const deck = await Deck.findOneAndUpdate(
-      { id, ownerId: user._id },
+  unpublishDeck: (_, { id: _id }, { user }) => {
+    return Deck.findOneAndUpdate(
+      { _id, ownerId: user._id },
       { published: false }
     )
-
-    return deck
   },
 }

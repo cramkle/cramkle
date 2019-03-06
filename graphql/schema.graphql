@@ -32,6 +32,12 @@ type Mutation {
     description: String
   ): Deck
 
+  """ Delete a deck """
+  deleteDeck(
+    """ Deck id """
+    id: String!
+  ): Deck
+
   """ Update a deck """
   updateDeck(
     """ Deck id """
