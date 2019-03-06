@@ -42,7 +42,7 @@ const DeckPage: React.FunctionComponent<
   }
 
   return (
-    <div className="pa3 ph4-m">
+    <div className="pa3 ph4-m ph6-l">
       <div className="flex flex-wrap justify-between items-center">
         <Headline4>{deck.title}</Headline4>
 
