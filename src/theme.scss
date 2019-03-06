@@ -21,6 +21,8 @@
 
 @import 'tachyons-sass/tachyons.scss';
 
+@import './styles/_overrides.scss';
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -35,13 +37,4 @@ html,
 body,
 #root {
   height: 100%;
-}
-
-.mdc-card {
-  @include mdc-card-shape-radius(5px);
-}
-
-@at-root {
-  @include mdc-linear-progress-bar-color(secondary);
-  @include mdc-linear-progress-buffer-color($mdc-linear-progress-baseline-buffer-color);
 }
