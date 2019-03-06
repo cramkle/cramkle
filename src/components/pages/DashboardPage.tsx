@@ -38,6 +38,7 @@ const DashboardPage: React.FunctionComponent = () => {
         >
           <Tab>Study</Tab>
           <Tab>Decks</Tab>
+          <Tab>Templates</Tab>
         </TabBar>
 
         <DeckList />
