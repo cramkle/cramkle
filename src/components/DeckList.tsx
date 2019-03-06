@@ -41,7 +41,7 @@ const DeckList: React.FunctionComponent<ChildProps<{}, Data>> = ({
   }
 
   return (
-    <Grid>
+    <Grid className="w-100">
       <Caption>Decks</Caption>
       <Row>
         {decks.map(deck => (
