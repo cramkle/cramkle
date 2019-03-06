@@ -30,8 +30,6 @@ const DeleteDeckButton: React.FunctionComponent<
   const [dialogOpen, setDialogOpen] = useState(false)
 
   const handleClose = useCallback((action: string) => {
-    console.log(action)
-
     if (action === 'confirm') {
       mutate({
         variables: { deckId },
