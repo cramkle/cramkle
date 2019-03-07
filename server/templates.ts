@@ -29,20 +29,16 @@ const getNoScriptTags = (head: HelmetData) => {
 }
 
 interface TemplateInput {
-  markup: string
-  head: HelmetData
-  scripts: string[]
-  styles: string[]
-  state: object
+  markup?: string
+  head?: HelmetData
+  scripts?: string[]
+  styles?: string[]
+  state?: object
 }
 
-export const ok = ({
-  markup = '',
-  head,
-  scripts = [],
-  styles = [],
-  state,
-}: TemplateInput) => `<!DOCTYPE html>
+export const ok = (args?: TemplateInput) => {
+  const { markup = '', head, scripts = [], styles = [], state } = args
+  return `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -63,6 +59,7 @@ export const ok = ({
   </script>
 </body>
 </html>`
+}
 
 interface ErrorInput {
   err: Error

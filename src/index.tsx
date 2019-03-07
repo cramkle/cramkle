@@ -1,5 +1,5 @@
 import React, { StrictMode } from 'react'
-import { hydrate } from 'react-dom'
+import ReactDOM from 'react-dom'
 import { Helmet } from 'react-helmet'
 import { BrowserRouter } from 'react-router-dom'
 import { canUseDOM } from 'exenv'
@@ -42,7 +42,13 @@ const render = (): Promise<RenderResult> | void => {
   if (canUseDOM) {
     const elem = document.getElementById('root')
 
-    hydrate(
+    const renderMethod = new URLSearchParams(window.location.search).has(
+      'nossr'
+    )
+      ? 'render'
+      : 'hydrate'
+
+    ReactDOM[renderMethod](
       <StrictMode>
         <BrowserRouter>{root}</BrowserRouter>
       </StrictMode>,
