@@ -18,6 +18,8 @@ import createSandbox from './sandbox'
 const readFile = promisify(fs.readFile)
 
 const render = async (req: Request, res: Response) => {
+  const renderClient = req.query.nossr !== undefined
+
   // TODO: read the file for every request?
   const assetManifest = await readFile(path.join(appDist, ASSET_MANIFEST_FILE))
     .then(file => file.toString())
@@ -46,44 +48,53 @@ const render = async (req: Request, res: Response) => {
   const { sandbox, cleanUp, getLogsAndErrors } = createSandbox(sandboxContext)
 
   try {
-    createContext(sandbox)
-
-    const compiledScripts = await Promise.all(
-      serverAssetScripts
-        .filter(Boolean)
-        .map(filepath =>
-          readFile(path.resolve(filepath)).then(
-            src => new Script(src.toString())
-          )
-        )
-    )
-
-    compiledScripts.forEach(script => script.runInContext(sandbox))
-
-    const { markup, head, routerContext, state } = await sandbox.rendered
-
-    const { logs } = getLogsAndErrors()
-
-    if (logs.length && process.env.NODE_ENV !== 'production') {
-      logs.forEach(log => {
-        console.log(chalk.cyan('client log:'), log)
-      })
-    }
-
-    if (routerContext.url) {
-      res.writeHead(302, {
-        Location: routerContext.url,
-      })
-    } else {
+    if (renderClient) {
       res.write(
         ok({
-          markup,
-          head,
           scripts: clientAssetScripts,
-          state,
           styles,
         })
       )
+    } else {
+      createContext(sandbox)
+
+      const compiledScripts = await Promise.all(
+        serverAssetScripts
+          .filter(Boolean)
+          .map(filepath =>
+            readFile(path.resolve(filepath)).then(
+              src => new Script(src.toString())
+            )
+          )
+      )
+
+      compiledScripts.forEach(script => script.runInContext(sandbox))
+
+      const { markup, head, routerContext, state } = await sandbox.rendered
+
+      const { logs } = getLogsAndErrors()
+
+      if (logs.length && process.env.NODE_ENV !== 'production') {
+        logs.forEach(log => {
+          console.log(chalk.cyan('client log:'), log)
+        })
+      }
+
+      if (routerContext.url) {
+        res.writeHead(302, {
+          Location: routerContext.url,
+        })
+      } else {
+        res.write(
+          ok({
+            markup,
+            head,
+            scripts: clientAssetScripts,
+            state,
+            styles,
+          })
+        )
+      }
     }
   } catch (err) {
     console.error(
