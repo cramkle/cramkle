@@ -27,7 +27,7 @@ const LoginForm: React.FunctionComponent = () => (
       password: string().required('Password is required'),
     })}
     onSubmit={(values, props) =>
-      fetch('http://localhost:5000/auth/login', {
+      fetch('/_c/auth/login', {
         method: 'POST',
         credentials: 'include',
         headers: {

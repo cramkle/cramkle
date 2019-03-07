@@ -1,4 +1,5 @@
 import express = require('express')
+import proxy = require('http-proxy-middleware')
 
 import render from './handlers/render'
 import hotMiddleware from './middlewares/hot'
@@ -7,6 +8,16 @@ const DIST_PUBLIC = '.dist/public'
 const DIST_STATIC = '.dist/static'
 
 const app = express()
+
+app.use(
+  '/_c',
+  proxy({
+    target: 'http://localhost:5000',
+    pathRewrite: {
+      '^/_c': '',
+    },
+  })
+)
 
 if (process.env.NODE_ENV === 'development') {
   app.use('/', express.static('public'))

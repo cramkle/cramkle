@@ -31,7 +31,7 @@ const TopBar: React.FunctionComponent<
   const [drawerOpen, setDrawerOpen] = useState(false)
 
   const handleLogout = useCallback(() => {
-    fetch('http://localhost:5000/auth/logout', {
+    fetch('/_c/auth/logout', {
       method: 'POST',
       credentials: 'include',
     }).then(() => window.location.assign('/login'))

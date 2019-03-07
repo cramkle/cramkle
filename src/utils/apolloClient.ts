@@ -42,6 +42,6 @@ export const createApolloClient = (uri: string) => {
   return client
 }
 
-const defaultClient = createApolloClient('http://localhost:5000/graphql')
+const defaultClient = createApolloClient('http://localhost:3000/_c/graphql')
 
 export default defaultClient
