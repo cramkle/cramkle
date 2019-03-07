@@ -1,3 +1,4 @@
+import { compose, not, isNil } from 'ramda'
 import React from 'react'
 import { Route, Redirect, RouteProps } from 'react-router-dom'
 import { graphql, ChildProps } from 'react-apollo'
@@ -46,13 +47,16 @@ const createRoute = ({ matches, path, displayName }: Input) => {
 }
 
 export const GuestRoute = createRoute({
-  matches: user => user === null,
+  matches: isNil,
   path: '/dashboard',
   displayName: 'GuestRoute',
 })
 
 export const UserRoute = createRoute({
-  matches: user => user !== null,
+  matches: compose(
+    not,
+    isNil
+  ),
   path: '/login',
   displayName: 'UserRoute',
 })
