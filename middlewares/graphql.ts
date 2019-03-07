@@ -18,10 +18,6 @@ export default {
   set: (app: Application) => {
     return server.applyMiddleware({
       app,
-      cors: {
-        origin: 'http://localhost:3000',
-        credentials: true,
-      },
     })
   },
 }
