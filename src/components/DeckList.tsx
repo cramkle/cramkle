@@ -22,7 +22,7 @@ const DeckList: React.FunctionComponent<ChildProps<{}, Data>> = ({
 }) => {
   useEffect(() => {
     mutate({ variables: { loading } })
-  }, [loading])
+  }, [loading, mutate])
 
   if (loading) {
     return null

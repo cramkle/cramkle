@@ -6,7 +6,7 @@ interface Props {
 
 // the fragment is required because typescript can be weird sometimes
 const NoSSR: React.FunctionComponent<Props> = ({ fallback, children }) => (
-  <React.Fragment>{process.browser ? children : fallback}</React.Fragment>
+  <>{process.browser ? children : fallback}</>
 )
 
 export default NoSSR

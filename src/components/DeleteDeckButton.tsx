@@ -29,34 +29,37 @@ const DeleteDeckButton: React.FunctionComponent<
 > = ({ deckId, history, mutate }) => {
   const [dialogOpen, setDialogOpen] = useState(false)
 
-  const handleClose = useCallback((action: string) => {
-    if (action === 'confirm') {
-      mutate({
-        variables: { deckId },
-        update: (
-          cache,
-          {
-            data: {
-              deleteDeck: { id },
-            },
-          }
-        ) => {
-          const { decks } = cache.readQuery<{ decks: IDeck[] }>({
-            query: decksQuery,
-          })
+  const handleClose = useCallback(
+    (action: string) => {
+      if (action === 'confirm') {
+        mutate({
+          variables: { deckId },
+          update: (
+            cache,
+            {
+              data: {
+                deleteDeck: { id },
+              },
+            }
+          ) => {
+            const { decks } = cache.readQuery<{ decks: IDeck[] }>({
+              query: decksQuery,
+            })
 
-          cache.writeQuery({
-            query: decksQuery,
-            data: { decks: decks.filter(deck => deck.id !== id) },
-          })
-        },
-      }).then(() => {
-        history.push('/dashboard')
-      })
-    }
+            cache.writeQuery({
+              query: decksQuery,
+              data: { decks: decks.filter(deck => deck.id !== id) },
+            })
+          },
+        }).then(() => {
+          history.push('/dashboard')
+        })
+      }
 
-    setDialogOpen(false)
-  }, [])
+      setDialogOpen(false)
+    },
+    [deckId, history, mutate]
+  )
 
   return (
     <>

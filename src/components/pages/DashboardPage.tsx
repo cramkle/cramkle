@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useCallback } from 'react'
+import React, { useState, useCallback } from 'react'
 import { Helmet } from 'react-helmet'
 
 import TabBar from '@material/react-tab-bar'
@@ -26,7 +26,7 @@ const DashboardPage: React.FunctionComponent = () => {
   }, [])
 
   return (
-    <Fragment>
+    <>
       <Helmet>
         <title>Dashboard</title>
       </Helmet>
@@ -53,7 +53,7 @@ const DashboardPage: React.FunctionComponent = () => {
           onClick={handleDialogOpen}
         />
       </div>
-    </Fragment>
+    </>
   )
 }
 

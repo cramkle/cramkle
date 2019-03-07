@@ -79,7 +79,7 @@ const RegisterForm: React.FunctionComponent<
           <label className="flex items-center">
             <Field component={CheckboxInput} name="consent" />
             <span className="ml2">
-              I agree to the{' '}
+              I agree to the {/* eslint-disable-next-line */}
               <a href="#" target="_blank">
                 Terms & Conditions
               </a>

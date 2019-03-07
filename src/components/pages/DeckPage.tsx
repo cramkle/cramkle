@@ -1,5 +1,3 @@
-import Button from '@material/react-button'
-import MaterialIcon from '@material/react-material-icon'
 import { Body1, Headline4 } from '@material/react-typography'
 import React, { useEffect } from 'react'
 import { compose, graphql, ChildProps } from 'react-apollo'
@@ -35,7 +33,7 @@ const DeckPage: React.FunctionComponent<
 > = ({ data: { loading, deck }, mutate }) => {
   useEffect(() => {
     mutate({ variables: { loading } })
-  }, [loading])
+  }, [loading, mutate])
 
   if (loading) {
     return null
