@@ -29,8 +29,8 @@ const render = async (req: Request, res: Response) => {
     assetManifest[`${STATIC_RUNTIME_WEBPACK}.js`],
     assetManifest[`${STATIC_RUNTIME_MAIN}.js`],
     assetManifest[`${STATIC_RUNTIME_HOT}.js`],
-    // TODO: shouldn't we find a better way to inject the styles?
     assetManifest['styles.js'],
+    assetManifest['commons.js'], // this is prod-only
   ].filter(Boolean)
 
   const serverAssetScripts = [serverMainRuntime]
