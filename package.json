@@ -1,6 +1,4 @@
 {
-  "name": "cramkle.react",
-  "version": "0.1.0",
   "private": true,
   "scripts": {
     "start": "NODE_ENV=development node dist/start.js",
