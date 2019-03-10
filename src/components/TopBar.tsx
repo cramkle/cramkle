@@ -54,9 +54,9 @@ const TopBar: React.FunctionComponent<
       <Drawer open={drawerOpen} onClose={handleDrawerClose} modal>
         <DrawerContent>
           <List>
-            <ListItem tabIndex={0} onClick={() => history.push('/dashboard')}>
+            <ListItem tabIndex={0} onClick={() => history.push('/')}>
               <ListItemGraphic graphic={<MaterialIcon icon="home" />} />
-              <ListItemText primaryText="Dashboard" />
+              <ListItemText primaryText="Home" />
             </ListItem>
             <ListItem>
               <ListItemGraphic

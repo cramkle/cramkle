@@ -1,7 +1,6 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import { Switch, withRouter } from 'react-router'
-import { Route } from 'react-router-dom'
+import { Route, Switch, withRouter } from 'react-router'
 import { ApolloProvider } from 'react-apollo'
 import { hot } from 'react-hot-loader/root'
 
@@ -9,9 +8,8 @@ import TopBarRoute from './components/routes/TopBarRoute'
 import { UserRoute, GuestRoute } from './components/routes/AuthRoute'
 
 import AboutPage from './components/pages/AboutPage'
-import DashboardPage from './components/pages/DashboardPage'
 import DeckPage from './components/pages/DeckPage'
-import LandingPage from './components/pages/LandingPage'
+import IndexPage from './components/pages/IndexPage'
 import LoginPage from './components/pages/LoginPage'
 import NotFoundPage from './components/pages/NotFoundPage'
 import RegisterPage from './components/pages/RegisterPage'
@@ -24,13 +22,7 @@ const App: React.FunctionComponent<{}> = () => {
     <ApolloProvider client={client}>
       <Helmet defaultTitle="Cramkle" titleTemplate="%s - Cramkle" />
       <Switch>
-        <GuestRoute component={LandingPage} path="/" exact />
-        <TopBarRoute
-          component={DashboardPage}
-          RouteComponent={UserRoute}
-          path="/dashboard"
-          exact
-        />
+        <Route component={IndexPage} path="/" exact />
         <TopBarRoute
           component={DeckPage}
           RouteComponent={UserRoute}

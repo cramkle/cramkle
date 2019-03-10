@@ -52,7 +52,7 @@ const DeleteDeckButton: React.FunctionComponent<
             })
           },
         }).then(() => {
-          history.push('/dashboard')
+          history.push('/')
         })
       }
 

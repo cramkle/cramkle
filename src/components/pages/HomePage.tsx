@@ -9,7 +9,7 @@ import Fab from '@material/react-fab'
 import DeckList from '../DeckList'
 import AddDeckForm from '../forms/AddDeckForm'
 
-const DashboardPage: React.FunctionComponent = () => {
+const HomePage: React.FunctionComponent = () => {
   const [index, setIndex] = useState(0)
   const [dialogOpen, setDialogOpen] = useState(false)
 
@@ -28,7 +28,7 @@ const DashboardPage: React.FunctionComponent = () => {
   return (
     <>
       <Helmet>
-        <title>Dashboard</title>
+        <title>Home</title>
       </Helmet>
 
       <div className="h-100 flex flex-column">
@@ -57,4 +57,4 @@ const DashboardPage: React.FunctionComponent = () => {
   )
 }
 
-export default DashboardPage
+export default HomePage

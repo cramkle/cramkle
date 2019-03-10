@@ -11,13 +11,13 @@ interface Data {
 
 interface Input {
   matches: (user: Data['user']) => boolean
-  path: string
+  redirectPath: string
   displayName: string
 }
 
 const withUser = graphql<RouteProps, Data>(userQuery)
 
-const createRoute = ({ matches, path, displayName }: Input) => {
+const createRoute = ({ matches, redirectPath, displayName }: Input) => {
   const CustomRoute: React.FunctionComponent<ChildProps<RouteProps, Data>> = ({
     data: { user },
     component: Component,
@@ -31,7 +31,7 @@ const createRoute = ({ matches, path, displayName }: Input) => {
         ) : (
           <Redirect
             to={{
-              pathname: path,
+              pathname: redirectPath,
               // eslint-disable-next-line react/prop-types
               state: { from: props.location },
             }}
@@ -48,7 +48,7 @@ const createRoute = ({ matches, path, displayName }: Input) => {
 
 export const GuestRoute = createRoute({
   matches: isNil,
-  path: '/dashboard',
+  redirectPath: '/',
   displayName: 'GuestRoute',
 })
 
@@ -57,6 +57,6 @@ export const UserRoute = createRoute({
     not,
     isNil
   ),
-  path: '/login',
+  redirectPath: '/login',
   displayName: 'UserRoute',
 })

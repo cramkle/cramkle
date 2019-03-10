@@ -37,7 +37,7 @@ const LoginForm: React.FunctionComponent = () => (
       })
         .then(res => res.json())
         .then(() => {
-          window.location.assign('/dashboard')
+          window.location.assign('/')
         })
         .catch(e => {
           console.error(e)
