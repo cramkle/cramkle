@@ -1,29 +1,32 @@
-import React, { useState, useCallback } from 'react'
-import { Helmet } from 'react-helmet'
-
-import TabBar from '@material/react-tab-bar'
 import Tab from '@material/react-tab'
-import MaterialIcon from '@material/react-material-icon'
-import Fab from '@material/react-fab'
+import TabBar from '@material/react-tab-bar'
+import React, { useState } from 'react'
+import { Helmet } from 'react-helmet'
+import { Switch, Route, withRouter, RouteComponentProps } from 'react-router'
 
-import DeckList from '../DeckList'
-import AddDeckForm from '../forms/AddDeckForm'
+import StudySection from './StudySection'
+import DecksSection from './DecksSection'
+import TemplatesSection from './TemplatesSection'
 
-const HomePage: React.FunctionComponent = () => {
-  const [index, setIndex] = useState(0)
-  const [dialogOpen, setDialogOpen] = useState(false)
+const HomePage: React.FunctionComponent<RouteComponentProps> = ({
+  history,
+  location,
+}) => {
+  const [index, setIndex] = useState(() => {
+    switch (location.pathname) {
+      case '/templates':
+        return 2
+      case '/decks':
+        return 1
+      default:
+      case '/':
+        return 0
+    }
+  })
 
-  const handleDialogClose = useCallback(() => {
-    setDialogOpen(false)
-  }, [])
-
-  const handleDialogOpen = useCallback(() => {
-    setDialogOpen(true)
-  }, [])
-
-  const handleActiveIndexUpdate = useCallback(index => {
+  const handleActiveIndexUpdate = (index: number) => {
     setIndex(index)
-  }, [])
+  }
 
   return (
     <>
@@ -36,25 +39,19 @@ const HomePage: React.FunctionComponent = () => {
           activeIndex={index}
           handleActiveIndexUpdate={handleActiveIndexUpdate}
         >
-          <Tab>Study</Tab>
-          <Tab>Decks</Tab>
-          <Tab>Templates</Tab>
+          <Tab onClick={() => history.push('/')}>Study</Tab>
+          <Tab onClick={() => history.push('/decks')}>Decks</Tab>
+          <Tab onClick={() => history.push('/templates')}>Templates</Tab>
         </TabBar>
 
-        <DeckList />
-      </div>
-
-      <AddDeckForm open={dialogOpen} onClose={handleDialogClose} />
-
-      <div className="fixed right-0 bottom-0 pa4">
-        <Fab
-          icon={<MaterialIcon icon="add" />}
-          textLabel="Add Deck"
-          onClick={handleDialogOpen}
-        />
+        <Switch>
+          <Route path="/" component={StudySection} exact />
+          <Route path="/decks" component={DecksSection} exact />
+          <Route path="/templates" component={TemplatesSection} exact />
+        </Switch>
       </div>
     </>
   )
 }
 
-export default HomePage
+export default withRouter(HomePage)

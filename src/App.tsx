@@ -22,7 +22,11 @@ const App: React.FunctionComponent<{}> = () => {
     <ApolloProvider client={client}>
       <Helmet defaultTitle="Cramkle" titleTemplate="%s - Cramkle" />
       <Switch>
-        <Route component={IndexPage} path="/" exact />
+        <Route
+          component={IndexPage}
+          path={['/', '/decks', '/templates']}
+          exact
+        />
         <TopBarRoute
           component={DeckPage}
           RouteComponent={UserRoute}
