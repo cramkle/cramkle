@@ -86,7 +86,7 @@ const createSandbox = (ctx: SandboxContext) => {
     module: { exports: {} },
     exports: module.exports,
     requestUrl: ctx.requestUrl,
-    // @ts-ignore
+    // @ts-ignore cannot find name RenderResult WHY
     rendered: null as Promise<RenderResult>,
   } as any
 
