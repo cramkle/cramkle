@@ -47,8 +47,7 @@ export const ok = (args?: TemplateInput) => {
   ${getHeadTags(head)}
   ${map(srcToLinkTag, styles).join('\n')}
   <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Franklin:300,400,500,600">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Franklin:300,400,500,600|Material+Icons">
   ${map(srcToScriptTag, scripts).join('\n')}
 </head>
 <body class="mdc-typography">
