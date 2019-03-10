@@ -882,10 +882,10 @@
     "@types/istanbul-lib-coverage" "^1.1.0"
     "@types/yargs" "^12.0.9"
 
-"@lucasecdb/eslint-config@^0.2.2":
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/@lucasecdb/eslint-config/-/eslint-config-0.2.2.tgz#ecf0bacb7a62c23ba5c0a3bf692b6653ea63ce7e"
-  integrity sha512-Us8FrlDTdYHT3ckbXl7uY3LP8RmaMx592JyAIQZ5MBWThs+JqvD9rDnQ51RK+rKPWmg7zKVbgQs7OfGUuE2pVA==
+"@lucasecdb/eslint-config@^0.3.3":
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/@lucasecdb/eslint-config/-/eslint-config-0.3.3.tgz#419e136edb7d37062b19a0e83e5eb1e74fccadbe"
+  integrity sha512-8x+9GmFAFu21NCCtBcXd6b0tyyvUlD+ncssz3Cxo7j/KqjgIZE/mcXaHClwmpF7GPWKzXGtIbUh1nQxbv2zuvQ==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^1.4.2"
     "@typescript-eslint/parser" "^1.4.2"

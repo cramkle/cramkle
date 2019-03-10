@@ -11,7 +11,7 @@
     "lint": "eslint 'src/**/*.ts' 'src/**/*.tsx' && tsc --noEmit"
   },
   "dependencies": {
-    "@lucasecdb/eslint-config": "^0.2.2",
+    "@lucasecdb/eslint-config": "^0.3.3",
     "@material/react-button": "^0.10.0",
     "@material/react-card": "^0.10.0",
     "@material/react-checkbox": "^0.10.0",
