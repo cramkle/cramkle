@@ -13,6 +13,9 @@ import IndexPage from './components/pages/IndexPage'
 import LoginPage from './components/pages/LoginPage'
 import NotFoundPage from './components/pages/NotFoundPage'
 import RegisterPage from './components/pages/RegisterPage'
+import MarketplacePage from './components/pages/MarketplacePage'
+import StatisticsPage from './components/pages/StatisticsPage'
+import SettingsPage from './components/pages/SettingsPage'
 import client from './utils/apolloClient'
 
 import './theme.scss'
@@ -31,6 +34,24 @@ const App: React.FunctionComponent<{}> = () => {
           component={DeckPage}
           RouteComponent={UserRoute}
           path="/d/:slug"
+          exact
+        />
+        <TopBarRoute
+          component={MarketplacePage}
+          RouteComponent={UserRoute}
+          path="/marketplace"
+          exact
+        />
+        <TopBarRoute
+          component={StatisticsPage}
+          RouteComponent={UserRoute}
+          path="/statistics"
+          exact
+        />
+        <TopBarRoute
+          component={SettingsPage}
+          RouteComponent={UserRoute}
+          path="/settings"
           exact
         />
         <GuestRoute component={RegisterPage} path="/register" exact />

@@ -58,17 +58,17 @@ const TopBar: React.FunctionComponent<
               <ListItemGraphic graphic={<MaterialIcon icon="home" />} />
               <ListItemText primaryText="Home" />
             </ListItem>
-            <ListItem>
+            <ListItem onClick={() => history.push('/marketplace')}>
               <ListItemGraphic
                 graphic={<MaterialIcon icon="store_mall_directory" />}
               />
               <ListItemText primaryText="Marketplace" />
             </ListItem>
-            <ListItem>
+            <ListItem onClick={() => history.push('/statistics')}>
               <ListItemGraphic graphic={<MaterialIcon icon="bar_chart" />} />
               <ListItemText primaryText="Statistics" />
             </ListItem>
-            <ListItem>
+            <ListItem onClick={() => history.push('/settings')}>
               <ListItemGraphic graphic={<MaterialIcon icon="settings" />} />
               <ListItemText primaryText="Settings" />
             </ListItem>
