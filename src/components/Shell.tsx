@@ -80,10 +80,10 @@ const Shell: React.FunctionComponent<
   )
 
   let content = (
-    <>
+    <div className="h-100 overflow-auto w-100">
       {loading && <LinearProgress indeterminate />}
-      <div className="h-100 overflow-auto w-100">{children}</div>
-    </>
+      {children}
+    </div>
   )
 
   if (!isMobile) {
