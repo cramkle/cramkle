@@ -20,7 +20,7 @@ interface Data {
   }
 }
 
-const TopBar: React.FunctionComponent<
+const Shell: React.FunctionComponent<
   ChildDataProps<RouteComponentProps, Data>
 > = ({
   children,
@@ -127,5 +127,5 @@ const TopBar: React.FunctionComponent<
 }
 
 export default withRouter(
-  graphql<RouteComponentProps, Data>(loadingQuery)(TopBar)
+  graphql<RouteComponentProps, Data>(loadingQuery)(Shell)
 )

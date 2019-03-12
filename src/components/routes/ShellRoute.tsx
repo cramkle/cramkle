@@ -1,14 +1,14 @@
 import React from 'react'
 import { Route, RouteProps } from 'react-router-dom'
 
-import TopBar from '../TopBar'
+import Shell from '../Shell'
 
 interface Props extends RouteProps {
   // eslint-disable-next-line
   RouteComponent: React.ComponentType<any>
 }
 
-const TopBarRoute: React.FunctionComponent<Props> = ({
+const ShellRoute: React.FunctionComponent<Props> = ({
   RouteComponent,
   path,
   exact,
@@ -17,18 +17,18 @@ const TopBarRoute: React.FunctionComponent<Props> = ({
   <Route path={path} exact={exact}>
     {({ match }) =>
       match ? (
-        <TopBar>
+        <Shell>
           <RouteComponent {...props} />
-        </TopBar>
+        </Shell>
       ) : null
     }
   </Route>
 )
 
-TopBarRoute.defaultProps = {
+ShellRoute.defaultProps = {
   exact: false,
   path: undefined,
   RouteComponent: Route,
 }
 
-export default TopBarRoute
+export default ShellRoute

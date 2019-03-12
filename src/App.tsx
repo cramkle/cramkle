@@ -4,7 +4,7 @@ import { Route, Switch, withRouter } from 'react-router'
 import { ApolloProvider } from 'react-apollo'
 import { hot } from 'react-hot-loader/root'
 
-import TopBarRoute from './components/routes/TopBarRoute'
+import ShellRoute from './components/routes/ShellRoute'
 import { UserRoute, GuestRoute } from './components/routes/AuthRoute'
 import AboutPage from './components/pages/AboutPage'
 import DeckPage from './components/pages/DeckPage'
@@ -34,25 +34,25 @@ const App: React.FunctionComponent<{}> = () => {
             path={['/', '/decks', '/templates']}
             exact
           />
-          <TopBarRoute
+          <ShellRoute
             component={DeckPage}
             RouteComponent={UserRoute}
             path="/d/:slug"
             exact
           />
-          <TopBarRoute
+          <ShellRoute
             component={MarketplacePage}
             RouteComponent={UserRoute}
             path="/marketplace"
             exact
           />
-          <TopBarRoute
+          <ShellRoute
             component={StatisticsPage}
             RouteComponent={UserRoute}
             path="/statistics"
             exact
           />
-          <TopBarRoute
+          <ShellRoute
             component={SettingsPage}
             RouteComponent={UserRoute}
             path="/settings"

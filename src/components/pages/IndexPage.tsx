@@ -3,7 +3,7 @@ import { graphql, ChildDataProps } from 'react-apollo'
 
 import HomePage from './HomePage'
 import LandingPage from './LandingPage'
-import TopBar from '../TopBar'
+import Shell from '../Shell'
 import userQuery from '../../graphql/userQuery.gql'
 
 interface Data {
@@ -19,9 +19,9 @@ const IndexPage: React.FunctionComponent<ChildDataProps<{}, Data>> = ({
   }
 
   return (
-    <TopBar>
+    <Shell>
       <HomePage {...props} />
-    </TopBar>
+    </Shell>
   )
 }
 
