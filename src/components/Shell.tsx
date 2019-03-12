@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { withRouter, RouteComponentProps } from 'react-router'
 import { graphql, ChildDataProps } from 'react-apollo'
-import TopAppBar from '@material/react-top-app-bar'
+import TopAppBar, { TopAppBarFixedAdjust } from '@material/react-top-app-bar'
 import MaterialIcon from '@material/react-material-icon'
 import LinearProgress from '@material/react-linear-progress'
 import Drawer, { DrawerContent, DrawerAppContent } from '@material/react-drawer'
@@ -106,9 +106,9 @@ const Shell: React.FunctionComponent<
           <MaterialIcon icon="menu" onClick={handleTopBarIconClick} />
         }
       />
-      <div className="mdc-top-app-bar--fixed-adjust w-100 h-100 flex">
+      <TopAppBarFixedAdjust className="w-100 h-100 flex">
         {content}
-      </div>
+      </TopAppBarFixedAdjust>
     </>
   )
 
