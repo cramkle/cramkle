@@ -89,10 +89,12 @@ const Shell: React.FunctionComponent<
   if (!isMobile) {
     content = (
       <>
-        <Drawer open={drawerOpen} onClose={handleDrawerClose}>
+        <Drawer open={drawerOpen} onClose={handleDrawerClose} dismissible>
           <DrawerContent>{drawerItems}</DrawerContent>
         </Drawer>
-        <DrawerAppContent className="w-100">{content}</DrawerAppContent>
+        <DrawerAppContent className="flex overflow-auto">
+          {content}
+        </DrawerAppContent>
       </>
     )
   }
@@ -102,11 +104,12 @@ const Shell: React.FunctionComponent<
       <TopAppBar
         title="Cramkle"
         className="absolute left-0 right-0"
+        fixed
         navigationIcon={
           <MaterialIcon icon="menu" onClick={handleTopBarIconClick} />
         }
       />
-      <TopAppBarFixedAdjust className="w-100 h-100 flex">
+      <TopAppBarFixedAdjust className="w-100 flex relative">
         {content}
       </TopAppBarFixedAdjust>
     </>
@@ -123,7 +126,7 @@ const Shell: React.FunctionComponent<
     )
   }
 
-  return <div className="vh-100 flex">{wrapper}</div>
+  return <div className="vh-100 flex overflow-hidden">{wrapper}</div>
 }
 
 export default withRouter(
