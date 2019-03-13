@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { withRouter, RouteComponentProps } from 'react-router'
 import { graphql, ChildDataProps } from 'react-apollo'
 import TopAppBar, { TopAppBarFixedAdjust } from '@material/react-top-app-bar'
@@ -32,6 +32,10 @@ const Shell: React.FunctionComponent<
   const isMobile = useMobile()
 
   const [drawerOpen, setDrawerOpen] = useState(false)
+
+  useEffect(() => {
+    setDrawerOpen(!isMobile)
+  }, [isMobile])
 
   const handleLogout = () => {
     fetch('/_c/auth/logout', {
