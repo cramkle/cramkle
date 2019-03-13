@@ -44,7 +44,7 @@ const Shell: React.FunctionComponent<
     }).then(() => window.location.assign('/login'))
   }
 
-  const handleTopBarIconClick = () => {
+  const handleNavigationIconClick = () => {
     setDrawerOpen(isOpen => !isOpen)
   }
 
@@ -110,7 +110,7 @@ const Shell: React.FunctionComponent<
         className="absolute left-0 right-0"
         fixed
         navigationIcon={
-          <MaterialIcon icon="menu" onClick={handleTopBarIconClick} />
+          <MaterialIcon icon="menu" onClick={handleNavigationIconClick} />
         }
       />
       <TopAppBarFixedAdjust className="w-100 flex relative">
