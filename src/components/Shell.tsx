@@ -96,7 +96,7 @@ const Shell: React.FunctionComponent<
         <Drawer open={drawerOpen} onClose={handleDrawerClose} dismissible>
           <DrawerContent>{drawerItems}</DrawerContent>
         </Drawer>
-        <DrawerAppContent className="flex overflow-auto">
+        <DrawerAppContent className="w-100 flex overflow-auto">
           {content}
         </DrawerAppContent>
       </>
