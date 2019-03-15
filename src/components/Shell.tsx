@@ -1,7 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef, useLayoutEffect } from 'react'
 import { withRouter, RouteComponentProps } from 'react-router'
 import { graphql, ChildDataProps } from 'react-apollo'
-import TopAppBar, { TopAppBarFixedAdjust } from '@material/react-top-app-bar'
+import TopAppBar, {
+  TopAppBarFixedAdjust,
+  TopAppBarIcon,
+  TopAppBarRow,
+  TopAppBarSection,
+  TopAppBarTitle,
+} from '@material/react-top-app-bar'
 import MaterialIcon from '@material/react-material-icon'
 import LinearProgress from '@material/react-linear-progress'
 import Drawer, { DrawerContent, DrawerAppContent } from '@material/react-drawer'
@@ -11,6 +17,7 @@ import List, {
   ListItemGraphic,
 } from '@material/react-list'
 
+import useWindowSize from '../hooks/useWindowSize'
 import { useMobile } from '../hooks/useMobile'
 import loadingQuery from '../graphql/topBarLoadingQuery.gql'
 
@@ -30,12 +37,23 @@ const Shell: React.FunctionComponent<
   },
 }) => {
   const isMobile = useMobile()
+  const { height: windowHeight } = useWindowSize()
+
+  const drawerRef = useRef<HTMLElement>(null)
 
   const [drawerOpen, setDrawerOpen] = useState(false)
 
   useEffect(() => {
     setDrawerOpen(!isMobile)
   }, [isMobile])
+
+  useLayoutEffect(() => {
+    if (isMobile || drawerRef.current === null) {
+      return
+    }
+
+    drawerRef.current.style.height = `${windowHeight - 64}px`
+  }, [isMobile, windowHeight])
 
   const handleLogout = () => {
     fetch('/_c/auth/logout', {
@@ -93,7 +111,12 @@ const Shell: React.FunctionComponent<
   if (!isMobile) {
     content = (
       <>
-        <Drawer open={drawerOpen} onClose={handleDrawerClose} dismissible>
+        <Drawer
+          open={drawerOpen}
+          onClose={handleDrawerClose}
+          dismissible
+          innerRef={drawerRef}
+        >
           <DrawerContent>{drawerItems}</DrawerContent>
         </Drawer>
         <DrawerAppContent className="w-100 flex overflow-auto">
@@ -105,14 +128,16 @@ const Shell: React.FunctionComponent<
 
   let wrapper = (
     <>
-      <TopAppBar
-        title="Cramkle"
-        className="absolute left-0 right-0"
-        fixed
-        navigationIcon={
-          <MaterialIcon icon="menu" onClick={handleNavigationIconClick} />
-        }
-      />
+      <TopAppBar className="absolute left-0 right-0" fixed>
+        <TopAppBarRow>
+          <TopAppBarSection align="start">
+            <TopAppBarIcon navIcon tabIndex={0}>
+              <MaterialIcon icon="menu" onClick={handleNavigationIconClick} />
+            </TopAppBarIcon>
+            <TopAppBarTitle>Cramkle</TopAppBarTitle>
+          </TopAppBarSection>
+        </TopAppBarRow>
+      </TopAppBar>
       <TopAppBarFixedAdjust className="w-100 flex relative">
         {content}
       </TopAppBarFixedAdjust>
@@ -130,7 +155,7 @@ const Shell: React.FunctionComponent<
     )
   }
 
-  return <div className="vh-100 flex overflow-hidden">{wrapper}</div>
+  return <div className="vh-100 flex">{wrapper}</div>
 }
 
 export default withRouter(
