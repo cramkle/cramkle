@@ -8,7 +8,7 @@
     "build-server": "tsc server/start.ts --outDir dist",
     "prettier": "prettier --write 'src/**/*.ts' 'src/**/*.tsx'",
     "test": "jest -c jest.config.js",
-    "lint": "eslint 'src/**/*.ts' 'src/**/*.tsx' && tsc --noEmit"
+    "lint": "eslint --ext ts,tsx src && tsc --noEmit"
   },
   "dependencies": {
     "@lucasecdb/eslint-config": "^0.3.3",
