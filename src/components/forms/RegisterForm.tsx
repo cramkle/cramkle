@@ -55,7 +55,10 @@ const RegisterForm: React.FunctionComponent<
   >
     {({ handleSubmit, isValid, isSubmitting }) => (
       <form className="register-page__form w-100" onSubmit={handleSubmit}>
-        <Card className="register-page__form-content pa3 pb0 c-on-surface">
+        <Card
+          className="register-page__form-content pa3 pb0 c-on-surface"
+          outlined
+        >
           <Headline4 className="tc">{title}</Headline4>
           <Field
             component={TextInput}

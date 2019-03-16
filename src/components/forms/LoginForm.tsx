@@ -50,7 +50,7 @@ const LoginForm: React.FunctionComponent = () => (
   >
     {({ isSubmitting, isValid, handleSubmit, errors }) => (
       <form className="login-page__form w-100" onSubmit={handleSubmit}>
-        <Card>
+        <Card outlined>
           <div className="pa3 pb0 c-on-surface">
             <Headline4 className="tc">Login</Headline4>
 
