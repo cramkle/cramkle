@@ -52,7 +52,7 @@ const Shell: React.FunctionComponent<
       return
     }
 
-    drawerRef.current.style.height = `${windowHeight - 64}px`
+    drawerRef.current.style.height = `${windowHeight - 48}px`
   }, [isMobile, windowHeight])
 
   const handleLogout = () => {
@@ -123,7 +123,7 @@ const Shell: React.FunctionComponent<
 
   let wrapper = (
     <>
-      <TopAppBar className="absolute left-0 right-0" fixed>
+      <TopAppBar className="absolute left-0 right-0" fixed dense>
         <TopAppBarRow>
           <TopAppBarSection align="start">
             <TopAppBarIcon navIcon tabIndex={0}>
@@ -133,7 +133,7 @@ const Shell: React.FunctionComponent<
           </TopAppBarSection>
         </TopAppBarRow>
       </TopAppBar>
-      <TopAppBarFixedAdjust className="w-100 flex relative">
+      <TopAppBarFixedAdjust className="w-100 flex relative" dense>
         {content}
       </TopAppBarFixedAdjust>
     </>
