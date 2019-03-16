@@ -6,7 +6,7 @@ import { Grid, Row, Cell } from '@material/react-layout-grid'
 import { IDeck } from '../types/Deck'
 import decksQuery from '../graphql/decksQuery.gql'
 import loadingMutation from '../graphql/topBarLoadingMutation.gql'
-import cardsImage from '../assets/cards.svg'
+import logoUrl from '../assets/logo.svg'
 import Deck from './Deck'
 
 interface Data {
@@ -34,7 +34,7 @@ const DeckList: React.FunctionComponent<ChildProps<{}, Data>> = ({
         className="flex flex-column items-center"
         style={{ marginTop: 'auto', marginBottom: 'auto' }}
       >
-        <img width="64" src={cardsImage} alt="Flashcards" />
+        <img width="64" src={logoUrl} alt="" />
         <Body1 className="mt4">You haven&apos;t created any decks yet</Body1>
       </div>
     )
