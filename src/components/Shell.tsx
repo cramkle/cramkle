@@ -111,12 +111,7 @@ const Shell: React.FunctionComponent<
   if (!isMobile) {
     content = (
       <>
-        <Drawer
-          open={drawerOpen}
-          onClose={handleDrawerClose}
-          dismissible
-          innerRef={drawerRef}
-        >
+        <Drawer open={drawerOpen} dismissible innerRef={drawerRef}>
           <DrawerContent>{drawerItems}</DrawerContent>
         </Drawer>
         <DrawerAppContent className="w-100 flex overflow-auto">
