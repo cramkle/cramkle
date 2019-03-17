@@ -1,0 +1,20 @@
+language: node_js
+cache: yarn
+node_js:
+  - "8"
+sudo: required
+dist: trusty
+branches:
+  only:
+    - master
+matrix:
+  include:
+    - node_js: 10
+      env: TEST_SUIT=lint
+      install: yarn install
+      script: yarn lint
+
+    - node_js: 10
+      env: TEST_SUIT=build
+      install: yarn install
+      script: yarn build
