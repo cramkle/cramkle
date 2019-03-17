@@ -20,7 +20,6 @@ const readFile = promisify(fs.readFile)
 const render = async (req: Request, res: Response) => {
   const renderClient = req.query.nossr !== undefined
 
-  // TODO: read the file for every request?
   const assetManifest = await readFile(path.join(appDist, ASSET_MANIFEST_FILE))
     .then(file => file.toString())
     .then(JSON.parse)
