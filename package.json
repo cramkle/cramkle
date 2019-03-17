@@ -7,6 +7,7 @@
   "scripts": {
     "build": "tsc",
     "prettier": "prettier --write '**/*.js'",
+    "lint": "eslint --ext ts . && tsc --noEmit",
     "serve": "node dist/index.js",
     "start": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"yarn watch-ts\" \"yarn watch-node\"",
     "watch-node": "nodemon dist/index.js",
@@ -32,6 +33,7 @@
     "shortid": "^2.2.13"
   },
   "devDependencies": {
+    "@lucasecdb/eslint-config": "^0.3.3",
     "@types/bcrypt": "^3.0.0",
     "@types/body-parser": "^1.17.0",
     "@types/cookie-parser": "^1.4.1",
@@ -46,12 +48,8 @@
     "@types/passport-local": "^1.0.33",
     "@types/ramda": "types/npm-ramda#dist",
     "@types/shortid": "^0.0.29",
-    "@typescript-eslint/eslint-plugin": "^1.4.1",
-    "@typescript-eslint/parser": "^1.4.1",
     "concurrently": "^4.1.0",
     "eslint": "^5.14.1",
-    "eslint-config-prettier": "^4.0.0",
-    "eslint-plugin-prettier": "^3.0.1",
     "nodemon": "^1.18.5",
     "prettier": "^1.16.4",
     "typescript": "^3.3.3333"
