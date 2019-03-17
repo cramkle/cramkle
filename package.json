@@ -8,7 +8,7 @@
     "build-server": "tsc server/start.ts --outDir dist",
     "prettier": "prettier --write 'src/**/*.ts' 'src/**/*.tsx'",
     "test": "jest -c jest.config.js",
-    "lint": "eslint --ext ts,tsx src && tsc --noEmit"
+    "lint": "eslint --ext ts,tsx server src && tsc --noEmit"
   },
   "dependencies": {
     "@material/react-button": "^0.10.0",
