@@ -8,17 +8,6 @@ type Field {
   id: String
   """ Name of the field """
   name: String!
-  """ Whether this field is required """
-  isRequired: Boolean
-  """ Type of the input field """
-  type: FieldType
   """ Associated card model """
   model: CardModel
-}
-
-enum FieldType {
-  STRING,
-  NUMBER,
-  DATE,
-  IMAGE
 }
