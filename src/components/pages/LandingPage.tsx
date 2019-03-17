@@ -11,10 +11,11 @@ import { Headline2, Headline4 } from '@material/react-typography'
 
 import logoUrl from '../../assets/logo.svg'
 import RegisterForm from '../forms/RegisterForm'
+import styles from './LandingPage.module.scss'
 
 const LandingPage: React.FunctionComponent = () => (
   <>
-    <TopAppBar className="landing-bar" fixed>
+    <TopAppBar className={styles.topBar} fixed>
       <TopAppBarRow>
         <TopAppBarSection align="start">
           <TopAppBarIcon>

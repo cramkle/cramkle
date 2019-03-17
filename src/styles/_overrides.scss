@@ -6,8 +6,3 @@
   @include mdc-linear-progress-bar-color(secondary);
   @include mdc-linear-progress-buffer-color($mdc-linear-progress-baseline-buffer-color);
 }
-
-.landing-bar {
-  @include mdc-top-app-bar-ink-color($mdc-theme-on-surface);
-  @include mdc-top-app-bar-fill-color($mdc-theme-surface);
-}
