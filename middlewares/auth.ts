@@ -2,8 +2,11 @@ import { Application } from 'express'
 import passport from 'passport'
 import { Strategy } from 'passport-local'
 import session from 'express-session'
+import createStore from 'connect-redis'
 
 import { User } from '../models'
+
+const RedisStore = createStore(session)
 
 passport.use(
   new Strategy(async (username: string, password: string, done) => {
@@ -54,8 +57,11 @@ export default {
   set: (app: Application) => {
     app.use(
       session({
-        // TODO: use an actual secret value
-        secret: 'hello world',
+        store: new RedisStore({
+          host: process.env.REDIS_HOST || 'localhost',
+          port: Number(process.env.REDIS_PORT) || 6379,
+        }),
+        secret: process.env.SESSION_SECRET || '__development__',
         resave: false,
         saveUninitialized: true,
       })
