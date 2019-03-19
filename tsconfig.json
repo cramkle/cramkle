@@ -9,5 +9,8 @@
     "jsx": "react",
     "noImplicitAny": true,
     "moduleResolution": "node"
-  }
+  },
+  "exclude": [
+    "node_modules"
+  ]
 }

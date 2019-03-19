@@ -7,18 +7,20 @@ import TextField, {
 import { FieldProps } from 'formik'
 import React from 'react'
 
-interface TextInputProps<T> extends FieldProps, TextFieldProps<T> {
+interface TextInputProps<T extends HTMLElement>
+  extends FieldProps,
+    TextFieldProps<T> {
   label: string
   type?: string
 }
 
-export const TextInput = <T extends {}>({
+export const TextInput = <T extends HTMLElement>({
   field,
   form: { touched, errors },
   type,
   ...fieldProps
 }: TextInputProps<T>) => (
-  <TextField
+  <TextField<T>
     {...fieldProps}
     helperText={
       touched[field.name] && errors[field.name] ? (
