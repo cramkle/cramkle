@@ -1,5 +1,6 @@
 import express from 'express'
 import mongoose from 'mongoose'
+import morgan from 'morgan'
 
 import graphqlMiddleware from './middlewares/graphql'
 import ioMiddleware from './middlewares/io'
@@ -11,6 +12,8 @@ const app = express()
 
 const PORT = process.env.PORT || 5000
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/cramkle'
+
+app.use(morgan('dev'))
 
 ioMiddleware.set(app)
 authMiddleware.set(app)
