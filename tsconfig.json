@@ -8,7 +8,8 @@
     "allowJs": true,
     "jsx": "react",
     "noImplicitAny": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "skipLibCheck": true
   },
   "exclude": [
     "node_modules"
