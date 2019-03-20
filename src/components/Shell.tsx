@@ -102,8 +102,13 @@ const Shell: React.FunctionComponent<
   )
 
   let content = (
-    <div className="h-100 overflow-auto w-100">
-      {loading && <LinearProgress indeterminate />}
+    <div className="h-100 overflow-auto w-100 relative">
+      {loading && (
+        <LinearProgress
+          className="absolute top-0 left-0 right-0 z-2"
+          indeterminate
+        />
+      )}
       {children}
     </div>
   )
