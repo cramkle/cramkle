@@ -57,10 +57,15 @@ export default {
   set: (app: Application) => {
     app.use(
       session({
+        name: 'session',
         store: new RedisStore({
           host: process.env.REDIS_HOST || 'localhost',
           port: Number(process.env.REDIS_PORT) || 6379,
         }),
+        cookie: {
+          secure: true,
+          httpOnly: true,
+        },
         secret: process.env.SESSION_SECRET || '__development__',
         resave: false,
         saveUninitialized: true,
