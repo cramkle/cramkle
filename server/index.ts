@@ -1,5 +1,6 @@
 import express = require('express')
 import proxy = require('http-proxy-middleware')
+import helmet from 'helmet'
 
 import render from './handlers/render'
 import hotMiddleware from './middlewares/hot'
@@ -8,6 +9,8 @@ const DIST_PUBLIC = '.dist/public'
 const DIST_STATIC = '.dist/static'
 
 const app = express()
+
+app.use(helmet())
 
 if (process.env.NODE_ENV === 'development') {
   app.use(
