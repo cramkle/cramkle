@@ -1,6 +1,6 @@
 import express = require('express')
 import proxy = require('http-proxy-middleware')
-import helmet from 'helmet'
+import helmet = require('helmet')
 
 import render from './handlers/render'
 import hotMiddleware from './middlewares/hot'
