@@ -3,7 +3,6 @@ import proxy = require('http-proxy-middleware')
 import helmet = require('helmet')
 
 import render from './handlers/render'
-import hotMiddleware from './middlewares/hot'
 
 const DIST_PUBLIC = '.dist/public'
 const DIST_STATIC = '.dist/static'
@@ -24,6 +23,8 @@ if (process.env.NODE_ENV === 'development') {
   )
 
   app.use('/', express.static('public'))
+
+  const hotMiddleware = require('./middlewares/hot')
 
   hotMiddleware.set(app)
 } else {
