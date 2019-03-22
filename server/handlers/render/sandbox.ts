@@ -2,6 +2,7 @@ import fetch from 'node-fetch'
 
 interface SandboxContext {
   requestUrl: string
+  requestHost: string
   forwardCookie?: string
 }
 
@@ -88,6 +89,7 @@ const createSandbox = (ctx: SandboxContext) => {
     requestUrl: ctx.requestUrl,
     // @ts-ignore cannot find name RenderResult WHY
     rendered: null as Promise<RenderResult>,
+    hostname: ctx.requestHost,
   } as any
 
   sandbox.window = sandbox

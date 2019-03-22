@@ -9,17 +9,17 @@ const DIST_STATIC = '.dist/static'
 
 const app = express()
 
-app.use(
-  '/_c',
-  proxy({
-    target: 'http://localhost:5000',
-    pathRewrite: {
-      '^/_c': '',
-    },
-  })
-)
-
 if (process.env.NODE_ENV === 'development') {
+  app.use(
+    '/_c',
+    proxy({
+      target: 'http://localhost:5000',
+      pathRewrite: {
+        '^/_c': '',
+      },
+    })
+  )
+
   app.use('/', express.static('public'))
 
   hotMiddleware.set(app)

@@ -41,6 +41,7 @@ const render = async (req: Request, res: Response) => {
 
   const sandboxContext = {
     requestUrl: req.url,
+    requestHost: `${req.protocol}://${req.get('host')}`,
     forwardCookie: req.headers.cookie,
   }
 

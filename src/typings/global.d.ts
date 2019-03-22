@@ -13,6 +13,7 @@ declare global {
   interface Window {
     requestUrl?: string
     rendered?: Promise<RenderResult>
+    hostname?: string
     __APOLLO_STATE__: NormalizedCacheObject
   }
 }
