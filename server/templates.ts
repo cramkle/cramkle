@@ -67,6 +67,14 @@ interface ErrorInput {
   warnings: string[]
 }
 
+const logsOrMessage = (logs: string[], defaultMessage: string = '') => {
+  if (logs.length) {
+    return logs.join('\n')
+  }
+
+  return defaultMessage
+}
+
 export const error = ({
   err,
   logs = [],
@@ -91,17 +99,15 @@ export const error = ({
   </div>
   <div class="mt4 pa3 w-100 log">
     Logs:
-    <pre>${logs.join('\n')}${!logs.length &&
-  'No normal logs were logged.'}</pre>
+    <pre>${logsOrMessage(logs, 'No normal logs were logged.')}</pre>
   </div>
   <div class="bg-light-yellow pa3 w-100 log">
     Warnings:
-    <pre>${warnings.join('\n')}${!warnings.length &&
-  'No warnings were logged.'}</pre>
+    <pre>${logsOrMessage(warnings, 'No warnings were logged.')}</pre>
   </div>
   <div class="pa3 w-100 log">
     Errors:
-    <pre>${errors.join('\n')}${!errors.length && 'No errors were logged.'}</pre>
+    <pre>${logsOrMessage(errors, 'No errors were logged.')}</pre>
   </div>
 </body>
 </html>`
