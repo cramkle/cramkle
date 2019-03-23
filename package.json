@@ -9,9 +9,7 @@
     "prettier": "prettier --write '**/*.js'",
     "lint": "eslint --ext ts . && tsc --noEmit",
     "serve": "node dist/index.js",
-    "start": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"yarn watch-ts\" \"yarn watch-node\"",
-    "watch-node": "nodemon dist/index.js",
-    "watch-ts": "tsc --watch"
+    "start": "tsc-watch --onSuccess \"node ./dist/index.js\""
   },
   "dependencies": {
     "apollo-server": "^2.4.8",
@@ -54,10 +52,9 @@
     "@types/passport-local": "^1.0.33",
     "@types/ramda": "types/npm-ramda#dist",
     "@types/shortid": "^0.0.29",
-    "concurrently": "^4.1.0",
     "eslint": "^5.15.2",
-    "nodemon": "^1.18.5",
     "prettier": "^1.16.4",
+    "tsc-watch": "^2.1.2",
     "typescript": "^3.3.3333"
   }
 }
