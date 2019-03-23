@@ -47,6 +47,8 @@ const render = async (req: Request, res: Response) => {
 
   const { sandbox, cleanUp, getLogsAndErrors } = createSandbox(sandboxContext)
 
+  res.set('Content-Type', 'text/html')
+
   try {
     if (renderClient) {
       res.write(
