@@ -1,5 +1,4 @@
 import express = require('express')
-import proxy = require('http-proxy-middleware')
 import helmet = require('helmet')
 
 import render from './handlers/render'
@@ -11,25 +10,7 @@ const app = express()
 
 app.use(helmet())
 
-if (process.env.NODE_ENV === 'development') {
-  app.use(
-    '/_c',
-    proxy({
-      target: 'http://localhost:5000',
-      pathRewrite: {
-        '^/_c': '',
-      },
-    })
-  )
-
-  app.use('/', express.static('public'))
-
-  const hotMiddleware = require('./middlewares/hot')
-
-  hotMiddleware.set(app)
-} else {
-  app.use('/', express.static(DIST_PUBLIC))
-}
+app.use('/', express.static(DIST_PUBLIC))
 
 app.use('/static', express.static(DIST_STATIC))
 

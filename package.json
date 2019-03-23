@@ -1,11 +1,11 @@
 {
   "private": true,
   "scripts": {
-    "start": "NODE_ENV=development node dist/start.js",
+    "start": "NODE_ENV=development node dist/start-dev.js",
     "start-prod": "NODE_ENV=production node dist/start.js",
     "build": "yarn run build-client && yarn run build-server",
     "build-client": "node scripts/build.js",
-    "build-server": "tsc server/start.ts --outDir dist",
+    "build-server": "tsc server/start.ts server/start-dev.ts --outDir dist",
     "prettier": "prettier --write 'src/**/*.ts' 'src/**/*.tsx'",
     "test": "jest -c jest.config.js",
     "lint": "eslint --ext ts,tsx server src && tsc --noEmit"
