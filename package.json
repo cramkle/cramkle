@@ -1,9 +1,7 @@
 {
-  "name": "cramkle-api",
-  "version": "0.0.0",
+  "private": true,
   "main": "index.js",
   "repository": "https://github.com/lucasecdb/cramkle-api.git",
-  "private": true,
   "scripts": {
     "build": "tsc",
     "prettier": "prettier --write '**/*.js'",
