@@ -1,0 +1,13 @@
+type CharacterBlock {
+  style: [String]
+  entity: String
+}
+
+type Block {
+  key: String
+  type: String
+  text: String
+  characterList: [CharacterBlock]
+  depth: Int
+  dataJSON: String
+}
