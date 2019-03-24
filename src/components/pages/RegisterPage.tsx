@@ -8,7 +8,7 @@ import './RegisterPage.scss'
 
 const RegisterPage: React.FunctionComponent = () => {
   return (
-    <div className="flex flex-column vh-100 pa3 justify-center items-center bg-primary c-on-primary">
+    <div className="flex flex-column min-vh-100 pa3 justify-center items-center bg-primary c-on-primary">
       <Helmet>
         <title>Register</title>
       </Helmet>

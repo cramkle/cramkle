@@ -12,7 +12,7 @@ const LoginPage: React.FunctionComponent<RouteComponentProps> = ({
   location,
 }) => {
   return (
-    <div className="flex flex-column vh-100 w-100 pa3 items-center justify-center bg-primary c-on-primary">
+    <div className="flex flex-column min-vh-100 w-100 pa3 items-center justify-center bg-primary c-on-primary">
       <Helmet>
         <title>Login</title>
       </Helmet>
