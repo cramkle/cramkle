@@ -26,8 +26,8 @@ const LandingPage: React.FunctionComponent = () => (
       </TopAppBarRow>
     </TopAppBar>
     <TopAppBarFixedAdjust>
-      <div className="bg-primary c-on-primary min-vh-100 w-100">
-        <div className="flex flex-column flex-row-ns justify-around items-center mh2 mh5-l pv5 pv6-ns">
+      <div className="flex bg-primary c-on-primary min-vh-100 w-100">
+        <div className="flex flex-column flex-row-ns justify-around items-center w-100 mh2 mh5-l pv5 pv6-ns">
           <div
             className="flex flex-wrap pv4 pv0-ns w-100"
             style={{ maxWidth: 450 }}

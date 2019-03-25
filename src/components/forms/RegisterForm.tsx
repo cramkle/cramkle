@@ -59,7 +59,7 @@ const RegisterForm: React.FunctionComponent<
           className="register-page__form-content pa3 pb0 c-on-surface"
           outlined
         >
-          <Headline4 className="tc">{title}</Headline4>
+          <Headline4 className="tc f3 f2-ns">{title}</Headline4>
           <Field
             component={TextInput}
             className="mv2"
