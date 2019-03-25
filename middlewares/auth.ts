@@ -55,17 +55,24 @@ passport.deserializeUser(async (id, done) => {
 
 export default {
   set: (app: Application) => {
+    let cookieOpts = {
+      httpOnly: true,
+      secure: false,
+    }
+
+    if (process.env.NODE_ENV === 'production') {
+      app.set('trust proxy', 1)
+      cookieOpts.secure = true
+    }
+
     app.use(
       session({
-        name: 'session',
+        name: 'sessid',
         store: new RedisStore({
           host: process.env.REDIS_HOST || 'localhost',
           port: Number(process.env.REDIS_PORT) || 6379,
         }),
-        cookie: {
-          secure: true,
-          httpOnly: true,
-        },
+        cookie: cookieOpts,
         secret: process.env.SESSION_SECRET || '__development__',
         resave: false,
         saveUninitialized: true,
