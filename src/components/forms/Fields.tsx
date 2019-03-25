@@ -12,12 +12,14 @@ interface TextInputProps<T extends HTMLElement>
     TextFieldProps<T> {
   label: string
   type?: string
+  id?: string
 }
 
 export const TextInput = <T extends HTMLElement>({
   field,
   form: { touched, errors },
-  type,
+  type = 'text',
+  id,
   ...fieldProps
 }: TextInputProps<T>) => (
   <TextField<T>
@@ -30,13 +32,9 @@ export const TextInput = <T extends HTMLElement>({
       ) : null
     }
   >
-    <Input type={type} {...field} />
+    <Input id={id} type={type} {...field} />
   </TextField>
 )
-
-TextInput.defaultProps = {
-  type: 'text',
-}
 
 export const CheckboxInput: React.FunctionComponent<
   FieldProps<boolean> & CheckboxProps

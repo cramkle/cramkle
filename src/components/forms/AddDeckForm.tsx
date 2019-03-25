@@ -71,12 +71,14 @@ const AddDeckForm: React.FunctionComponent<
         <DialogTitle>Add deck</DialogTitle>
         <DialogContent style={{ width: '320px' }}>
           <Field
+            id="title"
             className="w-100"
             name="title"
             label="Title"
             component={TextInput}
           />
           <Field
+            id="description"
             component={TextInput}
             className="w-100 mt3"
             name="description"
