@@ -103,6 +103,7 @@
     "ignore-loader": "^0.1.2",
     "jest": "^24.1.0",
     "jest-resolve": "23.6.0",
+    "jest-transform-graphql": "^2.1.0",
     "node-sass": "^4.9.4",
     "optimize-css-assets-webpack-plugin": "5.0.1",
     "postcss-flexbugs-fixes": "4.1.0",
