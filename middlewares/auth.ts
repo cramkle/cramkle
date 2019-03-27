@@ -4,7 +4,7 @@ import { Strategy } from 'passport-local'
 import session from 'express-session'
 import createStore from 'connect-redis'
 
-import { User } from '../models'
+import UserModel, { UserDocument } from '../models/User'
 
 const RedisStore = createStore(session)
 
@@ -13,7 +13,7 @@ passport.use(
     let user = null
 
     try {
-      user = await User.findOne({ username }).exec()
+      user = await UserModel.findOne({ username }).exec()
     } catch (e) {
       done(e)
       return
@@ -33,8 +33,7 @@ passport.use(
   })
 )
 
-// FIXME: why can't it find the name 'User'?
-passport.serializeUser((user: any, done) => {
+passport.serializeUser((user: UserDocument, done) => {
   done(null, user._id)
 })
 
@@ -42,7 +41,7 @@ passport.deserializeUser(async (id, done) => {
   let user = null
 
   try {
-    user = await User.findOne({ _id: id })
+    user = await UserModel.findOne({ _id: id })
       .lean()
       .exec()
   } catch (e) {

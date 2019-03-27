@@ -1,13 +1,13 @@
 import { Schema, model, Document } from 'mongoose'
 import bcrypt from 'bcrypt'
 
-interface User {
+export interface User {
   username: string
   password: string
   email: string
 }
 
-interface UserDocument extends User, Document {
+export interface UserDocument extends User, Document {
   hashifyAndSave(): Promise<void>
   comparePassword(candidate: string): Promise<boolean>
 }
