@@ -1,17 +1,29 @@
 import { Schema, model, Document } from 'mongoose'
 
-interface Template {
+import { Block } from './Block'
+
+export interface Template {
   name: string
-  frontSide: string
-  backSide: string
+  frontSide: Block[]
+  backSide: Block[]
 }
 
-interface TemplateDocument extends Template, Document {}
+export interface TemplateDocument extends Template, Document {}
 
 const TemplateSchema = new Schema<TemplateDocument>({
   name: String,
-  frontSide: String,
-  backSide: String,
+  frontSide: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Block',
+    },
+  ],
+  backSide: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Block',
+    },
+  ],
   modelId: {
     type: Schema.Types.ObjectId,
     ref: 'CardModel',
