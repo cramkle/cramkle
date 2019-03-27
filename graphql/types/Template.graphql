@@ -1,4 +1,5 @@
 # import CardModel from "CardModel.graphql"
+# import Block from "Block.graphql"
 
 """
 Template of the card. This is what structures the content
@@ -9,9 +10,9 @@ type Template {
   """ Name of the template """
   name: String
   """ Front side template """
-  frontSide: String
+  frontSide: [Block]
   """ Back side template """
-  backSide: String
+  backSide: [Block]
   """ Associated card model """
   model: CardModel
 }

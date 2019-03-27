@@ -1,4 +1,5 @@
 # import Field from "Field.graphql"
+# import Block from "Block.graphql"
 
 """
 Holds the value for a particular field in a card model.
@@ -8,7 +9,7 @@ Contained by the note.
 type FieldValue {
   id: String
   """ Field data """
-  data: String
+  data: [Block]
   """ Associated field """
   field: Field
 }
