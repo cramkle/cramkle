@@ -19,6 +19,10 @@ const FieldValueSchema = new Schema<FieldValueDocument>({
     type: Schema.Types.ObjectId,
     ref: 'Field',
   },
+  ownerId: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+  },
 })
 
 export default model<FieldValueDocument>('FieldValue', FieldValueSchema)

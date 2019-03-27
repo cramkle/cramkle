@@ -1,3 +1,17 @@
+input CharacterBlockInput {
+  style: [String]
+  entity: String
+}
+
+input BlockInput {
+  key: String!
+  type: String!
+  text: String!
+  characterList: [CharacterBlockInput]
+  depth: Int!
+  dataJSON: String!
+}
+
 type CharacterBlock {
   style: [String]
   entity: String

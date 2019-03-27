@@ -6,6 +6,7 @@
 # import Template from "types/Template.graphql"
 # import Note from "types/Note.graphql"
 # import User from "types/User.graphql"
+# import Block from "types/Block.graphql"
 
 type Query {
   """ Retrieve all decks for the logged user """
@@ -79,4 +80,48 @@ type Mutation {
     """ Password confirmation """
     confirmPassword: String!,
   ): User
+
+  """ Create a new model """
+  createModel(
+    """ Card model name """
+    name: String!
+  ): CardModel
+
+  """ Update model name """
+  updateModel(
+    """ Model name """
+    name: String!
+  ): CardModel
+
+  """ Create a new template for a model """
+  createTemplate(
+    """ Template name """
+    name: String!,
+    """ Front side of template """
+    frontSide: [BlockInput],
+    """ Back side of template """
+    backSide: [BlockInput],
+    """ Model associated id """
+    modelId: String!
+  ): Template
+
+  """ Create a new template for a model """
+  updateTemplate(
+    """ Template id """
+    id: String!
+    """ Template name """
+    name: String,
+    """ Front side of template """
+    frontSide: [BlockInput],
+    """ Back side of template """
+    backSide: [BlockInput],
+  ): Template
+
+  """ Add a new field to a card model """
+  addField(
+    """ Field name """
+    name: String!,
+    """ Model associated """
+    modelId: String!
+  ): Field
 }

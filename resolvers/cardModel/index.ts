@@ -17,3 +17,14 @@ export const queries: IResolverObject = {
     return cardModel
   },
 }
+
+export const mutations: IResolverObject = {
+  createModel: async (_, { name }, { user }) => {
+    const cardModel = await CardModel.create({ name, ownerId: user._id })
+
+    return cardModel
+  },
+  updateModel: async (_, { id: _id, name }, { user }) => {
+    return CardModel.findOneAndUpdate({ _id, ownerId: user._id }, { name })
+  },
+}

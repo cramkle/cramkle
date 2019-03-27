@@ -17,3 +17,34 @@ export const queries: IResolverObject = {
     return template
   },
 }
+
+export const mutations: IResolverObject = {
+  createTemplate: async (
+    _,
+    { name, frontSide, backSide, modelId },
+    { user }
+  ) => {
+    const template = await Template.create({
+      name,
+      modelId,
+      frontSide,
+      backSide,
+      ownerId: user._id,
+    })
+
+    return template
+  },
+  updateTemplate: async (
+    _,
+    { id: _id, name, frontSide, backSide },
+    { user }
+  ) => {
+    return Template.findOneAndUpdate(
+      {
+        _id,
+        ownerId: user._id,
+      },
+      { name, frontSide, backSide }
+    )
+  },
+}

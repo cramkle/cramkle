@@ -15,3 +15,11 @@ export const queries: IResolverObject = {
     return field
   },
 }
+
+export const mutations: IResolverObject = {
+  addField: async (_, { name, modelId }, { user }) => {
+    const field = await Field.create({ name, modelId, ownerId: user._id })
+
+    return field
+  },
+}

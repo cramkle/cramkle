@@ -28,6 +28,10 @@ const TemplateSchema = new Schema<TemplateDocument>({
     type: Schema.Types.ObjectId,
     ref: 'CardModel',
   },
+  ownerId: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+  },
 })
 
 export default model<TemplateDocument>('Template', TemplateSchema)

@@ -12,14 +12,26 @@ import {
   root as userRoot,
   mutations as userMutations,
 } from './user'
-import { queries as templateQueries, root as templateRoot } from './template'
-import { queries as fieldQueries, root as fieldRoot } from './field'
+import {
+  queries as templateQueries,
+  root as templateRoot,
+  mutations as templateMutations,
+} from './template'
+import {
+  queries as fieldQueries,
+  root as fieldRoot,
+  mutations as fieldMutations,
+} from './field'
 import {
   queries as fieldValueQueries,
   root as fieldValueRoot,
 } from './fieldValue'
 import { queries as cardQueries, root as cardRoot } from './card'
-import { queries as cardModelQueries, root as cardModelRoot } from './cardModel'
+import {
+  queries as cardModelQueries,
+  root as cardModelRoot,
+  mutations as cardModelMutations,
+} from './cardModel'
 
 export default {
   ...deckRoot,
@@ -42,6 +54,9 @@ export default {
   },
   Mutation: {
     ...mapObjIndexed(withAuthentication, deckMutations),
+    ...mapObjIndexed(withAuthentication, cardModelMutations),
+    ...mapObjIndexed(withAuthentication, templateMutations),
+    ...mapObjIndexed(withAuthentication, fieldMutations),
     ...userMutations,
   },
 }
