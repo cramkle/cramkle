@@ -1,7 +1,7 @@
 import React from 'react'
 import { withRouter, RouteComponentProps } from 'react-router'
 import Card, { CardPrimaryContent } from '@material/react-card'
-import { Body2, Headline3 } from '@material/react-typography'
+import { Body2, Headline6 } from '@material/react-typography'
 
 interface Props extends RouteComponentProps {
   title: string
@@ -22,7 +22,7 @@ const Deck: React.FunctionComponent<Props> = ({
       role="button"
       onClick={() => history.push(`/d/${slug}`)}
     >
-      <Headline3 className="f4 lh-title">{title}</Headline3>
+      <Headline6>{title}</Headline6>
       {description && <Body2>{description}</Body2>}
     </CardPrimaryContent>
   </Card>

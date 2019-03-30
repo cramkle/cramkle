@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Deck /> should match snapshot 1`] = `
+exports[`<DeckCard /> should match snapshot 1`] = `
 <div>
   <div
     class="mdc-card h-100 mdc-card--outlined"
@@ -10,11 +10,11 @@ exports[`<Deck /> should match snapshot 1`] = `
       role="button"
       tabindex="0"
     >
-      <h3
-        class="mdc-typography mdc-typography--headline3 f4 lh-title"
+      <h6
+        class="mdc-typography mdc-typography--headline6"
       >
         日本語げんき
-      </h3>
+      </h6>
     </div>
   </div>
 </div>

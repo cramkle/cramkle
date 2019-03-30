@@ -3,11 +3,11 @@ import { compose, graphql, ChildProps } from 'react-apollo'
 import { Body1 } from '@material/react-typography'
 import { Grid, Row, Cell } from '@material/react-layout-grid'
 
+import DeckCard from './DeckCard'
 import { IDeck } from '../types/Deck'
 import decksQuery from '../graphql/decksQuery.gql'
 import loadingMutation from '../graphql/topBarLoadingMutation.gql'
 import logoUrl from '../assets/logo.svg'
-import Deck from './Deck'
 
 interface Data {
   topBar: {
@@ -45,7 +45,7 @@ const DeckList: React.FunctionComponent<ChildProps<{}, Data>> = ({
       <Row>
         {decks.map(deck => (
           <Cell key={deck.id}>
-            <Deck {...deck} />
+            <DeckCard {...deck} />
           </Cell>
         ))}
       </Row>
