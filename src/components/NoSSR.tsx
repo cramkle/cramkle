@@ -1,12 +1,20 @@
-import * as React from 'react'
+import React, { useState, useEffect, ReactNode } from 'react'
 
 interface Props {
-  fallback: React.ReactNode
+  fallback?: ReactNode
 }
 
-// the fragment is required because typescript can be weird sometimes
-const NoSSR: React.FunctionComponent<Props> = ({ fallback, children }) => (
-  <>{process.browser ? children : fallback}</>
-)
+const NoSSR: React.FunctionComponent<Props> = ({
+  fallback = null,
+  children,
+}) => {
+  const [isServer, setIsServer] = useState(true)
+
+  useEffect(() => {
+    setIsServer(false)
+  }, [])
+
+  return <>{isServer ? fallback : children}</>
+}
 
 export default NoSSR
