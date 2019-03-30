@@ -6,7 +6,8 @@ Template of the card. This is what structures the content
 of each card with values provided by the note
 """
 type Template {
-  id: String
+  """ Template id """
+  id: ID!
   """ Name of the template """
   name: String
   """ Front side template """

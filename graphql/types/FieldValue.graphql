@@ -7,7 +7,8 @@ Holds the value for a particular field in a card model.
 Contained by the note.
 """
 type FieldValue {
-  id: String
+  """ Field value id """
+  id: ID!
   """ Field data """
   data: [Block]
   """ Associated field """

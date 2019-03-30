@@ -10,7 +10,8 @@ This type auto generates a number of cards, based
 on the number of templates.
 """
 type Note {
-  id: String
+  """ Note id """
+  id: ID!
   """ Deck containing this note """
   deck: Deck
   """ Model of this note """

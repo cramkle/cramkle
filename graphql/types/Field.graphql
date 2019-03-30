@@ -5,7 +5,8 @@ Field of a card model, contains the informations to
 build up the form for a note creation
 """
 type Field {
-  id: String
+  """ Field id """
+  id: ID!
   """ Name of the field """
   name: String!
   """ Associated card model """

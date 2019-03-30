@@ -8,22 +8,40 @@
 # import User from "types/User.graphql"
 # import Block from "types/Block.graphql"
 
+""" App queries """
 type Query {
   """ Retrieve all decks for the logged user """
   decks: [Deck]
 
+  """ Retrieve all card models for the logged user """
+  cardModels: [CardModel]
+
+  """ Get single deck """
   deck(slug: String!): Deck
-  card(id: String!): Card
-  cardModel(id: String!): CardModel
-  field(id: String!): Field
-  fieldValue(id: String!): FieldValue
-  template(id: String!): Template
-  note(id: String!): Note
+
+  """ Get single card """
+  card(id: ID!): Card
+
+  """ Get single card model """
+  cardModel(id: ID!): CardModel
+
+  """ Get single field """
+  field(id: ID!): Field
+
+  """ Get single field value """
+  fieldValue(id: ID!): FieldValue
+
+  """ Get single template """
+  template(id: ID!): Template
+
+  """ Get single note """
+  note(id: ID!): Note
 
   """ Get currently logged user """
   user: User
 }
 
+""" App mutations """
 type Mutation {
   """ Create a deck entity """
   createDeck(
@@ -36,13 +54,13 @@ type Mutation {
   """ Delete a deck """
   deleteDeck(
     """ Deck id """
-    id: String!
+    id: ID!
   ): Deck
 
   """ Update a deck """
   updateDeck(
     """ Deck id """
-    id: String!,
+    id: ID!,
     """ New title """
     title: String,
     """ New description """
@@ -52,13 +70,13 @@ type Mutation {
   """ Publish a deck to the marketplace """
   publishDeck(
     """ Deck id """
-    id: String!
+    id: ID!
   ): Deck
 
   """ Remove a deck from the marketplace """
   unpublishDeck(
     """ Deck id"""
-    id: String!
+    id: ID!
   ): Deck
 
   """ Create a new user """
@@ -102,13 +120,13 @@ type Mutation {
     """ Back side of template """
     backSide: [BlockInput],
     """ Model associated id """
-    modelId: String!
+    modelId: ID!
   ): Template
 
   """ Create a new template for a model """
   updateTemplate(
     """ Template id """
-    id: String!
+    id: ID!
     """ Template name """
     name: String,
     """ Front side of template """
@@ -122,6 +140,6 @@ type Mutation {
     """ Field name """
     name: String!,
     """ Model associated """
-    modelId: String!
+    modelId: ID!
   ): Field
 }

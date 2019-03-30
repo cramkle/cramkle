@@ -6,9 +6,11 @@
 Represents a model for a collection of notes.
 """
 type CardModel {
-  id: String
+  """ Card model id """
+  id: ID!
   """ Name of this card model (e.g. "Basic", "Basic with Reversed")"""
   name: String
+  """ Owner user entity """
   owner: User
   """ Fields associated with this model """
   fields: [Field]

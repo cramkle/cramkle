@@ -5,7 +5,8 @@
 Collection of notes
 """
 type Deck {
-  id: String
+  """ Deck id """
+  id: ID!
   """ Title of the deck """
   title: String!
   """ Description of the deck """

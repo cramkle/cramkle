@@ -1,5 +1,9 @@
+""" User entity """
 type User {
-  id: String
+  """ User id """
+  id: ID!
+  """ User's username """
   username: String
+  """ User's e-mail """
   email: String
 }

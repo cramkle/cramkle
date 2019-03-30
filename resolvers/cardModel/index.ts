@@ -16,6 +16,9 @@ export const queries: IResolverObject = {
 
     return cardModel
   },
+  cardModels: async (_, __, { user }) => {
+    return CardModel.find({ ownerId: user._id })
+  },
 }
 
 export const mutations: IResolverObject = {
