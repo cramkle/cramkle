@@ -19,8 +19,9 @@ import './theme.scss'
 const HomePage = lazy(() => import('./components/pages/HomePage'))
 const DeckPage = lazy(() => import('./components/pages/DeckPage'))
 const MarketplacePage = lazy(() => import('./components/pages/MarketplacePage'))
-const StatisticsPage = lazy(() => import('./components/pages/StatisticsPage'))
+const ModelPage = lazy(() => import('./components/pages/ModelPage'))
 const SettingsPage = lazy(() => import('./components/pages/SettingsPage'))
+const StatisticsPage = lazy(() => import('./components/pages/StatisticsPage'))
 
 const App: React.FunctionComponent<{}> = () => (
   <ApolloProvider client={client}>
@@ -55,6 +56,12 @@ const App: React.FunctionComponent<{}> = () => (
           component={DeckPage}
           RouteComponent={UserRoute}
           path="/d/:slug"
+          exact
+        />
+        <ShellRoute
+          component={ModelPage}
+          RouteComponent={UserRoute}
+          path="/m/:id"
           exact
         />
         <ShellRoute
