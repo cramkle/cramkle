@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useRef, useLayoutEffect } from 'react'
+import React, {
+  Suspense,
+  useState,
+  useEffect,
+  useRef,
+  useLayoutEffect,
+} from 'react'
 import { withRouter, RouteComponentProps } from 'react-router'
 import { graphql, ChildDataProps } from 'react-apollo'
 import TopAppBar, {
@@ -17,6 +23,7 @@ import List, {
   ListItemGraphic,
 } from '@material/react-list'
 
+import NoSSR from './NoSSR'
 import useWindowSize from '../hooks/useWindowSize'
 import { useMobile } from '../hooks/useMobile'
 import loadingQuery from '../graphql/topBarLoadingQuery.gql'
@@ -101,15 +108,21 @@ const Shell: React.FunctionComponent<
     </List>
   )
 
+  const loader = (
+    <LinearProgress
+      className="absolute top-0 left-0 right-0 z-2"
+      indeterminate
+    />
+  )
+
   let content = (
     <div className="h-100 overflow-auto w-100 relative">
-      {loading && (
-        <LinearProgress
-          className="absolute top-0 left-0 right-0 z-2"
-          indeterminate
-        />
-      )}
-      {children}
+      <NoSSR>
+        <Suspense fallback={loader}>
+          {loading && loader}
+          {children}
+        </Suspense>
+      </NoSSR>
     </div>
   )
 

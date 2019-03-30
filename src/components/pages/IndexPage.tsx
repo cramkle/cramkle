@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { lazy } from 'react'
 import { graphql, ChildDataProps } from 'react-apollo'
 
-import HomePage from './HomePage'
 import LandingPage from './LandingPage'
 import Shell from '../Shell'
 import userQuery from '../../graphql/userQuery.gql'
+
+const HomePage = lazy(() => import('./HomePage'))
 
 interface Data {
   user: object
