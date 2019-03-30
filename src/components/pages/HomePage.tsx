@@ -8,11 +8,11 @@ import { withRouter, RouteComponentProps } from 'react-router'
 
 const StudySection = lazy(() => import('./StudySection'))
 const DecksSection = lazy(() => import('./DecksSection'))
-const TemplatesSection = lazy(() => import('./TemplatesSection'))
+const ModelsSection = lazy(() => import('./ModelsSection'))
 
 const getTabBarIndexFromPathname = (pathname: string) => {
   switch (pathname) {
-    case '/templates':
+    case '/models':
       return 2
     case '/decks':
       return 1
@@ -58,9 +58,9 @@ const HomePage: React.FunctionComponent<RouteComponentProps> = ({
             <Icon className="mdc-tab__icon mr3" icon="style" />
             Decks
           </Tab>
-          <Tab onClick={() => history.push('/templates')}>
+          <Tab onClick={() => history.push('/models')}>
             <Icon className="mdc-tab__icon mr3" icon="flip_to_back" />
-            Templates
+            Models
           </Tab>
         </TabBar>
 
@@ -71,8 +71,8 @@ const HomePage: React.FunctionComponent<RouteComponentProps> = ({
           <div hidden={match.path !== '/decks'}>
             <DecksSection />
           </div>
-          <div hidden={match.path !== '/templates'}>
-            <TemplatesSection />
+          <div hidden={match.path !== '/models'}>
+            <ModelsSection />
           </div>
         </Suspense>
       </div>
