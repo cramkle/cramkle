@@ -48,7 +48,7 @@ const App: React.FunctionComponent<{}> = () => (
         <ShellRoute
           component={HomePage}
           RouteComponent={UserRoute}
-          path={['/home', '/decks', '/templates']}
+          path={['/home', '/decks', '/models']}
           exact
         />
         <ShellRoute
