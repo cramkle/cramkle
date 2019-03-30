@@ -26,11 +26,11 @@ const render = async (req: Request, res: Response) => {
     .then(JSON.parse)
 
   const clientAssetScripts = [
+    assetManifest['commons.js'],
     assetManifest[`${STATIC_RUNTIME_WEBPACK}.js`],
     assetManifest[`${STATIC_RUNTIME_MAIN}.js`],
     assetManifest[`${STATIC_RUNTIME_HOT}.js`],
     assetManifest['styles.js'],
-    assetManifest['commons.js'], // this is prod-only
   ].filter(Boolean)
 
   const serverAssetScripts = [serverMainRuntime]
