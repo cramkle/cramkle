@@ -1,6 +1,7 @@
 import { Body1, Headline4 } from '@material/react-typography'
 import React, { useEffect } from 'react'
 import { compose, graphql, ChildProps } from 'react-apollo'
+import { Helmet } from 'react-helmet'
 import { RouteComponentProps } from 'react-router'
 
 import DeleteDeckButton from '../DeleteDeckButton'
@@ -13,10 +14,6 @@ interface TopbarQueryData {
   }
 }
 
-interface DeckOptions {
-  slug: string
-}
-
 interface DeckData {
   deck: {
     id: string
@@ -26,10 +23,12 @@ interface DeckData {
   }
 }
 
+interface Props extends RouteComponentProps<{ slug: string }> {}
+
 interface Data extends TopbarQueryData, DeckData {}
 
 const DeckPage: React.FunctionComponent<
-  ChildProps<RouteComponentProps, Data>
+  ChildProps<Props, Data>
 > = ({ data: { loading, deck }, mutate }) => {
   useEffect(() => {
     mutate({ variables: { loading } })
@@ -40,24 +39,27 @@ const DeckPage: React.FunctionComponent<
   }
 
   return (
-    <div className="pa3 ph4-m ph6-l">
-      <div className="flex flex-wrap justify-between items-center">
-        <Headline4>{deck.title}</Headline4>
+    <>
+      <Helmet title={deck.title} />
+      <div className="pa3 ph4-m ph6-l">
+        <div className="flex flex-wrap justify-between items-center">
+          <Headline4>{deck.title}</Headline4>
 
-        <DeleteDeckButton deckId={deck.id} />
+          <DeleteDeckButton deckId={deck.id} />
+        </div>
+        <Body1>{deck.description}</Body1>
       </div>
-      <Body1>{deck.description}</Body1>
-    </div>
+    </>
   )
 }
 
 export default compose(
-  graphql<RouteComponentProps, DeckData, DeckOptions>(deckQuery, {
+  graphql<Props, DeckData, { slug: string }>(deckQuery, {
     options: props => ({
       variables: {
-        slug: (props.match.params as { slug: string }).slug,
+        slug: props.match.params.slug,
       },
     }),
   }),
-  graphql<RouteComponentProps, TopbarQueryData>(loadingMutation)
+  graphql<Props, TopbarQueryData>(loadingMutation)
 )(DeckPage)
