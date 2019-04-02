@@ -9,7 +9,7 @@ interface Props extends RouteComponentProps {
   slug: string
 }
 
-const Deck: React.FunctionComponent<Props> = ({
+const DeckCard: React.FunctionComponent<Props> = ({
   title,
   description,
   slug,
@@ -28,8 +28,8 @@ const Deck: React.FunctionComponent<Props> = ({
   </Card>
 )
 
-Deck.defaultProps = {
+DeckCard.defaultProps = {
   description: null,
 }
 
-export default withRouter(Deck)
+export default withRouter(DeckCard)
