@@ -60,7 +60,7 @@ const AddDeckForm: React.FunctionComponent<
     }}
     isInitialValid={false}
   >
-    {({ handleSubmit }) => (
+    {({ handleSubmit, isValid }) => (
       <Dialog
         tag="form"
         scrimClickAction="dismiss"
@@ -87,7 +87,12 @@ const AddDeckForm: React.FunctionComponent<
           />
         </DialogContent>
         <DialogFooter>
-          <DialogButton action="create" isDefault type="submit">
+          <DialogButton
+            action="create"
+            isDefault
+            type="submit"
+            disabled={!isValid}
+          >
             Create
           </DialogButton>
         </DialogFooter>
