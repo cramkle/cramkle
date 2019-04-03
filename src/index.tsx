@@ -42,17 +42,15 @@ const render = (): Promise<RenderResult> | void => {
   if (canUseDOM) {
     const elem = document.getElementById('root')
 
-    const renderMethod = new URLSearchParams(window.location.search).has(
+    const shouldHydrate = !new URLSearchParams(window.location.search).has(
       'nossr'
     )
-      ? 'render'
-      : 'hydrate'
 
-    ReactDOM[renderMethod](
+    // @ts-ignore
+    ReactDOM.unstable_createRoot(elem, { hydrate: shouldHydrate }).render(
       <StrictMode>
         <BrowserRouter>{root}</BrowserRouter>
-      </StrictMode>,
-      elem
+      </StrictMode>
     )
   } else {
     return renderWithData(root)
