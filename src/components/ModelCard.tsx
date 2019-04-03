@@ -9,15 +9,15 @@ interface Props {
   className?: string
 }
 
-const ModelCard: React.FunctionComponent<Props & IModel & RouteComponentProps> = ({
-  className = '',
-  id,
-  name,
-  history,
-}) => {
+const ModelCard: React.FunctionComponent<
+  Props & IModel & RouteComponentProps
+> = ({ className = '', id, name, history }) => {
   return (
     <Card outlined className={className}>
-      <CardPrimaryContent className="pa2" onClick={() => history.push(`/m/${id}`)}>
+      <CardPrimaryContent
+        className="pa2"
+        onClick={() => history.push(`/m/${id}`)}
+      >
         <Headline6>{name}</Headline6>
       </CardPrimaryContent>
     </Card>
