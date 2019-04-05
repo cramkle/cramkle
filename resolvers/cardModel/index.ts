@@ -1,5 +1,6 @@
 import { IResolvers, IResolverObject } from 'graphql-tools'
 import { CardModel, User, Template, Field } from '../../models'
+import { Field as FieldType } from '../../models/Field'
 
 export const root: IResolvers = {
   CardModel: {
@@ -22,8 +23,20 @@ export const queries: IResolverObject = {
 }
 
 export const mutations: IResolverObject = {
-  createModel: async (_, { name }, { user }) => {
-    const cardModel = await CardModel.create({ name, ownerId: user._id })
+  createModel: async (
+    _,
+    { name, fields }: { name: string; fields: FieldType[] },
+    { user }
+  ) => {
+    const fieldRefs = await Promise.all(
+      fields.map(field => Field.create(field))
+    )
+
+    const cardModel = await CardModel.create({
+      name,
+      fields: fieldRefs,
+      ownerId: user._id,
+    })
 
     return cardModel
   },

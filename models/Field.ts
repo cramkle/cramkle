@@ -1,6 +1,6 @@
 import { Schema, model, Document } from 'mongoose'
 
-interface Field {
+export interface Field {
   name: string
 }
 

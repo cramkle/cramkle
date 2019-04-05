@@ -102,7 +102,9 @@ type Mutation {
   """ Create a new model """
   createModel(
     """ Card model name """
-    name: String!
+    name: String!,
+    """ Fields """
+    fields: [FieldInput]
   ): CardModel
 
   """ Update model name """

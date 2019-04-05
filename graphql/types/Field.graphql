@@ -1,5 +1,9 @@
 # import CardModel from "CardModel.graphql"
 
+input FieldInput {
+  name: String!
+}
+
 """
 Field of a card model, contains the informations to
 build up the form for a note creation
