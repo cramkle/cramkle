@@ -1,12 +1,14 @@
 import { IResolvers, IResolverObject } from 'graphql-tools'
+
+import { findRefFromList } from '../utils'
 import { Block, Template, CardModel } from '../../models'
 
 export const root: IResolvers = {
   Template: {
     id: root => root._id.toString(),
     model: root => CardModel.findById(root.modelId),
-    frontSide: root => Promise.all(root.frontSide.map(Block.findById)),
-    backSide: root => Promise.all(root.backSide.map(Block.findById)),
+    frontSide: root => Promise.all(findRefFromList(Block, root.frontSide)),
+    backSide: root => Promise.all(findRefFromList(Block, root.backSide)),
   },
 }
 

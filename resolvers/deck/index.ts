@@ -1,11 +1,13 @@
 import { IResolvers, IResolverObject } from 'graphql-tools'
+
+import { findRefFromList } from '../utils'
 import { Deck, User, Note } from '../../models'
 
 export const root: IResolvers = {
   Deck: {
     id: root => root._id.toString(),
     owner: root => User.findById(root.ownerId),
-    notes: root => Promise.all(root.notes.map(Note.findById)),
+    notes: root => Promise.all(findRefFromList(Note, root.notes)),
   },
 }
 

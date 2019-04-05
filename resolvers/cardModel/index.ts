@@ -1,4 +1,6 @@
 import { IResolvers, IResolverObject } from 'graphql-tools'
+
+import { findRefFromList } from '../utils'
 import { CardModel, User, Template, Field } from '../../models'
 import { Field as FieldType } from '../../models/Field'
 
@@ -6,8 +8,8 @@ export const root: IResolvers = {
   CardModel: {
     id: root => root._id.toString(),
     owner: root => User.findById(root.ownerId),
-    templates: root => Promise.all(root.templates.map(Template.findById)),
-    fields: root => Promise.all(root.fields.map(Field.findById)),
+    templates: root => Promise.all(findRefFromList(Template, root.templates)),
+    fields: root => Promise.all(findRefFromList(Field, root.fields)),
   },
 }
 
