@@ -18,7 +18,8 @@ import createSandbox from './sandbox'
 const readFile = promisify(fs.readFile)
 
 const render = async (req: Request, res: Response) => {
-  const renderClient = req.query.nossr !== undefined
+  const renderClient =
+    req.query.nossr !== undefined && process.env.NODE_ENV !== 'production'
 
   const assetManifest = await readFile(path.join(appDist, ASSET_MANIFEST_FILE))
     .then(file => file.toString())

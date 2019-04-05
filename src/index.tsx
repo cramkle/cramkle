@@ -42,9 +42,10 @@ const render = (): Promise<RenderResult> | void => {
   if (canUseDOM) {
     const elem = document.getElementById('root')
 
-    const shouldHydrate = !new URLSearchParams(window.location.search).has(
-      'nossr'
-    )
+    const query = new URLSearchParams(window.location.search)
+
+    const shouldHydrate =
+      !query.has('nossr') && process.env.NODE_ENV !== 'production'
 
     // @ts-ignore
     ReactDOM.unstable_createRoot(elem, { hydrate: shouldHydrate }).render(
