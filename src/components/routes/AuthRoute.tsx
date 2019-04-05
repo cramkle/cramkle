@@ -10,25 +10,32 @@ interface Data {
 }
 
 interface Input {
-  matches: (user: Data['user']) => boolean
+  challenge: (user: Data['user']) => boolean
   redirectPath: string
   displayName: string
 }
 
 const withUser = graphql<RouteProps, Data>(userQuery)
 
-const createRoute = ({ matches, redirectPath, displayName }: Input) => {
+const createRoute = ({ challenge, redirectPath, displayName }: Input) => {
   const CustomRoute: React.FunctionComponent<ChildProps<RouteProps, Data>> = ({
-    data: { user },
+    data: { user, loading },
     component: Component,
     ...rest
   }) => (
     <Route
       {...rest}
-      render={props =>
-        matches(user) ? (
-          <Component {...props} />
-        ) : (
+      render={props => {
+        // FIXME: why is this loading at all?
+        if (loading) {
+          return null
+        }
+
+        if (challenge(user)) {
+          return <Component {...props} />
+        }
+
+        return (
           <Redirect
             to={{
               pathname: redirectPath,
@@ -37,7 +44,7 @@ const createRoute = ({ matches, redirectPath, displayName }: Input) => {
             }}
           />
         )
-      }
+      }}
     />
   )
 
@@ -47,13 +54,13 @@ const createRoute = ({ matches, redirectPath, displayName }: Input) => {
 }
 
 export const GuestRoute = createRoute({
-  matches: isNil,
+  challenge: isNil,
   redirectPath: '/',
   displayName: 'GuestRoute',
 })
 
 export const UserRoute = createRoute({
-  matches: compose(
+  challenge: compose(
     not,
     isNil
   ),

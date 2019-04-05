@@ -1,3 +1,4 @@
+import { isNil } from 'ramda'
 import React, { lazy } from 'react'
 import { graphql, ChildDataProps } from 'react-apollo'
 
@@ -15,7 +16,7 @@ const IndexPage: React.FunctionComponent<ChildDataProps<{}, Data>> = ({
   data: { user },
   ...props
 }) => {
-  if (user === null) {
+  if (isNil(user)) {
     return <LandingPage {...props} />
   }
 
