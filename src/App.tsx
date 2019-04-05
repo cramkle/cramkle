@@ -22,6 +22,7 @@ const MarketplacePage = lazy(() => import('./components/pages/MarketplacePage'))
 const ModelPage = lazy(() => import('./components/pages/ModelPage'))
 const SettingsPage = lazy(() => import('./components/pages/SettingsPage'))
 const StatisticsPage = lazy(() => import('./components/pages/StatisticsPage'))
+const AddModelPage = lazy(() => import('./components/pages/AddModelPage'))
 
 const App: React.FunctionComponent<{}> = () => (
   <ApolloProvider client={client}>
@@ -62,6 +63,12 @@ const App: React.FunctionComponent<{}> = () => (
           component={ModelPage}
           RouteComponent={UserRoute}
           path="/m/:id"
+          exact
+        />
+        <ShellRoute
+          component={AddModelPage}
+          RouteComponent={UserRoute}
+          path="/models/create"
           exact
         />
         <ShellRoute
