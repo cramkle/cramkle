@@ -1,4 +1,4 @@
-import { Formik, Field } from 'formik'
+import { Formik } from 'formik'
 import React from 'react'
 import * as yup from 'yup'
 import { graphql, ChildMutateProps } from 'react-apollo'
@@ -8,7 +8,7 @@ import Button from '@material/react-button'
 import { Headline4 } from '@material/react-typography'
 
 import registerMutation from '../../graphql/registerMutation.gql'
-import { TextInput, CheckboxInput } from './Fields'
+import { TextInputField, CheckboxField } from './Fields'
 
 interface Props {
   title?: string
@@ -60,27 +60,16 @@ const RegisterForm: React.FunctionComponent<
           outlined
         >
           <Headline4 className="tc f3 f2-ns">{title}</Headline4>
-          <Field
-            component={TextInput}
-            className="mv2"
-            name="username"
-            label="Username"
-          />
-          <Field
-            component={TextInput}
-            className="mv2"
-            name="email"
-            label="E-mail"
-          />
-          <Field
-            component={TextInput}
+          <TextInputField className="mv2" name="username" label="Username" />
+          <TextInputField className="mv2" name="email" label="E-mail" />
+          <TextInputField
             className="mv2"
             label="Password"
             name="password"
             type="password"
           />
           <label className="flex items-center">
-            <Field component={CheckboxInput} name="consent" />
+            <CheckboxField name="consent" />
             <span className="ml2">
               I agree to the {/* eslint-disable-next-line */}
               <a href="#" target="_blank">

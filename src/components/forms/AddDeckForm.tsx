@@ -4,7 +4,7 @@ import Dialog, {
   DialogFooter,
   DialogButton,
 } from '@material/react-dialog'
-import { Formik, Field } from 'formik'
+import { Formik } from 'formik'
 import { graphql, ChildMutateProps } from 'react-apollo'
 import React from 'react'
 import * as yup from 'yup'
@@ -12,7 +12,7 @@ import * as yup from 'yup'
 import { IDeck } from '../../types/Deck'
 import decksQuery from '../../graphql/decksQuery.gql'
 import createDeckMutation from '../../graphql/createDeckMutation.gql'
-import { TextInput } from './Fields'
+import { TextInputField } from './Fields'
 
 interface Props {
   open: boolean
@@ -70,16 +70,14 @@ const AddDeckForm: React.FunctionComponent<
       >
         <DialogTitle>Add deck</DialogTitle>
         <DialogContent style={{ width: '320px' }}>
-          <Field
+          <TextInputField
             id="title"
             className="w-100"
             name="title"
             label="Title"
-            component={TextInput}
           />
-          <Field
+          <TextInputField
             id="description"
-            component={TextInput}
             className="w-100 mt3"
             name="description"
             label="Description"
