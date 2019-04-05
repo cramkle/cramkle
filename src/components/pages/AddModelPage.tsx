@@ -1,6 +1,6 @@
 import Button from '@material/react-button'
 import MaterialIcon from '@material/react-material-icon'
-import { Headline4, Caption, Body1 } from '@material/react-typography'
+import { Headline5, Caption, Body2 } from '@material/react-typography'
 import { Formik, FieldArray } from 'formik'
 import React from 'react'
 import * as yup from 'yup'
@@ -10,7 +10,7 @@ import { TextInputField } from '../forms/Fields'
 const AddModelPage: React.FunctionComponent = () => {
   return (
     <div className="pa3 ph4-m ph6-l">
-      <Headline4>Create Model</Headline4>
+      <Headline5>Create Model</Headline5>
 
       <Formik
         initialValues={{ name: '', fields: [] }}
@@ -55,7 +55,7 @@ const AddModelPage: React.FunctionComponent = () => {
                         </div>
                       ))
                     ) : (
-                      <Body1>No fields added</Body1>
+                      <Body2>No fields added</Body2>
                     )}
                   </div>
 
