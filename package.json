@@ -1,4 +1,5 @@
 {
+  "version": "0.1.5",
   "private": true,
   "scripts": {
     "start": "NODE_ENV=development node dist/start-dev.js",
