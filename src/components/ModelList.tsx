@@ -1,5 +1,5 @@
 import { Grid } from '@material/react-layout-grid'
-import { Caption, Body1 } from '@material/react-typography'
+import { Body1 } from '@material/react-typography'
 import React, { useEffect } from 'react'
 import { compose, graphql, ChildProps } from 'react-apollo'
 
@@ -42,7 +42,6 @@ const ModelList: React.FunctionComponent<ChildProps<{}, Data>> = ({
 
   return (
     <Grid className="w-100">
-      <Caption>Models</Caption>
       <div className="flex flex-column na2">
         {models.map(model => (
           <div key={model.id} className="pa2">
