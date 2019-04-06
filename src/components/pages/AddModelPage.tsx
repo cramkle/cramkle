@@ -1,6 +1,6 @@
 import Button from '@material/react-button'
 import MaterialIcon from '@material/react-material-icon'
-import { Headline5, Caption, Body2 } from '@material/react-typography'
+import { Headline5, Body1, Body2 } from '@material/react-typography'
 import { Formik, FieldArray } from 'formik'
 import React from 'react'
 import * as yup from 'yup'
@@ -31,7 +31,7 @@ const AddModelPage: React.FunctionComponent = () => {
             <FieldArray name="fields" validateOnChange={false}>
               {({ push, remove }) => (
                 <div className="mt3">
-                  <Caption>Fields</Caption>
+                  <Body1>Fields</Body1>
                   <div className="pv2">
                     {values.fields && values.fields.length ? (
                       values.fields.map((_, index) => (
