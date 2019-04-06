@@ -23,13 +23,14 @@ interface DeckData {
   }
 }
 
-interface Props extends RouteComponentProps<{ slug: string }> {}
+type Props = RouteComponentProps<{ slug: string }>
 
 interface Data extends TopbarQueryData, DeckData {}
 
-const DeckPage: React.FunctionComponent<
-  ChildProps<Props, Data>
-> = ({ data: { loading, deck }, mutate }) => {
+const DeckPage: React.FunctionComponent<ChildProps<Props, Data>> = ({
+  data: { loading, deck },
+  mutate,
+}) => {
   useEffect(() => {
     mutate({ variables: { loading } })
   }, [loading, mutate])
