@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { compose, graphql, ChildProps } from 'react-apollo'
-import { Caption, Body1 } from '@material/react-typography'
+import { Body1 } from '@material/react-typography'
 import { Grid, Row, Cell } from '@material/react-layout-grid'
 
 import { IDeck } from '../types/Deck'
@@ -42,7 +42,6 @@ const DeckList: React.FunctionComponent<ChildProps<{}, Data>> = ({
 
   return (
     <Grid className="w-100">
-      <Caption>Decks</Caption>
       <Row>
         {decks.map(deck => (
           <Cell key={deck.id}>
