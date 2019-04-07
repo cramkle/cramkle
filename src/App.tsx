@@ -12,7 +12,7 @@ import NotFoundPage from './components/pages/NotFoundPage'
 import ShellRoute from './components/routes/ShellRoute'
 import { UserRoute, GuestRoute } from './components/routes/AuthRoute'
 import Mobile from './components/MobileContext'
-import { useMobileListener } from './hooks/useMobile'
+import useWindowSize from './hooks/useWindowSize'
 import client from './utils/apolloClient'
 
 import './theme.scss'
@@ -23,7 +23,9 @@ const StatisticsPage = lazy(() => import('./components/pages/StatisticsPage'))
 const SettingsPage = lazy(() => import('./components/pages/SettingsPage'))
 
 const App: React.FunctionComponent<{}> = () => {
-  const isMobile = useMobileListener()
+  const { width } = useWindowSize()
+
+  const isMobile = width < 1024
 
   return (
     <ApolloProvider client={client}>

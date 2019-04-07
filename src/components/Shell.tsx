@@ -12,7 +12,7 @@ import LinearProgress from '@material/react-linear-progress'
 
 import AppDrawer from './AppDrawer'
 import NoSSR from './NoSSR'
-import { useMobile } from '../hooks/useMobile'
+import { useMobile } from './MobileContext'
 import loadingQuery from '../graphql/topBarLoadingQuery.gql'
 
 interface Data {

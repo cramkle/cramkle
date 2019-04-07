@@ -8,8 +8,8 @@ import MaterialIcon from '@material/react-material-icon'
 import React, { ReactNode, useRef, useLayoutEffect } from 'react'
 import { withRouter, RouteComponentProps } from 'react-router'
 
+import { useMobile } from './MobileContext'
 import useWindowSize from '../hooks/useWindowSize'
-import { useMobile } from '../hooks/useMobile'
 
 interface Props extends RouteComponentProps {
   content: ReactNode
