@@ -61,25 +61,18 @@ const render = (): Promise<RenderResult> | void => {
 const start = (): void => {
   const maybeRenderPromise = render()
 
-  if (!canUseDOM) {
-    window.rendered = (maybeRenderPromise as Promise<RenderResult>).then(
-      ({ markup, routerContext }) => ({
-        markup,
-        routerContext,
-        head: Helmet.rewind(),
-        state: client.extract(),
-      })
-    )
-  } else {
-    // The dynamic import is used here because the code inside `registerServiceWorker`
-    // needs access to the `window` object, and since we don't have it on the server,
-    // it would just break the build.
-    import('./registerServiceWorker').then(
-      ({ default: registerServiceWorker }) => {
-        registerServiceWorker()
-      }
-    )
+  if (canUseDOM) {
+    return
   }
+
+  window.rendered = (maybeRenderPromise as Promise<RenderResult>).then(
+    ({ markup, routerContext }) => ({
+      markup,
+      routerContext,
+      head: Helmet.rewind(),
+      state: client.extract(),
+    })
+  )
 }
 
 start()

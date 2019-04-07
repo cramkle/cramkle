@@ -127,8 +127,7 @@
     "webpack": "4.29.6",
     "webpack-dev-middleware": "^3.6.0",
     "webpack-hot-middleware": "^2.24.3",
-    "webpack-manifest-plugin": "2.0.4",
-    "workbox-webpack-plugin": "4.1.1"
+    "webpack-manifest-plugin": "2.0.4"
   },
   "resolutions": {
     "@material/drawer": "^1.0.0"
