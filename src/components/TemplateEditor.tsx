@@ -7,9 +7,8 @@ import {
   ContentState,
   ContentBlock,
 } from 'draft-js'
-import React, { useState } from 'react'
-
 import 'draft-js/dist/Draft.css'
+import React, { useState } from 'react'
 
 import styles from './TemplateEditor.module.scss'
 
@@ -116,6 +115,10 @@ const TemplateEditor: React.FunctionComponent<{ template: ContentBlock[] }> = ({
   template,
 }) => {
   const [editor, setEditor] = useState(() => {
+    if (template.length === 0) {
+      return EditorState.createEmpty()
+    }
+
     const contentState = ContentState.createFromBlockArray(template)
 
     return EditorState.createWithContent(contentState)
