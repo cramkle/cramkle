@@ -113,8 +113,8 @@ type Mutation {
     name: String!
   ): CardModel
 
-  """ Create a new template for a model """
-  createTemplate(
+  """ Adds a new template to a card model """
+  addTemplate(
     """ Template name """
     name: String!,
     """ Front side of template """
@@ -125,7 +125,7 @@ type Mutation {
     modelId: ID!
   ): Template
 
-  """ Create a new template for a model """
+  """ Updates an existing template """
   updateTemplate(
     """ Template id """
     id: ID!
@@ -137,7 +137,7 @@ type Mutation {
     backSide: [BlockInput],
   ): Template
 
-  """ Add a new field to a card model """
+  """ Adds a new field to a card model """
   addField(
     """ Field name """
     name: String!,

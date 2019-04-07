@@ -21,17 +21,17 @@ export const queries: IResolverObject = {
 }
 
 export const mutations: IResolverObject = {
-  createTemplate: async (
-    _,
-    { name, frontSide, backSide, modelId },
-    { user }
-  ) => {
+  addTemplate: async (_, { name, frontSide, backSide, modelId }, { user }) => {
     const template = await Template.create({
       name,
       modelId,
       frontSide,
       backSide,
       ownerId: user._id,
+    })
+
+    await CardModel.findByIdAndUpdate(modelId, {
+      $push: { templates: template },
     })
 
     return template

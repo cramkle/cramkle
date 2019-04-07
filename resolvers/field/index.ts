@@ -20,6 +20,10 @@ export const mutations: IResolverObject = {
   addField: async (_, { name, modelId }, { user }) => {
     const field = await Field.create({ name, modelId, ownerId: user._id })
 
+    await CardModel.findByIdAndUpdate(modelId, {
+      $push: { fields: field },
+    })
+
     return field
   },
 }
