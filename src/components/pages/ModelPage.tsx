@@ -58,17 +58,21 @@ const ModelPage: React.FunctionComponent<ChildProps<Props, Data>> = ({
       <Headline4>{cardModel.name}</Headline4>
 
       <Body1 className="dib mt3">Fields</Body1>
-      <List>
-        {cardModel.fields.map(field => (
-          <ListItem key={field.id}>
-            <ListItemText primaryText={field.name} />
-          </ListItem>
-        ))}
-      </List>
+      {cardModel.fields.length ? (
+        <List>
+          {cardModel.fields.map(field => (
+            <ListItem key={field.id}>
+              <ListItemText primaryText={field.name} />
+            </ListItem>
+          ))}
+        </List>
+      ) : (
+        <Body2 className="mv3">This model doesn&apos;t have any fields</Body2>
+      )}
 
+      <Body1 className="mb3">Templates</Body1>
       {cardModel.templates.length ? (
         <>
-          <Body1 className="mb3">Templates</Body1>
           <TabBar
             activeIndex={selectedTemplate}
             handleActiveIndexUpdate={handleTemplateSelect}
