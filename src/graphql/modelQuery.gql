@@ -1,0 +1,36 @@
+query GetModel($id: ID!) {
+  cardModel(id: $id) {
+    id
+    name
+    fields {
+      id
+      name
+    }
+    templates {
+      id
+      name
+      frontSide {
+        key
+        type
+        text
+        characterList {
+          style
+          entity
+        }
+        depth
+        dataJSON
+      }
+      backSide {
+        key
+        type
+        text
+        characterList {
+          style
+          entity
+        }
+        depth
+        dataJSON
+      }
+    }
+  }
+}
