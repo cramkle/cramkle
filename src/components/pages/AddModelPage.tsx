@@ -55,8 +55,13 @@ const AddModelPage: React.FunctionComponent<
 
               proxy.writeQuery({ query: modelsQuery, data })
             },
-          }).then(() => {
-            history.push('/models')
+          }).then(query => {
+            // make typescript happy
+            if (!query) {
+              return
+            }
+
+            history.push('/models', { newModel: query.data.createModel.id })
           })
         }}
       >
