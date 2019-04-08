@@ -1,8 +1,5 @@
-import express = require('express')
-import proxy = require('http-proxy-middleware')
-import { Application } from 'express'
-
-import hotMiddleware from './hot'
+import express, { Application } from 'express'
+import proxy from 'http-proxy-middleware'
 
 export default {
   set: (app: Application) => {
@@ -17,7 +14,5 @@ export default {
     )
 
     app.use('/', express.static('public'))
-
-    hotMiddleware.set(app)
   },
 }

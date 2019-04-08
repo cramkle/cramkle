@@ -1,11 +1,13 @@
-import express = require('express')
+import express from 'express'
 
 import server from './index'
 import devMiddleware from './middlewares/dev'
+import hotMiddleware from './middlewares/hot'
 
 const app = express()
 
 devMiddleware.set(app)
+hotMiddleware.set(app)
 
 app.use(server)
 

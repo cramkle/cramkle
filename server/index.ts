@@ -1,5 +1,5 @@
-import express = require('express')
-import helmet = require('helmet')
+import express from 'express'
+import helmet from 'helmet'
 
 import render from './handlers/render'
 

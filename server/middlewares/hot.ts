@@ -1,6 +1,7 @@
 import { Application } from 'express'
-import webpack = require('webpack')
-import createWebpackConfig = require('../../config/createWebpackConfig')
+import webpack from 'webpack'
+
+import createWebpackConfig from '../../config/createWebpackConfig'
 
 // @ts-ignore
 const clientConfig: webpack.Configuration = createWebpackConfig({
