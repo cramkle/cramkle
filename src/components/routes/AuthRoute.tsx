@@ -19,18 +19,13 @@ const withUser = graphql<RouteProps, Data>(userQuery)
 
 const createRoute = ({ challenge, redirectPath, displayName }: Input) => {
   const CustomRoute: React.FunctionComponent<ChildProps<RouteProps, Data>> = ({
-    data: { user, loading },
+    data: { user },
     component: Component,
     ...rest
   }) => (
     <Route
       {...rest}
       render={props => {
-        // FIXME: why is this loading at all?
-        if (loading) {
-          return null
-        }
-
         if (challenge(user)) {
           return <Component {...props} />
         }

@@ -3,32 +3,23 @@ import { Route, RouteProps } from 'react-router-dom'
 
 import Shell from '../Shell'
 
-interface Props extends RouteProps {
-  // eslint-disable-next-line
-  RouteComponent: React.ComponentType<any>
+interface Props
+  extends Pick<RouteProps, Exclude<keyof RouteProps, 'children' | 'render'>> {
+  RouteComponent: React.ComponentType<RouteProps>
 }
 
 const ShellRoute: React.FunctionComponent<Props> = ({
-  RouteComponent,
-  path,
-  exact,
-  ...props
+  RouteComponent = Route,
+  component: Component,
+  ...rest
 }) => (
-  <Route path={path} exact={exact}>
-    {({ match }) =>
-      match ? (
-        <Shell>
-          <RouteComponent {...props} />
-        </Shell>
-      ) : null
-    }
-  </Route>
+  <RouteComponent {...rest}>
+    {props => (
+      <Shell>
+        <Component {...props} />
+      </Shell>
+    )}
+  </RouteComponent>
 )
-
-ShellRoute.defaultProps = {
-  exact: false,
-  path: undefined,
-  RouteComponent: Route,
-}
 
 export default ShellRoute
