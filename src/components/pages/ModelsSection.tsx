@@ -1,7 +1,7 @@
 import MaterialIcon from '@material/react-material-icon'
 import Fab from '@material/react-fab'
 import React from 'react'
-import { withRouter, RouteComponentProps } from 'react-router-dom'
+import { withRouter, RouteComponentProps } from 'react-router'
 
 import ModelList from '../ModelList'
 
