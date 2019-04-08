@@ -1,6 +1,7 @@
 # import User from "User.graphql"
 # import Field from "Field.graphql"
 # import Template from "Template.graphql"
+# import Note from "Note.graphql"
 
 """
 Represents a model for a collection of notes.
@@ -16,4 +17,6 @@ type CardModel {
   fields: [Field]
   """ Templates associated with this model """
   templates: [Template]
+  """ Notes associated with this model """
+  notes: [Note]
 }

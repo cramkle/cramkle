@@ -24,6 +24,12 @@ const CardModelSchema = new Schema<CardModelDocument>({
       ref: 'Template',
     },
   ],
+  notes: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Note',
+    },
+  ],
 })
 
 export default model<CardModelDocument>('CardModel', CardModelSchema)
