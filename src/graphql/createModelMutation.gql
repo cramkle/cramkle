@@ -1,0 +1,10 @@
+mutation addModel($name: String!, $fields: [FieldInput]) {
+  createModel(name: $name, fields: $fields) {
+    id
+    name
+    templates {
+      id
+      name
+    }
+  }
+}

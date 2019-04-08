@@ -3,11 +3,34 @@ import MaterialIcon from '@material/react-material-icon'
 import { Headline5, Body1, Body2 } from '@material/react-typography'
 import { Formik, FieldArray } from 'formik'
 import React from 'react'
+import { graphql, compose, ChildMutateProps } from 'react-apollo'
+import { withRouter, RouteComponentProps } from 'react-router'
 import * as yup from 'yup'
 
 import { TextInputField } from '../forms/Fields'
+import createModelMutation from '../../graphql/createModelMutation.gql'
+import modelsQuery from '../../graphql/modelsQuery.gql'
 
-const AddModelPage: React.FunctionComponent = () => {
+interface Model {
+  id: string
+  name: string
+  templates: {
+    id: string
+    name: string
+  }[]
+}
+
+interface MutationData {
+  createModel: Model
+}
+
+interface QueryData {
+  cardModels: Model[]
+}
+
+const AddModelPage: React.FunctionComponent<
+  ChildMutateProps<RouteComponentProps, MutationData>
+> = ({ history, mutate }) => {
   return (
     <div className="pa3 ph4-m ph6-l">
       <Headline5>Create Model</Headline5>
@@ -22,7 +45,20 @@ const AddModelPage: React.FunctionComponent = () => {
             })
           ),
         })}
-        onSubmit={() => {}}
+        onSubmit={values => {
+          return mutate({
+            variables: values,
+            update: (proxy, { data: { createModel } }) => {
+              const data = proxy.readQuery<QueryData>({ query: modelsQuery })
+
+              data.cardModels.push(createModel)
+
+              proxy.writeQuery({ query: modelsQuery, data })
+            },
+          }).then(() => {
+            history.push('/models')
+          })
+        }}
       >
         {({ handleSubmit, values, isValid, isSubmitting }) => (
           <form className="flex flex-column w-100 pv3" onSubmit={handleSubmit}>
@@ -79,4 +115,7 @@ const AddModelPage: React.FunctionComponent = () => {
   )
 }
 
-export default AddModelPage
+export default compose(
+  graphql<{}, MutationData>(createModelMutation),
+  withRouter
+)(AddModelPage)

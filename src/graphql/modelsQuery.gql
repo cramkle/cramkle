@@ -1,8 +1,9 @@
-query {
+query AllModels {
   cardModels {
     id
     name
     templates {
+      id
       name
     }
   }
