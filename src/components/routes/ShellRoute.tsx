@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, RouteProps } from 'react-router-dom'
+import { Route, RouteProps } from 'react-router'
 
 import Shell from '../Shell'
 
