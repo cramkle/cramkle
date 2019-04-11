@@ -5,7 +5,7 @@ import { ApolloProvider } from 'react-apollo'
 import { hot } from 'react-hot-loader/root'
 
 import AboutPage from './components/pages/AboutPage'
-import IndexPage from './components/pages/IndexPage'
+import LandingPage from './components/pages/LandingPage'
 import LoginPage from './components/pages/LoginPage'
 import RegisterPage from './components/pages/RegisterPage'
 import NotFoundPage from './components/pages/NotFoundPage'
@@ -17,6 +17,7 @@ import client from './utils/apolloClient'
 
 import './theme.scss'
 
+const HomePage = lazy(() => import('./components/pages/HomePage'))
 const DeckPage = lazy(() => import('./components/pages/DeckPage'))
 const MarketplacePage = lazy(() => import('./components/pages/MarketplacePage'))
 const StatisticsPage = lazy(() => import('./components/pages/StatisticsPage'))
@@ -32,9 +33,11 @@ const App: React.FunctionComponent<{}> = () => {
       <Mobile.Provider value={isMobile}>
         <Helmet defaultTitle="Cramkle" titleTemplate="%s - Cramkle" />
         <Switch>
-          <Route
-            component={IndexPage}
-            path={['/', '/decks', '/templates']}
+          <GuestRoute component={LandingPage} path="/" exact />
+          <ShellRoute
+            component={HomePage}
+            RouteComponent={UserRoute}
+            path={['/home', '/decks', '/templates']}
             exact
           />
           <ShellRoute

@@ -47,7 +47,7 @@ const AppDrawer: React.FunctionComponent<Props> = ({
 
   const drawerItems = (
     <List>
-      <ListItem tabIndex={0} onClick={() => history.push('/')}>
+      <ListItem tabIndex={0} onClick={() => history.push('/home')}>
         <ListItemGraphic graphic={<MaterialIcon icon="home" />} />
         <ListItemText primaryText="Home" />
       </ListItem>

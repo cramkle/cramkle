@@ -15,7 +15,7 @@ const getTabBarIndexFromPathname = (pathname: string) => {
     case '/decks':
       return 1
     default:
-    case '/':
+    case '/home':
       return 0
   }
 }
@@ -47,13 +47,13 @@ const HomePage: React.FunctionComponent<RouteComponentProps> = ({
           activeIndex={index}
           handleActiveIndexUpdate={handleActiveIndexUpdate}
         >
-          <Tab onClick={() => history.push('/')}>Study</Tab>
+          <Tab onClick={() => history.push('/home')}>Study</Tab>
           <Tab onClick={() => history.push('/decks')}>Decks</Tab>
           <Tab onClick={() => history.push('/templates')}>Templates</Tab>
         </TabBar>
 
         <Switch>
-          <Route path="/" component={StudySection} exact />
+          <Route path="/home" component={StudySection} exact />
           <Route path="/decks" component={DecksSection} exact />
           <Route path="/templates" component={TemplatesSection} exact />
         </Switch>

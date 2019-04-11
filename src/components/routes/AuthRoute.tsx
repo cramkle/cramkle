@@ -50,7 +50,7 @@ const createRoute = ({ challenge, redirectPath, displayName }: Input) => {
 
 export const GuestRoute = createRoute({
   challenge: isNil,
-  redirectPath: '/',
+  redirectPath: '/home',
   displayName: 'GuestRoute',
 })
 
