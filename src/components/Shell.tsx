@@ -1,4 +1,4 @@
-import React, { Suspense, useState, useEffect } from 'react'
+import React, { Suspense } from 'react'
 import { graphql, ChildDataProps } from 'react-apollo'
 import TopAppBar, {
   TopAppBarFixedAdjust,
@@ -13,6 +13,7 @@ import LinearProgress from '@material/react-linear-progress'
 import AppDrawer from './AppDrawer'
 import NoSSR from './NoSSR'
 import { useMobile } from './MobileContext'
+import useLocalStorage from '../hooks/useLocalStorage'
 import loadingQuery from '../graphql/topBarLoadingQuery.gql'
 
 interface Data {
@@ -28,11 +29,10 @@ const Shell: React.FunctionComponent<ChildDataProps<{}, Data>> = ({
   },
 }) => {
   const isMobile = useMobile()
-  const [drawerOpen, setDrawerOpen] = useState(false)
-
-  useEffect(() => {
-    setDrawerOpen(!isMobile)
-  }, [isMobile])
+  const [drawerOpen, setDrawerOpen] = useLocalStorage(
+    'ck:drawerOpen',
+    !isMobile
+  )
 
   const handleNavigationIconClick = () => {
     setDrawerOpen(isOpen => !isOpen)

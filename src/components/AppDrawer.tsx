@@ -8,6 +8,7 @@ import MaterialIcon from '@material/react-material-icon'
 import React, { ReactNode, useRef, useLayoutEffect } from 'react'
 import { withRouter, RouteComponentProps } from 'react-router'
 
+import NoSSR from './NoSSR'
 import { useMobile } from './MobileContext'
 import useWindowSize from '../hooks/useWindowSize'
 
@@ -75,9 +76,11 @@ const AppDrawer: React.FunctionComponent<Props> = ({
   if (isMobile) {
     return (
       <>
-        <Drawer open={open} onClose={onClose} modal>
-          <DrawerContent>{drawerItems}</DrawerContent>
-        </Drawer>
+        <NoSSR fallback={<aside className="mdc-drawer mdc-drawer--modal" />}>
+          <Drawer open={open} onClose={onClose} modal>
+            <DrawerContent>{drawerItems}</DrawerContent>
+          </Drawer>
+        </NoSSR>
         <DrawerAppContent className="w-100">{render(content)}</DrawerAppContent>
       </>
     )
@@ -85,9 +88,13 @@ const AppDrawer: React.FunctionComponent<Props> = ({
 
   return render(
     <>
-      <Drawer open={open} dismissible innerRef={drawerRef}>
-        <DrawerContent>{drawerItems}</DrawerContent>
-      </Drawer>
+      <NoSSR
+        fallback={<aside className="mdc-drawer mdc-drawer--dismissible" />}
+      >
+        <Drawer open={open} dismissible innerRef={drawerRef}>
+          <DrawerContent>{drawerItems}</DrawerContent>
+        </Drawer>
+      </NoSSR>
       <DrawerAppContent className="w-100 flex overflow-auto">
         {content}
       </DrawerAppContent>
