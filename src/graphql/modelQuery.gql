@@ -32,5 +32,8 @@ query GetModel($id: ID!) {
         dataJSON
       }
     }
+    notes {
+      id
+    }
   }
 }
