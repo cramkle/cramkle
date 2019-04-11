@@ -108,10 +108,10 @@ type Mutation {
   ): CardModel
 
   """ Update model name """
-  updateModel(
-    """ Model name """
-    name: String!
-  ): CardModel
+  updateModel(name: String!): CardModel
+
+  """ Deletes a card model and all associated entities """
+  deleteModel(id: ID!): CardModel
 
   """ Adds a new template to a card model """
   addTemplate(

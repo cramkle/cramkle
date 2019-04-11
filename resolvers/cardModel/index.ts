@@ -1,3 +1,4 @@
+import { ApolloError } from 'apollo-server'
 import { IResolvers, IResolverObject } from 'graphql-tools'
 
 import { findRefFromList } from '../utils'
@@ -43,7 +44,31 @@ export const mutations: IResolverObject = {
 
     return cardModel
   },
-  updateModel: async (_, { id: _id, name }, { user }) => {
+  updateModel: (_, { id: _id, name }, { user }) => {
     return CardModel.findOneAndUpdate({ _id, ownerId: user._id }, { name })
+  },
+  deleteModel: async (_, { id: _id }, { user }) => {
+    const model = await CardModel.findOne({ _id, ownerId: user._id })
+      .populate('fields')
+      .populate('templates')
+      .exec()
+
+    if (!model) {
+      return new ApolloError('Model not found', '404')
+    }
+
+    await Promise.all(
+      model.fields.map(fieldRef => Field.findByIdAndDelete(fieldRef))
+    )
+
+    await Promise.all(
+      model.templates.map(templateRef =>
+        Template.findByIdAndDelete(templateRef)
+      )
+    )
+
+    await model.remove()
+
+    return model
   },
 }

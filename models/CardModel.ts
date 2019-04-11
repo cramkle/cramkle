@@ -2,6 +2,9 @@ import { Schema, model, Document } from 'mongoose'
 
 interface CardModel {
   name: string
+  fields: Schema.Types.ObjectId[]
+  templates: Schema.Types.ObjectId[]
+  notes: Schema.Types.ObjectId[]
 }
 
 interface CardModelDocument extends CardModel, Document {}
