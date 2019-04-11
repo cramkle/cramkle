@@ -7,6 +7,7 @@ import React, { useEffect, useState } from 'react'
 import { compose, graphql, ChildProps } from 'react-apollo'
 import { RouteComponentProps } from 'react-router'
 
+import DeleteModelButton from '../DeleteModelButton'
 import TemplateEditor from '../TemplateEditor'
 import BackButton from '../BackButton'
 import modelQuery from '../../graphql/modelQuery.gql'
@@ -30,6 +31,9 @@ interface Data {
       name: string
       frontSide: ContentBlock[]
       backSide: ContentBlock[]
+    }[]
+    notes: {
+      id: string
     }[]
   }
 }
@@ -55,7 +59,11 @@ const ModelPage: React.FunctionComponent<ChildProps<Props, Data>> = ({
   return (
     <div className="pa3 ph4-m ph6-l">
       <BackButton />
-      <Headline4>{cardModel.name}</Headline4>
+      <div className="flex justify-between">
+        <Headline4>{cardModel.name}</Headline4>
+
+        <DeleteModelButton model={cardModel} />
+      </div>
 
       <Body1 className="dib mt3">Fields</Body1>
       {cardModel.fields.length ? (
