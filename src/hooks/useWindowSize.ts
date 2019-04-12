@@ -1,21 +1,30 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
 const useWindowSize = () => {
-  const [size, setSize] = useState({ height: 0, width: 0 })
-
-  const handleResize = () => {
-    setSize({ width: window.innerWidth, height: window.innerHeight })
-  }
+  const timeoutRef = useRef(null)
+  const [width, setWidth] = useState(0)
+  const [height, setHeight] = useState(0)
 
   useEffect(() => {
+    const handleResize = () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current)
+      }
+
+      timeoutRef.current = setTimeout(() => {
+        setWidth(window.innerWidth)
+        setHeight(window.innerHeight)
+      }, 200)
+    }
+
     window.addEventListener('resize', handleResize, { passive: true })
+
+    handleResize()
 
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  useEffect(handleResize, [])
-
-  return size
+  return { width, height }
 }
 
 export default useWindowSize

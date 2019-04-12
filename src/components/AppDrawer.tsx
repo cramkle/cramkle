@@ -5,12 +5,11 @@ import List, {
   ListItemGraphic,
 } from '@material/react-list'
 import MaterialIcon from '@material/react-material-icon'
-import React, { ReactNode, useRef, useLayoutEffect } from 'react'
+import React, { ReactNode, useRef, memo, useCallback } from 'react'
 import { withRouter, RouteComponentProps } from 'react-router'
 
 import NoSSR from './NoSSR'
 import { useMobile } from './MobileContext'
-import useWindowSize from '../hooks/useWindowSize'
 
 interface Props extends RouteComponentProps {
   content: ReactNode
@@ -27,42 +26,49 @@ const AppDrawer: React.FunctionComponent<Props> = ({
   history,
 }) => {
   const isMobile = useMobile()
-  const { height: windowHeight } = useWindowSize()
 
   const drawerRef = useRef<HTMLElement>(null)
 
-  const handleLogout = () => {
+  const handleLogout = useCallback(() => {
     fetch('/_c/auth/logout', {
       method: 'POST',
       credentials: 'include',
     }).then(() => window.location.assign('/login'))
-  }
+  }, [])
 
-  useLayoutEffect(() => {
-    if (isMobile || drawerRef.current === null) {
-      return
-    }
+  const handleHomeClick = useCallback(() => {
+    history.push('/home')
+  }, [history])
 
-    drawerRef.current.style.height = `${windowHeight - 48}px`
-  }, [isMobile, windowHeight])
+  const handleMarketplaceClick = useCallback(() => {
+    history.push('/marketplace')
+  }, [history])
+
+  const handleStatisticsClick = useCallback(() => {
+    history.push('/statistics')
+  }, [history])
+
+  const handleSettingsClick = useCallback(() => {
+    history.push('/settings')
+  }, [history])
 
   const drawerItems = (
     <List>
-      <ListItem tabIndex={0} onClick={() => history.push('/home')}>
+      <ListItem tabIndex={0} onClick={handleHomeClick}>
         <ListItemGraphic graphic={<MaterialIcon icon="home" />} />
         <ListItemText primaryText="Home" />
       </ListItem>
-      <ListItem onClick={() => history.push('/marketplace')}>
+      <ListItem onClick={handleMarketplaceClick}>
         <ListItemGraphic
           graphic={<MaterialIcon icon="store_mall_directory" />}
         />
         <ListItemText primaryText="Marketplace" />
       </ListItem>
-      <ListItem onClick={() => history.push('/statistics')}>
+      <ListItem onClick={handleStatisticsClick}>
         <ListItemGraphic graphic={<MaterialIcon icon="bar_chart" />} />
         <ListItemText primaryText="Statistics" />
       </ListItem>
-      <ListItem onClick={() => history.push('/settings')}>
+      <ListItem onClick={handleSettingsClick}>
         <ListItemGraphic graphic={<MaterialIcon icon="settings" />} />
         <ListItemText primaryText="Settings" />
       </ListItem>
@@ -91,7 +97,12 @@ const AppDrawer: React.FunctionComponent<Props> = ({
       <NoSSR
         fallback={<aside className="mdc-drawer mdc-drawer--dismissible" />}
       >
-        <Drawer open={open} dismissible innerRef={drawerRef}>
+        <Drawer
+          open={open}
+          dismissible
+          innerRef={drawerRef}
+          style={{ height: 'calc(100vh - 48px)' }}
+        >
           <DrawerContent>{drawerItems}</DrawerContent>
         </Drawer>
       </NoSSR>
@@ -102,4 +113,4 @@ const AppDrawer: React.FunctionComponent<Props> = ({
   )
 }
 
-export default withRouter(AppDrawer)
+export default withRouter(memo(AppDrawer))

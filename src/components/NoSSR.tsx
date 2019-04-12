@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 interface Props {
   fallback?: JSX.Element
+  children?: JSX.Element
 }
 
 const NoSSR: React.FunctionComponent<Props> = ({
@@ -17,4 +18,4 @@ const NoSSR: React.FunctionComponent<Props> = ({
   return isServer ? fallback : (children as JSX.Element)
 }
 
-export default NoSSR
+export default React.memo(NoSSR)

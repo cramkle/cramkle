@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react'
+import React, { Suspense, useCallback } from 'react'
 import { graphql, ChildDataProps } from 'react-apollo'
 import TopAppBar, {
   TopAppBarFixedAdjust,
@@ -34,13 +34,34 @@ const Shell: React.FunctionComponent<ChildDataProps<{}, Data>> = ({
     !isMobile
   )
 
-  const handleNavigationIconClick = () => {
+  const handleNavigationIconClick = useCallback(() => {
     setDrawerOpen(isOpen => !isOpen)
-  }
+  }, [setDrawerOpen])
 
-  const handleDrawerClose = () => {
+  const handleDrawerClose = useCallback(() => {
     setDrawerOpen(false)
-  }
+  }, [setDrawerOpen])
+
+  const renderChildren = useCallback(
+    children => (
+      <>
+        <TopAppBar className="absolute left-0 right-0" fixed dense>
+          <TopAppBarRow>
+            <TopAppBarSection align="start">
+              <TopAppBarIcon navIcon tabIndex={0}>
+                <MaterialIcon icon="menu" onClick={handleNavigationIconClick} />
+              </TopAppBarIcon>
+              <TopAppBarTitle>Cramkle</TopAppBarTitle>
+            </TopAppBarSection>
+          </TopAppBarRow>
+        </TopAppBar>
+        <TopAppBarFixedAdjust className="w-100 flex relative" dense>
+          {children}
+        </TopAppBarFixedAdjust>
+      </>
+    ),
+    [handleNavigationIconClick]
+  )
 
   if (React.Children.count(children) === 0) {
     return null
@@ -70,26 +91,7 @@ const Shell: React.FunctionComponent<ChildDataProps<{}, Data>> = ({
         open={drawerOpen}
         onClose={handleDrawerClose}
         content={content}
-        render={children => (
-          <>
-            <TopAppBar className="absolute left-0 right-0" fixed dense>
-              <TopAppBarRow>
-                <TopAppBarSection align="start">
-                  <TopAppBarIcon navIcon tabIndex={0}>
-                    <MaterialIcon
-                      icon="menu"
-                      onClick={handleNavigationIconClick}
-                    />
-                  </TopAppBarIcon>
-                  <TopAppBarTitle>Cramkle</TopAppBarTitle>
-                </TopAppBarSection>
-              </TopAppBarRow>
-            </TopAppBar>
-            <TopAppBarFixedAdjust className="w-100 flex relative" dense>
-              {children}
-            </TopAppBarFixedAdjust>
-          </>
-        )}
+        render={renderChildren}
       />
     </div>
   )
