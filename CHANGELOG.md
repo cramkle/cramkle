@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Add model page, with create form and template editor.
+
+### Changed
+- Rename template route to model route.
+
 ### Fixed
 - Invalid username/password error message not being displayed.
 - Deck form submitting twice on enter press.
