@@ -4,6 +4,7 @@ interface SandboxContext {
   requestUrl: string
   requestHost: string
   forwardCookie?: string
+  userAgent: string
 }
 
 const createSandbox = (ctx: SandboxContext) => {
@@ -90,6 +91,7 @@ const createSandbox = (ctx: SandboxContext) => {
     // @ts-ignore cannot find name RenderResult WHY
     rendered: null as Promise<RenderResult>,
     hostname: ctx.requestHost,
+    userAgent: ctx.userAgent,
   } as any
 
   sandbox.window = sandbox

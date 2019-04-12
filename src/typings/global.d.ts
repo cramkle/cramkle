@@ -14,6 +14,7 @@ declare global {
     requestUrl?: string
     rendered?: Promise<RenderResult>
     hostname?: string
+    userAgent?: string
     __APOLLO_STATE__: NormalizedCacheObject
   }
 }

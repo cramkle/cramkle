@@ -44,6 +44,7 @@ const render = async (req: Request, res: Response) => {
     requestUrl: req.url,
     requestHost: `${req.protocol}://${req.get('host')}`,
     forwardCookie: req.headers.cookie,
+    userAgent: req.headers['user-agent'],
   }
 
   const { sandbox, cleanUp, getLogsAndErrors } = createSandbox(sandboxContext)
@@ -79,6 +80,7 @@ const render = async (req: Request, res: Response) => {
 
       if (logs.length && process.env.NODE_ENV !== 'production') {
         logs.forEach(log => {
+          // eslint-disable-next-line no-console
           console.log(chalk.cyan('client log:'), log)
         })
       }
