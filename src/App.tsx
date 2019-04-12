@@ -25,7 +25,24 @@ const SettingsPage = lazy(() => import('./components/pages/SettingsPage'))
 const App: React.FunctionComponent<{}> = () => (
   <ApolloProvider client={client}>
     <MobileProvider>
-      <Helmet defaultTitle="Cramkle" titleTemplate="%s - Cramkle" />
+      <Helmet
+        defaultTitle="Cramkle"
+        titleTemplate="%s - Cramkle"
+        meta={[
+          {
+            name: 'application-name',
+            content: 'Cramkle',
+          },
+          {
+            name: 'description',
+            content: 'Make sure your knowledge will last',
+          },
+          {
+            name: 'keywords',
+            content: 'flashcards,anki,srs,spaced repetition',
+          },
+        ]}
+      />
       <Switch>
         <GuestRoute component={LandingPage} path="/" exact />
         <ShellRoute
