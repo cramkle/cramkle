@@ -1,4 +1,10 @@
-import Drawer, { DrawerContent, DrawerAppContent } from '@material/react-drawer'
+import Drawer, {
+  DrawerHeader,
+  DrawerTitle,
+  DrawerSubtitle,
+  DrawerContent,
+  DrawerAppContent,
+} from '@material/react-drawer'
 import List, {
   ListItem,
   ListItemText,
@@ -6,10 +12,19 @@ import List, {
 } from '@material/react-list'
 import MaterialIcon from '@material/react-material-icon'
 import React, { ReactNode, useRef, memo, useCallback } from 'react'
+import { compose, graphql, ChildDataProps } from 'react-apollo'
 import { withRouter, RouteComponentProps } from 'react-router'
 
 import NoSSR from './NoSSR'
 import { useMobile } from './MobileContext'
+import userQuery from '../graphql/userQuery.gql'
+
+interface Data {
+  user: {
+    email: string
+    username: string
+  }
+}
 
 interface Props extends RouteComponentProps {
   content: ReactNode
@@ -18,12 +33,13 @@ interface Props extends RouteComponentProps {
   onClose: () => void
 }
 
-const AppDrawer: React.FunctionComponent<Props> = ({
+const AppDrawer: React.FunctionComponent<ChildDataProps<Props, Data>> = ({
   content,
   render,
   open,
   onClose,
   history,
+  data: { user },
 }) => {
   const isMobile = useMobile()
 
@@ -79,11 +95,19 @@ const AppDrawer: React.FunctionComponent<Props> = ({
     </List>
   )
 
+  const header = (
+    <DrawerHeader>
+      <DrawerTitle>{user.username}</DrawerTitle>
+      <DrawerSubtitle>{user.email}</DrawerSubtitle>
+    </DrawerHeader>
+  )
+
   if (isMobile) {
     return (
       <>
         <NoSSR fallback={<aside className="mdc-drawer mdc-drawer--modal" />}>
           <Drawer open={open} onClose={onClose} modal>
+            {header}
             <DrawerContent>{drawerItems}</DrawerContent>
           </Drawer>
         </NoSSR>
@@ -103,6 +127,7 @@ const AppDrawer: React.FunctionComponent<Props> = ({
           innerRef={drawerRef}
           style={{ height: 'calc(100vh - 48px)' }}
         >
+          {header}
           <DrawerContent>{drawerItems}</DrawerContent>
         </Drawer>
       </NoSSR>
@@ -113,4 +138,7 @@ const AppDrawer: React.FunctionComponent<Props> = ({
   )
 }
 
-export default withRouter(memo(AppDrawer))
+export default compose(
+  graphql(userQuery),
+  withRouter
+)(memo(AppDrawer))
