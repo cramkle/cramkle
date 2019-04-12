@@ -4,6 +4,7 @@ import { compose, graphql, ChildProps } from 'react-apollo'
 import { Helmet } from 'react-helmet'
 import { RouteComponentProps } from 'react-router'
 
+import BackButton from '../BackButton'
 import DeleteDeckButton from '../DeleteDeckButton'
 import deckQuery from '../../graphql/deckQuery.gql'
 import loadingMutation from '../../graphql/topBarLoadingMutation.gql'
@@ -43,6 +44,7 @@ const DeckPage: React.FunctionComponent<ChildProps<Props, Data>> = ({
     <>
       <Helmet title={deck.title} />
       <div className="pa3 ph4-m ph6-l">
+        <BackButton />
         <div className="flex flex-wrap justify-between items-center">
           <Headline4>{deck.title}</Headline4>
 
