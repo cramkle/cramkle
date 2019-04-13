@@ -65,20 +65,7 @@ const ModelPage: React.FunctionComponent<ChildProps<Props, Data>> = ({
         <DeleteModelButton model={cardModel} />
       </div>
 
-      <Body1 className="dib mt3">Fields</Body1>
-      {cardModel.fields.length ? (
-        <List>
-          {cardModel.fields.map(field => (
-            <ListItem key={field.id}>
-              <ListItemText primaryText={field.name} />
-            </ListItem>
-          ))}
-        </List>
-      ) : (
-        <Body2 className="mv3">This model doesn&apos;t have any fields</Body2>
-      )}
-
-      <Body1 className="mb3">Templates</Body1>
+      <Body1 className="dib mv3">Templates</Body1>
       {cardModel.templates.length ? (
         <>
           <TabBar
@@ -104,6 +91,19 @@ const ModelPage: React.FunctionComponent<ChildProps<Props, Data>> = ({
         </>
       ) : (
         <Body2>You haven&apos;t created any templates on this model yet.</Body2>
+      )}
+
+      <Body1 className="mv3">Fields</Body1>
+      {cardModel.fields.length ? (
+        <List dense>
+          {cardModel.fields.map(field => (
+            <ListItem key={field.id}>
+              <ListItemText primaryText={field.name} />
+            </ListItem>
+          ))}
+        </List>
+      ) : (
+        <Body2 className="mv3">This model doesn&apos;t have any fields</Body2>
       )}
     </div>
   )
