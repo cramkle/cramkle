@@ -1,6 +1,10 @@
 # import CardModel from "CardModel.graphql"
 # import Block from "Block.graphql"
 
+input TemplateInput {
+  name: String!
+}
+
 """
 Template of the card. This is what structures the content
 of each card with values provided by the note

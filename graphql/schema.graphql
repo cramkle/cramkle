@@ -105,6 +105,8 @@ type Mutation {
     name: String!,
     """ Fields """
     fields: [FieldInput]
+    """ Templates """
+    templates: [TemplateInput]
   ): CardModel
 
   """ Update model name """
