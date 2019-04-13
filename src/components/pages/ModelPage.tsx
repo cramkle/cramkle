@@ -77,17 +77,15 @@ const ModelPage: React.FunctionComponent<ChildProps<Props, Data>> = ({
             ))}
           </TabBar>
 
-          <Caption className="dib mt3">Template front side</Caption>
-          <TemplateEditor
-            key={`front-${selectedTemplate}`}
-            template={cardModel.templates[selectedTemplate].frontSide}
-          />
+          {cardModel.templates.map((template, index) => (
+            <div hidden={selectedTemplate !== index} key={template.id}>
+              <Caption className="dib mt3">Template front side</Caption>
+              <TemplateEditor template={template.frontSide} />
 
-          <Caption className="dib mt3">Template back side</Caption>
-          <TemplateEditor
-            key={`back-${selectedTemplate}`}
-            template={cardModel.templates[selectedTemplate].backSide}
-          />
+              <Caption className="dib mt3">Template back side</Caption>
+              <TemplateEditor template={template.backSide} />
+            </div>
+          ))}
         </>
       ) : (
         <Body2>You haven&apos;t created any templates on this model yet.</Body2>
