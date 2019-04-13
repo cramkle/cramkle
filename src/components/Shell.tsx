@@ -37,7 +37,8 @@ const Shell: React.FunctionComponent<
   const isMobile = useMobile()
   const [drawerOpen, setDrawerOpen] = useLocalStorage(
     'ck:drawerOpen',
-    !isMobile
+    !isMobile,
+    isMobile
   )
 
   const handleLogoClick = useCallback(
