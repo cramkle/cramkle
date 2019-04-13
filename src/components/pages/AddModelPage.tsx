@@ -7,6 +7,7 @@ import { graphql, compose, ChildMutateProps } from 'react-apollo'
 import { withRouter, RouteComponentProps } from 'react-router'
 import * as yup from 'yup'
 
+import BackButton from '../BackButton'
 import { TextInputField } from '../forms/Fields'
 import createModelMutation from '../../graphql/createModelMutation.gql'
 import modelsQuery from '../../graphql/modelsQuery.gql'
@@ -33,6 +34,8 @@ const AddModelPage: React.FunctionComponent<
 > = ({ history, mutate }) => {
   return (
     <div className="pa3 ph4-m ph6-l">
+      <BackButton />
+
       <Headline5>Create Model</Headline5>
 
       <Formik
