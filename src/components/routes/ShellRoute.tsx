@@ -13,13 +13,14 @@ const ShellRoute: React.FunctionComponent<Props> = ({
   component: Component,
   ...rest
 }) => (
-  <RouteComponent {...rest}>
-    {props => (
+  <RouteComponent
+    {...rest}
+    render={props => (
       <Shell>
         <Component {...props} />
       </Shell>
     )}
-  </RouteComponent>
+  />
 )
 
 export default ShellRoute

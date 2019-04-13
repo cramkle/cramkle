@@ -17,16 +17,23 @@ interface Input {
 
 const withUser = graphql<RouteProps, Data>(userQuery)
 
+type SupportedRouteProps = Pick<
+  RouteProps,
+  Exclude<keyof RouteProps, 'children'>
+>
+
 const createRoute = ({ challenge, redirectPath, displayName }: Input) => {
-  const CustomRoute: React.FunctionComponent<ChildProps<RouteProps, Data>> = ({
-    data: { user },
-    component: Component,
-    ...rest
-  }) => (
+  const CustomRoute: React.FunctionComponent<
+    ChildProps<SupportedRouteProps, Data>
+  > = ({ data: { user }, render, component: Component, ...rest }) => (
     <Route
       {...rest}
       render={props => {
         if (challenge(user)) {
+          if (typeof render === 'function') {
+            return render(props)
+          }
+
           return <Component {...props} />
         }
 
@@ -34,7 +41,6 @@ const createRoute = ({ challenge, redirectPath, displayName }: Input) => {
           <Redirect
             to={{
               pathname: redirectPath,
-              // eslint-disable-next-line react/prop-types
               state: { from: props.location },
             }}
           />
