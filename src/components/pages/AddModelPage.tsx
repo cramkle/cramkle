@@ -79,47 +79,9 @@ const AddModelPage: React.FunctionComponent<
             <TextInputField name="name" label="Name" />
 
             <div className="flex">
-              <FieldArray name="fields" validateOnChange={false}>
-                {({ push, remove }) => (
-                  <div className={`${styles.evenColumn} mt3 pr3`}>
-                    <Body1>Fields</Body1>
-                    <div className="pv2">
-                      {values.fields && values.fields.length ? (
-                        values.fields.map((_, index) => (
-                          <div className="mb2 flex items-baseline" key={index}>
-                            <div className="w-100">
-                              <TextInputField
-                                className="w-100"
-                                name={`fields.${index}.name`}
-                                label="Field name"
-                              />
-                            </div>
-
-                            <Button
-                              className="ml3"
-                              outlined
-                              icon={<MaterialIcon icon="delete" />}
-                              onClick={() => remove(index)}
-                            >
-                              Remove
-                            </Button>
-                          </div>
-                        ))
-                      ) : (
-                        <Body2>No fields added</Body2>
-                      )}
-                    </div>
-
-                    <Button onClick={() => push({ name: '' })}>
-                      Add field
-                    </Button>
-                  </div>
-                )}
-              </FieldArray>
-
               <FieldArray name="templates" validateOnChange={false}>
                 {({ push, remove }) => (
-                  <div className={`${styles.evenColumn} mt3`}>
+                  <div className={`${styles.evenColumn} mt3 pr3`}>
                     <Body1>Templates</Body1>
                     <div className="pv2">
                       {values.templates && values.templates.length ? (
@@ -150,6 +112,44 @@ const AddModelPage: React.FunctionComponent<
 
                     <Button onClick={() => push({ name: '' })}>
                       Add template
+                    </Button>
+                  </div>
+                )}
+              </FieldArray>
+
+              <FieldArray name="fields" validateOnChange={false}>
+                {({ push, remove }) => (
+                  <div className={`${styles.evenColumn} mt3`}>
+                    <Body1>Fields</Body1>
+                    <div className="pv2">
+                      {values.fields && values.fields.length ? (
+                        values.fields.map((_, index) => (
+                          <div className="mb2 flex items-baseline" key={index}>
+                            <div className="w-100">
+                              <TextInputField
+                                className="w-100"
+                                name={`fields.${index}.name`}
+                                label="Field name"
+                              />
+                            </div>
+
+                            <Button
+                              className="ml3"
+                              outlined
+                              icon={<MaterialIcon icon="delete" />}
+                              onClick={() => remove(index)}
+                            >
+                              Remove
+                            </Button>
+                          </div>
+                        ))
+                      ) : (
+                        <Body2>No fields added</Body2>
+                      )}
+                    </div>
+
+                    <Button onClick={() => push({ name: '' })}>
+                      Add field
                     </Button>
                   </div>
                 )}
