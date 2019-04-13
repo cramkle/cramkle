@@ -92,11 +92,13 @@ const ModelPage: React.FunctionComponent<ChildProps<Props, Data>> = ({
 
           <Caption className="dib mt3">Template front side</Caption>
           <TemplateEditor
+            key={`front-${selectedTemplate}`}
             template={cardModel.templates[selectedTemplate].frontSide}
           />
 
           <Caption className="dib mt3">Template back side</Caption>
           <TemplateEditor
+            key={`back-${selectedTemplate}`}
             template={cardModel.templates[selectedTemplate].backSide}
           />
         </>
