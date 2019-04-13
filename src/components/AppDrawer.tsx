@@ -69,7 +69,7 @@ const AppDrawer: React.FunctionComponent<ChildDataProps<Props, Data>> = ({
   }, [history])
 
   const drawerItems = (
-    <List>
+    <List dense>
       <ListItem tabIndex={0} onClick={handleHomeClick}>
         <ListItemGraphic graphic={<MaterialIcon icon="home" />} />
         <ListItemText primaryText="Home" />
@@ -122,10 +122,11 @@ const AppDrawer: React.FunctionComponent<ChildDataProps<Props, Data>> = ({
         fallback={<aside className="mdc-drawer mdc-drawer--dismissible" />}
       >
         <Drawer
+          className="br-0 bottom-0"
           open={open}
           dismissible
           innerRef={drawerRef}
-          style={{ height: 'calc(100vh - 48px)' }}
+          style={{ height: 'calc(100vh - 65px)' }}
         >
           {header}
           <DrawerContent>{drawerItems}</DrawerContent>

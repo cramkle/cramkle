@@ -1,3 +1,4 @@
+import Icon from '@material/react-material-icon'
 import Tab from '@material/react-tab'
 import TabBar from '@material/react-tab-bar'
 import React, { useState, useEffect } from 'react'
@@ -47,9 +48,18 @@ const HomePage: React.FunctionComponent<RouteComponentProps> = ({
           activeIndex={index}
           handleActiveIndexUpdate={handleActiveIndexUpdate}
         >
-          <Tab onClick={() => history.push('/home')}>Study</Tab>
-          <Tab onClick={() => history.push('/decks')}>Decks</Tab>
-          <Tab onClick={() => history.push('/templates')}>Templates</Tab>
+          <Tab onClick={() => history.push('/home')}>
+            <Icon className="mdc-tab__icon mr3" icon="school" />
+            Study
+          </Tab>
+          <Tab onClick={() => history.push('/decks')}>
+            <Icon className="mdc-tab__icon mr3" icon="style" />
+            Decks
+          </Tab>
+          <Tab onClick={() => history.push('/templates')}>
+            <Icon className="mdc-tab__icon mr3" icon="flip_to_back" />
+            Templates
+          </Tab>
         </TabBar>
 
         <Switch>

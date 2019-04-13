@@ -45,7 +45,7 @@ const Shell: React.FunctionComponent<ChildDataProps<{}, Data>> = ({
   const renderChildren = useCallback(
     children => (
       <>
-        <TopAppBar className="absolute left-0 right-0" fixed dense>
+        <TopAppBar className="absolute left-0 right-0" fixed>
           <TopAppBarRow>
             <TopAppBarSection align="start">
               <TopAppBarIcon navIcon tabIndex={0}>
@@ -55,7 +55,7 @@ const Shell: React.FunctionComponent<ChildDataProps<{}, Data>> = ({
             </TopAppBarSection>
           </TopAppBarRow>
         </TopAppBar>
-        <TopAppBarFixedAdjust className="w-100 flex relative" dense>
+        <TopAppBarFixedAdjust className="w-100 flex relative">
           {children}
         </TopAppBarFixedAdjust>
       </>

@@ -2,3 +2,24 @@
   @include mdc-linear-progress-bar-color(secondary);
   @include mdc-linear-progress-buffer-color($mdc-linear-progress-baseline-buffer-color);
 }
+
+$top-bar-ink: rgba(0, 0, 0, .87);
+
+.mdc-top-app-bar {
+  @include mdc-top-app-bar-fill-color(#fff);
+  @include mdc-top-app-bar-ink-color($top-bar-ink);
+  @include mdc-top-app-bar-icon-ink-color($top-bar-ink);
+  border-bottom: 1px solid #dadce0;
+}
+
+.mdc-tab {
+  text-transform: capitalize;
+  justify-content: flex-start;
+}
+
+.mdc-tab-indicator .mdc-tab-indicator__content {
+  width: 95%;
+  height: 3px;
+  margin: 0 auto;
+  border-radius: 5px 5px 0 0;
+}
