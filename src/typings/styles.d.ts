@@ -17,3 +17,13 @@ declare module '*.css' {
 
   export = styleObj
 }
+
+declare module '*.css' {
+  interface Module {
+    [className: string]: string
+  }
+
+  const styleObj: Module
+
+  export = styleObj
+}

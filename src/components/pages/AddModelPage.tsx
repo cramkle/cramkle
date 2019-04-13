@@ -11,6 +11,7 @@ import BackButton from '../BackButton'
 import { TextInputField } from '../forms/Fields'
 import createModelMutation from '../../graphql/createModelMutation.gql'
 import modelsQuery from '../../graphql/modelsQuery.gql'
+import styles from './AddModelPage.module.css'
 
 interface Model {
   id: string
@@ -39,12 +40,17 @@ const AddModelPage: React.FunctionComponent<
       <Headline5>Create Model</Headline5>
 
       <Formik
-        initialValues={{ name: '', fields: [] }}
+        initialValues={{ name: '', fields: [], templates: [] }}
         validationSchema={yup.object().shape({
           name: yup.string().required('Name is required'),
           fields: yup.array(
             yup.object().shape({
               name: yup.string().required('Field name is required'),
+            })
+          ),
+          templates: yup.array(
+            yup.object().shape({
+              name: yup.string().required('Template name is required'),
             })
           ),
         })}
@@ -72,41 +78,83 @@ const AddModelPage: React.FunctionComponent<
           <form className="flex flex-column w-100 pv3" onSubmit={handleSubmit}>
             <TextInputField name="name" label="Name" />
 
-            <FieldArray name="fields" validateOnChange={false}>
-              {({ push, remove }) => (
-                <div className="mt3">
-                  <Body1>Fields</Body1>
-                  <div className="pv2">
-                    {values.fields && values.fields.length ? (
-                      values.fields.map((_, index) => (
-                        <div className="mb2 flex items-baseline" key={index}>
-                          <div className="w-100">
-                            <TextInputField
-                              className="w-100"
-                              name={`fields.${index}.name`}
-                              label="Field name"
-                            />
+            <div className="flex">
+              <FieldArray name="fields" validateOnChange={false}>
+                {({ push, remove }) => (
+                  <div className={`${styles.evenColumn} mt3 pr3`}>
+                    <Body1>Fields</Body1>
+                    <div className="pv2">
+                      {values.fields && values.fields.length ? (
+                        values.fields.map((_, index) => (
+                          <div className="mb2 flex items-baseline" key={index}>
+                            <div className="w-100">
+                              <TextInputField
+                                className="w-100"
+                                name={`fields.${index}.name`}
+                                label="Field name"
+                              />
+                            </div>
+
+                            <Button
+                              className="ml3"
+                              outlined
+                              icon={<MaterialIcon icon="delete" />}
+                              onClick={() => remove(index)}
+                            >
+                              Remove
+                            </Button>
                           </div>
+                        ))
+                      ) : (
+                        <Body2>No fields added</Body2>
+                      )}
+                    </div>
 
-                          <Button
-                            className="ml3"
-                            outlined
-                            icon={<MaterialIcon icon="delete" />}
-                            onClick={() => remove(index)}
-                          >
-                            Remove
-                          </Button>
-                        </div>
-                      ))
-                    ) : (
-                      <Body2>No fields added</Body2>
-                    )}
+                    <Button onClick={() => push({ name: '' })}>
+                      Add field
+                    </Button>
                   </div>
+                )}
+              </FieldArray>
 
-                  <Button onClick={() => push({ name: '' })}>Add field</Button>
-                </div>
-              )}
-            </FieldArray>
+              <FieldArray name="templates" validateOnChange={false}>
+                {({ push, remove }) => (
+                  <div className={`${styles.evenColumn} mt3`}>
+                    <Body1>Templates</Body1>
+                    <div className="pv2">
+                      {values.templates && values.templates.length ? (
+                        values.templates.map((_, index) => (
+                          <div className="mb2 flex items-baseline" key={index}>
+                            <div className="w-100">
+                              <TextInputField
+                                className="w-100"
+                                name={`templates.${index}.name`}
+                                label="Template name"
+                              />
+                            </div>
+
+                            <Button
+                              className="ml3"
+                              outlined
+                              icon={<MaterialIcon icon="delete" />}
+                              onClick={() => remove(index)}
+                            >
+                              Remove
+                            </Button>
+                          </div>
+                        ))
+                      ) : (
+                        <Body2>No templates added</Body2>
+                      )}
+                    </div>
+
+                    <Button onClick={() => push({ name: '' })}>
+                      Add template
+                    </Button>
+                  </div>
+                )}
+              </FieldArray>
+            </div>
 
             <Button
               className="self-start mt3"
