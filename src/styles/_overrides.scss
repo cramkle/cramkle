@@ -3,7 +3,7 @@
   @include mdc-linear-progress-buffer-color($mdc-linear-progress-baseline-buffer-color);
 }
 
-$top-bar-ink: rgba(0, 0, 0, .87);
+$top-bar-ink: rgba(0, 0, 0, .847);
 
 .mdc-top-app-bar {
   @include mdc-top-app-bar-fill-color(#fff);

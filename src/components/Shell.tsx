@@ -1,5 +1,3 @@
-import React, { Suspense, useCallback } from 'react'
-import { graphql, ChildDataProps } from 'react-apollo'
 import TopAppBar, {
   TopAppBarFixedAdjust,
   TopAppBarIcon,
@@ -9,11 +7,15 @@ import TopAppBar, {
 } from '@material/react-top-app-bar'
 import MaterialIcon from '@material/react-material-icon'
 import LinearProgress from '@material/react-linear-progress'
+import React, { Suspense, useCallback } from 'react'
+import { compose, graphql, ChildDataProps } from 'react-apollo'
+import { withRouter, RouteComponentProps } from 'react-router'
 
 import AppDrawer from './AppDrawer'
 import NoSSR from './NoSSR'
 import { useMobile } from './MobileContext'
 import useLocalStorage from '../hooks/useLocalStorage'
+import logoUrl from '../assets/logo.svg'
 import loadingQuery from '../graphql/topBarLoadingQuery.gql'
 
 interface Data {
@@ -22,16 +24,27 @@ interface Data {
   }
 }
 
-const Shell: React.FunctionComponent<ChildDataProps<{}, Data>> = ({
+const Shell: React.FunctionComponent<
+  ChildDataProps<RouteComponentProps, Data>
+> = ({
   children,
   data: {
     topBar: { loading },
   },
+  history,
 }) => {
   const isMobile = useMobile()
   const [drawerOpen, setDrawerOpen] = useLocalStorage(
     'ck:drawerOpen',
     !isMobile
+  )
+
+  const handleLogoClick = useCallback(
+    e => {
+      e.preventDefault()
+      history.push('/home')
+    },
+    [history]
   )
 
   const handleNavigationIconClick = useCallback(() => {
@@ -51,7 +64,15 @@ const Shell: React.FunctionComponent<ChildDataProps<{}, Data>> = ({
               <TopAppBarIcon navIcon tabIndex={0}>
                 <MaterialIcon icon="menu" onClick={handleNavigationIconClick} />
               </TopAppBarIcon>
-              <TopAppBarTitle>Cramkle</TopAppBarTitle>
+              <TopAppBarTitle
+                className="flex items-center pl1 link color-inherit"
+                tag="a"
+                href="/home"
+                onClick={handleLogoClick}
+              >
+                <img className="pr2" width="40" src={logoUrl} alt="Cramkle" />
+                Cramkle
+              </TopAppBarTitle>
             </TopAppBarSection>
           </TopAppBarRow>
         </TopAppBar>
@@ -60,7 +81,7 @@ const Shell: React.FunctionComponent<ChildDataProps<{}, Data>> = ({
         </TopAppBarFixedAdjust>
       </>
     ),
-    [handleNavigationIconClick]
+    [handleLogoClick, handleNavigationIconClick]
   )
 
   if (React.Children.count(children) === 0) {
@@ -97,4 +118,7 @@ const Shell: React.FunctionComponent<ChildDataProps<{}, Data>> = ({
   )
 }
 
-export default graphql<{}, Data>(loadingQuery)(Shell)
+export default compose(
+  graphql<{}, Data>(loadingQuery),
+  withRouter
+)(Shell)
