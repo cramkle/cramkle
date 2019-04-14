@@ -10,13 +10,17 @@ export const root: IResolvers = {
 }
 
 export const mutations: IResolverObject = {
-  updateContentState: async (_, { id: _id, blocks, entityMap }, { user }) => {
+  updateContentState: async (
+    _,
+    { id: _id, contentState: { blocks, entityMap } },
+    { user }
+  ) => {
     return ContentState.findOneAndUpdate(
       {
         _id,
         ownerId: user._id,
       },
-      { blocks, entityMap }
+      { $set: { blocks, entityMap } }
     )
   },
 }

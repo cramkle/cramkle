@@ -138,10 +138,8 @@ type Mutation {
   updateContentState(
     """ Content state id """
     id: ID!
-    """ Content state blocks """
-    blocks: [BlockInput]
-    """ Entity map """
-    entityMap: JSONObject
+    """ Content state """
+    contentState: ContentStateInput
   ): ContentState
 
   """ Adds a new field to a card model """
