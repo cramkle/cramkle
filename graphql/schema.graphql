@@ -6,7 +6,10 @@
 # import Template from "types/Template.graphql"
 # import Note from "types/Note.graphql"
 # import User from "types/User.graphql"
-# import Block from "types/Block.graphql"
+# import ContentState from "types/ContentState.graphql"
+
+scalar JSON
+scalar JSONObject
 
 """ App queries """
 type Query {
@@ -119,10 +122,6 @@ type Mutation {
   addTemplate(
     """ Template name """
     name: String!,
-    """ Front side of template """
-    frontSide: [BlockInput],
-    """ Back side of template """
-    backSide: [BlockInput],
     """ Model associated id """
     modelId: ID!
   ): Template
@@ -132,12 +131,18 @@ type Mutation {
     """ Template id """
     id: ID!
     """ Template name """
-    name: String,
-    """ Front side of template """
-    frontSide: [BlockInput],
-    """ Back side of template """
-    backSide: [BlockInput],
+    name: String
   ): Template
+
+  """ Update a content state """
+  updateContentState(
+    """ Content state id """
+    id: ID!
+    """ Content state blocks """
+    blocks: [BlockInput]
+    """ Entity map """
+    entityMap: JSONObject
+  ): ContentState
 
   """ Adds a new field to a card model """
   addField(

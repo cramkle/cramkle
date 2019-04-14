@@ -1,13 +1,12 @@
 import { IResolvers, IResolverObject } from 'graphql-tools'
 
-import { findRefFromList } from '../utils'
-import { FieldValue, Field, Block } from '../../models'
+import { FieldValue, Field, ContentState } from '../../models'
 
 export const root: IResolvers = {
   FieldValue: {
     id: root => root._id.toString(),
     field: root => Field.findById(root.fieldId),
-    data: root => Promise.all(findRefFromList(Block, root.data)),
+    data: root => ContentState.findById(root.dataId),
   },
 }
 

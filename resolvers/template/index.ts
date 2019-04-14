@@ -1,14 +1,13 @@
 import { IResolvers, IResolverObject } from 'graphql-tools'
 
-import { findRefFromList } from '../utils'
-import { Block, Template, CardModel } from '../../models'
+import { ContentState, Template, CardModel } from '../../models'
 
 export const root: IResolvers = {
   Template: {
     id: root => root._id.toString(),
     model: root => CardModel.findById(root.modelId),
-    frontSide: root => Promise.all(findRefFromList(Block, root.frontSide)),
-    backSide: root => Promise.all(findRefFromList(Block, root.backSide)),
+    frontSide: root => ContentState.findById(root.frontSideId),
+    backSide: root => ContentState.findById(root.backSideId),
   },
 }
 
@@ -21,12 +20,15 @@ export const queries: IResolverObject = {
 }
 
 export const mutations: IResolverObject = {
-  addTemplate: async (_, { name, frontSide, backSide, modelId }, { user }) => {
+  addTemplate: async (_, { name, modelId }, { user }) => {
+    const frontSideRef = await ContentState.create({ ownerId: user._id })
+    const backSideRef = await ContentState.create({ ownerId: user._id })
+
     const template = await Template.create({
       name,
       modelId,
-      frontSide,
-      backSide,
+      frontSideId: frontSideRef._id,
+      backSideId: backSideRef._id,
       ownerId: user._id,
     })
 
@@ -36,17 +38,13 @@ export const mutations: IResolverObject = {
 
     return template
   },
-  updateTemplate: async (
-    _,
-    { id: _id, name, frontSide, backSide },
-    { user }
-  ) => {
+  updateTemplate: async (_, { id: _id, name }, { user }) => {
     return Template.findOneAndUpdate(
       {
         _id,
         ownerId: user._id,
       },
-      { name, frontSide, backSide }
+      { name }
     )
   },
 }

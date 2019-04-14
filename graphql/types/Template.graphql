@@ -1,5 +1,5 @@
 # import CardModel from "CardModel.graphql"
-# import Block from "Block.graphql"
+# import ContentState from "ContentState.graphql"
 
 input TemplateInput {
   name: String!
@@ -15,9 +15,9 @@ type Template {
   """ Name of the template """
   name: String
   """ Front side template """
-  frontSide: [Block]
+  frontSide: ContentState
   """ Back side template """
-  backSide: [Block]
+  backSide: ContentState
   """ Associated card model """
   model: CardModel
 }

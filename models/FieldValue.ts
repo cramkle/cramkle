@@ -1,20 +1,15 @@
 import { Schema, model, Document } from 'mongoose'
 
-import { Block } from './Block'
-
-interface FieldValue {
-  data: Block[]
-}
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+interface FieldValue {}
 
 interface FieldValueDocument extends FieldValue, Document {}
 
 const FieldValueSchema = new Schema<FieldValueDocument>({
-  data: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Block',
-    },
-  ],
+  dataId: {
+    type: Schema.Types.ObjectId,
+    ref: 'ContentState',
+  },
   fieldId: {
     type: Schema.Types.ObjectId,
     ref: 'Field',

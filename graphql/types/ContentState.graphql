@@ -1,0 +1,12 @@
+# import Block from "Block.graphql"
+
+input ContentStateInput {
+  blocks: [BlockInput]
+  entityMap: JSONObject
+}
+
+type ContentState {
+  id: ID!
+  blocks: [Block]
+  entityMap: JSONObject
+}

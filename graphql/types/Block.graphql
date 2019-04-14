@@ -1,27 +1,43 @@
-input CharacterBlockInput {
-  style: [String]
-  entity: String
+input InlineStyleRangeInput {
+  style: String
+  offset: Int
+  length: Int
+}
+
+input EntityRangeInput {
+  key: Int!
+  length: Int!
+  offset: Int!
 }
 
 input BlockInput {
   key: String!
   type: String!
   text: String!
-  characterList: [CharacterBlockInput]
   depth: Int!
-  dataJSON: String!
+  inlineStyleRanges: [InlineStyleRangeInput]
+  entityRanges: [EntityRangeInput]
+  data: JSONObject
 }
 
-type CharacterBlock {
-  style: [String]
-  entity: String
+type InlineStyleRange {
+  style: String
+  offset: Int
+  length: Int
+}
+
+type EntityRange {
+  key: Int!
+  length: Int!
+  offset: Int!
 }
 
 type Block {
-  key: String
-  type: String
-  text: String
-  characterList: [CharacterBlock]
-  depth: Int
-  dataJSON: String
+  key: String!
+  type: String!
+  text: String!
+  depth: Int!
+  inlineStyleRanges: [InlineStyleRange]
+  entityRanges: [EntityRange]
+  data: JSONObject
 }

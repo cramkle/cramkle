@@ -1,4 +1,6 @@
 import { mapObjIndexed } from 'ramda'
+// @ts-ignore typings are outdated
+import JSON, { GraphQLJSONObject } from 'graphql-type-json'
 
 import { withAuthentication } from './utils'
 import {
@@ -32,8 +34,14 @@ import {
   root as cardModelRoot,
   mutations as cardModelMutations,
 } from './cardModel'
+import {
+  root as contentStateRoot,
+  mutations as contentStateMutations,
+} from './contentState'
 
 export default {
+  JSON,
+  JSONObject: GraphQLJSONObject,
   ...deckRoot,
   ...noteRoot,
   ...templateRoot,
@@ -42,6 +50,7 @@ export default {
   ...cardRoot,
   ...cardModelRoot,
   ...userRoot,
+  ...contentStateRoot,
   Query: {
     ...mapObjIndexed(withAuthentication, deckQueries),
     ...mapObjIndexed(withAuthentication, noteQueries),
@@ -57,6 +66,7 @@ export default {
     ...mapObjIndexed(withAuthentication, cardModelMutations),
     ...mapObjIndexed(withAuthentication, templateMutations),
     ...mapObjIndexed(withAuthentication, fieldMutations),
+    ...mapObjIndexed(withAuthentication, contentStateMutations),
     ...userMutations,
   },
 }
