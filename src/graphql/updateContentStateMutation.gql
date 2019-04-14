@@ -1,0 +1,5 @@
+mutation updateContentState($id: ID!, $contentState: ContentStateInput) {
+  updateContentState(id: $id, contentState: $contentState) {
+    id
+  }
+}

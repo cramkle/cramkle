@@ -2,7 +2,6 @@ import List, { ListItem, ListItemText } from '@material/react-list'
 import Tab from '@material/react-tab'
 import TabBar from '@material/react-tab-bar'
 import { Headline4, Caption, Body1, Body2 } from '@material/react-typography'
-import { ContentBlock } from 'draft-js'
 import React, { useEffect, useState } from 'react'
 import { compose, graphql, ChildProps } from 'react-apollo'
 import { RouteComponentProps } from 'react-router'
@@ -10,6 +9,7 @@ import { RouteComponentProps } from 'react-router'
 import DeleteModelButton from '../DeleteModelButton'
 import TemplateEditor from '../TemplateEditor'
 import BackButton from '../BackButton'
+import { APIContentState } from '../../types/APIContentState'
 import modelQuery from '../../graphql/modelQuery.gql'
 import loadingMutation from '../../graphql/topBarLoadingMutation.gql'
 
@@ -29,8 +29,8 @@ interface Data {
     templates: {
       id: string
       name: string
-      frontSide: ContentBlock[]
-      backSide: ContentBlock[]
+      frontSide: APIContentState
+      backSide: APIContentState
     }[]
     notes: {
       id: string
@@ -80,10 +80,10 @@ const ModelPage: React.FunctionComponent<ChildProps<Props, Data>> = ({
           {cardModel.templates.map((template, index) => (
             <div hidden={selectedTemplate !== index} key={template.id}>
               <Caption className="dib mt3">Template front side</Caption>
-              <TemplateEditor id={template.id} template={template.frontSide} />
+              <TemplateEditor initialContentState={template.frontSide} />
 
               <Caption className="dib mt3">Template back side</Caption>
-              <TemplateEditor id={template.id} template={template.backSide} />
+              <TemplateEditor initialContentState={template.backSide} />
             </div>
           ))}
         </>

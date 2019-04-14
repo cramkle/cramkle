@@ -1,30 +1,30 @@
 import Card, { CardActions, CardActionButtons } from '@material/react-card'
-import Button from '@material/react-button'
 import cx from 'classnames'
 import {
   Editor,
   EditorState,
   RichUtils,
-  ContentState,
-  ContentBlock,
+  convertFromRaw,
+  convertToRaw,
 } from 'draft-js'
 import 'draft-js/dist/Draft.css'
 import React, { useState } from 'react'
 
 import InlineStyleControls from './editor/InlineStyleControls'
 import BlockStyleControls from './editor/BlockStyleControls'
+import SaveTemplateButton from './SaveTemplateButton'
+import { APIContentState } from '../types/APIContentState'
 import styles from './TemplateEditor.module.scss'
 
 const TemplateEditor: React.FunctionComponent<{
-  id: string
-  template: ContentBlock[]
-}> = ({ template }) => {
+  initialContentState: APIContentState
+}> = ({ initialContentState }) => {
   const [editor, setEditor] = useState(() => {
-    if (template.length === 0) {
+    if (initialContentState.blocks.length === 0) {
       return EditorState.createEmpty()
     }
 
-    const contentState = ContentState.createFromBlockArray(template)
+    const contentState = convertFromRaw(initialContentState)
 
     return EditorState.createWithContent(contentState)
   })
@@ -49,6 +49,14 @@ const TemplateEditor: React.FunctionComponent<{
         </CardActionButtons>
       </CardActions>
       <Editor editorState={editor} onChange={setEditor} />
+      <CardActions>
+        <CardActionButtons>
+          <SaveTemplateButton
+            id={initialContentState.id}
+            {...convertToRaw(editor.getCurrentContent())}
+          />
+        </CardActionButtons>
+      </CardActions>
     </Card>
   )
 }
