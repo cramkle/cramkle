@@ -1,4 +1,4 @@
-query GetModel($id: ID!) {
+query getModel($id: ID!) {
   cardModel(id: $id) {
     id
     name
@@ -10,30 +10,36 @@ query GetModel($id: ID!) {
       id
       name
       frontSide {
-        key
-        type
-        text
-        characterList {
-          style
-          entity
-        }
-        depth
-        dataJSON
+        ...DraftContent
       }
       backSide {
-        key
-        type
-        text
-        characterList {
-          style
-          entity
-        }
-        depth
-        dataJSON
+        ...DraftContent
       }
     }
     notes {
       id
     }
   }
+}
+
+fragment DraftContent on ContentState {
+  id
+  blocks {
+    key
+    type
+    text
+    depth
+    inlineStyleRanges {
+      style
+      offset
+      length
+    }
+    entityRanges {
+      key
+      length
+      offset
+    }
+    data
+  }
+  entityMap
 }
