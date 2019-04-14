@@ -38,7 +38,7 @@ const ContentStateSchema = new Schema<ContentStateDocument>({
   blocks: [
     {
       key: String,
-      type: String,
+      type: { type: String },
       text: String,
       inlineStyleRanges: [
         {
