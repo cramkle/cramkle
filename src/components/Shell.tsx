@@ -1,3 +1,5 @@
+import LinearProgress from '@material/react-linear-progress'
+import Icon from '@material/react-material-icon'
 import TopAppBar, {
   TopAppBarFixedAdjust,
   TopAppBarIcon,
@@ -5,14 +7,13 @@ import TopAppBar, {
   TopAppBarSection,
   TopAppBarTitle,
 } from '@material/react-top-app-bar'
-import MaterialIcon from '@material/react-material-icon'
-import LinearProgress from '@material/react-linear-progress'
 import React, { Suspense, useCallback } from 'react'
 import { compose, graphql, ChildDataProps } from 'react-apollo'
 import { withRouter, RouteComponentProps } from 'react-router'
 
 import AppDrawer from './AppDrawer'
 import NoSSR from './NoSSR'
+import SearchBar from './SearchBar'
 import { useMobile } from './MobileContext'
 import useLocalStorage from '../hooks/useLocalStorage'
 import logoUrl from '../assets/logo.svg'
@@ -62,7 +63,7 @@ const Shell: React.FunctionComponent<
           <TopAppBarRow>
             <TopAppBarSection align="start">
               <TopAppBarIcon navIcon tabIndex={0}>
-                <MaterialIcon icon="menu" onClick={handleNavigationIconClick} />
+                <Icon icon="menu" onClick={handleNavigationIconClick} />
               </TopAppBarIcon>
               <TopAppBarTitle
                 className="flex items-center pl1 link color-inherit"
@@ -73,6 +74,8 @@ const Shell: React.FunctionComponent<
                 <img className="pr2" width="40" src={logoUrl} alt="Cramkle" />
                 Cramkle
               </TopAppBarTitle>
+
+              {!isMobile && <SearchBar />}
             </TopAppBarSection>
           </TopAppBarRow>
         </TopAppBar>
@@ -81,7 +84,7 @@ const Shell: React.FunctionComponent<
         </TopAppBarFixedAdjust>
       </>
     ),
-    [handleLogoClick, handleNavigationIconClick]
+    [handleLogoClick, handleNavigationIconClick, isMobile]
   )
 
   if (React.Children.count(children) === 0) {

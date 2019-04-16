@@ -1,0 +1,12 @@
+.searchForm {
+  background-color: rgba(0, 0, 0, 0.06);
+  border-radius: 5px;
+  height: 46px;
+  flex: 1;
+  max-width: 600px;
+  transition: all .2s ease-in-out;
+}
+
+.searchFormFocused {
+  background-color: #fff;
+}
