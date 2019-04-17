@@ -1,5 +1,5 @@
 import cx from 'classnames'
-import React from 'react'
+import React, { memo } from 'react'
 
 export interface Style {
   label: string
@@ -33,4 +33,4 @@ const StyleButton: React.FunctionComponent<{
   )
 }
 
-export default StyleButton
+export default memo(StyleButton)

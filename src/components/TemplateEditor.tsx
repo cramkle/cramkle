@@ -8,7 +8,7 @@ import {
   convertToRaw,
 } from 'draft-js'
 import 'draft-js/dist/Draft.css'
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 
 import InlineStyleControls from './editor/InlineStyleControls'
 import BlockStyleControls from './editor/BlockStyleControls'
@@ -32,21 +32,30 @@ const TemplateEditor: React.FunctionComponent<{
   })
   const [suggestions, setSuggestions] = useState(fields)
 
-  const handleStyleToggle = (style: string) => {
-    setEditor(RichUtils.toggleInlineStyle(editor, style))
-  }
+  const handleStyleToggle = useCallback(
+    (style: string) => {
+      setEditor(RichUtils.toggleInlineStyle(editor, style))
+    },
+    [editor]
+  )
 
-  const handleBlockStyleToggle = (style: string) => {
-    setEditor(RichUtils.toggleBlockType(editor, style))
-  }
+  const handleBlockStyleToggle = useCallback(
+    (style: string) => {
+      setEditor(RichUtils.toggleBlockType(editor, style))
+    },
+    [editor]
+  )
 
   const handleAddField = () => {
     // TODO: add the field entity
   }
 
-  const handleSearchChange = (value: string) => {
-    setSuggestions(fields.filter(({ name }) => name.startsWith(value)))
-  }
+  const handleSearchChange = useCallback(
+    (value: string) => {
+      setSuggestions(fields.filter(({ name }) => name.startsWith(value)))
+    },
+    [fields]
+  )
 
   return (
     <Card outlined className={cx(styles.templateEditor, 'mt2')}>
