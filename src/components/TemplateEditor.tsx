@@ -12,22 +12,25 @@ import React, { useState } from 'react'
 
 import InlineStyleControls from './editor/InlineStyleControls'
 import BlockStyleControls from './editor/BlockStyleControls'
+import FieldSuggestions, { decorators } from './editor/FieldSuggestions'
 import SaveTemplateButton from './SaveTemplateButton'
 import { APIContentState } from '../types/APIContentState'
 import styles from './TemplateEditor.module.scss'
 
 const TemplateEditor: React.FunctionComponent<{
   initialContentState: APIContentState
-}> = ({ initialContentState }) => {
+  fields: { name: string }[]
+}> = ({ initialContentState, fields }) => {
   const [editor, setEditor] = useState(() => {
     if (initialContentState.blocks.length === 0) {
-      return EditorState.createEmpty()
+      return EditorState.createEmpty(decorators)
     }
 
     const contentState = convertFromRaw(initialContentState)
 
-    return EditorState.createWithContent(contentState)
+    return EditorState.createWithContent(contentState, decorators)
   })
+  const [suggestions, setSuggestions] = useState(fields)
 
   const handleStyleToggle = (style: string) => {
     setEditor(RichUtils.toggleInlineStyle(editor, style))
@@ -35,6 +38,14 @@ const TemplateEditor: React.FunctionComponent<{
 
   const handleBlockStyleToggle = (style: string) => {
     setEditor(RichUtils.toggleBlockType(editor, style))
+  }
+
+  const handleAddField = () => {
+    // TODO: add the field entity
+  }
+
+  const handleSearchChange = (value: string) => {
+    setSuggestions(fields.filter(({ name }) => name.startsWith(value)))
   }
 
   return (
@@ -49,6 +60,11 @@ const TemplateEditor: React.FunctionComponent<{
         </CardActionButtons>
       </CardActions>
       <Editor editorState={editor} onChange={setEditor} />
+      <FieldSuggestions
+        onAddField={handleAddField}
+        suggestions={suggestions}
+        onSearchChange={handleSearchChange}
+      />
       <CardActions>
         <CardActionButtons>
           <SaveTemplateButton
