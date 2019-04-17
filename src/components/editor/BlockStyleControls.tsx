@@ -1,5 +1,5 @@
 import { EditorState } from 'draft-js'
-import React from 'react'
+import React, { memo } from 'react'
 
 import StyleButton, { Style } from './StyleButton'
 
@@ -41,4 +41,4 @@ const BlockStyleControls: React.FunctionComponent<{
   )
 }
 
-export default BlockStyleControls
+export default memo(BlockStyleControls)
