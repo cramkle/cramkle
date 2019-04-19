@@ -1,6 +1,7 @@
 module.exports = {
   collectCoverageFrom: ['src/**/*.{ts,tsx}'],
-  setupFiles: ['react-app-polyfill/jsdom'],
+  setupFiles: ['react-app-polyfill/jsdom', './src/setupTests.ts'],
+  setupFilesAfterEnv: ['./src/setupTestsAfterEnv.ts'],
   testMatch: [
     '<rootDir>/src/**/__tests__/**/*.{ts,tsx}',
     '<rootDir>/src/**/?(*.)(spec|test).{ts,tsx}',
