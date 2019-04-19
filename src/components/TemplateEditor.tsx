@@ -12,7 +12,9 @@ import React, { useState, useCallback } from 'react'
 
 import InlineStyleControls from './editor/InlineStyleControls'
 import BlockStyleControls from './editor/BlockStyleControls'
-import FieldSuggestions, { decorators } from './editor/FieldSuggestions'
+import FieldSuggestionsPopup, {
+  decorators,
+} from './editor/FieldSuggestionsPopup'
 import SaveTemplateButton from './SaveTemplateButton'
 import { APIContentState } from '../types/APIContentState'
 import styles from './TemplateEditor.module.scss'
@@ -69,7 +71,7 @@ const TemplateEditor: React.FunctionComponent<{
         </CardActionButtons>
       </CardActions>
       <Editor editorState={editor} onChange={setEditor} />
-      <FieldSuggestions
+      <FieldSuggestionsPopup
         onAddField={handleAddField}
         suggestions={suggestions}
         onSearchChange={handleSearchChange}

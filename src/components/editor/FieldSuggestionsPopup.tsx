@@ -1,5 +1,5 @@
 import { CompositeDecorator } from 'draft-js'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 import Field from './Field'
 import FieldSuggestionItem from './FieldSuggestionItem'
@@ -16,8 +16,20 @@ export const decorators = new CompositeDecorator([
   },
 ])
 
-const FieldSuggestions: React.FunctionComponent = () => {
+interface Props {
+  suggestions: { name: string }[]
+  onAddField: (field: Props['suggestions'][0]) => void
+  onSearchChange: (s: string) => void
+}
+
+const FieldSuggestionsPopup: React.FunctionComponent<Props> = () => {
+  const [active, setActive] = useState(false)
+
+  if (!active) {
+    return null
+  }
+
   return null
 }
 
-export default FieldSuggestions
+export default FieldSuggestionsPopup
