@@ -56,42 +56,46 @@ const AddDeckForm: React.FunctionComponent<
     }}
     isInitialValid={false}
   >
-    {({ handleSubmit, isValid }) => (
-      <Dialog
-        tag="form"
-        scrimClickAction="dismiss"
-        open={open}
-        onSubmit={handleSubmit}
-        onClose={onClose}
-      >
-        <DialogTitle>Add deck</DialogTitle>
-        <DialogContent style={{ width: '320px' }}>
-          <TextInputField
-            id="title"
-            className="w-100"
-            name="title"
-            label="Title"
-          />
-          <TextInputField
-            id="description"
-            className="w-100 mt3"
-            name="description"
-            label="Description"
-            textarea
-          />
-        </DialogContent>
-        <DialogFooter>
-          <DialogButton
-            action="create"
-            isDefault
-            type="submit"
-            disabled={!isValid}
-          >
-            Create
-          </DialogButton>
-        </DialogFooter>
-      </Dialog>
-    )}
+    {({ isValid, handleSubmit }) => {
+      const handleClose = (action: string) => {
+        if (action === 'create') {
+          handleSubmit()
+        }
+
+        onClose(action)
+      }
+
+      return (
+        <Dialog scrimClickAction="dismiss" open={open} onClose={handleClose}>
+          <DialogTitle>Add deck</DialogTitle>
+          <DialogContent style={{ width: '320px' }}>
+            <TextInputField
+              id="title"
+              className="w-100"
+              name="title"
+              label="Title"
+            />
+            <TextInputField
+              id="description"
+              className="w-100 mt3"
+              name="description"
+              label="Description"
+              textarea
+            />
+          </DialogContent>
+          <DialogFooter>
+            <DialogButton
+              action="create"
+              isDefault
+              type="submit"
+              disabled={!isValid}
+            >
+              Create
+            </DialogButton>
+          </DialogFooter>
+        </Dialog>
+      )
+    }}
   </Formik>
 )
 

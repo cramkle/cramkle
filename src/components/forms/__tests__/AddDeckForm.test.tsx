@@ -1,46 +1,75 @@
 import React from 'react'
-import { render, fireEvent, wait } from 'react-testing-library'
+import { render as rtlRender, fireEvent, wait } from 'react-testing-library'
 import { MockedProvider, MockedResponse } from 'react-apollo/test-utils'
 
 import createDeckMutation from '../../../graphql/createDeckMutation.gql'
 import AddDeckForm from '../AddDeckForm'
 
-describe('<AddDeckForm />', () => {
-  it('should add deck on click', async () => {
-    const mutationMocks: MockedResponse[] = [
+interface Options {
+  mutationMocks?: MockedResponse[]
+}
+
+const render = (ui: React.ReactElement, options: Options = {}) => {
+  const deckMock = {
+    id: 'id',
+    slug: 'id',
+    title: 'my title',
+  }
+
+  const {
+    mutationMocks = [
       {
         request: {
           query: createDeckMutation,
           variables: {
-            title: 'my title',
+            title: deckMock.title,
           },
         },
         result: {
           data: {
-            createDeck: {
-              id: 'id',
-              slug: 'id',
-              title: 'my title',
-            },
+            createDeck: deckMock,
           },
         },
       },
-    ]
+    ],
+  } = options
 
+  const utils = rtlRender(
+    <MockedProvider mocks={mutationMocks}>{ui}</MockedProvider>
+  )
+
+  return {
+    ...utils,
+    deckMock,
+  }
+}
+
+describe('<AddDeckForm />', () => {
+  it('should add deck on submit click', async () => {
     const closeCallback = jest.fn()
-
-    const wrapper = render(
-      <MockedProvider mocks={mutationMocks}>
-        <AddDeckForm open onClose={closeCallback} />
-      </MockedProvider>
+    const { getByLabelText, getByText, deckMock } = render(
+      <AddDeckForm open onClose={closeCallback} />
     )
 
-    const titleInput = wrapper.getByLabelText(/title/i)
-    const submitButton = wrapper.getByText(/create/i)
+    const titleInput = getByLabelText(/title/i)
+    const submitButton = getByText(/create/i)
 
-    fireEvent.input(titleInput, { target: { value: 'my title' } })
-
+    fireEvent.input(titleInput, { target: { value: deckMock.title } })
     fireEvent.click(submitButton)
+
+    await wait(() => expect(closeCallback).toHaveBeenCalledTimes(1))
+  })
+
+  it('should add one deck on input enter', async () => {
+    const closeCallback = jest.fn()
+    const { getByLabelText, deckMock } = render(
+      <AddDeckForm open onClose={closeCallback} />
+    )
+
+    const titleInput = getByLabelText(/title/i)
+
+    fireEvent.input(titleInput, { target: { value: deckMock.title } })
+    fireEvent.keyPress(titleInput, { key: 'Enter', code: 13 })
 
     await wait(() => expect(closeCallback).toHaveBeenCalledTimes(1))
   })

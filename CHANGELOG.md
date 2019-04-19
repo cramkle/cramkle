@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Fixed
 - Invalid username/password error message not being displayed.
+- Deck form submitting twice on enter press.
 
 ## [0.1.8] - 2019-04-13
 ### Fixed
