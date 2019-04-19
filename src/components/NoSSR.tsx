@@ -18,4 +18,4 @@ const NoSSR: React.FunctionComponent<Props> = ({
   return isServer ? fallback : (children as JSX.Element)
 }
 
-export default React.memo(NoSSR)
+export default NoSSR

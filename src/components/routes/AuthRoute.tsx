@@ -1,5 +1,5 @@
 import { compose, not, isNil } from 'ramda'
-import React, { memo } from 'react'
+import React from 'react'
 import { Route, Redirect, RouteProps } from 'react-router-dom'
 import { graphql, ChildProps } from 'react-apollo'
 
@@ -51,7 +51,7 @@ const createRoute = ({ challenge, redirectPath, displayName }: Input) => {
 
   CustomRoute.displayName = displayName
 
-  return withUser(memo(CustomRoute))
+  return withUser(CustomRoute)
 }
 
 export const GuestRoute = createRoute({

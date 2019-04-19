@@ -11,7 +11,7 @@ import List, {
   ListItemGraphic,
 } from '@material/react-list'
 import MaterialIcon from '@material/react-material-icon'
-import React, { ReactNode, useRef, memo, useCallback } from 'react'
+import React, { ReactNode, useRef, useCallback } from 'react'
 import { compose, graphql, ChildDataProps } from 'react-apollo'
 import { withRouter, RouteComponentProps } from 'react-router'
 
@@ -142,4 +142,4 @@ const AppDrawer: React.FunctionComponent<ChildDataProps<Props, Data>> = ({
 export default compose(
   graphql(userQuery),
   withRouter
-)(memo(AppDrawer))
+)(AppDrawer)

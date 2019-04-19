@@ -57,37 +57,6 @@ const Shell: React.FunctionComponent<
     setDrawerOpen(false)
   }, [setDrawerOpen])
 
-  const renderChildren = useCallback(
-    children => (
-      <>
-        <TopAppBar className="absolute left-0 right-0" fixed>
-          <TopAppBarRow>
-            <TopAppBarSection align="start">
-              <TopAppBarIcon navIcon tabIndex={0}>
-                <Icon icon="menu" onClick={handleNavigationIconClick} />
-              </TopAppBarIcon>
-              <TopAppBarTitle
-                className="flex items-center pl1 link color-inherit"
-                tag="a"
-                href="/home"
-                onClick={handleLogoClick}
-              >
-                <img className="pr2" width="40" src={logoUrl} alt="Cramkle" />
-                Cramkle
-              </TopAppBarTitle>
-
-              {!isMobile && <SearchBar />}
-            </TopAppBarSection>
-          </TopAppBarRow>
-        </TopAppBar>
-        <TopAppBarFixedAdjust className="w-100 flex relative">
-          {children}
-        </TopAppBarFixedAdjust>
-      </>
-    ),
-    [handleLogoClick, handleNavigationIconClick, isMobile]
-  )
-
   if (React.Children.count(children) === 0) {
     return null
   }
@@ -116,7 +85,38 @@ const Shell: React.FunctionComponent<
         open={drawerOpen}
         onClose={handleDrawerClose}
         content={content}
-        render={renderChildren}
+        render={(children: JSX.Element) => (
+          <>
+            <TopAppBar className="absolute left-0 right-0" fixed>
+              <TopAppBarRow>
+                <TopAppBarSection align="start">
+                  <TopAppBarIcon navIcon tabIndex={0}>
+                    <Icon icon="menu" onClick={handleNavigationIconClick} />
+                  </TopAppBarIcon>
+                  <TopAppBarTitle
+                    className="flex items-center pl1 link color-inherit"
+                    tag="a"
+                    href="/home"
+                    onClick={handleLogoClick}
+                  >
+                    <img
+                      className="pr2"
+                      width="40"
+                      src={logoUrl}
+                      alt="Cramkle"
+                    />
+                    Cramkle
+                  </TopAppBarTitle>
+
+                  {!isMobile && <SearchBar />}
+                </TopAppBarSection>
+              </TopAppBarRow>
+            </TopAppBar>
+            <TopAppBarFixedAdjust className="w-100 flex relative">
+              {children}
+            </TopAppBarFixedAdjust>
+          </>
+        )}
       />
     </div>
   )
