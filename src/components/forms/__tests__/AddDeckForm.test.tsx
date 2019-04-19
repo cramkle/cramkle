@@ -1,16 +1,12 @@
 import React from 'react'
-import { render, cleanup, fireEvent } from 'react-testing-library'
+import { render, fireEvent, wait } from 'react-testing-library'
 import { MockedProvider, MockedResponse } from 'react-apollo/test-utils'
 
 import createDeckMutation from '../../../graphql/createDeckMutation.gql'
 import AddDeckForm from '../AddDeckForm'
 
 describe('<AddDeckForm />', () => {
-  afterEach(() => {
-    cleanup()
-  })
-
-  it('should add deck on click', () => {
+  it('should add deck on click', async () => {
     const mutationMocks: MockedResponse[] = [
       {
         request: {
@@ -31,18 +27,21 @@ describe('<AddDeckForm />', () => {
       },
     ]
 
+    const closeCallback = jest.fn()
+
     const wrapper = render(
       <MockedProvider mocks={mutationMocks}>
-        <AddDeckForm open onClose={jest.fn()} />
+        <AddDeckForm open onClose={closeCallback} />
       </MockedProvider>
     )
 
-    const titleInput = wrapper.getByLabelText('Title')
+    const titleInput = wrapper.getByLabelText(/title/i)
+    const submitButton = wrapper.getByText(/create/i)
 
     fireEvent.input(titleInput, { target: { value: 'my title' } })
 
-    const submitButton = wrapper.getByText(/Create/i)
-
     fireEvent.click(submitButton)
+
+    await wait(() => expect(closeCallback).toHaveBeenCalledTimes(1))
   })
 })

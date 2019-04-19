@@ -40,7 +40,7 @@ const AddDeckForm: React.FunctionComponent<
       description: yup.string(),
     })}
     onSubmit={(values, props) => {
-      mutate({
+      return mutate({
         variables: values,
         update: (proxy, { data: { createDeck } }) => {
           const data = proxy.readQuery<QueryData>({ query: decksQuery })
@@ -49,14 +49,10 @@ const AddDeckForm: React.FunctionComponent<
 
           proxy.writeQuery({ query: decksQuery, data })
         },
+      }).then(() => {
+        props.resetForm()
+        onClose('created')
       })
-        .then(() => {
-          props.resetForm()
-          onClose('created')
-        })
-        .finally(() => {
-          props.setSubmitting(false)
-        })
     }}
     isInitialValid={false}
   >
