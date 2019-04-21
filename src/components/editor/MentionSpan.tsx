@@ -1,7 +1,7 @@
 import React from 'react'
 
-const FieldSpan = () => {
+const MentionSpan = () => {
   return <span>hello</span>
 }
 
-export default FieldSpan
+export default MentionSpan
