@@ -19,6 +19,7 @@ const SaveTemplateButton: React.FunctionComponent<
         }).finally(() => setLoading(false))
       }}
       disabled={loading}
+      dense
     >
       Save Template
     </Button>
