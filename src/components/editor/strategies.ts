@@ -1,5 +1,6 @@
 import { ContentBlock, ContentState } from 'draft-js'
 import FIELD_REGEXP from './fieldRegExp'
+import { FIELD_REF_TRIGGER } from './constants'
 
 type Callback = (s: number, e: number) => void
 
@@ -21,7 +22,7 @@ export const findFieldSuggestions = (
   contentBlock: ContentBlock,
   callback: Callback
 ) => {
-  const regex = new RegExp(`@(${FIELD_REGEXP}|\\s){0,}`, 'g')
+  const regex = new RegExp(`${FIELD_REF_TRIGGER}(${FIELD_REGEXP}|\\s){0,}`, 'g')
   const contentBlockText = contentBlock.getText()
 
   // exclude entities, when matching

@@ -3,6 +3,7 @@ import cx from 'classnames'
 import {
   Editor,
   EditorState,
+  CompositeDecorator,
   RichUtils,
   convertFromRaw,
   convertToRaw,
@@ -13,11 +14,13 @@ import React, { useState, useCallback } from 'react'
 import InlineStyleControls from './editor/InlineStyleControls'
 import BlockStyleControls from './editor/BlockStyleControls'
 import FieldSuggestionsPopup, {
-  decorators,
+  decorators as fieldSuggestionsDecorators,
 } from './editor/FieldSuggestionsPopup'
 import SaveTemplateButton from './SaveTemplateButton'
 import { APIContentState } from '../types/APIContentState'
 import styles from './TemplateEditor.module.scss'
+
+const decorators = new CompositeDecorator(fieldSuggestionsDecorators)
 
 const TemplateEditor: React.FunctionComponent<{
   initialContentState: APIContentState
@@ -48,8 +51,8 @@ const TemplateEditor: React.FunctionComponent<{
     [editor]
   )
 
-  const handleAddField = () => {
-    // TODO: add the field entity
+  const handleSelectField = () => {
+    // TODO: add field
   }
 
   const handleSearchChange = useCallback(
@@ -72,9 +75,10 @@ const TemplateEditor: React.FunctionComponent<{
       </CardActions>
       <Editor editorState={editor} onChange={setEditor} />
       <FieldSuggestionsPopup
-        onAddField={handleAddField}
+        onFieldSelect={handleSelectField}
         suggestions={suggestions}
         onSearchChange={handleSearchChange}
+        characterOffset={editor.getSelection().getAnchorOffset()}
       />
       <CardActions className="bt b--inherit">
         <CardActionButtons>
