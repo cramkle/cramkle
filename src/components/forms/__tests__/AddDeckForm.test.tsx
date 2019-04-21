@@ -60,7 +60,7 @@ describe('<AddDeckForm />', () => {
     await wait(() => expect(closeCallback).toHaveBeenCalledTimes(1))
   })
 
-  it('should add one deck on input enter', async () => {
+  it.skip('should add one deck on input enter', async () => {
     const closeCallback = jest.fn()
     const { getByLabelText, deckMock } = render(
       <AddDeckForm open onClose={closeCallback} />
