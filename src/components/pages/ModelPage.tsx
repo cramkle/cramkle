@@ -80,10 +80,16 @@ const ModelPage: React.FunctionComponent<ChildProps<Props, Data>> = ({
           {cardModel.templates.map((template, index) => (
             <div hidden={selectedTemplate !== index} key={template.id}>
               <Caption className="dib mt3">Template front side</Caption>
-              <TemplateEditor initialContentState={template.frontSide} />
+              <TemplateEditor
+                initialContentState={template.frontSide}
+                fields={cardModel.fields}
+              />
 
               <Caption className="dib mt3">Template back side</Caption>
-              <TemplateEditor initialContentState={template.backSide} />
+              <TemplateEditor
+                initialContentState={template.backSide}
+                fields={cardModel.fields}
+              />
             </div>
           ))}
         </>
