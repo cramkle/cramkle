@@ -1,7 +1,6 @@
 import Card, { CardActions, CardActionButtons } from '@material/react-card'
 import cx from 'classnames'
 import {
-  Editor,
   EditorState,
   CompositeDecorator,
   RichUtils,
@@ -13,18 +12,17 @@ import React, { useState, useCallback } from 'react'
 
 import InlineStyleControls from './editor/InlineStyleControls'
 import BlockStyleControls from './editor/BlockStyleControls'
-import FieldSuggestionsPopup, {
-  decorators as fieldSuggestionsDecorators,
-} from './editor/FieldSuggestionsPopup'
+import { decorators as mentionsDecorators } from './editor/MentionsPopup'
+import MentionsEditor from './editor/MentionsEditor'
 import SaveTemplateButton from './SaveTemplateButton'
 import { APIContentState } from '../types/APIContentState'
 import styles from './TemplateEditor.module.scss'
 
-const decorators = new CompositeDecorator(fieldSuggestionsDecorators)
+const decorators = new CompositeDecorator(mentionsDecorators)
 
 const TemplateEditor: React.FunctionComponent<{
   initialContentState: APIContentState
-  fields: { name: string }[]
+  fields: { id: string; name: string }[]
 }> = ({ initialContentState, fields }) => {
   const [editor, setEditor] = useState(() => {
     if (initialContentState.blocks.length === 0) {
@@ -35,7 +33,6 @@ const TemplateEditor: React.FunctionComponent<{
 
     return EditorState.createWithContent(contentState, decorators)
   })
-  const [suggestions, setSuggestions] = useState(fields)
 
   const handleStyleToggle = useCallback(
     (style: string) => {
@@ -51,17 +48,6 @@ const TemplateEditor: React.FunctionComponent<{
     [editor]
   )
 
-  const handleSelectField = () => {
-    // TODO: add field
-  }
-
-  const handleSearchChange = useCallback(
-    (value: string) => {
-      setSuggestions(fields.filter(({ name }) => name.startsWith(value)))
-    },
-    [fields]
-  )
-
   return (
     <Card outlined className={cx(styles.templateEditor, 'mt2')}>
       <CardActions className="bb b--inherit">
@@ -73,12 +59,10 @@ const TemplateEditor: React.FunctionComponent<{
           <InlineStyleControls editor={editor} onToggle={handleStyleToggle} />
         </CardActionButtons>
       </CardActions>
-      <Editor editorState={editor} onChange={setEditor} />
-      <FieldSuggestionsPopup
-        onFieldSelect={handleSelectField}
-        suggestions={suggestions}
-        onSearchChange={handleSearchChange}
-        characterOffset={editor.getSelection().getAnchorOffset()}
+      <MentionsEditor
+        mentionSource={fields}
+        editorState={editor}
+        onChange={setEditor}
       />
       <CardActions className="bt b--inherit">
         <CardActionButtons>
