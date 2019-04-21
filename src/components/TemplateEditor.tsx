@@ -76,7 +76,7 @@ const TemplateEditor: React.FunctionComponent<{
         suggestions={suggestions}
         onSearchChange={handleSearchChange}
       />
-      <CardActions>
+      <CardActions className="bt b--inherit">
         <CardActionButtons>
           <SaveTemplateButton
             id={initialContentState.id}
