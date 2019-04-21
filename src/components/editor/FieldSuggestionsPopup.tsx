@@ -1,5 +1,5 @@
 import { CompositeDecorator } from 'draft-js'
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 
 import Field from './Field'
 import FieldSuggestionItem from './FieldSuggestionItem'
@@ -23,12 +23,6 @@ interface Props {
 }
 
 const FieldSuggestionsPopup: React.FunctionComponent<Props> = () => {
-  const [active, setActive] = useState(false)
-
-  if (!active) {
-    return null
-  }
-
   return null
 }
 
