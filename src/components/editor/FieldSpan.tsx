@@ -1,7 +1,7 @@
 import React from 'react'
 
-const Field = () => {
+const FieldSpan = () => {
   return <span>hello</span>
 }
 
-export default Field
+export default FieldSpan
