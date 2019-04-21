@@ -74,6 +74,7 @@ const Shell: React.FunctionComponent<
         <Suspense fallback={loader}>
           {loading && loader}
           {children}
+          <div id="portal-anchor" />
         </Suspense>
       </NoSSR>
     </div>
