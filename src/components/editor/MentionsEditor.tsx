@@ -1,5 +1,5 @@
 import { Editor, EditorProps, EditorState, DraftHandleValue } from 'draft-js'
-import React, { useEffect, useReducer, useCallback } from 'react'
+import React, { useEffect, useReducer, useCallback, useRef } from 'react'
 
 import MentionsPopup, { MentionableEntry } from './MentionsPopup'
 import searchMentions from './searchMentions'
@@ -54,6 +54,8 @@ const MentionsEditor: React.FunctionComponent<Props> = ({
     dispatch,
   ] = useReducer(reducer, initialState)
 
+  const prevEditorState = useRef(editorState)
+
   const onShowMentions = useCallback(
     (mentionables, offset) => {
       if (mentionables === null) {
@@ -78,6 +80,12 @@ const MentionsEditor: React.FunctionComponent<Props> = ({
   )
 
   useEffect(() => {
+    if (prevEditorState.current === editorState) {
+      return
+    }
+
+    prevEditorState.current = editorState
+
     const selection = editorState.getSelection()
 
     if (!selection.isCollapsed() || !selection.getHasFocus()) {
