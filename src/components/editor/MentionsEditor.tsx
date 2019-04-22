@@ -129,12 +129,15 @@ const MentionsEditor: React.FunctionComponent<Props> = ({
     onBlur && onBlur(evt)
   }
 
-  const handleMentionSelect = (
-    mention: MentionableEntry,
-    evt: React.KeyboardEvent | React.MouseEvent
-  ) => {
-    // TODO: add mention
-  }
+  const handleMentionSelect = useCallback(
+    (
+      mention: MentionableEntry,
+      evt: React.KeyboardEvent | React.MouseEvent
+    ) => {
+      // TODO: add mention
+    },
+    []
+  )
 
   const handleTab = (evt: React.KeyboardEvent) => {
     if (mentionableEntries.length) {
