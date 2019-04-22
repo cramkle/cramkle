@@ -23,7 +23,7 @@ export interface MentionableEntry {
 interface Props {
   mentionableEntries: MentionableEntry[]
   highlightedMentionable?: MentionableEntry
-  onMentionSelect: (mention: MentionableEntry, evt: React.KeyboardEvent) => void
+  onMentionSelect: (mention: MentionableEntry, evt: React.MouseEvent) => void
   selection: SelectionState
   offset?: number
   characterOffset: number
