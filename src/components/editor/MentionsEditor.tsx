@@ -63,9 +63,9 @@ const MentionsEditor: React.FunctionComponent<Props> = ({
         return
       }
 
-      let highlighted = null
+      let highlighted = highlightedMentionable
 
-      if (!highlightedMentionable && mentionables.length) {
+      if (!highlighted && mentionables.length) {
         highlighted = mentionables[0]
       }
 
