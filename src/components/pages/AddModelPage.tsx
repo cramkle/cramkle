@@ -100,6 +100,7 @@ const AddModelPage: React.FunctionComponent<
                               outlined
                               icon={<MaterialIcon icon="delete" />}
                               onClick={() => remove(index)}
+                              dense
                             >
                               Remove
                             </Button>
@@ -138,6 +139,7 @@ const AddModelPage: React.FunctionComponent<
                               outlined
                               icon={<MaterialIcon icon="delete" />}
                               onClick={() => remove(index)}
+                              dense
                             >
                               Remove
                             </Button>
