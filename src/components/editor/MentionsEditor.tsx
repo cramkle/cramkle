@@ -24,7 +24,27 @@ const MentionsEditor: React.FunctionComponent<Props> = ({
   const [highlightedMentionable, setHighlightedMentionable] = useState(null)
   const [characterOffset, setCharacterOffset] = useState(0)
 
-  const onShowMentions = useCallback(() => {}, [])
+  const onShowMentions = useCallback(
+    (mentionables, offset) => {
+      if (mentionables === null) {
+        setMentionableEntries([])
+        setHighlightedMentionable(null)
+        setCharacterOffset(0)
+        return
+      }
+
+      let highlighted = null
+
+      if (!highlightedMentionable && mentionables.length) {
+        highlighted = mentionables[0]
+      }
+
+      setHighlightedMentionable(highlighted)
+      setMentionableEntries(mentionables)
+      setCharacterOffset(offset)
+    },
+    [highlightedMentionable]
+  )
 
   useEffect(() => {
     const selection = editorState.getSelection()
