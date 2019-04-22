@@ -40,6 +40,12 @@ export default function searchMentions(
       name.toLowerCase().includes(matchStr)
     )
 
+    mentionableEntries.sort(
+      (a, b) =>
+        matchStr.indexOf(b.name.toLowerCase()) -
+        matchStr.indexOf(a.name.toLowerCase())
+    )
+
     callback(mentionableEntries, offset)
   } else {
     callback(null, 0)
