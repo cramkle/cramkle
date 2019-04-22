@@ -1,7 +1,7 @@
 import Card from '@material/react-card'
 import List, { ListItem, ListItemText } from '@material/react-list'
 import { SelectionState } from 'draft-js'
-import React from 'react'
+import React, { memo } from 'react'
 
 import MentionSpan from './MentionSpan'
 import Portal from '../Portal'
@@ -129,4 +129,4 @@ const MentionsPopup: React.FunctionComponent<Props> = ({
   )
 }
 
-export default MentionsPopup
+export default memo(MentionsPopup)
