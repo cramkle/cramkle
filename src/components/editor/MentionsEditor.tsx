@@ -1,11 +1,40 @@
 import { Editor, EditorProps, EditorState, DraftHandleValue } from 'draft-js'
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useReducer, useCallback } from 'react'
 
 import MentionsPopup, { MentionableEntry } from './MentionsPopup'
 import searchMentions from './searchMentions'
 
 interface Props extends EditorProps {
   mentionSource: MentionableEntry[]
+}
+
+interface State {
+  mentionableEntries: MentionableEntry[]
+  highlightedMentionable: MentionableEntry
+  characterOffset: number
+}
+
+type Action = { type: 'reset' } | ({ type: 'update' } & State)
+
+const initialState: State = {
+  mentionableEntries: [],
+  highlightedMentionable: null,
+  characterOffset: 0,
+}
+
+const reducer = (state: State, action: Action) => {
+  switch (action.type) {
+    case 'update':
+      return {
+        highlightedMentionable: action.highlightedMentionable,
+        mentionableEntries: action.mentionableEntries,
+        characterOffset: action.characterOffset,
+      }
+    case 'reset':
+      return initialState
+    default:
+      return state
+  }
 }
 
 const MentionsEditor: React.FunctionComponent<Props> = ({
@@ -20,16 +49,15 @@ const MentionsEditor: React.FunctionComponent<Props> = ({
   handleReturn: handleContentReturn,
   ...props
 }) => {
-  const [mentionableEntries, setMentionableEntries] = useState([])
-  const [highlightedMentionable, setHighlightedMentionable] = useState(null)
-  const [characterOffset, setCharacterOffset] = useState(0)
+  const [
+    { highlightedMentionable, mentionableEntries, characterOffset },
+    dispatch,
+  ] = useReducer(reducer, initialState)
 
   const onShowMentions = useCallback(
     (mentionables, offset) => {
       if (mentionables === null) {
-        setMentionableEntries([])
-        setHighlightedMentionable(null)
-        setCharacterOffset(0)
+        dispatch({ type: 'reset' })
         return
       }
 
@@ -39,9 +67,12 @@ const MentionsEditor: React.FunctionComponent<Props> = ({
         highlighted = mentionables[0]
       }
 
-      setHighlightedMentionable(highlighted)
-      setMentionableEntries(mentionables)
-      setCharacterOffset(offset)
+      dispatch({
+        type: 'update',
+        highlightedMentionable: highlighted,
+        mentionableEntries: mentionables,
+        characterOffset: offset,
+      })
     },
     [highlightedMentionable]
   )
@@ -63,7 +94,7 @@ const MentionsEditor: React.FunctionComponent<Props> = ({
 
     if (mentionableEntries.length) {
       evt.stopPropagation()
-      // dispatch({ type: 'reset' })
+      dispatch({ type: 'reset' })
     }
   }
 
@@ -86,13 +117,13 @@ const MentionsEditor: React.FunctionComponent<Props> = ({
   }
 
   const handleBlur = (evt: React.FocusEvent) => {
-    // dispatch({ type: 'reset' })
+    dispatch({ type: 'reset' })
     onBlur && onBlur(evt)
   }
 
   const handleMentionSelect = (
     mention: MentionableEntry,
-    evt: React.KeyboardEvent
+    evt: React.KeyboardEvent | React.MouseEvent
   ) => {
     // TODO: add mention
   }
