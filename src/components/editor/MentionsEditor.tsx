@@ -43,14 +43,14 @@ const MentionsEditor: React.FunctionComponent<Props> = ({
 
     if (mentionableEntries.length) {
       evt.stopPropagation()
-      // TODO: reset state
+      // dispatch({ type: 'reset' })
     }
   }
 
   const handleUpArrow = (evt: React.KeyboardEvent) => {
     if (mentionableEntries.length) {
       evt.preventDefault()
-      // TODO
+      // TODO: move selection up
     } else {
       onUpArrow && onUpArrow(evt)
     }
@@ -59,14 +59,14 @@ const MentionsEditor: React.FunctionComponent<Props> = ({
   const handleDownArrow = (evt: React.KeyboardEvent) => {
     if (mentionableEntries.length) {
       evt.preventDefault()
-      // TODO
+      // TODO: move selection down
     } else {
       onDownArrow && onDownArrow(evt)
     }
   }
 
   const handleBlur = (evt: React.FocusEvent) => {
-    // TODO: reset state
+    // dispatch({ type: 'reset' })
     onBlur && onBlur(evt)
   }
 
@@ -90,8 +90,7 @@ const MentionsEditor: React.FunctionComponent<Props> = ({
     evt: React.KeyboardEvent,
     editorState: EditorState
   ): DraftHandleValue => {
-    if (mentionableEntries.length) {
-      // TODO: select mention
+    if (highlightedMentionable) {
       handleMentionSelect(highlightedMentionable, evt)
       return 'handled'
     } else if (handleContentReturn) {

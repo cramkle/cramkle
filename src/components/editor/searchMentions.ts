@@ -6,4 +6,6 @@ export default function searchMentions(
   selection: SelectionState,
   contentState: ContentState,
   callback: (mentionableEntries: MentionableEntry[]) => void
-) {}
+) {
+  // TODO
+}
