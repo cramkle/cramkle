@@ -32,11 +32,11 @@ export default function searchMentions(
   const match = MENTION_REGEX.exec(text)
 
   if (match !== null) {
-    const matchStr = match[2]
+    const matchStr = match[2].toLowerCase()
     const offset = match[1].length
 
     const mentionableEntries = source.filter(({ name }) =>
-      name.includes(matchStr)
+      name.toLowerCase().includes(matchStr)
     )
 
     callback(mentionableEntries, offset)
