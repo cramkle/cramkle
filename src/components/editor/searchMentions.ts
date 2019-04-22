@@ -26,8 +26,9 @@ export default function searchMentions(
   ) => void
 ) {
   const anchorKey = selection.getAnchorKey()
+  const anchorOffset = selection.getAnchorOffset()
   const block = contentState.getBlockForKey(anchorKey)
-  const text = block.getText()
+  const text = block.getText().slice(0, anchorOffset)
 
   const match = MENTION_REGEX.exec(text)
 
