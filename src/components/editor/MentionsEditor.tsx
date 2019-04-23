@@ -14,7 +14,10 @@ interface State {
   characterOffset: number
 }
 
-type Action = { type: 'reset' } | ({ type: 'update' } & State)
+type Action =
+  | { type: 'reset' }
+  | ({ type: 'update' } & State)
+  | { type: 'update_highlighted'; highlightedMentionable: MentionableEntry }
 
 const initialState: State = {
   mentionableEntries: [],
@@ -30,6 +33,8 @@ const reducer = (state: State, action: Action) => {
         mentionableEntries: action.mentionableEntries,
         characterOffset: action.characterOffset,
       }
+    case 'update_highlighted':
+      return { ...state, highlightedMentionable: action.highlightedMentionable }
     case 'reset':
       return initialState
     default:
@@ -109,7 +114,22 @@ const MentionsEditor: React.FunctionComponent<Props> = ({
   const handleUpArrow = (evt: React.KeyboardEvent) => {
     if (mentionableEntries.length) {
       evt.preventDefault()
-      // TODO: move selection up
+
+      const length = mentionableEntries.length
+      let highlighted = null
+
+      if (!highlightedMentionable) {
+        highlighted = mentionableEntries[length - 1]
+      } else {
+        const selectedIndex = mentionableEntries.indexOf(highlightedMentionable)
+
+        highlighted = mentionableEntries[(selectedIndex - 1 + length) % length]
+      }
+
+      dispatch({
+        type: 'update_highlighted',
+        highlightedMentionable: highlighted,
+      })
     } else {
       onUpArrow && onUpArrow(evt)
     }
@@ -118,7 +138,22 @@ const MentionsEditor: React.FunctionComponent<Props> = ({
   const handleDownArrow = (evt: React.KeyboardEvent) => {
     if (mentionableEntries.length) {
       evt.preventDefault()
-      // TODO: move selection down
+
+      const length = mentionableEntries.length
+      let highlighted = null
+
+      if (!highlightedMentionable) {
+        highlighted = mentionableEntries[0]
+      } else {
+        const selectedIndex = mentionableEntries.indexOf(highlightedMentionable)
+
+        highlighted = mentionableEntries[(selectedIndex + 1) % length]
+      }
+
+      dispatch({
+        type: 'update_highlighted',
+        highlightedMentionable: highlighted,
+      })
     } else {
       onDownArrow && onDownArrow(evt)
     }
