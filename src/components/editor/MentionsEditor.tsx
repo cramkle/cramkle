@@ -165,6 +165,8 @@ const MentionsEditor: React.FunctionComponent<Props> = ({
     <>
       <Editor
         {...props}
+        ariaAutoComplete="list"
+        spellCheck
         editorState={editorState}
         onChange={onChange}
         onUpArrow={handleUpArrow}
