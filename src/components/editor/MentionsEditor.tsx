@@ -140,7 +140,7 @@ const MentionsEditor: React.FunctionComponent<Props> = ({
   )
 
   const handleTab = (evt: React.KeyboardEvent) => {
-    if (mentionableEntries.length) {
+    if (highlightedMentionable) {
       evt.preventDefault()
       handleMentionSelect(highlightedMentionable, evt)
     } else {
