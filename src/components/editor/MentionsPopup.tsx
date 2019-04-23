@@ -1,6 +1,7 @@
 import Card from '@material/react-card'
 import List, { ListItem, ListItemText } from '@material/react-list'
 import { SelectionState } from 'draft-js'
+import { equals } from 'ramda'
 import React, { memo } from 'react'
 
 import MentionSpan from './MentionSpan'
@@ -45,7 +46,7 @@ const findRelativeParentElement = (
 }
 
 const getStyleForSelectionRect = (
-  selectionRect: DOMRect,
+  selectionRect: ClientRect,
   offset: number
 ): object => {
   const parent = findRelativeParentElement(
@@ -113,7 +114,7 @@ const MentionsPopup: React.FunctionComponent<Props> = ({
   return (
     <Portal>
       <Card style={style} className="pv2 z-2 absolute">
-        <List selectedIndex={highlightedMentionableIndex} dense>
+        <List singleSelection selectedIndex={highlightedMentionableIndex} dense>
           {mentionableEntries.map(mentionable => (
             <ListItem
               key={mentionable.id}
@@ -129,4 +130,30 @@ const MentionsPopup: React.FunctionComponent<Props> = ({
   )
 }
 
-export default memo(MentionsPopup)
+const areEqual = (
+  {
+    selection: prevSelection,
+    characterOffset: prevCharacterOffset,
+    ...prevProps
+  }: Props,
+  {
+    selection: nextSelection,
+    characterOffset: nextCharacterOffset,
+    ...nextProps
+  }: Props
+) => {
+  if (
+    // ignore updates to selection if characterOffset
+    // hasn't changed with it, to avoid flicker in the
+    // popup
+    prevSelection !== nextSelection &&
+    prevCharacterOffset === nextCharacterOffset &&
+    equals(prevProps, nextProps)
+  ) {
+    return true
+  }
+
+  return equals(prevProps, nextProps)
+}
+
+export default memo(MentionsPopup, areEqual)
