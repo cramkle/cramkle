@@ -1,4 +1,4 @@
-const getSelectionRect = (offset: number): DOMRect => {
+const getSelectionRect = (offset: number) => {
   const selection = window.getSelection()
 
   if (!selection.rangeCount) {
@@ -10,15 +10,11 @@ const getSelectionRect = (offset: number): DOMRect => {
   const endContainer = range.endContainer
   const endOffset = range.endOffset
 
-  let clientRect = null
-
   if (endOffset >= offset) {
     range.setStart(endContainer, endOffset - offset)
   }
 
-  clientRect = range.getBoundingClientRect()
-
-  return clientRect as DOMRect
+  return range.getBoundingClientRect()
 }
 
 export default getSelectionRect
