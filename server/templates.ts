@@ -1,5 +1,6 @@
 import { HelmetData } from 'react-helmet'
 import { map } from 'ramda'
+import serialize from 'serialize-javascript'
 
 const srcToScriptTag = (src: string) => `<script src="${src}" defer></script>`
 const srcToLinkTag = (src: string) => `<link rel="stylesheet" href="${src}" />`
@@ -54,7 +55,7 @@ export const ok = (args?: TemplateInput) => {
   ${getNoScriptTags(head)}
   <div id="root">${markup}</div>
   <script>
-    __APOLLO_STATE__ = ${JSON.stringify(state || {})}
+    __APOLLO_STATE__ = ${serialize(state || {})}
   </script>
 </body>
 </html>`
