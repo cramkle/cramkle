@@ -15,6 +15,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Invalid username/password error message not being displayed.
 - Deck form submitting twice on enter press.
 
+### Security
+- Fix XSS on apollo data during server-side rendering.
+
 ## [0.1.8] - 2019-04-13
 ### Fixed
 - User not being redirected on auth route inside a shell route when not authenticated.
