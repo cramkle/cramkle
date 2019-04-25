@@ -6,6 +6,8 @@ import searchMentions from './searchMentions'
 
 interface Props extends EditorProps {
   mentionSource: MentionableEntry[]
+  autoHighlight?: boolean
+  autoUpdateHighlight?: boolean
 }
 
 interface State {
@@ -45,6 +47,8 @@ const reducer = (state: State, action: Action) => {
 const MentionsEditor: React.FunctionComponent<Props> = ({
   mentionSource,
   editorState,
+  autoHighlight = true,
+  autoUpdateHighlight = true,
   onChange,
   onUpArrow,
   onDownArrow,
@@ -68,10 +72,14 @@ const MentionsEditor: React.FunctionComponent<Props> = ({
         return
       }
 
-      let highlighted = highlightedMentionable
+      let highlighted = null
 
-      if (!highlighted && mentionables.length) {
-        highlighted = mentionables[0]
+      if (!highlightedMentionable || autoHighlight) {
+        if (autoUpdateHighlight) {
+          highlighted = mentionables[0]
+        } else {
+          highlighted = highlightedMentionable
+        }
       }
 
       dispatch({
@@ -81,7 +89,7 @@ const MentionsEditor: React.FunctionComponent<Props> = ({
         characterOffset: offset,
       })
     },
-    [highlightedMentionable]
+    [autoHighlight, autoUpdateHighlight, highlightedMentionable]
   )
 
   useEffect(() => {
