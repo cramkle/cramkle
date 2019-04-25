@@ -3,6 +3,7 @@ import React, { useEffect, useReducer, useCallback, useRef } from 'react'
 
 import MentionsPopup, { MentionableEntry } from './MentionsPopup'
 import searchMentions from './searchMentions'
+import replaceMentionInEditorState from './replaceMentionInEditorState'
 
 interface Props extends EditorProps {
   mentionSource: MentionableEntry[]
@@ -173,19 +174,23 @@ const MentionsEditor: React.FunctionComponent<Props> = ({
   }
 
   const handleMentionSelect = useCallback(
-    (
-      mention: MentionableEntry,
-      evt: React.KeyboardEvent | React.MouseEvent
-    ) => {
-      // TODO: add mention
+    (mention: MentionableEntry) => {
+      const editorWithMention = replaceMentionInEditorState(
+        mention,
+        editorState,
+        characterOffset
+      )
+
+      onChange(editorWithMention)
+      dispatch({ type: 'reset' })
     },
-    []
+    [characterOffset, editorState, onChange]
   )
 
   const handleTab = (evt: React.KeyboardEvent) => {
     if (highlightedMentionable) {
       evt.preventDefault()
-      handleMentionSelect(highlightedMentionable, evt)
+      handleMentionSelect(highlightedMentionable)
     } else {
       onTab && onTab(evt)
     }
@@ -196,7 +201,7 @@ const MentionsEditor: React.FunctionComponent<Props> = ({
     editorState: EditorState
   ): DraftHandleValue => {
     if (highlightedMentionable) {
-      handleMentionSelect(highlightedMentionable, evt)
+      handleMentionSelect(highlightedMentionable)
       return 'handled'
     } else if (handleContentReturn) {
       return handleContentReturn(evt, editorState)
