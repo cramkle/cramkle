@@ -24,7 +24,7 @@ export interface MentionableEntry {
 interface Props {
   mentionableEntries: MentionableEntry[]
   highlightedMentionable?: MentionableEntry
-  onMentionSelect: (mention: MentionableEntry, evt: React.MouseEvent) => void
+  onMentionSelect: (mention: MentionableEntry) => void
   selection: SelectionState
   offset?: number
   characterOffset: number
@@ -119,7 +119,7 @@ const MentionsPopup: React.FunctionComponent<Props> = ({
             <ListItem
               key={mentionable.id}
               tabIndex={0}
-              onClick={evt => onMentionSelect(mentionable, evt)}
+              onClick={() => onMentionSelect(mentionable)}
             >
               <ListItemText primaryText={mentionable.name} />
             </ListItem>
