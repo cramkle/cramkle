@@ -1,7 +1,11 @@
 import React from 'react'
 
-const MentionSpan = () => {
-  return <span>hello</span>
+import styles from './MentionSpan.module.css'
+
+const MentionSpan: React.FunctionComponent<{ decoratedText: string }> = ({
+  decoratedText,
+}) => {
+  return <span className={styles.mention}>{decoratedText}</span>
 }
 
 export default MentionSpan
