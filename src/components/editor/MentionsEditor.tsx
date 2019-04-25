@@ -116,14 +116,14 @@ const MentionsEditor: React.FunctionComponent<Props> = ({
       evt.preventDefault()
 
       const length = mentionableEntries.length
+      const selectedIndex = mentionableEntries.indexOf(highlightedMentionable)
+
       let highlighted = null
 
       if (!highlightedMentionable) {
         highlighted = mentionableEntries[length - 1]
-      } else {
-        const selectedIndex = mentionableEntries.indexOf(highlightedMentionable)
-
-        highlighted = mentionableEntries[(selectedIndex - 1 + length) % length]
+      } else if (selectedIndex > 0) {
+        highlighted = mentionableEntries[selectedIndex - 1]
       }
 
       dispatch({
@@ -140,14 +140,14 @@ const MentionsEditor: React.FunctionComponent<Props> = ({
       evt.preventDefault()
 
       const length = mentionableEntries.length
+      const selectedIndex = mentionableEntries.indexOf(highlightedMentionable)
+
       let highlighted = null
 
       if (!highlightedMentionable) {
         highlighted = mentionableEntries[0]
-      } else {
-        const selectedIndex = mentionableEntries.indexOf(highlightedMentionable)
-
-        highlighted = mentionableEntries[(selectedIndex + 1) % length]
+      } else if (selectedIndex < length - 1) {
+        highlighted = mentionableEntries[selectedIndex + 1]
       }
 
       dispatch({
