@@ -4,19 +4,15 @@ import React, { useEffect } from 'react'
 import { compose, graphql, ChildProps } from 'react-apollo'
 
 import ModelCard from './ModelCard'
-import { IModel } from '../types/Model'
 import modelsQuery from '../graphql/modelsQuery.gql'
+import { ModelsQuery } from '../graphql/__generated__/ModelsQuery'
 import loadingMutation from '../graphql/topBarLoadingMutation.gql'
+import { TopBarLoadingQuery } from '../graphql/__generated__/TopBarLoadingQuery'
 import logoUrl from '../assets/logo.svg'
 
-interface Data {
-  topBar: {
-    loading: boolean
-  }
-  cardModels: IModel[]
-}
+type Query = ModelsQuery & TopBarLoadingQuery
 
-const ModelList: React.FunctionComponent<ChildProps<{}, Data>> = ({
+const ModelList: React.FunctionComponent<ChildProps<{}, Query>> = ({
   data: { loading, cardModels: models = [] },
   mutate,
 }) => {
@@ -54,6 +50,6 @@ const ModelList: React.FunctionComponent<ChildProps<{}, Data>> = ({
 }
 
 export default compose(
-  graphql<{}, Data>(modelsQuery),
-  graphql<{}, Data>(loadingMutation)
+  graphql<{}, ModelsQuery>(modelsQuery),
+  graphql<{}, TopBarLoadingQuery>(loadingMutation)
 )(ModelList)

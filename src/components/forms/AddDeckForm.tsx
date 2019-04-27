@@ -9,9 +9,13 @@ import { graphql, ChildMutateProps } from 'react-apollo'
 import React from 'react'
 import * as yup from 'yup'
 
-import { IDeck } from '../../types/Deck'
 import decksQuery from '../../graphql/decksQuery.gql'
+import { DecksQuery } from '../../graphql/__generated__/DecksQuery'
 import createDeckMutation from '../../graphql/createDeckMutation.gql'
+import {
+  CreateDeckMutation,
+  CreateDeckMutationVariables,
+} from '../../graphql/__generated__/CreateDeckMutation'
 import { TextInputField } from './Fields'
 
 interface Props {
@@ -19,16 +23,8 @@ interface Props {
   onClose: (action: string) => void
 }
 
-interface MutationData {
-  createDeck: IDeck
-}
-
-interface QueryData {
-  decks: IDeck[]
-}
-
 const AddDeckForm: React.FunctionComponent<
-  ChildMutateProps<Props, MutationData>
+  ChildMutateProps<Props, CreateDeckMutation, CreateDeckMutationVariables>
 > = ({ open, onClose, mutate }) => (
   <Formik
     initialValues={{
@@ -43,7 +39,7 @@ const AddDeckForm: React.FunctionComponent<
       return mutate({
         variables: values,
         update: (proxy, { data: { createDeck } }) => {
-          const data = proxy.readQuery<QueryData>({ query: decksQuery })
+          const data = proxy.readQuery<DecksQuery>({ query: decksQuery })
 
           data.decks.push(createDeck)
 
@@ -99,4 +95,6 @@ const AddDeckForm: React.FunctionComponent<
   </Formik>
 )
 
-export default graphql<Props, MutationData>(createDeckMutation)(AddDeckForm)
+export default graphql<Props, CreateDeckMutation, CreateDeckMutationVariables>(
+  createDeckMutation
+)(AddDeckForm)

@@ -10,22 +10,21 @@ import React, { useState, useCallback } from 'react'
 import { graphql, ChildMutateProps } from 'react-apollo'
 import { withRouter, RouteComponentProps } from 'react-router'
 
-import { IDeck } from '../types/Deck'
 import deleteDeckMutation from '../graphql/deleteDeckMutation.gql'
+import {
+  DeleteDeckMutation,
+  DeleteDeckMutationVariables,
+} from '../graphql/__generated__/DeleteDeckMutation'
 import decksQuery from '../graphql/decksQuery.gql'
+import { DecksQuery } from '../graphql/__generated__/DecksQuery'
 
 interface Props {
   deckId: string
 }
 
-interface Data {
-  deleteDeck: {
-    id: string
-  }
-}
-
 const DeleteDeckButton: React.FunctionComponent<
-  RouteComponentProps & ChildMutateProps<Props, Data>
+  RouteComponentProps &
+    ChildMutateProps<Props, DeleteDeckMutation, DeleteDeckMutationVariables>
 > = ({ deckId, history, mutate }) => {
   const [dialogOpen, setDialogOpen] = useState(false)
 
@@ -42,7 +41,7 @@ const DeleteDeckButton: React.FunctionComponent<
               },
             }
           ) => {
-            const { decks } = cache.readQuery<{ decks: IDeck[] }>({
+            const { decks } = cache.readQuery<DecksQuery>({
               query: decksQuery,
             })
 

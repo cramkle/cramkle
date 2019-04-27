@@ -4,19 +4,12 @@ import { Body1 } from '@material/react-typography'
 import { Grid, Row, Cell } from '@material/react-layout-grid'
 
 import DeckCard from './DeckCard'
-import { IDeck } from '../types/Deck'
 import decksQuery from '../graphql/decksQuery.gql'
+import { DecksQuery } from '../graphql/__generated__/DecksQuery'
 import loadingMutation from '../graphql/topBarLoadingMutation.gql'
 import logoUrl from '../assets/logo.svg'
 
-interface Data {
-  topBar: {
-    loading: boolean
-  }
-  decks: IDeck[]
-}
-
-const DeckList: React.FunctionComponent<ChildProps<{}, Data>> = ({
+const DeckList: React.FunctionComponent<ChildProps<{}, DecksQuery>> = ({
   data: { loading, decks = [] },
   mutate,
 }) => {
@@ -54,6 +47,6 @@ const DeckList: React.FunctionComponent<ChildProps<{}, Data>> = ({
 }
 
 export default compose(
-  graphql<{}, Data>(decksQuery),
-  graphql<{}, Data>(loadingMutation)
+  graphql<{}, DecksQuery>(decksQuery),
+  graphql<{}>(loadingMutation)
 )(DeckList)
