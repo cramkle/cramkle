@@ -9,7 +9,9 @@
     "build-server": "tsc -p tsconfig.server.json",
     "prettier": "prettier --write 'src/**/*.ts' 'src/**/*.tsx'",
     "test": "jest -c jest.config.js",
-    "lint": "eslint --ext ts,tsx server src && tsc --noEmit"
+    "lint": "eslint --ext ts,tsx server src && tsc --noEmit",
+    "schema-download": "apollo service:download --endpoint=http://localhost:5000/graphql -k",
+    "gen-types": "apollo client:codegen __generated__ --target=typescript --localSchemaFile=schema.json --includes='src/**/*.gql,src/schema.graphql'"
   },
   "dependencies": {
     "@material/react-button": "^0.11.0",
@@ -95,6 +97,7 @@
     "@types/serialize-javascript": "^1.5.0",
     "@types/webpack": "^4.4.25",
     "@types/yup": "^0.26.10",
+    "apollo": "^2.9.0",
     "babel-loader": "8.0.4",
     "babel-plugin-named-asset-import": "^0.2.3",
     "bfj": "6.1.1",
