@@ -1,14 +1,13 @@
 import Icon from '@material/react-material-icon'
-import LinearProgress from '@material/react-linear-progress'
 import Tab from '@material/react-tab'
 import TabBar from '@material/react-tab-bar'
-import React, { useState, useEffect, Suspense, lazy } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Helmet } from 'react-helmet'
-import { withRouter, RouteComponentProps } from 'react-router'
+import { withRouter, RouteComponentProps, Route, Switch } from 'react-router'
 
-const StudySection = lazy(() => import('./StudySection'))
-const DecksSection = lazy(() => import('./DecksSection'))
-const ModelsSection = lazy(() => import('./ModelsSection'))
+import StudySection from './StudySection'
+import DecksSection from './DecksSection'
+import ModelsSection from './ModelsSection'
 
 const getTabBarIndexFromPathname = (pathname: string) => {
   switch (pathname) {
@@ -25,7 +24,6 @@ const getTabBarIndexFromPathname = (pathname: string) => {
 const HomePage: React.FunctionComponent<RouteComponentProps> = ({
   history,
   location,
-  match,
 }) => {
   const [index, setIndex] = useState(() =>
     getTabBarIndexFromPathname(location.pathname)
@@ -64,17 +62,11 @@ const HomePage: React.FunctionComponent<RouteComponentProps> = ({
           </Tab>
         </TabBar>
 
-        <Suspense fallback={<LinearProgress indeterminate />}>
-          <div hidden={match.path !== '/home'}>
-            <StudySection />
-          </div>
-          <div hidden={match.path !== '/decks'}>
-            <DecksSection />
-          </div>
-          <div hidden={match.path !== '/models'}>
-            <ModelsSection />
-          </div>
-        </Suspense>
+        <Switch>
+          <Route path="/home" component={StudySection} />
+          <Route path="/decks" component={DecksSection} />
+          <Route path="/models" component={ModelsSection} />
+        </Switch>
       </div>
     </>
   )
