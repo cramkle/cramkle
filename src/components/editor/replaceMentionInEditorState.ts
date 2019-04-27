@@ -13,18 +13,6 @@ const createMentionEntity = (
   })
 }
 
-const findOffset = (a: string, b: string, initialOffset: number) => {
-  let offset = initialOffset
-
-  for (let i = offset; i <= b.length; i++) {
-    if (a.substr(-i) === b.substr(0, i)) {
-      offset = i
-    }
-  }
-
-  return offset
-}
-
 export default function replaceMentionInEditorState(
   mentionable: MentionableEntry,
   editorState: EditorState,
@@ -32,17 +20,17 @@ export default function replaceMentionInEditorState(
 ): EditorState {
   const selection = editorState.getSelection()
   const contentState = editorState.getCurrentContent()
-  const anchorKey = selection.getAnchorKey()
+
   const anchorOffset = selection.getAnchorOffset()
 
-  const block = contentState.getBlockMap().get(anchorKey)
-  const startOffset = selection.getStartOffset()
-  const textToReplace = block.getText().substr(startOffset - offset, offset)
+  const begin = anchorOffset - offset
+  const end = anchorOffset
 
   const textToShow = mentionable.name
-  const newStart =
-    anchorOffset -
-    findOffset(block.getText().substr(0, anchorOffset), textToReplace, offset)
+  const mentionTextSelection = selection.merge({
+    anchorOffset: begin,
+    focusOffset: end,
+  }) as SelectionState
 
   const contentStateWithEntity = createMentionEntity(mentionable, contentState)
 
@@ -50,7 +38,7 @@ export default function replaceMentionInEditorState(
 
   const contentStateWithMention = Modifier.replaceText(
     contentStateWithEntity,
-    selection.merge({ anchorOffset: newStart }) as SelectionState,
+    mentionTextSelection,
     textToShow,
     editorState.getCurrentInlineStyle(),
     entityKey
