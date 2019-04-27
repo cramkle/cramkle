@@ -1,5 +1,5 @@
 import { Editor, EditorProps, EditorState, DraftHandleValue } from 'draft-js'
-import React, { useEffect, useReducer, useCallback, useRef } from 'react'
+import React, { useEffect, useReducer, useCallback, useRef, memo } from 'react'
 
 import MentionsPopup, { MentionableEntry } from './MentionsPopup'
 import searchMentions from './searchMentions'
@@ -235,4 +235,4 @@ const MentionsEditor: React.FunctionComponent<Props> = ({
   )
 }
 
-export default MentionsEditor
+export default memo(MentionsEditor)
