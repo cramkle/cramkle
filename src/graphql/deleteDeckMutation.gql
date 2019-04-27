@@ -1,4 +1,4 @@
-mutation deleteDeck($deckId: ID!) {
+mutation DeleteDeckMutation($deckId: ID!) {
   deleteDeck(id: $deckId) {
     id
   }

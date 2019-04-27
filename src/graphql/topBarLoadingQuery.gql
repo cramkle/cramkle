@@ -1,4 +1,4 @@
-query {
+query TopBarLoadingQuery {
   topBar @client {
     loading
   }

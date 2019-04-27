@@ -1,4 +1,4 @@
-query AllModels {
+query ModelsQuery {
   cardModels {
     id
     name

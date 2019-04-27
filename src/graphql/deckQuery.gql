@@ -1,4 +1,4 @@
-query GetDeck($slug: String!) {
+query DeckQuery($slug: String!) {
   deck(slug: $slug) {
     id
     slug

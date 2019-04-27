@@ -1,4 +1,4 @@
-mutation addModel($name: String!, $fields: [FieldInput], $templates: [TemplateInput]) {
+mutation CreateModelMutation($name: String!, $fields: [FieldInput], $templates: [TemplateInput]) {
   createModel(name: $name, fields: $fields, templates: $templates) {
     id
     name
