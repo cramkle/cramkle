@@ -1,4 +1,4 @@
-query getModel($id: ID!) {
+query ModelQuery($id: ID!) {
   cardModel(id: $id) {
     id
     name

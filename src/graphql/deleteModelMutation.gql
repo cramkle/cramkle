@@ -1,4 +1,4 @@
-mutation deleteModel($modelId: ID!) {
+mutation DeleteModelMutation($modelId: ID!) {
   deleteModel(id: $modelId) {
     id
   }

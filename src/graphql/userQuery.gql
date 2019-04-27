@@ -1,4 +1,4 @@
-query userQuery {
+query UserQuery {
   user {
     id
     username
