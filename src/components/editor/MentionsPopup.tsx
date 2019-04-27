@@ -147,8 +147,7 @@ const areEqual = (
     // hasn't changed with it, to avoid flicker in the
     // popup
     prevSelection !== nextSelection &&
-    prevCharacterOffset === nextCharacterOffset &&
-    equals(prevProps, nextProps)
+    prevCharacterOffset === nextCharacterOffset
   ) {
     return true
   }
