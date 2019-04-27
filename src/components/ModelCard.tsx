@@ -3,14 +3,14 @@ import { Headline6 } from '@material/react-typography'
 import React from 'react'
 import { withRouter, RouteComponentProps } from 'react-router'
 
-import { IModel } from '../types/Model'
+import { ModelsQuery_cardModels } from '../graphql/__generated__/ModelsQuery'
 
 interface Props {
   className?: string
 }
 
 const ModelCard: React.FunctionComponent<
-  Props & IModel & RouteComponentProps
+  Props & ModelsQuery_cardModels & RouteComponentProps
 > = ({ className = '', id, name, history }) => {
   return (
     <Card outlined className={className}>

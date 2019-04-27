@@ -15,13 +15,14 @@ import BlockStyleControls from './editor/BlockStyleControls'
 import { decorators as mentionsDecorators } from './editor/MentionsPopup'
 import MentionsEditor from './editor/MentionsEditor'
 import SaveTemplateButton from './SaveTemplateButton'
-import { APIContentState } from '../types/APIContentState'
+import { ModelQuery_cardModel_templates_frontSide as TemplateContent } from '../graphql/__generated__/ModelQuery'
+
 import styles from './TemplateEditor.module.scss'
 
 const decorators = new CompositeDecorator(mentionsDecorators)
 
 const TemplateEditor: React.FunctionComponent<{
-  initialContentState: APIContentState
+  initialContentState: TemplateContent
   fields: { id: string; name: string }[]
 }> = ({ initialContentState, fields }) => {
   const [editor, setEditor] = useState(() => {
@@ -29,7 +30,7 @@ const TemplateEditor: React.FunctionComponent<{
       return EditorState.createEmpty(decorators)
     }
 
-    const contentState = convertFromRaw(initialContentState)
+    const contentState = convertFromRaw(initialContentState as any)
 
     return EditorState.createWithContent(contentState, decorators)
   })

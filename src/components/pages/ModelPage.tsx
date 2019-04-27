@@ -10,36 +10,18 @@ import { RouteComponentProps } from 'react-router'
 import DeleteModelButton from '../DeleteModelButton'
 import TemplateEditor from '../TemplateEditor'
 import BackButton from '../BackButton'
-import { APIContentState } from '../../types/APIContentState'
 import modelQuery from '../../graphql/modelQuery.gql'
+import {
+  ModelQuery,
+  ModelQueryVariables,
+} from '../../graphql/__generated__/ModelQuery'
 import loadingMutation from '../../graphql/topBarLoadingMutation.gql'
-
-interface TopbarQueryData {
-  topBar: {
-    loading: boolean
-  }
-}
+import { TopBarLoadingQuery } from '../../graphql/__generated__/TopBarLoadingQuery'
 
 type Props = RouteComponentProps<{ id: string }>
+type Query = ModelQuery & TopBarLoadingQuery
 
-interface Data {
-  cardModel: {
-    id: string
-    name: string
-    fields: { id: string; name: string }[]
-    templates: {
-      id: string
-      name: string
-      frontSide: APIContentState
-      backSide: APIContentState
-    }[]
-    notes: {
-      id: string
-    }[]
-  }
-}
-
-const ModelPage: React.FunctionComponent<ChildProps<Props, Data>> = ({
+const ModelPage: React.FunctionComponent<ChildProps<Props, Query>> = ({
   data: { loading, cardModel },
   mutate,
 }) => {
@@ -120,12 +102,12 @@ const ModelPage: React.FunctionComponent<ChildProps<Props, Data>> = ({
 }
 
 export default compose(
-  graphql<Props, Data, { id: string }>(modelQuery, {
+  graphql<Props, ModelQuery, ModelQueryVariables>(modelQuery, {
     options: props => ({
       variables: {
         id: props.match.params.id,
       },
     }),
   }),
-  graphql<Props, TopbarQueryData>(loadingMutation)
+  graphql<Props, TopBarLoadingQuery>(loadingMutation)
 )(ModelPage)
