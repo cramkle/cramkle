@@ -1,6 +1,6 @@
 import React from 'react'
 
-import styles from './MentionSpan.module.css'
+import styles from './MentionSpan.css'
 
 const MentionSpan: React.FunctionComponent = ({ children }) => {
   return <span className={styles.mention}>{children}</span>

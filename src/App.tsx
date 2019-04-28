@@ -14,7 +14,7 @@ import { UserRoute, GuestRoute } from './components/routes/AuthRoute'
 import { MobileProvider } from './components/MobileContext'
 import client from './utils/apolloClient'
 
-import './theme.scss'
+import './theme.global.scss'
 
 const HomePage = lazy(() => import('./components/pages/HomePage'))
 const DeckPage = lazy(() => import('./components/pages/DeckPage'))
