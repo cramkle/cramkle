@@ -12,8 +12,8 @@
     "outDir": "dist"
   },
   "files": [
-    "server/start.ts",
-    "server/start-dev.ts"
+    "bin/start.ts",
+    "bin/start-dev.ts"
   ],
   "exclude": [
     "node_modules",
