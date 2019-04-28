@@ -25,10 +25,10 @@ const {
 const publicPath = '/'
 
 // style files regexes
-const cssRegex = /\.css$/
-const cssModuleRegex = /\.module\.css$/
-const sassRegex = /\.(scss|sass)$/
-const sassModuleRegex = /\.module\.(scss|sass)$/
+const cssRegex = /\.global\.css$/
+const cssModuleRegex = /\.css$/
+const sassRegex = /\.global\.(scss|sass)$/
+const sassModuleRegex = /\.(scss|sass)$/
 
 // common function to get style loaders
 const getStyleLoaders = ({ isServer, dev, cssModules, loaders = [] }) => {
@@ -154,20 +154,20 @@ const getBaseWebpackConfig = ({ dev = false, isServer = false } = {}) => {
   const cssRules = [
     {
       test: cssRegex,
-      exclude: cssModuleRegex,
       use: cssConfig,
     },
     {
       test: cssModuleRegex,
+      exclude: cssRegex,
       use: cssModuleConfig,
     },
     {
       test: sassRegex,
-      exclude: sassModuleRegex,
       use: sassConfig,
     },
     {
       test: sassModuleRegex,
+      exclude: sassRegex,
       use: sassModuleConfig,
     },
   ]

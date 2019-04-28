@@ -35,7 +35,6 @@ const render = async (req: Request, res: Response) => {
 
   const serverAssetScripts = [serverMainRuntime]
 
-  // TODO: should it be injecting *all* css in every page?
   const styles = Object.keys(assetManifest)
     .filter(path => path.endsWith('.css'))
     .map(path => assetManifest[path])
