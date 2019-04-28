@@ -11,7 +11,7 @@ import { Headline2, Headline4 } from '@material/react-typography'
 
 import logoUrl from '../../assets/logo.svg'
 import RegisterForm from '../forms/RegisterForm'
-import styles from './LandingPage.module.scss'
+import styles from './LandingPage.scss'
 
 const LandingPage: React.FunctionComponent = () => (
   <>

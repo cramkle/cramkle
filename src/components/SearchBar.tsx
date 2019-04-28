@@ -3,7 +3,7 @@ import Icon from '@material/react-material-icon'
 import cx from 'classnames'
 import React, { useState, useRef } from 'react'
 
-import styles from './SearchBar.module.css'
+import styles from './SearchBar.css'
 
 const SearchBar = () => {
   const inputRef = useRef<HTMLInputElement>(null)

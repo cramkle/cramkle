@@ -4,6 +4,7 @@ import {
   EditorState,
   CompositeDecorator,
   RichUtils,
+  RawDraftContentState,
   convertFromRaw,
   convertToRaw,
 } from 'draft-js'
@@ -17,7 +18,7 @@ import MentionsEditor from './editor/MentionsEditor'
 import SaveTemplateButton from './SaveTemplateButton'
 import { ModelQuery_cardModel_templates_frontSide as TemplateContent } from '../graphql/__generated__/ModelQuery'
 
-import styles from './TemplateEditor.module.scss'
+import styles from './TemplateEditor.scss'
 
 const decorators = new CompositeDecorator(mentionsDecorators)
 
@@ -30,7 +31,9 @@ const TemplateEditor: React.FunctionComponent<{
       return EditorState.createEmpty(decorators)
     }
 
-    const contentState = convertFromRaw(initialContentState as any)
+    const contentState = convertFromRaw(
+      initialContentState as RawDraftContentState
+    )
 
     return EditorState.createWithContent(contentState, decorators)
   })

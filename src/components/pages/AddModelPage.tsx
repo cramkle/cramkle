@@ -11,7 +11,7 @@ import BackButton from '../BackButton'
 import { TextInputField } from '../forms/Fields'
 import createModelMutation from '../../graphql/createModelMutation.gql'
 import modelsQuery from '../../graphql/modelsQuery.gql'
-import styles from './AddModelPage.module.css'
+import styles from './AddModelPage.css'
 
 interface Model {
   id: string
