@@ -1,6 +1,6 @@
 import express from 'express'
 
-import server from '../dist/index'
+import server from './index'
 
 const app = express()
 

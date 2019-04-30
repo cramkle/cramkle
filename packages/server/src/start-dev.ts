@@ -1,8 +1,8 @@
 import express from 'express'
 
-import server from '../dist/index'
-import devMiddleware from '../dist/middlewares/dev'
-import hotMiddleware from '../dist/middlewares/hot'
+import server from './index'
+import devMiddleware from './middlewares/dev'
+import hotMiddleware from './middlewares/hot'
 
 const app = express()
 

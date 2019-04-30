@@ -2,6 +2,12 @@
   "name": "@cramkle/app-server",
   "version": "0.2.1",
   "private": true,
+  "bin": {
+    "cks": "./dist/bin/cks"
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "start": "NODE_ENV=development node dist/server/start-dev.js",
     "start-prod": "NODE_ENV=production node dist/server/start.js",
