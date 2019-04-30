@@ -11,12 +11,7 @@
     "skipLibCheck": true,
     "outDir": "dist"
   },
-  "files": [
-    "bin/start.ts",
-    "bin/start-dev.ts"
-  ],
   "exclude": [
-    "node_modules",
-    "src/**/*"
+    "dist"
   ]
 }

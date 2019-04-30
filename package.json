@@ -1,4 +1,7 @@
 {
   "private": true,
-  "workspaces": ["packages/*"]
+  "workspaces": ["packages/*"],
+  "scripts": {
+    "postinstall": "yarn workspace @cramkle/app-server build"
+  }
 }
