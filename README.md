@@ -12,10 +12,17 @@ algorithm, used in many flashcard apps and learning websites, such as
 In order to install the required dependencies and
 start the development server, run the following commands
 
-> We recommend using yarn as a dependency manager
+> You need to have yarn installed to run this project
 
 ```sh
 yarn
-yarn build-server
-yarn start
+yarn workspace @cramkle/app-server build
+
+# this is needed for the bin link to work
+rm -rf packages/app/node_modules
+yarn
+
+yarn workspace @cramkle/app dev
+# or
+cd packages/app && yarn dev
 ```
