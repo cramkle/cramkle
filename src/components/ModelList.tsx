@@ -8,7 +8,6 @@ import modelsQuery from '../graphql/modelsQuery.gql'
 import { ModelsQuery } from '../graphql/__generated__/ModelsQuery'
 import loadingMutation from '../graphql/topBarLoadingMutation.gql'
 import { TopBarLoadingQuery } from '../graphql/__generated__/TopBarLoadingQuery'
-import logoUrl from '../assets/logo.svg'
 
 type Query = ModelsQuery & TopBarLoadingQuery
 
@@ -26,12 +25,8 @@ const ModelList: React.FunctionComponent<ChildProps<{}, Query>> = ({
 
   if (models.length === 0) {
     return (
-      <div
-        className="flex flex-column items-center"
-        style={{ marginTop: 'auto', marginBottom: 'auto' }}
-      >
-        <img width="64" src={logoUrl} alt="" />
-        <Body1 className="mt4">You haven&apos;t created any models yet</Body1>
+      <div className="flex flex-column items-center">
+        <Body1 className="mt4">The models you create will appear here.</Body1>
       </div>
     )
   }

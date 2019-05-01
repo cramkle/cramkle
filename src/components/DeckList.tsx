@@ -7,7 +7,6 @@ import DeckCard from './DeckCard'
 import decksQuery from '../graphql/decksQuery.gql'
 import { DecksQuery } from '../graphql/__generated__/DecksQuery'
 import loadingMutation from '../graphql/topBarLoadingMutation.gql'
-import logoUrl from '../assets/logo.svg'
 
 const DeckList: React.FunctionComponent<ChildProps<{}, DecksQuery>> = ({
   data: { loading, decks = [] },
@@ -23,12 +22,8 @@ const DeckList: React.FunctionComponent<ChildProps<{}, DecksQuery>> = ({
 
   if (decks.length === 0) {
     return (
-      <div
-        className="flex flex-column items-center"
-        style={{ marginTop: 'auto', marginBottom: 'auto' }}
-      >
-        <img width="64" src={logoUrl} alt="" />
-        <Body1 className="mt4">You haven&apos;t created any decks yet</Body1>
+      <div className="flex flex-column items-center">
+        <Body1 className="mt4">The decks you create will appear here.</Body1>
       </div>
     )
   }
