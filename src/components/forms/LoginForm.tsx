@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import React from 'react'
 import { Formik } from 'formik'
 import { object, string } from 'yup'
@@ -7,6 +8,8 @@ import Card, { CardActions, CardActionButtons } from '@material/react-card'
 import Button from '@material/react-button'
 
 import { TextInputField } from './Fields'
+
+import styles from './LoginForm.scss'
 
 interface LoginFormValues {
   username: string
@@ -51,7 +54,10 @@ const LoginForm: React.FunctionComponent = () => (
     }}
   >
     {({ isSubmitting, isValid, handleSubmit }) => (
-      <form className="login-page__form w-100" onSubmit={handleSubmit}>
+      <form
+        className={classNames(styles.loginForm, 'w-100')}
+        onSubmit={handleSubmit}
+      >
         <Card outlined>
           <div className="pa3 pb0 c-on-surface">
             <Headline4 className="tc">Login</Headline4>

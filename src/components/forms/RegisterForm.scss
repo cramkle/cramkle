@@ -4,20 +4,20 @@
 
 @import "../../styles/_variables";
 
-.register-page__form {
+.form {
   max-width: 450px;
 }
 
-.register-page__form-content .mdc-card__actions {
+.formContent :global(.mdc-card__actions) {
   @extend .pa0;
   justify-content: flex-end;
 }
 
-.register-page__form .mdc-card__action-buttons {
+.form :global(.mdc-card__action-buttons) {
   @extend .w-100;
 }
 
-.register-page__form .mdc-button {
+.form :global(.mdc-button) {
   @extend .w-100;
 }
 

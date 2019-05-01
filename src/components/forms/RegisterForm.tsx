@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import { Formik } from 'formik'
 import React from 'react'
 import * as yup from 'yup'
@@ -9,6 +10,8 @@ import { Headline4 } from '@material/react-typography'
 
 import registerMutation from '../../graphql/registerMutation.gql'
 import { TextInputField, CheckboxField } from './Fields'
+
+import styles from './RegisterForm.scss'
 
 interface Props {
   title?: string
@@ -54,9 +57,12 @@ const RegisterForm: React.FunctionComponent<
     }
   >
     {({ handleSubmit, isValid, isSubmitting }) => (
-      <form className="register-page__form w-100" onSubmit={handleSubmit}>
+      <form
+        className={classNames(styles.form, 'w-100')}
+        onSubmit={handleSubmit}
+      >
         <Card
-          className="register-page__form-content pa3 pb0 c-on-surface"
+          className={classNames(styles.formContent, 'pa3 pb0 c-on-surface')}
           outlined
         >
           <Headline4 className="tc f3 f2-ns">{title}</Headline4>

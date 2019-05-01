@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 
 import logoInvertedUrl from '../../assets/logo--inverted.svg'
 import RegisterForm from '../forms/RegisterForm'
-import './RegisterPage.scss'
 
 const RegisterPage: React.FunctionComponent = () => {
   return (

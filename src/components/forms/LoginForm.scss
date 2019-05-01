@@ -2,19 +2,19 @@
 @import '~tachyons-sass/scss/_widths';
 @import '../../styles/_variables.scss';
 
-.login-page__form {
+.loginForm {
   max-width: 450px;
 }
 
-.login-page__form .mdc-card__actions {
+.loginForm :global(.mdc-card__actions) {
   justify-content: end;
   padding: 0 1rem;
 }
 
-.login-page__form .mdc-card__action-buttons {
+.loginForm :global(.mdc-card__action-buttons) {
   @extend .w-100;
 }
 
-.login-page__form .mdc-button {
+.loginForm :global(.mdc-button) {
   @extend .w-100;
 }

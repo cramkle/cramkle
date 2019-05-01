@@ -6,7 +6,6 @@ import { Snackbar } from '@material/react-snackbar'
 
 import logoInvertedUrl from '../../assets/logo--inverted.svg'
 import LoginForm from '../forms/LoginForm'
-import './LoginPage.scss'
 
 const LoginPage: React.FunctionComponent<RouteComponentProps> = ({
   location,
