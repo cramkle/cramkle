@@ -12,14 +12,18 @@ matrix:
     - node_js: 10
       env: TEST_SUIT=unit
       install: yarn install
-      script: yarn test
+      script: yarn workspace @cramkle/app test
 
     - node_js: 10
       env: TEST_SUIT=lint
       install: yarn install
-      script: yarn lint
+      script: yarn workspaces run lint
 
     - node_js: 10
       env: TEST_SUIT=build
       install: yarn install
-      script: yarn build
+      script:
+        - yarn workspace @cramkle/app-server build
+        - rm -rf packages/app/node_modules
+        - yarn install
+        - yarn workspace @cramkle/app build
