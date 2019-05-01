@@ -3,5 +3,8 @@
   "workspaces": ["packages/*"],
   "scripts": {
     "postinstall": "yarn workspace @cramkle/app-server build"
+  },
+  "resolutions": {
+    "@material/drawer": "^1.0.0"
   }
 }
