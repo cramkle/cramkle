@@ -1,24 +1,25 @@
-const path = require('path')
-const webpack = require('webpack')
-const ExtractCssChunks = require('extract-css-chunks-webpack-plugin')
-const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
-const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin')
-const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin')
-const ManifestPlugin = require('webpack-manifest-plugin')
-const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin')
-const nodeExternals = require('webpack-node-externals')
-const TerserPlugin = require('terser-webpack-plugin')
-const ChunkNamesPlugin = require('./webpack/plugins/ChunkNamesPlugin')
-const getClientEnvironment = require('./env')
-const paths = require('./paths')
-const {
+import path from 'path'
+import webpack, { Configuration, Loader } from 'webpack'
+import ExtractCssChunks from 'extract-css-chunks-webpack-plugin'
+import CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin'
+import WatchMissingNodeModulesPlugin from 'react-dev-utils/WatchMissingNodeModulesPlugin'
+import ModuleScopePlugin from 'react-dev-utils/ModuleScopePlugin'
+import ManifestPlugin from 'webpack-manifest-plugin'
+// @ts-ignore
+import ModuleNotFoundPlugin from 'react-dev-utils/ModuleNotFoundPlugin'
+import nodeExternals from 'webpack-node-externals'
+import TerserPlugin, { TerserPluginOptions } from 'terser-webpack-plugin'
+import ChunkNamesPlugin from './webpack/plugins/ChunkNamesPlugin'
+import getClientEnvironment from './env'
+import * as paths from './paths'
+import {
   STATIC_RUNTIME_MAIN,
   STATIC_RUNTIME_WEBPACK,
   STATIC_RUNTIME_HOT,
   STATIC_CHUNKS_PATH,
   STATIC_MEDIA_PATH,
   ASSET_MANIFEST_FILE,
-} = require('./constants')
+} from './constants'
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
@@ -30,8 +31,23 @@ const cssModuleRegex = /\.css$/
 const sassRegex = /\.global\.(scss|sass)$/
 const sassModuleRegex = /\.(scss|sass)$/
 
+interface Options {
+  isServer?: boolean
+  dev?: boolean
+}
+
+interface StyleOptions extends Options {
+  cssModules?: boolean
+  loaders?: Loader[]
+}
+
 // common function to get style loaders
-const getStyleLoaders = ({ isServer, dev, cssModules, loaders = [] }) => {
+const getStyleLoaders = ({
+  isServer,
+  dev,
+  cssModules = false,
+  loaders = [],
+}: StyleOptions) => {
   const postcssLoader = {
     // Options for PostCSS as we reference these options twice
     // Adds vendor prefixing based on your specified browser support in
@@ -74,8 +90,11 @@ const getStyleLoaders = ({ isServer, dev, cssModules, loaders = [] }) => {
   ].filter(Boolean)
 }
 
-const optimizationConfig = ({ dev, isServer }) => {
-  const terserPluginConfig = {
+const optimizationConfig = ({
+  dev,
+  isServer,
+}: Options): Configuration['optimization'] => {
+  const terserPluginConfig: TerserPluginOptions = {
     parallel: true,
     sourceMap: false,
     cache: true,
@@ -92,22 +111,24 @@ const optimizationConfig = ({ dev, isServer }) => {
     }
   }
 
-  const config = {
+  const splitChunks: Configuration['optimization']['splitChunks'] = {
+    cacheGroups: {
+      default: false,
+      vendors: false,
+      styles: {
+        name: 'styles',
+        test: /.(sa|sc|c)ss$/,
+        chunks: 'all',
+        enforce: true,
+      },
+    },
+  }
+
+  const config: Configuration['optimization'] = {
     runtimeChunk: {
       name: STATIC_RUNTIME_WEBPACK,
     },
-    splitChunks: {
-      cacheGroups: {
-        default: false,
-        vendors: false,
-        styles: {
-          name: 'styles',
-          test: /.(sa|sc|c)ss$/,
-          chunks: 'all',
-          enforce: true,
-        },
-      },
-    },
+    splitChunks,
   }
 
   if (dev) {
@@ -116,17 +137,24 @@ const optimizationConfig = ({ dev, isServer }) => {
 
   config.minimizer = [new TerserPlugin(terserPluginConfig)]
 
-  config.splitChunks.chunks = 'all'
-  config.splitChunks.cacheGroups.react = {
-    name: 'commons',
-    chunks: 'all',
-    test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+  splitChunks.chunks = 'all'
+  splitChunks.cacheGroups = {
+    ...(splitChunks.cacheGroups as object),
+    react: {
+      name: 'commons',
+      chunks: 'all',
+      test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+    },
   }
+
+  config.splitChunks = splitChunks
 
   return config
 }
 
-const getBaseWebpackConfig = ({ dev = false, isServer = false } = {}) => {
+const getBaseWebpackConfig = (options?: Options): Configuration => {
+  const { isServer = false, dev = false } = options || {}
+
   // Get environment variables to inject into our app.
   const env = getClientEnvironment(isServer)
 
@@ -313,7 +341,6 @@ const getBaseWebpackConfig = ({ dev = false, isServer = false } = {}) => {
         // both options are optional
         filename: `${STATIC_CHUNKS_PATH}/${extractedCssFilename}.css`,
         chunkFilename: `${STATIC_CHUNKS_PATH}/${extractedCssFilename}.chunk.css`,
-        orderWarning: false,
         reloadAll: true,
       }),
       // Makes some environment variables available to the JS code, for example:
@@ -349,4 +376,4 @@ const getBaseWebpackConfig = ({ dev = false, isServer = false } = {}) => {
   }
 }
 
-module.exports = getBaseWebpackConfig
+export default getBaseWebpackConfig

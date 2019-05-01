@@ -1,6 +1,6 @@
-const fs = require('fs')
-const path = require('path')
-const paths = require('./paths')
+import fs from 'fs'
+import path from 'path'
+import * as paths from './paths'
 
 // Make sure that including paths.js after env.js will read .env variables.
 delete require.cache[require.resolve('./paths')]
@@ -58,30 +58,38 @@ process.env.NODE_PATH = (process.env.NODE_PATH || '')
 // injected into the application via DefinePlugin in Webpack configuration.
 const REACT_APP = /^REACT_APP_/i
 
+interface Env {
+  [key: string]: string
+}
+
 function getClientEnvironment(isServer = false) {
+  const baseEnv: Env = {
+    // Useful for determining whether we’re running in production mode.
+    // Most importantly, it switches React into the correct mode.
+    NODE_ENV: process.env.NODE_ENV || 'development',
+  }
+
   const raw = Object.keys(process.env)
     .filter(key => REACT_APP.test(key))
-    .reduce(
-      (env, key) => {
-        env[key] = process.env[key]
-        return env
-      },
-      {
-        // Useful for determining whether we’re running in production mode.
-        // Most importantly, it switches React into the correct mode.
-        NODE_ENV: process.env.NODE_ENV || 'development',
-      }
-    )
+    .reduce((env, key) => {
+      env[key] = process.env[key]
+      return env
+    }, baseEnv)
+
   // Stringify all values so we can feed into Webpack DefinePlugin
   const stringified = {
-    'process.env': Object.keys(raw).reduce((env, key) => {
-      env[key] = JSON.stringify(raw[key])
-      return env
-    }, {}),
+    'process.env': Object.keys(raw).reduce(
+      (env, key) => {
+        env[key] = JSON.stringify(raw[key])
+        return env
+      },
+      // eslint-disable-next-line
+      {} as Env
+    ),
     'process.browser': !isServer,
   }
 
   return { raw, stringified }
 }
 
-module.exports = getClientEnvironment
+export default getClientEnvironment

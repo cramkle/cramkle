@@ -1,11 +1,14 @@
-module.exports = class ChunkNamesPlugin {
-  apply(compiler) {
+import { Compiler } from 'webpack'
+
+export default class ChunkNamesPlugin {
+  public apply(compiler: Compiler) {
     compiler.hooks.compilation.tap('ChunkNamesPlugin', compilation => {
+      // @ts-ignore
       compilation.chunkTemplate.hooks.renderManifest.intercept({
-        register(tapInfo) {
+        register(tapInfo: any) {
           if (tapInfo.name === 'JavascriptModulesPlugin') {
             const originalMethod = tapInfo.fn
-            tapInfo.fn = (result, options) => {
+            tapInfo.fn = (result: any, options: any) => {
               let filenameTemplate
               const chunk = options.chunk
               const outputOptions = options.outputOptions
