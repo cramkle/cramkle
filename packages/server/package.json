@@ -71,11 +71,5 @@
     "webpack-hot-middleware": "^2.24.3",
     "webpack-manifest-plugin": "2.0.4",
     "webpack-node-externals": "^1.7.2"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+  }
 }
