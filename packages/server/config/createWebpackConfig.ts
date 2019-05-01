@@ -161,7 +161,10 @@ const getBaseWebpackConfig = (options?: Options): Configuration => {
   const sassLoaderConfig = {
     loader: 'sass-loader',
     options: {
-      includePaths: [path.resolve('node_modules')],
+      includePaths: [
+        path.resolve('node_modules'),
+        path.resolve('../../node_modules'),
+      ],
     },
   }
 
@@ -265,7 +268,11 @@ const getBaseWebpackConfig = (options?: Options): Configuration => {
               include: paths.appSrc,
               loader: require.resolve('babel-loader'),
               options: {
-                extends: path.resolve('.babelrc'),
+                presets: [
+                  '@babel/preset-env',
+                  '@babel/preset-react',
+                  '@babel/preset-typescript',
+                ],
                 plugins: [
                   dev && require.resolve('react-hot-loader/babel'),
                   [
@@ -279,6 +286,7 @@ const getBaseWebpackConfig = (options?: Options): Configuration => {
                       },
                     },
                   ],
+                  '@babel/plugin-syntax-dynamic-import',
                 ].filter(Boolean),
                 // This is a feature of `babel-loader` for webpack (not Babel itself).
                 // It enables caching results in ./node_modules/.cache/babel-loader/
