@@ -1,17 +1,24 @@
-FROM node:11-alpine AS build-env
-WORKDIR /usr/src/app
+FROM node:12-alpine AS build-env
+WORKDIR /cramkle
 
 COPY . .
 
 RUN yarn --frozen-lockfile
-RUN yarn build
 
-FROM node:11-alpine
-WORKDIR /usr/src/app
+RUN yarn workspace @cramkle/app-server build
 
-COPY --from=build-env /usr/src/app .
+# TODO: find a way around installing twice
+RUN rm -rf packages/app/node_modules
+RUN yarn --frozen-lockfile
+
+RUN yarn workspace @cramkle/app build
+
+FROM node:12-alpine
+WORKDIR /cramkle
+
+COPY --from=build-env /cramkle .
 
 RUN yarn --prod
 
 EXPOSE 3000
-CMD ["yarn", "start-prod"]
+CMD ["yarn", "workspace", "@cramkle/app", "start"]
