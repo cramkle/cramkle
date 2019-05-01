@@ -1,4 +1,4 @@
-FROM node:11-alpine AS build-env
+FROM node:12-alpine AS build-env
 
 WORKDIR /usr/src/app
 
@@ -10,7 +10,7 @@ COPY . .
 RUN yarn --frozen-lockfile
 RUN yarn build
 
-FROM node:11-alpine
+FROM node:12-alpine
 
 WORKDIR /usr/src/app
 
