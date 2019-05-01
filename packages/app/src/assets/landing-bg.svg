@@ -1,0 +1,36 @@
+<svg width="97px" height="100px" viewBox="0 0 97 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <rect id="path-1" x="0" y="0" width="97" height="100"></rect>
+  </defs>
+  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <mask id="mask-2" fill="white">
+        <use xlink:href="#path-1"></use>
+    </mask>
+    <rect stroke="#124BE6" stroke-width="4" mask="url(#mask-2)" transform="translate(80.682735, 29.682735) rotate(-8.000000) translate(-80.682735, -29.682735) " x="69.6827352" y="18.6827352" width="22" height="22"></rect>
+    <circle stroke="#124BE6" stroke-width="4" mask="url(#mask-2)" cx="10" cy="65" r="13"></circle>
+    <circle stroke="#124BE6" stroke-width="4" mask="url(#mask-2)" cx="106" cy="65" r="13"></circle>
+    <circle fill="#124BE6" mask="url(#mask-2)" cx="68" cy="70" r="2"></circle>
+    <circle fill="#124BE6" mask="url(#mask-2)" cx="49" cy="30" r="2"></circle>
+    <circle fill="#124BE6" mask="url(#mask-2)" cx="87" cy="10" r="2"></circle>
+    <circle fill="#124BE6" mask="url(#mask-2)" cx="68" cy="10" r="2"></circle>
+    <circle fill="#124BE6" mask="url(#mask-2)" cx="49" cy="10" r="2"></circle>
+    <circle fill="#124BE6" mask="url(#mask-2)" cx="30" cy="30" r="2"></circle>
+    <circle fill="#124BE6" mask="url(#mask-2)" cx="10" cy="10" r="2"></circle>
+    <circle fill="#124BE6" mask="url(#mask-2)" cx="10" cy="30" r="2"></circle>
+    <circle fill="#124BE6" mask="url(#mask-2)" cx="49" cy="50" r="2"></circle>
+    <circle fill="#124BE6" mask="url(#mask-2)" cx="68" cy="50" r="2"></circle>
+    <circle fill="#124BE6" mask="url(#mask-2)" cx="30" cy="50" r="2"></circle>
+    <circle fill="#124BE6" mask="url(#mask-2)" cx="87" cy="50" r="2"></circle>
+    <circle fill="#124BE6" mask="url(#mask-2)" cx="87" cy="70" r="2"></circle>
+    <circle fill="#124BE6" mask="url(#mask-2)" cx="87" cy="90" r="2"></circle>
+    <circle fill="#124BE6" mask="url(#mask-2)" cx="68" cy="90" r="2"></circle>
+    <circle fill="#124BE6" mask="url(#mask-2)" cx="49" cy="90" r="2"></circle>
+    <circle fill="#124BE6" mask="url(#mask-2)" cx="30" cy="90" r="2"></circle>
+    <circle fill="#124BE6" mask="url(#mask-2)" cx="10" cy="90" r="2"></circle>
+    <circle fill="#124BE6" mask="url(#mask-2)" cx="10" cy="50" r="2"></circle>
+    <circle fill="#124BE6" mask="url(#mask-2)" cx="30" cy="70" r="2"></circle>
+    <circle fill="#124BE6" mask="url(#mask-2)" cx="49" cy="70" r="2"></circle>
+    <path d="M18.209401,1.1099931 L38.0954508,-10.9218834 C39.5130291,-11.7795765 41.3575012,-11.3256998 42.2151943,-9.90812145 C42.4986146,-9.43968987 42.6484415,-8.90262973 42.6484415,-8.35513066 L42.6484415,15.5828486 C42.6484415,17.2397028 41.3052958,18.5828486 39.6484415,18.5828486 C39.1056715,18.5828486 38.5730694,18.4355971 38.1073844,18.1567839 L18.2213347,6.25068115 C16.7997895,5.39957881 16.3373542,3.55723395 17.1884565,2.13568873 C17.4399709,1.71559933 17.7904839,1.36345517 18.209401,1.1099931 Z" stroke="#124BE6" stroke-width="4" mask="url(#mask-2)"></path>
+    <path d="M18.4474653,100.465567 L38.333515,88.4336901 C39.7510934,87.575997 41.5955654,88.0298737 42.4532585,89.4474521 C42.7366789,89.9158836 42.8865058,90.4529438 42.8865058,91.0004429 L42.8865058,114.938422 C42.8865058,116.595276 41.54336,117.938422 39.8865058,117.938422 C39.3437358,117.938422 38.8111336,117.791171 38.3454487,117.512357 L18.459399,105.606255 C17.0378537,104.755152 16.5754184,102.912807 17.4265208,101.491262 C17.6780351,101.071173 18.0285481,100.719029 18.4474653,100.465567 Z" stroke="#124BE6" stroke-width="4" mask="url(#mask-2)"></path>
+  </g>
+</svg>
