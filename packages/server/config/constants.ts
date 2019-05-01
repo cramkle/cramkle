@@ -1,4 +1,4 @@
-const path = require('path')
+import path from 'path'
 
 const STATIC_FOLDER = 'static'
 const STATIC_RUNTIME_PATH = path.join(STATIC_FOLDER, 'runtime')
@@ -11,7 +11,7 @@ const STATIC_RUNTIME_HOT = path.join(STATIC_RUNTIME_PATH, 'hot')
 
 const ASSET_MANIFEST_FILE = 'asset-manifest.json'
 
-module.exports = {
+export {
   STATIC_FOLDER,
   STATIC_CHUNKS_PATH,
   STATIC_MEDIA_PATH,

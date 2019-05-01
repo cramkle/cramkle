@@ -4,13 +4,17 @@ import server from './index'
 import devMiddleware from './middlewares/dev'
 import hotMiddleware from './middlewares/hot'
 
-const app = express()
+const start = () => {
+  const app = express()
 
-devMiddleware.set(app)
-hotMiddleware.set(app)
+  devMiddleware.set(app)
+  hotMiddleware.set(app)
 
-app.use(server)
+  app.use(server)
 
-app.listen(3000, () => {
-  console.log('Server listening on port 3000')
-})
+  app.listen(3000, () => {
+    console.log('Server listening on port 3000')
+  })
+}
+
+export default start

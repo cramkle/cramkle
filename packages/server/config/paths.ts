@@ -1,18 +1,19 @@
-const path = require('path')
-const fs = require('fs')
-const {
+import * as path from 'path'
+import * as fs from 'fs'
+import {
   STATIC_FOLDER,
   STATIC_RUNTIME_MAIN,
   STATIC_RUNTIME_WEBPACK,
-} = require('./constants')
+} from './constants'
 
 const appDirectory = fs.realpathSync(process.cwd())
-const resolveApp = relativePath => path.resolve(appDirectory, relativePath)
+const resolveApp = (relativePath: string) =>
+  path.resolve(appDirectory, relativePath)
 
 const moduleFileExtensions = ['mjs', 'js', 'json', 'jsx', 'ts', 'tsx']
 
 // Resolve file paths in the same order as webpack
-const resolveModule = (resolveFn, filePath) => {
+const resolveModule = (resolveFn = resolveApp, filePath: string) => {
   const extension = moduleFileExtensions.find(extension =>
     fs.existsSync(resolveFn(`${filePath}.${extension}`))
   )
@@ -36,20 +37,31 @@ const serverMainRuntime = path.join(
   `${STATIC_RUNTIME_MAIN}.js`
 )
 
-module.exports = {
-  dotenv: resolveApp('.env'),
-  appPath: resolveApp('.'),
-  appDist: distFolder,
-  appDistPublic: path.join(distFolder, 'public'),
-  clientStatic: clientStaticFolder,
+const dotenv = resolveApp('.env')
+const appPath = resolveApp('.')
+const appDist = distFolder
+const appDistPublic = path.join(distFolder, 'public')
+const appPublic = resolveApp('public')
+const appIndexJs = resolveModule(resolveApp, 'src/index')
+const appPackageJson = resolveApp('package.json')
+const appSrc = resolveApp('src')
+const yarnLockFile = resolveApp('yarn.lock')
+const appNodeModules = resolveApp('node_modules')
+
+export {
+  dotenv,
+  appPath,
+  appDist,
+  appDistPublic,
+  clientStaticFolder as clientStatic,
   clientMainRuntime,
   clientWebpack,
   serverMainRuntime,
-  appPublic: resolveApp('public'),
-  appIndexJs: resolveModule(resolveApp, 'src/index'),
-  appPackageJson: resolveApp('package.json'),
-  appSrc: resolveApp('src'),
-  yarnLockFile: resolveApp('yarn.lock'),
-  appNodeModules: resolveApp('node_modules'),
+  appPublic,
+  appIndexJs,
+  appPackageJson,
+  appSrc,
+  yarnLockFile,
+  appNodeModules,
   moduleFileExtensions,
 }
