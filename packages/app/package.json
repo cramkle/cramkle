@@ -1,6 +1,6 @@
 {
   "name": "@cramkle/app",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "private": true,
   "scripts": {
     "dev": "cks dev",
@@ -13,7 +13,7 @@
     "gen-types": "apollo client:codegen __generated__ --target=typescript --localSchemaFile=schema.json --includes='src/**/*.gql,src/schema.graphql'"
   },
   "dependencies": {
-    "@cramkle/app-server": "^0.2.1",
+    "@cramkle/app-server": "^0.2.2",
     "@material/react-button": "^0.11.0",
     "@material/react-card": "^0.11.0",
     "@material/react-checkbox": "^0.11.0",
