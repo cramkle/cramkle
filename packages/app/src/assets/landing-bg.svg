@@ -1,36 +1,32 @@
 <svg width="97px" height="100px" viewBox="0 0 97 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <defs>
-    <rect id="path-1" x="0" y="0" width="97" height="100"></rect>
-  </defs>
   <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-    <mask id="mask-2" fill="white">
-        <use xlink:href="#path-1"></use>
-    </mask>
-    <rect stroke="#124BE6" stroke-width="4" mask="url(#mask-2)" transform="translate(80.682735, 29.682735) rotate(-8.000000) translate(-80.682735, -29.682735) " x="69.6827352" y="18.6827352" width="22" height="22"></rect>
-    <circle stroke="#124BE6" stroke-width="4" mask="url(#mask-2)" cx="10" cy="65" r="13"></circle>
-    <circle stroke="#124BE6" stroke-width="4" mask="url(#mask-2)" cx="106" cy="65" r="13"></circle>
-    <circle fill="#124BE6" mask="url(#mask-2)" cx="68" cy="70" r="2"></circle>
-    <circle fill="#124BE6" mask="url(#mask-2)" cx="49" cy="30" r="2"></circle>
-    <circle fill="#124BE6" mask="url(#mask-2)" cx="87" cy="10" r="2"></circle>
-    <circle fill="#124BE6" mask="url(#mask-2)" cx="68" cy="10" r="2"></circle>
-    <circle fill="#124BE6" mask="url(#mask-2)" cx="49" cy="10" r="2"></circle>
-    <circle fill="#124BE6" mask="url(#mask-2)" cx="30" cy="30" r="2"></circle>
-    <circle fill="#124BE6" mask="url(#mask-2)" cx="10" cy="10" r="2"></circle>
-    <circle fill="#124BE6" mask="url(#mask-2)" cx="10" cy="30" r="2"></circle>
-    <circle fill="#124BE6" mask="url(#mask-2)" cx="49" cy="50" r="2"></circle>
-    <circle fill="#124BE6" mask="url(#mask-2)" cx="68" cy="50" r="2"></circle>
-    <circle fill="#124BE6" mask="url(#mask-2)" cx="30" cy="50" r="2"></circle>
-    <circle fill="#124BE6" mask="url(#mask-2)" cx="87" cy="50" r="2"></circle>
-    <circle fill="#124BE6" mask="url(#mask-2)" cx="87" cy="70" r="2"></circle>
-    <circle fill="#124BE6" mask="url(#mask-2)" cx="87" cy="90" r="2"></circle>
-    <circle fill="#124BE6" mask="url(#mask-2)" cx="68" cy="90" r="2"></circle>
-    <circle fill="#124BE6" mask="url(#mask-2)" cx="49" cy="90" r="2"></circle>
-    <circle fill="#124BE6" mask="url(#mask-2)" cx="30" cy="90" r="2"></circle>
-    <circle fill="#124BE6" mask="url(#mask-2)" cx="10" cy="90" r="2"></circle>
-    <circle fill="#124BE6" mask="url(#mask-2)" cx="10" cy="50" r="2"></circle>
-    <circle fill="#124BE6" mask="url(#mask-2)" cx="30" cy="70" r="2"></circle>
-    <circle fill="#124BE6" mask="url(#mask-2)" cx="49" cy="70" r="2"></circle>
-    <path d="M18.209401,1.1099931 L38.0954508,-10.9218834 C39.5130291,-11.7795765 41.3575012,-11.3256998 42.2151943,-9.90812145 C42.4986146,-9.43968987 42.6484415,-8.90262973 42.6484415,-8.35513066 L42.6484415,15.5828486 C42.6484415,17.2397028 41.3052958,18.5828486 39.6484415,18.5828486 C39.1056715,18.5828486 38.5730694,18.4355971 38.1073844,18.1567839 L18.2213347,6.25068115 C16.7997895,5.39957881 16.3373542,3.55723395 17.1884565,2.13568873 C17.4399709,1.71559933 17.7904839,1.36345517 18.209401,1.1099931 Z" stroke="#124BE6" stroke-width="4" mask="url(#mask-2)"></path>
-    <path d="M18.4474653,100.465567 L38.333515,88.4336901 C39.7510934,87.575997 41.5955654,88.0298737 42.4532585,89.4474521 C42.7366789,89.9158836 42.8865058,90.4529438 42.8865058,91.0004429 L42.8865058,114.938422 C42.8865058,116.595276 41.54336,117.938422 39.8865058,117.938422 C39.3437358,117.938422 38.8111336,117.791171 38.3454487,117.512357 L18.459399,105.606255 C17.0378537,104.755152 16.5754184,102.912807 17.4265208,101.491262 C17.6780351,101.071173 18.0285481,100.719029 18.4474653,100.465567 Z" stroke="#124BE6" stroke-width="4" mask="url(#mask-2)"></path>
+    <g transform="translate(-3.000000, -11.000000)">
+      <rect stroke="#124BE6" stroke-width="4" transform="translate(86.586321, 36.829547) rotate(-8.000000) translate(-86.586321, -36.829547) " x="78.997909" y="29.2411352" width="15.1768236" height="15.1768236"></rect>
+      <circle stroke="#124BE6" stroke-width="4" cx="10.5" cy="78.5" r="10.5"></circle>
+      <circle stroke="#124BE6" stroke-width="4" cx="107.5" cy="78.5" r="10.5"></circle>
+      <circle fill="#124BE6" cx="71" cy="81" r="2"></circle>
+      <circle fill="#124BE6" cx="52" cy="41" r="2"></circle>
+      <circle fill="#124BE6" cx="90" cy="21" r="2"></circle>
+      <circle fill="#124BE6" cx="71" cy="21" r="2"></circle>
+      <circle fill="#124BE6" cx="52" cy="21" r="2"></circle>
+      <circle fill="#124BE6" cx="33" cy="41" r="2"></circle>
+      <circle fill="#124BE6" cx="13" cy="21" r="2"></circle>
+      <circle fill="#124BE6" cx="13" cy="41" r="2"></circle>
+      <circle fill="#124BE6" cx="52" cy="61" r="2"></circle>
+      <circle fill="#124BE6" cx="71" cy="61" r="2"></circle>
+      <circle fill="#124BE6" cx="71" cy="41" r="2"></circle>
+      <circle fill="#124BE6" cx="33" cy="61" r="2"></circle>
+      <circle fill="#124BE6" cx="90" cy="61" r="2"></circle>
+      <circle fill="#124BE6" cx="90" cy="81" r="2"></circle>
+      <circle fill="#124BE6" cx="90" cy="101" r="2"></circle>
+      <circle fill="#124BE6" cx="71" cy="101" r="2"></circle>
+      <circle fill="#124BE6" cx="52" cy="101" r="2"></circle>
+      <circle fill="#124BE6" cx="13" cy="101" r="2"></circle>
+      <circle fill="#124BE6" cx="13" cy="61" r="2"></circle>
+      <circle fill="#124BE6" cx="33" cy="81" r="2"></circle>
+      <circle fill="#124BE6" cx="52" cy="81" r="2"></circle>
+      <path d="M21.9234294,8.29903053 L34.5426934,0.665332348 C35.9603451,-0.19223951 37.8047783,0.261794959 38.6623502,1.67944672 C38.9456853,2.14782797 39.0954646,2.68480601 39.0954646,3.23221793 L39.0954646,18.4198164 C39.0954646,20.0766706 37.7523188,21.4198164 36.0954646,21.4198164 C35.5527813,21.4198164 35.0202609,21.2726119 34.5546266,20.9938828 L21.9353626,13.4399826 C20.5137449,12.5890013 20.0511528,10.7466958 20.9021341,9.32507812 C21.1537017,8.90481867 21.5043423,8.55254643 21.9234294,8.29903053 Z" stroke="#124BE6" stroke-width="4"></path>
+      <path d="M22.482804,107.925474 L34.9899186,100.887812 C36.4338733,100.075309 38.2630935,100.587202 39.0755964,102.031156 C39.3283228,102.480294 39.4610851,102.986964 39.4610851,103.502323 L39.4610851,117.50408 C39.4610851,119.160935 38.1179393,120.50408 36.4610851,120.50408 C35.9502781,120.50408 35.4479307,120.373652 35.0016431,120.125154 L22.4945285,113.161059 C21.0469492,112.355032 20.5268689,110.528123 21.3328964,109.080543 C21.6022607,108.596781 22.0002525,108.197002 22.482804,107.925474 Z" stroke="#124BE6" stroke-width="4"></path>
+    </g>
   </g>
 </svg>
