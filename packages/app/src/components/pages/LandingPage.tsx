@@ -1,5 +1,4 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import Button from '@material/react-button'
 import TopAppBar, {
   TopAppBarFixedAdjust,
   TopAppBarIcon,
@@ -8,6 +7,8 @@ import TopAppBar, {
   TopAppBarTitle,
 } from '@material/react-top-app-bar'
 import { Headline2, Headline4 } from '@material/react-typography'
+import React from 'react'
+import { withRouter, RouteComponentProps, Link } from 'react-router-dom'
 
 import logoUrl from '../../assets/logo.svg'
 import RegisterForm from '../forms/RegisterForm'
@@ -15,7 +16,9 @@ import bg from '../../assets/landing-bg.svg'
 
 import styles from './LandingPage.scss'
 
-const LandingPage: React.FunctionComponent = () => (
+const LandingPage: React.FunctionComponent<RouteComponentProps> = ({
+  history,
+}) => (
   <>
     <TopAppBar className={styles.topBar} fixed>
       <TopAppBarRow>
@@ -24,6 +27,12 @@ const LandingPage: React.FunctionComponent = () => (
             <img style={{ height: 24, width: 24 }} src={logoUrl} alt="" />
           </TopAppBarIcon>
           <TopAppBarTitle>Cramkle</TopAppBarTitle>
+        </TopAppBarSection>
+        <TopAppBarSection align="end">
+          <Button onClick={() => history.push('/register')}>Sign Up</Button>
+          <Button onClick={() => history.push('/login')} className="ml2">
+            Login
+          </Button>
         </TopAppBarSection>
       </TopAppBarRow>
     </TopAppBar>
@@ -64,4 +73,4 @@ const LandingPage: React.FunctionComponent = () => (
   </>
 )
 
-export default LandingPage
+export default withRouter(LandingPage)
