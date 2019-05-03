@@ -1,7 +1,0 @@
-@import '@material/react-top-app-bar/index.scss';
-@import '../../styles/_variables.scss';
-
-:global(.mdc-top-app-bar).topBar {
-  @include mdc-top-app-bar-ink-color($mdc-theme-on-surface);
-  @include mdc-top-app-bar-fill-color($mdc-theme-surface);
-}

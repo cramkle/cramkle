@@ -1,4 +1,12 @@
-@import './styles/_variables.scss';
+$mdc-typography-font-family: unquote("Libre Franklin, sans-serif");
+
+$mdc-theme-primary: #2962ff;
+$mdc-theme-on-primary: #fff;
+$mdc-theme-secondary: #ffab40;
+$mdc-theme-on-secondary: #000;
+
+$mdc-theme-surface: #fff;
+$mdc-theme-on-surface: #000;
 
 @import '@material/react-button/index.scss';
 @import '@material/react-card/index.scss';
@@ -39,4 +47,15 @@ html,
 body,
 #root {
   height: 100%;
+}
+
+:root {
+  --color-primary: #2962ff;
+  --color-on-primary: #fff;
+
+  --color-secondary: #ffab40;
+  --color-on-secondary: #000;
+
+  --color-surface: #fff;
+  --color-on-surface: #000;
 }

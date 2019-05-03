@@ -14,13 +14,11 @@ import logoUrl from '../../assets/logo.svg'
 import RegisterForm from '../forms/RegisterForm'
 import bg from '../../assets/landing-bg.svg'
 
-import styles from './LandingPage.scss'
-
 const LandingPage: React.FunctionComponent<RouteComponentProps> = ({
   history,
 }) => (
   <>
-    <TopAppBar className={styles.topBar} fixed>
+    <TopAppBar fixed>
       <TopAppBarRow>
         <TopAppBarSection align="start">
           <TopAppBarIcon>

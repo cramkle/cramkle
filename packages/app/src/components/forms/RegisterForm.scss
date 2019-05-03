@@ -1,23 +1,3 @@
-@import '~tachyons-sass/scss/_variables';
-@import '~tachyons-sass/scss/_spacing';
-@import '~tachyons-sass/scss/_widths';
-
-@import "../../styles/_variables";
-
 .form {
   max-width: 450px;
 }
-
-.formContent :global(.mdc-card__actions) {
-  @extend .pa0;
-  justify-content: flex-end;
-}
-
-.form :global(.mdc-card__action-buttons) {
-  @extend .w-100;
-}
-
-.form :global(.mdc-button) {
-  @extend .w-100;
-}
-

@@ -83,9 +83,13 @@ const RegisterForm: React.FunctionComponent<
               </a>
             </span>
           </label>
-          <CardActions>
-            <CardActionButtons>
-              <Button raised disabled={!isValid || isSubmitting}>
+          <CardActions className="pa0 justify-end">
+            <CardActionButtons className="w-100">
+              <Button
+                className="w-100"
+                raised
+                disabled={!isValid || isSubmitting}
+              >
                 Register
               </Button>
             </CardActionButtons>

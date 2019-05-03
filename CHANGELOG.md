@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Changed
 - Update `material` packages to v0.12.0.
+- Update theme colors to use css variables.
 
 ### Fixed
 - Drawer items not tabbable.

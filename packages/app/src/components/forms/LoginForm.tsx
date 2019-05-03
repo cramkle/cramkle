@@ -76,9 +76,10 @@ const LoginForm: React.FunctionComponent = () => (
               label="Password"
             />
           </div>
-          <CardActions>
-            <CardActionButtons>
+          <CardActions className="justify-end pv0 ph3">
+            <CardActionButtons className="w-100">
               <Button
+                className="w-100"
                 raised
                 disabled={!isValid || isSubmitting}
                 type="submit"
