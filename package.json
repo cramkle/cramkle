@@ -1,7 +1,4 @@
 {
   "private": true,
-  "workspaces": ["packages/*"],
-  "resolutions": {
-    "@material/drawer": "^1.0.0"
-  }
+  "workspaces": ["packages/*"]
 }
