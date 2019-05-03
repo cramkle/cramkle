@@ -69,8 +69,8 @@ const AppDrawer: React.FunctionComponent<ChildDataProps<Props, Data>> = ({
   }, [history])
 
   const drawerItems = (
-    <List dense>
-      <ListItem tabIndex={0} onClick={handleHomeClick}>
+    <List dense singleSelection>
+      <ListItem onClick={handleHomeClick}>
         <ListItemGraphic graphic={<MaterialIcon icon="home" />} />
         <ListItemText primaryText="Home" />
       </ListItem>
