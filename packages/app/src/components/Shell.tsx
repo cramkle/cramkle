@@ -69,7 +69,7 @@ const Shell: React.FunctionComponent<
   )
 
   let content = (
-    <div className="h-100 overflow-auto w-100 relative">
+    <main className="h-100 overflow-auto w-100 relative">
       <NoSSR>
         <Suspense fallback={loader}>
           {loading && loader}
@@ -77,7 +77,7 @@ const Shell: React.FunctionComponent<
           <div id="portal-anchor" />
         </Suspense>
       </NoSSR>
-    </div>
+    </main>
   )
 
   return (

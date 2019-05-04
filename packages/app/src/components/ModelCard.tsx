@@ -12,11 +12,18 @@ interface Props {
 const ModelCard: React.FunctionComponent<
   Props & ModelsQuery_cardModels & RouteComponentProps
 > = ({ className = '', id, name, history }) => {
+  const handleClick = () => history.push(`/m/${id}`)
+
   return (
     <Card outlined className={className}>
       <CardPrimaryContent
         className="pa2"
-        onClick={() => history.push(`/m/${id}`)}
+        tabIndex={0}
+        role="article"
+        onClick={handleClick}
+        onKeyDown={(e: React.KeyboardEvent) =>
+          e.key === 'Enter' && handleClick()
+        }
       >
         <Headline6>{name}</Headline6>
       </CardPrimaryContent>

@@ -14,19 +14,26 @@ const DeckCard: React.FunctionComponent<Props> = ({
   description,
   slug,
   history,
-}) => (
-  <Card outlined className="h-100">
-    <CardPrimaryContent
-      className="pa2 h-100"
-      tabIndex={0}
-      role="button"
-      onClick={() => history.push(`/d/${slug}`)}
-    >
-      <Headline6>{title}</Headline6>
-      {description && <Body2>{description}</Body2>}
-    </CardPrimaryContent>
-  </Card>
-)
+}) => {
+  const handleClick = () => history.push(`/d/${slug}`)
+
+  return (
+    <Card outlined className="h-100">
+      <CardPrimaryContent
+        className="pa2 h-100"
+        tabIndex={0}
+        role="article"
+        onClick={handleClick}
+        onKeyDown={(e: React.KeyboardEvent) =>
+          e.key === 'Enter' && handleClick()
+        }
+      >
+        <Headline6>{title}</Headline6>
+        {description && <Body2>{description}</Body2>}
+      </CardPrimaryContent>
+    </Card>
+  )
+}
 
 DeckCard.defaultProps = {
   description: null,

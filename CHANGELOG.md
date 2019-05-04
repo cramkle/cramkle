@@ -8,9 +8,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Update `material` packages to v0.12.0.
 - Update theme colors to use css variables.
+- Set main content to use `main` tag.
 
 ### Fixed
 - Drawer items not tabbable.
+- Enter the model and deck page with enter while focused on the card.
 
 ## [0.2.2] - 2019-05-01
 ### Changed
