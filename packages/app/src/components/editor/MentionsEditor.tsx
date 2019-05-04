@@ -1,5 +1,5 @@
 import { Editor, EditorProps, EditorState, DraftHandleValue } from 'draft-js'
-import React, { useEffect, useReducer, useCallback, useRef, memo } from 'react'
+import React, { useEffect, useReducer, useCallback, useRef } from 'react'
 
 import MentionsPopup from './MentionsPopup'
 import searchMentions from './searchMentions'
@@ -58,6 +58,7 @@ const MentionsEditor: React.FunctionComponent<Props> = ({
   onEscape,
   onBlur,
   handleReturn: handleContentReturn,
+  ariaAutoComplete = 'list',
   ...props
 }) => {
   const [
@@ -208,22 +209,29 @@ const MentionsEditor: React.FunctionComponent<Props> = ({
     return 'not-handled'
   }
 
+  const showingMentions = !!(mentionableEntries && mentionableEntries.length)
+
   return (
     <>
-      <Editor
-        {...props}
-        ariaAutoComplete="list"
-        role="combobox"
-        spellCheck
-        editorState={editorState}
-        onChange={onChange}
-        onUpArrow={handleUpArrow}
-        onDownArrow={handleDownArrow}
-        onTab={handleTab}
-        onEscape={handleEscape}
-        onBlur={handleBlur}
-        handleReturn={handleReturn}
-      />
+      {
+        // @ts-ignore role does not exist on Editor props yet
+        <Editor
+          {...props}
+          ariaAutoComplete={ariaAutoComplete}
+          ariaHasPopup={showingMentions}
+          ariaExpanded={showingMentions}
+          role="combobox"
+          spellCheck
+          editorState={editorState}
+          onChange={onChange}
+          onUpArrow={handleUpArrow}
+          onDownArrow={handleDownArrow}
+          onTab={handleTab}
+          onEscape={handleEscape}
+          onBlur={handleBlur}
+          handleReturn={handleReturn}
+        />
+      }
       <MentionsPopup
         mentionableEntries={mentionableEntries}
         selection={editorState.getSelection()}
@@ -236,4 +244,4 @@ const MentionsEditor: React.FunctionComponent<Props> = ({
   )
 }
 
-export default memo(MentionsEditor)
+export default MentionsEditor
