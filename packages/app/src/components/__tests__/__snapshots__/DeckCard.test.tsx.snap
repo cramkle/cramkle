@@ -7,7 +7,7 @@ exports[`<DeckCard /> should match snapshot 1`] = `
   >
     <div
       class="mdc-card__primary-action pa2 h-100"
-      role="button"
+      role="article"
       tabindex="0"
     >
       <h6
