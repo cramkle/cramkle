@@ -1,13 +1,13 @@
-import Card from '@material/react-card'
-import List, { ListItem, ListItemText } from '@material/react-list'
 import { SelectionState } from 'draft-js'
 import { equals } from 'ramda'
 import React, { memo } from 'react'
 
 import MentionSpan from './MentionSpan'
-import Portal from '../Portal'
 import { findMentionEntities } from './strategies'
 import getSelectionRect from './getSelectionRect'
+import Portal from '../Portal'
+import TypeaheadView from '../views/TypeaheadView'
+import { MentionableEntry } from '../../model/MentionableEntry'
 
 export const decorators = [
   {
@@ -20,6 +20,7 @@ interface Props {
   mentionableEntries: MentionableEntry[]
   highlightedMentionable?: MentionableEntry
   onMentionSelect: (mention: MentionableEntry) => void
+  onMentionHighlight: (mention: MentionableEntry) => void
   selection: SelectionState
   offset?: number
   characterOffset: number
@@ -83,6 +84,7 @@ const getStyleForSelectionRect = (
 
 const MentionsPopup: React.FunctionComponent<Props> = ({
   onMentionSelect,
+  onMentionHighlight,
   mentionableEntries,
   highlightedMentionable,
   offset = 5,
@@ -100,27 +102,17 @@ const MentionsPopup: React.FunctionComponent<Props> = ({
     return null
   }
 
-  const highlightedMentionableIndex = mentionableEntries.indexOf(
-    highlightedMentionable
-  )
-
   const style = getStyleForSelectionRect(selectionRect, offset)
 
   return (
     <Portal>
-      <Card style={style} className="pv2 z-2 absolute">
-        <List singleSelection selectedIndex={highlightedMentionableIndex} dense>
-          {mentionableEntries.map(mentionable => (
-            <ListItem
-              key={mentionable.id}
-              tabIndex={0}
-              onClick={() => onMentionSelect(mentionable)}
-            >
-              <ListItemText primaryText={mentionable.name} />
-            </ListItem>
-          ))}
-        </List>
-      </Card>
+      <TypeaheadView
+        style={style}
+        highlightedEntry={highlightedMentionable}
+        entries={mentionableEntries}
+        onSelect={onMentionSelect}
+        onHighlight={onMentionHighlight}
+      />
     </Portal>
   )
 }
