@@ -1,6 +1,6 @@
 import { EditorState, ContentState, Modifier, SelectionState } from 'draft-js'
 
-import { MentionableEntry } from './MentionsPopup'
+import { MentionableEntry } from '../../model/MentionableEntry'
 import { MENTION_TYPE } from './constants'
 
 const createMentionEntity = (

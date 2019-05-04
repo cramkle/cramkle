@@ -1,9 +1,10 @@
 import { Editor, EditorProps, EditorState, DraftHandleValue } from 'draft-js'
 import React, { useEffect, useReducer, useCallback, useRef, memo } from 'react'
 
-import MentionsPopup, { MentionableEntry } from './MentionsPopup'
+import MentionsPopup from './MentionsPopup'
 import searchMentions from './searchMentions'
 import replaceMentionInEditorState from './replaceMentionInEditorState'
+import { MentionableEntry } from '../../model/MentionableEntry'
 
 interface Props extends EditorProps {
   mentionSource: MentionableEntry[]

@@ -16,11 +16,6 @@ export const decorators = [
   },
 ]
 
-export interface MentionableEntry {
-  id: string
-  name: string
-}
-
 interface Props {
   mentionableEntries: MentionableEntry[]
   highlightedMentionable?: MentionableEntry
