@@ -121,6 +121,10 @@ const MentionsEditor: React.FunctionComponent<Props> = ({
     }
   }
 
+  const handleMentionHighlight = useCallback((mention: MentionableEntry) => {
+    dispatch({ type: 'update_highlighted', highlightedMentionable: mention })
+  }, [])
+
   const handleUpArrow = (evt: React.KeyboardEvent) => {
     if (mentionableEntries.length) {
       evt.preventDefault()
@@ -136,10 +140,7 @@ const MentionsEditor: React.FunctionComponent<Props> = ({
         highlighted = mentionableEntries[selectedIndex - 1]
       }
 
-      dispatch({
-        type: 'update_highlighted',
-        highlightedMentionable: highlighted,
-      })
+      handleMentionHighlight(highlighted)
     } else {
       onUpArrow && onUpArrow(evt)
     }
@@ -160,10 +161,7 @@ const MentionsEditor: React.FunctionComponent<Props> = ({
         highlighted = mentionableEntries[selectedIndex + 1]
       }
 
-      dispatch({
-        type: 'update_highlighted',
-        highlightedMentionable: highlighted,
-      })
+      handleMentionHighlight(highlighted)
     } else {
       onDownArrow && onDownArrow(evt)
     }
@@ -215,6 +213,7 @@ const MentionsEditor: React.FunctionComponent<Props> = ({
       <Editor
         {...props}
         ariaAutoComplete="list"
+        role="combobox"
         spellCheck
         editorState={editorState}
         onChange={onChange}
@@ -229,6 +228,7 @@ const MentionsEditor: React.FunctionComponent<Props> = ({
         mentionableEntries={mentionableEntries}
         selection={editorState.getSelection()}
         onMentionSelect={handleMentionSelect}
+        onMentionHighlight={handleMentionHighlight}
         characterOffset={characterOffset}
         highlightedMentionable={highlightedMentionable}
       />
