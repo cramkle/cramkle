@@ -1,5 +1,5 @@
 import { ContentState, SelectionState } from 'draft-js'
-import { MentionableEntry } from './MentionsPopup'
+import { MentionableEntry } from '../../model/MentionableEntry'
 
 const PUNCTUATION_REGEX =
   '\\.,\\+\\*\\?\\$\\@\\|#{}\\(\\)\\^\\-\\[\\]\\\\/!%\'"~=<>_:;'
