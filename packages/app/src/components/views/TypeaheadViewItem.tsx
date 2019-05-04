@@ -20,8 +20,9 @@ const TypeaheadViewItem: React.FunctionComponent<Props> = ({
 }) => {
   return (
     <div
-      className={classNames(styles.item, {
+      className={classNames(styles.item, 'c-on-surface pointer f6', {
         [styles.itemSelected]: highlighted,
+        'relative bg-transparent': highlighted,
       })}
       onMouseEnter={() => onHighlight(entry)}
       onMouseDown={() => onSelect(entry)}

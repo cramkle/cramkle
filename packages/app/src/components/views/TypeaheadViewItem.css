@@ -1,14 +1,9 @@
 .item {
   padding: .75rem .5rem;
-  color: var(--color-on-surface);
-  cursor: pointer;
-  font-size: .85rem;
 }
 
 .itemSelected {
   color: var(--color-primary);
-  position: relative;
-  background-color: transparent;
 }
 
 .itemSelected::before {
