@@ -1,10 +1,7 @@
-import classNames from 'classnames'
 import React from 'react'
 
 import TypeaheadViewItem from './TypeaheadViewItem'
 import { MentionableEntry } from '../../model/MentionableEntry'
-
-import styles from './TypeaheadView.css'
 
 interface Props {
   style?: object
@@ -24,7 +21,7 @@ const TypeaheadView: React.FunctionComponent<Props> = ({
   return (
     <ul
       style={style}
-      className={classNames(styles.container, 'absolute z-2')}
+      className="absolute z-2 bg-surface pv2 br2 ba b--surface"
       role="listbox"
     >
       {entries.map(entry => {
