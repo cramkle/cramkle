@@ -44,6 +44,7 @@ const SearchBar = () => {
       onFocus={handleFocus}
       onBlur={handleBlur}
       onSubmit={handleSubmit}
+      autoComplete="off"
     >
       <input
         ref={inputRef}

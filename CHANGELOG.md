@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Update `material` packages to v0.12.0.
 - Update theme colors to use css variables.
 - Set main content to use `main` tag.
+- Disable autocomplete on search bar.
 
 ### Fixed
 - Drawer items not tabbable.
