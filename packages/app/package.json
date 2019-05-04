@@ -10,10 +10,14 @@
     "test": "jest -c jest.config.js",
     "lint": "eslint --ext ts,tsx src && tsc --noEmit",
     "schema-download": "apollo service:download --endpoint=http://localhost:5000/graphql -k",
-    "gen-types": "apollo client:codegen __generated__ --target=typescript --localSchemaFile=schema.json --includes='src/**/*.gql,src/schema.graphql'"
+    "gen-types": "apollo client:codegen __generated__ --target=typescript --localSchemaFile=schema.json --includes='src/**/*.gql,src/schema.graphql'",
+    "add-locale": "lingui add-locale",
+    "extract": "lingui extract",
+    "compile": "lingui compile"
   },
   "dependencies": {
     "@cramkle/app-server": "^0.2.2",
+    "@lingui/react": "^2.7.4",
     "@material/react-button": "^0.12.0",
     "@material/react-card": "^0.12.0",
     "@material/react-checkbox": "^0.12.0",
@@ -58,7 +62,11 @@
     "yup": "^0.27.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@hot-loader/react-dom": "^16.8.3",
+    "@lingui/cli": "^2.7.4",
+    "@lingui/macro": "^2.7.4",
     "@lucasecdb/eslint-config": "^0.3.6",
     "@types/classnames": "^2.2.7",
     "@types/draft-js": "^0.10.30",
@@ -73,6 +81,8 @@
     "@types/react-router-dom": "^4.3.1",
     "@types/yup": "^0.26.10",
     "apollo": "^2.9.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-plugin-macros": "^2.5.1",
     "eslint": "^5.16.0",
     "identity-obj-proxy": "3.0.0",
     "jest": "^24.1.0",
