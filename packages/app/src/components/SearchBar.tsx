@@ -1,3 +1,5 @@
+import { t } from '@lingui/macro'
+import { I18n } from '@lingui/react'
 import IconButton from '@material/react-icon-button'
 import Icon from '@material/react-material-icon'
 import cx from 'classnames'
@@ -46,14 +48,18 @@ const SearchBar = () => {
       onSubmit={handleSubmit}
       autoComplete="off"
     >
-      <input
-        ref={inputRef}
-        className="bn w-100 h-100 pv2 bg-transparent outline-0 order-1"
-        placeholder="Search"
-        name="q"
-        value={searchValue}
-        onChange={e => setSearchValue(e.target.value)}
-      />
+      <I18n>
+        {({ i18n }) => (
+          <input
+            ref={inputRef}
+            className="bn w-100 h-100 pv2 bg-transparent outline-0 order-1"
+            placeholder={i18n._(t`Search`)}
+            name="q"
+            value={searchValue}
+            onChange={e => setSearchValue(e.target.value)}
+          />
+        )}
+      </I18n>
       {searchValue.length > 0 && (
         <IconButton className="mh1 order-2" onClick={handleClearSearch}>
           <Icon icon="close" />

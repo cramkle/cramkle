@@ -39,6 +39,10 @@ msgstr ""
 msgid "E-mail is required"
 msgstr ""
 
+#: src/components/AppDrawer.tsx:37
+msgid "Home"
+msgstr "Home"
+
 #: src/components/forms/RegisterForm.tsx:51
 msgid "I agree to the <0>Terms & Conditions</0>"
 msgstr ""
@@ -57,9 +61,17 @@ msgstr ""
 msgid "Login"
 msgstr ""
 
+#: src/components/AppDrawer.tsx:53
+msgid "Logout"
+msgstr "Logout"
+
 #: src/components/pages/LandingPage.tsx:34
 msgid "Make sure your knowledge will last"
 msgstr ""
+
+#: src/components/AppDrawer.tsx:41
+msgid "Marketplace"
+msgstr "Marketplace"
 
 #: src/components/pages/LandingPage.tsx:37
 msgid "Optimize your knowledge retention with this effective study method."
@@ -81,6 +93,14 @@ msgstr ""
 msgid "Register"
 msgstr ""
 
+#: src/components/SearchBar.tsx:33
+msgid "Search"
+msgstr "Search"
+
+#: src/components/AppDrawer.tsx:49
+msgid "Settings"
+msgstr "Settings"
+
 #: src/components/pages/LandingPage.tsx:21
 msgid "Sign Up"
 msgstr ""
@@ -88,6 +108,10 @@ msgstr ""
 #: src/components/pages/LandingPage.tsx:44
 msgid "Sign up now!"
 msgstr ""
+
+#: src/components/AppDrawer.tsx:45
+msgid "Statistics"
+msgstr "Statistics"
 
 #: src/components/forms/LoginForm.tsx:52
 #: src/components/forms/RegisterForm.tsx:44
