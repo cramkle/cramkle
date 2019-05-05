@@ -1,5 +1,8 @@
+import { Trans, t } from '@lingui/macro'
+import { I18n } from '@lingui/react'
 import Button from '@material/react-button'
-import MaterialIcon from '@material/react-material-icon'
+import IconButton from '@material/react-icon-button'
+import Icon from '@material/react-material-icon'
 import { Headline5, Body1, Body2 } from '@material/react-typography'
 import { Formik, FieldArray } from 'formik'
 import React from 'react'
@@ -27,142 +30,167 @@ type Props = ChildMutateProps<
 
 const AddModelPage: React.FunctionComponent<Props> = ({ history, mutate }) => {
   return (
-    <div className="pa3 ph4-m ph6-l">
-      <BackButton />
+    <I18n>
+      {({ i18n }) => (
+        <div className="pa3 ph4-m ph6-l">
+          <BackButton />
 
-      <Headline5>Create Model</Headline5>
+          <Headline5>
+            <Trans>Create Model</Trans>
+          </Headline5>
 
-      <Formik
-        initialValues={{ name: '', fields: [], templates: [] }}
-        validationSchema={yup.object().shape({
-          name: yup.string().required('Name is required'),
-          fields: yup.array(
-            yup.object().shape({
-              name: yup.string().required('Field name is required'),
-            })
-          ),
-          templates: yup.array(
-            yup.object().shape({
-              name: yup.string().required('Template name is required'),
-            })
-          ),
-        })}
-        onSubmit={values => {
-          return mutate({
-            variables: values,
-            update: (proxy, { data: { createModel } }) => {
-              const data = proxy.readQuery<ModelsQuery>({ query: modelsQuery })
+          <Formik
+            initialValues={{ name: '', fields: [], templates: [] }}
+            validationSchema={yup.object().shape({
+              name: yup.string().required(i18n._(t`Name is required`)),
+              fields: yup.array(
+                yup.object().shape({
+                  name: yup
+                    .string()
+                    .required(i18n._(t`Field name is required`)),
+                })
+              ),
+              templates: yup.array(
+                yup.object().shape({
+                  name: yup
+                    .string()
+                    .required(i18n._(t`Template name is required`)),
+                })
+              ),
+            })}
+            onSubmit={values => {
+              return mutate({
+                variables: values,
+                update: (proxy, { data: { createModel } }) => {
+                  const data = proxy.readQuery<ModelsQuery>({
+                    query: modelsQuery,
+                  })
 
-              data.cardModels.push(createModel)
+                  data.cardModels.push(createModel)
 
-              proxy.writeQuery({ query: modelsQuery, data })
-            },
-          }).then(query => {
-            // make typescript happy
-            if (!query) {
-              return
-            }
+                  proxy.writeQuery({ query: modelsQuery, data })
+                },
+              }).then(query => {
+                // make typescript happy
+                if (!query) {
+                  return
+                }
 
-            history.push('/models', { newModel: query.data.createModel.id })
-          })
-        }}
-      >
-        {({ handleSubmit, values, isValid, isSubmitting }) => (
-          <form className="flex flex-column w-100 pv3" onSubmit={handleSubmit}>
-            <TextInputField name="name" label="Name" />
+                history.push('/models', { newModel: query.data.createModel.id })
+              })
+            }}
+          >
+            {({ handleSubmit, values, isValid, isSubmitting }) => (
+              <form
+                className="flex flex-column w-100 pv3"
+                onSubmit={handleSubmit}
+              >
+                <TextInputField name="name" label={i18n._(t`Name`)} />
 
-            <div className="flex">
-              <FieldArray name="templates" validateOnChange={false}>
-                {({ push, remove }) => (
-                  <div className={`${styles.evenColumn} mt3 pr3`}>
-                    <Body1>Templates</Body1>
-                    <div className="pv2">
-                      {values.templates && values.templates.length ? (
-                        values.templates.map((_, index) => (
-                          <div className="mb2 flex items-baseline" key={index}>
-                            <div className="w-100">
-                              <TextInputField
-                                className="w-100"
-                                name={`templates.${index}.name`}
-                                label="Template name"
-                              />
-                            </div>
+                <div className="flex">
+                  <FieldArray name="templates" validateOnChange={false}>
+                    {({ push, remove }) => (
+                      <div className={`${styles.evenColumn} mt3 pr3`}>
+                        <Body1>
+                          <Trans>Templates</Trans>
+                        </Body1>
+                        <div className="pv2">
+                          {values.templates && values.templates.length ? (
+                            values.templates.map((_, index) => (
+                              <div
+                                className="mb2 flex items-baseline"
+                                key={index}
+                              >
+                                <div className="w-100">
+                                  <TextInputField
+                                    className="w-100"
+                                    name={`templates.${index}.name`}
+                                    label={i18n._(t`Template name`)}
+                                  />
+                                </div>
 
-                            <Button
-                              className="ml3"
-                              outlined
-                              icon={<MaterialIcon icon="delete" />}
-                              onClick={() => remove(index)}
-                              dense
-                            >
-                              Remove
-                            </Button>
-                          </div>
-                        ))
-                      ) : (
-                        <Body2>No templates added</Body2>
-                      )}
-                    </div>
+                                <IconButton
+                                  className="ml1 c-primary"
+                                  onClick={() => remove(index)}
+                                  aria-label={i18n._(t`Remove`)}
+                                >
+                                  <Icon icon="delete" aria-hidden="true" />
+                                </IconButton>
+                              </div>
+                            ))
+                          ) : (
+                            <Body2>
+                              <Trans>No templates added</Trans>
+                            </Body2>
+                          )}
+                        </div>
 
-                    <Button onClick={() => push({ name: '' })}>
-                      Add template
-                    </Button>
-                  </div>
-                )}
-              </FieldArray>
+                        <Button onClick={() => push({ name: '' })}>
+                          <Trans>Add template</Trans>
+                        </Button>
+                      </div>
+                    )}
+                  </FieldArray>
 
-              <FieldArray name="fields" validateOnChange={false}>
-                {({ push, remove }) => (
-                  <div className={`${styles.evenColumn} mt3`}>
-                    <Body1>Fields</Body1>
-                    <div className="pv2">
-                      {values.fields && values.fields.length ? (
-                        values.fields.map((_, index) => (
-                          <div className="mb2 flex items-baseline" key={index}>
-                            <div className="w-100">
-                              <TextInputField
-                                className="w-100"
-                                name={`fields.${index}.name`}
-                                label="Field name"
-                              />
-                            </div>
+                  <FieldArray name="fields" validateOnChange={false}>
+                    {({ push, remove }) => (
+                      <div className={`${styles.evenColumn} mt3`}>
+                        <Body1>
+                          <Trans>Fields</Trans>
+                        </Body1>
+                        <div className="pv2">
+                          {values.fields && values.fields.length ? (
+                            values.fields.map((_, index) => (
+                              <div
+                                className="mb2 flex items-baseline"
+                                key={index}
+                              >
+                                <div className="w-100">
+                                  <TextInputField
+                                    className="w-100"
+                                    name={`fields.${index}.name`}
+                                    label={i18n._(t`Field name`)}
+                                  />
+                                </div>
 
-                            <Button
-                              className="ml3"
-                              outlined
-                              icon={<MaterialIcon icon="delete" />}
-                              onClick={() => remove(index)}
-                              dense
-                            >
-                              Remove
-                            </Button>
-                          </div>
-                        ))
-                      ) : (
-                        <Body2>No fields added</Body2>
-                      )}
-                    </div>
+                                <IconButton
+                                  className="ml1 c-primary"
+                                  onClick={() => remove(index)}
+                                  aria-label={i18n._(t`Remove`)}
+                                >
+                                  <Icon icon="delete" aria-hidden="true" />
+                                </IconButton>
+                              </div>
+                            ))
+                          ) : (
+                            <Body2>
+                              <Trans>No fields added</Trans>
+                            </Body2>
+                          )}
+                        </div>
 
-                    <Button onClick={() => push({ name: '' })}>
-                      Add field
-                    </Button>
-                  </div>
-                )}
-              </FieldArray>
-            </div>
+                        <Button onClick={() => push({ name: '' })}>
+                          <Trans>Add field</Trans>
+                        </Button>
+                      </div>
+                    )}
+                  </FieldArray>
+                </div>
 
-            <Button
-              className="self-start mt3"
-              type="submit"
-              raised
-              disabled={!isValid || isSubmitting}
-            >
-              Create
-            </Button>
-          </form>
-        )}
-      </Formik>
-    </div>
+                <Button
+                  className="self-start mt3"
+                  type="submit"
+                  raised
+                  disabled={!isValid || isSubmitting}
+                >
+                  <Trans>Create</Trans>
+                </Button>
+              </form>
+            )}
+          </Formik>
+        </div>
+      )}
+    </I18n>
   )
 }
 
