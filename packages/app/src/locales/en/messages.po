@@ -12,3 +12,97 @@ msgstr ""
 "Last-Translator: \n"
 "Language-Team: \n"
 "Plural-Forms: \n"
+
+#: src/components/pages/LoginPage.tsx:29
+msgid "Account created successfully"
+msgstr ""
+
+#: src/components/forms/RegisterForm.tsx:38
+#: src/components/forms/RegisterForm.tsx:39
+msgid "Agreement is required"
+msgstr ""
+
+#: src/components/pages/LandingPage.tsx:47
+#: src/components/pages/RegisterPage.tsx:20
+msgid "Already have an account? <0>Log In</0>"
+msgstr ""
+
+#: src/components/pages/LoginPage.tsx:21
+msgid "Don't have an account? <0>Sign Up</0>"
+msgstr ""
+
+#: src/components/forms/RegisterForm.tsx:45
+msgid "E-mail"
+msgstr ""
+
+#: src/components/forms/RegisterForm.tsx:31
+msgid "E-mail is required"
+msgstr ""
+
+#: src/components/forms/RegisterForm.tsx:51
+msgid "I agree to the <0>Terms & Conditions</0>"
+msgstr ""
+
+#: src/components/forms/LoginForm.tsx:18
+msgid "Invalid username"
+msgstr ""
+
+#: src/components/forms/LoginForm.tsx:41
+msgid "Invalid username and/or password"
+msgstr ""
+
+#: src/components/forms/LoginForm.tsx:49
+#: src/components/pages/LandingPage.tsx:24
+#: src/components/pages/LoginPage.tsx:13
+msgid "Login"
+msgstr ""
+
+#: src/components/pages/LandingPage.tsx:34
+msgid "Make sure your knowledge will last"
+msgstr ""
+
+#: src/components/pages/LandingPage.tsx:37
+msgid "Optimize your knowledge retention with this effective study method."
+msgstr ""
+
+#: src/components/forms/LoginForm.tsx:53
+#: src/components/forms/RegisterForm.tsx:46
+msgid "Password"
+msgstr ""
+
+#: src/components/forms/LoginForm.tsx:20
+#: src/components/forms/RegisterForm.tsx:35
+msgid "Password is required"
+msgstr ""
+
+#: src/components/forms/RegisterForm.tsx:15
+#: src/components/forms/RegisterForm.tsx:62
+#: src/components/pages/RegisterPage.tsx:12
+msgid "Register"
+msgstr ""
+
+#: src/components/pages/LandingPage.tsx:21
+msgid "Sign Up"
+msgstr ""
+
+#: src/components/pages/LandingPage.tsx:44
+msgid "Sign up now!"
+msgstr ""
+
+#: src/components/forms/LoginForm.tsx:52
+#: src/components/forms/RegisterForm.tsx:44
+msgid "Username"
+msgstr ""
+
+#: src/components/forms/LoginForm.tsx:19
+#: src/components/forms/RegisterForm.tsx:27
+msgid "Username is required"
+msgstr ""
+
+#: src/components/forms/RegisterForm.tsx:26
+msgid "Username must consist only of alphanumeric characters and underscores"
+msgstr ""
+
+#: src/components/forms/LoginForm.tsx:58
+msgid "login.button"
+msgstr ""
