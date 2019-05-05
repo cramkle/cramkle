@@ -1,5 +1,5 @@
 query UserQuery {
-  user {
+  me {
     id
     username
     email

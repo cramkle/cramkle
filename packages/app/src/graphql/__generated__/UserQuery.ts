@@ -6,7 +6,7 @@
 // GraphQL query operation: UserQuery
 // ====================================================
 
-export interface UserQuery_user {
+export interface UserQuery_me {
   __typename: "User";
   /**
    *  User id 
@@ -26,5 +26,5 @@ export interface UserQuery {
   /**
    *  Get currently logged user 
    */
-  user: UserQuery_user | null;
+  me: UserQuery_me | null;
 }

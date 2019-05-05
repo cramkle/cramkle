@@ -4,18 +4,15 @@ import { Route, Redirect, RouteProps } from 'react-router-dom'
 import { graphql, ChildProps } from 'react-apollo'
 
 import userQuery from '../../graphql/userQuery.gql'
-
-interface Data {
-  user: object
-}
+import { UserQuery } from '../../graphql/__generated__/UserQuery'
 
 interface Input {
-  challenge: (user: Data['user']) => boolean
+  challenge: (user: UserQuery['me']) => boolean
   redirectPath: string
   displayName: string
 }
 
-const withUser = graphql<RouteProps, Data>(userQuery)
+const withUser = graphql<RouteProps, UserQuery>(userQuery)
 
 type SupportedRouteProps = Pick<
   RouteProps,
@@ -24,12 +21,12 @@ type SupportedRouteProps = Pick<
 
 const createRoute = ({ challenge, redirectPath, displayName }: Input) => {
   const CustomRoute: React.FunctionComponent<
-    ChildProps<SupportedRouteProps, Data>
-  > = ({ data: { user }, render, component: Component, ...rest }) => (
+    ChildProps<SupportedRouteProps, UserQuery>
+  > = ({ data: { me }, render, component: Component, ...rest }) => (
     <Route
       {...rest}
       render={props => {
-        if (challenge(user)) {
+        if (challenge(me)) {
           if (typeof render === 'function') {
             return render(props)
           }

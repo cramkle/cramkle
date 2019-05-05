@@ -20,13 +20,7 @@ import { withRouter, RouteComponentProps } from 'react-router'
 import NoSSR from './NoSSR'
 import { useMobile } from './MobileContext'
 import userQuery from '../graphql/userQuery.gql'
-
-interface Data {
-  user: {
-    email: string
-    username: string
-  }
-}
+import { UserQuery } from '../graphql/__generated__/UserQuery'
 
 interface Props extends RouteComponentProps {
   content: ReactNode
@@ -35,13 +29,13 @@ interface Props extends RouteComponentProps {
   onClose: () => void
 }
 
-const AppDrawer: React.FunctionComponent<ChildDataProps<Props, Data>> = ({
+const AppDrawer: React.FunctionComponent<ChildDataProps<Props, UserQuery>> = ({
   content,
   render,
   open,
   onClose,
   history,
-  data: { user },
+  data: { me },
 }) => {
   const isMobile = useMobile()
 
@@ -103,8 +97,8 @@ const AppDrawer: React.FunctionComponent<ChildDataProps<Props, Data>> = ({
 
   const header = (
     <DrawerHeader>
-      <DrawerTitle>{user.username}</DrawerTitle>
-      <DrawerSubtitle>{user.email}</DrawerSubtitle>
+      <DrawerTitle>{me.username}</DrawerTitle>
+      <DrawerSubtitle>{me.email}</DrawerSubtitle>
     </DrawerHeader>
   )
 
