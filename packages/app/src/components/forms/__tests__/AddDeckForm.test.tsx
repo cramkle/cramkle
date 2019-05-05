@@ -1,3 +1,4 @@
+import { I18nProvider } from '@lingui/react'
 import React from 'react'
 import { render as rtlRender, fireEvent, wait } from 'react-testing-library'
 import { MockedProvider, MockedResponse } from 'react-apollo/test-utils'
@@ -35,7 +36,9 @@ const render = (ui: React.ReactElement, options: Options = {}) => {
   } = options
 
   const utils = rtlRender(
-    <MockedProvider mocks={mutationMocks}>{ui}</MockedProvider>
+    <I18nProvider language="en">
+      <MockedProvider mocks={mutationMocks}>{ui}</MockedProvider>
+    </I18nProvider>
   )
 
   return {
