@@ -1,3 +1,5 @@
+import { Trans, t } from '@lingui/macro'
+import { I18n } from '@lingui/react'
 import Dialog, {
   DialogContent,
   DialogTitle,
@@ -26,73 +28,83 @@ interface Props {
 const AddDeckForm: React.FunctionComponent<
   ChildMutateProps<Props, CreateDeckMutation, CreateDeckMutationVariables>
 > = ({ open, onClose, mutate }) => (
-  <Formik
-    initialValues={{
-      title: '',
-      description: '',
-    }}
-    validationSchema={yup.object().shape({
-      title: yup.string().required('The title is required'),
-      description: yup.string(),
-    })}
-    onSubmit={(values, props) => {
-      return mutate({
-        variables: values,
-        update: (proxy, { data: { createDeck } }) => {
-          const data = proxy.readQuery<DecksQuery>({ query: decksQuery })
+  <I18n>
+    {({ i18n }) => (
+      <Formik
+        initialValues={{
+          title: '',
+          description: '',
+        }}
+        validationSchema={yup.object().shape({
+          title: yup.string().required(i18n._(t`The title is required`)),
+          description: yup.string(),
+        })}
+        onSubmit={(values, props) => {
+          return mutate({
+            variables: values,
+            update: (proxy, { data: { createDeck } }) => {
+              const data = proxy.readQuery<DecksQuery>({ query: decksQuery })
 
-          data.decks.push(createDeck)
+              data.decks.push(createDeck)
 
-          proxy.writeQuery({ query: decksQuery, data })
-        },
-      }).then(() => {
-        props.resetForm()
-        onClose('created')
-      })
-    }}
-    isInitialValid={false}
-  >
-    {({ isValid, handleSubmit }) => {
-      const handleClose = (action: string) => {
-        if (action === 'create') {
-          handleSubmit()
-        }
+              proxy.writeQuery({ query: decksQuery, data })
+            },
+          }).then(() => {
+            props.resetForm()
+            onClose('created')
+          })
+        }}
+        isInitialValid={false}
+      >
+        {({ isValid, handleSubmit }) => {
+          const handleClose = (action: string) => {
+            if (action === 'create') {
+              handleSubmit()
+            }
 
-        onClose(action)
-      }
+            onClose(action)
+          }
 
-      return (
-        <Dialog scrimClickAction="dismiss" open={open} onClose={handleClose}>
-          <DialogTitle>Add deck</DialogTitle>
-          <DialogContent style={{ width: '320px' }}>
-            <TextInputField
-              id="title"
-              className="w-100"
-              name="title"
-              label="Title"
-            />
-            <TextInputField
-              id="description"
-              className="w-100 mt3"
-              name="description"
-              label="Description"
-              textarea
-            />
-          </DialogContent>
-          <DialogFooter>
-            <DialogButton
-              action="create"
-              isDefault
-              type="submit"
-              disabled={!isValid}
+          return (
+            <Dialog
+              scrimClickAction="dismiss"
+              open={open}
+              onClose={handleClose}
             >
-              Create
-            </DialogButton>
-          </DialogFooter>
-        </Dialog>
-      )
-    }}
-  </Formik>
+              <DialogTitle>
+                <Trans>Add Deck</Trans>
+              </DialogTitle>
+              <DialogContent style={{ width: '320px' }}>
+                <TextInputField
+                  id="title"
+                  className="w-100"
+                  name="title"
+                  label={i18n._(t`Title`)}
+                />
+                <TextInputField
+                  id="description"
+                  className="w-100 mt3"
+                  name="description"
+                  label={i18n._(t`Description`)}
+                  textarea
+                />
+              </DialogContent>
+              <DialogFooter>
+                <DialogButton
+                  action="create"
+                  isDefault
+                  type="submit"
+                  disabled={!isValid}
+                >
+                  <Trans>Create</Trans>
+                </DialogButton>
+              </DialogFooter>
+            </Dialog>
+          )
+        }}
+      </Formik>
+    )}
+  </I18n>
 )
 
 export default graphql<Props, CreateDeckMutation, CreateDeckMutationVariables>(
