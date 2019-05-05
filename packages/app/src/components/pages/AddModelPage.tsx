@@ -10,29 +10,22 @@ import * as yup from 'yup'
 import BackButton from '../BackButton'
 import { TextInputField } from '../forms/Fields'
 import createModelMutation from '../../graphql/createModelMutation.gql'
+import {
+  CreateModelMutation,
+  CreateModelMutationVariables,
+} from '../../graphql/__generated__/CreateModelMutation'
 import modelsQuery from '../../graphql/modelsQuery.gql'
+import { ModelsQuery } from '../../graphql/__generated__/ModelsQuery'
+
 import styles from './AddModelPage.css'
 
-interface Model {
-  id: string
-  name: string
-  templates: {
-    id: string
-    name: string
-  }[]
-}
+type Props = ChildMutateProps<
+  RouteComponentProps,
+  CreateModelMutation,
+  CreateModelMutationVariables
+>
 
-interface MutationData {
-  createModel: Model
-}
-
-interface QueryData {
-  cardModels: Model[]
-}
-
-const AddModelPage: React.FunctionComponent<
-  ChildMutateProps<RouteComponentProps, MutationData>
-> = ({ history, mutate }) => {
+const AddModelPage: React.FunctionComponent<Props> = ({ history, mutate }) => {
   return (
     <div className="pa3 ph4-m ph6-l">
       <BackButton />
@@ -58,7 +51,7 @@ const AddModelPage: React.FunctionComponent<
           return mutate({
             variables: values,
             update: (proxy, { data: { createModel } }) => {
-              const data = proxy.readQuery<QueryData>({ query: modelsQuery })
+              const data = proxy.readQuery<ModelsQuery>({ query: modelsQuery })
 
               data.cardModels.push(createModel)
 
@@ -174,6 +167,8 @@ const AddModelPage: React.FunctionComponent<
 }
 
 export default compose(
-  graphql<{}, MutationData>(createModelMutation),
+  graphql<{}, CreateModelMutation, CreateModelMutationVariables>(
+    createModelMutation
+  ),
   withRouter
 )(AddModelPage)
