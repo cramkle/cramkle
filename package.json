@@ -1,6 +1,6 @@
 {
   "name": "@cramkle/api",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "private": true,
   "main": "dist/index.js",
   "repository": "https://github.com/lucasecdb/cramkle-api.git",
