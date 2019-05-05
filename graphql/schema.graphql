@@ -41,7 +41,10 @@ type Query {
   note(id: ID!): Note
 
   """ Get currently logged user """
-  user: User
+  user: User @deprecated(reason: "Use the 'me' query instead")
+
+  """ Get currently logged user """
+  me: User
 }
 
 """ App mutations """
