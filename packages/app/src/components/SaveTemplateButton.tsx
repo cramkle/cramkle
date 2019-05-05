@@ -1,3 +1,4 @@
+import { Trans } from '@lingui/macro'
 import Button from '@material/react-button'
 import { RawDraftContentState } from 'draft-js'
 import React, { useState } from 'react'
@@ -31,7 +32,7 @@ const SaveTemplateButton: React.FunctionComponent<
       disabled={loading}
       dense
     >
-      Save Template
+      <Trans>Save Template</Trans>
     </Button>
   )
 }

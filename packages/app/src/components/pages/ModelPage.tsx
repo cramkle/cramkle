@@ -1,3 +1,4 @@
+import { Trans } from '@lingui/macro'
 import List, { ListItem, ListItemText } from '@material/react-list'
 import Tab from '@material/react-tab'
 import TabBar from '@material/react-tab-bar'
@@ -50,7 +51,9 @@ const ModelPage: React.FunctionComponent<ChildProps<Props, Query>> = ({
           <DeleteModelButton model={cardModel} />
         </div>
 
-        <Body1 className="dib mv3">Templates</Body1>
+        <Body1 className="dib mv3">
+          <Trans>Templates</Trans>
+        </Body1>
         {cardModel.templates.length ? (
           <>
             <TabBar
@@ -64,13 +67,17 @@ const ModelPage: React.FunctionComponent<ChildProps<Props, Query>> = ({
 
             {cardModel.templates.map((template, index) => (
               <div hidden={selectedTemplate !== index} key={template.id}>
-                <Caption className="dib mt3">Template front side</Caption>
+                <Caption className="dib mt3">
+                  <Trans>Template front side</Trans>
+                </Caption>
                 <TemplateEditor
                   initialContentState={template.frontSide}
                   fields={cardModel.fields}
                 />
 
-                <Caption className="dib mt3">Template back side</Caption>
+                <Caption className="dib mt3">
+                  <Trans>Template back side</Trans>
+                </Caption>
                 <TemplateEditor
                   initialContentState={template.backSide}
                   fields={cardModel.fields}
@@ -80,11 +87,15 @@ const ModelPage: React.FunctionComponent<ChildProps<Props, Query>> = ({
           </>
         ) : (
           <Body2>
-            You haven&apos;t created any templates on this model yet.
+            <Trans>
+              You haven&apos;t created any templates on this model yet.
+            </Trans>
           </Body2>
         )}
 
-        <Body1 className="mv3">Fields</Body1>
+        <Body1 className="mv3">
+          <Trans>Fields</Trans>
+        </Body1>
         {cardModel.fields.length ? (
           <List dense>
             {cardModel.fields.map(field => (
@@ -94,7 +105,9 @@ const ModelPage: React.FunctionComponent<ChildProps<Props, Query>> = ({
             ))}
           </List>
         ) : (
-          <Body2 className="mv3">This model doesn&apos;t have any fields</Body2>
+          <Body2 className="mv3">
+            <Trans>This model doesn&apos;t have any fields yet.</Trans>
+          </Body2>
         )}
       </div>
     </>

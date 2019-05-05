@@ -1,19 +1,20 @@
+import { t } from '@lingui/macro'
 import { EditorState } from 'draft-js'
 import React, { memo } from 'react'
 
 import StyleButton, { Style } from './StyleButton'
 
 export const BLOCK_TYPES: Style[] = [
-  { label: 'H1', style: 'header-one' },
-  { label: 'H2', style: 'header-two' },
-  { label: 'H3', style: 'header-three' },
-  { label: 'H4', style: 'header-four' },
-  { label: 'H5', style: 'header-five' },
-  { label: 'H6', style: 'header-six' },
-  { label: 'Blockquote', style: 'blockquote' },
-  { label: 'UL', style: 'unordered-list-item' },
-  { label: 'OL', style: 'ordered-list-item' },
-  { label: 'Code Block', style: 'code-block' },
+  { label: t`H1`, style: 'header-one' },
+  { label: t`H2`, style: 'header-two' },
+  { label: t`H3`, style: 'header-three' },
+  { label: t`H4`, style: 'header-four' },
+  { label: t`H5`, style: 'header-five' },
+  { label: t`H6`, style: 'header-six' },
+  { label: t`Blockquote`, style: 'blockquote' },
+  { label: t`UL`, style: 'unordered-list-item' },
+  { label: t`OL`, style: 'ordered-list-item' },
+  { label: t`Code Block`, style: 'code-block' },
 ]
 
 const BlockStyleControls: React.FunctionComponent<{
@@ -30,7 +31,7 @@ const BlockStyleControls: React.FunctionComponent<{
     <div className="mb2 f6">
       {BLOCK_TYPES.map(type => (
         <StyleButton
-          key={type.label}
+          key={type.style}
           active={type.style === blockType}
           label={type.label}
           onToggle={onToggle}

@@ -1,17 +1,24 @@
+import { MessageDescriptor } from '@lingui/core'
+import { I18n } from '@lingui/react'
 import cx from 'classnames'
 import React, { memo } from 'react'
 
 export interface Style {
-  label: string
+  label: MessageDescriptor
   style: string
 }
 
-const StyleButton: React.FunctionComponent<{
-  onToggle: (s: string) => void
-  label: string
-  style: string
+interface Props extends Style {
   active: boolean
-}> = ({ onToggle, label, style, active }) => {
+  onToggle: (style: string) => void
+}
+
+const StyleButton: React.FunctionComponent<Props> = ({
+  onToggle,
+  label,
+  style,
+  active,
+}) => {
   const handleToggle = (e: React.MouseEvent<HTMLSpanElement>) => {
     e.preventDefault()
     onToggle(style)
@@ -22,14 +29,18 @@ const StyleButton: React.FunctionComponent<{
   })
 
   return (
-    <span
-      role="button"
-      tabIndex={0}
-      className={className}
-      onMouseDown={handleToggle}
-    >
-      {label}
-    </span>
+    <I18n>
+      {({ i18n }) => (
+        <span
+          role="button"
+          tabIndex={0}
+          className={className}
+          onMouseDown={handleToggle}
+        >
+          {i18n._(label)}
+        </span>
+      )}
+    </I18n>
   )
 }
 
