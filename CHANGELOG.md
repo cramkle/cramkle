@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Set main content to use `main` tag.
 - Disable autocomplete on search bar.
 - Update mentions popup to use the typeahead component.
+- Translated all pages to portuguese.
 
 ### Fixed
 - Drawer items not tabbable.
