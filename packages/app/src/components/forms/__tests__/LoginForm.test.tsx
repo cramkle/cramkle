@@ -1,3 +1,4 @@
+import { I18nProvider } from '@lingui/react'
 import React from 'react'
 import { render, fireEvent, wait } from 'react-testing-library'
 
@@ -10,7 +11,11 @@ describe('<LoginForm />', () => {
       statusText: 'Unauthorized',
     })
 
-    const { getByLabelText, getByText, getByTestId } = render(<LoginForm />)
+    const { getByLabelText, getByText, getByTestId } = render(
+      <I18nProvider language="en">
+        <LoginForm />
+      </I18nProvider>
+    )
 
     const usernameInput = getByLabelText(/username/i)
     const passwordInput = getByLabelText(/password/i)
