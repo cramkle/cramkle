@@ -1,3 +1,4 @@
+import { Trans } from '@lingui/macro'
 import Button from '@material/react-button'
 import Dialog, {
   DialogTitle,
@@ -5,7 +6,7 @@ import Dialog, {
   DialogFooter,
   DialogButton,
 } from '@material/react-dialog'
-import MaterialIcon from '@material/react-material-icon'
+import Icon from '@material/react-material-icon'
 import React, { useState, useCallback } from 'react'
 import { graphql, ChildMutateProps } from 'react-apollo'
 import { withRouter, RouteComponentProps } from 'react-router'
@@ -64,21 +65,25 @@ const DeleteDeckButton: React.FunctionComponent<
     <>
       <Button
         className="mv2"
-        icon={<MaterialIcon icon="delete" />}
+        icon={<Icon icon="delete" aria-hidden="true" />}
         outlined
         onClick={() => setDialogOpen(true)}
       >
-        Delete
+        <Trans>Delete</Trans>
       </Button>
       <Dialog open={dialogOpen} onClose={handleClose} role="alertdialog">
-        <DialogTitle>Delete deck</DialogTitle>
+        <DialogTitle>
+          <Trans>Delete deck</Trans>
+        </DialogTitle>
         <DialogContent>
-          Are you sure you want to delete this deck?
+          <Trans>Are you sure you want to delete this deck?</Trans>
         </DialogContent>
         <DialogFooter>
-          <DialogButton action="cancel">Cancel</DialogButton>
+          <DialogButton action="cancel">
+            <Trans>Cancel</Trans>
+          </DialogButton>
           <DialogButton action="confirm" isDefault>
-            Delete
+            <Trans>Delete</Trans>
           </DialogButton>
         </DialogFooter>
       </Dialog>
