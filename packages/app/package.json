@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "cks dev",
     "start": "cks start",
+    "prebuild": "yarn compile --strict",
     "build": "cks build",
     "prettier": "prettier --write 'src/**/*.ts' 'src/**/*.tsx'",
     "test": "jest -c jest.config.js",
