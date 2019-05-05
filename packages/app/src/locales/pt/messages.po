@@ -17,11 +17,12 @@ msgstr ""
 msgid "Account created successfully"
 msgstr "Conta criada com sucesso"
 
+#: src/components/forms/AddDeckForm.tsx:40
 #: src/components/pages/DecksSection.tsx:23
 msgid "Add Deck"
 msgstr "Adicionar deck"
 
-#: src/components/pages/AddModelPage.tsx:104
+#: src/components/pages/AddModelPage.tsx:105
 msgid "Add field"
 msgstr "Adicionar campo"
 
@@ -29,7 +30,7 @@ msgstr "Adicionar campo"
 msgid "Add model"
 msgstr "Adicionar modelo"
 
-#: src/components/pages/AddModelPage.tsx:79
+#: src/components/pages/AddModelPage.tsx:80
 msgid "Add template"
 msgstr "Adicionar template"
 
@@ -67,11 +68,12 @@ msgstr "Cancelar"
 msgid "Code Block"
 msgstr "Bloco de código"
 
-#: src/components/pages/AddModelPage.tsx:111
+#: src/components/forms/AddDeckForm.tsx:48
+#: src/components/pages/AddModelPage.tsx:112
 msgid "Create"
 msgstr "Criar"
 
-#: src/components/pages/AddModelPage.tsx:22
+#: src/components/pages/AddModelPage.tsx:23
 msgid "Create Model"
 msgstr "Criar Modelo"
 
@@ -94,6 +96,10 @@ msgstr "Apagar deck"
 msgid "Delete model"
 msgstr "Apagar modelo"
 
+#: src/components/forms/AddDeckForm.tsx:44
+msgid "Description"
+msgstr "Descrição"
+
 #: src/components/pages/LoginPage.tsx:21
 msgid "Don't have an account? <0>Sign Up</0>"
 msgstr "Não possui uma conta? <0>Cadastre-se</0>"
@@ -106,15 +112,15 @@ msgstr "E-mail"
 msgid "E-mail is required"
 msgstr "E-mail é obrigatório"
 
-#: src/components/pages/AddModelPage.tsx:92
+#: src/components/pages/AddModelPage.tsx:93
 msgid "Field name"
 msgstr "Nome do campo"
 
-#: src/components/pages/AddModelPage.tsx:30
+#: src/components/pages/AddModelPage.tsx:31
 msgid "Field name is required"
 msgstr "Nome do campo é obrigatório"
 
-#: src/components/pages/AddModelPage.tsx:87
+#: src/components/pages/AddModelPage.tsx:88
 #: src/components/pages/ModelPage.tsx:61
 msgid "Fields"
 msgstr "Campos"
@@ -198,19 +204,19 @@ msgstr "Modelos"
 msgid "Monospace"
 msgstr "Monoespaçada"
 
-#: src/components/pages/AddModelPage.tsx:56
+#: src/components/pages/AddModelPage.tsx:57
 msgid "Name"
 msgstr "Nome"
 
-#: src/components/pages/AddModelPage.tsx:26
+#: src/components/pages/AddModelPage.tsx:27
 msgid "Name is required"
 msgstr "Nome é obrigatório"
 
-#: src/components/pages/AddModelPage.tsx:99
+#: src/components/pages/AddModelPage.tsx:100
 msgid "No fields added"
 msgstr "Nenhum campo adicionado"
 
-#: src/components/pages/AddModelPage.tsx:74
+#: src/components/pages/AddModelPage.tsx:75
 msgid "No templates added"
 msgstr "Nenhum template adicionado"
 
@@ -279,15 +285,15 @@ msgstr "Verso do template"
 msgid "Template front side"
 msgstr "Frente do template"
 
-#: src/components/pages/AddModelPage.tsx:67
+#: src/components/pages/AddModelPage.tsx:68
 msgid "Template name"
 msgstr "Nome do template"
 
-#: src/components/pages/AddModelPage.tsx:35
+#: src/components/pages/AddModelPage.tsx:36
 msgid "Template name is required"
 msgstr "Nome do template é obrigatório"
 
-#: src/components/pages/AddModelPage.tsx:62
+#: src/components/pages/AddModelPage.tsx:63
 #: src/components/pages/ModelPage.tsx:36
 msgid "Templates"
 msgstr "Templates"
@@ -300,9 +306,17 @@ msgstr "Os decks que você criar irão aparecer aqui."
 msgid "The models you create will appear here."
 msgstr "Os modelos que você criar irão aparecer aqui."
 
+#: src/components/forms/AddDeckForm.tsx:16
+msgid "The title is required"
+msgstr "O título é obrigatório"
+
 #: src/components/pages/ModelPage.tsx:68
 msgid "This model doesn't have any fields yet."
 msgstr "Este modelo ainda não possui nenhum campo."
+
+#: src/components/forms/AddDeckForm.tsx:43
+msgid "Title"
+msgstr "Título"
 
 #: src/components/editor/BlockStyleControls.tsx:12
 msgid "UL"
