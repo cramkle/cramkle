@@ -1,3 +1,5 @@
+import { Trans, t } from '@lingui/macro'
+import { I18n } from '@lingui/react'
 import Icon from '@material/react-material-icon'
 import Tab from '@material/react-tab'
 import TabBar from '@material/react-tab-bar'
@@ -39,9 +41,13 @@ const HomePage: React.FunctionComponent<RouteComponentProps> = ({
 
   return (
     <>
-      <Helmet>
-        <title>Home</title>
-      </Helmet>
+      <I18n>
+        {({ i18n }) => (
+          <Helmet>
+            <title>{i18n._(t`Home`)}</title>
+          </Helmet>
+        )}
+      </I18n>
 
       <div className="h-100 flex flex-column">
         <TabBar
@@ -50,15 +56,15 @@ const HomePage: React.FunctionComponent<RouteComponentProps> = ({
         >
           <Tab onClick={() => history.push('/home')}>
             <Icon className="mdc-tab__icon mr3" icon="school" />
-            Study
+            <Trans>Study</Trans>
           </Tab>
           <Tab onClick={() => history.push('/decks')}>
             <Icon className="mdc-tab__icon mr3" icon="style" />
-            Decks
+            <Trans>Decks</Trans>
           </Tab>
           <Tab onClick={() => history.push('/models')}>
             <Icon className="mdc-tab__icon mr3" icon="flip_to_back" />
-            Models
+            <Trans>Models</Trans>
           </Tab>
         </TabBar>
 

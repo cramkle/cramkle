@@ -17,6 +17,14 @@ msgstr ""
 msgid "Account created successfully"
 msgstr ""
 
+#: src/components/pages/DecksSection.tsx:23
+msgid "Add Deck"
+msgstr "Add Deck"
+
+#: src/components/pages/ModelsSection.tsx:18
+msgid "Add model"
+msgstr "Add model"
+
 #: src/components/forms/RegisterForm.tsx:38
 #: src/components/forms/RegisterForm.tsx:39
 msgid "Agreement is required"
@@ -26,6 +34,10 @@ msgstr ""
 #: src/components/pages/RegisterPage.tsx:20
 msgid "Already have an account? <0>Log In</0>"
 msgstr ""
+
+#: src/components/pages/HomePage.tsx:46
+msgid "Decks"
+msgstr "Decks"
 
 #: src/components/pages/LoginPage.tsx:21
 msgid "Don't have an account? <0>Sign Up</0>"
@@ -40,6 +52,7 @@ msgid "E-mail is required"
 msgstr ""
 
 #: src/components/AppDrawer.tsx:37
+#: src/components/pages/HomePage.tsx:34
 msgid "Home"
 msgstr "Home"
 
@@ -72,6 +85,14 @@ msgstr ""
 #: src/components/AppDrawer.tsx:41
 msgid "Marketplace"
 msgstr "Marketplace"
+
+#: src/components/pages/ModelsSection.tsx:21
+msgid "Model created successfully"
+msgstr "Model created successfully"
+
+#: src/components/pages/HomePage.tsx:50
+msgid "Models"
+msgstr "Models"
 
 #: src/components/pages/LandingPage.tsx:37
 msgid "Optimize your knowledge retention with this effective study method."
@@ -112,6 +133,18 @@ msgstr ""
 #: src/components/AppDrawer.tsx:45
 msgid "Statistics"
 msgstr "Statistics"
+
+#: src/components/pages/HomePage.tsx:42
+msgid "Study"
+msgstr "Study"
+
+#: src/components/DeckList.tsx:19
+msgid "The decks you create will appear here."
+msgstr "The decks you create will appear here."
+
+#: src/components/ModelList.tsx:19
+msgid "The models you create will appear here."
+msgstr "The models you create will appear here."
 
 #: src/components/forms/LoginForm.tsx:52
 #: src/components/forms/RegisterForm.tsx:44
