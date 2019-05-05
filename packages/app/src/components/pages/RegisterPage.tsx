@@ -1,3 +1,5 @@
+import { Trans, t } from '@lingui/macro'
+import { I18n } from '@lingui/react'
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import { Link } from 'react-router-dom'
@@ -7,22 +9,28 @@ import RegisterForm from '../forms/RegisterForm'
 
 const RegisterPage: React.FunctionComponent = () => {
   return (
-    <div className="flex flex-column min-vh-100 pa3 justify-center items-center bg-primary c-on-primary">
-      <Helmet>
-        <title>Register</title>
-      </Helmet>
+    <I18n>
+      {({ i18n }) => (
+        <div className="flex flex-column min-vh-100 pa3 justify-center items-center bg-primary c-on-primary">
+          <Helmet>
+            <title>{i18n._(t`Register`)}</title>
+          </Helmet>
 
-      <img className="w3 h3 mb4" src={logoInvertedUrl} alt="" />
+          <img className="w3 h3 mb4" src={logoInvertedUrl} alt="" />
 
-      <RegisterForm />
+          <RegisterForm />
 
-      <span className="mt3">
-        Already have an account?{' '}
-        <Link to="/login" className="b c-on-primary">
-          Log In
-        </Link>
-      </span>
-    </div>
+          <span className="mt3">
+            <Trans>
+              Already have an account?{' '}
+              <Link to="/login" className="b c-on-primary">
+                Log In
+              </Link>
+            </Trans>
+          </span>
+        </div>
+      )}
+    </I18n>
   )
 }
 

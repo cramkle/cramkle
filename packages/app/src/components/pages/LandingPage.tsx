@@ -1,3 +1,4 @@
+import { Trans, t } from '@lingui/macro'
 import Button from '@material/react-button'
 import TopAppBar, {
   TopAppBarFixedAdjust,
@@ -27,9 +28,11 @@ const LandingPage: React.FunctionComponent<RouteComponentProps> = ({
           <TopAppBarTitle>Cramkle</TopAppBarTitle>
         </TopAppBarSection>
         <TopAppBarSection align="end">
-          <Button onClick={() => history.push('/register')}>Sign Up</Button>
+          <Button onClick={() => history.push('/register')}>
+            <Trans>Sign Up</Trans>
+          </Button>
           <Button onClick={() => history.push('/login')} className="ml2">
-            Login
+            <Trans>Login</Trans>
           </Button>
         </TopAppBarSection>
       </TopAppBarRow>
@@ -45,24 +48,28 @@ const LandingPage: React.FunctionComponent<RouteComponentProps> = ({
             style={{ maxWidth: 450 }}
           >
             <Headline2 className="f2 f1-ns b lh-title">
-              Make sure your knowledge will last
+              <Trans>Make sure your knowledge will last</Trans>
             </Headline2>
             <Headline4 className="f5 f3-ns mt3 lh-title">
-              Optimize your knowledge retention with this effective study
-              method.
+              <Trans>
+                Optimize your knowledge retention with this effective study
+                method.
+              </Trans>
             </Headline4>
           </div>
           <div
             className="inline-flex flex-column items-center w-100"
             style={{ maxWidth: 450 }}
           >
-            <RegisterForm title="Sign up now!" />
+            <RegisterForm title={t`Sign up now!`} />
 
             <span className="landing__login-text mt3">
-              Already have an account?{' '}
-              <Link to="/login" className="b c-on-primary">
-                Log In
-              </Link>
+              <Trans>
+                Already have an account?{' '}
+                <Link to="/login" className="b c-on-primary">
+                  Log In
+                </Link>
+              </Trans>
             </span>
           </div>
         </div>
