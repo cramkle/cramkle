@@ -2,5 +2,10 @@
   "plugins": [
     "@babel/plugin-syntax-dynamic-import",
     "macros"
+  ],
+  "presets": [
+    ["@babel/preset-env", {"targets": {"node": "current"}}],
+    "react-app",
+    "@babel/preset-typescript"
   ]
 }
