@@ -1,7 +1,8 @@
 {
+  "name": "@cramkle/api",
   "version": "0.2.1",
   "private": true,
-  "main": "index.js",
+  "main": "dist/index.js",
   "repository": "https://github.com/lucasecdb/cramkle-api.git",
   "scripts": {
     "build": "tsc",
