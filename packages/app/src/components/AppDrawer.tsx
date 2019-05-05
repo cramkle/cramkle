@@ -1,3 +1,5 @@
+import { t } from '@lingui/macro'
+import { I18n } from '@lingui/react'
 import Drawer, {
   DrawerHeader,
   DrawerTitle,
@@ -69,30 +71,34 @@ const AppDrawer: React.FunctionComponent<ChildDataProps<Props, Data>> = ({
   }, [history])
 
   const drawerItems = (
-    <List dense singleSelection>
-      <ListItem onClick={handleHomeClick}>
-        <ListItemGraphic graphic={<MaterialIcon icon="home" />} />
-        <ListItemText primaryText="Home" />
-      </ListItem>
-      <ListItem onClick={handleMarketplaceClick}>
-        <ListItemGraphic
-          graphic={<MaterialIcon icon="store_mall_directory" />}
-        />
-        <ListItemText primaryText="Marketplace" />
-      </ListItem>
-      <ListItem onClick={handleStatisticsClick}>
-        <ListItemGraphic graphic={<MaterialIcon icon="bar_chart" />} />
-        <ListItemText primaryText="Statistics" />
-      </ListItem>
-      <ListItem onClick={handleSettingsClick}>
-        <ListItemGraphic graphic={<MaterialIcon icon="settings" />} />
-        <ListItemText primaryText="Settings" />
-      </ListItem>
-      <ListItem onClick={handleLogout}>
-        <ListItemGraphic graphic={<MaterialIcon icon="exit_to_app" />} />
-        <ListItemText primaryText="Logout" />
-      </ListItem>
-    </List>
+    <I18n>
+      {({ i18n }) => (
+        <List dense singleSelection>
+          <ListItem onClick={handleHomeClick}>
+            <ListItemGraphic graphic={<MaterialIcon icon="home" />} />
+            <ListItemText primaryText={i18n._(t`Home`)} />
+          </ListItem>
+          <ListItem onClick={handleMarketplaceClick}>
+            <ListItemGraphic
+              graphic={<MaterialIcon icon="store_mall_directory" />}
+            />
+            <ListItemText primaryText={i18n._(t`Marketplace`)} />
+          </ListItem>
+          <ListItem onClick={handleStatisticsClick}>
+            <ListItemGraphic graphic={<MaterialIcon icon="bar_chart" />} />
+            <ListItemText primaryText={i18n._(t`Statistics`)} />
+          </ListItem>
+          <ListItem onClick={handleSettingsClick}>
+            <ListItemGraphic graphic={<MaterialIcon icon="settings" />} />
+            <ListItemText primaryText={i18n._(t`Settings`)} />
+          </ListItem>
+          <ListItem onClick={handleLogout}>
+            <ListItemGraphic graphic={<MaterialIcon icon="exit_to_app" />} />
+            <ListItemText primaryText={i18n._(t`Logout`)} />
+          </ListItem>
+        </List>
+      )}
+    </I18n>
   )
 
   const header = (

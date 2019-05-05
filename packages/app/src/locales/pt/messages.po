@@ -39,6 +39,10 @@ msgstr "E-mail"
 msgid "E-mail is required"
 msgstr "E-mail é obrigatório"
 
+#: src/components/AppDrawer.tsx:37
+msgid "Home"
+msgstr "Página Inicial"
+
 #: src/components/forms/RegisterForm.tsx:51
 msgid "I agree to the <0>Terms & Conditions</0>"
 msgstr "Eu concordo com os <0>Termos e Condições</0>"
@@ -57,9 +61,17 @@ msgstr "Nome de usuário e/ou senha inválidos"
 msgid "Login"
 msgstr "Login"
 
+#: src/components/AppDrawer.tsx:53
+msgid "Logout"
+msgstr "Sair"
+
 #: src/components/pages/LandingPage.tsx:34
 msgid "Make sure your knowledge will last"
 msgstr "Garanta que seu conhecimento irá durar"
+
+#: src/components/AppDrawer.tsx:41
+msgid "Marketplace"
+msgstr "Marketplace"
 
 #: src/components/pages/LandingPage.tsx:37
 msgid "Optimize your knowledge retention with this effective study method."
@@ -81,6 +93,14 @@ msgstr "Senha é obrigatória"
 msgid "Register"
 msgstr "Cadastrar"
 
+#: src/components/SearchBar.tsx:33
+msgid "Search"
+msgstr "Pesquisar"
+
+#: src/components/AppDrawer.tsx:49
+msgid "Settings"
+msgstr "Configurações"
+
 #: src/components/pages/LandingPage.tsx:21
 msgid "Sign Up"
 msgstr "Cadastre-se"
@@ -88,6 +108,10 @@ msgstr "Cadastre-se"
 #: src/components/pages/LandingPage.tsx:44
 msgid "Sign up now!"
 msgstr "Cadastre-se agora!"
+
+#: src/components/AppDrawer.tsx:45
+msgid "Statistics"
+msgstr "Estatísticas"
 
 #: src/components/forms/LoginForm.tsx:52
 #: src/components/forms/RegisterForm.tsx:44
