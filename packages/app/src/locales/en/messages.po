@@ -35,9 +35,26 @@ msgstr ""
 msgid "Already have an account? <0>Log In</0>"
 msgstr ""
 
+#: src/components/DeleteDeckButton.tsx:40
+msgid "Are you sure you want to delete this deck?"
+msgstr "Are you sure you want to delete this deck?"
+
+#: src/components/DeleteDeckButton.tsx:44
+msgid "Cancel"
+msgstr "Cancel"
+
 #: src/components/pages/HomePage.tsx:46
 msgid "Decks"
 msgstr "Decks"
+
+#: src/components/DeleteDeckButton.tsx:33
+#: src/components/DeleteDeckButton.tsx:47
+msgid "Delete"
+msgstr "Delete"
+
+#: src/components/DeleteDeckButton.tsx:37
+msgid "Delete deck"
+msgstr "Delete deck"
 
 #: src/components/pages/LoginPage.tsx:21
 msgid "Don't have an account? <0>Sign Up</0>"
@@ -50,6 +67,10 @@ msgstr ""
 #: src/components/forms/RegisterForm.tsx:31
 msgid "E-mail is required"
 msgstr ""
+
+#: src/components/BackButton.tsx:11
+msgid "Go back"
+msgstr "Go back"
 
 #: src/components/AppDrawer.tsx:37
 #: src/components/pages/HomePage.tsx:34
