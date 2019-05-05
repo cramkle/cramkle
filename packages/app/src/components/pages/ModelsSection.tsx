@@ -1,3 +1,5 @@
+import { t } from '@lingui/macro'
+import { I18n } from '@lingui/react'
 import MaterialIcon from '@material/react-material-icon'
 import Fab from '@material/react-fab'
 import { Snackbar } from '@material/react-snackbar'
@@ -15,32 +17,36 @@ const ModelsSection: React.FunctionComponent<RouteComponentProps> = ({
   }
 
   return (
-    <>
-      <ModelList />
+    <I18n>
+      {({ i18n }) => (
+        <>
+          <ModelList />
 
-      <div className="fixed right-0 bottom-0 pa4">
-        <Fab
-          icon={<MaterialIcon icon="add" />}
-          textLabel="Add model"
-          onClick={handleAddClick}
-        />
-      </div>
+          <div className="fixed right-0 bottom-0 pa4">
+            <Fab
+              icon={<MaterialIcon icon="add" />}
+              textLabel={i18n._(t`Add model`)}
+              onClick={handleAddClick}
+            />
+          </div>
 
-      {location.state && location.state.newModel && (
-        <Snackbar
-          message="Model created successfully"
-          actionText="view"
-          leading
-          onClose={(closeReason: string) => {
-            if (closeReason !== 'action') {
-              return
-            }
+          {location.state && location.state.newModel && (
+            <Snackbar
+              message={i18n._(t`Model created successfully`)}
+              actionText="view"
+              leading
+              onClose={(closeReason: string) => {
+                if (closeReason !== 'action') {
+                  return
+                }
 
-            history.push(`/m/${location.state.newModel}`)
-          }}
-        />
+                history.push(`/m/${location.state.newModel}`)
+              }}
+            />
+          )}
+        </>
       )}
-    </>
+    </I18n>
   )
 }
 

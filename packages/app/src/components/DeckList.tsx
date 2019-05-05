@@ -1,7 +1,8 @@
+import { Trans } from '@lingui/macro'
+import { Grid, Row, Cell } from '@material/react-layout-grid'
+import { Body1 } from '@material/react-typography'
 import React, { useEffect } from 'react'
 import { compose, graphql, ChildProps } from 'react-apollo'
-import { Body1 } from '@material/react-typography'
-import { Grid, Row, Cell } from '@material/react-layout-grid'
 
 import DeckCard from './DeckCard'
 import decksQuery from '../graphql/decksQuery.gql'
@@ -23,7 +24,9 @@ const DeckList: React.FunctionComponent<ChildProps<{}, DecksQuery>> = ({
   if (decks.length === 0) {
     return (
       <div className="flex flex-column items-center">
-        <Body1 className="mt4">The decks you create will appear here.</Body1>
+        <Body1 className="mt4">
+          <Trans>The decks you create will appear here.</Trans>
+        </Body1>
       </div>
     )
   }

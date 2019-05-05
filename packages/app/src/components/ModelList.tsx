@@ -1,3 +1,4 @@
+import { Trans } from '@lingui/macro'
 import { Grid } from '@material/react-layout-grid'
 import { Body1 } from '@material/react-typography'
 import React, { useEffect } from 'react'
@@ -26,7 +27,9 @@ const ModelList: React.FunctionComponent<ChildProps<{}, Query>> = ({
   if (models.length === 0) {
     return (
       <div className="flex flex-column items-center">
-        <Body1 className="mt4">The models you create will appear here.</Body1>
+        <Body1 className="mt4">
+          <Trans>The models you create will appear here.</Trans>
+        </Body1>
       </div>
     )
   }
