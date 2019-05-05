@@ -1,3 +1,5 @@
+import { plural, Trans } from '@lingui/macro'
+import { I18n } from '@lingui/react'
 import Button from '@material/react-button'
 import Dialog, {
   DialogTitle,
@@ -12,6 +14,7 @@ import { withRouter, RouteComponentProps } from 'react-router'
 
 import deleteModelMutation from '../graphql/deleteModelMutation.gql'
 import modelsQuery from '../graphql/modelsQuery.gql'
+import { ModelsQuery } from '../graphql/__generated__/ModelsQuery'
 
 interface Props {
   model: { id: string; templates: {}[]; notes: {}[] }
@@ -40,7 +43,7 @@ const DeleteModelButton: React.FunctionComponent<
             },
           }
         ) => {
-          const { cardModels } = cache.readQuery<{ cardModels: any[] }>({
+          const { cardModels } = cache.readQuery<ModelsQuery>({
             query: modelsQuery,
           })
 
@@ -62,25 +65,51 @@ const DeleteModelButton: React.FunctionComponent<
   }
 
   return (
-    <>
-      <Button outlined icon={<Icon icon="delete" />} onClick={handleClick}>
-        Delete
-      </Button>
-      <Dialog open={dialogOpen} onClose={handleClose} role="alertdialog">
-        <DialogTitle>Delete model</DialogTitle>
-        <DialogContent>
-          Are you sure you want to delete this model? There are{' '}
-          {model.notes.length} notes and {model.templates.length} templates
-          associated with it.
-        </DialogContent>
-        <DialogFooter>
-          <DialogButton action="cancel">Cancel</DialogButton>
-          <DialogButton action="confirm" isDefault>
-            Delete
-          </DialogButton>
-        </DialogFooter>
-      </Dialog>
-    </>
+    <I18n>
+      {({ i18n }) => (
+        <>
+          <Button
+            outlined
+            icon={<Icon icon="delete" aria-hidden="true" />}
+            onClick={handleClick}
+          >
+            <Trans>Delete</Trans>
+          </Button>
+          <Dialog open={dialogOpen} onClose={handleClose} role="alertdialog">
+            <DialogTitle>
+              <Trans>Delete model</Trans>
+            </DialogTitle>
+            <DialogContent>
+              <Trans>
+                Are you sure you want to delete this model?{' '}
+                {i18n._(
+                  plural({
+                    value: model.notes.length,
+                    one: "There's # note",
+                    other: "There're # notes",
+                  })
+                )}{' '}
+                and{' '}
+                {i18n._(
+                  plural({
+                    value: model.templates.length,
+                    one: '# template',
+                    other: '# templates',
+                  })
+                )}{' '}
+                associated with it.
+              </Trans>
+            </DialogContent>
+            <DialogFooter>
+              <DialogButton action="cancel">Cancel</DialogButton>
+              <DialogButton action="confirm" isDefault>
+                <Trans>Delete</Trans>
+              </DialogButton>
+            </DialogFooter>
+          </Dialog>
+        </>
+      )}
+    </I18n>
   )
 }
 

@@ -1,13 +1,14 @@
+import { t } from '@lingui/macro'
 import { EditorState } from 'draft-js'
 import React from 'react'
 
 import StyleButton, { Style } from './StyleButton'
 
 export const INLINE_STYLES: Style[] = [
-  { label: 'Bold', style: 'BOLD' },
-  { label: 'Italic', style: 'ITALIC' },
-  { label: 'Underline', style: 'UNDERLINE' },
-  { label: 'Monospace', style: 'CODE' },
+  { label: t`Bold`, style: 'BOLD' },
+  { label: t`Italic`, style: 'ITALIC' },
+  { label: t`Underline`, style: 'UNDERLINE' },
+  { label: t`Monospace`, style: 'CODE' },
 ]
 
 const InlineStyleControls: React.FunctionComponent<{
@@ -20,7 +21,7 @@ const InlineStyleControls: React.FunctionComponent<{
     <div className="f6">
       {INLINE_STYLES.map(type => (
         <StyleButton
-          key={type.label}
+          key={type.style}
           active={currentStyle.has(type.style)}
           label={type.label}
           onToggle={onToggle}
