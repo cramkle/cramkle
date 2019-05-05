@@ -268,6 +268,7 @@ const getBaseWebpackConfig = (options?: Options): Configuration => {
               include: paths.appSrc,
               loader: require.resolve('babel-loader'),
               options: {
+                babelrc: false,
                 presets: [
                   '@babel/preset-env',
                   '@babel/preset-react',
@@ -287,6 +288,7 @@ const getBaseWebpackConfig = (options?: Options): Configuration => {
                     },
                   ],
                   '@babel/plugin-syntax-dynamic-import',
+                  'macros',
                 ].filter(Boolean),
                 // This is a feature of `babel-loader` for webpack (not Babel itself).
                 // It enables caching results in ./node_modules/.cache/babel-loader/
