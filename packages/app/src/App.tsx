@@ -1,3 +1,4 @@
+import { I18nProvider } from '@lingui/react'
 import React, { lazy } from 'react'
 import { Helmet } from 'react-helmet'
 import { Route, Switch, withRouter } from 'react-router'
@@ -12,6 +13,8 @@ import NotFoundPage from './components/pages/NotFoundPage'
 import ShellRoute from './components/routes/ShellRoute'
 import { UserRoute, GuestRoute } from './components/routes/AuthRoute'
 import { MobileProvider } from './components/MobileContext'
+import en from './locales/en/messages'
+import pt from './locales/pt/messages'
 import client from './utils/apolloClient'
 
 import './theme.global.scss'
@@ -25,77 +28,79 @@ const StatisticsPage = lazy(() => import('./components/pages/StatisticsPage'))
 const AddModelPage = lazy(() => import('./components/pages/AddModelPage'))
 
 const App: React.FunctionComponent<{}> = () => (
-  <ApolloProvider client={client}>
-    <MobileProvider>
-      <Helmet
-        defaultTitle="Cramkle"
-        titleTemplate="%s - Cramkle"
-        meta={[
-          {
-            name: 'application-name',
-            content: 'Cramkle',
-          },
-          {
-            name: 'description',
-            content: 'Make sure your knowledge will last',
-          },
-          {
-            name: 'keywords',
-            content: 'flashcards,anki,srs,spaced repetition',
-          },
-        ]}
-      />
-      <Switch>
-        <GuestRoute component={LandingPage} path="/" exact />
-        <ShellRoute
-          component={HomePage}
-          RouteComponent={UserRoute}
-          path={['/home', '/decks', '/models']}
-          exact
+  <I18nProvider language="en" catalogs={{ en, pt }}>
+    <ApolloProvider client={client}>
+      <MobileProvider>
+        <Helmet
+          defaultTitle="Cramkle"
+          titleTemplate="%s - Cramkle"
+          meta={[
+            {
+              name: 'application-name',
+              content: 'Cramkle',
+            },
+            {
+              name: 'description',
+              content: 'Make sure your knowledge will last',
+            },
+            {
+              name: 'keywords',
+              content: 'flashcards,anki,srs,spaced repetition',
+            },
+          ]}
         />
-        <ShellRoute
-          component={DeckPage}
-          RouteComponent={UserRoute}
-          path="/d/:slug"
-          exact
-        />
-        <ShellRoute
-          component={ModelPage}
-          RouteComponent={UserRoute}
-          path="/m/:id"
-          exact
-        />
-        <ShellRoute
-          component={AddModelPage}
-          RouteComponent={UserRoute}
-          path="/models/create"
-          exact
-        />
-        <ShellRoute
-          component={MarketplacePage}
-          RouteComponent={UserRoute}
-          path="/marketplace"
-          exact
-        />
-        <ShellRoute
-          component={StatisticsPage}
-          RouteComponent={UserRoute}
-          path="/statistics"
-          exact
-        />
-        <ShellRoute
-          component={SettingsPage}
-          RouteComponent={UserRoute}
-          path="/settings"
-          exact
-        />
-        <GuestRoute component={RegisterPage} path="/register" exact />
-        <GuestRoute component={LoginPage} path="/login" exact />
-        <Route component={AboutPage} path="/about" exact />
-        <Route component={NotFoundPage} />
-      </Switch>
-    </MobileProvider>
-  </ApolloProvider>
+        <Switch>
+          <GuestRoute component={LandingPage} path="/" exact />
+          <ShellRoute
+            component={HomePage}
+            RouteComponent={UserRoute}
+            path={['/home', '/decks', '/models']}
+            exact
+          />
+          <ShellRoute
+            component={DeckPage}
+            RouteComponent={UserRoute}
+            path="/d/:slug"
+            exact
+          />
+          <ShellRoute
+            component={ModelPage}
+            RouteComponent={UserRoute}
+            path="/m/:id"
+            exact
+          />
+          <ShellRoute
+            component={AddModelPage}
+            RouteComponent={UserRoute}
+            path="/models/create"
+            exact
+          />
+          <ShellRoute
+            component={MarketplacePage}
+            RouteComponent={UserRoute}
+            path="/marketplace"
+            exact
+          />
+          <ShellRoute
+            component={StatisticsPage}
+            RouteComponent={UserRoute}
+            path="/statistics"
+            exact
+          />
+          <ShellRoute
+            component={SettingsPage}
+            RouteComponent={UserRoute}
+            path="/settings"
+            exact
+          />
+          <GuestRoute component={RegisterPage} path="/register" exact />
+          <GuestRoute component={LoginPage} path="/login" exact />
+          <Route component={AboutPage} path="/about" exact />
+          <Route component={NotFoundPage} />
+        </Switch>
+      </MobileProvider>
+    </ApolloProvider>
+  </I18nProvider>
 )
 
 export default hot(withRouter(App))
