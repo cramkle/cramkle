@@ -7,6 +7,7 @@
     "start": "cks start",
     "prebuild": "yarn compile --strict",
     "build": "cks build",
+    "postinstall": "yarn compile",
     "prettier": "prettier --write 'src/**/*.ts' 'src/**/*.tsx'",
     "test": "jest -c jest.config.js",
     "lint": "eslint --ext ts,tsx src && tsc --noEmit",
