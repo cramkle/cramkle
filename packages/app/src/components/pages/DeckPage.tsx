@@ -6,6 +6,7 @@ import { RouteComponentProps } from 'react-router'
 
 import BackButton from '../BackButton'
 import DeleteDeckButton from '../DeleteDeckButton'
+import Container from '../views/Container'
 import deckQuery from '../../graphql/deckQuery.gql'
 import {
   DeckQuery,
@@ -36,7 +37,7 @@ const DeckPage: React.FunctionComponent<ChildProps<Props, Data>> = ({
   return (
     <>
       <Helmet title={deck.title} />
-      <div className="pa3 ph4-m ph6-l">
+      <Container>
         <BackButton />
         <div className="flex flex-wrap justify-between items-center">
           <Headline4>{deck.title}</Headline4>
@@ -44,7 +45,7 @@ const DeckPage: React.FunctionComponent<ChildProps<Props, Data>> = ({
           <DeleteDeckButton deckId={deck.id} />
         </div>
         <Body1>{deck.description}</Body1>
-      </div>
+      </Container>
     </>
   )
 }

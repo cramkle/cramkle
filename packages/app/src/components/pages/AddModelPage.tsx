@@ -12,6 +12,7 @@ import * as yup from 'yup'
 
 import BackButton from '../BackButton'
 import { TextInputField } from '../forms/Fields'
+import Container from '../views/Container'
 import createModelMutation from '../../graphql/createModelMutation.gql'
 import {
   CreateModelMutation,
@@ -32,7 +33,7 @@ const AddModelPage: React.FunctionComponent<Props> = ({ history, mutate }) => {
   return (
     <I18n>
       {({ i18n }) => (
-        <div className="pa3 ph4-m ph6-l">
+        <Container>
           <BackButton />
 
           <Headline5>
@@ -188,7 +189,7 @@ const AddModelPage: React.FunctionComponent<Props> = ({ history, mutate }) => {
               </form>
             )}
           </Formik>
-        </div>
+        </Container>
       )}
     </I18n>
   )
