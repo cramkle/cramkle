@@ -3,7 +3,7 @@ import { Trans, t } from '@lingui/macro'
 import { I18n } from '@lingui/react'
 import Button from '@material/react-button'
 import Card, { CardActions, CardActionButtons } from '@material/react-card'
-import { Headline4 } from '@material/react-typography'
+import { Headline5 } from '@material/react-typography'
 import classNames from 'classnames'
 import { Formik } from 'formik'
 import React from 'react'
@@ -76,7 +76,7 @@ const RegisterForm: React.FunctionComponent<
               className={classNames(styles.formContent, 'pa3 pb0 c-on-surface')}
               outlined
             >
-              <Headline4 className="tc f3 f2-ns">{i18n._(title)}</Headline4>
+              <Headline5 className="tc">{i18n._(title)}</Headline5>
               <TextInputField
                 className="mv2"
                 name="username"

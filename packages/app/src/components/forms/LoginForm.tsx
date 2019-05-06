@@ -2,7 +2,7 @@ import { Trans, t } from '@lingui/macro'
 import { I18n } from '@lingui/react'
 import Button from '@material/react-button'
 import Card, { CardActions, CardActionButtons } from '@material/react-card'
-import { Headline4 } from '@material/react-typography'
+import { Headline5 } from '@material/react-typography'
 import classNames from 'classnames'
 import { Formik } from 'formik'
 import React from 'react'
@@ -63,9 +63,9 @@ const LoginForm: React.FunctionComponent = () => (
           >
             <Card outlined>
               <div className="pa3 pb0 c-on-surface">
-                <Headline4 className="tc">
+                <Headline5 className="tc">
                   <Trans>Login</Trans>
-                </Headline4>
+                </Headline5>
 
                 <TextInputField
                   className="w-100 mv2"
