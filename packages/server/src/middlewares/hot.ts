@@ -3,13 +3,12 @@ import webpack from 'webpack'
 
 import createWebpackConfig from '../../config/createWebpackConfig'
 
-// @ts-ignore
-const clientConfig: webpack.Configuration = createWebpackConfig({
+const clientConfig = createWebpackConfig({
   dev: true,
   isServer: false,
 })
-// @ts-ignore
-const serverConfig: webpack.Configuration = createWebpackConfig({
+
+const serverConfig = createWebpackConfig({
   dev: true,
   isServer: true,
 })
