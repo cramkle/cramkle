@@ -39,12 +39,14 @@ const render = async (req: Request, res: Response) => {
     .filter(path => path.endsWith('.css'))
     .map(path => assetManifest[path])
 
+  const language = req.language
+
   const sandboxContext = {
     requestUrl: req.url,
     requestHost: `${req.protocol}://${req.get('host')}`,
     cookie: req.headers.cookie,
     userAgent: req.headers['user-agent'],
-    language: req.language,
+    language,
   }
 
   const { sandbox, cleanUp, getLogsAndErrors } = createSandbox(sandboxContext)
@@ -57,6 +59,7 @@ const render = async (req: Request, res: Response) => {
         ok({
           scripts: clientAssetScripts,
           styles,
+          language,
         })
       )
     } else {
@@ -76,15 +79,6 @@ const render = async (req: Request, res: Response) => {
 
       const { markup, head, routerContext, state } = await sandbox.rendered
 
-      const { logs } = getLogsAndErrors()
-
-      if (logs.length && process.env.NODE_ENV !== 'production') {
-        logs.forEach(log => {
-          // eslint-disable-next-line no-console
-          console.log(chalk.cyan('client log:'), log)
-        })
-      }
-
       if (routerContext.url) {
         res.writeHead(302, {
           Location: routerContext.url,
@@ -97,6 +91,7 @@ const render = async (req: Request, res: Response) => {
             scripts: clientAssetScripts,
             state,
             styles,
+            language,
           })
         )
       }

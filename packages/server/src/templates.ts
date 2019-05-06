@@ -35,12 +35,13 @@ interface TemplateInput {
   scripts?: string[]
   styles?: string[]
   state?: object
+  language: string
 }
 
 export const ok = (args?: TemplateInput) => {
-  const { markup = '', head, scripts = [], styles = [], state } = args
+  const { markup = '', head, scripts = [], styles = [], state, language } = args
   return `<!DOCTYPE html>
-<html lang="en">
+<html lang="${language}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
