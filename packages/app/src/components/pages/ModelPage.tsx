@@ -11,6 +11,7 @@ import { RouteComponentProps } from 'react-router'
 import DeleteModelButton from '../DeleteModelButton'
 import TemplateEditor from '../TemplateEditor'
 import BackButton from '../BackButton'
+import Container from '../views/Container'
 import modelQuery from '../../graphql/modelQuery.gql'
 import {
   ModelQuery,
@@ -43,7 +44,7 @@ const ModelPage: React.FunctionComponent<ChildProps<Props, Query>> = ({
   return (
     <>
       <Helmet title={cardModel.name} />
-      <div className="pa3 ph4-m ph6-l">
+      <Container>
         <BackButton />
         <div className="flex justify-between">
           <Headline4>{cardModel.name}</Headline4>
@@ -109,7 +110,7 @@ const ModelPage: React.FunctionComponent<ChildProps<Props, Query>> = ({
             <Trans>This model doesn&apos;t have any fields yet.</Trans>
           </Body2>
         )}
-      </div>
+      </Container>
     </>
   )
 }
