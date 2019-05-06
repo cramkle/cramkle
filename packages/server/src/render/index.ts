@@ -5,14 +5,14 @@ import * as path from 'path'
 import { promisify } from 'util'
 import { createContext, Script } from 'vm'
 
-import { serverMainRuntime, appDist } from '../../../config/paths'
+import { serverMainRuntime, appDist } from '../../config/paths'
 import {
   STATIC_RUNTIME_MAIN,
   STATIC_RUNTIME_WEBPACK,
   STATIC_RUNTIME_HOT,
   ASSET_MANIFEST_FILE,
-} from '../../../config/constants'
-import { ok, error } from '../../templates'
+} from '../../config/constants'
+import { ok, error } from '../templates'
 import createSandbox from './sandbox'
 
 const readFile = promisify(fs.readFile)
@@ -42,8 +42,9 @@ const render = async (req: Request, res: Response) => {
   const sandboxContext = {
     requestUrl: req.url,
     requestHost: `${req.protocol}://${req.get('host')}`,
-    forwardCookie: req.headers.cookie,
+    cookie: req.headers.cookie,
     userAgent: req.headers['user-agent'],
+    language: req.language,
   }
 
   const { sandbox, cleanUp, getLogsAndErrors } = createSandbox(sandboxContext)
