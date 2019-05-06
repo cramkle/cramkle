@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet'
 import { Route, Switch, withRouter } from 'react-router'
 import { ApolloProvider } from 'react-apollo'
 import { hot } from 'react-hot-loader/root'
+import Cookies from 'universal-cookie'
 
 import AboutPage from './components/pages/AboutPage'
 import LandingPage from './components/pages/LandingPage'
@@ -27,8 +28,17 @@ const SettingsPage = lazy(() => import('./components/pages/SettingsPage'))
 const StatisticsPage = lazy(() => import('./components/pages/StatisticsPage'))
 const AddModelPage = lazy(() => import('./components/pages/AddModelPage'))
 
+let language: string
+
+if (window.requestLanguage) {
+  language = window.requestLanguage
+} else {
+  const cookies = new Cookies()
+  language = cookies.get('language') || 'en'
+}
+
 const App: React.FunctionComponent<{}> = () => (
-  <I18nProvider language="en" catalogs={{ en, pt }}>
+  <I18nProvider language={language} catalogs={{ en, pt }}>
     <ApolloProvider client={client}>
       <MobileProvider>
         <Helmet

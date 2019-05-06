@@ -12,6 +12,8 @@ declare global {
 
   interface Window {
     requestUrl?: string
+    requestCookie?: string
+    requestLanguage?: string
     rendered?: Promise<RenderResult>
     hostname?: string
     userAgent?: string
