@@ -112,6 +112,10 @@ msgstr "E-mail"
 msgid "E-mail is required"
 msgstr "E-mail é obrigatório"
 
+#: src/components/GeneralSettings.tsx:9
+msgid "English"
+msgstr "Inglês"
+
 #: src/components/pages/AddModelPage.tsx:94
 msgid "Field name"
 msgstr "Nome do campo"
@@ -174,7 +178,7 @@ msgstr "Nome de usuário e/ou senha inválidos"
 msgid "Italic"
 msgstr "Itálico"
 
-#: src/components/GeneralSettings.tsx:14
+#: src/components/GeneralSettings.tsx:24
 msgid "Language"
 msgstr "Idioma"
 
@@ -241,6 +245,10 @@ msgstr "Senha"
 #: src/components/forms/RegisterForm.tsx:35
 msgid "Password is required"
 msgstr "Senha é obrigatória"
+
+#: src/components/GeneralSettings.tsx:13
+msgid "Portuguese"
+msgstr "Português"
 
 #: src/components/forms/RegisterForm.tsx:15
 #: src/components/forms/RegisterForm.tsx:62
