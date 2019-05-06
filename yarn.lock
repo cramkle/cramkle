@@ -1502,6 +1502,33 @@
     "@material/typography" "^1.0.0"
     tslib "^1.9.3"
 
+"@material/menu-surface@^1.0.1", "@material/menu-surface@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@material/menu-surface/-/menu-surface-1.1.1.tgz#d930f940e31a1bc32a2c9e3f15d5e60d43871cde"
+  integrity sha512-bOY3LsVamovl/yb4hMBDi3gh8UFEYyP3GHNpTt+X5KBPDehoFhXG9s21aNvGbHZbwURhhWiRzy/OUC3MLE/hKA==
+  dependencies:
+    "@material/animation" "^1.0.0"
+    "@material/base" "^1.0.0"
+    "@material/elevation" "^1.1.0"
+    "@material/feature-targeting" "^0.44.1"
+    "@material/rtl" "^0.42.0"
+    "@material/shape" "^1.1.1"
+    "@material/theme" "^1.1.0"
+    tslib "^1.9.3"
+
+"@material/menu@^1.1.0", "@material/menu@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@material/menu/-/menu-1.1.1.tgz#1a9ca4d0e88e6a2ead9793c0377e0ceb73802241"
+  integrity sha512-bfsZ4Uexm02ey665SukjMK+3HtQVu7Bbc/q5chvPmLoMbSQ4PYE19C/p8cXKeNxkhd3S0h/gJDPw/cTbB9mrhg==
+  dependencies:
+    "@material/base" "^1.0.0"
+    "@material/feature-targeting" "^0.44.1"
+    "@material/list" "^1.1.1"
+    "@material/menu-surface" "^1.1.1"
+    "@material/ripple" "^1.1.0"
+    "@material/rtl" "^0.42.0"
+    tslib "^1.9.3"
+
 "@material/notched-outline@^1.1.1":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@material/notched-outline/-/notched-outline-1.1.1.tgz#a79c8aa3c5662b676bb46741658f434afa38f0da"
@@ -1667,6 +1694,27 @@
     classnames "^2.2.6"
     react "^16.4.2"
 
+"@material/react-menu-surface@^0.12.0":
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/@material/react-menu-surface/-/react-menu-surface-0.12.0.tgz#1be2f5e1ad10e440887bed87b86ef7767461c43d"
+  integrity sha512-a7hUc9SWAv8+ahoC43dEuZbLQyGPmwFITu5y5nTYnovWVzF1BjPF7QrMFgFrDsFhNu5yCzA/6fR9xJuN6I9pEQ==
+  dependencies:
+    "@material/menu-surface" "^1.0.1"
+    classnames "^2.2.6"
+    react "^16.4.2"
+    react-dom "^16.4.2"
+
+"@material/react-menu@^0.12.0":
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/@material/react-menu/-/react-menu-0.12.0.tgz#c5ea1c2784936b606219aa69f376a7eba3203ca7"
+  integrity sha512-olZQ20xSvPoJMwJbqxyfSNPnS2JqNhh2bqQiR0U86CBFgMR9229ijNuBzDE6v8w1TBju7xjlag7hVxt9VxtZQQ==
+  dependencies:
+    "@material/menu" "^1.1.0"
+    "@material/react-list" "^0.12.0"
+    "@material/react-menu-surface" "^0.12.0"
+    classnames "^2.2.6"
+    react "^16.4.2"
+
 "@material/react-notched-outline@^0.12.0":
   version "0.12.0"
   resolved "https://registry.yarnpkg.com/@material/react-notched-outline/-/react-notched-outline-0.12.0.tgz#21751ee108fc4ad20e7a800779762c48c24b4f7e"
@@ -1717,6 +1765,20 @@
     classnames "^2.2.5"
     react "^16.4.2"
     utility-types "^3.2.1"
+
+"@material/react-select@^0.12.0":
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/@material/react-select/-/react-select-0.12.0.tgz#3519b1208c1d8ae313dfff2c6114c9205b7f9aff"
+  integrity sha512-UI1dIGlqlNmm842wNa2fV8zxuJsEzLZx+fqn/jyK66//DQKbd3kL6/erx1SCVnG3tdhOdYQyYmYNXAdmwL2Xpg==
+  dependencies:
+    "@material/react-floating-label" "^0.12.0"
+    "@material/react-line-ripple" "^0.12.0"
+    "@material/react-menu" "^0.12.0"
+    "@material/react-menu-surface" "^0.12.0"
+    "@material/react-notched-outline" "^0.12.0"
+    "@material/select" "^1.1.1"
+    classnames "^2.2.6"
+    react "^16.4.2"
 
 "@material/react-snackbar@^0.12.0":
   version "0.12.0"
@@ -1829,6 +1891,25 @@
   version "0.42.0"
   resolved "https://registry.yarnpkg.com/@material/rtl/-/rtl-0.42.0.tgz#1836e78186c2d8b996f6fbf97adab203535335bc"
   integrity sha512-VrnrKJzhmspsN8WXHuxxBZ69yM5IwhCUqWr1t1eNfw3ZEvEj7i1g3P31HGowKThIN1dc1Wh4LE14rCISWCtv5w==
+
+"@material/select@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@material/select/-/select-1.1.1.tgz#c4a646de35590407d5effeb25b1d08fad012aa70"
+  integrity sha512-si/RGmqRcLflBmA4EXeiR4gVuOIM0YAqIwVN7WOwrx+AhfBDuvI9sPMDz2UXZ2VoFpll73TTRMdah2MPTpmCxQ==
+  dependencies:
+    "@material/animation" "^1.0.0"
+    "@material/base" "^1.0.0"
+    "@material/floating-label" "^1.1.0"
+    "@material/line-ripple" "^1.1.0"
+    "@material/menu" "^1.1.1"
+    "@material/menu-surface" "^1.1.1"
+    "@material/notched-outline" "^1.1.1"
+    "@material/ripple" "^1.1.0"
+    "@material/rtl" "^0.42.0"
+    "@material/shape" "^1.1.1"
+    "@material/theme" "^1.1.0"
+    "@material/typography" "^1.0.0"
+    tslib "^1.9.3"
 
 "@material/selection-control@^0.41.0":
   version "0.41.0"
@@ -11079,7 +11160,7 @@ react-dev-utils@^8.0.0:
     strip-ansi "5.0.0"
     text-table "0.2.0"
 
-react-dom@^16.8.6:
+react-dom@^16.4.2, react-dom@^16.8.6:
   version "16.8.6"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.8.6.tgz#71d6303f631e8b0097f56165ef608f051ff6e10f"
   integrity sha512-1nL7PIq9LTL3fthPqwkvr2zY7phIPjYrT0jp4HjyEQrEROnw4dG41VVwi/wfoCneoleqrNX7iAD+pXebJZwrwA==
