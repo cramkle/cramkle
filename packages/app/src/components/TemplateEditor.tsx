@@ -15,6 +15,7 @@ import InlineStyleControls from './editor/InlineStyleControls'
 import BlockStyleControls from './editor/BlockStyleControls'
 import { decorators as mentionsDecorators } from './editor/MentionsPopup'
 import MentionsEditor from './editor/MentionsEditor'
+import { useMobile } from './MobileContext'
 import SaveTemplateButton from './SaveTemplateButton'
 import { ModelQuery_cardModel_templates_frontSide as TemplateContent } from '../graphql/__generated__/ModelQuery'
 
@@ -26,6 +27,8 @@ const TemplateEditor: React.FunctionComponent<{
   initialContentState: TemplateContent
   fields: { id: string; name: string }[]
 }> = ({ initialContentState, fields }) => {
+  const isMobile = useMobile()
+
   const [editor, setEditor] = useState(() => {
     if (initialContentState.blocks.length === 0) {
       return EditorState.createEmpty(decorators)
@@ -54,28 +57,33 @@ const TemplateEditor: React.FunctionComponent<{
 
   return (
     <Card outlined className={cx(styles.templateEditor, 'mt2')}>
-      <CardActions className="bb b--inherit">
-        <CardActionButtons className="flex-column items-start">
-          <BlockStyleControls
-            editor={editor}
-            onToggle={handleBlockStyleToggle}
-          />
-          <InlineStyleControls editor={editor} onToggle={handleStyleToggle} />
-        </CardActionButtons>
-      </CardActions>
+      {!isMobile && (
+        <CardActions className="bb b--inherit">
+          <CardActionButtons className="flex-column items-start">
+            <BlockStyleControls
+              editor={editor}
+              onToggle={handleBlockStyleToggle}
+            />
+            <InlineStyleControls editor={editor} onToggle={handleStyleToggle} />
+          </CardActionButtons>
+        </CardActions>
+      )}
       <MentionsEditor
         mentionSource={fields}
         editorState={editor}
         onChange={setEditor}
+        readOnly={isMobile}
       />
-      <CardActions className="bt b--inherit">
-        <CardActionButtons>
-          <SaveTemplateButton
-            id={initialContentState.id}
-            {...convertToRaw(editor.getCurrentContent())}
-          />
-        </CardActionButtons>
-      </CardActions>
+      {!isMobile && (
+        <CardActions className="bt b--inherit">
+          <CardActionButtons>
+            <SaveTemplateButton
+              id={initialContentState.id}
+              {...convertToRaw(editor.getCurrentContent())}
+            />
+          </CardActionButtons>
+        </CardActions>
+      )}
     </Card>
   )
 }
