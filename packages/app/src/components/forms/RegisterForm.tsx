@@ -79,19 +79,22 @@ const RegisterForm: React.FunctionComponent<
               <Headline5 className="tc">{i18n._(title)}</Headline5>
               <TextInputField
                 className="mv2"
+                id="username"
                 name="username"
                 label={i18n._(t`Username`)}
               />
               <TextInputField
                 className="mv2"
+                id="email"
                 name="email"
                 label={i18n._(t`E-mail`)}
               />
               <TextInputField
                 className="mv2"
-                label={i18n._(t`Password`)}
+                id="password"
                 name="password"
                 type="password"
+                label={i18n._(t`Password`)}
               />
               {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
               <label className="flex items-center">
