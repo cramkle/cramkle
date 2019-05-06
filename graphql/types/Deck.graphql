@@ -5,18 +5,32 @@
 Collection of notes
 """
 type Deck {
-  """ Deck id """
+  """
+   Deck id
+  """
   id: ID!
-  """ Title of the deck """
+  """
+   Title of the deck
+  """
   title: String!
-  """ Description of the deck """
+  """
+   Description of the deck
+  """
   description: String
-  """ Unique identifiable slug """
+  """
+   Unique identifiable slug
+  """
   slug: String!
-  """ Notes contained in this deck """
+  """
+   Notes contained in this deck
+  """
   notes: [Note]
-  """ Owner of the deck """
+  """
+   Owner of the deck
+  """
   owner: User
-  """ Whether this deck is published to the marketplace """
+  """
+   Whether this deck is published to the marketplace
+  """
   published: Boolean
 }

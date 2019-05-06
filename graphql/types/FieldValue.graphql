@@ -7,10 +7,16 @@ Holds the value for a particular field in a card model.
 Contained by the note.
 """
 type FieldValue {
-  """ Field value id """
+  """
+   Field value id
+  """
   id: ID!
-  """ Field data """
+  """
+   Field data
+  """
   data: ContentState
-  """ Associated field """
+  """
+   Associated field
+  """
   field: Field
 }

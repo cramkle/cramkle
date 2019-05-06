@@ -12,16 +12,22 @@ The number of cards on each note is always equals the
 number of templates.
 """
 type Card {
-  """ Card id """
+  """
+  Card id
+  """
   id: ID!
-  """ Template associated with this card """
+  """
+  Template associated with this card
+  """
   template: Template
   """
   Whether to be filtered of not.
-  
+
   Acts like a logical deletion it when comes to the review.
   """
   active: Boolean
-  """ Parent note of the card """
+  """
+  Parent note of the card
+  """
   note: Note
 }

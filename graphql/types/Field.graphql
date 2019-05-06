@@ -9,10 +9,16 @@ Field of a card model, contains the informations to
 build up the form for a note creation
 """
 type Field {
-  """ Field id """
+  """
+   Field id
+  """
   id: ID!
-  """ Name of the field """
+  """
+   Name of the field
+  """
   name: String!
-  """ Associated card model """
+  """
+   Associated card model
+  """
   model: CardModel
 }

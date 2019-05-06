@@ -11,145 +11,249 @@
 scalar JSON
 scalar JSONObject
 
-""" App queries """
+"""
+App queries
+"""
 type Query {
-  """ Retrieve all decks for the logged user """
+  """
+  Retrieve all decks for the logged user
+  """
   decks: [Deck]
 
-  """ Retrieve all card models for the logged user """
+  """
+  Retrieve all card models for the logged user
+  """
   cardModels: [CardModel]
 
-  """ Get single deck """
+  """
+  Get single deck
+  """
   deck(slug: String!): Deck
 
-  """ Get single card """
+  """
+  Get single card
+  """
   card(id: ID!): Card
 
-  """ Get single card model """
+  """
+  Get single card model
+  """
   cardModel(id: ID!): CardModel
 
-  """ Get single field """
+  """
+  Get single field
+  """
   field(id: ID!): Field
 
-  """ Get single field value """
+  """
+  Get single field value
+  """
   fieldValue(id: ID!): FieldValue
 
-  """ Get single template """
+  """
+  Get single template
+  """
   template(id: ID!): Template
 
-  """ Get single note """
+  """
+  Get single note
+  """
   note(id: ID!): Note
 
-  """ Get currently logged user """
+  """
+  Get currently logged user
+  """
   user: User @deprecated(reason: "Use the 'me' query instead")
 
-  """ Get currently logged user """
+  """
+  Get currently logged user
+  """
   me: User
 }
 
-""" App mutations """
+"""
+App mutations
+"""
 type Mutation {
-  """ Create a deck entity """
+  """
+  Create a deck entity
+  """
   createDeck(
-    """ Deck title """
-    title: String!,
-    """ Deck description """
+    """
+    Deck title
+    """
+    title: String!
+    """
+    Deck description
+    """
     description: String
   ): Deck
 
-  """ Delete a deck """
+  """
+  Delete a deck
+  """
   deleteDeck(
-    """ Deck id """
+    """
+    Deck id
+    """
     id: ID!
   ): Deck
 
-  """ Update a deck """
+  """
+  Update a deck
+  """
   updateDeck(
-    """ Deck id """
-    id: ID!,
-    """ New title """
-    title: String,
-    """ New description """
+    """
+    Deck id
+    """
+    id: ID!
+    """
+    New title
+    """
+    title: String
+    """
+    New description
+    """
     description: String
   ): Deck
 
-  """ Publish a deck to the marketplace """
+  """
+  Publish a deck to the marketplace
+  """
   publishDeck(
-    """ Deck id """
+    """
+    Deck id
+    """
     id: ID!
   ): Deck
 
-  """ Remove a deck from the marketplace """
+  """
+  Remove a deck from the marketplace
+  """
   unpublishDeck(
-    """ Deck id"""
+    """
+    Deck id
+    """
     id: ID!
   ): Deck
 
-  """ Create a new user """
+  """
+  Create a new user
+  """
   createUser(
-    """ User's username """
-    username: String!,
-    """ User's email """
-    email: String!,
-    """ User's password """
-    password: String!,
+    """
+    User's username
+    """
+    username: String!
+    """
+    User's email
+    """
+    email: String!
+    """
+    User's password
+    """
+    password: String!
   ): User
 
-  """ Update user profile information """
+  """
+  Update user profile information
+  """
   updateProfile(
-    """ New username """
-    username: String,
-    """ New password """
-    password: String,
-    """ Password confirmation """
-    confirmPassword: String!,
+    """
+    New username
+    """
+    username: String
+    """
+    New password
+    """
+    password: String
+    """
+    Password confirmation
+    """
+    confirmPassword: String!
   ): User
 
-  """ Create a new model """
+  """
+  Create a new model
+  """
   createModel(
-    """ Card model name """
-    name: String!,
-    """ Fields """
+    """
+    Card model name
+    """
+    name: String!
+    """
+    Fields
+    """
     fields: [FieldInput]
-    """ Templates """
+    """
+    Templates
+    """
     templates: [TemplateInput]
   ): CardModel
 
-  """ Update model name """
+  """
+  Update model name
+  """
   updateModel(name: String!): CardModel
 
-  """ Deletes a card model and all associated entities """
+  """
+  Deletes a card model and all associated entities
+  """
   deleteModel(id: ID!): CardModel
 
-  """ Adds a new template to a card model """
+  """
+  Adds a new template to a card model
+  """
   addTemplate(
-    """ Template name """
-    name: String!,
-    """ Model associated id """
+    """
+    Template name
+    """
+    name: String!
+    """
+    Model associated id
+    """
     modelId: ID!
   ): Template
 
-  """ Updates an existing template """
+  """
+  Updates an existing template
+  """
   updateTemplate(
-    """ Template id """
+    """
+    Template id
+    """
     id: ID!
-    """ Template name """
+    """
+    Template name
+    """
     name: String
   ): Template
 
-  """ Update a content state """
+  """
+  Update a content state
+  """
   updateContentState(
-    """ Content state id """
+    """
+    Content state id
+    """
     id: ID!
-    """ Content state """
+    """
+    Content state
+    """
     contentState: ContentStateInput
   ): ContentState
 
-  """ Adds a new field to a card model """
+  """
+  Adds a new field to a card model
+  """
   addField(
-    """ Field name """
-    name: String!,
-    """ Model associated """
+    """
+    Field name
+    """
+    name: String!
+    """
+    Model associated
+    """
     modelId: ID!
   ): Field
 }

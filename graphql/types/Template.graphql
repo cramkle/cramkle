@@ -10,14 +10,24 @@ Template of the card. This is what structures the content
 of each card with values provided by the note
 """
 type Template {
-  """ Template id """
+  """
+   Template id
+  """
   id: ID!
-  """ Name of the template """
+  """
+   Name of the template
+  """
   name: String
-  """ Front side template """
+  """
+   Front side template
+  """
   frontSide: ContentState
-  """ Back side template """
+  """
+   Back side template
+  """
   backSide: ContentState
-  """ Associated card model """
+  """
+   Associated card model
+  """
   model: CardModel
 }
