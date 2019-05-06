@@ -3,8 +3,9 @@ import fetch from 'node-fetch'
 interface SandboxContext {
   requestUrl: string
   requestHost: string
-  forwardCookie?: string
+  cookie?: string
   userAgent: string
+  language: string
 }
 
 const createSandbox = (ctx: SandboxContext) => {
@@ -40,7 +41,7 @@ const createSandbox = (ctx: SandboxContext) => {
     apply: (target, thisArg, [urlOrRequest, init]) => {
       init.headers = {
         ...init.headers,
-        ...(ctx.forwardCookie && { cookie: ctx.forwardCookie }),
+        ...(ctx.cookie && { cookie: ctx.cookie }),
       }
 
       return target.apply(thisArg, [urlOrRequest, init])
@@ -92,6 +93,8 @@ const createSandbox = (ctx: SandboxContext) => {
     rendered: null as Promise<RenderResult>,
     hostname: ctx.requestHost,
     userAgent: ctx.userAgent,
+    requestCookie: ctx.cookie,
+    requestLanguage: ctx.language,
   } as any
 
   sandbox.window = sandbox
