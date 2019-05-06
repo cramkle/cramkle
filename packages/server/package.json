@@ -15,8 +15,6 @@
     "lint": "eslint --ext ts src && tsc --noEmit"
   },
   "dependencies": {
-    "babel-core": "^7.0.0-bridge.0",
-    "babel-plugin-macros": "^2.5.1",
     "chalk": "^2.4.2",
     "cookie-parser": "^1.4.4",
     "express": "^4.16.4",
@@ -47,7 +45,9 @@
     "@types/webpack": "^4.4.25",
     "@types/webpack-manifest-plugin": "^2.0.0",
     "@types/webpack-node-externals": "^1.6.3",
+    "babel-core": "^7.0.0-bridge.0",
     "babel-loader": "8.0.4",
+    "babel-plugin-macros": "^2.5.1",
     "babel-plugin-named-asset-import": "^0.2.3",
     "bfj": "6.1.1",
     "case-sensitive-paths-webpack-plugin": "2.1.2",
