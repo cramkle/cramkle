@@ -64,6 +64,10 @@ msgstr "Negrito"
 msgid "Cancel"
 msgstr "Cancelar"
 
+#: src/components/SearchBar.tsx:35
+msgid "Clear search"
+msgstr "Limpar busca"
+
 #: src/components/editor/BlockStyleControls.tsx:14
 msgid "Code Block"
 msgstr "Bloco de código"
@@ -266,6 +270,7 @@ msgid "Save Template"
 msgstr "Salvar Template"
 
 #: src/components/SearchBar.tsx:33
+#: src/components/SearchBar.tsx:38
 msgid "Search"
 msgstr "Pesquisar"
 

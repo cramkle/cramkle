@@ -55,15 +55,27 @@ const HomePage: React.FunctionComponent<RouteComponentProps> = ({
           handleActiveIndexUpdate={handleActiveIndexUpdate}
         >
           <Tab onClick={() => history.push('/home')}>
-            <Icon className="mdc-tab__icon mr3" icon="school" />
+            <Icon
+              className="mdc-tab__icon mr3"
+              icon="school"
+              aria-hidden="true"
+            />
             <Trans>Study</Trans>
           </Tab>
           <Tab onClick={() => history.push('/decks')}>
-            <Icon className="mdc-tab__icon mr3" icon="style" />
+            <Icon
+              className="mdc-tab__icon mr3"
+              icon="style"
+              aria-hidden="true"
+            />
             <Trans>Decks</Trans>
           </Tab>
           <Tab onClick={() => history.push('/models')}>
-            <Icon className="mdc-tab__icon mr3" icon="flip_to_back" />
+            <Icon
+              className="mdc-tab__icon mr3"
+              icon="flip_to_back"
+              aria-hidden="true"
+            />
             <Trans>Models</Trans>
           </Tab>
         </TabBar>

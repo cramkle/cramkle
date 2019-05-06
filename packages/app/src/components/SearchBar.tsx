@@ -1,5 +1,5 @@
 import { t } from '@lingui/macro'
-import { I18n } from '@lingui/react'
+import { I18n, withI18n, withI18nProps } from '@lingui/react'
 import IconButton from '@material/react-icon-button'
 import Icon from '@material/react-material-icon'
 import cx from 'classnames'
@@ -7,7 +7,7 @@ import React, { useState, useRef } from 'react'
 
 import styles from './SearchBar.css'
 
-const SearchBar = () => {
+const SearchBar: React.FunctionComponent<withI18nProps> = ({ i18n }) => {
   const inputRef = useRef<HTMLInputElement>(null)
   const [searchValue, setSearchValue] = useState('')
   const [isFocused, setFocused] = useState(false)
@@ -61,19 +61,24 @@ const SearchBar = () => {
         )}
       </I18n>
       {searchValue.length > 0 && (
-        <IconButton className="mh1 order-2" onClick={handleClearSearch}>
-          <Icon icon="close" />
+        <IconButton
+          className="mh1 order-2"
+          onClick={handleClearSearch}
+          aria-label={i18n._(t`Clear search`)}
+        >
+          <Icon icon="close" aria-hidden="true" />
         </IconButton>
       )}
       <IconButton
         className="mh1 order-0"
         onClick={handleSearchIconClick}
         type="submit"
+        aria-label={i18n._(t`Search`)}
       >
-        <Icon icon="search" />
+        <Icon icon="search" aria-hidden="true" />
       </IconButton>
     </form>
   )
 }
 
-export default SearchBar
+export default withI18n()(SearchBar)

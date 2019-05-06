@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Changed
 - Mark template editor as readonly on mobile.
+- Hide icons for assistive tecnologies.
+
+### Fixed
+- Add aria labels to search bar icons.
 
 ## [0.3.1] - 2019-05-06
 ### Fixed

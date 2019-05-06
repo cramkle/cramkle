@@ -12,7 +12,7 @@ import List, {
   ListItemText,
   ListItemGraphic,
 } from '@material/react-list'
-import MaterialIcon from '@material/react-material-icon'
+import Icon from '@material/react-material-icon'
 import React, { ReactNode, useRef, useCallback } from 'react'
 import { compose, graphql, ChildDataProps } from 'react-apollo'
 import { withRouter, RouteComponentProps } from 'react-router'
@@ -69,25 +69,33 @@ const AppDrawer: React.FunctionComponent<ChildDataProps<Props, UserQuery>> = ({
       {({ i18n }) => (
         <List dense singleSelection>
           <ListItem onClick={handleHomeClick}>
-            <ListItemGraphic graphic={<MaterialIcon icon="home" />} />
+            <ListItemGraphic
+              graphic={<Icon icon="home" aria-hidden="true" />}
+            />
             <ListItemText primaryText={i18n._(t`Home`)} />
           </ListItem>
           <ListItem onClick={handleMarketplaceClick}>
             <ListItemGraphic
-              graphic={<MaterialIcon icon="store_mall_directory" />}
+              graphic={<Icon icon="store_mall_directory" aria-hidden="true" />}
             />
             <ListItemText primaryText={i18n._(t`Marketplace`)} />
           </ListItem>
           <ListItem onClick={handleStatisticsClick}>
-            <ListItemGraphic graphic={<MaterialIcon icon="bar_chart" />} />
+            <ListItemGraphic
+              graphic={<Icon icon="bar_chart" aria-hidden="true" />}
+            />
             <ListItemText primaryText={i18n._(t`Statistics`)} />
           </ListItem>
           <ListItem onClick={handleSettingsClick}>
-            <ListItemGraphic graphic={<MaterialIcon icon="settings" />} />
+            <ListItemGraphic
+              graphic={<Icon icon="settings" aria-hidden="true" />}
+            />
             <ListItemText primaryText={i18n._(t`Settings`)} />
           </ListItem>
           <ListItem onClick={handleLogout}>
-            <ListItemGraphic graphic={<MaterialIcon icon="exit_to_app" />} />
+            <ListItemGraphic
+              graphic={<Icon icon="exit_to_app" aria-hidden="true" />}
+            />
             <ListItemText primaryText={i18n._(t`Logout`)} />
           </ListItem>
         </List>
