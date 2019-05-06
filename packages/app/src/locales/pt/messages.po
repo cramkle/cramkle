@@ -22,7 +22,7 @@ msgstr "Conta criada com sucesso"
 msgid "Add Deck"
 msgstr "Adicionar deck"
 
-#: src/components/pages/AddModelPage.tsx:105
+#: src/components/pages/AddModelPage.tsx:106
 msgid "Add field"
 msgstr "Adicionar campo"
 
@@ -30,7 +30,7 @@ msgstr "Adicionar campo"
 msgid "Add model"
 msgstr "Adicionar modelo"
 
-#: src/components/pages/AddModelPage.tsx:80
+#: src/components/pages/AddModelPage.tsx:81
 msgid "Add template"
 msgstr "Adicionar template"
 
@@ -69,11 +69,11 @@ msgid "Code Block"
 msgstr "Bloco de código"
 
 #: src/components/forms/AddDeckForm.tsx:48
-#: src/components/pages/AddModelPage.tsx:112
+#: src/components/pages/AddModelPage.tsx:113
 msgid "Create"
 msgstr "Criar"
 
-#: src/components/pages/AddModelPage.tsx:23
+#: src/components/pages/AddModelPage.tsx:24
 msgid "Create Model"
 msgstr "Criar Modelo"
 
@@ -112,16 +112,16 @@ msgstr "E-mail"
 msgid "E-mail is required"
 msgstr "E-mail é obrigatório"
 
-#: src/components/pages/AddModelPage.tsx:93
+#: src/components/pages/AddModelPage.tsx:94
 msgid "Field name"
 msgstr "Nome do campo"
 
-#: src/components/pages/AddModelPage.tsx:31
+#: src/components/pages/AddModelPage.tsx:32
 msgid "Field name is required"
 msgstr "Nome do campo é obrigatório"
 
-#: src/components/pages/AddModelPage.tsx:88
-#: src/components/pages/ModelPage.tsx:61
+#: src/components/pages/AddModelPage.tsx:89
+#: src/components/pages/ModelPage.tsx:62
 msgid "Fields"
 msgstr "Campos"
 
@@ -174,6 +174,10 @@ msgstr "Nome de usuário e/ou senha inválidos"
 msgid "Italic"
 msgstr "Itálico"
 
+#: src/components/GeneralSettings.tsx:14
+msgid "Language"
+msgstr "Idioma"
+
 #: src/components/forms/LoginForm.tsx:49
 #: src/components/pages/LandingPage.tsx:24
 #: src/components/pages/LoginPage.tsx:13
@@ -204,19 +208,19 @@ msgstr "Modelos"
 msgid "Monospace"
 msgstr "Monoespaçada"
 
-#: src/components/pages/AddModelPage.tsx:57
+#: src/components/pages/AddModelPage.tsx:58
 msgid "Name"
 msgstr "Nome"
 
-#: src/components/pages/AddModelPage.tsx:27
+#: src/components/pages/AddModelPage.tsx:28
 msgid "Name is required"
 msgstr "Nome é obrigatório"
 
-#: src/components/pages/AddModelPage.tsx:100
+#: src/components/pages/AddModelPage.tsx:101
 msgid "No fields added"
 msgstr "Nenhum campo adicionado"
 
-#: src/components/pages/AddModelPage.tsx:75
+#: src/components/pages/AddModelPage.tsx:76
 msgid "No templates added"
 msgstr "Nenhum template adicionado"
 
@@ -244,8 +248,8 @@ msgstr "Senha é obrigatória"
 msgid "Register"
 msgstr "Cadastrar"
 
-#: src/components/pages/AddModelPage.tsx:71
-#: src/components/pages/AddModelPage.tsx:96
+#: src/components/pages/AddModelPage.tsx:72
+#: src/components/pages/AddModelPage.tsx:97
 msgid "Remove"
 msgstr "Remover"
 
@@ -258,6 +262,7 @@ msgid "Search"
 msgstr "Pesquisar"
 
 #: src/components/AppDrawer.tsx:49
+#: src/components/pages/SettingsPage.tsx:9
 msgid "Settings"
 msgstr "Configurações"
 
@@ -277,24 +282,24 @@ msgstr "Estatísticas"
 msgid "Study"
 msgstr "Estudar"
 
-#: src/components/pages/ModelPage.tsx:50
+#: src/components/pages/ModelPage.tsx:51
 msgid "Template back side"
 msgstr "Verso do template"
 
-#: src/components/pages/ModelPage.tsx:45
+#: src/components/pages/ModelPage.tsx:46
 msgid "Template front side"
 msgstr "Frente do template"
 
-#: src/components/pages/AddModelPage.tsx:68
+#: src/components/pages/AddModelPage.tsx:69
 msgid "Template name"
 msgstr "Nome do template"
 
-#: src/components/pages/AddModelPage.tsx:36
+#: src/components/pages/AddModelPage.tsx:37
 msgid "Template name is required"
 msgstr "Nome do template é obrigatório"
 
-#: src/components/pages/AddModelPage.tsx:63
-#: src/components/pages/ModelPage.tsx:36
+#: src/components/pages/AddModelPage.tsx:64
+#: src/components/pages/ModelPage.tsx:37
 msgid "Templates"
 msgstr "Templates"
 
@@ -310,7 +315,7 @@ msgstr "Os modelos que você criar irão aparecer aqui."
 msgid "The title is required"
 msgstr "O título é obrigatório"
 
-#: src/components/pages/ModelPage.tsx:68
+#: src/components/pages/ModelPage.tsx:69
 msgid "This model doesn't have any fields yet."
 msgstr "Este modelo ainda não possui nenhum campo."
 
@@ -340,7 +345,7 @@ msgstr "Nome de usuário é obrigatório"
 msgid "Username must consist only of alphanumeric characters and underscores"
 msgstr "O nome de usuário precisa conter apenas caracteres alfanuméricos e sublinhas"
 
-#: src/components/pages/ModelPage.tsx:55
+#: src/components/pages/ModelPage.tsx:56
 msgid "You haven't created any templates on this model yet."
 msgstr "Você ainda não criou nenhum template neste modelo."
 
