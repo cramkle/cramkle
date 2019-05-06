@@ -28,7 +28,7 @@ const LandingPage: React.FunctionComponent<RouteComponentProps> = ({
           <TopAppBarTitle>Cramkle</TopAppBarTitle>
         </TopAppBarSection>
         <TopAppBarSection align="end">
-          <Button onClick={() => history.push('/register')}>
+          <Button unelevated onClick={() => history.push('/register')}>
             <Trans>Sign Up</Trans>
           </Button>
           <Button onClick={() => history.push('/login')} className="ml2">
