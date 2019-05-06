@@ -1,6 +1,6 @@
 import { t } from '@lingui/macro'
 import { I18n } from '@lingui/react'
-import MaterialIcon from '@material/react-material-icon'
+import Icon from '@material/react-material-icon'
 import Fab from '@material/react-fab'
 import React, { useState, useCallback } from 'react'
 
@@ -28,7 +28,7 @@ const DecksSection: React.FunctionComponent = () => {
         <I18n>
           {({ i18n }) => (
             <Fab
-              icon={<MaterialIcon icon="add" />}
+              icon={<Icon icon="add" aria-hidden="true" />}
               textLabel={i18n._(t`Add Deck`)}
               onClick={handleDialogOpen}
             />

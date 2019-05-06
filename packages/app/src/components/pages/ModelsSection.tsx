@@ -1,6 +1,6 @@
 import { t } from '@lingui/macro'
 import { I18n } from '@lingui/react'
-import MaterialIcon from '@material/react-material-icon'
+import Icon from '@material/react-material-icon'
 import Fab from '@material/react-fab'
 import { Snackbar } from '@material/react-snackbar'
 import React from 'react'
@@ -24,7 +24,7 @@ const ModelsSection: React.FunctionComponent<RouteComponentProps> = ({
 
           <div className="fixed right-0 bottom-0 pa4">
             <Fab
-              icon={<MaterialIcon icon="add" />}
+              icon={<Icon icon="add" aria-hidden="true" />}
               textLabel={i18n._(t`Add model`)}
               onClick={handleAddClick}
             />
