@@ -18,16 +18,11 @@ import { useMobile } from './MobileContext'
 import useLocalStorage from '../hooks/useLocalStorage'
 import logoUrl from '../assets/logo.svg'
 import loadingQuery from '../graphql/topBarLoadingQuery.gql'
+import { TopBarLoadingQuery } from '../graphql/__generated__/TopBarLoadingQuery'
 
-interface Data {
-  topBar: {
-    loading: boolean
-  }
-}
+type Props = ChildDataProps<RouteComponentProps, TopBarLoadingQuery>
 
-const Shell: React.FunctionComponent<
-  ChildDataProps<RouteComponentProps, Data>
-> = ({
+const Shell: React.FunctionComponent<Props> = ({
   children,
   data: {
     topBar: { loading },
@@ -124,6 +119,6 @@ const Shell: React.FunctionComponent<
 }
 
 export default compose(
-  graphql<{}, Data>(loadingQuery),
+  graphql<{}, TopBarLoadingQuery>(loadingQuery),
   withRouter
 )(Shell)

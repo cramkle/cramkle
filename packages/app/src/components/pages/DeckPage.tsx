@@ -7,26 +7,19 @@ import { RouteComponentProps } from 'react-router'
 import BackButton from '../BackButton'
 import DeleteDeckButton from '../DeleteDeckButton'
 import deckQuery from '../../graphql/deckQuery.gql'
+import {
+  DeckQuery,
+  DeckQueryVariables,
+} from '../../graphql/__generated__/DeckQuery'
 import loadingMutation from '../../graphql/topBarLoadingMutation.gql'
-
-interface TopbarQueryData {
-  topBar: {
-    loading: boolean
-  }
-}
-
-interface DeckData {
-  deck: {
-    id: string
-    slug: string
-    title: string
-    description: string
-  }
-}
+import {
+  SetLoadingMutation,
+  SetLoadingMutationVariables,
+} from '../../graphql/__generated__/SetLoadingMutation'
 
 type Props = RouteComponentProps<{ slug: string }>
 
-interface Data extends TopbarQueryData, DeckData {}
+type Data = DeckQuery & SetLoadingMutation
 
 const DeckPage: React.FunctionComponent<ChildProps<Props, Data>> = ({
   data: { loading, deck },
@@ -57,12 +50,14 @@ const DeckPage: React.FunctionComponent<ChildProps<Props, Data>> = ({
 }
 
 export default compose(
-  graphql<Props, DeckData, { slug: string }>(deckQuery, {
+  graphql<Props, DeckQuery, DeckQueryVariables>(deckQuery, {
     options: props => ({
       variables: {
         slug: props.match.params.slug,
       },
     }),
   }),
-  graphql<Props, TopbarQueryData>(loadingMutation)
+  graphql<Props, SetLoadingMutation, SetLoadingMutationVariables>(
+    loadingMutation
+  )
 )(DeckPage)
