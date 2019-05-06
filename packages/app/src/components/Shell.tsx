@@ -1,3 +1,5 @@
+import { t } from '@lingui/macro'
+import { withI18n, withI18nProps } from '@lingui/react'
 import LinearProgress from '@material/react-linear-progress'
 import Icon from '@material/react-material-icon'
 import TopAppBar, {
@@ -20,7 +22,10 @@ import logoUrl from '../assets/logo.svg'
 import loadingQuery from '../graphql/topBarLoadingQuery.gql'
 import { TopBarLoadingQuery } from '../graphql/__generated__/TopBarLoadingQuery'
 
-type Props = ChildDataProps<RouteComponentProps, TopBarLoadingQuery>
+type Props = ChildDataProps<
+  RouteComponentProps & withI18nProps,
+  TopBarLoadingQuery
+>
 
 const Shell: React.FunctionComponent<Props> = ({
   children,
@@ -28,6 +33,7 @@ const Shell: React.FunctionComponent<Props> = ({
     topBar: { loading },
   },
   history,
+  i18n,
 }) => {
   const isMobile = useMobile()
   const [drawerOpen, setDrawerOpen] = useLocalStorage(
@@ -47,6 +53,15 @@ const Shell: React.FunctionComponent<Props> = ({
   const handleNavigationIconClick = useCallback(() => {
     setDrawerOpen(isOpen => !isOpen)
   }, [setDrawerOpen])
+
+  const handleNavigationIconKeyDown = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (e.key === ' ' || e.key === 'Enter') {
+        setDrawerOpen(isOpen => !isOpen)
+      }
+    },
+    [setDrawerOpen]
+  )
 
   const handleDrawerClose = useCallback(() => {
     setDrawerOpen(false)
@@ -86,8 +101,16 @@ const Shell: React.FunctionComponent<Props> = ({
             <TopAppBar className="absolute left-0 right-0" fixed>
               <TopAppBarRow>
                 <TopAppBarSection align="start">
-                  <TopAppBarIcon navIcon tabIndex={0}>
-                    <Icon icon="menu" onClick={handleNavigationIconClick} />
+                  <TopAppBarIcon navIcon>
+                    <Icon
+                      icon="menu"
+                      tabIndex={0}
+                      role="button"
+                      aria-label={i18n._(t`Main menu`)}
+                      aria-expanded={drawerOpen}
+                      onClick={handleNavigationIconClick}
+                      onKeyDown={handleNavigationIconKeyDown}
+                    />
                   </TopAppBarIcon>
                   <TopAppBarTitle
                     className="flex items-center pl1 link color-inherit"
@@ -120,5 +143,6 @@ const Shell: React.FunctionComponent<Props> = ({
 
 export default compose(
   graphql<{}, TopBarLoadingQuery>(loadingQuery),
-  withRouter
+  withRouter,
+  withI18n()
 )(Shell)
