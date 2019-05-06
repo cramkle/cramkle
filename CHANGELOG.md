@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - New typeahead component.
+- Add settings page with language selector.
 
 ### Changed
 - Update `material` packages to v0.12.0.
