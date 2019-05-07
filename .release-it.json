@@ -1,6 +1,9 @@
 {
   "scripts": {
-    "beforeStage": "yarn update-changelog",
+    "beforeStage": [
+      "yarn update-changelog",
+      "yarn update-versions"
+    ],
     "afterRelease": [
       "docker build -t gcr.io/cramkle/cramkle-app:${version} .",
       "docker push gcr.io/cramkle/cramkle-app:${version}"
