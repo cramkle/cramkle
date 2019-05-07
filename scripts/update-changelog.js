@@ -39,7 +39,7 @@ ${header}
 ${body}
   `.trim()
 
-  await writeFile(CHANGELOG_FILENAME, newChangelog)
+  await writeFile(CHANGELOG_FILENAME, newChangelog + '\n')
 }
 
 update()
