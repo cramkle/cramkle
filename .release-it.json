@@ -1,0 +1,17 @@
+{
+  "scripts": {
+    "beforeStage": "yarn update-changelog",
+    "afterRelease": [
+      "docker build -t gcr.io/cramkle/cramkle-app:${version} .",
+      "docker push gcr.io/cramkle/cramkle-app:${version}"
+    ]
+  },
+  "git": {
+    "tagName": "v${version}",
+    "tagAnnotation": "Release v${version}",
+    "commitMessage": "Release v${version}"
+  },
+  "npm": {
+    "publish": false
+  }
+}
