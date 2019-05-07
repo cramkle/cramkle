@@ -2,10 +2,13 @@ import { t } from '@lingui/macro'
 import { I18n } from '@lingui/react'
 import Icon from '@material/react-material-icon'
 import Fab from '@material/react-fab'
+import classNames from 'classnames'
 import React, { useState, useCallback } from 'react'
 
 import DeckList from '../DeckList'
 import AddDeckForm from '../forms/AddDeckForm'
+
+import styles from './DecksSection.css'
 
 const DecksSection: React.FunctionComponent = () => {
   const [dialogOpen, setDialogOpen] = useState(false)
@@ -24,7 +27,7 @@ const DecksSection: React.FunctionComponent = () => {
 
       <AddDeckForm open={dialogOpen} onClose={handleDialogClose} />
 
-      <div className="fixed right-0 bottom-0 pa4">
+      <div className={classNames(styles.fab, 'fixed')}>
         <I18n>
           {({ i18n }) => (
             <Fab

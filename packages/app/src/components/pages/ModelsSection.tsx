@@ -3,10 +3,13 @@ import { I18n } from '@lingui/react'
 import Icon from '@material/react-material-icon'
 import Fab from '@material/react-fab'
 import { Snackbar } from '@material/react-snackbar'
+import classNames from 'classnames'
 import React from 'react'
 import { withRouter, RouteComponentProps } from 'react-router'
 
 import ModelList from '../ModelList'
+
+import styles from './ModelsSection.css'
 
 const ModelsSection: React.FunctionComponent<RouteComponentProps> = ({
   history,
@@ -22,7 +25,7 @@ const ModelsSection: React.FunctionComponent<RouteComponentProps> = ({
         <>
           <ModelList />
 
-          <div className="fixed right-0 bottom-0 pa4">
+          <div className={classNames(styles.fab, 'fixed')}>
             <Fab
               icon={<Icon icon="add" aria-hidden="true" />}
               textLabel={i18n._(t`Add model`)}
