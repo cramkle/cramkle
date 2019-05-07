@@ -26,11 +26,11 @@ const update = async () => {
 
   await writeFile(
     './packages/app/package.json',
-    JSON.stringify(appPackageJson, null, 2)
+    JSON.stringify(appPackageJson, null, 2) + '\n'
   )
   await writeFile(
     './packages/server/package.json',
-    JSON.stringify(serverPackageJson, null, 2)
+    JSON.stringify(serverPackageJson, null, 2) + '\n'
   )
 }
 
