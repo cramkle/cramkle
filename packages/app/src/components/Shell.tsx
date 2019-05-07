@@ -9,7 +9,7 @@ import TopAppBar, {
   TopAppBarSection,
   TopAppBarTitle,
 } from '@material/react-top-app-bar'
-import React, { Suspense, useCallback } from 'react'
+import React, { Suspense, useCallback, useEffect, useRef } from 'react'
 import { compose, graphql, ChildDataProps } from 'react-apollo'
 import { withRouter, RouteComponentProps } from 'react-router'
 
@@ -33,6 +33,7 @@ const Shell: React.FunctionComponent<Props> = ({
     topBar: { loading },
   },
   history,
+  location: { pathname },
   i18n,
 }) => {
   const isMobile = useMobile()
@@ -41,6 +42,16 @@ const Shell: React.FunctionComponent<Props> = ({
     !isMobile,
     isMobile
   )
+
+  const prevPathname = useRef(pathname)
+
+  useEffect(() => {
+    if (isMobile && drawerOpen && prevPathname.current !== pathname) {
+      setDrawerOpen(false)
+    }
+
+    prevPathname.current = pathname
+  }, [drawerOpen, isMobile, pathname, setDrawerOpen])
 
   const handleLogoClick = useCallback(
     e => {
