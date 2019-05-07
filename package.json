@@ -1,4 +1,13 @@
 {
   "private": true,
-  "workspaces": ["packages/*"]
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "release": "release-it",
+    "update-changelog": "node ./scripts/update-changelog.js"
+  },
+  "devDependencies": {
+    "release-it": "^12.0.1"
+  }
 }
