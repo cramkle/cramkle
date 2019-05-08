@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 - Language change selection without reload.
+- Add model page layout on mobile.
 
 ## [0.3.3] - 2019-05-08
 ### Changed
