@@ -27,11 +27,11 @@ const update = async () => {
   const now = new Date()
 
   const year = now.getFullYear()
-  const month = (now.getUTCMonth() + 1).toString().pad(2, '0')
+  const month = (now.getUTCMonth() + 1).toString().padStart(2, '0')
   const day = now
     .getUTCDate()
     .toString()
-    .pad(2, '0')
+    .padStart(2, '0')
 
   const newChangelog = `
 ${header}
