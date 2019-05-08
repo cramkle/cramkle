@@ -88,10 +88,10 @@ const AddModelPage: React.FunctionComponent<Props> = ({ history, mutate }) => {
               >
                 <TextInputField name="name" label={i18n._(t`Name`)} />
 
-                <div className="flex">
+                <div className="flex flex-column flex-row-ns">
                   <FieldArray name="templates" validateOnChange={false}>
                     {({ push, remove }) => (
-                      <div className={`${styles.evenColumn} mt3 pr3`}>
+                      <div className={`${styles.evenColumn} mt3 pr3-ns`}>
                         <Body1>
                           <Trans>Templates</Trans>
                         </Body1>
@@ -113,7 +113,7 @@ const AddModelPage: React.FunctionComponent<Props> = ({ history, mutate }) => {
                                 <IconButton
                                   className="ml1 c-primary"
                                   onClick={() => remove(index)}
-                                  aria-label={i18n._(t`Remove`)}
+                                  aria-label={i18n._(t`Remove template`)}
                                 >
                                   <Icon icon="delete" aria-hidden="true" />
                                 </IconButton>
@@ -157,7 +157,7 @@ const AddModelPage: React.FunctionComponent<Props> = ({ history, mutate }) => {
                                 <IconButton
                                   className="ml1 c-primary"
                                   onClick={() => remove(index)}
-                                  aria-label={i18n._(t`Remove`)}
+                                  aria-label={i18n._(t`Remove field`)}
                                 >
                                   <Icon icon="delete" aria-hidden="true" />
                                 </IconButton>
