@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 - Preload styles in server.
+- Update default font-size to 15px.
 
 ## [0.3.3] - 2019-05-08
 ### Changed

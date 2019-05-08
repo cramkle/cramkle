@@ -43,7 +43,7 @@ interface TemplateInput {
 export const ok = (args?: TemplateInput) => {
   const { markup = '', head, scripts = [], styles = [], state, language } = args
   return `<!DOCTYPE html>
-<html lang="${language}">
+<html lang="${language}" style="font-size: 15px;">
 <head>
   ${styles.map(srcToPreloadStyle).join('\n')}
   <meta charset="utf-8">
