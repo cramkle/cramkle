@@ -1,9 +1,11 @@
 import { HelmetData } from 'react-helmet'
-import { map } from 'ramda'
 import serialize from 'serialize-javascript'
 
 const srcToScriptTag = (src: string) => `<script src="${src}" defer></script>`
 const srcToLinkTag = (src: string) => `<link rel="stylesheet" href="${src}" />`
+
+const srcToPreloadStyle = (src: string) =>
+  `<link rel="prefetch" href=${src} as="style" />`
 
 const getHeadTags = (head: HelmetData) => {
   if (!head) {
@@ -43,19 +45,20 @@ export const ok = (args?: TemplateInput) => {
   return `<!DOCTYPE html>
 <html lang="${language}">
 <head>
+  ${styles.map(srcToPreloadStyle).join('\n')}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="theme-color" content="#2962ff">
   ${getHeadTags(head)}
-  ${map(srcToLinkTag, styles).join('\n')}
+  ${styles.map(srcToLinkTag).join('\n')}
   <link rel="shortcut icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Franklin:300,400,500,600|Material+Icons">
-  ${map(srcToScriptTag, scripts).join('\n')}
+  ${scripts.map(srcToScriptTag).join('\n')}
 </head>
 <body class="mdc-typography">
   ${getNoScriptTags(head)}
   <div id="root">${markup}</div>
-  <script>
+  <script nonce>
     __APOLLO_STATE__ = ${serialize(state || {}, { isJSON: true })}
   </script>
 </body>

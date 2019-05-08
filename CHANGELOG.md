@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - `robots.txt` file.
 
+### Changed
+- Preload styles in server.
+
 ## [0.3.3] - 2019-05-08
 ### Changed
 - Add label to topbar menu icon.
