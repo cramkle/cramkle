@@ -4,9 +4,22 @@
   height: 46px;
   flex: 1;
   max-width: 600px;
-  transition: all .2s ease-in-out;
+  transition: background-color .2s ease-in-out,
+    box-shadow .2s ease-in-out;
 }
 
 .searchFormFocused {
   background-color: #fff;
+}
+
+@media only screen and (max-width: 30rem) {
+  .searchForm {
+    max-width: 200px;
+  }
+}
+
+@media only screen and (max-width: 60rem) {
+  .searchForm {
+    max-width: 400px;
+  }
 }
