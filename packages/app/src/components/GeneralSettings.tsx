@@ -1,4 +1,4 @@
-import { t } from '@lingui/macro'
+import { Trans, t } from '@lingui/macro'
 import { withI18n, withI18nProps } from '@lingui/react'
 import Button from '@material/react-button'
 import Select, { Option } from '@material/react-select'
@@ -44,7 +44,7 @@ const GeneralSettings: React.FunctionComponent<withI18nProps> = ({ i18n }) => {
         ))}
       </Select>
       <Button className="mt3 self-end" unelevated onClick={handleSave}>
-        Save
+        <Trans>Save</Trans>
       </Button>
     </div>
   )

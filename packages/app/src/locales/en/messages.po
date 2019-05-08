@@ -272,6 +272,10 @@ msgstr "Remove field"
 msgid "Remove template"
 msgstr "Remove template"
 
+#: src/components/GeneralSettings.tsx:32
+msgid "Save"
+msgstr "Save"
+
 #: src/components/SaveTemplateButton.tsx:14
 msgid "Save Template"
 msgstr "Save Template"
