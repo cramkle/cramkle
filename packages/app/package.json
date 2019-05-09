@@ -74,7 +74,7 @@
     "@lingui/macro": "^2.7.4",
     "@lucasecdb/eslint-config": "^0.3.6",
     "@types/classnames": "^2.2.7",
-    "@types/draft-js": "^0.10.30",
+    "@types/draft-js": "^0.10.31",
     "@types/exenv": "^1.2.0",
     "@types/graphql": "^14.0.7",
     "@types/jest": "^24.0.9",

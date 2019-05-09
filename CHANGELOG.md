@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Translated save settings button
 
+### Fixed
+- Removed `@ts-ignore` in mentions editor.
+
 ## [0.3.4] - 2019-05-08
 ### Added
 - `robots.txt` file.

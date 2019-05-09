@@ -213,25 +213,21 @@ const MentionsEditor: React.FunctionComponent<Props> = ({
 
   return (
     <>
-      {
-        // @ts-ignore role does not exist on Editor props yet
-        <Editor
-          {...props}
-          ariaAutoComplete={ariaAutoComplete}
-          ariaHasPopup={showingMentions}
-          ariaExpanded={showingMentions}
-          role="combobox"
-          spellCheck
-          editorState={editorState}
-          onChange={onChange}
-          onUpArrow={handleUpArrow}
-          onDownArrow={handleDownArrow}
-          onTab={handleTab}
-          onEscape={handleEscape}
-          onBlur={handleBlur}
-          handleReturn={handleReturn}
-        />
-      }
+      <Editor
+        {...props}
+        ariaAutoComplete={ariaAutoComplete}
+        ariaExpanded={showingMentions}
+        role="combobox"
+        spellCheck
+        editorState={editorState}
+        onChange={onChange}
+        onUpArrow={handleUpArrow}
+        onDownArrow={handleDownArrow}
+        onTab={handleTab}
+        onEscape={handleEscape}
+        onBlur={handleBlur}
+        handleReturn={handleReturn}
+      />
       <MentionsPopup
         mentionableEntries={mentionableEntries}
         selection={editorState.getSelection()}
