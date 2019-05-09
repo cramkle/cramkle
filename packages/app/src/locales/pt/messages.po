@@ -238,7 +238,7 @@ msgstr "Nenhum template adicionado"
 
 #: src/components/editor/BlockStyleControls.tsx:13
 msgid "OL"
-msgstr "Lista ordenada"
+msgstr "Lista numerada"
 
 #: src/components/pages/LandingPage.tsx:37
 msgid "Optimize your knowledge retention with this effective study method."
@@ -349,7 +349,7 @@ msgstr "Título"
 
 #: src/components/editor/BlockStyleControls.tsx:12
 msgid "UL"
-msgstr "Lista não ordenada"
+msgstr "Lista de marcadores"
 
 #: src/components/editor/InlineStyleControls.tsx:7
 msgid "Underline"
