@@ -1,5 +1,6 @@
 import path from 'path'
 import webpack, { Configuration, Loader } from 'webpack'
+// @ts-ignore
 import ExtractCssChunks from 'extract-css-chunks-webpack-plugin'
 import CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin'
 import WatchMissingNodeModulesPlugin from 'react-dev-utils/WatchMissingNodeModulesPlugin'
@@ -70,10 +71,11 @@ const getStyleLoaders = ({
   }
 
   const cssLoader = {
-    loader: require.resolve(isServer ? 'css-loader/locals' : 'css-loader'),
+    loader: require.resolve('css-loader'),
     options: {
       importLoaders: 1 + loaders.length,
       modules: cssModules,
+      exportOnlyLocals: isServer,
     },
   }
 
