@@ -1,7 +1,9 @@
 import { MessageDescriptor } from '@lingui/core'
 import { I18n } from '@lingui/react'
 import cx from 'classnames'
-import React, { memo } from 'react'
+import React, { memo, useRef } from 'react'
+
+import { useControlledTabIndex } from '../TabController'
 
 export interface Style {
   label: MessageDescriptor
@@ -19,26 +21,31 @@ const StyleButton: React.FunctionComponent<Props> = ({
   style,
   active,
 }) => {
+  const buttonRef = useRef<HTMLButtonElement>(null)
+
   const handleToggle = (e: React.MouseEvent<HTMLSpanElement>) => {
     e.preventDefault()
     onToggle(style)
   }
 
-  const className = cx('pointer mr3 pv1 dib', {
+  const className = cx('pointer mr3 pv1 dib bn', {
     'c-primary': active,
   })
+
+  const { tabIndex, onKeyDown } = useControlledTabIndex(buttonRef, style)
 
   return (
     <I18n>
       {({ i18n }) => (
-        <span
-          role="button"
-          tabIndex={0}
+        <button
           className={className}
-          onMouseDown={handleToggle}
+          onClick={handleToggle}
+          ref={buttonRef}
+          tabIndex={tabIndex}
+          onKeyDown={onKeyDown}
         >
           {i18n._(label)}
-        </span>
+        </button>
       )}
     </I18n>
   )

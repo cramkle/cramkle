@@ -16,6 +16,7 @@ import { decorators as mentionsDecorators } from './editor/MentionsPopup'
 import MentionsEditor from './editor/MentionsEditor'
 import { useHints } from './HintsContext'
 import SaveTemplateButton from './SaveTemplateButton'
+import TabController from './TabController'
 import { ModelQuery_cardModel_templates_frontSide as TemplateContent } from '../graphql/__generated__/ModelQuery'
 
 const decorators = new CompositeDecorator(mentionsDecorators)
@@ -57,11 +58,18 @@ const TemplateEditor: React.FunctionComponent<{
       {!isMobile && (
         <CardActions className="bb b--inherit">
           <CardActionButtons className="flex-column items-start">
-            <BlockStyleControls
-              editor={editor}
-              onToggle={handleBlockStyleToggle}
-            />
-            <InlineStyleControls editor={editor} onToggle={handleStyleToggle} />
+            <TabController>
+              <BlockStyleControls
+                editor={editor}
+                onToggle={handleBlockStyleToggle}
+              />
+            </TabController>
+            <TabController>
+              <InlineStyleControls
+                editor={editor}
+                onToggle={handleStyleToggle}
+              />
+            </TabController>
           </CardActionButtons>
         </CardActions>
       )}
