@@ -7,11 +7,14 @@ import React, { useState, useCallback } from 'react'
 
 import DeckList from '../DeckList'
 import AddDeckForm from '../forms/AddDeckForm'
+import { useMobile } from '../MobileContext'
 
 import styles from './DecksSection.css'
 
 const DecksSection: React.FunctionComponent = () => {
   const [dialogOpen, setDialogOpen] = useState(false)
+
+  const isMobile = useMobile()
 
   const handleDialogClose = useCallback(() => {
     setDialogOpen(false)
@@ -32,7 +35,8 @@ const DecksSection: React.FunctionComponent = () => {
           {({ i18n }) => (
             <Fab
               icon={<Icon icon="add" aria-hidden="true" />}
-              textLabel={i18n._(t`Add Deck`)}
+              aria-label={i18n._(t`Add Deck`)}
+              textLabel={!isMobile && i18n._(t`Add Deck`)}
               onClick={handleDialogOpen}
             />
           )}
