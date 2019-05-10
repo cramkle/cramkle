@@ -28,7 +28,7 @@ const StyleButton: React.FunctionComponent<Props> = ({
     onToggle(style)
   }
 
-  const className = cx('pointer mr3 pv1 dib bn', {
+  const className = cx('pointer mr3 pv1 dib bn bg-surface', {
     'c-primary': active,
   })
 
