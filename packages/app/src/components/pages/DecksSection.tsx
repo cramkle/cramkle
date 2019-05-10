@@ -7,14 +7,14 @@ import React, { useState, useCallback } from 'react'
 
 import DeckList from '../DeckList'
 import AddDeckForm from '../forms/AddDeckForm'
-import { useMobile } from '../MobileContext'
+import { useHints } from '../HintsContext'
 
 import styles from './DecksSection.css'
 
 const DecksSection: React.FunctionComponent = () => {
   const [dialogOpen, setDialogOpen] = useState(false)
 
-  const isMobile = useMobile()
+  const { isMobile } = useHints()
 
   const handleDialogClose = useCallback(() => {
     setDialogOpen(false)

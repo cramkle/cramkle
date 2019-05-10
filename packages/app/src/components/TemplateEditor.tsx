@@ -14,7 +14,7 @@ import InlineStyleControls from './editor/InlineStyleControls'
 import BlockStyleControls from './editor/BlockStyleControls'
 import { decorators as mentionsDecorators } from './editor/MentionsPopup'
 import MentionsEditor from './editor/MentionsEditor'
-import { useMobile } from './MobileContext'
+import { useHints } from './HintsContext'
 import SaveTemplateButton from './SaveTemplateButton'
 import { ModelQuery_cardModel_templates_frontSide as TemplateContent } from '../graphql/__generated__/ModelQuery'
 
@@ -24,7 +24,7 @@ const TemplateEditor: React.FunctionComponent<{
   initialContentState: TemplateContent
   fields: { id: string; name: string }[]
 }> = ({ initialContentState, fields }) => {
-  const isMobile = useMobile()
+  const { isMobile } = useHints()
 
   const [editor, setEditor] = useState(() => {
     if (initialContentState.blocks.length === 0) {

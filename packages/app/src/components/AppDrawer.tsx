@@ -18,7 +18,7 @@ import { compose, graphql, ChildDataProps } from 'react-apollo'
 import { withRouter, RouteComponentProps } from 'react-router'
 
 import NoSSR from './NoSSR'
-import { useMobile } from './MobileContext'
+import { useHints } from './HintsContext'
 import userQuery from '../graphql/userQuery.gql'
 import { UserQuery } from '../graphql/__generated__/UserQuery'
 
@@ -37,7 +37,7 @@ const AppDrawer: React.FunctionComponent<ChildDataProps<Props, UserQuery>> = ({
   history,
   data: { me },
 }) => {
-  const isMobile = useMobile()
+  const { isMobile } = useHints()
 
   const drawerRef = useRef<HTMLElement>(null)
 

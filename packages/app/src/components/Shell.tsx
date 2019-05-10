@@ -16,7 +16,7 @@ import { withRouter, RouteComponentProps } from 'react-router'
 import AppDrawer from './AppDrawer'
 import NoSSR from './NoSSR'
 import SearchBar from './SearchBar'
-import { useMobile } from './MobileContext'
+import { useHints } from './HintsContext'
 import useLocalStorage from '../hooks/useLocalStorage'
 import logoUrl from '../assets/logo.svg'
 import loadingQuery from '../graphql/topBarLoadingQuery.gql'
@@ -36,7 +36,7 @@ const Shell: React.FunctionComponent<Props> = ({
   location: { pathname },
   i18n,
 }) => {
-  const isMobile = useMobile()
+  const { isMobile } = useHints()
   const [drawerOpen, setDrawerOpen] = useLocalStorage(
     'ck:drawerOpen',
     !isMobile,

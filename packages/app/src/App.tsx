@@ -13,7 +13,7 @@ import RegisterPage from './components/pages/RegisterPage'
 import NotFoundPage from './components/pages/NotFoundPage'
 import ShellRoute from './components/routes/ShellRoute'
 import { UserRoute, GuestRoute } from './components/routes/AuthRoute'
-import { MobileProvider } from './components/MobileContext'
+import { HintsProvider } from './components/HintsContext'
 import en from './locales/en/messages'
 import pt from './locales/pt/messages'
 import client from './utils/apolloClient'
@@ -40,7 +40,7 @@ if (window.requestLanguage) {
 const App: React.FunctionComponent<{}> = () => (
   <I18nProvider language={language} catalogs={{ en, pt }}>
     <ApolloProvider client={client}>
-      <MobileProvider>
+      <HintsProvider>
         <Helmet
           defaultTitle="Cramkle"
           titleTemplate="%s - Cramkle"
@@ -108,7 +108,7 @@ const App: React.FunctionComponent<{}> = () => (
           <Route component={AboutPage} path="/about" exact />
           <Route component={NotFoundPage} />
         </Switch>
-      </MobileProvider>
+      </HintsProvider>
     </ApolloProvider>
   </I18nProvider>
 )

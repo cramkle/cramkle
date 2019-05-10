@@ -8,7 +8,7 @@ import React from 'react'
 import { withRouter, RouteComponentProps } from 'react-router'
 
 import ModelList from '../ModelList'
-import { useMobile } from '../MobileContext'
+import { useHints } from '../HintsContext'
 
 import styles from './ModelsSection.css'
 
@@ -16,7 +16,7 @@ const ModelsSection: React.FunctionComponent<RouteComponentProps> = ({
   history,
   location,
 }) => {
-  const isMobile = useMobile()
+  const { isMobile } = useHints()
 
   const handleAddClick = () => {
     history.push('/models/create')
