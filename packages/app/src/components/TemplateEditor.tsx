@@ -1,5 +1,4 @@
 import Card, { CardActions, CardActionButtons } from '@material/react-card'
-import cx from 'classnames'
 import {
   EditorState,
   CompositeDecorator,
@@ -18,8 +17,6 @@ import MentionsEditor from './editor/MentionsEditor'
 import { useMobile } from './MobileContext'
 import SaveTemplateButton from './SaveTemplateButton'
 import { ModelQuery_cardModel_templates_frontSide as TemplateContent } from '../graphql/__generated__/ModelQuery'
-
-import styles from './TemplateEditor.scss'
 
 const decorators = new CompositeDecorator(mentionsDecorators)
 
@@ -56,7 +53,7 @@ const TemplateEditor: React.FunctionComponent<{
   )
 
   return (
-    <Card outlined className={cx(styles.templateEditor, 'mt2')}>
+    <Card outlined className="mt2">
       {!isMobile && (
         <CardActions className="bb b--inherit">
           <CardActionButtons className="flex-column items-start">
@@ -68,12 +65,14 @@ const TemplateEditor: React.FunctionComponent<{
           </CardActionButtons>
         </CardActions>
       )}
-      <MentionsEditor
-        mentionSource={fields}
-        editorState={editor}
-        onChange={setEditor}
-        readOnly={isMobile}
-      />
+      <div className="pa3">
+        <MentionsEditor
+          mentionSource={fields}
+          editorState={editor}
+          onChange={setEditor}
+          readOnly={isMobile}
+        />
+      </div>
       {!isMobile && (
         <CardActions className="bt b--inherit">
           <CardActionButtons>
