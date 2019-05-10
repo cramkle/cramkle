@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 - Removed `@ts-ignore` in mentions editor.
+- CSS modules including `node_modules` styles.
 
 ## [0.3.4] - 2019-05-08
 ### Added

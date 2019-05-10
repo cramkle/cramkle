@@ -191,7 +191,7 @@ const getBaseWebpackConfig = (options?: Options): Configuration => {
     },
     {
       test: cssModuleRegex,
-      exclude: cssRegex,
+      exclude: [cssRegex, /node_modules/],
       use: cssModuleConfig,
     },
     {
@@ -200,7 +200,7 @@ const getBaseWebpackConfig = (options?: Options): Configuration => {
     },
     {
       test: sassModuleRegex,
-      exclude: sassRegex,
+      exclude: [sassRegex, /node_modules/],
       use: sassModuleConfig,
     },
   ]
