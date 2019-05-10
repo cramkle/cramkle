@@ -95,7 +95,7 @@ const reducer = (state: State, action: Action) => {
         stop => stop.id === action.id
       )
 
-      const direction = action.type === 'select_next' ? -1 : 1
+      const direction = action.type === 'select_next' ? 1 : -1
 
       const selectedTabStop =
         state.tabStops[
@@ -163,7 +163,7 @@ export const useControlledTabIndex = (
         case 'ArrowRight':
           e.preventDefault()
 
-          dispatch({ type: 'select_prev', id })
+          dispatch({ type: 'select_next', id })
           break
         case 'Up':
         case 'ArrowUp':
@@ -171,7 +171,7 @@ export const useControlledTabIndex = (
         case 'ArrowLeft':
           e.preventDefault()
 
-          dispatch({ type: 'select_next', id })
+          dispatch({ type: 'select_prev', id })
           break
       }
     },
