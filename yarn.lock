@@ -11581,6 +11581,13 @@ react-side-effect@^1.1.0:
     exenv "^1.2.1"
     shallowequal "^1.0.1"
 
+react-tab-controller@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/react-tab-controller/-/react-tab-controller-0.1.1.tgz#568344096407220be4996e60ede7a9e99b833d88"
+  integrity sha512-cS+twBPsP/1/l+rs1JYahx3p4htFxAYYcntqq+C/cyxSfHmhZB5C+WBJK2E9PRL9YOjTMKaBlPKHIAHQqPY2eQ==
+  dependencies:
+    tiny-warning "^1.0.2"
+
 react-testing-library@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/react-testing-library/-/react-testing-library-7.0.0.tgz#d3b535e44de94d7b0a83c56cd2e3cfed752dcec1"

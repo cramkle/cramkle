@@ -2,8 +2,7 @@ import { MessageDescriptor } from '@lingui/core'
 import { I18n } from '@lingui/react'
 import cx from 'classnames'
 import React, { memo, useRef } from 'react'
-
-import { useControlledTabIndex } from '../TabController'
+import { useControlledTabIndex } from 'react-tab-controller'
 
 export interface Style {
   label: MessageDescriptor

@@ -9,6 +9,7 @@ import {
 } from 'draft-js'
 import 'draft-js/dist/Draft.css'
 import React, { useState, useCallback } from 'react'
+import TabController from 'react-tab-controller'
 
 import InlineStyleControls from './editor/InlineStyleControls'
 import BlockStyleControls from './editor/BlockStyleControls'
@@ -16,7 +17,6 @@ import { decorators as mentionsDecorators } from './editor/MentionsPopup'
 import MentionsEditor from './editor/MentionsEditor'
 import { useHints } from './HintsContext'
 import SaveTemplateButton from './SaveTemplateButton'
-import TabController from './TabController'
 import { ModelQuery_cardModel_templates_frontSide as TemplateContent } from '../graphql/__generated__/ModelQuery'
 
 const decorators = new CompositeDecorator(mentionsDecorators)
