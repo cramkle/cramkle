@@ -1,0 +1,29 @@
+.button {
+  padding: .125rem .25rem;
+  text-align: center;
+}
+
+.button:not(.buttonSelected) {
+  color: var(--color-text-primary);
+}
+
+.button::before {
+  position: absolute;
+  content: ' ';
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-text-primary);
+  opacity: 0;
+  border-radius: .125rem;
+}
+
+.buttonSelected.button::before {
+  background-color: var(--color-primary);
+}
+
+.buttonSelected.button::before,
+.button:hover::before {
+  opacity: .12;
+}
