@@ -423,7 +423,7 @@ const getBaseWebpackConfig = (options?: Options): Configuration => {
         fileName: ASSET_MANIFEST_FILE,
         publicPath: publicPath,
       }),
-      createWorkboxPlugin(options),
+      createWorkboxPlugin({ dev, isServer }),
       // This gives some necessary context to module not found errors, such as
       // the requesting resource.
       dev && new ModuleNotFoundPlugin(paths.appPath),
