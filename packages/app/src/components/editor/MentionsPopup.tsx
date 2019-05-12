@@ -1,6 +1,5 @@
 import { SelectionState } from 'draft-js'
-import { equals } from 'ramda'
-import React, { memo } from 'react'
+import React from 'react'
 
 import MentionSpan from './MentionSpan'
 import { findMentionEntities } from './strategies'
@@ -117,29 +116,4 @@ const MentionsPopup: React.FunctionComponent<Props> = ({
   )
 }
 
-const areEqual = (
-  {
-    selection: prevSelection,
-    characterOffset: prevCharacterOffset,
-    ...prevProps
-  }: Props,
-  {
-    selection: nextSelection,
-    characterOffset: nextCharacterOffset,
-    ...nextProps
-  }: Props
-) => {
-  if (
-    // ignore updates to selection if characterOffset
-    // hasn't changed with it, to avoid flicker in the
-    // popup
-    prevSelection !== nextSelection &&
-    prevCharacterOffset === nextCharacterOffset
-  ) {
-    return true
-  }
-
-  return equals(prevProps, nextProps)
-}
-
-export default memo(MentionsPopup, areEqual)
+export default MentionsPopup

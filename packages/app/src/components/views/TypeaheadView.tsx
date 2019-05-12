@@ -21,7 +21,7 @@ const TypeaheadView: React.FunctionComponent<Props> = ({
   return (
     <ul
       style={style}
-      className="absolute z-2 bg-surface pv2 br2 ba b--surface"
+      className="absolute z-2 bg-surface pv2 br2 shadow-4"
       role="listbox"
     >
       {entries.map(entry => {
