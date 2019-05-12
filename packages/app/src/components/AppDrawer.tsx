@@ -69,10 +69,6 @@ const AppDrawer: React.FunctionComponent<ChildDataProps<Props, UserQuery>> = ({
     setIndex(getListIndexFromPathname(location.pathname))
   }, [location.pathname])
 
-  const handleSelectItem = (index: number) => {
-    setIndex(index)
-  }
-
   const { isMobile } = useHints()
 
   const drawerRef = useRef<HTMLElement>(null)
@@ -103,12 +99,7 @@ const AppDrawer: React.FunctionComponent<ChildDataProps<Props, UserQuery>> = ({
   const drawerItems = (
     <I18n>
       {({ i18n }) => (
-        <List
-          dense
-          singleSelection
-          selectedIndex={index}
-          handleSelect={handleSelectItem}
-        >
+        <List dense singleSelection selectedIndex={index}>
           <ListItem onClick={handleHomeClick}>
             <ListItemGraphic
               graphic={<Icon icon="home" aria-hidden="true" />}
