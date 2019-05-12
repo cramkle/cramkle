@@ -1,5 +1,6 @@
 import { MessageDescriptor } from '@lingui/core'
 import { I18n } from '@lingui/react'
+import Icon from '@material/react-material-icon'
 import cx from 'classnames'
 import React, { memo, useRef } from 'react'
 import { useControlledTabIndex } from 'react-tab-controller'
@@ -9,6 +10,7 @@ import styles from './StyleButton.css'
 export interface Style {
   label: MessageDescriptor
   style: string
+  icon?: string
 }
 
 interface Props extends Style {
@@ -21,6 +23,7 @@ const StyleButton: React.FunctionComponent<Props> = ({
   label,
   style,
   active,
+  icon,
 }) => {
   const buttonRef = useRef<HTMLButtonElement>(null)
 
@@ -54,7 +57,11 @@ const StyleButton: React.FunctionComponent<Props> = ({
             onKeyDown={onKeyDown}
             aria-label={translatedLabel}
           >
-            {translatedLabel}
+            {icon ? (
+              <Icon className={styles.icon} icon={icon} />
+            ) : (
+              translatedLabel
+            )}
           </button>
         )
       }}

@@ -5,9 +5,9 @@ import React from 'react'
 import StyleButton, { Style } from './StyleButton'
 
 export const INLINE_STYLES: Style[] = [
-  { label: t`Bold`, style: 'BOLD' },
-  { label: t`Italic`, style: 'ITALIC' },
-  { label: t`Underline`, style: 'UNDERLINE' },
+  { label: t`Bold`, style: 'BOLD', icon: 'format_bold' },
+  { label: t`Italic`, style: 'ITALIC', icon: 'format_italic' },
+  { label: t`Underline`, style: 'UNDERLINE', icon: 'format_underline' },
   { label: t`Monospace`, style: 'CODE' },
 ]
 
@@ -26,6 +26,7 @@ const InlineStyleControls: React.FunctionComponent<{
           label={type.label}
           onToggle={onToggle}
           style={type.style}
+          icon={type.icon}
         />
       ))}
     </div>
