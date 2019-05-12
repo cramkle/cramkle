@@ -18,8 +18,7 @@
   background-color: var(--color-text-primary);
   opacity: 0;
   border-radius: .125rem;
-  transition: opacity 15ms linear;
-  will-change: opacity;
+  transition: opacity 15ms linear, background-color 15ms linear;
 }
 
 .buttonSelected.button::before {
