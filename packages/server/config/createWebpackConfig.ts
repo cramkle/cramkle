@@ -159,10 +159,17 @@ const optimizationConfig = ({
 const createWorkboxPlugin = ({ dev }: Options) => {
   const runtimeCaching: GenerateSWOptions['runtimeCaching'] = [
     {
-      urlPattern: /^_c/,
-      handler: 'NetworkFirst',
+      urlPattern: /_c/,
+      handler: 'CacheFirst',
       options: {
         cacheName: 'api',
+        expiration: {
+          maxEntries: 50,
+          maxAgeSeconds: 60 * 5, // 5 minutes
+        },
+        cacheableResponse: {
+          statuses: [0, 200],
+        },
       },
     },
     {
