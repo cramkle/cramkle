@@ -369,6 +369,15 @@ const getBaseWebpackConfig = (options?: Options): Configuration => {
       new GenerateSW({
         swDest: 'public/service-worker.js',
         importsDirectory: 'static',
+        runtimeCaching: [
+          {
+            urlPattern: /^_c/,
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'api',
+            },
+          },
+        ],
       }),
       // This gives some necessary context to module not found errors, such as
       // the requesting resource.
