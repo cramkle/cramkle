@@ -10,6 +10,8 @@ import ManifestPlugin from 'webpack-manifest-plugin'
 import ModuleNotFoundPlugin from 'react-dev-utils/ModuleNotFoundPlugin'
 import nodeExternals from 'webpack-node-externals'
 import TerserPlugin, { TerserPluginOptions } from 'terser-webpack-plugin'
+import { GenerateSW } from 'workbox-webpack-plugin'
+
 import ChunkNamesPlugin from './webpack/plugins/ChunkNamesPlugin'
 import getClientEnvironment from './env'
 import * as paths from './paths'
@@ -363,6 +365,10 @@ const getBaseWebpackConfig = (options?: Options): Configuration => {
       new ManifestPlugin({
         fileName: ASSET_MANIFEST_FILE,
         publicPath: publicPath,
+      }),
+      new GenerateSW({
+        swDest: 'public/service-worker.js',
+        importsDirectory: 'static',
       }),
       // This gives some necessary context to module not found errors, such as
       // the requesting resource.
