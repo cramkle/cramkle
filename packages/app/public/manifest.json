@@ -1,6 +1,10 @@
 {
   "short_name": "Cramkle",
   "name": "Cramkle",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#2962ff",
+  "background_color": "#ffffff",
   "icons": [
     {
       "src": "/favicon.ico",
@@ -43,9 +47,5 @@
       "type": "image/png",
       "density": "4.0"
     }
-  ],
-  "start_url": "./index.html",
-  "display": "standalone",
-  "theme_color": "#2962ff",
-  "background_color": "#ffffff"
+  ]
 }
