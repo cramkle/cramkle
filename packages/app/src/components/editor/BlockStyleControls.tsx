@@ -11,9 +11,9 @@ export const BLOCK_TYPES: Style[] = [
   { label: t`H4`, style: 'header-four' },
   { label: t`H5`, style: 'header-five' },
   { label: t`H6`, style: 'header-six' },
-  { label: t`Blockquote`, style: 'blockquote' },
-  { label: t`UL`, style: 'unordered-list-item' },
-  { label: t`OL`, style: 'ordered-list-item' },
+  { label: t`Blockquote`, style: 'blockquote', icon: 'format_quote' },
+  { label: t`UL`, style: 'unordered-list-item', icon: 'format_list_bulleted' },
+  { label: t`OL`, style: 'ordered-list-item', icon: 'format_list_numbered' },
   { label: t`Code Block`, style: 'code-block' },
 ]
 
@@ -36,6 +36,7 @@ const BlockStyleControls: React.FunctionComponent<{
           label={type.label}
           onToggle={onToggle}
           style={type.style}
+          icon={type.icon}
         />
       ))}
     </div>
