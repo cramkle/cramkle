@@ -49,6 +49,7 @@ export const ok = (args?: TemplateInput) => {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="theme-color" content="#2962ff">
+  <link rel="manifest" href="/manifest.json">
   ${getHeadTags(head)}
   ${styles.map(srcToLinkTag).join('\n')}
   <link rel="shortcut icon" href="/favicon.ico">
