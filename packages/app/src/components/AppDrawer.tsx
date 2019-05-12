@@ -13,7 +13,13 @@ import List, {
   ListItemGraphic,
 } from '@material/react-list'
 import Icon from '@material/react-material-icon'
-import React, { ReactNode, useRef, useCallback } from 'react'
+import React, {
+  ReactNode,
+  useRef,
+  useCallback,
+  useState,
+  useEffect,
+} from 'react'
 import { compose, graphql, ChildDataProps } from 'react-apollo'
 import { withRouter, RouteComponentProps } from 'react-router'
 
@@ -29,14 +35,44 @@ interface Props extends RouteComponentProps {
   onClose: () => void
 }
 
+const getListIndexFromPathname = (pathname: string) => {
+  switch (pathname) {
+    case '/home':
+    case '/decks':
+    case '/models':
+      return 0
+    case '/marketplace':
+      return 1
+    case '/statistics':
+      return 2
+    case '/settings':
+      return 3
+    default:
+      return -1
+  }
+}
+
 const AppDrawer: React.FunctionComponent<ChildDataProps<Props, UserQuery>> = ({
   content,
   render,
   open,
   onClose,
   history,
+  location,
   data: { me },
 }) => {
+  const [index, setIndex] = useState(() =>
+    getListIndexFromPathname(location.pathname)
+  )
+
+  useEffect(() => {
+    setIndex(getListIndexFromPathname(location.pathname))
+  }, [location.pathname])
+
+  const handleSelectItem = (index: number) => {
+    setIndex(index)
+  }
+
   const { isMobile } = useHints()
 
   const drawerRef = useRef<HTMLElement>(null)
@@ -67,7 +103,12 @@ const AppDrawer: React.FunctionComponent<ChildDataProps<Props, UserQuery>> = ({
   const drawerItems = (
     <I18n>
       {({ i18n }) => (
-        <List dense singleSelection>
+        <List
+          dense
+          singleSelection
+          selectedIndex={index}
+          handleSelect={handleSelectItem}
+        >
           <ListItem onClick={handleHomeClick}>
             <ListItemGraphic
               graphic={<Icon icon="home" aria-hidden="true" />}
