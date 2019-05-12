@@ -1,6 +1,7 @@
 .button {
   padding: .125rem .25rem;
   text-align: center;
+  outline: none;
 }
 
 .button:not(.buttonSelected) {
@@ -17,13 +18,24 @@
   background-color: var(--color-text-primary);
   opacity: 0;
   border-radius: .125rem;
+  transition: opacity 15ms linear;
+  will-change: opacity;
 }
 
 .buttonSelected.button::before {
   background-color: var(--color-primary);
 }
 
-.buttonSelected.button::before,
-.button:hover::before {
+.buttonSelected::before,
+.button:hover::before,
+.button:focus::before {
   opacity: .12;
+}
+
+.buttonSelected:focus::before {
+  opacity: .2;
+}
+
+.button:active::before {
+  opacity: .3;
 }
