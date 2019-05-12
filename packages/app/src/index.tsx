@@ -62,17 +62,19 @@ const start = (): void => {
   const maybeRenderPromise = render()
 
   if (canUseDOM) {
-    return
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js')
+    }
+  } else {
+    window.rendered = (maybeRenderPromise as Promise<RenderResult>).then(
+      ({ markup, routerContext }) => ({
+        markup,
+        routerContext,
+        head: Helmet.rewind(),
+        state: client.extract(),
+      })
+    )
   }
-
-  window.rendered = (maybeRenderPromise as Promise<RenderResult>).then(
-    ({ markup, routerContext }) => ({
-      markup,
-      routerContext,
-      head: Helmet.rewind(),
-      state: client.extract(),
-    })
-  )
 }
 
 start()
