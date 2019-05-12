@@ -39,3 +39,8 @@
 .button:active::before {
   opacity: .3;
 }
+
+.icon {
+  font-size: 1.25rem !important;
+  vertical-align: middle;
+}
