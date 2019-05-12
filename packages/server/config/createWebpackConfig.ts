@@ -194,21 +194,33 @@ const createWorkboxPlugin = ({ dev }: Options) => {
         },
       },
     },
-    {
-      urlPattern: /https?:\/\//,
+  ]
+
+  if (dev) {
+    runtimeCaching.concat([
+      {
+        urlPattern: /https?:\/\//,
+        handler: 'StaleWhileRevalidate',
+        options: {
+          cacheableResponse: {
+            statuses: [0, 200],
+          },
+        },
+      },
+      {
+        urlPattern: /__webpack_hmr/,
+        handler: 'NetworkOnly',
+      },
+    ])
+  } else {
+    runtimeCaching.push({
+      urlPattern: /https:\/\/(www\.)?cramkle\.com/,
       handler: 'StaleWhileRevalidate',
       options: {
         cacheableResponse: {
           statuses: [0, 200],
         },
       },
-    },
-  ]
-
-  if (dev) {
-    runtimeCaching.push({
-      urlPattern: /__webpack_hmr/,
-      handler: 'NetworkOnly',
     })
   }
 
