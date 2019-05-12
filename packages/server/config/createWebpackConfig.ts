@@ -10,7 +10,7 @@ import ManifestPlugin from 'webpack-manifest-plugin'
 import ModuleNotFoundPlugin from 'react-dev-utils/ModuleNotFoundPlugin'
 import nodeExternals from 'webpack-node-externals'
 import TerserPlugin, { TerserPluginOptions } from 'terser-webpack-plugin'
-import { GenerateSW } from 'workbox-webpack-plugin'
+import { GenerateSW, GenerateSWOptions } from 'workbox-webpack-plugin'
 
 import ChunkNamesPlugin from './webpack/plugins/ChunkNamesPlugin'
 import getClientEnvironment from './env'
@@ -154,6 +154,63 @@ const optimizationConfig = ({
   config.splitChunks = splitChunks
 
   return config
+}
+
+const createWorkboxPlugin = ({ dev }: Options) => {
+  const runtimeCaching: GenerateSWOptions['runtimeCaching'] = [
+    {
+      urlPattern: /^_c/,
+      handler: 'NetworkFirst',
+      options: {
+        cacheName: 'api',
+      },
+    },
+    {
+      urlPattern: /^https:\/\/fonts\.googleapis\.com/,
+      handler: 'StaleWhileRevalidate',
+      options: {
+        cacheName: 'google-fonts-stylesheets',
+      },
+    },
+    {
+      urlPattern: /^https:\/\/fonts\.gstatic\.com/,
+      handler: 'CacheFirst',
+      options: {
+        cacheName: 'google-fonts-webfonts',
+        cacheableResponse: {
+          statuses: [0, 200],
+        },
+        expiration: {
+          maxEntries: 20,
+          // cache for a year
+          maxAgeSeconds: 60 * 60 * 24 * 365,
+        },
+      },
+    },
+    {
+      urlPattern: /https?:\/\//,
+      handler: 'StaleWhileRevalidate',
+      options: {
+        cacheableResponse: {
+          statuses: [0, 200],
+        },
+      },
+    },
+  ]
+
+  if (dev) {
+    runtimeCaching.push({
+      urlPattern: /__webpack_hmr/,
+      handler: 'NetworkOnly',
+    })
+  }
+
+  return new GenerateSW({
+    swDest: 'public/service-worker.js',
+    importsDirectory: 'static',
+    skipWaiting: true,
+    runtimeCaching,
+  })
 }
 
 const getBaseWebpackConfig = (options?: Options): Configuration => {
@@ -366,19 +423,7 @@ const getBaseWebpackConfig = (options?: Options): Configuration => {
         fileName: ASSET_MANIFEST_FILE,
         publicPath: publicPath,
       }),
-      new GenerateSW({
-        swDest: 'public/service-worker.js',
-        importsDirectory: 'static',
-        runtimeCaching: [
-          {
-            urlPattern: /^_c/,
-            handler: 'NetworkFirst',
-            options: {
-              cacheName: 'api',
-            },
-          },
-        ],
-      }),
+      createWorkboxPlugin(options),
       // This gives some necessary context to module not found errors, such as
       // the requesting resource.
       dev && new ModuleNotFoundPlugin(paths.appPath),
