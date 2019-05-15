@@ -51,6 +51,7 @@ export const ok = (args?: TemplateInput) => {
   <meta name="theme-color" content="#2962ff">
   <link rel="manifest" href="/manifest.json">
   ${getHeadTags(head)}
+  <style>html,body{height: 100%;}body{overscroll-behavior-y:none;}</style>
   ${styles.map(srcToLinkTag).join('\n')}
   <link rel="shortcut icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Franklin:300,400,500,600|Material+Icons">
