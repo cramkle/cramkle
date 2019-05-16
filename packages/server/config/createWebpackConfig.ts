@@ -159,18 +159,9 @@ const optimizationConfig = ({
 const createWorkboxPlugin = ({ dev }: Options) => {
   const runtimeCaching: GenerateSWOptions['runtimeCaching'] = [
     {
+      // api
       urlPattern: /_c/,
-      handler: 'CacheFirst',
-      options: {
-        cacheName: 'api',
-        expiration: {
-          maxEntries: 50,
-          maxAgeSeconds: 60 * 5, // 5 minutes
-        },
-        cacheableResponse: {
-          statuses: [0, 200],
-        },
-      },
+      handler: 'NetworkFirst',
     },
     {
       urlPattern: /^https:\/\/fonts\.googleapis\.com/,
@@ -194,18 +185,36 @@ const createWorkboxPlugin = ({ dev }: Options) => {
         },
       },
     },
+    {
+      // image assets
+      urlPattern: /\.(?:png|gif|jpg|jpeg|webp|svg)$/,
+      handler: 'CacheFirst',
+      options: {
+        cacheName: 'images',
+        expiration: {
+          maxEntries: 60,
+          maxAgeSeconds: 60 * 60 * 24 * 30,
+        },
+      },
+    },
+    {
+      urlPattern: /\.(?:js|css)$/,
+      handler: 'StaleWhileRevalidate',
+      options: {
+        cacheName: 'static-resources',
+      },
+    },
+    {
+      urlPattern: new RegExp('/static/'),
+      handler: 'StaleWhileRevalidate',
+    },
   ]
 
   if (dev) {
     runtimeCaching.concat([
       {
         urlPattern: /https?:\/\//,
-        handler: 'StaleWhileRevalidate',
-        options: {
-          cacheableResponse: {
-            statuses: [0, 200],
-          },
-        },
+        handler: 'NetworkFirst',
       },
       {
         urlPattern: /__webpack_hmr/,
@@ -215,19 +224,13 @@ const createWorkboxPlugin = ({ dev }: Options) => {
   } else {
     runtimeCaching.push({
       urlPattern: /https:\/\/(www\.)?cramkle\.com/,
-      handler: 'StaleWhileRevalidate',
-      options: {
-        cacheableResponse: {
-          statuses: [0, 200],
-        },
-      },
+      handler: 'NetworkFirst',
     })
   }
 
   return new GenerateSW({
     swDest: 'public/service-worker.js',
     importsDirectory: 'static',
-    skipWaiting: true,
     runtimeCaching,
   })
 }

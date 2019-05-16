@@ -5,6 +5,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Asset rules on service worker.
+
+### Changed
+- API service worker handler to `NetworkFirst` strategy.
+- Stop skip sw skip waiting.
+
+### Fixed
+- Documents being cached with stale with revalidate strategy.
 
 ## [0.4.2] - 2019-05-16
 ### Changed
