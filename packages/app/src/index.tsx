@@ -1,11 +1,27 @@
-import React, { StrictMode } from 'react'
+import { I18nProvider } from '@lingui/react'
+import { canUseDOM } from 'exenv'
+import React from 'react'
+import { ApolloProvider } from 'react-apollo'
 import ReactDOM from 'react-dom'
 import { Helmet } from 'react-helmet'
 import { BrowserRouter } from 'react-router-dom'
-import { canUseDOM } from 'exenv'
+import Cookies from 'universal-cookie'
 
+import { HintsProvider } from './components/HintsContext'
+import NotificationManager from './components/NotificationManager'
+import en from './locales/en/messages'
+import pt from './locales/pt/messages'
 import client from './utils/apolloClient'
 import App from './App'
+
+let language: string
+
+if (window.requestLanguage) {
+  language = window.requestLanguage
+} else {
+  const cookies = new Cookies()
+  language = cookies.get('language') || 'en'
+}
 
 const renderWithData = (
   rootComponent: React.ReactNode
@@ -37,7 +53,17 @@ const renderWithData = (
 }
 
 const render = (): Promise<RenderResult> | void => {
-  const root = <App />
+  const root = (
+    <I18nProvider language={language} catalogs={{ en, pt }}>
+      <ApolloProvider client={client}>
+        <HintsProvider>
+          <NotificationManager>
+            <App />
+          </NotificationManager>
+        </HintsProvider>
+      </ApolloProvider>
+    </I18nProvider>
+  )
 
   if (canUseDOM) {
     const elem = document.getElementById('root')
@@ -49,9 +75,7 @@ const render = (): Promise<RenderResult> | void => {
 
     // @ts-ignore
     ReactDOM.unstable_createRoot(elem, { hydrate: shouldHydrate }).render(
-      <StrictMode>
-        <BrowserRouter>{root}</BrowserRouter>
-      </StrictMode>
+      <BrowserRouter>{root}</BrowserRouter>
     )
   } else {
     return renderWithData(root)
