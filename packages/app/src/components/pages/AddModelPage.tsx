@@ -79,8 +79,8 @@ const AddModelPage: React.FunctionComponent<Props> = ({ history, mutate }) => {
                 }
 
                 notificationState.addNotification({
-                  message: i18n._(t`Model created successfully`),
-                  actionText: i18n._(t`View`),
+                  message: t`Model created successfully`,
+                  actionText: t`View`,
                   onAction: () => {
                     history.push(`/m/${query.data.createModel.id}`)
                   },

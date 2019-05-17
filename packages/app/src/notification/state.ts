@@ -1,11 +1,12 @@
+import { MessageDescriptor } from '@lingui/core'
 import * as uuid from 'uuid'
 
 import Emitter from './event'
 
 export interface NotificationMessage {
-  message: string
+  message: MessageDescriptor
   timeoutMs?: number
-  actionText?: string
+  actionText?: MessageDescriptor
   onAction?: () => void
 }
 

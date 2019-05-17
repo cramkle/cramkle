@@ -65,8 +65,8 @@ const RegisterForm: React.FunctionComponent<
         onSubmit={user =>
           register({ variables: user }).then(() => {
             notificationState.addNotification({
-              message: i18n._(t`Account created successfully`),
-              actionText: i18n._(t`Dismiss`),
+              message: t`Account created successfully`,
+              actionText: t`Dismiss`,
             })
 
             history.push('/login')

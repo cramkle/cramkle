@@ -1,3 +1,4 @@
+import { I18n } from '@lingui/react'
 import { Snackbar } from '@material/react-snackbar'
 import React, { useState, useEffect, useCallback } from 'react'
 
@@ -30,26 +31,34 @@ const NotificationToasts: React.FunctionComponent = () => {
   )
 
   return (
-    <>
-      {notificationEvents.map(event => {
-        const {
-          id,
-          notification: { onAction, ...notification },
-        } = event
+    <I18n>
+      {({ i18n }) => (
+        <>
+          {notificationEvents.map(event => {
+            const {
+              id,
+              notification: { onAction, timeoutMs, actionText, message },
+            } = event
 
-        return (
-          <Snackbar
-            key={id}
-            {...notification}
-            leading
-            onClose={() => {
-              handleNotificationRemove(id)
-              onAction && onAction()
-            }}
-          />
-        )
-      })}
-    </>
+            let translatedActionText = actionText && i18n._(actionText)
+
+            return (
+              <Snackbar
+                key={id}
+                leading
+                message={i18n._(message)}
+                actionText={translatedActionText}
+                timeoutMs={timeoutMs}
+                onClose={() => {
+                  handleNotificationRemove(id)
+                  onAction && onAction()
+                }}
+              />
+            )
+          })}
+        </>
+      )}
+    </I18n>
   )
 }
 
