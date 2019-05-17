@@ -370,6 +370,7 @@ const getBaseWebpackConfig = (options?: Options): Configuration => {
                       },
                     },
                   ],
+                  '@babel/plugin-proposal-class-properties',
                   '@babel/plugin-syntax-dynamic-import',
                   'macros',
                 ].filter(Boolean),
