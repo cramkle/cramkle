@@ -2,25 +2,19 @@ import * as uuid from 'uuid'
 
 import Emitter from './event'
 
-interface NotificationAction {
-  actionText: string
-  onAction: (event?: any) => void
-}
-
-interface NotificationMessage {
+export interface NotificationMessage {
   message: string
-  action?: NotificationAction
   timeoutMs?: number
-  leading?: boolean
-  stacked?: boolean
+  actionText?: string
+  onAction?: () => void
 }
 
-interface NotificationEvent {
+export interface NotificationEvent {
   id: string
   notification: NotificationMessage
 }
 
-interface NotificationRemovedEvent {
+export interface NotificationRemovedEvent {
   id: string
 }
 
