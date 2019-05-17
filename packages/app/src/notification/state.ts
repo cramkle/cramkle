@@ -1,4 +1,5 @@
 import { MessageDescriptor } from '@lingui/core'
+import { Props as SnackbarProps } from '@material/react-snackbar'
 import * as uuid from 'uuid'
 
 import Emitter from './event'
@@ -8,6 +9,7 @@ export interface NotificationMessage {
   timeoutMs?: number
   actionText?: MessageDescriptor
   onAction?: () => void
+  options?: Pick<SnackbarProps, 'closeOnEscape' | 'leading' | 'stacked'>
 }
 
 export interface NotificationEvent {

@@ -37,15 +37,28 @@ const NotificationToasts: React.FunctionComponent = () => {
           {notificationEvents.map(event => {
             const {
               id,
-              notification: { onAction, timeoutMs, actionText, message },
+              notification: {
+                onAction,
+                timeoutMs,
+                actionText,
+                message,
+                options = {},
+              },
             } = event
+            const {
+              stacked = false,
+              leading = true,
+              closeOnEscape = false,
+            } = options
 
             let translatedActionText = actionText && i18n._(actionText)
 
             return (
               <Snackbar
                 key={id}
-                leading
+                leading={leading}
+                stacked={stacked}
+                closeOnEscape={closeOnEscape}
                 message={i18n._(message)}
                 actionText={translatedActionText}
                 timeoutMs={timeoutMs}
