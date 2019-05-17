@@ -1,7 +1,7 @@
 export default class Emitter<T> {
   private listeners = new Set<(event: T) => void>()
 
-  public event(callback: (event: T) => void) {
+  public event = (callback: (event: T) => void) => {
     this.listeners.add(callback)
 
     return () => {
@@ -9,7 +9,7 @@ export default class Emitter<T> {
     }
   }
 
-  public emit(event: T) {
+  public emit = (event: T) => {
     this.listeners.forEach(callback => {
       callback(event)
     })

@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet'
 import { Route, Switch, withRouter } from 'react-router'
 import { hot } from 'react-hot-loader/root'
 
+import NotificationToasts from './components/NotificationToasts'
 import AboutPage from './components/pages/AboutPage'
 import LandingPage from './components/pages/LandingPage'
 import LoginPage from './components/pages/LoginPage'
@@ -41,6 +42,7 @@ const App: React.FunctionComponent<{}> = () => (
         },
       ]}
     />
+    <NotificationToasts />
     <Switch>
       <GuestRoute component={LandingPage} path="/" exact />
       <ShellRoute
