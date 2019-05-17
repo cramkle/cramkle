@@ -1,3 +1,4 @@
+import { t } from '@lingui/macro'
 import { I18nProvider } from '@lingui/react'
 import { canUseDOM } from 'exenv'
 import React from 'react'
@@ -8,6 +9,7 @@ import { BrowserRouter } from 'react-router-dom'
 import Cookies from 'universal-cookie'
 
 import { HintsProvider } from './components/HintsContext'
+import { notificationState } from './notification/index'
 import en from './locales/en/messages'
 import pt from './locales/pt/messages'
 import client from './utils/apolloClient'
@@ -84,7 +86,26 @@ const start = (): void => {
 
   if (canUseDOM) {
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/service-worker.js')
+      navigator.serviceWorker
+        .register('/service-worker.js')
+        .then(registration => {
+          registration.onupdatefound = () => {
+            const installingWorker = registration.installing
+            installingWorker.onstatechange = () => {
+              if (installingWorker.state === 'installed') {
+                if (navigator.serviceWorker.controller) {
+                  notificationState.addNotification({
+                    message: t`A new update is available! Go home to update`,
+                  })
+                } else {
+                  notificationState.addNotification({
+                    message: t`Ready to work offline`,
+                  })
+                }
+              }
+            }
+          }
+        })
     }
   } else {
     window.rendered = (maybeRenderPromise as Promise<RenderResult>).then(
