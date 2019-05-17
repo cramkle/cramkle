@@ -13,6 +13,10 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#: src/components/pages/HomePage.tsx:36
+msgid "A new update is available!"
+msgstr "A new update is available!"
+
 #: src/components/forms/RegisterForm.tsx:43
 msgid "Account created successfully"
 msgstr "Account created successfully"
@@ -83,7 +87,7 @@ msgstr "Create"
 msgid "Create Model"
 msgstr "Create Model"
 
-#: src/components/pages/HomePage.tsx:46
+#: src/components/pages/HomePage.tsx:76
 msgid "Decks"
 msgstr "Decks"
 
@@ -122,7 +126,7 @@ msgstr "E-mail"
 msgid "E-mail is required"
 msgstr "E-mail is required"
 
-#: src/components/GeneralSettings.tsx:10
+#: src/components/GeneralSettings.tsx:11
 msgid "English"
 msgstr "English"
 
@@ -168,7 +172,7 @@ msgid "H6"
 msgstr "H6"
 
 #: src/components/AppDrawer.tsx:57
-#: src/components/pages/HomePage.tsx:34
+#: src/components/pages/HomePage.tsx:64
 msgid "Home"
 msgstr "Home"
 
@@ -188,7 +192,7 @@ msgstr "Invalid username and/or password"
 msgid "Italic"
 msgstr "Italic"
 
-#: src/components/GeneralSettings.tsx:26
+#: src/components/GeneralSettings.tsx:30
 msgid "Language"
 msgstr "Language"
 
@@ -218,7 +222,7 @@ msgstr "Marketplace"
 msgid "Model created successfully"
 msgstr "Model created successfully"
 
-#: src/components/pages/HomePage.tsx:50
+#: src/components/pages/HomePage.tsx:80
 msgid "Models"
 msgstr "Models"
 
@@ -260,9 +264,17 @@ msgstr "Password"
 msgid "Password is required"
 msgstr "Password is required"
 
-#: src/components/GeneralSettings.tsx:14
+#: src/components/GeneralSettings.tsx:15
 msgid "Portuguese"
 msgstr "Portuguese"
+
+#: src/components/pages/HomePage.tsx:45
+msgid "Ready to work offline"
+msgstr "Ready to work offline"
+
+#: src/components/pages/HomePage.tsx:37
+msgid "Refresh"
+msgstr "Refresh"
 
 #: src/components/forms/RegisterForm.tsx:16
 #: src/components/forms/RegisterForm.tsx:69
@@ -278,7 +290,7 @@ msgstr "Remove field"
 msgid "Remove template"
 msgstr "Remove template"
 
-#: src/components/GeneralSettings.tsx:32
+#: src/components/GeneralSettings.tsx:36
 msgid "Save"
 msgstr "Save"
 
@@ -308,7 +320,7 @@ msgstr "Sign up now!"
 msgid "Statistics"
 msgstr "Statistics"
 
-#: src/components/pages/HomePage.tsx:42
+#: src/components/pages/HomePage.tsx:72
 msgid "Study"
 msgstr "Study"
 

@@ -10,6 +10,8 @@ import { withRouter, RouteComponentProps, Route, Switch } from 'react-router'
 import StudySection from './StudySection'
 import DecksSection from './DecksSection'
 import ModelsSection from './ModelsSection'
+import registerSW from '../../registerSW'
+import { notificationState } from '../../notification/index'
 
 const getTabBarIndexFromPathname = (pathname: string) => {
   switch (pathname) {
@@ -34,6 +36,38 @@ const HomePage: React.FunctionComponent<RouteComponentProps> = ({
   useEffect(() => {
     setIndex(getTabBarIndexFromPathname(location.pathname))
   }, [location.pathname])
+
+  useEffect(() => {
+    let updateNotificationId: string | null = null
+    let installNotificationId: string | null = null
+
+    registerSW({
+      onUpdate: () => {
+        updateNotificationId = notificationState.addNotification({
+          message: t`A new update is available!`,
+          actionText: t`Refresh`,
+          onAction: () => {
+            window.location.reload()
+          },
+        })
+      },
+      onInstall: () => {
+        installNotificationId = notificationState.addNotification({
+          message: t`Ready to work offline`,
+        })
+      },
+    })
+
+    return () => {
+      if (updateNotificationId) {
+        notificationState.removeNotification(updateNotificationId)
+      }
+
+      if (installNotificationId) {
+        notificationState.removeNotification(installNotificationId)
+      }
+    }
+  }, [])
 
   const handleActiveIndexUpdate = (index: number) => {
     setIndex(index)
