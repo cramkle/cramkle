@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - Added model toast persisted in route state.
 - User account creation toast persisted in route state.
+- Window reload on language change when offline.
 
 ## [0.4.3] - 2019-05-16
 ### Added

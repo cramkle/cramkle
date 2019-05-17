@@ -5,6 +5,8 @@ import Select, { Option } from '@material/react-select'
 import React, { useState, useCallback } from 'react'
 import Cookies from 'universal-cookie'
 
+import useOffline from '../hooks/useOffline'
+
 const OPTIONS = [
   {
     locale: 'en',
@@ -18,6 +20,7 @@ const OPTIONS = [
 
 const GeneralSettings: React.FunctionComponent<withI18nProps> = ({ i18n }) => {
   const [currentLanguage, setCurrentLanguage] = useState(i18n.language)
+  const offline = useOffline()
 
   const handleSave = useCallback(() => {
     i18n.activate(currentLanguage)
@@ -25,8 +28,10 @@ const GeneralSettings: React.FunctionComponent<withI18nProps> = ({ i18n }) => {
     const cookies = new Cookies()
     cookies.set('language', currentLanguage)
 
-    window.location.reload()
-  }, [currentLanguage, i18n])
+    if (!offline) {
+      window.location.reload()
+    }
+  }, [currentLanguage, i18n, offline])
 
   return (
     <div className="pt2 flex flex-column">
@@ -43,7 +48,12 @@ const GeneralSettings: React.FunctionComponent<withI18nProps> = ({ i18n }) => {
           </Option>
         ))}
       </Select>
-      <Button className="mt3 self-end" unelevated onClick={handleSave}>
+      <Button
+        className="mt3 self-end"
+        unelevated
+        onClick={handleSave}
+        disabled={offline}
+      >
         <Trans>Save</Trans>
       </Button>
     </div>
