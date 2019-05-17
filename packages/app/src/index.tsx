@@ -1,4 +1,3 @@
-import { t } from '@lingui/macro'
 import { I18nProvider } from '@lingui/react'
 import { canUseDOM } from 'exenv'
 import React from 'react'
@@ -8,12 +7,12 @@ import { Helmet } from 'react-helmet'
 import { BrowserRouter } from 'react-router-dom'
 import Cookies from 'universal-cookie'
 
+import App from './App'
+import registerSW from './registerSW'
 import { HintsProvider } from './components/HintsContext'
-import { notificationState } from './notification/index'
 import en from './locales/en/messages'
 import pt from './locales/pt/messages'
 import client from './utils/apolloClient'
-import App from './App'
 
 let language: string
 
@@ -85,28 +84,7 @@ const start = (): void => {
   const maybeRenderPromise = render()
 
   if (canUseDOM) {
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker
-        .register('/service-worker.js')
-        .then(registration => {
-          registration.onupdatefound = () => {
-            const installingWorker = registration.installing
-            installingWorker.onstatechange = () => {
-              if (installingWorker.state === 'installed') {
-                if (navigator.serviceWorker.controller) {
-                  notificationState.addNotification({
-                    message: t`A new update is available! Go home to update`,
-                  })
-                } else {
-                  notificationState.addNotification({
-                    message: t`Ready to work offline`,
-                  })
-                }
-              }
-            }
-          }
-        })
-    }
+    registerSW()
   } else {
     window.rendered = (maybeRenderPromise as Promise<RenderResult>).then(
       ({ markup, routerContext }) => ({
