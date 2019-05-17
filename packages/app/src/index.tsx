@@ -8,7 +8,6 @@ import { BrowserRouter } from 'react-router-dom'
 import Cookies from 'universal-cookie'
 
 import { HintsProvider } from './components/HintsContext'
-import NotificationManager from './components/NotificationManager'
 import en from './locales/en/messages'
 import pt from './locales/pt/messages'
 import client from './utils/apolloClient'
@@ -57,9 +56,7 @@ const render = (): Promise<RenderResult> | void => {
     <I18nProvider language={language} catalogs={{ en, pt }}>
       <ApolloProvider client={client}>
         <HintsProvider>
-          <NotificationManager>
-            <App />
-          </NotificationManager>
+          <App />
         </HintsProvider>
       </ApolloProvider>
     </I18nProvider>
