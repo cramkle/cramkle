@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- Add single source of truth for notifications.
+
+### Fixed
+- Added model toast persisted in route state.
+- User account creation toast persisted in route state.
 
 ## [0.4.3] - 2019-05-16
 ### Added
