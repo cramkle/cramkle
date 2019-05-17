@@ -2,7 +2,6 @@ import { t } from '@lingui/macro'
 import { I18n } from '@lingui/react'
 import Icon from '@material/react-material-icon'
 import Fab from '@material/react-fab'
-import { Snackbar } from '@material/react-snackbar'
 import classNames from 'classnames'
 import React from 'react'
 import { withRouter, RouteComponentProps } from 'react-router'
@@ -14,7 +13,6 @@ import styles from './ModelsSection.css'
 
 const ModelsSection: React.FunctionComponent<RouteComponentProps> = ({
   history,
-  location,
 }) => {
   const { isMobile } = useHints()
 
@@ -36,21 +34,6 @@ const ModelsSection: React.FunctionComponent<RouteComponentProps> = ({
               onClick={handleAddClick}
             />
           </div>
-
-          {location.state && location.state.newModel && (
-            <Snackbar
-              message={i18n._(t`Model created successfully`)}
-              actionText="view"
-              leading
-              onClose={(closeReason: string) => {
-                if (closeReason !== 'action') {
-                  return
-                }
-
-                history.push(`/m/${location.state.newModel}`)
-              }}
-            />
-          )}
         </>
       )}
     </I18n>

@@ -11,8 +11,9 @@ import { graphql, ChildMutateProps } from 'react-apollo'
 import { withRouter, RouteComponentProps } from 'react-router'
 import * as yup from 'yup'
 
-import registerMutation from '../../graphql/registerMutation.gql'
 import { TextInputField, CheckboxField } from './Fields'
+import { notificationState } from '../../notification/index'
+import registerMutation from '../../graphql/registerMutation.gql'
 
 import styles from './RegisterForm.scss'
 
@@ -62,9 +63,14 @@ const RegisterForm: React.FunctionComponent<
             .required(i18n._(t`Agreement is required`)),
         })}
         onSubmit={user =>
-          register({ variables: user }).then(() =>
-            history.push('/login', { newUser: true })
-          )
+          register({ variables: user }).then(() => {
+            notificationState.addNotification({
+              message: i18n._(t`Account created successfully`),
+              actionText: i18n._(t`Dismiss`),
+            })
+
+            history.push('/login')
+          })
         }
       >
         {({ handleSubmit, isValid, isSubmitting }) => (

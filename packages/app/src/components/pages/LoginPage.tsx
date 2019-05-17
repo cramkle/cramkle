@@ -1,17 +1,13 @@
 import { Trans, t } from '@lingui/macro'
 import { I18n } from '@lingui/react'
-import { Snackbar } from '@material/react-snackbar'
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import { RouteComponentProps } from 'react-router'
 import { Link } from 'react-router-dom'
 
 import logoInvertedUrl from '../../assets/logo--inverted.svg'
 import LoginForm from '../forms/LoginForm'
 
-const LoginPage: React.FunctionComponent<RouteComponentProps> = ({
-  location,
-}) => {
+const LoginPage: React.FunctionComponent = () => {
   return (
     <I18n>
       {({ i18n }) => (
@@ -32,14 +28,6 @@ const LoginPage: React.FunctionComponent<RouteComponentProps> = ({
               </Link>
             </Trans>
           </span>
-
-          {location.state && location.state.newUser && (
-            <Snackbar
-              message={i18n._(t`Account created successfully`)}
-              actionText="dismiss"
-              leading
-            />
-          )}
         </div>
       )}
     </I18n>

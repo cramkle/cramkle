@@ -13,6 +13,7 @@ import * as yup from 'yup'
 import BackButton from '../BackButton'
 import { TextInputField } from '../forms/Fields'
 import Container from '../views/Container'
+import { notificationState } from '../../notification/index'
 import createModelMutation from '../../graphql/createModelMutation.gql'
 import {
   CreateModelMutation,
@@ -77,7 +78,15 @@ const AddModelPage: React.FunctionComponent<Props> = ({ history, mutate }) => {
                   return
                 }
 
-                history.push('/models', { newModel: query.data.createModel.id })
+                notificationState.addNotification({
+                  message: i18n._(t`Model created successfully`),
+                  actionText: i18n._(t`View`),
+                  onAction: () => {
+                    history.push(`/m/${query.data.createModel.id}`)
+                  },
+                })
+
+                history.push('/models')
               })
             }}
           >
