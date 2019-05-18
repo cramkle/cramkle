@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Add single source of truth for notifications.
 - Update homepage to use single route for tabs.
+- Upgrade LinguiJS to v3.0.0.
 
 ### Fixed
 - Added model toast persisted in route state.
