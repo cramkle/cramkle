@@ -1,5 +1,5 @@
 import { t } from '@lingui/macro'
-import { I18n, withI18n, withI18nProps } from '@lingui/react'
+import { useLingui } from '@lingui/react'
 import IconButton from '@material/react-icon-button'
 import Icon from '@material/react-material-icon'
 import cx from 'classnames'
@@ -7,7 +7,9 @@ import React, { useState, useRef } from 'react'
 
 import styles from './SearchBar.css'
 
-const SearchBar: React.FunctionComponent<withI18nProps> = ({ i18n }) => {
+const SearchBar: React.FunctionComponent = () => {
+  const { i18n } = useLingui()
+
   const inputRef = useRef<HTMLInputElement>(null)
   const [searchValue, setSearchValue] = useState('')
   const [isFocused, setFocused] = useState(false)
@@ -48,18 +50,14 @@ const SearchBar: React.FunctionComponent<withI18nProps> = ({ i18n }) => {
       onSubmit={handleSubmit}
       autoComplete="off"
     >
-      <I18n>
-        {({ i18n }) => (
-          <input
-            ref={inputRef}
-            className="bn w-100 h-100 pv2 bg-transparent outline-0 order-1"
-            placeholder={i18n._(t`Search`)}
-            name="q"
-            value={searchValue}
-            onChange={e => setSearchValue(e.target.value)}
-          />
-        )}
-      </I18n>
+      <input
+        ref={inputRef}
+        className="bn w-100 h-100 pv2 bg-transparent outline-0 order-1"
+        placeholder={i18n._(t`Search`)}
+        name="q"
+        value={searchValue}
+        onChange={e => setSearchValue(e.target.value)}
+      />
       {searchValue.length > 0 && (
         <IconButton
           className="mh1 order-2"
@@ -81,4 +79,4 @@ const SearchBar: React.FunctionComponent<withI18nProps> = ({ i18n }) => {
   )
 }
 
-export default withI18n()(SearchBar)
+export default SearchBar

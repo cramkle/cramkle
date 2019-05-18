@@ -1,5 +1,5 @@
 import { t } from '@lingui/macro'
-import { I18n } from '@lingui/react'
+import { useLingui } from '@lingui/react'
 import Drawer, {
   DrawerHeader,
   DrawerTitle,
@@ -61,6 +61,8 @@ const AppDrawer: React.FunctionComponent<ChildDataProps<Props, UserQuery>> = ({
   location,
   data: { me },
 }) => {
+  const { i18n } = useLingui()
+
   const [index, setIndex] = useState(() =>
     getListIndexFromPathname(location.pathname)
   )
@@ -97,42 +99,36 @@ const AppDrawer: React.FunctionComponent<ChildDataProps<Props, UserQuery>> = ({
   }, [history])
 
   const drawerItems = (
-    <I18n>
-      {({ i18n }) => (
-        <List dense singleSelection selectedIndex={index}>
-          <ListItem onClick={handleHomeClick}>
-            <ListItemGraphic
-              graphic={<Icon icon="home" aria-hidden="true" />}
-            />
-            <ListItemText primaryText={i18n._(t`Home`)} />
-          </ListItem>
-          <ListItem onClick={handleMarketplaceClick}>
-            <ListItemGraphic
-              graphic={<Icon icon="store_mall_directory" aria-hidden="true" />}
-            />
-            <ListItemText primaryText={i18n._(t`Marketplace`)} />
-          </ListItem>
-          <ListItem onClick={handleStatisticsClick}>
-            <ListItemGraphic
-              graphic={<Icon icon="bar_chart" aria-hidden="true" />}
-            />
-            <ListItemText primaryText={i18n._(t`Statistics`)} />
-          </ListItem>
-          <ListItem onClick={handleSettingsClick}>
-            <ListItemGraphic
-              graphic={<Icon icon="settings" aria-hidden="true" />}
-            />
-            <ListItemText primaryText={i18n._(t`Settings`)} />
-          </ListItem>
-          <ListItem onClick={handleLogout}>
-            <ListItemGraphic
-              graphic={<Icon icon="exit_to_app" aria-hidden="true" />}
-            />
-            <ListItemText primaryText={i18n._(t`Logout`)} />
-          </ListItem>
-        </List>
-      )}
-    </I18n>
+    <List dense singleSelection selectedIndex={index}>
+      <ListItem onClick={handleHomeClick}>
+        <ListItemGraphic graphic={<Icon icon="home" aria-hidden="true" />} />
+        <ListItemText primaryText={i18n._(t`Home`)} />
+      </ListItem>
+      <ListItem onClick={handleMarketplaceClick}>
+        <ListItemGraphic
+          graphic={<Icon icon="store_mall_directory" aria-hidden="true" />}
+        />
+        <ListItemText primaryText={i18n._(t`Marketplace`)} />
+      </ListItem>
+      <ListItem onClick={handleStatisticsClick}>
+        <ListItemGraphic
+          graphic={<Icon icon="bar_chart" aria-hidden="true" />}
+        />
+        <ListItemText primaryText={i18n._(t`Statistics`)} />
+      </ListItem>
+      <ListItem onClick={handleSettingsClick}>
+        <ListItemGraphic
+          graphic={<Icon icon="settings" aria-hidden="true" />}
+        />
+        <ListItemText primaryText={i18n._(t`Settings`)} />
+      </ListItem>
+      <ListItem onClick={handleLogout}>
+        <ListItemGraphic
+          graphic={<Icon icon="exit_to_app" aria-hidden="true" />}
+        />
+        <ListItemText primaryText={i18n._(t`Logout`)} />
+      </ListItem>
+    </List>
   )
 
   const header = (

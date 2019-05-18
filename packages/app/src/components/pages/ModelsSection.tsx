@@ -1,5 +1,5 @@
 import { t } from '@lingui/macro'
-import { I18n } from '@lingui/react'
+import { useLingui } from '@lingui/react'
 import Icon from '@material/react-material-icon'
 import Fab from '@material/react-fab'
 import classNames from 'classnames'
@@ -14,6 +14,7 @@ import styles from './ModelsSection.css'
 const ModelsSection: React.FunctionComponent<RouteComponentProps> = ({
   history,
 }) => {
+  const { i18n } = useLingui()
   const { isMobile } = useHints()
 
   const handleAddClick = () => {
@@ -21,22 +22,18 @@ const ModelsSection: React.FunctionComponent<RouteComponentProps> = ({
   }
 
   return (
-    <I18n>
-      {({ i18n }) => (
-        <>
-          <ModelList />
+    <>
+      <ModelList />
 
-          <div className={classNames(styles.fab, 'fixed')}>
-            <Fab
-              icon={<Icon icon="add" aria-hidden="true" />}
-              aria-label={i18n._(t`Add model`)}
-              textLabel={!isMobile && i18n._(t`Add model`)}
-              onClick={handleAddClick}
-            />
-          </div>
-        </>
-      )}
-    </I18n>
+      <div className={classNames(styles.fab, 'fixed')}>
+        <Fab
+          icon={<Icon icon="add" aria-hidden="true" />}
+          aria-label={i18n._(t`Add model`)}
+          textLabel={!isMobile && i18n._(t`Add model`)}
+          onClick={handleAddClick}
+        />
+      </div>
+    </>
   )
 }
 

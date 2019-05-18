@@ -1,4 +1,4 @@
-import { I18n } from '@lingui/react'
+import { useLingui } from '@lingui/react'
 import { Snackbar } from '@material/react-snackbar'
 import React, { useState, useEffect, useCallback } from 'react'
 
@@ -6,6 +6,8 @@ import { notificationState } from '../notification/index'
 import { NotificationEvent } from '../notification/state'
 
 const NotificationToasts: React.FunctionComponent = () => {
+  const { i18n } = useLingui()
+
   const [notificationEvents, setNotifications] = useState<NotificationEvent[]>(
     []
   )
@@ -31,47 +33,43 @@ const NotificationToasts: React.FunctionComponent = () => {
   )
 
   return (
-    <I18n>
-      {({ i18n }) => (
-        <>
-          {notificationEvents.map(event => {
-            const {
-              id,
-              notification: {
-                onAction,
-                timeoutMs,
-                actionText,
-                message,
-                options = {},
-              },
-            } = event
-            const {
-              stacked = false,
-              leading = true,
-              closeOnEscape = false,
-            } = options
+    <>
+      {notificationEvents.map(event => {
+        const {
+          id,
+          notification: {
+            onAction,
+            timeoutMs,
+            actionText,
+            message,
+            options = {},
+          },
+        } = event
+        const {
+          stacked = false,
+          leading = true,
+          closeOnEscape = false,
+        } = options
 
-            let translatedActionText = actionText && i18n._(actionText)
+        let translatedActionText = actionText && i18n._(actionText)
 
-            return (
-              <Snackbar
-                key={id}
-                leading={leading}
-                stacked={stacked}
-                closeOnEscape={closeOnEscape}
-                message={i18n._(message)}
-                actionText={translatedActionText}
-                timeoutMs={timeoutMs}
-                onClose={() => {
-                  handleNotificationRemove(id)
-                  onAction && onAction()
-                }}
-              />
-            )
-          })}
-        </>
-      )}
-    </I18n>
+        return (
+          <Snackbar
+            key={id}
+            leading={leading}
+            stacked={stacked}
+            closeOnEscape={closeOnEscape}
+            message={i18n._(message)}
+            actionText={translatedActionText}
+            timeoutMs={timeoutMs}
+            onClose={() => {
+              handleNotificationRemove(id)
+              onAction && onAction()
+            }}
+          />
+        )
+      })}
+    </>
   )
 }
 

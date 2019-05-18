@@ -1,3 +1,4 @@
+import { setupI18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
 import React from 'react'
 import { render as rtlRender, fireEvent, wait } from 'react-testing-library'
@@ -35,8 +36,12 @@ const render = (ui: React.ReactElement, options: Options = {}) => {
     ],
   } = options
 
+  const i18n = setupI18n()
+
+  i18n.activate('en')
+
   const utils = rtlRender(
-    <I18nProvider language="en">
+    <I18nProvider i18n={i18n}>
       <MockedProvider mocks={mutationMocks}>{ui}</MockedProvider>
     </I18nProvider>
   )

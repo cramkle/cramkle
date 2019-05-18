@@ -1,5 +1,5 @@
 import { Trans, t } from '@lingui/macro'
-import { I18n } from '@lingui/react'
+import { useLingui } from '@lingui/react'
 import Icon from '@material/react-material-icon'
 import Tab from '@material/react-tab'
 import TabBar from '@material/react-tab-bar'
@@ -17,6 +17,8 @@ const HomePage: React.FunctionComponent<RouteComponentProps> = ({
   history,
   location,
 }) => {
+  const { i18n } = useLingui()
+
   const [index, setIndex] = useState(
     (location.state && location.state.currentTab) || 0
   )
@@ -65,13 +67,9 @@ const HomePage: React.FunctionComponent<RouteComponentProps> = ({
 
   return (
     <>
-      <I18n>
-        {({ i18n }) => (
-          <Helmet>
-            <title>{i18n._(t`Home`)}</title>
-          </Helmet>
-        )}
-      </I18n>
+      <Helmet>
+        <title>{i18n._(t`Home`)}</title>
+      </Helmet>
 
       <div className="h-100 flex flex-column">
         <TabBar

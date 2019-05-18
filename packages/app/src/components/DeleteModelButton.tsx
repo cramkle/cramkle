@@ -1,5 +1,5 @@
 import { plural, Trans } from '@lingui/macro'
-import { I18n } from '@lingui/react'
+import { useLingui } from '@lingui/react'
 import Button from '@material/react-button'
 import Dialog, {
   DialogTitle,
@@ -29,6 +29,8 @@ interface Mutation {
 const DeleteModelButton: React.FunctionComponent<
   ChildMutateProps<Props & RouteComponentProps, Mutation>
 > = ({ model, mutate, history }) => {
+  const { i18n } = useLingui()
+
   const [dialogOpen, setDialogOpen] = useState(false)
 
   const handleClose = (action: string) => {
@@ -65,51 +67,47 @@ const DeleteModelButton: React.FunctionComponent<
   }
 
   return (
-    <I18n>
-      {({ i18n }) => (
-        <>
-          <Button
-            outlined
-            icon={<Icon icon="delete" aria-hidden="true" />}
-            onClick={handleClick}
-          >
+    <>
+      <Button
+        outlined
+        icon={<Icon icon="delete" aria-hidden="true" />}
+        onClick={handleClick}
+      >
+        <Trans>Delete</Trans>
+      </Button>
+      <Dialog open={dialogOpen} onClose={handleClose} role="alertdialog">
+        <DialogTitle>
+          <Trans>Delete model</Trans>
+        </DialogTitle>
+        <DialogContent>
+          <Trans>
+            Are you sure you want to delete this model?{' '}
+            {i18n._(
+              plural({
+                value: model.notes.length,
+                one: "There's # note",
+                other: "There're # notes",
+              })
+            )}{' '}
+            and{' '}
+            {i18n._(
+              plural({
+                value: model.templates.length,
+                one: '# template',
+                other: '# templates',
+              })
+            )}{' '}
+            associated with it.
+          </Trans>
+        </DialogContent>
+        <DialogFooter>
+          <DialogButton action="cancel">Cancel</DialogButton>
+          <DialogButton action="confirm" isDefault>
             <Trans>Delete</Trans>
-          </Button>
-          <Dialog open={dialogOpen} onClose={handleClose} role="alertdialog">
-            <DialogTitle>
-              <Trans>Delete model</Trans>
-            </DialogTitle>
-            <DialogContent>
-              <Trans>
-                Are you sure you want to delete this model?{' '}
-                {i18n._(
-                  plural({
-                    value: model.notes.length,
-                    one: "There's # note",
-                    other: "There're # notes",
-                  })
-                )}{' '}
-                and{' '}
-                {i18n._(
-                  plural({
-                    value: model.templates.length,
-                    one: '# template',
-                    other: '# templates',
-                  })
-                )}{' '}
-                associated with it.
-              </Trans>
-            </DialogContent>
-            <DialogFooter>
-              <DialogButton action="cancel">Cancel</DialogButton>
-              <DialogButton action="confirm" isDefault>
-                <Trans>Delete</Trans>
-              </DialogButton>
-            </DialogFooter>
-          </Dialog>
-        </>
-      )}
-    </I18n>
+          </DialogButton>
+        </DialogFooter>
+      </Dialog>
+    </>
   )
 }
 

@@ -1,5 +1,5 @@
 import { MessageDescriptor } from '@lingui/core'
-import { I18n } from '@lingui/react'
+import { useLingui } from '@lingui/react'
 import Icon from '@material/react-material-icon'
 import cx from 'classnames'
 import React, { memo, useRef } from 'react'
@@ -25,6 +25,7 @@ const StyleButton: React.FunctionComponent<Props> = ({
   active,
   icon,
 }) => {
+  const { i18n } = useLingui()
   const buttonRef = useRef<HTMLButtonElement>(null)
 
   const handleToggle = (e: React.MouseEvent<HTMLSpanElement>) => {
@@ -43,29 +44,19 @@ const StyleButton: React.FunctionComponent<Props> = ({
 
   const { tabIndex, onKeyDown } = useControlledTabIndex(buttonRef, style)
 
-  return (
-    <I18n>
-      {({ i18n }) => {
-        const translatedLabel = i18n._(label)
+  const translatedLabel = i18n._(label)
 
-        return (
-          <button
-            className={className}
-            onClick={handleToggle}
-            ref={buttonRef}
-            tabIndex={tabIndex}
-            onKeyDown={onKeyDown}
-            aria-label={translatedLabel}
-          >
-            {icon ? (
-              <Icon className={styles.icon} icon={icon} />
-            ) : (
-              translatedLabel
-            )}
-          </button>
-        )
-      }}
-    </I18n>
+  return (
+    <button
+      className={className}
+      onClick={handleToggle}
+      ref={buttonRef}
+      tabIndex={tabIndex}
+      onKeyDown={onKeyDown}
+      aria-label={translatedLabel}
+    >
+      {icon ? <Icon className={styles.icon} icon={icon} /> : translatedLabel}
+    </button>
   )
 }
 
