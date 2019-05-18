@@ -1,3 +1,4 @@
+import { setupI18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
 import { canUseDOM } from 'exenv'
 import React from 'react'
@@ -10,18 +11,9 @@ import Cookies from 'universal-cookie'
 import App from './App'
 import registerSW from './registerSW'
 import { HintsProvider } from './components/HintsContext'
-import en from './locales/en/messages'
-import pt from './locales/pt/messages'
+import catalogEn from './locales/en/messages'
+import catalogPt from './locales/pt/messages'
 import client from './utils/apolloClient'
-
-let language: string
-
-if (window.requestLanguage) {
-  language = window.requestLanguage
-} else {
-  const cookies = new Cookies()
-  language = cookies.get('language') || 'en'
-}
 
 const renderWithData = (
   rootComponent: React.ReactNode
@@ -53,8 +45,24 @@ const renderWithData = (
 }
 
 const render = (): Promise<RenderResult> | void => {
+  let language: string
+
+  if (window.requestLanguage) {
+    language = window.requestLanguage
+  } else {
+    const cookies = new Cookies()
+    language = cookies.get('language') || 'en'
+  }
+
+  const i18n = setupI18n()
+
+  i18n.load('en', catalogEn)
+  i18n.load('pt', catalogPt)
+
+  i18n.activate(language)
+
   const root = (
-    <I18nProvider language={language} catalogs={{ en, pt }}>
+    <I18nProvider i18n={i18n}>
       <ApolloProvider client={client}>
         <HintsProvider>
           <App />
