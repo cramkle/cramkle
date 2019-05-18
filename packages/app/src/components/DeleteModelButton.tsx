@@ -83,16 +83,14 @@ const DeleteModelButton: React.FunctionComponent<
           <Trans>
             Are you sure you want to delete this model?{' '}
             {i18n._(
-              plural({
-                value: model.notes.length,
+              plural(model.notes.length, {
                 one: "There's # note",
                 other: "There're # notes",
               })
             )}{' '}
             and{' '}
             {i18n._(
-              plural({
-                value: model.templates.length,
+              plural(model.templates.length, {
                 one: '# template',
                 other: '# templates',
               })
