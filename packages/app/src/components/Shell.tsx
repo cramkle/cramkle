@@ -1,5 +1,5 @@
 import { t } from '@lingui/macro'
-import { withI18n, withI18nProps } from '@lingui/react'
+import { useLingui } from '@lingui/react'
 import LinearProgress from '@material/react-linear-progress'
 import Icon from '@material/react-material-icon'
 import TopAppBar, {
@@ -22,10 +22,7 @@ import logoUrl from '../assets/logo.svg'
 import loadingQuery from '../graphql/topBarLoadingQuery.gql'
 import { TopBarLoadingQuery } from '../graphql/__generated__/TopBarLoadingQuery'
 
-type Props = ChildDataProps<
-  RouteComponentProps & withI18nProps,
-  TopBarLoadingQuery
->
+type Props = ChildDataProps<RouteComponentProps, TopBarLoadingQuery>
 
 const Shell: React.FunctionComponent<Props> = ({
   children,
@@ -34,8 +31,8 @@ const Shell: React.FunctionComponent<Props> = ({
   },
   history,
   location: { pathname },
-  i18n,
 }) => {
+  const { i18n } = useLingui()
   const { isMobile } = useHints()
   const [drawerOpen, setDrawerOpen] = useLocalStorage(
     'ck:drawerOpen',
@@ -154,6 +151,5 @@ const Shell: React.FunctionComponent<Props> = ({
 
 export default compose(
   graphql<{}, TopBarLoadingQuery>(loadingQuery),
-  withRouter,
-  withI18n()
+  withRouter
 )(Shell)

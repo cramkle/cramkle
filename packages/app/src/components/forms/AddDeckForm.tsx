@@ -1,5 +1,5 @@
 import { Trans, t } from '@lingui/macro'
-import { I18n } from '@lingui/react'
+import { useLingui } from '@lingui/react'
 import Dialog, {
   DialogContent,
   DialogTitle,
@@ -27,85 +27,81 @@ interface Props {
 
 const AddDeckForm: React.FunctionComponent<
   ChildMutateProps<Props, CreateDeckMutation, CreateDeckMutationVariables>
-> = ({ open, onClose, mutate }) => (
-  <I18n>
-    {({ i18n }) => (
-      <Formik
-        initialValues={{
-          title: '',
-          description: '',
-        }}
-        validationSchema={yup.object().shape({
-          title: yup.string().required(i18n._(t`The title is required`)),
-          description: yup.string(),
-        })}
-        onSubmit={(values, props) => {
-          return mutate({
-            variables: values,
-            update: (proxy, { data: { createDeck } }) => {
-              const data = proxy.readQuery<DecksQuery>({ query: decksQuery })
+> = ({ open, onClose, mutate }) => {
+  const { i18n } = useLingui()
 
-              data.decks.push(createDeck)
+  return (
+    <Formik
+      initialValues={{
+        title: '',
+        description: '',
+      }}
+      validationSchema={yup.object().shape({
+        title: yup.string().required(i18n._(t`The title is required`)),
+        description: yup.string(),
+      })}
+      onSubmit={(values, props) => {
+        return mutate({
+          variables: values,
+          update: (proxy, { data: { createDeck } }) => {
+            const data = proxy.readQuery<DecksQuery>({ query: decksQuery })
 
-              proxy.writeQuery({ query: decksQuery, data })
-            },
-          }).then(() => {
-            props.resetForm()
-            onClose('created')
-          })
-        }}
-        isInitialValid={false}
-      >
-        {({ isValid, handleSubmit }) => {
-          const handleClose = (action: string) => {
-            if (action === 'create') {
-              handleSubmit()
-            }
+            data.decks.push(createDeck)
 
-            onClose(action)
+            proxy.writeQuery({ query: decksQuery, data })
+          },
+        }).then(() => {
+          props.resetForm()
+          onClose('created')
+        })
+      }}
+      isInitialValid={false}
+    >
+      {({ isValid, handleSubmit }) => {
+        const handleClose = (action: string) => {
+          if (action === 'create') {
+            handleSubmit()
           }
 
-          return (
-            <Dialog
-              scrimClickAction="dismiss"
-              open={open}
-              onClose={handleClose}
-            >
-              <DialogTitle>
-                <Trans>Add Deck</Trans>
-              </DialogTitle>
-              <DialogContent style={{ width: '320px' }}>
-                <TextInputField
-                  id="title"
-                  className="w-100"
-                  name="title"
-                  label={i18n._(t`Title`)}
-                />
-                <TextInputField
-                  id="description"
-                  className="w-100 mt3"
-                  name="description"
-                  label={i18n._(t`Description`)}
-                  textarea
-                />
-              </DialogContent>
-              <DialogFooter>
-                <DialogButton
-                  action="create"
-                  isDefault
-                  type="submit"
-                  disabled={!isValid}
-                >
-                  <Trans>Create</Trans>
-                </DialogButton>
-              </DialogFooter>
-            </Dialog>
-          )
-        }}
-      </Formik>
-    )}
-  </I18n>
-)
+          onClose(action)
+        }
+
+        return (
+          <Dialog scrimClickAction="dismiss" open={open} onClose={handleClose}>
+            <DialogTitle>
+              <Trans>Add Deck</Trans>
+            </DialogTitle>
+            <DialogContent style={{ width: '320px' }}>
+              <TextInputField
+                id="title"
+                className="w-100"
+                name="title"
+                label={i18n._(t`Title`)}
+              />
+              <TextInputField
+                id="description"
+                className="w-100 mt3"
+                name="description"
+                label={i18n._(t`Description`)}
+                textarea
+              />
+            </DialogContent>
+            <DialogFooter>
+              <DialogButton
+                action="create"
+                isDefault
+                type="submit"
+                disabled={!isValid}
+              >
+                <Trans>Create</Trans>
+              </DialogButton>
+            </DialogFooter>
+          </Dialog>
+        )
+      }}
+    </Formik>
+  )
+}
 
 export default graphql<Props, CreateDeckMutation, CreateDeckMutationVariables>(
   createDeckMutation

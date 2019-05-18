@@ -1,5 +1,5 @@
 import { Trans, t } from '@lingui/macro'
-import { withI18n, withI18nProps } from '@lingui/react'
+import { useLingui } from '@lingui/react'
 import Button from '@material/react-button'
 import Select, { Option } from '@material/react-select'
 import React, { useState, useCallback } from 'react'
@@ -18,7 +18,8 @@ const OPTIONS = [
   },
 ]
 
-const GeneralSettings: React.FunctionComponent<withI18nProps> = ({ i18n }) => {
+const GeneralSettings: React.FunctionComponent = () => {
+  const i18n = useLingui()
   const [currentLanguage, setCurrentLanguage] = useState(i18n.language)
   const offline = useOffline()
 
@@ -60,4 +61,4 @@ const GeneralSettings: React.FunctionComponent<withI18nProps> = ({ i18n }) => {
   )
 }
 
-export default withI18n()(GeneralSettings)
+export default GeneralSettings

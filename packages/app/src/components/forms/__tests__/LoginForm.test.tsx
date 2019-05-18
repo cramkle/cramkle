@@ -1,8 +1,23 @@
+import { setupI18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
 import React from 'react'
-import { render, fireEvent, wait } from 'react-testing-library'
+import { render as rtlRender, fireEvent, wait } from 'react-testing-library'
 
 import LoginForm from '../LoginForm'
+
+const render = () => {
+  const i18n = setupI18n()
+
+  i18n.activate('en')
+
+  const utils = rtlRender(
+    <I18nProvider i18n={i18n}>
+      <LoginForm />
+    </I18nProvider>
+  )
+
+  return utils
+}
 
 describe('<LoginForm />', () => {
   it('should show error message on failure', async () => {
@@ -11,11 +26,7 @@ describe('<LoginForm />', () => {
       statusText: 'Unauthorized',
     })
 
-    const { getByLabelText, getByText, getByTestId } = render(
-      <I18nProvider language="en">
-        <LoginForm />
-      </I18nProvider>
-    )
+    const { getByLabelText, getByText, getByTestId } = render()
 
     const usernameInput = getByLabelText(/username/i)
     const passwordInput = getByLabelText(/password/i)

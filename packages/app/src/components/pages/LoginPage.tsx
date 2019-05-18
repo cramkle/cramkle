@@ -1,5 +1,5 @@
 import { Trans, t } from '@lingui/macro'
-import { I18n } from '@lingui/react'
+import { useLingui } from '@lingui/react'
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import { Link } from 'react-router-dom'
@@ -8,29 +8,27 @@ import logoInvertedUrl from '../../assets/logo--inverted.svg'
 import LoginForm from '../forms/LoginForm'
 
 const LoginPage: React.FunctionComponent = () => {
+  const { i18n } = useLingui()
+
   return (
-    <I18n>
-      {({ i18n }) => (
-        <div className="flex flex-column min-vh-100 w-100 pa3 items-center justify-center bg-primary c-on-primary">
-          <Helmet>
-            <title>{i18n._(t`Login`)}</title>
-          </Helmet>
+    <div className="flex flex-column min-vh-100 w-100 pa3 items-center justify-center bg-primary c-on-primary">
+      <Helmet>
+        <title>{i18n._(t`Login`)}</title>
+      </Helmet>
 
-          <img className="w3 h3 mb4" src={logoInvertedUrl} alt="" />
+      <img className="w3 h3 mb4" src={logoInvertedUrl} alt="" />
 
-          <LoginForm />
+      <LoginForm />
 
-          <span className="mt3">
-            <Trans>
-              Don&apos;t have an account?{' '}
-              <Link to="/register" className="b c-on-primary">
-                Sign Up
-              </Link>
-            </Trans>
-          </span>
-        </div>
-      )}
-    </I18n>
+      <span className="mt3">
+        <Trans>
+          Don&apos;t have an account?{' '}
+          <Link to="/register" className="b c-on-primary">
+            Sign Up
+          </Link>
+        </Trans>
+      </span>
+    </div>
   )
 }
 

@@ -1,5 +1,5 @@
 import { t } from '@lingui/macro'
-import { I18n } from '@lingui/react'
+import { useLingui } from '@lingui/react'
 import Icon from '@material/react-material-icon'
 import Fab from '@material/react-fab'
 import classNames from 'classnames'
@@ -12,6 +12,7 @@ import { useHints } from '../HintsContext'
 import styles from './DecksSection.css'
 
 const DecksSection: React.FunctionComponent = () => {
+  const { i18n } = useLingui()
   const [dialogOpen, setDialogOpen] = useState(false)
 
   const { isMobile } = useHints()
@@ -31,16 +32,12 @@ const DecksSection: React.FunctionComponent = () => {
       <AddDeckForm open={dialogOpen} onClose={handleDialogClose} />
 
       <div className={classNames(styles.fab, 'fixed')}>
-        <I18n>
-          {({ i18n }) => (
-            <Fab
-              icon={<Icon icon="add" aria-hidden="true" />}
-              aria-label={i18n._(t`Add Deck`)}
-              textLabel={!isMobile && i18n._(t`Add Deck`)}
-              onClick={handleDialogOpen}
-            />
-          )}
-        </I18n>
+        <Fab
+          icon={<Icon icon="add" aria-hidden="true" />}
+          aria-label={i18n._(t`Add Deck`)}
+          textLabel={!isMobile && i18n._(t`Add Deck`)}
+          onClick={handleDialogOpen}
+        />
       </div>
     </>
   )
