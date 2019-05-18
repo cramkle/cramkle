@@ -1,6 +1,6 @@
 import React, { lazy } from 'react'
 import { Helmet } from 'react-helmet'
-import { Route, Switch, withRouter } from 'react-router'
+import { Route, Switch, withRouter, Redirect } from 'react-router'
 import { hot } from 'react-hot-loader/root'
 
 import NotificationToasts from './components/NotificationToasts'
@@ -48,7 +48,17 @@ const App: React.FunctionComponent<{}> = () => (
       <ShellRoute
         component={HomePage}
         RouteComponent={UserRoute}
-        path={['/home', '/decks', '/models']}
+        path="/home"
+        exact
+      />
+      <Redirect
+        from="/decks"
+        to={{ pathname: '/home', state: { currentTab: 1 } }}
+        exact
+      />
+      <Redirect
+        from="/models"
+        to={{ pathname: '/home', state: { currentTab: 2 } }}
         exact
       />
       <ShellRoute

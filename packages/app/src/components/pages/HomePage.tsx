@@ -5,7 +5,7 @@ import Tab from '@material/react-tab'
 import TabBar from '@material/react-tab-bar'
 import React, { useState, useEffect } from 'react'
 import { Helmet } from 'react-helmet'
-import { withRouter, RouteComponentProps, Route, Switch } from 'react-router'
+import { withRouter, RouteComponentProps } from 'react-router'
 
 import StudySection from './StudySection'
 import DecksSection from './DecksSection'
@@ -13,29 +13,19 @@ import ModelsSection from './ModelsSection'
 import registerSW from '../../registerSW'
 import { notificationState } from '../../notification/index'
 
-const getTabBarIndexFromPathname = (pathname: string) => {
-  switch (pathname) {
-    case '/models':
-      return 2
-    case '/decks':
-      return 1
-    default:
-    case '/home':
-      return 0
-  }
-}
-
 const HomePage: React.FunctionComponent<RouteComponentProps> = ({
   history,
   location,
 }) => {
-  const [index, setIndex] = useState(() =>
-    getTabBarIndexFromPathname(location.pathname)
+  const [index, setIndex] = useState(
+    (location.state && location.state.currentTab) || 0
   )
 
   useEffect(() => {
-    setIndex(getTabBarIndexFromPathname(location.pathname))
-  }, [location.pathname])
+    if (location.state && location.state.currentTab !== undefined) {
+      setIndex(location.state.currentTab)
+    }
+  }, [location.state])
 
   useEffect(() => {
     let updateNotificationId: string | null = null
@@ -70,7 +60,7 @@ const HomePage: React.FunctionComponent<RouteComponentProps> = ({
   }, [])
 
   const handleActiveIndexUpdate = (index: number) => {
-    setIndex(index)
+    history.push('/home', { currentTab: index })
   }
 
   return (
@@ -88,7 +78,7 @@ const HomePage: React.FunctionComponent<RouteComponentProps> = ({
           activeIndex={index}
           handleActiveIndexUpdate={handleActiveIndexUpdate}
         >
-          <Tab onClick={() => history.push('/home')}>
+          <Tab>
             <Icon
               className="mdc-tab__icon mr3"
               icon="school"
@@ -96,7 +86,7 @@ const HomePage: React.FunctionComponent<RouteComponentProps> = ({
             />
             <Trans>Study</Trans>
           </Tab>
-          <Tab onClick={() => history.push('/decks')}>
+          <Tab>
             <Icon
               className="mdc-tab__icon mr3"
               icon="style"
@@ -104,7 +94,7 @@ const HomePage: React.FunctionComponent<RouteComponentProps> = ({
             />
             <Trans>Decks</Trans>
           </Tab>
-          <Tab onClick={() => history.push('/models')}>
+          <Tab>
             <Icon
               className="mdc-tab__icon mr3"
               icon="flip_to_back"
@@ -114,11 +104,9 @@ const HomePage: React.FunctionComponent<RouteComponentProps> = ({
           </Tab>
         </TabBar>
 
-        <Switch>
-          <Route path="/home" component={StudySection} />
-          <Route path="/decks" component={DecksSection} />
-          <Route path="/models" component={ModelsSection} />
-        </Switch>
+        {index === 0 && <StudySection />}
+        {index === 1 && <DecksSection />}
+        {index === 2 && <ModelsSection />}
       </div>
     </>
   )
