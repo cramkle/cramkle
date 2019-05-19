@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- Remove window reload when changing language.
+
+### Fixed
+- Error in hook on settings page.
 
 ## [0.4.4] - 2019-05-18
 ### Added
