@@ -88,9 +88,7 @@ const ModelPage: React.FunctionComponent<ChildProps<Props, Query>> = ({
           </>
         ) : (
           <Body2>
-            <Trans>
-              You haven&apos;t created any templates on this model yet.
-            </Trans>
+            <Trans>You haven't created any templates on this model yet.</Trans>
           </Body2>
         )}
 
@@ -107,7 +105,7 @@ const ModelPage: React.FunctionComponent<ChildProps<Props, Query>> = ({
           </List>
         ) : (
           <Body2 className="mv3">
-            <Trans>This model doesn&apos;t have any fields yet.</Trans>
+            <Trans>This model doesn't have any fields yet.</Trans>
           </Body2>
         )}
       </Container>

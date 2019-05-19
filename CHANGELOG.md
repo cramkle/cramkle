@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Fixed
 - Notification action always being triggered.
+- HTML entities not escaped in translations.
 
 ## [0.4.8] - 2019-05-19
 ### Changed

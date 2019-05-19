@@ -9,7 +9,8 @@
   "rules": {
     "no-underscore-dangle": [1, { "allow": ["_id", "__NAME__"] }],
     "@typescript-eslint/camelcase": "off",
-    "@typescript-eslint/no-explicit-any": "off"
+    "@typescript-eslint/no-explicit-any": "off",
+    "react/no-unescaped-entities": "off"
   },
   "settings": {
     "react": {

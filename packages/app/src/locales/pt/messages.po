@@ -115,7 +115,7 @@ msgid "Dismiss"
 msgstr "Dispensar"
 
 #: src/components/pages/LoginPage.tsx:20
-msgid "Don&apos;t have an account? <0>Sign Up</0>"
+msgid "Don't have an account? <0>Sign Up</0>"
 msgstr "Não possui uma conta? <0>Cadastre-se</0>"
 
 #: src/components/forms/RegisterForm.tsx:53
@@ -126,7 +126,7 @@ msgstr "E-mail"
 msgid "E-mail is required"
 msgstr "E-mail é obrigatório"
 
-#: src/components/GeneralSettings.tsx:11
+#: src/components/GeneralSettings.tsx:10
 msgid "English"
 msgstr "Inglês"
 
@@ -139,7 +139,7 @@ msgid "Field name is required"
 msgstr "Nome do campo é obrigatório"
 
 #: src/components/pages/AddModelPage.tsx:93
-#: src/components/pages/ModelPage.tsx:62
+#: src/components/pages/ModelPage.tsx:60
 msgid "Fields"
 msgstr "Campos"
 
@@ -192,7 +192,7 @@ msgstr "Nome de usuário e/ou senha inválidos"
 msgid "Italic"
 msgstr "Itálico"
 
-#: src/components/GeneralSettings.tsx:31
+#: src/components/GeneralSettings.tsx:26
 msgid "Language"
 msgstr "Idioma"
 
@@ -264,7 +264,7 @@ msgstr "Senha"
 msgid "Password is required"
 msgstr "Senha é obrigatória"
 
-#: src/components/GeneralSettings.tsx:15
+#: src/components/GeneralSettings.tsx:14
 msgid "Portuguese"
 msgstr "Português"
 
@@ -290,7 +290,7 @@ msgstr "Remover campo"
 msgid "Remove template"
 msgstr "Remover template"
 
-#: src/components/GeneralSettings.tsx:37
+#: src/components/GeneralSettings.tsx:32
 msgid "Save"
 msgstr "Salvar"
 
@@ -357,8 +357,8 @@ msgstr "Os modelos que você criar irão aparecer aqui."
 msgid "The title is required"
 msgstr "O título é obrigatório"
 
-#: src/components/pages/ModelPage.tsx:69
-msgid "This model doesn&apos;t have any fields yet."
+#: src/components/pages/ModelPage.tsx:67
+msgid "This model doesn't have any fields yet."
 msgstr "Este modelo ainda não possui nenhum campo."
 
 #: src/components/forms/AddDeckForm.tsx:44
@@ -392,7 +392,7 @@ msgid "View"
 msgstr "Ver"
 
 #: src/components/pages/ModelPage.tsx:56
-msgid "You haven&apos;t created any templates on this model yet."
+msgid "You haven't created any templates on this model yet."
 msgstr "Você ainda não criou nenhum template neste modelo."
 
 #: src/components/forms/LoginForm.tsx:59

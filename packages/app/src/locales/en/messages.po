@@ -115,8 +115,8 @@ msgid "Dismiss"
 msgstr "Dismiss"
 
 #: src/components/pages/LoginPage.tsx:20
-msgid "Don&apos;t have an account? <0>Sign Up</0>"
-msgstr "Don&apos;t have an account? <0>Sign Up</0>"
+msgid "Don't have an account? <0>Sign Up</0>"
+msgstr "Don't have an account? <0>Sign Up</0>"
 
 #: src/components/forms/RegisterForm.tsx:53
 msgid "E-mail"
@@ -126,7 +126,7 @@ msgstr "E-mail"
 msgid "E-mail is required"
 msgstr "E-mail is required"
 
-#: src/components/GeneralSettings.tsx:11
+#: src/components/GeneralSettings.tsx:10
 msgid "English"
 msgstr "English"
 
@@ -139,7 +139,7 @@ msgid "Field name is required"
 msgstr "Field name is required"
 
 #: src/components/pages/AddModelPage.tsx:93
-#: src/components/pages/ModelPage.tsx:62
+#: src/components/pages/ModelPage.tsx:60
 msgid "Fields"
 msgstr "Fields"
 
@@ -192,7 +192,7 @@ msgstr "Invalid username and/or password"
 msgid "Italic"
 msgstr "Italic"
 
-#: src/components/GeneralSettings.tsx:31
+#: src/components/GeneralSettings.tsx:26
 msgid "Language"
 msgstr "Language"
 
@@ -264,7 +264,7 @@ msgstr "Password"
 msgid "Password is required"
 msgstr "Password is required"
 
-#: src/components/GeneralSettings.tsx:15
+#: src/components/GeneralSettings.tsx:14
 msgid "Portuguese"
 msgstr "Portuguese"
 
@@ -290,7 +290,7 @@ msgstr "Remove field"
 msgid "Remove template"
 msgstr "Remove template"
 
-#: src/components/GeneralSettings.tsx:37
+#: src/components/GeneralSettings.tsx:32
 msgid "Save"
 msgstr "Save"
 
@@ -357,9 +357,9 @@ msgstr "The models you create will appear here."
 msgid "The title is required"
 msgstr "The title is required"
 
-#: src/components/pages/ModelPage.tsx:69
-msgid "This model doesn&apos;t have any fields yet."
-msgstr "This model doesn&apos;t have any fields yet."
+#: src/components/pages/ModelPage.tsx:67
+msgid "This model doesn't have any fields yet."
+msgstr "This model doesn't have any fields yet."
 
 #: src/components/forms/AddDeckForm.tsx:44
 msgid "Title"
@@ -392,8 +392,8 @@ msgid "View"
 msgstr "View"
 
 #: src/components/pages/ModelPage.tsx:56
-msgid "You haven&apos;t created any templates on this model yet."
-msgstr "You haven&apos;t created any templates on this model yet."
+msgid "You haven't created any templates on this model yet."
+msgstr "You haven't created any templates on this model yet."
 
 #: src/components/forms/LoginForm.tsx:59
 msgid "login.button"

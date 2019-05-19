@@ -22,7 +22,7 @@ const LoginPage: React.FunctionComponent = () => {
 
       <span className="mt3">
         <Trans>
-          Don&apos;t have an account?{' '}
+          Don't have an account?{' '}
           <Link to="/register" className="b c-on-primary">
             Sign Up
           </Link>
