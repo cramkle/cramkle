@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Add hash on app entrypoints.
 
+### Fixed
+- Select label not being initialized with value in settings page.
+
 ## [0.4.5] - 2019-05-19
 ### Changed
 - Remove window reload when changing language.

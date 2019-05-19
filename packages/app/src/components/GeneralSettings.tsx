@@ -18,7 +18,7 @@ const OPTIONS = [
 
 const GeneralSettings: React.FunctionComponent = () => {
   const { i18n } = useLingui()
-  const [currentLanguage, setCurrentLanguage] = useState(i18n.language)
+  const [currentLanguage, setCurrentLanguage] = useState(i18n.locale)
 
   const handleSave = useCallback(() => {
     i18n.activate(currentLanguage)
