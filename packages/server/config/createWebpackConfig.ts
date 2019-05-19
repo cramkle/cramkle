@@ -309,7 +309,18 @@ const getBaseWebpackConfig = (options?: Options): Configuration => {
     output: {
       publicPath: '/',
       path: outputPath,
-      filename: '[name].js',
+      // @ts-ignore
+      filename: ({ chunk }: { chunk: { name: string } }) => {
+        // Use `[name]-[contenthash].js` in production
+        if (
+          !dev &&
+          (chunk.name === STATIC_RUNTIME_MAIN ||
+            chunk.name === STATIC_RUNTIME_WEBPACK)
+        ) {
+          return `${chunk.name}-[contenthash].js`
+        }
+        return '[name].js'
+      },
       chunkFilename: isServer
         ? `${chunkFilename}.js`
         : `${STATIC_CHUNKS_PATH}/${chunkFilename}.js`,
