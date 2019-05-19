@@ -5,7 +5,7 @@ import * as path from 'path'
 import { promisify } from 'util'
 import { createContext, Script } from 'vm'
 
-import { serverMainRuntime, appDist } from '../../config/paths'
+import { appDistServer, appDist } from '../../config/paths'
 import {
   STATIC_RUNTIME_MAIN,
   STATIC_RUNTIME_WEBPACK,
@@ -33,7 +33,15 @@ const render = async (req: Request, res: Response) => {
     assetManifest['styles.js'],
   ].filter(Boolean)
 
-  const serverAssetScripts = [serverMainRuntime]
+  const serverAssetManifest = await readFile(
+    path.join(appDistServer, ASSET_MANIFEST_FILE)
+  )
+    .then(file => file.toString())
+    .then(JSON.parse)
+
+  const serverAssetScripts = [
+    serverAssetManifest[`${STATIC_RUNTIME_MAIN}.js`],
+  ].map(relativePath => path.join(appDistServer, relativePath))
 
   const styles = Object.keys(assetManifest)
     .filter(path => path.endsWith('.css'))

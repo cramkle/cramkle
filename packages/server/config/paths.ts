@@ -1,10 +1,5 @@
 import * as path from 'path'
 import * as fs from 'fs'
-import {
-  STATIC_FOLDER,
-  STATIC_RUNTIME_MAIN,
-  STATIC_RUNTIME_WEBPACK,
-} from './constants'
 
 const appDirectory = fs.realpathSync(process.cwd())
 const resolveApp = (relativePath: string) =>
@@ -28,18 +23,10 @@ const resolveModule = (resolveFn = resolveApp, filePath: string) => {
 const distFolder = resolveApp('.dist')
 const serverDistFolder = path.join(distFolder, 'server')
 
-const clientStaticFolder = path.join(distFolder, STATIC_FOLDER)
-
-const clientMainRuntime = path.join(distFolder, `${STATIC_RUNTIME_MAIN}.js`)
-const clientWebpack = path.join(distFolder, `${STATIC_RUNTIME_WEBPACK}.js`)
-const serverMainRuntime = path.join(
-  serverDistFolder,
-  `${STATIC_RUNTIME_MAIN}.js`
-)
-
 const dotenv = resolveApp('.env')
 const appPath = resolveApp('.')
 const appDist = distFolder
+const appDistServer = serverDistFolder
 const appDistPublic = path.join(distFolder, 'public')
 const appPublic = resolveApp('public')
 const appIndexJs = resolveModule(resolveApp, 'src/index')
@@ -52,11 +39,8 @@ export {
   dotenv,
   appPath,
   appDist,
+  appDistServer,
   appDistPublic,
-  clientStaticFolder as clientStatic,
-  clientMainRuntime,
-  clientWebpack,
-  serverMainRuntime,
   appPublic,
   appIndexJs,
   appPackageJson,
