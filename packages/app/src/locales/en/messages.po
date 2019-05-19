@@ -353,6 +353,10 @@ msgstr "The decks you create will appear here."
 msgid "The models you create will appear here."
 msgstr "The models you create will appear here."
 
+#: src/components/pages/NotFoundPage.tsx:5
+msgid "The page you requested wasn't found"
+msgstr "The page you requested wasn't found"
+
 #: src/components/forms/AddDeckForm.tsx:17
 msgid "The title is required"
 msgstr "The title is required"
