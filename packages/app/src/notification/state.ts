@@ -5,9 +5,9 @@ import * as uuid from 'uuid'
 import Emitter from './event'
 
 export interface NotificationMessage {
-  message: MessageDescriptor
+  message: MessageDescriptor | string
   timeoutMs?: number
-  actionText?: MessageDescriptor
+  actionText?: MessageDescriptor | string
   onAction?: () => void
   options?: Pick<SnackbarProps, 'closeOnEscape' | 'leading' | 'stacked'>
 }

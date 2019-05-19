@@ -8,7 +8,7 @@ import { useControlledTabIndex } from 'react-tab-controller'
 import styles from './StyleButton.css'
 
 export interface Style {
-  label: MessageDescriptor
+  label: MessageDescriptor | string
   style: string
   icon?: string
 }

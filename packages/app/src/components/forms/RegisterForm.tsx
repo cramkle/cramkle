@@ -18,7 +18,7 @@ import registerMutation from '../../graphql/registerMutation.gql'
 import styles from './RegisterForm.scss'
 
 interface Props {
-  title?: MessageDescriptor
+  title?: MessageDescriptor | string
 }
 
 const RegisterForm: React.FunctionComponent<
