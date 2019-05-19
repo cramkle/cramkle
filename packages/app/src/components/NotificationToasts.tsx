@@ -62,9 +62,12 @@ const NotificationToasts: React.FunctionComponent = () => {
             message={i18n._(message)}
             actionText={translatedActionText}
             timeoutMs={timeoutMs}
-            onClose={() => {
+            onClose={action => {
               handleNotificationRemove(id)
-              onAction && onAction()
+
+              if (action === 'action') {
+                onAction && onAction()
+              }
             }}
           />
         )
