@@ -193,20 +193,17 @@ const createWorkboxPlugin = ({ dev }: Options) => {
         cacheName: 'images',
         expiration: {
           maxEntries: 60,
+          // cache for 30 days
           maxAgeSeconds: 60 * 60 * 24 * 30,
         },
       },
     },
     {
       urlPattern: /\.(?:js|css)$/,
-      handler: 'StaleWhileRevalidate',
+      handler: dev ? 'NetworkFirst' : 'StaleWhileRevalidate',
       options: {
         cacheName: 'static-resources',
       },
-    },
-    {
-      urlPattern: new RegExp('/static/'),
-      handler: 'StaleWhileRevalidate',
     },
   ]
 
