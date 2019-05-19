@@ -147,6 +147,10 @@ msgstr "Fields"
 msgid "Go back"
 msgstr "Go back"
 
+#: src/components/pages/NotFoundPage.tsx:14
+msgid "Go to Home"
+msgstr "Go to Home"
+
 #: src/components/editor/BlockStyleControls.tsx:5
 msgid "H1"
 msgstr "H1"
@@ -353,13 +357,13 @@ msgstr "The decks you create will appear here."
 msgid "The models you create will appear here."
 msgstr "The models you create will appear here."
 
-#: src/components/pages/NotFoundPage.tsx:5
-msgid "The page you requested wasn't found"
-msgstr "The page you requested wasn't found"
-
 #: src/components/forms/AddDeckForm.tsx:17
 msgid "The title is required"
 msgstr "The title is required"
+
+#: src/components/pages/NotFoundPage.tsx:11
+msgid "This link may be broken or the typed URL is incorrect."
+msgstr "This link may be broken or the typed URL is incorrect."
 
 #: src/components/pages/ModelPage.tsx:67
 msgid "This model doesn't have any fields yet."
@@ -394,6 +398,10 @@ msgstr "Username must consist only of alphanumeric characters and underscores"
 #: src/components/pages/AddModelPage.tsx:53
 msgid "View"
 msgstr "View"
+
+#: src/components/pages/NotFoundPage.tsx:8
+msgid "We couldn't find the page you requested"
+msgstr "We couldn't find the page you requested"
 
 #: src/components/pages/ModelPage.tsx:56
 msgid "You haven't created any templates on this model yet."

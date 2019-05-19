@@ -22,10 +22,14 @@ type SupportedRouteProps = Pick<
 const createRoute = ({ challenge, redirectPath, displayName }: Input) => {
   const CustomRoute: React.FunctionComponent<
     ChildProps<SupportedRouteProps, UserQuery>
-  > = ({ data: { me }, render, component: Component, ...rest }) => (
+  > = ({ data: { me, loading }, render, component: Component, ...rest }) => (
     <Route
       {...rest}
       render={props => {
+        if (loading) {
+          return null
+        }
+
         if (challenge(me)) {
           if (typeof render === 'function') {
             return render(props)
