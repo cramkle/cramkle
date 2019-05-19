@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [0.4.6] - 2019-05-19
+## [0.4.6] - 2019-05-19 [YANKED]
 ### Changed
 - Add hash on app entrypoints.
 
