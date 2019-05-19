@@ -1,6 +1,6 @@
 {
   "name": "@cramkle/app-server",
-  "version": "0.4.8",
+  "version": "0.4.9",
   "private": true,
   "bin": {
     "cks": "./dist/bin/cks.js"
