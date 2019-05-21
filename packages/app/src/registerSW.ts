@@ -8,11 +8,7 @@ const registerSW = ({ onUpdate, onInstall }: Options = {}) => {
     return
   }
 
-  if (process.env.NODE_ENV === 'production') {
-    navigator.serviceWorker.register('/service-worker.js')
-  }
-
-  navigator.serviceWorker.getRegistration().then(reg => {
+  navigator.serviceWorker.register('/service-worker.js').then(reg => {
     if (!reg) {
       return
     }
