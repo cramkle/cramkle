@@ -200,7 +200,7 @@ const createWorkboxPlugin = ({ dev }: Options) => {
     },
     {
       urlPattern: /\.(?:js|css)$/,
-      handler: dev ? 'NetworkFirst' : 'StaleWhileRevalidate',
+      handler: dev ? 'NetworkOnly' : 'StaleWhileRevalidate',
       options: {
         cacheName: 'static-resources',
       },
@@ -214,15 +214,17 @@ const createWorkboxPlugin = ({ dev }: Options) => {
         handler: 'NetworkFirst',
       },
       {
-        urlPattern: /__webpack_hmr/,
+        urlPattern: /(__webpack_hmr|hot-update)/,
         handler: 'NetworkOnly',
       },
     ])
   } else {
-    runtimeCaching.push({
-      urlPattern: /https:\/\/(www\.)?cramkle\.com/,
-      handler: 'NetworkFirst',
-    })
+    runtimeCaching.concat([
+      {
+        urlPattern: /https:\/\/(www\.)?cramkle\.com/,
+        handler: 'NetworkFirst',
+      },
+    ])
   }
 
   return new GenerateSW({
