@@ -268,6 +268,10 @@ msgstr "Password"
 msgid "Password is required"
 msgstr "Password is required"
 
+#: src/components/ErrorFallback.tsx:11
+msgid "Please, try reloading the page"
+msgstr "Please, try reloading the page"
+
 #: src/components/GeneralSettings.tsx:14
 msgid "Portuguese"
 msgstr "Portuguese"
@@ -276,6 +280,7 @@ msgstr "Portuguese"
 msgid "Ready to work offline"
 msgstr "Ready to work offline"
 
+#: src/components/ErrorFallback.tsx:14
 #: src/components/pages/HomePage.tsx:29
 msgid "Refresh"
 msgstr "Refresh"
@@ -319,6 +324,10 @@ msgstr "Sign Up"
 #: src/components/pages/LandingPage.tsx:44
 msgid "Sign up now!"
 msgstr "Sign up now!"
+
+#: src/components/ErrorFallback.tsx:8
+msgid "Something went wrong"
+msgstr "Something went wrong"
 
 #: src/components/AppDrawer.tsx:65
 msgid "Statistics"

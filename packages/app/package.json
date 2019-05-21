@@ -57,6 +57,7 @@
     "react": "^16.8.6",
     "react-apollo": "^2.5.3",
     "react-dom": "^16.8.6",
+    "react-error-boundary": "^1.2.5",
     "react-helmet": "^6.0.0-beta",
     "react-hot-loader": "^4.8.1",
     "react-router": "^5.0.0",
