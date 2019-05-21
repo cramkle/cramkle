@@ -1,5 +1,5 @@
 import path from 'path'
-import webpack, { Configuration, Loader } from 'webpack'
+import webpack, { Configuration } from 'webpack'
 // @ts-ignore
 import ExtractCssChunks from 'extract-css-chunks-webpack-plugin'
 import CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin'
@@ -9,10 +9,12 @@ import ManifestPlugin from 'webpack-manifest-plugin'
 // @ts-ignore
 import ModuleNotFoundPlugin from 'react-dev-utils/ModuleNotFoundPlugin'
 import nodeExternals from 'webpack-node-externals'
-import TerserPlugin, { TerserPluginOptions } from 'terser-webpack-plugin'
-import { GenerateSW, GenerateSWOptions } from 'workbox-webpack-plugin'
 
 import ChunkNamesPlugin from './webpack/plugins/ChunkNamesPlugin'
+import { Options } from './webpack/types'
+import { getStyleLoaders } from './webpack/styles'
+import { createWorkboxPlugin } from './webpack/workbox'
+import { createOptimizationConfig } from './webpack/optimization'
 import getClientEnvironment from './env'
 import * as paths from './paths'
 import {
@@ -24,215 +26,11 @@ import {
   ASSET_MANIFEST_FILE,
 } from './constants'
 
-// Webpack uses `publicPath` to determine where the app is being served from.
-// In development, we always serve from the root. This makes config easier.
-const publicPath = '/'
-
 // style files regexes
 const cssRegex = /\.global\.css$/
 const cssModuleRegex = /\.css$/
 const sassRegex = /\.global\.(scss|sass)$/
 const sassModuleRegex = /\.(scss|sass)$/
-
-interface Options {
-  isServer?: boolean
-  dev?: boolean
-}
-
-interface StyleOptions extends Options {
-  cssModules?: boolean
-  loaders?: Loader[]
-}
-
-// common function to get style loaders
-const getStyleLoaders = ({
-  isServer,
-  dev,
-  cssModules = false,
-  loaders = [],
-}: StyleOptions) => {
-  const postcssLoader = {
-    // Options for PostCSS as we reference these options twice
-    // Adds vendor prefixing based on your specified browser support in
-    // package.json
-    loader: require.resolve('postcss-loader'),
-    options: {
-      // Necessary for external CSS imports to work
-      // https://github.com/facebook/create-react-app/issues/2677
-      ident: 'postcss',
-      plugins: () => [
-        require('postcss-flexbugs-fixes'),
-        require('postcss-preset-env')({
-          autoprefixer: {
-            flexbox: 'no-2009',
-          },
-          stage: 3,
-        }),
-      ],
-    },
-  }
-
-  const cssLoader = {
-    loader: require.resolve('css-loader'),
-    options: {
-      importLoaders: 1 + loaders.length,
-      modules: cssModules,
-      exportOnlyLocals: isServer,
-    },
-  }
-
-  if (isServer && !cssModules) {
-    return ['ignore-loader']
-  }
-
-  return [
-    !isServer && dev && 'extracted-loader',
-    !isServer && ExtractCssChunks.loader,
-    cssLoader,
-    postcssLoader,
-    ...loaders,
-  ].filter(Boolean)
-}
-
-const optimizationConfig = ({
-  dev,
-  isServer,
-}: Options): Configuration['optimization'] => {
-  const terserPluginConfig: TerserPluginOptions = {
-    parallel: true,
-    sourceMap: false,
-    cache: true,
-    cacheKeys: keys => {
-      delete keys.path
-      return keys
-    },
-  }
-
-  if (isServer) {
-    return {
-      splitChunks: false,
-      minimize: false,
-    }
-  }
-
-  const splitChunks: Configuration['optimization']['splitChunks'] = {
-    cacheGroups: {
-      default: false,
-      vendors: false,
-      styles: {
-        name: 'styles',
-        test: /.(sa|sc|c)ss$/,
-        chunks: 'all',
-        enforce: true,
-      },
-    },
-  }
-
-  const config: Configuration['optimization'] = {
-    runtimeChunk: {
-      name: STATIC_RUNTIME_WEBPACK,
-    },
-    splitChunks,
-  }
-
-  if (dev) {
-    return config
-  }
-
-  config.minimizer = [new TerserPlugin(terserPluginConfig)]
-
-  splitChunks.chunks = 'all'
-  splitChunks.cacheGroups = {
-    ...(splitChunks.cacheGroups as object),
-    react: {
-      name: 'commons',
-      chunks: 'all',
-      test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
-    },
-  }
-
-  config.splitChunks = splitChunks
-
-  return config
-}
-
-const createWorkboxPlugin = ({ dev }: Options) => {
-  const runtimeCaching: GenerateSWOptions['runtimeCaching'] = [
-    {
-      // api
-      urlPattern: /_c/,
-      handler: 'NetworkFirst',
-    },
-    {
-      urlPattern: /^https:\/\/fonts\.googleapis\.com/,
-      handler: 'StaleWhileRevalidate',
-      options: {
-        cacheName: 'google-fonts-stylesheets',
-      },
-    },
-    {
-      urlPattern: /^https:\/\/fonts\.gstatic\.com/,
-      handler: 'CacheFirst',
-      options: {
-        cacheName: 'google-fonts-webfonts',
-        cacheableResponse: {
-          statuses: [0, 200],
-        },
-        expiration: {
-          maxEntries: 20,
-          // cache for a year
-          maxAgeSeconds: 60 * 60 * 24 * 365,
-        },
-      },
-    },
-    {
-      // image assets
-      urlPattern: /\.(?:png|gif|jpg|jpeg|webp|svg)$/,
-      handler: 'CacheFirst',
-      options: {
-        cacheName: 'images',
-        expiration: {
-          maxEntries: 60,
-          // cache for 30 days
-          maxAgeSeconds: 60 * 60 * 24 * 30,
-        },
-      },
-    },
-    {
-      urlPattern: /\.(?:js|css)$/,
-      handler: dev ? 'NetworkOnly' : 'StaleWhileRevalidate',
-      options: {
-        cacheName: 'static-resources',
-      },
-    },
-  ]
-
-  if (dev) {
-    runtimeCaching.concat([
-      {
-        urlPattern: /https?:\/\//,
-        handler: 'NetworkFirst',
-      },
-      {
-        urlPattern: /(__webpack_hmr|hot-update)/,
-        handler: 'NetworkOnly',
-      },
-    ])
-  } else {
-    runtimeCaching.concat([
-      {
-        urlPattern: /https:\/\/(www\.)?cramkle\.com/,
-        handler: 'NetworkFirst',
-      },
-    ])
-  }
-
-  return new GenerateSW({
-    swDest: 'public/service-worker.js',
-    importsDirectory: 'static',
-    runtimeCaching,
-  })
-}
 
 const getBaseWebpackConfig = (options?: Options): Configuration => {
   const { isServer = false, dev = false } = options || {}
@@ -330,7 +128,7 @@ const getBaseWebpackConfig = (options?: Options): Configuration => {
       libraryTarget: isServer ? 'commonjs2' : 'jsonp',
     },
     performance: { hints: false },
-    optimization: optimizationConfig({ dev, isServer }),
+    optimization: createOptimizationConfig({ dev, isServer }),
     resolve: {
       modules: ['node_modules'].concat(
         process.env.NODE_PATH.split(path.delimiter).filter(Boolean)
@@ -454,7 +252,6 @@ const getBaseWebpackConfig = (options?: Options): Configuration => {
       dev && !isServer && new webpack.HotModuleReplacementPlugin(),
       new ManifestPlugin({
         fileName: ASSET_MANIFEST_FILE,
-        publicPath: publicPath,
       }),
       createWorkboxPlugin({ dev, isServer }),
       // This gives some necessary context to module not found errors, such as
