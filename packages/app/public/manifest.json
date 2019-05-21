@@ -1,7 +1,7 @@
 {
   "short_name": "Cramkle",
   "name": "Cramkle",
-  "start_url": ".",
+  "start_url": "/?utm_source=homescreen&utm_medium=shortcut",
   "display": "standalone",
   "theme_color": "#2962ff",
   "background_color": "#ffffff",
