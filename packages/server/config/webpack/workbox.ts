@@ -3,6 +3,7 @@ import { GenerateSW, GenerateSWOptions } from 'workbox-webpack-plugin'
 import { Options } from './types'
 
 const JS_CSS_REGEX = /\.(?:js|css)$/
+const MAP_REGEX = /\.(?:map)$/
 const IMAGE_REGEX = /\.(?:png|gif|jpg|jpeg|webp|svg)$/
 
 export const createWorkboxPlugin = ({ dev }: Options) => {
@@ -59,10 +60,6 @@ export const createWorkboxPlugin = ({ dev }: Options) => {
   if (dev) {
     runtimeCaching.concat([
       {
-        urlPattern: /https?:\/\//,
-        handler: 'NetworkFirst',
-      },
-      {
         urlPattern: /(__webpack_hmr|hot-update)/,
         handler: 'NetworkOnly',
       },
@@ -80,6 +77,8 @@ export const createWorkboxPlugin = ({ dev }: Options) => {
     swDest: 'public/service-worker.js',
     importsDirectory: 'static',
     runtimeCaching,
-    exclude: dev ? [new RegExp('/static')] : [],
+    exclude: dev
+      ? [JS_CSS_REGEX, IMAGE_REGEX, MAP_REGEX, new RegExp('hot-update')]
+      : [],
   })
 }
