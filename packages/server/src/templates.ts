@@ -37,13 +37,12 @@ interface TemplateInput {
   scripts?: string[]
   styles?: string[]
   state?: object
-  language: string
 }
 
 export const ok = (args?: TemplateInput) => {
-  const { markup = '', head, scripts = [], styles = [], state, language } = args
+  const { markup = '', head, scripts = [], styles = [], state } = args
   return `<!DOCTYPE html>
-<html lang="${language}" style="font-size: 15px;">
+<html ${head.htmlAttributes.toString()}>
 <head>
   ${styles.map(srcToPreloadStyle).join('\n')}
   <meta charset="utf-8">
@@ -56,7 +55,7 @@ export const ok = (args?: TemplateInput) => {
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Franklin:300,400,500,600|Material+Icons">
   ${scripts.map(srcToScriptTag).join('\n')}
 </head>
-<body class="mdc-typography">
+<body ${head.bodyAttributes.toString()}>
   ${getNoScriptTags(head)}
   <div id="root">${markup}</div>
   <script nonce>

@@ -67,7 +67,6 @@ const render = async (req: Request, res: Response) => {
         ok({
           scripts: clientAssetScripts,
           styles,
-          language,
         })
       )
     } else {
@@ -99,7 +98,6 @@ const render = async (req: Request, res: Response) => {
             scripts: clientAssetScripts,
             state,
             styles,
-            language,
           })
         )
       }
