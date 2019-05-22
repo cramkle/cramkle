@@ -3,7 +3,7 @@ import { useLingui } from '@lingui/react'
 import Icon from '@material/react-material-icon'
 import Tab from '@material/react-tab'
 import TabBar from '@material/react-tab-bar'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Helmet } from 'react-helmet'
 import { withRouter, RouteComponentProps } from 'react-router'
 
@@ -23,10 +23,16 @@ const HomePage: React.FunctionComponent<RouteComponentProps> = ({
     (location.state && location.state.currentTab) || 0
   )
 
+  const prevTabRef = useRef(index)
+
   useEffect(() => {
-    if (location.state && location.state.currentTab !== undefined) {
-      setIndex(location.state.currentTab)
+    const stateIndex = (location.state && location.state.currentTab) || 0
+
+    if (prevTabRef.current !== stateIndex) {
+      setIndex(stateIndex)
     }
+
+    prevTabRef.current = stateIndex
   }, [location.state])
 
   useEffect(() => {

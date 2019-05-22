@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Generic error page.
 
+### Fixed
+- Back arrow not working in home for initial page.
+
 ## [0.4.9] - 2019-05-19
 ### Added
 - Persisted query link.
