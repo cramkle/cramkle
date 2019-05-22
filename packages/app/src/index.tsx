@@ -79,10 +79,9 @@ const render = (): Promise<RenderResult> | void => {
     const shouldHydrate =
       !query.has('nossr') || process.env.NODE_ENV === 'production'
 
-    // @ts-ignore
-    ReactDOM.unstable_createRoot(elem, { hydrate: shouldHydrate }).render(
-      <BrowserRouter>{root}</BrowserRouter>
-    )
+    const method = shouldHydrate ? 'hydrate' : 'render'
+
+    ReactDOM[method](<BrowserRouter>{root}</BrowserRouter>, elem)
   } else {
     return renderWithData(root)
   }
