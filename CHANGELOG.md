@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Generic error page.
 
+### Changed
+- Disabled React's Concurrent Mode.
+
 ### Fixed
 - Back arrow not working in home for initial page.
 
