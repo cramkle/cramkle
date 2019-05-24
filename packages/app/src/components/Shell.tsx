@@ -18,7 +18,9 @@ import NoSSR from './NoSSR'
 import SearchBar from './SearchBar'
 import { useHints } from './HintsContext'
 import useLocalStorage from '../hooks/useLocalStorage'
-import logoUrl from '../assets/logo.svg'
+import useOffline from '../hooks/useOffline'
+import { ReactComponent as Logo } from '../assets/logo.svg'
+import { ReactComponent as LogoGray } from '../assets/logo-gray.svg'
 import loadingQuery from '../graphql/topBarLoadingQuery.gql'
 import { TopBarLoadingQuery } from '../graphql/__generated__/TopBarLoadingQuery'
 
@@ -34,6 +36,7 @@ const Shell: React.FunctionComponent<Props> = ({
 }) => {
   const { i18n } = useLingui()
   const { isMobile } = useHints()
+  const isOffline = useOffline()
   const [drawerOpen, setDrawerOpen] = useLocalStorage(
     'ck:drawerOpen',
     !isMobile,
@@ -126,13 +129,12 @@ const Shell: React.FunctionComponent<Props> = ({
                     href="/home"
                     onClick={handleLogoClick}
                   >
-                    <img
-                      className="pr2"
-                      width="40"
-                      src={logoUrl}
-                      alt="Cramkle"
-                    />
-                    Cramkle
+                    {!isOffline ? (
+                      <Logo width="48" height="48" />
+                    ) : (
+                      <LogoGray width="48" height="48" />
+                    )}
+                    <span className="ml2">Cramkle</span>
                   </TopAppBarTitle>
 
                   {!isMobile && <SearchBar />}

@@ -4,7 +4,7 @@ import React from 'react'
 import { Helmet } from 'react-helmet'
 import { Link } from 'react-router-dom'
 
-import logoInvertedUrl from '../../assets/logo--inverted.svg'
+import { ReactComponent as Logo } from '../../assets/logo-white.svg'
 import LoginForm from '../forms/LoginForm'
 
 const LoginPage: React.FunctionComponent = () => {
@@ -16,7 +16,7 @@ const LoginPage: React.FunctionComponent = () => {
         <title>{i18n._(t`Login`)}</title>
       </Helmet>
 
-      <img className="w3 h3 mb4" src={logoInvertedUrl} alt="" />
+      <Logo className="w3 h3 mb4" />
 
       <LoginForm />
 

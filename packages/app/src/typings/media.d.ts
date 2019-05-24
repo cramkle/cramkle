@@ -1,4 +1,7 @@
 declare module '*.svg' {
-  let url: string
-  export = url
+  import { ComponentType, SVGAttributes } from 'react'
+
+  const ReactComponent: ComponentType<SVGAttributes>
+
+  const url: string
 }
