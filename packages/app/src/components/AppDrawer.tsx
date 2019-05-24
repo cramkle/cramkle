@@ -1,4 +1,4 @@
-import { ChildProps, graphql } from '@apollo/react-hoc'
+import { useQuery } from '@apollo/react-hooks'
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import Drawer, {
@@ -13,7 +13,6 @@ import List, {
   ListItemGraphic,
   ListItemText,
 } from '@material/react-list'
-import { compose } from 'ramda'
 import React, {
   ReactNode,
   useCallback,
@@ -53,15 +52,18 @@ const getListIndexFromPathname = (pathname: string) => {
   }
 }
 
-const AppDrawer: React.FunctionComponent<ChildProps<Props, UserQuery>> = ({
+const AppDrawer: React.FunctionComponent<Props> = ({
   content,
   render,
   open,
   onClose,
   history,
   location,
-  data: { me },
 }) => {
+  const {
+    data: { me },
+  } = useQuery<UserQuery>(USER_QUERY)
+
   const { i18n } = useLingui()
 
   const [index, setIndex] = useState(() =>
@@ -176,7 +178,4 @@ const AppDrawer: React.FunctionComponent<ChildProps<Props, UserQuery>> = ({
   )
 }
 
-export default compose(
-  graphql(USER_QUERY),
-  withRouter
-)(AppDrawer)
+export default withRouter(AppDrawer)

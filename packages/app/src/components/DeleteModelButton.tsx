@@ -1,8 +1,7 @@
-import { ChildProps, graphql } from '@apollo/react-hoc'
+import { useMutation } from '@apollo/react-hooks'
 import { Trans, plural, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import gql from 'graphql-tag'
-import { compose } from 'ramda'
 import React, { useState } from 'react'
 import { RouteComponentProps, withRouter } from 'react-router'
 
@@ -13,6 +12,10 @@ import Dialog, {
   DialogContent,
   DialogTitle,
 } from './views/Dialog'
+import {
+  DeleteModelMutation,
+  DeleteModelMutationVariables,
+} from './__generated__/DeleteModelMutation'
 import { MODELS_QUERY } from './ModelList'
 import { ModelsQuery } from './__generated__/ModelsQuery'
 import { notificationState } from '../notification'
@@ -36,8 +39,13 @@ const DELETE_MODEL_MUTATION = gql`
 `
 
 const DeleteModelButton: React.FunctionComponent<
-  ChildProps<Props & RouteComponentProps, Mutation>
-> = ({ model, mutate, history }) => {
+  Props & RouteComponentProps
+> = ({ model, history }) => {
+  const [mutate] = useMutation<
+    DeleteModelMutation,
+    DeleteModelMutationVariables
+  >(DELETE_MODEL_MUTATION)
+
   const { i18n } = useLingui()
 
   const [dialogOpen, setDialogOpen] = useState(false)
@@ -140,7 +148,4 @@ const DeleteModelButton: React.FunctionComponent<
   )
 }
 
-export default compose(
-  graphql(DELETE_MODEL_MUTATION),
-  withRouter
-)(DeleteModelButton)
+export default withRouter(DeleteModelButton)

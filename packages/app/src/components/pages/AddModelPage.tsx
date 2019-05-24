@@ -1,11 +1,10 @@
+import { useMutation } from '@apollo/react-hooks'
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { Body1, Body2, Headline5 } from '@material/react-typography'
 import { FieldArray, Formik } from 'formik'
 import gql from 'graphql-tag'
-import { compose } from 'ramda'
 import React from 'react'
-import { ChildProps, graphql } from '@apollo/react-hoc'
 import { RouteComponentProps, withRouter } from 'react-router'
 import * as yup from 'yup'
 
@@ -24,12 +23,6 @@ import { MODELS_QUERY } from '../ModelList'
 import { ModelsQuery } from '../__generated__/ModelsQuery'
 
 import styles from './AddModelPage.css'
-
-type Props = ChildProps<
-  RouteComponentProps,
-  CreateModelMutation,
-  CreateModelMutationVariables
->
 
 const CREATE_MODEL_MUTATION = gql`
   mutation CreateModelMutation(
@@ -52,8 +45,15 @@ const CREATE_MODEL_MUTATION = gql`
   }
 `
 
-const AddModelPage: React.FunctionComponent<Props> = ({ history, mutate }) => {
+const AddModelPage: React.FunctionComponent<RouteComponentProps> = ({
+  history,
+}) => {
   const { i18n } = useLingui()
+
+  const [mutate] = useMutation<
+    CreateModelMutation,
+    CreateModelMutationVariables
+  >(CREATE_MODEL_MUTATION)
 
   return (
     <Container>
@@ -211,9 +211,4 @@ const AddModelPage: React.FunctionComponent<Props> = ({ history, mutate }) => {
   )
 }
 
-export default compose(
-  graphql<{}, CreateModelMutation, CreateModelMutationVariables>(
-    CREATE_MODEL_MUTATION
-  ),
-  withRouter
-)(AddModelPage)
+export default withRouter(AddModelPage)

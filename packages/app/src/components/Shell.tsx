@@ -10,7 +10,6 @@ import TopAppBar, {
   TopAppBarTitle,
 } from '@material/react-top-app-bar'
 import gql from 'graphql-tag'
-import { compose } from 'ramda'
 import React, { Suspense, useCallback, useEffect, useRef } from 'react'
 import { RouteComponentProps, withRouter } from 'react-router'
 
@@ -157,7 +156,6 @@ const Shell: React.FunctionComponent<Props> = ({
   )
 }
 
-export default compose(
-  graphql<{}, TopBarLoadingQuery>(TOP_BAR_LOADING_QUERY),
-  withRouter
-)(Shell)
+export default graphql<{}, TopBarLoadingQuery>(TOP_BAR_LOADING_QUERY)(
+  withRouter(Shell)
+)
