@@ -3,12 +3,11 @@ import { Trans } from '@lingui/macro'
 import { Cell, Grid, Row } from '@material/react-layout-grid'
 import { Body1 } from '@material/react-typography'
 import gql from 'graphql-tag'
-import { compose } from 'ramda'
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import DeckCard from './DeckCard'
 import { DecksQuery } from './__generated__/DecksQuery'
-import loadingMutation from '../graphql/topBarLoadingMutation.gql'
+import useTopBarLoading from '../hooks/useTopBarLoading'
 
 export const DECKS_QUERY = gql`
   query DecksQuery {
@@ -23,11 +22,8 @@ export const DECKS_QUERY = gql`
 
 const DeckList: React.FunctionComponent<ChildProps<{}, DecksQuery>> = ({
   data: { loading, decks = [] },
-  mutate,
 }) => {
-  useEffect(() => {
-    mutate({ variables: { loading } })
-  }, [loading, mutate])
+  useTopBarLoading(loading)
 
   if (loading) {
     return null
@@ -56,7 +52,4 @@ const DeckList: React.FunctionComponent<ChildProps<{}, DecksQuery>> = ({
   )
 }
 
-export default compose(
-  graphql<{}, DecksQuery>(DECKS_QUERY),
-  graphql<{}>(loadingMutation)
-)(DeckList)
+export default graphql<{}, DecksQuery>(DECKS_QUERY)(DeckList)

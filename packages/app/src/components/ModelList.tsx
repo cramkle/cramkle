@@ -3,18 +3,13 @@ import { Trans } from '@lingui/macro'
 import { Grid } from '@material/react-layout-grid'
 import { Body1 } from '@material/react-typography'
 import gql from 'graphql-tag'
-import { compose } from 'ramda'
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import ModelCard from './ModelCard'
 import { ModelsQuery } from './__generated__/ModelsQuery'
-import loadingMutation from '../graphql/topBarLoadingMutation.gql'
-import {
-  SetLoadingMutation,
-  SetLoadingMutationVariables,
-} from '../graphql/__generated__/SetLoadingMutation'
+import useTopBarLoading from '../hooks/useTopBarLoading'
 
-type Query = ModelsQuery & SetLoadingMutation
+type Query = ModelsQuery
 
 export const MODELS_QUERY = gql`
   query ModelsQuery {
@@ -35,11 +30,8 @@ export const MODELS_QUERY = gql`
 
 const ModelList: React.FunctionComponent<ChildProps<{}, Query>> = ({
   data: { loading, cardModels: models = [] },
-  mutate,
 }) => {
-  useEffect(() => {
-    mutate({ variables: { loading } })
-  }, [loading, mutate])
+  useTopBarLoading(loading)
 
   if (loading) {
     return null
@@ -68,7 +60,4 @@ const ModelList: React.FunctionComponent<ChildProps<{}, Query>> = ({
   )
 }
 
-export default compose(
-  graphql<{}, ModelsQuery>(MODELS_QUERY),
-  graphql<{}, SetLoadingMutation, SetLoadingMutationVariables>(loadingMutation)
-)(ModelList)
+export default graphql<{}, ModelsQuery>(MODELS_QUERY)(ModelList)
