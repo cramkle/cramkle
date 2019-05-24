@@ -420,18 +420,15 @@ msgstr "Você ainda não criou nenhum template neste modelo."
 msgid "login.button"
 msgstr "Entrar"
 
+#: src/components/ModelCard.tsx:19
+msgid "{0, plural, one {# field} other {# fields}}"
+msgstr "{0, plural, one {# campo} other {# campos}}"
+
 #: src/components/DeleteModelButton.tsx:52
+#: src/components/ModelCard.tsx:15
 msgid "{0, plural, one {# template} other {# templates}}"
 msgstr "{0, plural, one {# template} other {# templates}}"
 
 #: src/components/DeleteModelButton.tsx:47
 msgid "{0, plural, one {There's # note} other {There're # notes}}"
 msgstr "{0, plural, one {Existe # nota} other {Existem # notas}}"
-
-#: src/components/ModelCard.tsx:19
-msgid "{0, plural, one {fields: #} other {fields: #}}"
-msgstr "{0, plural, one {campos: #} other {campos: #}}"
-
-#: src/components/ModelCard.tsx:15
-msgid "{0, plural, one {templates: #} other {templates: #}}"
-msgstr "{0, plural, one {templates: #} other {templates: #}}"

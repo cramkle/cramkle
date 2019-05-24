@@ -1,7 +1,7 @@
 import { plural } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import Card, { CardPrimaryContent } from '@material/react-card'
-import { ChipSet, Chip } from '@material/react-chips'
+import { Chip } from '@material/react-chips'
 import { Headline6 } from '@material/react-typography'
 import React from 'react'
 import { withRouter, RouteComponentProps } from 'react-router'
@@ -35,8 +35,8 @@ const ModelCard: React.FunctionComponent<
             <Chip
               label={i18n._(
                 plural(templates.length, {
-                  one: 'templates: #',
-                  other: 'templates: #',
+                  one: '# template',
+                  other: '# templates',
                 })
               )}
             />
@@ -45,8 +45,8 @@ const ModelCard: React.FunctionComponent<
             <Chip
               label={i18n._(
                 plural(fields.length, {
-                  one: 'fields: #',
-                  other: 'fields: #',
+                  one: '# field',
+                  other: '# fields',
                 })
               )}
             />
