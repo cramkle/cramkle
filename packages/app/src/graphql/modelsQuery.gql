@@ -6,5 +6,9 @@ query ModelsQuery {
       id
       name
     }
+    fields {
+      id
+      name
+    }
   }
 }

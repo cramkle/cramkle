@@ -13,7 +13,7 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/components/pages/HomePage.tsx:28
+#: src/components/pages/HomePage.tsx:31
 msgid "A new update is available!"
 msgstr "Uma nova atualização está disponível!"
 
@@ -87,7 +87,7 @@ msgstr "Criar"
 msgid "Create Model"
 msgstr "Criar Modelo"
 
-#: src/components/pages/HomePage.tsx:66
+#: src/components/pages/HomePage.tsx:69
 msgid "Decks"
 msgstr "Decks"
 
@@ -176,7 +176,7 @@ msgid "H6"
 msgstr "C6"
 
 #: src/components/AppDrawer.tsx:57
-#: src/components/pages/HomePage.tsx:55
+#: src/components/pages/HomePage.tsx:58
 msgid "Home"
 msgstr "Página Inicial"
 
@@ -210,7 +210,7 @@ msgstr "Login"
 msgid "Logout"
 msgstr "Sair"
 
-#: src/components/Shell.tsx:61
+#: src/components/Shell.tsx:64
 msgid "Main menu"
 msgstr "Menu principal"
 
@@ -226,7 +226,7 @@ msgstr "Marketplace"
 msgid "Model created successfully"
 msgstr "Modelo criado com sucesso"
 
-#: src/components/pages/HomePage.tsx:70
+#: src/components/pages/HomePage.tsx:73
 msgid "Models"
 msgstr "Modelos"
 
@@ -276,12 +276,12 @@ msgstr "Por favor, tente recarregar a página"
 msgid "Portuguese"
 msgstr "Português"
 
-#: src/components/pages/HomePage.tsx:37
+#: src/components/pages/HomePage.tsx:40
 msgid "Ready to work offline"
 msgstr "Pronto para funcionar offline"
 
 #: src/components/ErrorFallback.tsx:14
-#: src/components/pages/HomePage.tsx:29
+#: src/components/pages/HomePage.tsx:32
 msgid "Refresh"
 msgstr "Atualizar"
 
@@ -333,7 +333,7 @@ msgstr "Algo de errado aconteceu"
 msgid "Statistics"
 msgstr "Estatísticas"
 
-#: src/components/pages/HomePage.tsx:62
+#: src/components/pages/HomePage.tsx:65
 msgid "Study"
 msgstr "Estudar"
 
@@ -427,3 +427,11 @@ msgstr "{0, plural, one {# template} other {# templates}}"
 #: src/components/DeleteModelButton.tsx:47
 msgid "{0, plural, one {There's # note} other {There're # notes}}"
 msgstr "{0, plural, one {Existe # nota} other {Existem # notas}}"
+
+#: src/components/ModelCard.tsx:19
+msgid "{0, plural, one {fields: #} other {fields: #}}"
+msgstr "{0, plural, one {campos: #} other {campos: #}}"
+
+#: src/components/ModelCard.tsx:15
+msgid "{0, plural, one {templates: #} other {templates: #}}"
+msgstr "{0, plural, one {templates: #} other {templates: #}}"

@@ -18,6 +18,18 @@ export interface ModelsQuery_cardModels_templates {
   name: string | null;
 }
 
+export interface ModelsQuery_cardModels_fields {
+  __typename: "Field";
+  /**
+   *  Field id 
+   */
+  id: string;
+  /**
+   *  Name of the field 
+   */
+  name: string;
+}
+
 export interface ModelsQuery_cardModels {
   __typename: "CardModel";
   /**
@@ -32,6 +44,10 @@ export interface ModelsQuery_cardModels {
    *  Templates associated with this model 
    */
   templates: (ModelsQuery_cardModels_templates | null)[] | null;
+  /**
+   *  Fields associated with this model 
+   */
+  fields: (ModelsQuery_cardModels_fields | null)[] | null;
 }
 
 export interface ModelsQuery {

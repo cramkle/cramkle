@@ -1,4 +1,7 @@
+import { plural } from '@lingui/macro'
+import { useLingui } from '@lingui/react'
 import Card, { CardPrimaryContent } from '@material/react-card'
+import { ChipSet, Chip } from '@material/react-chips'
 import { Headline6 } from '@material/react-typography'
 import React from 'react'
 import { withRouter, RouteComponentProps } from 'react-router'
@@ -11,7 +14,8 @@ interface Props {
 
 const ModelCard: React.FunctionComponent<
   Props & ModelsQuery_cardModels & RouteComponentProps
-> = ({ className = '', id, name, history }) => {
+> = ({ className = '', id, name, history, fields, templates }) => {
+  const { i18n } = useLingui()
   const handleClick = () => history.push(`/m/${id}`)
 
   return (
@@ -26,6 +30,28 @@ const ModelCard: React.FunctionComponent<
         }
       >
         <Headline6>{name}</Headline6>
+        <div className="mdc-chip-set">
+          {!!templates.length && (
+            <Chip
+              label={i18n._(
+                plural(templates.length, {
+                  one: 'templates: #',
+                  other: 'templates: #',
+                })
+              )}
+            />
+          )}
+          {!!fields.length && (
+            <Chip
+              label={i18n._(
+                plural(fields.length, {
+                  one: 'fields: #',
+                  other: 'fields: #',
+                })
+              )}
+            />
+          )}
+        </div>
       </CardPrimaryContent>
     </Card>
   )

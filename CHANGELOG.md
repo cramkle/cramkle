@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - Generic error page.
+- Chips with quantity of fields and templates on model card.
 
 ### Changed
 - Disabled React's Concurrent Mode.

@@ -1313,6 +1313,21 @@
     "@material/theme" "^1.1.0"
     tslib "^1.9.3"
 
+"@material/chips@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@material/chips/-/chips-1.1.1.tgz#ed39be4c16843f1264c786c2d3049b93f3984a89"
+  integrity sha512-ftpYba7+qEeRWCU9xSHJmkD6UXHo/UQEfqBcH96nt7QTa+ZIyyzcu64lc3OpFgLM8RnugyaAWlJ7i5w510YRiw==
+  dependencies:
+    "@material/animation" "^1.0.0"
+    "@material/base" "^1.0.0"
+    "@material/checkbox" "^1.1.0"
+    "@material/elevation" "^1.1.0"
+    "@material/ripple" "^1.1.0"
+    "@material/shape" "^1.1.1"
+    "@material/theme" "^1.1.0"
+    "@material/typography" "^1.0.0"
+    tslib "^1.9.3"
+
 "@material/dialog@1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@material/dialog/-/dialog-1.1.0.tgz#62f6bf31a7329ff4948609fb0e377ea336654972"
@@ -1547,6 +1562,16 @@
     "@material/react-ripple" "^0.12.0"
     classnames "^2.2.6"
     react "^16.3.2"
+
+"@material/react-chips@^0.12.0":
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/@material/react-chips/-/react-chips-0.12.0.tgz#35f1620ec91d6ab70d24cfc8baecbfa52b0193da"
+  integrity sha512-oL0RgSII2MoutTpWwJbD9yvDFQxGiukJaviK0Dtb5sY+rUejm82UceNPSdJ6WQEWwe5A9xmWaN+H0UbssoGLYQ==
+  dependencies:
+    "@material/chips" "^1.1.1"
+    "@material/react-ripple" "^0.12.0"
+    classnames "^2.2.6"
+    react "^16.4.2"
 
 "@material/react-dialog@^0.12.0":
   version "0.12.1"
