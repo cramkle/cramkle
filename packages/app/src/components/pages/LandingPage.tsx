@@ -11,9 +11,9 @@ import { Headline2, Headline4 } from '@material/react-typography'
 import React from 'react'
 import { withRouter, RouteComponentProps, Link } from 'react-router-dom'
 
-import logoUrl from '../../assets/logo.svg'
+import { ReactComponent as Logo } from '../../assets/logo.svg'
 import RegisterForm from '../forms/RegisterForm'
-import bg from '../../assets/landing-bg.svg'
+import bgUrl from '../../assets/landing-bg.svg'
 
 const LandingPage: React.FunctionComponent<RouteComponentProps> = ({
   history,
@@ -23,7 +23,7 @@ const LandingPage: React.FunctionComponent<RouteComponentProps> = ({
       <TopAppBarRow>
         <TopAppBarSection align="start">
           <TopAppBarIcon>
-            <img style={{ height: 24, width: 24 }} src={logoUrl} alt="" />
+            <Logo height="24" width="24" />
           </TopAppBarIcon>
           <TopAppBarTitle>Cramkle</TopAppBarTitle>
         </TopAppBarSection>
@@ -40,7 +40,7 @@ const LandingPage: React.FunctionComponent<RouteComponentProps> = ({
     <TopAppBarFixedAdjust>
       <div
         className="flex bg-primary c-on-primary min-vh-100 w-100"
-        style={{ backgroundImage: `url(${bg})` }}
+        style={{ backgroundImage: `url(${bgUrl})` }}
       >
         <div className="flex flex-column flex-row-ns justify-around items-center w-100 mh2 mh5-l pv5 pv6-ns">
           <div
