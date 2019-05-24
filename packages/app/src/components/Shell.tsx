@@ -109,7 +109,7 @@ const Shell: React.FunctionComponent<Props> = ({
         content={content}
         render={(children: JSX.Element) => (
           <>
-            <TopAppBar className="absolute left-0 right-0" fixed>
+            <TopAppBar fixed>
               <TopAppBarRow>
                 <TopAppBarSection align="start">
                   <TopAppBarIcon navIcon>
