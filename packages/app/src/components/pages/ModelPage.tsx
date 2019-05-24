@@ -1,12 +1,11 @@
-import { ChildProps, graphql } from '@apollo/react-hoc'
+import { useQuery } from '@apollo/react-hooks'
 import { Trans } from '@lingui/macro'
 import List, { ListItem, ListItemText } from '@material/react-list'
 import Tab from '@material/react-tab'
 import TabBar from '@material/react-tab-bar'
 import { Body1, Body2, Caption, Headline4 } from '@material/react-typography'
 import gql from 'graphql-tag'
-import { compose } from 'ramda'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { RouteComponentProps } from 'react-router'
 
@@ -15,11 +14,10 @@ import DeleteModelButton from '../DeleteModelButton'
 import TemplateEditor from '../TemplateEditor'
 import BackButton from '../BackButton'
 import Container from '../views/Container'
-import loadingMutation from '../../graphql/topBarLoadingMutation.gql'
-import { SetLoadingMutation } from '../../graphql/__generated__/SetLoadingMutation'
+import useTopBarLoading from '../../hooks/useTopBarLoading'
 
 type Props = RouteComponentProps<{ id: string }>
-type Query = ModelQuery & SetLoadingMutation
+type Query = ModelQuery
 
 const MODEL_QUERY = gql`
   query ModelQuery($id: ID!) {
@@ -69,13 +67,19 @@ const MODEL_QUERY = gql`
   }
 `
 
-const ModelPage: React.FunctionComponent<ChildProps<Props, Query>> = ({
-  data: { loading, cardModel },
-  mutate,
+const ModelPage: React.FunctionComponent<Props> = ({
+  match: {
+    params: { id },
+  },
 }) => {
-  useEffect(() => {
-    mutate({ variables: { loading } })
-  }, [loading, mutate])
+  const {
+    data: { cardModel },
+    loading,
+  } = useQuery<ModelQuery, ModelQueryVariables>(MODEL_QUERY, {
+    variables: { id },
+  })
+
+  useTopBarLoading(loading)
 
   const [selectedTemplate, setSelectedTemplate] = useState(0)
 
@@ -159,13 +163,4 @@ const ModelPage: React.FunctionComponent<ChildProps<Props, Query>> = ({
   )
 }
 
-export default compose(
-  graphql<Props, ModelQuery, ModelQueryVariables>(MODEL_QUERY, {
-    options: props => ({
-      variables: {
-        id: props.match.params.id,
-      },
-    }),
-  }),
-  graphql<Props, SetLoadingMutation>(loadingMutation)
-)(ModelPage)
+export default ModelPage

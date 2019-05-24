@@ -1,3 +1,0 @@
-mutation SetLoadingMutation($loading: Boolean) {
-  setTopBarLoading(loading: $loading) @client
-}

@@ -1,8 +1,7 @@
-import { ChildProps, graphql } from '@apollo/react-hoc'
+import { useQuery } from '@apollo/react-hooks'
 import { Body1, Headline4 } from '@material/react-typography'
 import gql from 'graphql-tag'
-import { compose } from 'ramda'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Helmet } from 'react-helmet'
 import { RouteComponentProps } from 'react-router'
 
@@ -10,15 +9,9 @@ import { DeckQuery, DeckQueryVariables } from './__generated__/DeckQuery'
 import BackButton from '../BackButton'
 import DeleteDeckButton from '../DeleteDeckButton'
 import Container from '../views/Container'
-import loadingMutation from '../../graphql/topBarLoadingMutation.gql'
-import {
-  SetLoadingMutation,
-  SetLoadingMutationVariables,
-} from '../../graphql/__generated__/SetLoadingMutation'
+import useTopBarLoading from '../../hooks/useTopBarLoading'
 
 type Props = RouteComponentProps<{ slug: string }>
-
-type Data = DeckQuery & SetLoadingMutation
 
 const DECK_QUERY = gql`
   query DeckQuery($slug: String!) {
@@ -31,13 +24,19 @@ const DECK_QUERY = gql`
   }
 `
 
-const DeckPage: React.FunctionComponent<ChildProps<Props, Data>> = ({
-  data: { loading, deck },
-  mutate,
+const DeckPage: React.FunctionComponent<Props> = ({
+  match: {
+    params: { slug },
+  },
 }) => {
-  useEffect(() => {
-    mutate({ variables: { loading } })
-  }, [loading, mutate])
+  const {
+    data: { deck },
+    loading,
+  } = useQuery<DeckQuery, DeckQueryVariables>(DECK_QUERY, {
+    variables: { slug },
+  })
+
+  useTopBarLoading(loading)
 
   if (loading) {
     return null
@@ -59,15 +58,4 @@ const DeckPage: React.FunctionComponent<ChildProps<Props, Data>> = ({
   )
 }
 
-export default compose(
-  graphql<Props, DeckQuery, DeckQueryVariables>(DECK_QUERY, {
-    options: props => ({
-      variables: {
-        slug: props.match.params.slug,
-      },
-    }),
-  }),
-  graphql<Props, SetLoadingMutation, SetLoadingMutationVariables>(
-    loadingMutation
-  )
-)(DeckPage)
+export default DeckPage
