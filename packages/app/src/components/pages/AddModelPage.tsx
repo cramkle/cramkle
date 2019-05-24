@@ -3,8 +3,9 @@ import { useLingui } from '@lingui/react'
 import { Body1, Body2, Headline5 } from '@material/react-typography'
 import { FieldArray, Formik } from 'formik'
 import gql from 'graphql-tag'
+import { compose } from 'ramda'
 import React from 'react'
-import { ChildMutateProps, compose, graphql } from 'react-apollo'
+import { ChildProps, graphql } from '@apollo/react-hoc'
 import { RouteComponentProps, withRouter } from 'react-router'
 import * as yup from 'yup'
 
@@ -24,7 +25,7 @@ import { ModelsQuery } from '../__generated__/ModelsQuery'
 
 import styles from './AddModelPage.css'
 
-type Props = ChildMutateProps<
+type Props = ChildProps<
   RouteComponentProps,
   CreateModelMutation,
   CreateModelMutationVariables

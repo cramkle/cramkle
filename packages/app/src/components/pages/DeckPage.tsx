@@ -1,7 +1,8 @@
+import { ChildProps, graphql } from '@apollo/react-hoc'
 import { Body1, Headline4 } from '@material/react-typography'
 import gql from 'graphql-tag'
+import { compose } from 'ramda'
 import React, { useEffect } from 'react'
-import { ChildProps, compose, graphql } from 'react-apollo'
 import { Helmet } from 'react-helmet'
 import { RouteComponentProps } from 'react-router'
 

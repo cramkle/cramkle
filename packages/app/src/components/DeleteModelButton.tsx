@@ -1,8 +1,9 @@
+import { ChildProps, graphql } from '@apollo/react-hoc'
 import { Trans, plural, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import gql from 'graphql-tag'
+import { compose } from 'ramda'
 import React, { useState } from 'react'
-import { ChildMutateProps, compose, graphql } from 'react-apollo'
 import { RouteComponentProps, withRouter } from 'react-router'
 
 import Button from './views/Button'
@@ -35,7 +36,7 @@ const DELETE_MODEL_MUTATION = gql`
 `
 
 const DeleteModelButton: React.FunctionComponent<
-  ChildMutateProps<Props & RouteComponentProps, Mutation>
+  ChildProps<Props & RouteComponentProps, Mutation>
 > = ({ model, mutate, history }) => {
   const { i18n } = useLingui()
 

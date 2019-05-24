@@ -1,9 +1,9 @@
+import { MockedProvider, MockedResponse } from '@apollo/react-testing'
 import { setupI18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
 import { fireEvent, render as rtlRender, wait } from '@testing-library/react'
 import React from 'react'
 import { MemoryRouter } from 'react-router'
-import { MockedProvider, MockedResponse } from 'react-apollo/test-utils'
 
 import AddDeckForm, { CREATE_DECK_MUTATION } from '../AddDeckForm'
 

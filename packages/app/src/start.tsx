@@ -2,7 +2,7 @@ import { setupI18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
 import { NormalizedCacheObject } from 'apollo-cache-inmemory'
 import React, { StrictMode } from 'react'
-import { ApolloProvider } from 'react-apollo'
+import { ApolloProvider } from '@apollo/react-hooks'
 import ReactDOM from 'react-dom'
 import { Helmet } from 'react-helmet'
 import { StaticRouterContext } from 'react-router'
@@ -84,7 +84,7 @@ const render = ({
       // use dynamic import here to avoid placing these
       // dependencies in the client bundle.
       const [{ renderToStringWithData }, { StaticRouter }] = await Promise.all([
-        import('react-apollo'),
+        import('@apollo/react-ssr'),
         import('react-router-dom'),
       ])
 

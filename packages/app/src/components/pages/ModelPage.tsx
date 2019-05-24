@@ -1,11 +1,12 @@
+import { ChildProps, graphql } from '@apollo/react-hoc'
 import { Trans } from '@lingui/macro'
 import List, { ListItem, ListItemText } from '@material/react-list'
 import Tab from '@material/react-tab'
 import TabBar from '@material/react-tab-bar'
 import { Body1, Body2, Caption, Headline4 } from '@material/react-typography'
 import gql from 'graphql-tag'
+import { compose } from 'ramda'
 import React, { useEffect, useState } from 'react'
-import { ChildProps, compose, graphql } from 'react-apollo'
 import { Helmet } from 'react-helmet'
 import { RouteComponentProps } from 'react-router'
 
