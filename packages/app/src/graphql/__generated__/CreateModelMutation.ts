@@ -20,6 +20,18 @@ export interface CreateModelMutation_createModel_templates {
   name: string | null;
 }
 
+export interface CreateModelMutation_createModel_fields {
+  __typename: "Field";
+  /**
+   *  Field id 
+   */
+  id: string;
+  /**
+   *  Name of the field 
+   */
+  name: string;
+}
+
 export interface CreateModelMutation_createModel {
   __typename: "CardModel";
   /**
@@ -34,6 +46,10 @@ export interface CreateModelMutation_createModel {
    *  Templates associated with this model 
    */
   templates: (CreateModelMutation_createModel_templates | null)[] | null;
+  /**
+   *  Fields associated with this model 
+   */
+  fields: (CreateModelMutation_createModel_fields | null)[] | null;
 }
 
 export interface CreateModelMutation {
