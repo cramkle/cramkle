@@ -129,11 +129,7 @@ const Shell: React.FunctionComponent<Props> = ({
                     href="/home"
                     onClick={handleLogoClick}
                   >
-                    {!isOffline ? (
-                      <Logo width="48" height="48" />
-                    ) : (
-                      <LogoGray width="48" height="48" />
-                    )}
+                    {!isOffline ? <Logo width="32" /> : <LogoGray width="32" />}
                     <span className="ml2">Cramkle</span>
                   </TopAppBarTitle>
 
