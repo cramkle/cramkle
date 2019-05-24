@@ -30,28 +30,30 @@ const ModelCard: React.FunctionComponent<
         }
       >
         <Headline6>{name}</Headline6>
-        <div className="mdc-chip-set">
-          {!!templates.length && (
-            <Chip
-              label={i18n._(
-                plural(templates.length, {
-                  one: '# template',
-                  other: '# templates',
-                })
-              )}
-            />
-          )}
-          {!!fields.length && (
-            <Chip
-              label={i18n._(
-                plural(fields.length, {
-                  one: '# field',
-                  other: '# fields',
-                })
-              )}
-            />
-          )}
-        </div>
+        {!!(templates.length || fields.length) && (
+          <div className="mdc-chip-set">
+            {!!templates.length && (
+              <Chip
+                label={i18n._(
+                  plural(templates.length, {
+                    one: '# template',
+                    other: '# templates',
+                  })
+                )}
+              />
+            )}
+            {!!fields.length && (
+              <Chip
+                label={i18n._(
+                  plural(fields.length, {
+                    one: '# field',
+                    other: '# fields',
+                  })
+                )}
+              />
+            )}
+          </div>
+        )}
       </CardPrimaryContent>
     </Card>
   )
