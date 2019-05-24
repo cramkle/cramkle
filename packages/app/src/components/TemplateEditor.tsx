@@ -9,7 +9,7 @@ import {
 } from 'draft-js'
 import 'draft-js/dist/Draft.css'
 import React, { useState, useCallback } from 'react'
-import TabController from 'react-tab-controller'
+import { TabController } from 'react-tab-controller'
 
 import InlineStyleControls from './editor/InlineStyleControls'
 import BlockStyleControls from './editor/BlockStyleControls'
