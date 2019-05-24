@@ -1,9 +1,10 @@
+import { ChildProps, graphql } from '@apollo/react-hoc'
 import { Trans } from '@lingui/macro'
 import { Cell, Grid, Row } from '@material/react-layout-grid'
 import { Body1 } from '@material/react-typography'
 import gql from 'graphql-tag'
+import { compose } from 'ramda'
 import React, { useEffect } from 'react'
-import { ChildProps, compose, graphql } from 'react-apollo'
 
 import DeckCard from './DeckCard'
 import { DecksQuery } from './__generated__/DecksQuery'

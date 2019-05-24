@@ -1,3 +1,4 @@
+import { ChildProps, graphql } from '@apollo/react-hoc'
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import Drawer, {
@@ -12,6 +13,7 @@ import List, {
   ListItemGraphic,
   ListItemText,
 } from '@material/react-list'
+import { compose } from 'ramda'
 import React, {
   ReactNode,
   useCallback,
@@ -19,7 +21,6 @@ import React, {
   useRef,
   useState,
 } from 'react'
-import { ChildDataProps, compose, graphql } from 'react-apollo'
 import { RouteComponentProps, withRouter } from 'react-router'
 
 import NoSSR from './NoSSR'
@@ -52,7 +53,7 @@ const getListIndexFromPathname = (pathname: string) => {
   }
 }
 
-const AppDrawer: React.FunctionComponent<ChildDataProps<Props, UserQuery>> = ({
+const AppDrawer: React.FunctionComponent<ChildProps<Props, UserQuery>> = ({
   content,
   render,
   open,

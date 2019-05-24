@@ -1,7 +1,7 @@
+import { ChildProps, graphql } from '@apollo/react-hoc'
 import { Trans, t } from '@lingui/macro'
 import gql from 'graphql-tag'
 import React, { useCallback, useState } from 'react'
-import { ChildMutateProps, graphql } from 'react-apollo'
 import { RouteComponentProps, withRouter } from 'react-router'
 
 import Button from './views/Button'
@@ -33,7 +33,7 @@ const DELETE_DECK_MUTATION = gql`
 
 const DeleteDeckButton: React.FunctionComponent<
   RouteComponentProps &
-    ChildMutateProps<Props, DeleteDeckMutation, DeleteDeckMutationVariables>
+    ChildProps<Props, DeleteDeckMutation, DeleteDeckMutationVariables>
 > = ({ deckId, history, mutate }) => {
   const [dialogOpen, setDialogOpen] = useState(false)
   const [deleting, setDeleting] = useState(false)

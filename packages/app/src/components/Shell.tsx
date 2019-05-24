@@ -1,3 +1,4 @@
+import { ChildProps, graphql } from '@apollo/react-hoc'
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import LinearProgress from '@material/react-linear-progress'
@@ -9,8 +10,8 @@ import TopAppBar, {
   TopAppBarTitle,
 } from '@material/react-top-app-bar'
 import gql from 'graphql-tag'
+import { compose } from 'ramda'
 import React, { Suspense, useCallback, useEffect, useRef } from 'react'
-import { ChildDataProps, compose, graphql } from 'react-apollo'
 import { RouteComponentProps, withRouter } from 'react-router'
 
 import AppDrawer from './AppDrawer'
@@ -24,7 +25,7 @@ import { ReactComponent as Logo } from '../assets/logo.svg'
 import { ReactComponent as LogoGray } from '../assets/logo-gray.svg'
 import { TopBarLoadingQuery } from './__generated__/TopBarLoadingQuery'
 
-type Props = ChildDataProps<RouteComponentProps, TopBarLoadingQuery>
+type Props = ChildProps<RouteComponentProps, TopBarLoadingQuery>
 
 const TOP_BAR_LOADING_QUERY = gql`
   query TopBarLoadingQuery {

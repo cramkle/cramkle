@@ -1,7 +1,7 @@
+import { ChildProps, graphql } from '@apollo/react-hoc'
 import { compose, isNil, not } from 'ramda'
 import React from 'react'
 import { Redirect, Route, RouteProps } from 'react-router-dom'
-import { ChildProps, graphql } from 'react-apollo'
 
 import USER_QUERY from '../userQuery.gql'
 import { UserQuery } from '../__generated__/UserQuery'

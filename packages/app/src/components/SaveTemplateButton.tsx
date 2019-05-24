@@ -1,8 +1,8 @@
+import { ChildProps, graphql } from '@apollo/react-hoc'
 import { Trans } from '@lingui/macro'
 import { RawDraftContentState } from 'draft-js'
 import gql from 'graphql-tag'
 import React, { useState } from 'react'
-import { ChildMutateProps, graphql } from 'react-apollo'
 
 import Button from './views/Button'
 import {
@@ -24,7 +24,7 @@ const UPDATE_CONTENT_STATE_MUTATION = gql`
 `
 
 const SaveTemplateButton: React.FunctionComponent<
-  ChildMutateProps<
+  ChildProps<
     Props,
     UpdateContentStateMutation,
     UpdateContentStateMutationVariables
