@@ -1,7 +1,7 @@
 import { setupI18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
 import { canUseDOM } from 'exenv'
-import React from 'react'
+import React, { StrictMode } from 'react'
 import { ApolloProvider } from 'react-apollo'
 import ReactDOM from 'react-dom'
 import { Helmet } from 'react-helmet'
@@ -62,13 +62,15 @@ const render = (): Promise<RenderResult> | void => {
   i18n.activate(language)
 
   const root = (
-    <I18nProvider i18n={i18n}>
-      <ApolloProvider client={client}>
-        <HintsProvider>
-          <App />
-        </HintsProvider>
-      </ApolloProvider>
-    </I18nProvider>
+    <StrictMode>
+      <I18nProvider i18n={i18n}>
+        <ApolloProvider client={client}>
+          <HintsProvider>
+            <App />
+          </HintsProvider>
+        </ApolloProvider>
+      </I18nProvider>
+    </StrictMode>
   )
 
   if (canUseDOM) {
