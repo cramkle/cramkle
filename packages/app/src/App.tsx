@@ -43,7 +43,9 @@ const App: React.FunctionComponent<{}> = () => {
           },
           {
             name: 'description',
-            content: 'Make sure your knowledge will last',
+            content:
+              'Cramkle helps you boost your knowledge rentention with an ' +
+              'effective flashcard-based studying method, and SRS algorithm.',
           },
           {
             name: 'keywords',
