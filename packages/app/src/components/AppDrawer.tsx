@@ -13,7 +13,6 @@ import List, {
   ListItemGraphic,
 } from '@material/react-list'
 import Icon from '@material/react-material-icon'
-import gql from 'graphql-tag'
 import React, {
   ReactNode,
   useRef,
@@ -26,6 +25,7 @@ import { withRouter, RouteComponentProps } from 'react-router'
 
 import NoSSR from './NoSSR'
 import { useHints } from './HintsContext'
+import USER_QUERY from './userQuery.gql'
 import { UserQuery } from './__generated__/UserQuery'
 
 interface Props extends RouteComponentProps {
@@ -34,16 +34,6 @@ interface Props extends RouteComponentProps {
   open: boolean
   onClose: () => void
 }
-
-const USER_QUERY = gql`
-  query UserQuery {
-    me {
-      id
-      username
-      email
-    }
-  }
-`
 
 const getListIndexFromPathname = (pathname: string) => {
   switch (pathname) {

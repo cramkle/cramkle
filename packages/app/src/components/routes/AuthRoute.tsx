@@ -1,10 +1,10 @@
 import { compose, not, isNil } from 'ramda'
-import gql from 'graphql-tag'
 import React from 'react'
 import { Route, Redirect, RouteProps } from 'react-router-dom'
 import { graphql, ChildProps } from 'react-apollo'
 
-import { UserQuery } from './__generated__/UserQuery'
+import USER_QUERY from '../userQuery.gql'
+import { UserQuery } from '../__generated__/UserQuery'
 
 interface Input {
   challenge: (user: UserQuery['me']) => boolean
@@ -12,15 +12,7 @@ interface Input {
   displayName: string
 }
 
-const withUser = graphql<RouteProps, UserQuery>(gql`
-  query UserQuery {
-    me {
-      id
-      username
-      email
-    }
-  }
-`)
+const withUser = graphql<RouteProps, UserQuery>(USER_QUERY)
 
 type SupportedRouteProps = Pick<
   RouteProps,
