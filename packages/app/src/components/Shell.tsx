@@ -36,12 +36,12 @@ const TOP_BAR_LOADING_QUERY = gql`
 
 const Shell: React.FunctionComponent<Props> = ({
   children,
-  data: {
-    topBar: { loading },
-  },
+  data: { topBar },
   history,
   location: { pathname },
 }) => {
+  const loading = topBar && topBar.loading
+
   const { i18n } = useLingui()
   const { isMobile } = useHints()
   const isOffline = useOffline()
