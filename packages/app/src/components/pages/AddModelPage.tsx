@@ -19,7 +19,7 @@ import BackButton from '../BackButton'
 import { TextInputField } from '../forms/Fields'
 import Container from '../views/Container'
 import { notificationState } from '../../notification/index'
-import modelsQuery from '../ModelList'
+import { MODELS_QUERY } from '../ModelList'
 import { ModelsQuery } from '../__generated__/ModelsQuery'
 
 import styles from './AddModelPage.css'
@@ -82,12 +82,12 @@ const AddModelPage: React.FunctionComponent<Props> = ({ history, mutate }) => {
             variables: values,
             update: (proxy, { data: { createModel } }) => {
               const data = proxy.readQuery<ModelsQuery>({
-                query: modelsQuery,
+                query: MODELS_QUERY,
               })
 
               data.cardModels.push(createModel)
 
-              proxy.writeQuery({ query: modelsQuery, data })
+              proxy.writeQuery({ query: MODELS_QUERY, data })
             },
           }).then(query => {
             // make typescript happy
