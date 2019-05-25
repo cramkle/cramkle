@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Disabled React's Concurrent Mode.
 - Update logo icon for when the user is offline.
+- Default meta description.
 
 ### Fixed
 - Back arrow not working in home for initial page.
