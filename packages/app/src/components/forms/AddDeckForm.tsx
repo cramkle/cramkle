@@ -25,7 +25,7 @@ interface Props {
   onClose: (action: string) => void
 }
 
-const CREATE_DECK_MUTATION = gql`
+export const CREATE_DECK_MUTATION = gql`
   mutation CreateDeckMutation($title: String!, $description: String) {
     createDeck(title: $title, description: $description) {
       id

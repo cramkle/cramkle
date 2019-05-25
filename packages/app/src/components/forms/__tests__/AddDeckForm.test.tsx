@@ -4,8 +4,7 @@ import React from 'react'
 import { render as rtlRender, fireEvent, wait } from 'react-testing-library'
 import { MockedProvider, MockedResponse } from 'react-apollo/test-utils'
 
-import createDeckMutation from '../../../graphql/createDeckMutation.gql'
-import AddDeckForm from '../AddDeckForm'
+import AddDeckForm, { CREATE_DECK_MUTATION } from '../AddDeckForm'
 
 interface Options {
   mutationMocks?: MockedResponse[]
@@ -22,7 +21,7 @@ const render = (ui: React.ReactElement, options: Options = {}) => {
     mutationMocks = [
       {
         request: {
-          query: createDeckMutation,
+          query: CREATE_DECK_MUTATION,
           variables: {
             title: deckMock.title,
           },
