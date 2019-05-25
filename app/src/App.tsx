@@ -25,6 +25,7 @@ const ModelPage = lazy(() => import('pages/ModelPage'))
 const SettingsPage = lazy(() => import('pages/SettingsPage'))
 const StatisticsPage = lazy(() => import('pages/StatisticsPage'))
 const AddModelPage = lazy(() => import('pages/AddModelPage'))
+const AddNotePage = lazy(() => import('pages/AddNotePage'))
 
 const App: React.FunctionComponent<{}> = () => {
   const { i18n } = useLingui()
@@ -100,6 +101,9 @@ const App: React.FunctionComponent<{}> = () => {
           />
           <ShellRoute RouteComponent={UserRoute} path="/d/:slug" exact>
             <DeckPage />
+          </ShellRoute>
+          <ShellRoute RouteComponent={UserRoute} path="/d/:slug/new-note" exact>
+            <AddNotePage />
           </ShellRoute>
           <ShellRoute RouteComponent={UserRoute} path="/m/:id" exact>
             <ModelPage />
