@@ -9,22 +9,22 @@
 export interface UserQuery_me {
   __typename: "User";
   /**
-   *  User id 
+   * User id
    */
   id: string;
   /**
-   *  User's username 
+   * User's username
    */
   username: string | null;
   /**
-   *  User's e-mail 
+   * User's e-mail
    */
   email: string | null;
 }
 
 export interface UserQuery {
   /**
-   *  Get currently logged user 
+   * Get currently logged user
    */
   me: UserQuery_me | null;
 }

@@ -1,17 +1,14 @@
 import { Body1, Headline4 } from '@material/react-typography'
+import gql from 'graphql-tag'
 import React, { useEffect } from 'react'
 import { compose, graphql, ChildProps } from 'react-apollo'
 import { Helmet } from 'react-helmet'
 import { RouteComponentProps } from 'react-router'
 
+import { DeckQuery, DeckQueryVariables } from './__generated__/DeckQuery'
 import BackButton from '../BackButton'
 import DeleteDeckButton from '../DeleteDeckButton'
 import Container from '../views/Container'
-import deckQuery from '../../graphql/deckQuery.gql'
-import {
-  DeckQuery,
-  DeckQueryVariables,
-} from '../../graphql/__generated__/DeckQuery'
 import loadingMutation from '../../graphql/topBarLoadingMutation.gql'
 import {
   SetLoadingMutation,
@@ -21,6 +18,17 @@ import {
 type Props = RouteComponentProps<{ slug: string }>
 
 type Data = DeckQuery & SetLoadingMutation
+
+const DECK_QUERY = gql`
+  query DeckQuery($slug: String!) {
+    deck(slug: $slug) {
+      id
+      slug
+      title
+      description
+    }
+  }
+`
 
 const DeckPage: React.FunctionComponent<ChildProps<Props, Data>> = ({
   data: { loading, deck },
@@ -51,7 +59,7 @@ const DeckPage: React.FunctionComponent<ChildProps<Props, Data>> = ({
 }
 
 export default compose(
-  graphql<Props, DeckQuery, DeckQueryVariables>(deckQuery, {
+  graphql<Props, DeckQuery, DeckQueryVariables>(DECK_QUERY, {
     options: props => ({
       variables: {
         slug: props.match.params.slug,

@@ -11,7 +11,7 @@
     "test": "jest -c jest.config.js",
     "lint": "eslint --ext ts,tsx src && tsc --noEmit",
     "schema-download": "apollo service:download --endpoint=http://localhost:5000/graphql -k",
-    "gen-types": "apollo client:codegen __generated__ --target=typescript --localSchemaFile=schema.json --includes='src/**/*.gql,src/schema.graphql'",
+    "gen-types": "apollo client:codegen __generated__ --target=typescript --localSchemaFile=schema.json",
     "add-locale": "lingui add-locale",
     "extract": "lingui extract",
     "compile": "lingui compile"

@@ -5,22 +5,22 @@ import IconButton from '@material/react-icon-button'
 import Icon from '@material/react-material-icon'
 import { Headline5, Body1, Body2 } from '@material/react-typography'
 import { Formik, FieldArray } from 'formik'
+import gql from 'graphql-tag'
 import React from 'react'
 import { graphql, compose, ChildMutateProps } from 'react-apollo'
 import { withRouter, RouteComponentProps } from 'react-router'
 import * as yup from 'yup'
 
+import {
+  CreateModelMutation,
+  CreateModelMutationVariables,
+} from './__generated__/CreateModelMutation'
 import BackButton from '../BackButton'
 import { TextInputField } from '../forms/Fields'
 import Container from '../views/Container'
 import { notificationState } from '../../notification/index'
-import createModelMutation from '../../graphql/createModelMutation.gql'
-import {
-  CreateModelMutation,
-  CreateModelMutationVariables,
-} from '../../graphql/__generated__/CreateModelMutation'
-import modelsQuery from '../../graphql/modelsQuery.gql'
-import { ModelsQuery } from '../../graphql/__generated__/ModelsQuery'
+import modelsQuery from '../ModelList'
+import { ModelsQuery } from '../__generated__/ModelsQuery'
 
 import styles from './AddModelPage.css'
 
@@ -29,6 +29,27 @@ type Props = ChildMutateProps<
   CreateModelMutation,
   CreateModelMutationVariables
 >
+
+const CREATE_MODEL_MUTATION = gql`
+  mutation CreateModelMutation(
+    $name: String!
+    $fields: [FieldInput]
+    $templates: [TemplateInput]
+  ) {
+    createModel(name: $name, fields: $fields, templates: $templates) {
+      id
+      name
+      templates {
+        id
+        name
+      }
+      fields {
+        id
+        name
+      }
+    }
+  }
+`
 
 const AddModelPage: React.FunctionComponent<Props> = ({ history, mutate }) => {
   const { i18n } = useLingui()
@@ -191,7 +212,7 @@ const AddModelPage: React.FunctionComponent<Props> = ({ history, mutate }) => {
 
 export default compose(
   graphql<{}, CreateModelMutation, CreateModelMutationVariables>(
-    createModelMutation
+    CREATE_MODEL_MUTATION
   ),
   withRouter
 )(AddModelPage)

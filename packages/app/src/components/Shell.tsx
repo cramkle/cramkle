@@ -9,6 +9,7 @@ import TopAppBar, {
   TopAppBarSection,
   TopAppBarTitle,
 } from '@material/react-top-app-bar'
+import gql from 'graphql-tag'
 import React, { Suspense, useCallback, useEffect, useRef } from 'react'
 import { compose, graphql, ChildDataProps } from 'react-apollo'
 import { withRouter, RouteComponentProps } from 'react-router'
@@ -21,10 +22,17 @@ import useLocalStorage from '../hooks/useLocalStorage'
 import useOffline from '../hooks/useOffline'
 import { ReactComponent as Logo } from '../assets/logo.svg'
 import { ReactComponent as LogoGray } from '../assets/logo-gray.svg'
-import loadingQuery from '../graphql/topBarLoadingQuery.gql'
-import { TopBarLoadingQuery } from '../graphql/__generated__/TopBarLoadingQuery'
+import { TopBarLoadingQuery } from './__generated__/TopBarLoadingQuery'
 
 type Props = ChildDataProps<RouteComponentProps, TopBarLoadingQuery>
+
+const TOP_BAR_LOADING_QUERY = gql`
+  query TopBarLoadingQuery {
+    topBar @client {
+      loading
+    }
+  }
+`
 
 const Shell: React.FunctionComponent<Props> = ({
   children,
@@ -148,6 +156,6 @@ const Shell: React.FunctionComponent<Props> = ({
 }
 
 export default compose(
-  graphql<{}, TopBarLoadingQuery>(loadingQuery),
+  graphql<{}, TopBarLoadingQuery>(TOP_BAR_LOADING_QUERY),
   withRouter
 )(Shell)

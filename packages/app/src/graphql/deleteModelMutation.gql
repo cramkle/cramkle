@@ -1,5 +1,0 @@
-mutation DeleteModelMutation($modelId: ID!) {
-  deleteModel(id: $modelId) {
-    id
-  }
-}

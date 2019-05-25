@@ -9,14 +9,14 @@
 export interface RegisterUserMutation_createUser {
   __typename: "User";
   /**
-   *  User id 
+   * User id
    */
   id: string;
 }
 
 export interface RegisterUserMutation {
   /**
-   *  Create a new user 
+   * Create a new user
    */
   createUser: RegisterUserMutation_createUser | null;
 }

@@ -1,16 +1,36 @@
 import { Trans } from '@lingui/macro'
 import { Grid } from '@material/react-layout-grid'
 import { Body1 } from '@material/react-typography'
+import gql from 'graphql-tag'
 import React, { useEffect } from 'react'
 import { compose, graphql, ChildProps } from 'react-apollo'
 
 import ModelCard from './ModelCard'
-import modelsQuery from '../graphql/modelsQuery.gql'
-import { ModelsQuery } from '../graphql/__generated__/ModelsQuery'
+import { ModelsQuery } from './__generated__/ModelsQuery'
 import loadingMutation from '../graphql/topBarLoadingMutation.gql'
-import { TopBarLoadingQuery } from '../graphql/__generated__/TopBarLoadingQuery'
+import {
+  SetLoadingMutation,
+  SetLoadingMutationVariables,
+} from '../graphql/__generated__/SetLoadingMutation'
 
-type Query = ModelsQuery & TopBarLoadingQuery
+type Query = ModelsQuery & SetLoadingMutation
+
+export const MODELS_QUERY = gql`
+  query ModelsQuery {
+    cardModels {
+      id
+      name
+      templates {
+        id
+        name
+      }
+      fields {
+        id
+        name
+      }
+    }
+  }
+`
 
 const ModelList: React.FunctionComponent<ChildProps<{}, Query>> = ({
   data: { loading, cardModels: models = [] },
@@ -48,6 +68,6 @@ const ModelList: React.FunctionComponent<ChildProps<{}, Query>> = ({
 }
 
 export default compose(
-  graphql<{}, ModelsQuery>(modelsQuery),
-  graphql<{}, TopBarLoadingQuery>(loadingMutation)
+  graphql<{}, ModelsQuery>(MODELS_QUERY),
+  graphql<{}, SetLoadingMutation, SetLoadingMutationVariables>(loadingMutation)
 )(ModelList)

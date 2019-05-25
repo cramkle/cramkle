@@ -8,13 +8,13 @@ import Dialog, {
   DialogButton,
 } from '@material/react-dialog'
 import Icon from '@material/react-material-icon'
+import gql from 'graphql-tag'
 import React, { useState } from 'react'
 import { compose, graphql, ChildMutateProps } from 'react-apollo'
 import { withRouter, RouteComponentProps } from 'react-router'
 
-import deleteModelMutation from '../graphql/deleteModelMutation.gql'
-import modelsQuery from '../graphql/modelsQuery.gql'
-import { ModelsQuery } from '../graphql/__generated__/ModelsQuery'
+import { MODELS_QUERY } from './ModelList'
+import { ModelsQuery } from './__generated__/ModelsQuery'
 
 interface Props {
   model: { id: string; templates: {}[]; notes: {}[] }
@@ -25,6 +25,14 @@ interface Mutation {
     id: string
   }
 }
+
+const DELETE_MODEL_MUTATION = gql`
+  mutation DeleteModelMutation($modelId: ID!) {
+    deleteModel(id: $modelId) {
+      id
+    }
+  }
+`
 
 const DeleteModelButton: React.FunctionComponent<
   ChildMutateProps<Props & RouteComponentProps, Mutation>
@@ -46,11 +54,11 @@ const DeleteModelButton: React.FunctionComponent<
           }
         ) => {
           const { cardModels } = cache.readQuery<ModelsQuery>({
-            query: modelsQuery,
+            query: MODELS_QUERY,
           })
 
           cache.writeQuery({
-            query: modelsQuery,
+            query: MODELS_QUERY,
             data: { cardModels: cardModels.filter(model => model.id !== id) },
           })
         },
@@ -110,6 +118,6 @@ const DeleteModelButton: React.FunctionComponent<
 }
 
 export default compose(
-  graphql(deleteModelMutation),
+  graphql(DELETE_MODEL_MUTATION),
   withRouter
 )(DeleteModelButton)

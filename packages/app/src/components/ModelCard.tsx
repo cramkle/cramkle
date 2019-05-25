@@ -6,7 +6,7 @@ import { Headline6 } from '@material/react-typography'
 import React from 'react'
 import { withRouter, RouteComponentProps } from 'react-router'
 
-import { ModelsQuery_cardModels } from '../graphql/__generated__/ModelsQuery'
+import { ModelsQuery_cardModels } from './__generated__/ModelsQuery'
 
 interface Props {
   className?: string

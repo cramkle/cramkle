@@ -1,8 +1,0 @@
-query DeckQuery($slug: String!) {
-  deck(slug: $slug) {
-    id
-    slug
-    title
-    description
-  }
-}

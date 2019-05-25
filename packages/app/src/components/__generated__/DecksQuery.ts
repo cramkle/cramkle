@@ -9,26 +9,26 @@
 export interface DecksQuery_decks {
   __typename: "Deck";
   /**
-   *  Deck id 
+   * Deck id
    */
   id: string;
   /**
-   *  Unique identifiable slug 
+   * Unique identifiable slug
    */
   slug: string;
   /**
-   *  Title of the deck 
+   * Title of the deck
    */
   title: string;
   /**
-   *  Description of the deck 
+   * Description of the deck
    */
   description: string | null;
 }
 
 export interface DecksQuery {
   /**
-   *  Retrieve all decks for the logged user 
+   * Retrieve all decks for the logged user
    */
   decks: (DecksQuery_decks | null)[] | null;
 }

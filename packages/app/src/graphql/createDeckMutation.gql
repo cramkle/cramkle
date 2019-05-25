@@ -1,8 +1,0 @@
-mutation CreateDeckMutation($title: String!, $description: String) {
-  createDeck(title: $title, description: $description) {
-    id
-    slug
-    title
-    description
-  }
-}

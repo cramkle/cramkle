@@ -9,14 +9,14 @@
 export interface DeleteModelMutation_deleteModel {
   __typename: "CardModel";
   /**
-   *  Card model id 
+   * Card model id
    */
   id: string;
 }
 
 export interface DeleteModelMutation {
   /**
-   *  Deletes a card model and all associated entities 
+   * Deletes a card model and all associated entities
    */
   deleteModel: DeleteModelMutation_deleteModel | null;
 }
