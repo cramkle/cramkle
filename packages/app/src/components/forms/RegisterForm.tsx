@@ -6,6 +6,7 @@ import Card, { CardActions, CardActionButtons } from '@material/react-card'
 import { Headline5 } from '@material/react-typography'
 import classNames from 'classnames'
 import { Formik } from 'formik'
+import gql from 'graphql-tag'
 import React from 'react'
 import { graphql, ChildMutateProps } from 'react-apollo'
 import { withRouter, RouteComponentProps } from 'react-router'
@@ -13,13 +14,24 @@ import * as yup from 'yup'
 
 import { TextInputField, CheckboxField } from './Fields'
 import { notificationState } from '../../notification/index'
-import registerMutation from '../../graphql/registerMutation.gql'
 
 import styles from './RegisterForm.scss'
 
 interface Props {
   title?: MessageDescriptor | string
 }
+
+const REGISTER_MUTATION = gql`
+  mutation RegisterUserMutation(
+    $username: String!
+    $email: String!
+    $password: String!
+  ) {
+    createUser(username: $username, email: $email, password: $password) {
+      id
+    }
+  }
+`
 
 const RegisterForm: React.FunctionComponent<
   ChildMutateProps<Props> & RouteComponentProps
@@ -133,4 +145,4 @@ const RegisterForm: React.FunctionComponent<
   )
 }
 
-export default graphql<Props>(registerMutation)(withRouter(RegisterForm))
+export default graphql<Props>(REGISTER_MUTATION)(withRouter(RegisterForm))

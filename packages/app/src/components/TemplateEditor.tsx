@@ -17,7 +17,7 @@ import { decorators as mentionsDecorators } from './editor/MentionsPopup'
 import MentionsEditor from './editor/MentionsEditor'
 import { useHints } from './HintsContext'
 import SaveTemplateButton from './SaveTemplateButton'
-import { ModelQuery_cardModel_templates_frontSide as TemplateContent } from '../graphql/__generated__/ModelQuery'
+import { ModelQuery_cardModel_templates_frontSide as TemplateContent } from './pages/__generated__/ModelQuery'
 
 const decorators = new CompositeDecorator(mentionsDecorators)
 

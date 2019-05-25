@@ -9,26 +9,26 @@
 export interface CreateDeckMutation_createDeck {
   __typename: "Deck";
   /**
-   *  Deck id 
+   * Deck id
    */
   id: string;
   /**
-   *  Unique identifiable slug 
+   * Unique identifiable slug
    */
   slug: string;
   /**
-   *  Title of the deck 
+   * Title of the deck
    */
   title: string;
   /**
-   *  Description of the deck 
+   * Description of the deck
    */
   description: string | null;
 }
 
 export interface CreateDeckMutation {
   /**
-   *  Create a deck entity 
+   * Create a deck entity
    */
   createDeck: CreateDeckMutation_createDeck | null;
 }

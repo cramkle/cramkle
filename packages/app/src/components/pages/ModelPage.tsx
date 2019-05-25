@@ -3,25 +3,70 @@ import List, { ListItem, ListItemText } from '@material/react-list'
 import Tab from '@material/react-tab'
 import TabBar from '@material/react-tab-bar'
 import { Headline4, Caption, Body1, Body2 } from '@material/react-typography'
+import gql from 'graphql-tag'
 import React, { useEffect, useState } from 'react'
 import { compose, graphql, ChildProps } from 'react-apollo'
 import { Helmet } from 'react-helmet'
 import { RouteComponentProps } from 'react-router'
 
+import { ModelQuery, ModelQueryVariables } from './__generated__/ModelQuery'
 import DeleteModelButton from '../DeleteModelButton'
 import TemplateEditor from '../TemplateEditor'
 import BackButton from '../BackButton'
 import Container from '../views/Container'
-import modelQuery from '../../graphql/modelQuery.gql'
-import {
-  ModelQuery,
-  ModelQueryVariables,
-} from '../../graphql/__generated__/ModelQuery'
 import loadingMutation from '../../graphql/topBarLoadingMutation.gql'
-import { TopBarLoadingQuery } from '../../graphql/__generated__/TopBarLoadingQuery'
+import { SetLoadingMutation } from '../../graphql/__generated__/SetLoadingMutation'
 
 type Props = RouteComponentProps<{ id: string }>
-type Query = ModelQuery & TopBarLoadingQuery
+type Query = ModelQuery & SetLoadingMutation
+
+const MODEL_QUERY = gql`
+  query ModelQuery($id: ID!) {
+    cardModel(id: $id) {
+      id
+      name
+      fields {
+        id
+        name
+      }
+      templates {
+        id
+        name
+        frontSide {
+          ...DraftContent
+        }
+        backSide {
+          ...DraftContent
+        }
+      }
+      notes {
+        id
+      }
+    }
+  }
+
+  fragment DraftContent on ContentState {
+    id
+    blocks {
+      key
+      type
+      text
+      depth
+      inlineStyleRanges {
+        style
+        offset
+        length
+      }
+      entityRanges {
+        key
+        length
+        offset
+      }
+      data
+    }
+    entityMap
+  }
+`
 
 const ModelPage: React.FunctionComponent<ChildProps<Props, Query>> = ({
   data: { loading, cardModel },
@@ -114,12 +159,12 @@ const ModelPage: React.FunctionComponent<ChildProps<Props, Query>> = ({
 }
 
 export default compose(
-  graphql<Props, ModelQuery, ModelQueryVariables>(modelQuery, {
+  graphql<Props, ModelQuery, ModelQueryVariables>(MODEL_QUERY, {
     options: props => ({
       variables: {
         id: props.match.params.id,
       },
     }),
   }),
-  graphql<Props, TopBarLoadingQuery>(loadingMutation)
+  graphql<Props, SetLoadingMutation>(loadingMutation)
 )(ModelPage)

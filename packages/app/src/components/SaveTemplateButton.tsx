@@ -1,16 +1,27 @@
 import { Trans } from '@lingui/macro'
 import Button from '@material/react-button'
 import { RawDraftContentState } from 'draft-js'
+import gql from 'graphql-tag'
 import React, { useState } from 'react'
 import { graphql, ChildMutateProps } from 'react-apollo'
 
-import updateContentStateMutation from '../graphql/updateContentStateMutation.gql'
 import {
   UpdateContentStateMutation,
   UpdateContentStateMutationVariables,
-} from '../graphql/__generated__/UpdateContentStateMutation'
+} from './__generated__/UpdateContentStateMutation'
 
 type Props = RawDraftContentState & { id: string }
+
+const UPDATE_CONTENT_STATE_MUTATION = gql`
+  mutation UpdateContentStateMutation(
+    $id: ID!
+    $contentState: ContentStateInput
+  ) {
+    updateContentState(id: $id, contentState: $contentState) {
+      id
+    }
+  }
+`
 
 const SaveTemplateButton: React.FunctionComponent<
   ChildMutateProps<
@@ -37,4 +48,4 @@ const SaveTemplateButton: React.FunctionComponent<
   )
 }
 
-export default graphql<Props>(updateContentStateMutation)(SaveTemplateButton)
+export default graphql<Props>(UPDATE_CONTENT_STATE_MUTATION)(SaveTemplateButton)

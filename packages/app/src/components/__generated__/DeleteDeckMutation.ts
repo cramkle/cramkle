@@ -9,14 +9,14 @@
 export interface DeleteDeckMutation_deleteDeck {
   __typename: "Deck";
   /**
-   *  Deck id 
+   * Deck id
    */
   id: string;
 }
 
 export interface DeleteDeckMutation {
   /**
-   *  Delete a deck 
+   * Delete a deck
    */
   deleteDeck: DeleteDeckMutation_deleteDeck | null;
 }

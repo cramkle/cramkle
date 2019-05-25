@@ -7,23 +7,34 @@ import Dialog, {
   DialogButton,
 } from '@material/react-dialog'
 import { Formik } from 'formik'
-import { graphql, ChildMutateProps } from 'react-apollo'
+import gql from 'graphql-tag'
 import React from 'react'
+import { graphql, ChildMutateProps } from 'react-apollo'
 import * as yup from 'yup'
 
-import decksQuery from '../../graphql/decksQuery.gql'
-import { DecksQuery } from '../../graphql/__generated__/DecksQuery'
-import createDeckMutation from '../../graphql/createDeckMutation.gql'
+import { TextInputField } from './Fields'
 import {
   CreateDeckMutation,
   CreateDeckMutationVariables,
-} from '../../graphql/__generated__/CreateDeckMutation'
-import { TextInputField } from './Fields'
+} from './__generated__/CreateDeckMutation'
+import { DECKS_QUERY } from '../DeckList'
+import { DecksQuery } from '../__generated__/DecksQuery'
 
 interface Props {
   open: boolean
   onClose: (action: string) => void
 }
+
+const CREATE_DECK_MUTATION = gql`
+  mutation CreateDeckMutation($title: String!, $description: String) {
+    createDeck(title: $title, description: $description) {
+      id
+      slug
+      title
+      description
+    }
+  }
+`
 
 const AddDeckForm: React.FunctionComponent<
   ChildMutateProps<Props, CreateDeckMutation, CreateDeckMutationVariables>
@@ -44,11 +55,11 @@ const AddDeckForm: React.FunctionComponent<
         return mutate({
           variables: values,
           update: (proxy, { data: { createDeck } }) => {
-            const data = proxy.readQuery<DecksQuery>({ query: decksQuery })
+            const data = proxy.readQuery<DecksQuery>({ query: DECKS_QUERY })
 
             data.decks.push(createDeck)
 
-            proxy.writeQuery({ query: decksQuery, data })
+            proxy.writeQuery({ query: DECKS_QUERY, data })
           },
         }).then(() => {
           props.resetForm()
@@ -104,5 +115,5 @@ const AddDeckForm: React.FunctionComponent<
 }
 
 export default graphql<Props, CreateDeckMutation, CreateDeckMutationVariables>(
-  createDeckMutation
+  CREATE_DECK_MUTATION
 )(AddDeckForm)

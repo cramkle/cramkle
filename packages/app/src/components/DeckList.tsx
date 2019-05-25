@@ -1,13 +1,24 @@
 import { Trans } from '@lingui/macro'
 import { Grid, Row, Cell } from '@material/react-layout-grid'
 import { Body1 } from '@material/react-typography'
+import gql from 'graphql-tag'
 import React, { useEffect } from 'react'
 import { compose, graphql, ChildProps } from 'react-apollo'
 
 import DeckCard from './DeckCard'
-import decksQuery from '../graphql/decksQuery.gql'
-import { DecksQuery } from '../graphql/__generated__/DecksQuery'
+import { DecksQuery } from './__generated__/DecksQuery'
 import loadingMutation from '../graphql/topBarLoadingMutation.gql'
+
+export const DECKS_QUERY = gql`
+  query DecksQuery {
+    decks {
+      id
+      slug
+      title
+      description
+    }
+  }
+`
 
 const DeckList: React.FunctionComponent<ChildProps<{}, DecksQuery>> = ({
   data: { loading, decks = [] },
@@ -45,6 +56,6 @@ const DeckList: React.FunctionComponent<ChildProps<{}, DecksQuery>> = ({
 }
 
 export default compose(
-  graphql<{}, DecksQuery>(decksQuery),
+  graphql<{}, DecksQuery>(DECKS_QUERY),
   graphql<{}>(loadingMutation)
 )(DeckList)

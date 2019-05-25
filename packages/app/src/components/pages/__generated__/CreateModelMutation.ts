@@ -2,7 +2,7 @@
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
-import { FieldInput, TemplateInput } from "./../../../__generated__/globalTypes";
+import { FieldInput, TemplateInput } from "./../../../../__generated__/globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: CreateModelMutation
@@ -11,11 +11,11 @@ import { FieldInput, TemplateInput } from "./../../../__generated__/globalTypes"
 export interface CreateModelMutation_createModel_templates {
   __typename: "Template";
   /**
-   *  Template id 
+   * Template id
    */
   id: string;
   /**
-   *  Name of the template 
+   * Name of the template
    */
   name: string | null;
 }
@@ -23,11 +23,11 @@ export interface CreateModelMutation_createModel_templates {
 export interface CreateModelMutation_createModel_fields {
   __typename: "Field";
   /**
-   *  Field id 
+   * Field id
    */
   id: string;
   /**
-   *  Name of the field 
+   * Name of the field
    */
   name: string;
 }
@@ -35,26 +35,26 @@ export interface CreateModelMutation_createModel_fields {
 export interface CreateModelMutation_createModel {
   __typename: "CardModel";
   /**
-   *  Card model id 
+   * Card model id
    */
   id: string;
   /**
-   *  Name of this card model (e.g. "Basic", "Basic with Reversed")
+   * Name of this card model (e.g. "Basic", "Basic with Reversed")
    */
   name: string | null;
   /**
-   *  Templates associated with this model 
+   * Templates associated with this model
    */
   templates: (CreateModelMutation_createModel_templates | null)[] | null;
   /**
-   *  Fields associated with this model 
+   * Fields associated with this model
    */
   fields: (CreateModelMutation_createModel_fields | null)[] | null;
 }
 
 export interface CreateModelMutation {
   /**
-   *  Create a new model 
+   * Create a new model
    */
   createModel: CreateModelMutation_createModel | null;
 }

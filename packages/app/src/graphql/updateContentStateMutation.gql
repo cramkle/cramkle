@@ -1,5 +1,0 @@
-mutation UpdateContentStateMutation($id: ID!, $contentState: ContentStateInput) {
-  updateContentState(id: $id, contentState: $contentState) {
-    id
-  }
-}

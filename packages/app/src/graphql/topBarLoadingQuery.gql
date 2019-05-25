@@ -1,5 +1,0 @@
-query TopBarLoadingQuery {
-  topBar @client {
-    loading
-  }
-}

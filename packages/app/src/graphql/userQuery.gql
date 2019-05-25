@@ -1,7 +1,0 @@
-query UserQuery {
-  me {
-    id
-    username
-    email
-  }
-}

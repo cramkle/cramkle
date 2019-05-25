@@ -7,21 +7,29 @@ import Dialog, {
   DialogButton,
 } from '@material/react-dialog'
 import Icon from '@material/react-material-icon'
+import gql from 'graphql-tag'
 import React, { useState, useCallback } from 'react'
 import { graphql, ChildMutateProps } from 'react-apollo'
 import { withRouter, RouteComponentProps } from 'react-router'
 
-import deleteDeckMutation from '../graphql/deleteDeckMutation.gql'
 import {
   DeleteDeckMutation,
   DeleteDeckMutationVariables,
-} from '../graphql/__generated__/DeleteDeckMutation'
-import decksQuery from '../graphql/decksQuery.gql'
-import { DecksQuery } from '../graphql/__generated__/DecksQuery'
+} from './__generated__/DeleteDeckMutation'
+import { DECKS_QUERY } from './DeckList'
+import { DecksQuery } from './__generated__/DecksQuery'
 
 interface Props {
   deckId: string
 }
+
+const DELETE_DECK_MUTATION = gql`
+  mutation DeleteDeckMutation($deckId: ID!) {
+    deleteDeck(id: $deckId) {
+      id
+    }
+  }
+`
 
 const DeleteDeckButton: React.FunctionComponent<
   RouteComponentProps &
@@ -43,11 +51,11 @@ const DeleteDeckButton: React.FunctionComponent<
             }
           ) => {
             const { decks } = cache.readQuery<DecksQuery>({
-              query: decksQuery,
+              query: DECKS_QUERY,
             })
 
             cache.writeQuery({
-              query: decksQuery,
+              query: DECKS_QUERY,
               data: { decks: decks.filter(deck => deck.id !== id) },
             })
           },
@@ -91,4 +99,6 @@ const DeleteDeckButton: React.FunctionComponent<
   )
 }
 
-export default graphql<Props>(deleteDeckMutation)(withRouter(DeleteDeckButton))
+export default graphql<Props>(DELETE_DECK_MUTATION)(
+  withRouter(DeleteDeckButton)
+)

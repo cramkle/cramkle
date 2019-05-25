@@ -15,7 +15,7 @@ export interface UpdateContentStateMutation_updateContentState {
 
 export interface UpdateContentStateMutation {
   /**
-   *  Update a content state 
+   * Update a content state
    */
   updateContentState: UpdateContentStateMutation_updateContentState | null;
 }

@@ -9,11 +9,11 @@
 export interface ModelQuery_cardModel_fields {
   __typename: "Field";
   /**
-   *  Field id 
+   * Field id
    */
   id: string;
   /**
-   *  Name of the field 
+   * Name of the field
    */
   name: string;
 }
@@ -85,19 +85,19 @@ export interface ModelQuery_cardModel_templates_backSide {
 export interface ModelQuery_cardModel_templates {
   __typename: "Template";
   /**
-   *  Template id 
+   * Template id
    */
   id: string;
   /**
-   *  Name of the template 
+   * Name of the template
    */
   name: string | null;
   /**
-   *  Front side template 
+   * Front side template
    */
   frontSide: ModelQuery_cardModel_templates_frontSide | null;
   /**
-   *  Back side template 
+   * Back side template
    */
   backSide: ModelQuery_cardModel_templates_backSide | null;
 }
@@ -105,7 +105,7 @@ export interface ModelQuery_cardModel_templates {
 export interface ModelQuery_cardModel_notes {
   __typename: "Note";
   /**
-   *  Note id 
+   * Note id
    */
   id: string;
 }
@@ -113,30 +113,30 @@ export interface ModelQuery_cardModel_notes {
 export interface ModelQuery_cardModel {
   __typename: "CardModel";
   /**
-   *  Card model id 
+   * Card model id
    */
   id: string;
   /**
-   *  Name of this card model (e.g. "Basic", "Basic with Reversed")
+   * Name of this card model (e.g. "Basic", "Basic with Reversed")
    */
   name: string | null;
   /**
-   *  Fields associated with this model 
+   * Fields associated with this model
    */
   fields: (ModelQuery_cardModel_fields | null)[] | null;
   /**
-   *  Templates associated with this model 
+   * Templates associated with this model
    */
   templates: (ModelQuery_cardModel_templates | null)[] | null;
   /**
-   *  Notes associated with this model 
+   * Notes associated with this model
    */
   notes: (ModelQuery_cardModel_notes | null)[] | null;
 }
 
 export interface ModelQuery {
   /**
-   *  Get single card model 
+   * Get single card model
    */
   cardModel: ModelQuery_cardModel | null;
 }
