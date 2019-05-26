@@ -4,6 +4,7 @@ import { useLingui } from '@lingui/react'
 import Select, { Option } from '@material/react-select'
 import gql from 'graphql-tag'
 import React, { useState } from 'react'
+import { useParams } from 'react-router'
 
 import BackButton from 'components/BackButton'
 import FieldValueEditor from 'components/FieldValueEditor'
@@ -11,10 +12,16 @@ import Button from 'views/Button'
 import Container from 'views/Container'
 import { Body2, Caption, Headline5, Subtitle1 } from 'views/Typography'
 import useTopBarLoading from 'hooks/useTopBarLoading'
-import { ModelsQuery } from './__generated__/ModelsQuery'
+import {
+  NoteFormQuery,
+  NoteFormQueryVariables,
+} from './__generated__/NoteFormQuery'
 
 const MODELS_QUERY = gql`
-  query Notes_ModelsQuery {
+  query NoteFormQuery($slug: String!) {
+    deck(slug: $slug) {
+      title
+    }
     cardModels {
       id
       name
@@ -27,10 +34,13 @@ const MODELS_QUERY = gql`
 `
 
 const AddNotePage: React.FC = () => {
+  const { slug } = useParams<{ slug: string }>()
   const {
-    data: { cardModels: models },
+    data: { cardModels: models, deck },
     loading,
-  } = useQuery<ModelsQuery>(MODELS_QUERY)
+  } = useQuery<NoteFormQuery, NoteFormQueryVariables>(MODELS_QUERY, {
+    variables: { slug },
+  })
 
   const { i18n } = useLingui()
   const [selectedModelId, setSelectedModelId] = useState('')
@@ -58,7 +68,7 @@ const AddNotePage: React.FC = () => {
       <BackButton />
 
       <Headline5>
-        <Trans>Create Note</Trans>
+        <Trans>Create Note for deck "{deck.title}"</Trans>
       </Headline5>
 
       <div className="flex flex-column mt3">
@@ -90,7 +100,7 @@ const AddNotePage: React.FC = () => {
               <>
                 {selectedModel.fields.map(field => (
                   <React.Fragment key={field.id}>
-                    <Caption className="mt2" key={field.id}>
+                    <Caption className="mt3" key={field.id}>
                       {field.name}
                     </Caption>
 
