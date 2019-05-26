@@ -7,6 +7,7 @@ import { hot } from 'react-hot-loader/root'
 
 import NotificationToasts from 'components/NotificationToasts'
 import ErrorFallback from 'components/ErrorFallback'
+import { useHints } from 'components/HintsContext'
 import AboutPage from 'pages/AboutPage'
 import LandingPage from 'pages/LandingPage'
 import LoginPage from 'pages/LoginPage'
@@ -29,6 +30,7 @@ const AddNotePage = lazy(() => import('pages/AddNotePage'))
 
 const App: React.FunctionComponent<{}> = () => {
   const { i18n } = useLingui()
+  const { isMobile } = useHints()
 
   return (
     <>
@@ -102,9 +104,15 @@ const App: React.FunctionComponent<{}> = () => {
           <ShellRoute RouteComponent={UserRoute} path="/d/:slug" exact>
             <DeckPage />
           </ShellRoute>
-          <ShellRoute RouteComponent={UserRoute} path="/d/:slug/new-note" exact>
-            <AddNotePage />
-          </ShellRoute>
+          {!isMobile && (
+            <ShellRoute
+              RouteComponent={UserRoute}
+              path="/d/:slug/new-note"
+              exact
+            >
+              <AddNotePage />
+            </ShellRoute>
+          )}
           <ShellRoute RouteComponent={UserRoute} path="/m/:id" exact>
             <ModelPage />
           </ShellRoute>

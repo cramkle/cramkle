@@ -95,14 +95,16 @@ const DeckPage: React.FunctionComponent = () => {
 
         <NotesTable notes={deck.notes} />
 
-        <div className="fixed" style={{ bottom: 20, right: 20 }}>
-          <Fab
-            icon={<Icon icon="add" aria-hidden="true" />}
-            aria-label={i18n._(t`Add Note`)}
-            textLabel={!isMobile && i18n._(t`Add Note`)}
-            onClick={() => history.push(`${location.pathname}/new-note`)}
-          />
-        </div>
+        {!isMobile && (
+          <div className="fixed" style={{ bottom: 20, right: 20 }}>
+            <Fab
+              icon={<Icon icon="add" aria-hidden="true" />}
+              aria-label={i18n._(t`Add Note`)}
+              textLabel={i18n._(t`Add Note`)}
+              onClick={() => history.push(`${location.pathname}/new-note`)}
+            />
+          </div>
+        )}
       </Container>
     </>
   )
