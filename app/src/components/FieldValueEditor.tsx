@@ -6,7 +6,7 @@ import {
   convertFromRaw,
 } from 'draft-js'
 import 'draft-js/dist/Draft.css'
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { TabController } from 'react-tab-controller'
 
 import InlineStyleControls from 'components/editor/InlineStyleControls'
@@ -16,10 +16,12 @@ import Card, { CardActionButtons, CardActions } from 'views/Card'
 interface Props {
   className?: string
   initialContentState?: any
+  onChange?: (state: EditorState) => void
 }
 
 const FieldValueEditor: React.FC<Props> = ({
   className,
+  onChange,
   initialContentState,
 }) => {
   const [editor, setEditor] = useState(() => {
@@ -33,6 +35,10 @@ const FieldValueEditor: React.FC<Props> = ({
 
     return EditorState.createWithContent(contentState)
   })
+
+  useEffect(() => {
+    onChange && onChange(editor)
+  }, [editor, onChange])
 
   const handleStyleToggle = useCallback(
     (style: string) => {
