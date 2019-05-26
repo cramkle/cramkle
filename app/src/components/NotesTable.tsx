@@ -15,7 +15,7 @@ const NotesTable: React.FC<Props> = ({ notes }) => {
     return (
       <Card className="w-100 mt2 pv3 ph2 flex flex-row justify-center" outlined>
         <Body2>
-          <Trans>You haven't created any notes on this deck yet!</Trans>
+          <Trans>You haven't created any notes on this deck yet</Trans>
         </Body2>
       </Card>
     )
