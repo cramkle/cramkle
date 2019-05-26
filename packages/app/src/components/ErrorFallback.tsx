@@ -1,11 +1,12 @@
 import { Trans } from '@lingui/macro'
 import Button from '@material/react-button'
-import { Headline4, Body1 } from '@material/react-typography'
+import { Headline4, Overline, Body1 } from '@material/react-typography'
 import React from 'react'
+import { FallbackProps } from 'react-error-boundary'
 
-const ErrorFallback = () => {
+const ErrorFallback: React.FC<FallbackProps> = ({ error, componentStack }) => {
   return (
-    <div className="flex flex-column justify-center items-center min-vh-100">
+    <div className="flex flex-column justify-center items-center pv4 min-vh-100">
       <Headline4>
         <Trans>Something went wrong</Trans>
       </Headline4>
@@ -15,6 +16,12 @@ const ErrorFallback = () => {
       <Button className="mt3" onClick={() => window.location.reload()}>
         <Trans>Refresh</Trans>
       </Button>
+      {process.env.NODE_ENV === 'development' && (
+        <>
+          <Overline className="mt3">Error message: "{error.message}"</Overline>
+          <pre>{componentStack}</pre>
+        </>
+      )}
     </div>
   )
 }
