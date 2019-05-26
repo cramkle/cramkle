@@ -25,11 +25,17 @@ msgstr "About"
 msgid "Account created successfully"
 msgstr "Account created successfully"
 
-#: src/components/forms/AddDeckForm.tsx:84
+#: src/components/forms/AddDeckForm.tsx:85
 #: src/components/pages/DecksSection.tsx:27
 #: src/components/pages/DecksSection.tsx:27
 msgid "Add Deck"
 msgstr "Add Deck"
+
+#: src/components/pages/AddNotePage.tsx:73
+#: src/components/pages/DeckPage.tsx:82
+#: src/components/pages/DeckPage.tsx:82
+msgid "Add Note"
+msgstr "Add Note"
 
 #: src/components/pages/AddModelPage.tsx:130
 msgid "Add field"
@@ -97,7 +103,7 @@ msgstr "Code Block"
 msgid "Company"
 msgstr "Company"
 
-#: src/components/forms/AddDeckForm.tsx:92
+#: src/components/forms/AddDeckForm.tsx:93
 #: src/components/pages/AddModelPage.tsx:137
 msgid "Create"
 msgstr "Create"
@@ -105,6 +111,10 @@ msgstr "Create"
 #: src/components/pages/AddModelPage.tsx:45
 msgid "Create Model"
 msgstr "Create Model"
+
+#: src/components/pages/AddNotePage.tsx:45
+msgid "Create Note for deck \"{0}\""
+msgstr "Create Note for deck \"{0}\""
 
 #: src/components/forms/AddDeckForm.tsx:58
 msgid "Deck created successfully!"
@@ -133,7 +143,7 @@ msgstr "Delete deck"
 msgid "Delete model"
 msgstr "Delete model"
 
-#: src/components/forms/AddDeckForm.tsx:88
+#: src/components/forms/AddDeckForm.tsx:89
 msgid "Description"
 msgstr "Description"
 
@@ -169,6 +179,7 @@ msgid "Field name is required"
 msgstr "Field name is required"
 
 #: src/components/pages/AddModelPage.tsx:113
+#: src/components/pages/AddNotePage.tsx:60
 #: src/components/pages/ModelPage.tsx:107
 msgid "Fields"
 msgstr "Fields"
@@ -350,6 +361,10 @@ msgstr "Save Template"
 msgid "Search"
 msgstr "Search"
 
+#: src/components/pages/AddNotePage.tsx:51
+msgid "Select a model"
+msgstr "Select a model"
+
 #: src/components/AppDrawer.tsx:69
 #: src/components/pages/SettingsPage.tsx:9
 msgid "Settings"
@@ -408,6 +423,10 @@ msgstr "The decks you create will appear here."
 msgid "The models you create will appear here."
 msgstr "The models you create will appear here."
 
+#: src/components/pages/AddNotePage.tsx:76
+msgid "The selected model doesn't have any fields. Please, select another one"
+msgstr "The selected model doesn't have any fields. Please, select another one"
+
 #: src/components/forms/AddDeckForm.tsx:32
 msgid "The title is required"
 msgstr "The title is required"
@@ -420,7 +439,7 @@ msgstr "This link may be broken or the typed URL is incorrect."
 msgid "This model doesn't have any fields yet."
 msgstr "This model doesn't have any fields yet."
 
-#: src/components/forms/AddDeckForm.tsx:87
+#: src/components/forms/AddDeckForm.tsx:88
 msgid "Title"
 msgstr "Title"
 
@@ -454,6 +473,14 @@ msgstr "View"
 #: src/components/pages/NotFoundPage.tsx:8
 msgid "We couldn't find the page you requested"
 msgstr "We couldn't find the page you requested"
+
+#: src/components/pages/AddNotePage.tsx:37
+msgid "You haven't created any models yet."
+msgstr "You haven't created any models yet."
+
+#: src/components/NotesTable.tsx:9
+msgid "You haven't created any notes on this deck yet"
+msgstr "You haven't created any notes on this deck yet"
 
 #: src/components/pages/ModelPage.tsx:103
 msgid "You haven't created any templates on this model yet."
