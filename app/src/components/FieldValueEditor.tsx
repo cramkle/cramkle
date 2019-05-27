@@ -1,3 +1,5 @@
+import { t } from '@lingui/macro'
+import { useLingui } from '@lingui/react'
 import {
   Editor,
   EditorState,
@@ -24,6 +26,8 @@ const FieldValueEditor: React.FC<Props> = ({
   onChange,
   initialContentState,
 }) => {
+  const { i18n } = useLingui()
+
   const [editor, setEditor] = useState(() => {
     if (!initialContentState || initialContentState.blocks.length === 0) {
       return EditorState.createEmpty()
@@ -70,7 +74,11 @@ const FieldValueEditor: React.FC<Props> = ({
         </CardActionButtons>
       </CardActions>
       <div className="pa3">
-        <Editor editorState={editor} onChange={setEditor} />
+        <Editor
+          editorState={editor}
+          onChange={setEditor}
+          placeholder={i18n._(t`Field value...`)}
+        />
       </div>
     </Card>
   )

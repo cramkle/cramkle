@@ -178,6 +178,10 @@ msgstr "Field name"
 msgid "Field name is required"
 msgstr "Field name is required"
 
+#: src/components/FieldValueEditor.tsx:40
+msgid "Field value..."
+msgstr "Field value..."
+
 #: src/components/pages/AddModelPage.tsx:113
 #: src/components/pages/AddNotePage.tsx:60
 #: src/components/pages/ModelPage.tsx:107
