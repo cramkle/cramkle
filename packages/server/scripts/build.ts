@@ -50,6 +50,8 @@ function build(previousFileSizes: OpaqueFileSizes, writeStatsJson = false) {
           return reject(err)
         }
         messages = formatWebpackMessages({
+          _showErrors: true,
+          _showWarnings: true,
           errors: [err.message],
           warnings: [],
         })
