@@ -7,9 +7,7 @@ RUN yarn --frozen-lockfile
 
 RUN yarn workspace @cramkle/app-server build
 
-# TODO: find a way around installing twice
-RUN rm -rf packages/app/node_modules
-RUN yarn --frozen-lockfile
+RUN yarn install --force --frozen-lockfile
 
 RUN yarn workspace @cramkle/app build
 
