@@ -161,9 +161,9 @@ const getBaseWebpackConfig = (options?: Options): Configuration => {
               options: {
                 babelrc: false,
                 presets: [
-                  '@babel/preset-env',
-                  '@babel/preset-react',
-                  '@babel/preset-typescript',
+                  require.resolve('@babel/preset-env'),
+                  require.resolve('@babel/preset-react'),
+                  require.resolve('@babel/preset-typescript'),
                 ],
                 plugins: [
                   dev && require.resolve('react-hot-loader/babel'),
@@ -178,9 +178,10 @@ const getBaseWebpackConfig = (options?: Options): Configuration => {
                       },
                     },
                   ],
-                  '@babel/plugin-proposal-class-properties',
-                  '@babel/plugin-syntax-dynamic-import',
-                  'macros',
+                  require.resolve('@babel/plugin-transform-runtime'),
+                  require.resolve('@babel/plugin-proposal-class-properties'),
+                  require.resolve('@babel/plugin-syntax-dynamic-import'),
+                  require.resolve('babel-plugin-macros'),
                 ].filter(Boolean),
                 // This is a feature of `babel-loader` for webpack (not Babel itself).
                 // It enables caching results in ./node_modules/.cache/babel-loader/
@@ -201,6 +202,40 @@ const getBaseWebpackConfig = (options?: Options): Configuration => {
                 cacheDirectory: true,
                 // Don't waste time on Gzipping the cache
                 cacheCompression: false,
+
+                presets: [
+                  [
+                    require.resolve('@babel/preset-env'),
+                    {
+                      useBuiltIns: 'entry',
+                      corejs: 3,
+                      modules: false,
+                      exclude: ['transform-typeof-symbol'],
+                    },
+                  ],
+                ],
+                plugins: [
+                  [
+                    require.resolve('@babel/plugin-transform-destructuring'),
+                    {
+                      loose: false,
+                      selectiveLoose: [
+                        'useState',
+                        'useEffect',
+                        'useContext',
+                        'useReducer',
+                        'useCallback',
+                        'useMemo',
+                        'useRef',
+                        'useImperativeHandle',
+                        'useLayoutEffect',
+                        'useDebugValue',
+                      ],
+                    },
+                  ],
+                  require.resolve('@babel/plugin-transform-runtime'),
+                  require.resolve('@babel/plugin-syntax-dynamic-import'),
+                ],
 
                 // If an error happens in a package, it's possible to be
                 // because it was compiled. Thus, we don't want the browser

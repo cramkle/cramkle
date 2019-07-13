@@ -70,9 +70,9 @@
     "yup": "^0.27.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.5",
+    "@babel/core": "^7.5.4",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
-    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-env": "^7.5.4",
     "@babel/preset-typescript": "^7.3.3",
     "@hot-loader/react-dom": "^16.8.3",
     "@lingui/cli": "3.0.0-5",
@@ -94,7 +94,7 @@
     "apollo": "^2.12.3",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^24.8.0",
-    "babel-plugin-macros": "^2.5.1",
+    "babel-plugin-macros": "^2.6.1",
     "babel-preset-react-app": "^9.0.0",
     "eslint": "^5.16.0",
     "identity-obj-proxy": "^3.0.0",
@@ -106,7 +106,6 @@
     "prettier": "^1.17.1",
     "react-app-polyfill": "^1.0.1",
     "react-testing-library": "^7.0.1",
-    "release-it": "^12.2.1",
     "stylelint": "^10.0.1",
     "stylelint-config-recommended-scss": "^3.2.0",
     "stylelint-scss": "^3.5.3",

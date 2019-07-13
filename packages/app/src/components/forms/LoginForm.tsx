@@ -32,29 +32,27 @@ const LoginForm: React.FunctionComponent = () => {
           .required(i18n._(t`Username is required`)),
         password: string().required(i18n._(t`Password is required`)),
       })}
-      onSubmit={(values, props) => {
-        return fetch('/_c/auth/login', {
-          method: 'POST',
-          credentials: 'include',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(values),
-        })
-          .then(res => {
-            if (!res.ok) {
-              throw new Error(res.statusText)
-            }
-            return res.json()
+      onSubmit={async (values, props) => {
+        try {
+          const res = await fetch('/_c/auth/login', {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(values),
           })
-          .then(() => {
-            window.location.assign('/')
+
+          if (!res.ok) {
+            throw new Error(res.statusText)
+          }
+
+          window.location.assign('/')
+        } catch {
+          props.setErrors({
+            password: i18n._(t`Invalid username and/or password`),
           })
-          .catch(() => {
-            props.setErrors({
-              password: i18n._(t`Invalid username and/or password`),
-            })
-          })
+        }
       }}
     >
       {({ isSubmitting, isValid, handleSubmit }) => (

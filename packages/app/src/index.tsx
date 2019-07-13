@@ -15,33 +15,37 @@ import catalogEn from './locales/en/messages'
 import catalogPt from './locales/pt/messages'
 import client from './utils/apolloClient'
 
-const renderWithData = (
+const renderWithData = async (
   rootComponent: React.ReactNode
 ): Promise<RenderResult> => {
   // We use dynamic import here to avoid placing these
   // dependencies in the client bundle.
-  return Promise.all([
+  const [
+    { getDataFromTree },
+    { renderToString },
+    { StaticRouter },
+  ] = await Promise.all([
     import('react-apollo'),
     import('react-dom/server'),
     import('react-router-dom'),
-  ]).then(([{ getDataFromTree }, { renderToString }, { StaticRouter }]) => {
-    const routerContext = {}
+  ])
 
-    const root = (
-      <StaticRouter context={routerContext} location={window.requestUrl}>
-        {rootComponent}
-      </StaticRouter>
-    )
+  const routerContext = {}
 
-    return getDataFromTree(root).then(() => {
-      const markup = renderToString(root)
+  const root = (
+    <StaticRouter context={routerContext} location={window.requestUrl}>
+      {rootComponent}
+    </StaticRouter>
+  )
 
-      return {
-        markup,
-        routerContext,
-      }
-    })
-  })
+  await getDataFromTree(root)
+
+  const markup = renderToString(root)
+
+  return {
+    markup,
+    routerContext,
+  }
 }
 
 const render = (): Promise<RenderResult> | void => {
