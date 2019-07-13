@@ -1277,7 +1277,7 @@
     "@babel/generator" "^7.0.0"
     "@lingui/conf" "3.0.0-5"
 
-"@lingui/cli@^3.0.0-5":
+"@lingui/cli@3.0.0-5":
   version "3.0.0-5"
   resolved "https://registry.yarnpkg.com/@lingui/cli/-/cli-3.0.0-5.tgz#a5498c6c7061b0011851b81987acc76d4d6d4060"
   integrity sha512-rJTtqSBAhrxTIcl5eWw1xNJUpLRyN1jidcYw3zrHWpOAPH0ZXF2Ly3zEfeoAe/mj3HDq+myZQQylnjQ7JOIhCw==
@@ -1329,7 +1329,7 @@
     make-plural "^4.1.1"
     messageformat-parser "^2.0.0"
 
-"@lingui/macro@^3.0.0-5":
+"@lingui/macro@3.0.0-5":
   version "3.0.0-5"
   resolved "https://registry.yarnpkg.com/@lingui/macro/-/macro-3.0.0-5.tgz#d88db44cfb81245a7ba82424f04864e1ef98c87d"
   integrity sha512-Pw8c9tPOxk6+iRSG1hdoCU3Vb7xKAYguVdpsokuDhfhBmBqatHUg0w6XMStLFGO7FQTjBCdIcsf341i0MTBlOA==
@@ -1337,7 +1337,7 @@
     babel-plugin-macros "^2.5.1"
     ramda "^0.26.1"
 
-"@lingui/react@^3.0.0-5":
+"@lingui/react@3.0.0-5":
   version "3.0.0-5"
   resolved "https://registry.yarnpkg.com/@lingui/react/-/react-3.0.0-5.tgz#5505f6886c4e1967f381d4b15b2105ccec225f58"
   integrity sha512-33Lg0epgbf1n6kfFzKZLhto8tHOqYvpncJ+mGLh0y2abyfpixBmiBgtJj57D4NYhehvZJs03YeYC6MfmYLvybw==
