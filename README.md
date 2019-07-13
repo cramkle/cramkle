@@ -19,8 +19,7 @@ yarn
 yarn workspace @cramkle/app-server build
 
 # this is needed for the bin link to work
-rm -rf packages/app/node_modules
-yarn
+yarn install --force
 
 yarn workspace @cramkle/app dev
 # or
