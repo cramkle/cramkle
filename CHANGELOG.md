@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Generic error page.
 - Chips with quantity of fields and templates on model card.
+- Babel's runtime plugin. (server)
 
 ### Changed
 - Disabled React's Concurrent Mode.
