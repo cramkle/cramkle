@@ -1,6 +1,6 @@
 import { setupI18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
-import { render as rtlRender, fireEvent, wait } from '@testing-library/react'
+import { render as rtlRender, fireEvent } from '@testing-library/react'
 import React from 'react'
 
 import LoginForm from '../LoginForm'
