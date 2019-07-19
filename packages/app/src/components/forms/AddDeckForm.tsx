@@ -36,6 +36,8 @@ export const CREATE_DECK_MUTATION = gql`
   }
 `
 
+const titleRequired = t`The title is required`
+
 const AddDeckForm: React.FunctionComponent<
   ChildMutateProps<Props, CreateDeckMutation, CreateDeckMutationVariables>
 > = ({ open, onClose, mutate }) => {
@@ -47,8 +49,11 @@ const AddDeckForm: React.FunctionComponent<
         title: '',
         description: '',
       }}
+      initialErrors={{
+        title: i18n._(titleRequired),
+      }}
       validationSchema={yup.object().shape({
-        title: yup.string().required(i18n._(t`The title is required`)),
+        title: yup.string().required(i18n._(titleRequired)),
         description: yup.string(),
       })}
       onSubmit={(values, props) => {
@@ -66,7 +71,6 @@ const AddDeckForm: React.FunctionComponent<
           onClose('created')
         })
       }}
-      isInitialValid={false}
     >
       {({ isValid, handleSubmit }) => {
         const handleClose = (action: string) => {

@@ -1,7 +1,7 @@
 import { setupI18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
+import { render as rtlRender, fireEvent, wait } from '@testing-library/react'
 import React from 'react'
-import { render as rtlRender, fireEvent, wait } from 'react-testing-library'
 
 import LoginForm from '../LoginForm'
 
@@ -20,6 +20,14 @@ const render = () => {
 }
 
 describe('<LoginForm />', () => {
+  function flushPromises() {
+    return new Promise(resolve => setImmediate(resolve))
+  }
+
+  beforeEach(() => {
+    jest.useFakeTimers()
+  })
+
   it('should show error message on failure', async () => {
     global.fetch.mockResponse('Unauthorized', {
       status: 401,
@@ -38,14 +46,16 @@ describe('<LoginForm />', () => {
     fireEvent.change(usernameInput, { target: { value: 'lucas' } })
     fireEvent.change(passwordInput, { target: { value: 'password' } })
 
+    await flushPromises()
+    jest.runAllTimers()
+
     expect(submitButton).toBeEnabled()
 
     fireEvent.click(submitButton)
 
-    await wait(() => {
-      expect(
-        getByText(/invalid username and\/or password/i)
-      ).toBeInTheDocument()
-    })
+    await flushPromises()
+    jest.runAllTimers()
+
+    expect(getByText(/invalid username and\/or password/i)).toBeInTheDocument()
   })
 })

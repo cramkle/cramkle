@@ -1,6 +1,6 @@
+import { render } from '@testing-library/react'
 import React from 'react'
 import { MemoryRouter } from 'react-router'
-import { render } from 'react-testing-library'
 
 import DeckCard from '../DeckCard'
 

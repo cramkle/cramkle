@@ -1,7 +1,7 @@
 import { setupI18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
+import { render as rtlRender, fireEvent } from '@testing-library/react'
 import React from 'react'
-import { render as rtlRender, fireEvent, wait } from 'react-testing-library'
 import { MockedProvider, MockedResponse } from 'react-apollo/test-utils'
 
 import AddDeckForm, { CREATE_DECK_MUTATION } from '../AddDeckForm'
@@ -15,6 +15,7 @@ const render = (ui: React.ReactElement, options: Options = {}) => {
     id: 'id',
     slug: 'id',
     title: 'my title',
+    description: '',
   }
 
   const {
@@ -24,6 +25,7 @@ const render = (ui: React.ReactElement, options: Options = {}) => {
           query: CREATE_DECK_MUTATION,
           variables: {
             title: deckMock.title,
+            description: '',
           },
         },
         result: {
@@ -41,7 +43,9 @@ const render = (ui: React.ReactElement, options: Options = {}) => {
 
   const utils = rtlRender(
     <I18nProvider i18n={i18n}>
-      <MockedProvider mocks={mutationMocks}>{ui}</MockedProvider>
+      <MockedProvider mocks={mutationMocks} addTypename={false}>
+        {ui}
+      </MockedProvider>
     </I18nProvider>
   )
 
@@ -52,6 +56,14 @@ const render = (ui: React.ReactElement, options: Options = {}) => {
 }
 
 describe('<AddDeckForm />', () => {
+  function flushPromises() {
+    return new Promise(resolve => setImmediate(resolve))
+  }
+
+  beforeEach(() => {
+    jest.useFakeTimers()
+  })
+
   it('should add deck on submit click', async () => {
     const closeCallback = jest.fn()
     const { getByLabelText, getByText, deckMock } = render(
@@ -64,7 +76,10 @@ describe('<AddDeckForm />', () => {
     fireEvent.input(titleInput, { target: { value: deckMock.title } })
     fireEvent.click(submitButton)
 
-    await wait(() => expect(closeCallback).toHaveBeenCalledTimes(1))
+    await flushPromises()
+    jest.runAllTimers()
+
+    expect(closeCallback).toHaveBeenCalledTimes(1)
   })
 
   it.skip('should add one deck on input enter', async () => {
@@ -78,6 +93,9 @@ describe('<AddDeckForm />', () => {
     fireEvent.input(titleInput, { target: { value: deckMock.title } })
     fireEvent.keyPress(titleInput, { key: 'Enter', code: 13 })
 
-    await wait(() => expect(closeCallback).toHaveBeenCalledTimes(1))
+    await flushPromises()
+    jest.runAllTimers()
+
+    expect(closeCallback).toHaveBeenCalledTimes(1)
   })
 })

@@ -17,6 +17,9 @@ interface LoginFormValues {
   password: string
 }
 
+const usernameRequired = t`Username is required`
+const passwordRequired = t`Password is required`
+
 const LoginForm: React.FunctionComponent = () => {
   const { i18n } = useLingui()
 
@@ -26,11 +29,15 @@ const LoginForm: React.FunctionComponent = () => {
         username: '',
         password: '',
       }}
+      initialErrors={{
+        username: i18n._(usernameRequired),
+        password: i18n._(passwordRequired),
+      }}
       validationSchema={object().shape({
         username: string()
           .matches(/^[a-zA-Z0-9_]+$/, i18n._(t`Invalid username`))
-          .required(i18n._(t`Username is required`)),
-        password: string().required(i18n._(t`Password is required`)),
+          .required(i18n._(usernameRequired)),
+        password: string().required(i18n._(passwordRequired)),
       })}
       onSubmit={async (values, props) => {
         try {
