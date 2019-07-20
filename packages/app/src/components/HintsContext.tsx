@@ -1,4 +1,3 @@
-import { canUseDOM } from 'exenv'
 import React, { useContext, createContext, useMemo } from 'react'
 
 export const HintsContext = createContext({ isMobile: true })
@@ -8,7 +7,7 @@ export const HintsProvider: React.FunctionComponent<{ userAgent?: string }> = ({
   userAgent,
 }) => {
   const isMobile = /android|ios|iphone|ipad/i.test(
-    !canUseDOM ? userAgent : window.userAgent || navigator.userAgent
+    !process.browser ? userAgent : window.userAgent || navigator.userAgent
   )
 
   const context = useMemo(
