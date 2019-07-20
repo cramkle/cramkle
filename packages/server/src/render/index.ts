@@ -1,6 +1,5 @@
 import { Request, Response } from 'express'
 import * as fs from 'fs'
-import chalk from 'chalk'
 import * as path from 'path'
 import { promisify } from 'util'
 
