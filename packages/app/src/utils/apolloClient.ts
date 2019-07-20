@@ -5,8 +5,8 @@ import { onError } from 'apollo-link-error'
 import { createPersistedQueryLink } from 'apollo-link-persisted-queries'
 import { ApolloLink } from 'apollo-link'
 import { canUseDOM } from 'exenv'
-import fetch from 'node-fetch'
 
+import fetch from './fetch'
 import { resolvers, defaults } from '../resolvers'
 
 export const createApolloClient = (uri: string, cookie?: string) => {
@@ -32,7 +32,6 @@ export const createApolloClient = (uri: string, cookie?: string) => {
   const httpLink = createHttpLink({
     uri,
     credentials: 'include',
-    // @ts-ignore
     fetch,
     headers: {
       cookie,
