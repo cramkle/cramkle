@@ -10,6 +10,7 @@ export default {
         pathRewrite: {
           '^/_c': '',
         },
+        logLevel: 'silent',
       })
     )
 

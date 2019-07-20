@@ -1,20 +1,24 @@
 import express from 'express'
 
 import server from './index'
-import devMiddleware from './middlewares/dev'
-import hotMiddleware from './middlewares/hot'
+import proxyMiddleware from './middlewares/proxy'
+import webpackMiddleware from './middlewares/webpack'
+
+import { logStore } from './output/logger'
+
+const PORT = 3000
 
 const start = () => {
   const app = express()
 
-  devMiddleware.set(app)
-  hotMiddleware.set(app)
+  proxyMiddleware.set(app)
+  webpackMiddleware.set(app)
 
   app.use(server)
 
-  app.listen(3000, () => {
-    console.log('Server listening on port 3000')
-  })
+  logStore.setState({ port: PORT })
+
+  app.listen(PORT)
 }
 
 export default start
