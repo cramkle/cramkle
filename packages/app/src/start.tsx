@@ -1,7 +1,5 @@
 import { setupI18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
-import { ApolloClient } from 'apollo-client'
-import { canUseDOM } from 'exenv'
 import React, { StrictMode } from 'react'
 import { ApolloProvider } from 'react-apollo'
 import ReactDOM from 'react-dom'
@@ -24,54 +22,13 @@ interface RenderOptions {
   requestLanguage: string
 }
 
-const renderWithData = async <T extends {}>({
-  root,
-  requestUrl,
-  client,
-}: {
-  root: React.ReactNode
-  requestUrl: string
-  client: ApolloClient<T>
-}): Promise<RenderResult> => {
-  // We use dynamic import here to avoid placing these
-  // dependencies in the client bundle.
-  const [
-    { getDataFromTree },
-    { renderToString },
-    { StaticRouter },
-  ] = await Promise.all([
-    import('react-apollo'),
-    import('react-dom/server'),
-    import('react-router-dom'),
-  ])
-
-  const routerContext = {}
-
-  const rootContainer = (
-    <StaticRouter context={routerContext} location={requestUrl}>
-      {root}
-    </StaticRouter>
-  )
-
-  await getDataFromTree(rootContainer)
-
-  const markup = renderToString(rootContainer)
-  const state = client.extract()
-
-  return {
-    markup,
-    routerContext,
-    state,
-  }
-}
-
-const render = ({
+const render = async ({
   requestUrl,
   requestLanguage,
   userAgent,
   requestHost,
   cookie,
-}: RenderOptions): Promise<RenderResult> | void => {
+}: RenderOptions): Promise<RenderResult | void> => {
   let language: string
 
   if (requestLanguage) {
@@ -103,7 +60,7 @@ const render = ({
     </StrictMode>
   )
 
-  if (canUseDOM) {
+  if (typeof window !== 'undefined') {
     const elem = document.getElementById('root')
 
     const query = new URLSearchParams(window.location.search)
@@ -115,21 +72,50 @@ const render = ({
 
     ReactDOM[method](<BrowserRouter>{root}</BrowserRouter>, elem)
   } else {
-    return renderWithData({ root, requestUrl, client })
+    // use dynamic import here to avoid placing these
+    // dependencies in the client bundle.
+    const [
+      { getDataFromTree },
+      { renderToString },
+      { StaticRouter },
+    ] = await Promise.all([
+      import('react-apollo'),
+      import('react-dom/server'),
+      import('react-router-dom'),
+    ])
+
+    const routerContext = {}
+
+    const rootContainer = (
+      <StaticRouter context={routerContext} location={requestUrl}>
+        {root}
+      </StaticRouter>
+    )
+
+    await getDataFromTree(rootContainer)
+
+    const markup = renderToString(rootContainer)
+    const state = client.extract()
+
+    return {
+      markup,
+      routerContext,
+      state,
+    }
   }
 }
 
-export default function start(opts?: RenderOptions) {
+export default async function start(opts?: RenderOptions) {
   // eslint-disable-next-line @typescript-eslint/no-object-literal-type-assertion
-  const maybeRenderPromise = render(opts || ({} as RenderOptions))
+  const maybeRenderResult = await render(opts || ({} as RenderOptions))
 
-  if (!maybeRenderPromise) {
+  if (!maybeRenderResult) {
     registerSW()
     return
   }
 
-  return maybeRenderPromise.then(renderResult => ({
-    ...renderResult,
+  return {
+    ...maybeRenderResult,
     head: Helmet.rewind(),
-  }))
+  }
 }

@@ -4,7 +4,6 @@ import { createHttpLink } from 'apollo-link-http'
 import { onError } from 'apollo-link-error'
 import { createPersistedQueryLink } from 'apollo-link-persisted-queries'
 import { ApolloLink } from 'apollo-link'
-import { canUseDOM } from 'exenv'
 
 import fetch from './fetch'
 import { resolvers, defaults } from '../resolvers'
@@ -42,8 +41,11 @@ export const createApolloClient = (uri: string, cookie?: string) => {
     ssrMode: !process.browser,
     link: ApolloLink.from([errorLink, persistedQueriesLink, httpLink]),
     resolvers,
-    // eslint-disable-next-line no-underscore-dangle
-    cache: canUseDOM ? cache.restore(window.__APOLLO_STATE__) : cache,
+    cache:
+      typeof window !== 'undefined'
+        ? // eslint-disable-next-line no-underscore-dangle
+          cache.restore(window.__APOLLO_STATE__)
+        : cache,
   })
 
   cache.writeData({ data: defaults })
