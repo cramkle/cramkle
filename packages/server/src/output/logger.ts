@@ -19,7 +19,25 @@ export const logStore = createStore<LoggerStoreStatus>({
   port: null,
 })
 
+let lastStore: LoggerStoreStatus = {} as any
+function hasStoreChanged(nextStore: LoggerStoreStatus) {
+  if (
+    [...new Set([...Object.keys(lastStore), ...Object.keys(nextStore)])].every(
+      key => Object.is((lastStore as any)[key], (nextStore as any)[key])
+    )
+  ) {
+    return false
+  }
+
+  lastStore = nextStore
+  return true
+}
+
 logStore.subscribe(state => {
+  if (!hasStoreChanged(state)) {
+    return
+  }
+
   if (state.bootstrap === true) {
     Log.info('starting the development server')
     if (state.port !== null) {
