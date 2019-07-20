@@ -1,10 +1,11 @@
 import { ApolloClient } from 'apollo-client'
 import { InMemoryCache } from 'apollo-cache-inmemory'
-import { HttpLink } from 'apollo-link-http'
+import { createHttpLink } from 'apollo-link-http'
 import { onError } from 'apollo-link-error'
 import { createPersistedQueryLink } from 'apollo-link-persisted-queries'
 import { ApolloLink } from 'apollo-link'
 import { canUseDOM } from 'exenv'
+import fetch from 'node-fetch'
 
 import { resolvers, defaults } from '../resolvers'
 
@@ -28,10 +29,10 @@ export const createApolloClient = (uri: string) => {
     useGETForHashedQueries: true,
   })
 
-  const httpLink = new HttpLink({
+  const httpLink = createHttpLink({
     uri,
     credentials: 'include',
-    fetch: window.fetch,
+    fetch,
   })
 
   const client = new ApolloClient({
@@ -46,9 +47,3 @@ export const createApolloClient = (uri: string) => {
 
   return client
 }
-
-const host = window.hostname || ''
-
-const defaultClient = createApolloClient(`${host}/_c/graphql`)
-
-export default defaultClient

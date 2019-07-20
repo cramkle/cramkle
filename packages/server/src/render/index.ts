@@ -3,7 +3,6 @@ import * as fs from 'fs'
 import chalk from 'chalk'
 import * as path from 'path'
 import { promisify } from 'util'
-import { createContext, Script } from 'vm'
 
 import { appDistServer, appDist } from '../../config/paths'
 import {
@@ -13,7 +12,18 @@ import {
   ASSET_MANIFEST_FILE,
 } from '../../config/constants'
 import { ok, error } from '../templates'
-import createSandbox from './sandbox'
+
+interface RenderOptions {
+  requestUrl: string
+  requestHost: string
+  cookie?: string
+  userAgent: string
+  requestLanguage: string
+}
+
+function interopDefault(mod: any) {
+  return mod.default || mod
+}
 
 const readFile = promisify(fs.readFile)
 
@@ -39,7 +49,7 @@ const render = async (req: Request, res: Response) => {
     .then(file => file.toString())
     .then(JSON.parse)
 
-  const serverAssetScripts = [
+  const [serverAssetScript] = [
     serverAssetManifest[`${STATIC_RUNTIME_MAIN}.js`],
   ].map(relativePath => path.join(appDistServer, relativePath))
 
@@ -48,16 +58,6 @@ const render = async (req: Request, res: Response) => {
     .map(path => assetManifest[path])
 
   const language = req.language
-
-  const sandboxContext = {
-    requestUrl: req.url,
-    requestHost: `${req.protocol}://${req.get('host')}`,
-    cookie: req.headers.cookie,
-    userAgent: req.headers['user-agent'],
-    language,
-  }
-
-  const { sandbox, cleanUp, getLogsAndErrors } = createSandbox(sandboxContext)
 
   res.set('Content-Type', 'text/html')
 
@@ -70,21 +70,17 @@ const render = async (req: Request, res: Response) => {
         })
       )
     } else {
-      createContext(sandbox)
+      const render = interopDefault(require(serverAssetScript)) as (
+        opts: RenderOptions
+      ) => Promise<any>
 
-      const compiledScripts = await Promise.all(
-        serverAssetScripts
-          .filter(Boolean)
-          .map(filepath =>
-            readFile(path.resolve(filepath)).then(
-              src => new Script(src.toString())
-            )
-          )
-      )
-
-      compiledScripts.forEach(script => script.runInContext(sandbox))
-
-      const { markup, head, routerContext, state } = await sandbox.rendered
+      const { markup, head, routerContext, state } = await render({
+        requestUrl: req.url,
+        requestHost: `${req.protocol}://${req.get('host')}`,
+        cookie: req.headers.cookie,
+        userAgent: req.headers['user-agent'],
+        requestLanguage: language,
+      })
 
       if (routerContext.url) {
         res.writeHead(302, {
@@ -108,11 +104,8 @@ const render = async (req: Request, res: Response) => {
     )
     console.error(err)
 
-    const { logs, errors, warnings } = getLogsAndErrors()
-
-    res.write(error({ err, logs, errors, warnings }))
+    res.write(error({ err, logs: [], errors: [], warnings: [] }))
   } finally {
-    cleanUp()
     res.end()
   }
 }

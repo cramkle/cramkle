@@ -54,6 +54,7 @@
     "graphql": "~14.2.1",
     "graphql-tag": "^2.10.1",
     "history": "^4.7.2",
+    "node-fetch": "^2.6.0",
     "ramda": "^0.26.1",
     "react": "^16.8.6",
     "react-apollo": "^2.5.6",
