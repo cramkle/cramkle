@@ -4,6 +4,8 @@ import chalk from 'chalk'
 import * as path from 'path'
 import { promisify } from 'util'
 
+import * as Log from '../output/log'
+import { ok, error } from '../templates'
 import { appDistServer, appDist } from '../../config/paths'
 import {
   STATIC_RUNTIME_MAIN,
@@ -11,7 +13,6 @@ import {
   STATIC_RUNTIME_HOT,
   ASSET_MANIFEST_FILE,
 } from '../../config/constants'
-import { ok, error } from '../templates'
 
 interface RenderOptions {
   requestUrl: string
@@ -70,11 +71,11 @@ const render = async (req: Request, res: Response) => {
         })
       )
     } else {
-      const render = interopDefault(require(serverAssetScript)) as (
+      const appRender = interopDefault(require(serverAssetScript)) as (
         opts: RenderOptions
       ) => Promise<any>
 
-      const { markup, head, routerContext, state } = await render({
+      const { markup, head, routerContext, state } = await appRender({
         requestUrl: req.url,
         requestHost: `${req.protocol}://${req.get('host')}`,
         cookie: req.headers.cookie,
@@ -99,9 +100,7 @@ const render = async (req: Request, res: Response) => {
       }
     }
   } catch (err) {
-    console.error(
-      chalk.red('An error ocurred while trying to server-side render')
-    )
+    Log.error('An error ocurred while trying to server-side render')
     console.error(err)
 
     res.write(error({ err, logs: [], errors: [], warnings: [] }))
