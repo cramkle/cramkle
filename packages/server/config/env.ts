@@ -78,15 +78,13 @@ function getClientEnvironment(isServer = false) {
 
   // Stringify all values so we can feed into Webpack DefinePlugin
   const stringified = {
-    'process.env': Object.keys(raw).reduce(
-      (env, key) => {
-        env[key] = JSON.stringify(raw[key])
-        return env
-      },
-      // eslint-disable-next-line
-      {} as Env
-    ),
-    'process.browser': !isServer,
+    'process.env': Object.keys(raw).reduce<Env>((env, key) => {
+      env[key] = JSON.stringify(raw[key])
+      return env
+    }, {}),
+    'process.browser': JSON.stringify(!isServer),
+    // Allow browser-only and server-only code to be eliminated
+    'typeof window': JSON.stringify(isServer ? 'undefined' : 'object'),
   }
 
   return { raw, stringified }

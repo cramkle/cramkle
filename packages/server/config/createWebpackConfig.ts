@@ -281,9 +281,10 @@ const getBaseWebpackConfig = (options?: Options): Configuration => {
         chunkFilename: `${STATIC_CHUNKS_PATH}/${extractedCssFilename}.chunk.css`,
         reloadAll: true,
       }),
-      // Makes some environment variables available to the JS code, for example:
-      // if (process.env.NODE_ENV === 'development') { ... }. See `./env.js`.
       new ChunkNamesPlugin(),
+      new webpack.NoEmitOnErrorsPlugin(),
+      // Makes some environment variables available to the JS code, for example:
+      // if (process.env.NODE_ENV === 'development') { ... }. See `./env.ts`.
       new webpack.DefinePlugin(env.stringified),
       dev && !isServer && new webpack.HotModuleReplacementPlugin(),
       // Even though require.cache is server only we have to clear assets from both compilations
