@@ -9,7 +9,7 @@ import fetch from 'node-fetch'
 
 import { resolvers, defaults } from '../resolvers'
 
-export const createApolloClient = (uri: string) => {
+export const createApolloClient = (uri: string, cookie?: string) => {
   const cache = new InMemoryCache()
 
   const errorLink = onError(({ graphQLErrors, networkError }) => {
@@ -32,7 +32,11 @@ export const createApolloClient = (uri: string) => {
   const httpLink = createHttpLink({
     uri,
     credentials: 'include',
+    // @ts-ignore
     fetch,
+    headers: {
+      cookie,
+    },
   })
 
   const client = new ApolloClient({
