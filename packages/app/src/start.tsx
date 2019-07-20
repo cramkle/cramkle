@@ -56,11 +56,12 @@ const renderWithData = async <T extends {}>({
   await getDataFromTree(rootContainer)
 
   const markup = renderToString(rootContainer)
+  const state = client.extract()
 
   return {
     markup,
     routerContext,
-    state: client.extract(),
+    state,
   }
 }
 
@@ -69,6 +70,7 @@ const render = ({
   requestLanguage,
   userAgent,
   requestHost,
+  cookie,
 }: RenderOptions): Promise<RenderResult> | void => {
   let language: string
 
@@ -87,7 +89,7 @@ const render = ({
   i18n.activate(language)
 
   const host = requestHost || ''
-  const client = createApolloClient(`${host}/_c/graphql`)
+  const client = createApolloClient(`${host}/_c/graphql`, cookie)
 
   const root = (
     <StrictMode>
@@ -126,9 +128,8 @@ export default function start(opts?: RenderOptions) {
     return
   }
 
-  return maybeRenderPromise.then(({ markup, routerContext }) => ({
-    markup,
-    routerContext,
+  return maybeRenderPromise.then(renderResult => ({
+    ...renderResult,
     head: Helmet.rewind(),
   }))
 }
