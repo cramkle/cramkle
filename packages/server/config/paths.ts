@@ -30,6 +30,7 @@ const appDistServer = serverDistFolder
 const appDistPublic = path.join(distFolder, 'public')
 const appPublic = resolveApp('public')
 const appIndexJs = resolveModule(resolveApp, 'src/index')
+const appStartJs = resolveModule(resolveApp, 'src/start')
 const appPackageJson = resolveApp('package.json')
 const appSrc = resolveApp('src')
 const yarnLockFile = resolveApp('yarn.lock')
@@ -43,6 +44,7 @@ export {
   appDistPublic,
   appPublic,
   appIndexJs,
+  appStartJs,
   appPackageJson,
   appSrc,
   yarnLockFile,

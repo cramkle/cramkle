@@ -101,7 +101,7 @@ const getBaseWebpackConfig = (options?: Options): Configuration => {
       ...(dev && !isServer
         ? { [STATIC_RUNTIME_HOT]: 'webpack-hot-middleware/client' }
         : {}),
-      [STATIC_RUNTIME_MAIN]: paths.appIndexJs,
+      [STATIC_RUNTIME_MAIN]: !isServer ? paths.appIndexJs : paths.appStartJs,
     },
     output: {
       publicPath: '/',
