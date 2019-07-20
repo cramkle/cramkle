@@ -11,6 +11,7 @@ import ModuleNotFoundPlugin from 'react-dev-utils/ModuleNotFoundPlugin'
 import nodeExternals from 'webpack-node-externals'
 
 import ChunkNamesPlugin from './webpack/plugins/ChunkNamesPlugin'
+import RequireCacheHotReloader from './webpack/plugins/RequireCacheHotReloader'
 import { Options } from './webpack/types'
 import { getStyleLoaders } from './webpack/styles'
 import { createWorkboxPlugin } from './webpack/workbox'
@@ -285,6 +286,9 @@ const getBaseWebpackConfig = (options?: Options): Configuration => {
       new ChunkNamesPlugin(),
       new webpack.DefinePlugin(env.stringified),
       dev && !isServer && new webpack.HotModuleReplacementPlugin(),
+      // Even though require.cache is server only we have to clear assets from both compilations
+      // This is because the client compilation generates the asset manifest that's used on the server side
+      dev && new RequireCacheHotReloader(),
       new ManifestPlugin({
         fileName: ASSET_MANIFEST_FILE,
       }),
