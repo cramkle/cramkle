@@ -92,12 +92,14 @@ const getBaseWebpackConfig = (options?: Options): Configuration => {
   const chunkFilename = dev ? '[name]' : '[name].[contenthash]'
   const extractedCssFilename = dev ? '[name]' : '[name].[contenthash:8]'
 
+  const externals = isServer ? nodeExternals() : undefined
+
   return {
     mode: webpackMode,
     name: isServer ? 'server' : 'client',
     target: isServer ? 'node' : 'web',
     devtool: dev && !isServer ? 'cheap-module-source-map' : false,
-    externals: isServer ? [nodeExternals()] : [],
+    externals,
     entry: {
       ...(dev && !isServer
         ? { [STATIC_RUNTIME_HOT]: 'webpack-hot-middleware/client' }
@@ -293,7 +295,7 @@ const getBaseWebpackConfig = (options?: Options): Configuration => {
       new ManifestPlugin({
         fileName: ASSET_MANIFEST_FILE,
       }),
-      createWorkboxPlugin({ dev, isServer }),
+      !isServer && createWorkboxPlugin({ dev, isServer }),
       // This gives some necessary context to module not found errors, such as
       // the requesting resource.
       dev && new ModuleNotFoundPlugin(paths.appPath),
