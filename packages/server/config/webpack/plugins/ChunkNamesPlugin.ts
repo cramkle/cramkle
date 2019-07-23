@@ -1,9 +1,11 @@
-import { Compiler } from 'webpack'
+import { Compiler, Plugin } from 'webpack'
 
-export default class ChunkNamesPlugin {
+// This plugin mirrors webpack 3 `filename` and `chunkfilename` behavior
+// This fixes https://github.com/webpack/webpack/issues/6598
+// This plugin is based on https://github.com/researchgate/webpack/commit/2f28947fa0c63ccbb18f39c0098bd791a2c37090
+export default class ChunkNamesPlugin implements Plugin {
   public apply(compiler: Compiler) {
-    compiler.hooks.compilation.tap('ChunkNamesPlugin', compilation => {
-      // @ts-ignore
+    compiler.hooks.compilation.tap('ChunkNamesPlugin', (compilation: any) => {
       compilation.chunkTemplate.hooks.renderManifest.intercept({
         register(tapInfo: any) {
           if (tapInfo.name === 'JavascriptModulesPlugin') {
