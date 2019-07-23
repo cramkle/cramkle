@@ -5,6 +5,7 @@ import {
   DraftHandleValue,
   getDefaultKeyBinding,
 } from 'draft-js'
+import * as KeyCode from 'keycode-js'
 import React, { useEffect, useReducer, useCallback, useRef } from 'react'
 
 import MentionsPopup from './MentionsPopup'
@@ -189,19 +190,22 @@ const MentionsEditor: React.FunctionComponent<Props> = ({
     return 'not-handled'
   }
 
+  const showingMentions = !!(mentionableEntries && mentionableEntries.length)
+
   const keyBinder = (e: React.KeyboardEvent) => {
-    switch (e.keyCode) {
-      case 9: // tab
+    if (showingMentions) {
+      if (e.keyCode === KeyCode.KEY_TAB) {
         return 'handle-autocomplete'
-      case 27: // escape
+      } else if (e.keyCode === KeyCode.KEY_ESCAPE) {
         return 'cancel-autocomplete'
-      case 38: // arrow up
+      } else if (e.keyCode === KeyCode.KEY_UP) {
         return 'move-selection-up'
-      case 40: // arrow down
+      } else if (e.keyCode === KeyCode.KEY_DOWN) {
         return 'move-selection-down'
-      default:
-        return getDefaultKeyBinding(e)
+      }
     }
+
+    return getDefaultKeyBinding(e)
   }
 
   const handleKeyCommand = (command: string): DraftHandleValue => {
@@ -227,8 +231,6 @@ const MentionsEditor: React.FunctionComponent<Props> = ({
         return 'not-handled'
     }
   }
-
-  const showingMentions = !!(mentionableEntries && mentionableEntries.length)
 
   return (
     <>
