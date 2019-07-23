@@ -11,7 +11,8 @@ import ModuleNotFoundPlugin from 'react-dev-utils/ModuleNotFoundPlugin'
 import nodeExternals from 'webpack-node-externals'
 
 import ChunkNamesPlugin from './webpack/plugins/ChunkNamesPlugin'
-import RequireCacheHotReloader from './webpack/plugins/RequireCacheHotReloader'
+import RequireCacheHotReloaderPlugin from './webpack/plugins/RequireCacheHotReloaderPlugin'
+import SSRImportPlugin from './webpack/plugins/SSRImportPlugin'
 import { Options } from './webpack/types'
 import { getStyleLoaders } from './webpack/styles'
 import { createWorkboxPlugin } from './webpack/workbox'
@@ -99,6 +100,7 @@ const getBaseWebpackConfig = (options?: Options): Configuration => {
     name: isServer ? 'server' : 'client',
     target: isServer ? 'node' : 'web',
     devtool: dev && !isServer ? 'cheap-module-source-map' : false,
+    context: paths.appPath,
     externals,
     entry: {
       ...(dev && !isServer
@@ -283,6 +285,7 @@ const getBaseWebpackConfig = (options?: Options): Configuration => {
         chunkFilename: `${STATIC_CHUNKS_PATH}/${extractedCssFilename}.chunk.css`,
         reloadAll: true,
       }),
+      // This plugin makes sure `output.filename` is used for entry chunks
       new ChunkNamesPlugin(),
       new webpack.NoEmitOnErrorsPlugin(),
       // Makes some environment variables available to the JS code, for example:
@@ -291,11 +294,13 @@ const getBaseWebpackConfig = (options?: Options): Configuration => {
       dev && !isServer && new webpack.HotModuleReplacementPlugin(),
       // Even though require.cache is server only we have to clear assets from both compilations
       // This is because the client compilation generates the asset manifest that's used on the server side
-      dev && new RequireCacheHotReloader(),
+      dev && new RequireCacheHotReloaderPlugin(),
       new ManifestPlugin({
         fileName: ASSET_MANIFEST_FILE,
       }),
       !isServer && createWorkboxPlugin({ dev, isServer }),
+      // Fix dynamic imports on server bundle
+      isServer && new SSRImportPlugin(),
       // This gives some necessary context to module not found errors, such as
       // the requesting resource.
       dev && new ModuleNotFoundPlugin(paths.appPath),
