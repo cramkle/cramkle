@@ -38,7 +38,7 @@ const getBaseWebpackConfig = (options?: Options): Configuration => {
   const { isServer = false, dev = false } = options || {}
 
   // Get environment variables to inject into our app.
-  const env = getClientEnvironment(isServer)
+  const env = getClientEnvironment({ isServer })
 
   const sassLoaderConfig = {
     loader: 'sass-loader',
@@ -171,7 +171,6 @@ const getBaseWebpackConfig = (options?: Options): Configuration => {
                   require.resolve('@babel/preset-typescript'),
                 ],
                 plugins: [
-                  dev && require.resolve('react-hot-loader/babel'),
                   [
                     require.resolve('babel-plugin-named-asset-import'),
                     {
@@ -187,6 +186,7 @@ const getBaseWebpackConfig = (options?: Options): Configuration => {
                   require.resolve('@babel/plugin-proposal-class-properties'),
                   require.resolve('@babel/plugin-syntax-dynamic-import'),
                   require.resolve('babel-plugin-macros'),
+                  !isServer && dev && require.resolve('react-hot-loader/babel'),
                 ].filter(Boolean),
                 // This is a feature of `babel-loader` for webpack (not Babel itself).
                 // It enables caching results in ./node_modules/.cache/babel-loader/
