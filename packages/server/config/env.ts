@@ -84,11 +84,10 @@ function getClientEnvironment({ isServer = false, worker = false } = {}) {
       return env
     }, {}),
     'process.browser': JSON.stringify(!isServer),
-    // TODO: find workaround so this doesn't affect the service worker
     // Allow browser-only and server-only code to be eliminated
-    /*'typeof window': JSON.stringify(
+    'typeof window': JSON.stringify(
       isServer || worker ? 'undefined' : 'object'
-    ),*/
+    ),
   }
 
   return { raw, stringified }

@@ -95,6 +95,36 @@ const getBaseWebpackConfig = (options?: Options): Configuration => {
 
   const externals = isServer ? nodeExternals() : undefined
 
+  const baseBabelOptions = {
+    babelrc: false,
+    presets: [
+      require.resolve('@babel/preset-env'),
+      require.resolve('@babel/preset-typescript'),
+    ],
+    plugins: [
+      [
+        require.resolve('babel-plugin-named-asset-import'),
+        {
+          loaderMap: {
+            svg: {
+              ReactComponent: '@svgr/webpack?-prettier,-svgo![path]',
+            },
+          },
+        },
+      ],
+      require.resolve('@babel/plugin-transform-runtime'),
+      require.resolve('@babel/plugin-proposal-class-properties'),
+      require.resolve('@babel/plugin-syntax-dynamic-import'),
+      require.resolve('babel-plugin-macros'),
+    ],
+    // This is a feature of `babel-loader` for webpack (not Babel itself).
+    // It enables caching results in ./node_modules/.cache/babel-loader/
+    // directory for faster rebuilds.
+    cacheDirectory: true,
+    // Don't waste time on Gzipping the cache
+    cacheCompression: false,
+  }
+
   return {
     mode: webpackMode,
     name: isServer ? 'server' : 'client',
@@ -160,40 +190,25 @@ const getBaseWebpackConfig = (options?: Options): Configuration => {
               },
             },
             {
-              test: /\.(js|mjs|jsx|ts|tsx)$/,
+              test: /\.(js|mjs|ts)$/,
+              include: paths.appSrc,
+              loader: require.resolve('babel-loader'),
+              options: baseBabelOptions,
+            },
+            {
+              test: /\.(jsx|tsx)$/,
               include: paths.appSrc,
               loader: require.resolve('babel-loader'),
               options: {
-                babelrc: false,
+                ...baseBabelOptions,
                 presets: [
-                  require.resolve('@babel/preset-env'),
+                  ...baseBabelOptions.presets,
                   require.resolve('@babel/preset-react'),
-                  require.resolve('@babel/preset-typescript'),
                 ],
                 plugins: [
-                  [
-                    require.resolve('babel-plugin-named-asset-import'),
-                    {
-                      loaderMap: {
-                        svg: {
-                          ReactComponent:
-                            '@svgr/webpack?-prettier,-svgo![path]',
-                        },
-                      },
-                    },
-                  ],
-                  require.resolve('@babel/plugin-transform-runtime'),
-                  require.resolve('@babel/plugin-proposal-class-properties'),
-                  require.resolve('@babel/plugin-syntax-dynamic-import'),
-                  require.resolve('babel-plugin-macros'),
+                  ...baseBabelOptions.plugins,
                   !isServer && dev && require.resolve('react-hot-loader/babel'),
                 ].filter(Boolean),
-                // This is a feature of `babel-loader` for webpack (not Babel itself).
-                // It enables caching results in ./node_modules/.cache/babel-loader/
-                // directory for faster rebuilds.
-                cacheDirectory: true,
-                // Don't waste time on Gzipping the cache
-                cacheCompression: false,
               },
             },
             {
