@@ -62,7 +62,8 @@ interface Env {
   [key: string]: string
 }
 
-function getClientEnvironment(isServer = false) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function getClientEnvironment({ isServer = false, worker = false } = {}) {
   const baseEnv: Env = {
     // Useful for determining whether we’re running in production mode.
     // Most importantly, it switches React into the correct mode.
@@ -85,7 +86,9 @@ function getClientEnvironment(isServer = false) {
     'process.browser': JSON.stringify(!isServer),
     // TODO: find workaround so this doesn't affect the service worker
     // Allow browser-only and server-only code to be eliminated
-    //'typeof window': JSON.stringify(isServer ? 'undefined' : 'object'),
+    /*'typeof window': JSON.stringify(
+      isServer || worker ? 'undefined' : 'object'
+    ),*/
   }
 
   return { raw, stringified }
