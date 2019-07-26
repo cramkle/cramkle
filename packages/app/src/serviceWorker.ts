@@ -1,6 +1,8 @@
 /* env: webworker */
 
 import { precacheAndRoute } from 'workbox-precaching'
+import { Plugin as CacheableResponsePlugin } from 'workbox-cacheable-response'
+import { Plugin as ExpirationPlugin } from 'workbox-expiration'
 import {
   NetworkFirst,
   StaleWhileRevalidate,
@@ -37,14 +39,16 @@ registerRoute(
   /^https:\/\/fonts\.gstatic\.com/,
   new CacheFirst({
     cacheName: 'google-fonts-webfonts',
-    cacheableResponse: {
-      statuses: [0, 200],
-    },
-    expiration: {
-      maxEntries: 20,
-      // cache for a year
-      maxAgeSeconds: 60 * 60 * 24 * 365,
-    },
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [0, 200],
+      }),
+      new ExpirationPlugin({
+        maxEntries: 20,
+        // cache for a year
+        maxAgeSeconds: 60 * 60 * 24 * 365,
+      }),
+    ],
   }).handle
 )
 
@@ -53,11 +57,13 @@ registerRoute(
   IMAGE_REGEX,
   new CacheFirst({
     cacheName: 'images',
-    expiration: {
-      maxEntries: 60,
-      // cache for 30 days
-      maxAgeSeconds: 60 * 60 * 24 * 30,
-    },
+    plugins: [
+      new ExpirationPlugin({
+        maxEntries: 60,
+        // cache for 30 days
+        maxAgeSeconds: 60 * 60 * 24 * 30,
+      }),
+    ],
   }).handle
 )
 
