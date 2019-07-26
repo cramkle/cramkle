@@ -34,6 +34,7 @@ const appStartJs = resolveModule(resolveApp, 'src/start')
 const appServiceWorker = resolveModule(resolveApp, 'src/serviceWorker')
 const appPackageJson = resolveApp('package.json')
 const appSrc = resolveApp('src')
+const appTsConfig = resolveApp('tsconfig.json')
 const yarnLockFile = resolveApp('yarn.lock')
 const appNodeModules = resolveApp('node_modules')
 
@@ -49,6 +50,7 @@ export {
   appServiceWorker,
   appPackageJson,
   appSrc,
+  appTsConfig,
   yarnLockFile,
   appNodeModules,
   moduleFileExtensions,
