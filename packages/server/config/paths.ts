@@ -31,6 +31,7 @@ const appDistPublic = path.join(distFolder, 'public')
 const appPublic = resolveApp('public')
 const appIndexJs = resolveModule(resolveApp, 'src/index')
 const appStartJs = resolveModule(resolveApp, 'src/start')
+const appServiceWorker = resolveModule(resolveApp, 'src/serviceWorker')
 const appPackageJson = resolveApp('package.json')
 const appSrc = resolveApp('src')
 const yarnLockFile = resolveApp('yarn.lock')
@@ -45,6 +46,7 @@ export {
   appPublic,
   appIndexJs,
   appStartJs,
+  appServiceWorker,
   appPackageJson,
   appSrc,
   yarnLockFile,

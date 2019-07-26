@@ -68,6 +68,9 @@
     "tachyons-sass": "^4.9.5",
     "universal-cookie": "^4.0.0",
     "uuid": "^3.3.2",
+    "workbox-precaching": "^5.0.0-alpha.1",
+    "workbox-routing": "^5.0.0-alpha.1",
+    "workbox-strategies": "^5.0.0-alpha.1",
     "yup": "^0.27.0"
   },
   "devDependencies": {
