@@ -8,6 +8,7 @@ import ModuleScopePlugin from 'react-dev-utils/ModuleScopePlugin'
 import ManifestPlugin from 'webpack-manifest-plugin'
 // @ts-ignore
 import ModuleNotFoundPlugin from 'react-dev-utils/ModuleNotFoundPlugin'
+import ForkTsCheckerPlugin from 'fork-ts-checker-webpack-plugin'
 import nodeExternals from 'webpack-node-externals'
 
 import ChunkNamesPlugin from './webpack/plugins/ChunkNamesPlugin'
@@ -328,6 +329,27 @@ const getBaseWebpackConfig = (options?: Options): Configuration => {
       // makes the discovery automatic so you don't have to restart.
       // See https://github.com/facebook/create-react-app/issues/186
       dev && new WatchMissingNodeModulesPlugin(paths.appNodeModules),
+      !isServer &&
+        new ForkTsCheckerPlugin({
+          typescript: require.resolve('typescript', {
+            paths: [paths.appNodeModules],
+          }),
+          async: dev,
+          useTypescriptIncrementalApi: true,
+          checkSyntacticErrors: true,
+          tsconfig: paths.appTsConfig,
+          reportFiles: [
+            '**',
+            '!**/__tests__/**',
+            '!**/?(*.)(spec|test).*',
+            '!**/src/setupTests.ts',
+            '!**/src/setupTestsAfterEnv.ts',
+          ],
+          compilerOptions: { isolatedModules: true, noEmit: true },
+          watch: paths.appSrc,
+          silent: true,
+          formatter: 'codeframe',
+        }),
     ].filter(Boolean),
     node: !isServer && {
       dgram: 'empty',
