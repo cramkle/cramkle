@@ -22,63 +22,72 @@ declare global {
 
 precacheAndRoute(self.__WB_MANIFEST, {})
 
-const networkFirstHandler = new NetworkFirst().handle
+const networkFirstHandler = new NetworkFirst()
 
 // api
-registerRoute(/_c/, networkFirstHandler)
+registerRoute(/_c/, networkFirstHandler.handle.bind(networkFirstHandler))
 
 // google fonts
+const googleStylesheetsHandler = new StaleWhileRevalidate({
+  cacheName: 'google-fonts-stylesheets',
+})
+
 registerRoute(
   /^https:\/\/fonts\.googleapis\.com/,
-  new StaleWhileRevalidate({
-    cacheName: 'google-fonts-stylesheets',
-  }).handle
+  googleStylesheetsHandler.handle.bind(googleStylesheetsHandler)
 )
+
+const googleWebfontsHandler = new CacheFirst({
+  cacheName: 'google-fonts-webfonts',
+  plugins: [
+    new CacheableResponsePlugin({
+      statuses: [0, 200],
+    }),
+    new ExpirationPlugin({
+      maxEntries: 20,
+      // cache for a year
+      maxAgeSeconds: 60 * 60 * 24 * 365,
+    }),
+  ],
+})
 
 registerRoute(
   /^https:\/\/fonts\.gstatic\.com/,
-  new CacheFirst({
-    cacheName: 'google-fonts-webfonts',
-    plugins: [
-      new CacheableResponsePlugin({
-        statuses: [0, 200],
-      }),
-      new ExpirationPlugin({
-        maxEntries: 20,
-        // cache for a year
-        maxAgeSeconds: 60 * 60 * 24 * 365,
-      }),
-    ],
-  }).handle
+  googleWebfontsHandler.handle.bind(googleWebfontsHandler)
 )
 
 // image assets
-registerRoute(
-  IMAGE_REGEX,
-  new CacheFirst({
-    cacheName: 'images',
-    plugins: [
-      new ExpirationPlugin({
-        maxEntries: 60,
-        // cache for 30 days
-        maxAgeSeconds: 60 * 60 * 24 * 30,
-      }),
-    ],
-  }).handle
-)
+const imagesHandler = new CacheFirst({
+  cacheName: 'images',
+  plugins: [
+    new ExpirationPlugin({
+      maxEntries: 60,
+      // cache for 30 days
+      maxAgeSeconds: 60 * 60 * 24 * 30,
+    }),
+  ],
+})
+
+registerRoute(IMAGE_REGEX, imagesHandler.handle.bind(imagesHandler))
 
 // javascript and css
-registerRoute(
-  JS_CSS_REGEX,
-  new (process.env.NODE_ENV === 'development'
-    ? NetworkOnly
-    : StaleWhileRevalidate)({
-    cacheName: 'static-resources',
-  }).handle
-)
+const assetsHandler = new (process.env.NODE_ENV === 'development'
+  ? NetworkOnly
+  : StaleWhileRevalidate)({
+  cacheName: 'static-resources',
+})
+registerRoute(JS_CSS_REGEX, assetsHandler.handle.bind(assetsHandler))
 
 if (process.env.NODE_ENV === 'development') {
-  registerRoute(/(__webpack_hmr|hot-update)/, new NetworkOnly().handle)
+  const hmrHandler = new NetworkOnly()
+
+  registerRoute(
+    /(__webpack_hmr|hot-update)/,
+    hmrHandler.handle.bind(hmrHandler)
+  )
 } else {
-  registerRoute(/^https:\/\/(www\.)?cramkle\.com/, networkFirstHandler)
+  registerRoute(
+    /^https:\/\/(www\.)?cramkle\.com/,
+    networkFirstHandler.handle.bind(networkFirstHandler)
+  )
 }
