@@ -6,6 +6,7 @@ type WebpackState =
   | { loading: true }
   | {
       loading: false
+      typeChecking: boolean
       errors: string[] | null
       warnings: string[] | null
     }
@@ -39,9 +40,9 @@ logStore.subscribe(state => {
   }
 
   if (state.bootstrap === true) {
-    Log.info('starting the development server')
+    Log.wait('starting the development server')
     if (state.port !== null) {
-      Log.wait(`waiting on http://localhost:${state.port}`)
+      Log.info(`waiting on http://localhost:${state.port}`)
     }
     return
   }
@@ -51,16 +52,23 @@ logStore.subscribe(state => {
     return
   }
 
-  if (state.errors) {
+  if (state.errors && state.errors.length > 0) {
     Log.error(state.errors[0])
     return
   }
 
-  if (state.warnings) {
+  const appUrl = `http://localhost:${state.port}`
+
+  if (state.warnings && state.warnings.length > 0) {
     Log.warn(state.warnings.join('\n\n'))
-    Log.info('ready')
+    Log.info(`ready on ${appUrl}`)
     return
   }
 
-  Log.ready('compiled successfully')
+  if (state.typeChecking) {
+    Log.info('bundled successfully, waiting for type checking')
+    return
+  }
+
+  Log.ready(`compiled successfully - ready on ${appUrl}`)
 })
