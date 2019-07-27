@@ -116,13 +116,15 @@ export function watchCompilers(client: Compiler, server: Compiler) {
       const messageFormatter = createCodeframeFormatter({})
       let resolveMessagesPromise: (diagnostics: CompilerDiagnostics) => void
 
-      compiler.hooks.beforeCompile.tap(`TypecheckStart-${key}`, () => {
+      const tsCheckerHooks = ForkTsCheckerPlugin.getCompilerHooks(compiler)
+
+      tsCheckerHooks.serviceBeforeStart.tap(`TypecheckStart-${key}`, () => {
         tsMessagesPromise = new Promise(resolve => {
           resolveMessagesPromise = resolve
         })
       })
 
-      ForkTsCheckerPlugin.getCompilerHooks(compiler).receive.tap(
+      tsCheckerHooks.receive.tap(
         `TypecheckReceived-${key}`,
         (diagnostics: NormalizedMessage[], lints: NormalizedMessage[]) => {
           const messages = [...diagnostics, ...lints]
