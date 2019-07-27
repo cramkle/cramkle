@@ -1,5 +1,8 @@
 import createStore from 'unistore'
 import { Compiler } from 'webpack'
+import ForkTsCheckerPlugin from 'fork-ts-checker-webpack-plugin'
+import { NormalizedMessage } from 'fork-ts-checker-webpack-plugin/lib/NormalizedMessage'
+import { createCodeframeFormatter } from 'fork-ts-checker-webpack-plugin/lib/formatter/codeframeFormatter'
 
 import { LoggerStoreStatus, logStore } from './logger'
 
@@ -12,6 +15,7 @@ type WebpackStatus =
   | { loading: true }
   | ({
       loading: false
+      typeChecking: boolean
     } & CompilerDiagnostics)
 
 interface BuildStatusStore {
@@ -22,8 +26,9 @@ interface BuildStatusStore {
 enum WebpackStatusPhase {
   COMPILING = 1,
   COMPILED_WITH_ERRORS = 2,
-  COMPILED_WITH_WARNINGS = 3,
-  COMPILED = 4,
+  TYPE_CHECKING = 3,
+  COMPILED_WITH_WARNINGS = 4,
+  COMPILED = 5,
 }
 
 function getWebpackStatusPhase(status: WebpackStatus): WebpackStatusPhase {
@@ -31,6 +36,8 @@ function getWebpackStatusPhase(status: WebpackStatus): WebpackStatusPhase {
     return WebpackStatusPhase.COMPILING
   } else if (status.errors) {
     return WebpackStatusPhase.COMPILED_WITH_ERRORS
+  } else if (status.typeChecking) {
+    return WebpackStatusPhase.TYPE_CHECKING
   } else if (status.warnings) {
     return WebpackStatusPhase.COMPILED_WITH_WARNINGS
   }
@@ -61,14 +68,26 @@ buildStore.subscribe(state => {
       loading: true,
     }
   } else {
-    let { errors, warnings } = status
+    let { errors, warnings, typeChecking } = status
 
-    nextState = {
-      bootstrap: false,
-      port,
-      loading: false,
-      errors,
-      warnings,
+    if (errors == null && typeChecking) {
+      nextState = {
+        bootstrap: false,
+        port,
+        typeChecking: true,
+        loading: false,
+        errors,
+        warnings,
+      }
+    } else {
+      nextState = {
+        bootstrap: false,
+        port,
+        loading: false,
+        typeChecking: false,
+        errors,
+        warnings,
+      }
     }
   }
 
@@ -84,11 +103,46 @@ export function watchCompilers(client: Compiler, server: Compiler) {
   function tapCompiler(
     key: string,
     compiler: Compiler,
+    enableTypecheck: boolean,
     onEvent: (status: WebpackStatus) => void
   ) {
+    let tsMessagesPromise: Promise<CompilerDiagnostics>
+
     compiler.hooks.invalid.tap(`BuildInvalid-${key}`, () => {
       onEvent({ loading: true })
     })
+
+    if (enableTypecheck) {
+      const messageFormatter = createCodeframeFormatter({})
+      let resolveMessagesPromise: (diagnostics: CompilerDiagnostics) => void
+
+      compiler.hooks.beforeCompile.tap(`TypecheckStart-${key}`, () => {
+        tsMessagesPromise = new Promise(resolve => {
+          resolveMessagesPromise = resolve
+        })
+      })
+
+      ForkTsCheckerPlugin.getCompilerHooks(compiler).receive.tap(
+        `TypecheckReceived-${key}`,
+        (diagnostics: NormalizedMessage[], lints: NormalizedMessage[]) => {
+          const messages = [...diagnostics, ...lints]
+          const format = (msg: NormalizedMessage) => messageFormatter(msg, true)
+
+          const errors = messages
+            .filter(msg => msg.severity === 'error')
+            .map(format)
+
+          const warnings = messages
+            .filter(msg => msg.severity === 'warning')
+            .map(format)
+
+          resolveMessagesPromise({
+            errors,
+            warnings,
+          })
+        }
+      )
+    }
 
     compiler.hooks.done.tap(`BuildDone-${key}`, (stats: any) => {
       const { errors, warnings } = stats.toJson({
@@ -104,14 +158,39 @@ export function watchCompilers(client: Compiler, server: Compiler) {
         loading: false,
         errors: hasErrors ? errors : null,
         warnings: hasWarnings ? warnings : null,
+        typeChecking: enableTypecheck,
       })
+
+      const typePromise = tsMessagesPromise
+
+      if (!hasErrors && typePromise) {
+        tsMessagesPromise.then(typeMessages => {
+          if (typePromise !== tsMessagesPromise) {
+            // this is a promise from a previous build, so we
+            // shouldn't care about this
+            return
+          }
+
+          stats.compilation.errors.push(...(typeMessages.errors || []))
+          stats.compilation.warnings.push(...(typeMessages.warnings || []))
+
+          onEvent({
+            loading: false,
+            typeChecking: false,
+            errors: typeMessages.errors,
+            warnings: hasWarnings
+              ? [...warnings, ...(typeMessages.warnings || [])]
+              : typeMessages.warnings,
+          })
+        })
+      }
     })
   }
 
-  tapCompiler('client', client, status =>
+  tapCompiler('client', client, true, status =>
     buildStore.setState({ client: status })
   )
-  tapCompiler('server', server, status =>
+  tapCompiler('server', server, false, status =>
     buildStore.setState({ server: status })
   )
 }

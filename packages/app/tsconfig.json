@@ -4,5 +4,6 @@
     "target": "es5",
     "lib": ["es6", "dom"],
     "jsx": "react"
-  }
+  },
+  "exclude": ["node_modules", "jest/**/*"]
 }
