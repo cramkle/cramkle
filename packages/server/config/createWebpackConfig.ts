@@ -335,7 +335,6 @@ const getBaseWebpackConfig = (options?: Options): Configuration => {
             paths: [paths.appNodeModules],
           }),
           async: dev,
-          eslint: true,
           useTypescriptIncrementalApi: true,
           checkSyntacticErrors: true,
           tsconfig: paths.appTsConfig,
