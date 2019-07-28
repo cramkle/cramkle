@@ -22,13 +22,13 @@ interface RenderOptions {
   requestLanguage: string
 }
 
-const render = async ({
+const render = ({
   requestUrl,
   requestLanguage,
   userAgent,
   requestHost,
   cookie,
-}: RenderOptions): Promise<RenderResult | void> => {
+}: RenderOptions): Promise<RenderResult> | void => {
   let language: string
 
   if (requestLanguage) {
@@ -72,36 +72,33 @@ const render = async ({
 
     ReactDOM[method](<BrowserRouter>{root}</BrowserRouter>, elem)
   } else {
-    // use dynamic import here to avoid placing these
-    // dependencies in the client bundle.
-    const [
-      { getDataFromTree },
-      { renderToString },
-      { StaticRouter },
-    ] = await Promise.all([
-      import('react-apollo'),
-      import('react-dom/server'),
-      import('react-router-dom'),
-    ])
+    const renderWithData = async () => {
+      // use dynamic import here to avoid placing these
+      // dependencies in the client bundle.
+      const [{ renderToStringWithData }, { StaticRouter }] = await Promise.all([
+        import('react-apollo'),
+        import('react-router-dom'),
+      ])
 
-    const routerContext = {}
+      const routerContext = {}
 
-    const rootContainer = (
-      <StaticRouter context={routerContext} location={requestUrl}>
-        {root}
-      </StaticRouter>
-    )
+      const rootContainer = (
+        <StaticRouter context={routerContext} location={requestUrl}>
+          {root}
+        </StaticRouter>
+      )
 
-    await getDataFromTree(rootContainer)
+      const markup = await renderToStringWithData(rootContainer)
+      const state = client.extract()
 
-    const markup = renderToString(rootContainer)
-    const state = client.extract()
-
-    return {
-      markup,
-      routerContext,
-      state,
+      return {
+        markup,
+        routerContext,
+        state,
+      }
     }
+
+    return renderWithData()
   }
 }
 
