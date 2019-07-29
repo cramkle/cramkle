@@ -1,5 +1,5 @@
 import { ContentState, SelectionState } from 'draft-js'
-import { MentionableEntry } from '../../model/MentionableEntry'
+import { TaggableEntry } from './TaggableEntry'
 
 const PUNCTUATION_REGEX =
   '\\.,\\+\\*\\?\\$\\@\\|#{}\\(\\)\\^\\-\\[\\]\\\\/!%\'"~=<>_:;'
@@ -7,7 +7,7 @@ const AT_SIGN = ['@', '\\uff20'].join('')
 const AT_OR_PUNCTUATION = '[^' + AT_SIGN + PUNCTUATION_REGEX + '\\s]'
 const END = '(?:\\.[ |$]| |[' + PUNCTUATION_REGEX + ']|)'
 
-const MENTION_REGEX = new RegExp(
+const TAG_REGEX = new RegExp(
   '(?:^|\\s|[(\\/])([' +
     AT_SIGN +
     ']((?:' +
@@ -16,37 +16,34 @@ const MENTION_REGEX = new RegExp(
     '){0,20}))$'
 )
 
-export default function searchMentions(
-  source: MentionableEntry[],
+export default function searchTags(
+  source: TaggableEntry[],
   selection: SelectionState,
   contentState: ContentState,
-  callback: (
-    mentionableEntries: MentionableEntry[],
-    characterOffset: number
-  ) => void
+  callback: (taggableEntries: TaggableEntry[], characterOffset: number) => void
 ) {
   const anchorKey = selection.getAnchorKey()
   const anchorOffset = selection.getAnchorOffset()
   const block = contentState.getBlockForKey(anchorKey)
   const text = block.getText().slice(0, anchorOffset)
 
-  const match = MENTION_REGEX.exec(text)
+  const match = TAG_REGEX.exec(text)
 
   if (match !== null) {
     const matchStr = match[2].toLowerCase()
     const offset = match[1].length
 
-    const mentionableEntries = source.filter(({ name }) =>
+    const taggableEntries = source.filter(({ name }) =>
       name.toLowerCase().includes(matchStr)
     )
 
-    mentionableEntries.sort(
+    taggableEntries.sort(
       (a, b) =>
         matchStr.indexOf(b.name.toLowerCase()) -
         matchStr.indexOf(a.name.toLowerCase())
     )
 
-    callback(mentionableEntries, offset)
+    callback(taggableEntries, offset)
   } else {
     callback(null, 0)
   }

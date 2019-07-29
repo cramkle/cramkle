@@ -8,44 +8,44 @@ import {
 import * as KeyCode from 'keycode-js'
 import React, { useEffect, useReducer, useCallback, useRef } from 'react'
 
-import MentionsPopup from './MentionsPopup'
-import searchMentions from './searchMentions'
-import replaceMentionInEditorState from './replaceMentionInEditorState'
-import { MentionableEntry } from '../../model/MentionableEntry'
+import TagsPopup from './TagsPopup'
+import searchTags from './searchTags'
+import replaceTagInEditorState from './replaceTagInEditorState'
+import { TaggableEntry } from './TaggableEntry'
 
 interface Props extends Omit<EditorProps, 'keyBindingFn' | 'handleKeyCommand'> {
-  mentionSource: MentionableEntry[]
+  tagSource: TaggableEntry[]
   autoHighlight?: boolean
   autoUpdateHighlight?: boolean
 }
 
 interface State {
-  mentionableEntries: MentionableEntry[]
-  highlightedMentionable: MentionableEntry
+  visibleTagEntries: TaggableEntry[]
+  highlightedTag: TaggableEntry
   characterOffset: number
 }
 
 type Action =
   | { type: 'reset' }
   | ({ type: 'update' } & State)
-  | { type: 'update_highlighted'; highlightedMentionable: MentionableEntry }
+  | { type: 'update_highlighted'; highlightedTag: TaggableEntry }
 
 const initialState: State = {
-  mentionableEntries: [],
-  highlightedMentionable: null,
+  visibleTagEntries: [],
+  highlightedTag: null,
   characterOffset: 0,
 }
 
-const reducer = (state: State, action: Action) => {
+const reducer = (state: State, action: Action): State => {
   switch (action.type) {
     case 'update':
       return {
-        highlightedMentionable: action.highlightedMentionable,
-        mentionableEntries: action.mentionableEntries,
+        highlightedTag: action.highlightedTag,
+        visibleTagEntries: action.visibleTagEntries,
         characterOffset: action.characterOffset,
       }
     case 'update_highlighted':
-      return { ...state, highlightedMentionable: action.highlightedMentionable }
+      return { ...state, highlightedTag: action.highlightedTag }
     case 'reset':
       return initialState
     default:
@@ -53,8 +53,8 @@ const reducer = (state: State, action: Action) => {
   }
 }
 
-const MentionsEditor: React.FunctionComponent<Props> = ({
-  mentionSource,
+const TagEditor: React.FunctionComponent<Props> = ({
+  tagSource,
   editorState,
   autoHighlight = true,
   autoUpdateHighlight = true,
@@ -65,37 +65,37 @@ const MentionsEditor: React.FunctionComponent<Props> = ({
   ...props
 }) => {
   const [
-    { highlightedMentionable, mentionableEntries, characterOffset },
+    { highlightedTag, visibleTagEntries, characterOffset },
     dispatch,
   ] = useReducer(reducer, initialState)
 
   const prevEditorState = useRef(editorState)
 
-  const onShowMentions = useCallback(
-    (mentionables, offset) => {
-      if (mentionables === null) {
+  const onShowTags = useCallback(
+    (taggables, offset) => {
+      if (taggables === null) {
         dispatch({ type: 'reset' })
         return
       }
 
       let highlighted = null
 
-      if (!highlightedMentionable || autoHighlight) {
+      if (!highlightedTag || autoHighlight) {
         if (autoUpdateHighlight) {
-          highlighted = mentionables[0]
+          highlighted = taggables[0]
         } else {
-          highlighted = highlightedMentionable
+          highlighted = highlightedTag
         }
       }
 
       dispatch({
         type: 'update',
-        highlightedMentionable: highlighted,
-        mentionableEntries: mentionables,
+        highlightedTag: highlighted,
+        visibleTagEntries: taggables,
         characterOffset: offset,
       })
     },
-    [autoHighlight, autoUpdateHighlight, highlightedMentionable]
+    [autoHighlight, autoUpdateHighlight, highlightedTag]
   )
 
   useEffect(() => {
@@ -113,49 +113,49 @@ const MentionsEditor: React.FunctionComponent<Props> = ({
 
     const contentState = editorState.getCurrentContent()
 
-    searchMentions(mentionSource, selection, contentState, onShowMentions)
-  }, [editorState, mentionSource, onShowMentions])
+    searchTags(tagSource, selection, contentState, onShowTags)
+  }, [editorState, tagSource, onShowTags])
 
-  const handleMentionHighlight = useCallback((mention: MentionableEntry) => {
-    dispatch({ type: 'update_highlighted', highlightedMentionable: mention })
+  const handleTagHighlight = useCallback((tag: TaggableEntry) => {
+    dispatch({ type: 'update_highlighted', highlightedTag: tag })
   }, [])
 
   const moveSelectionUp = () => {
-    if (!mentionableEntries.length) {
+    if (!visibleTagEntries.length) {
       return
     }
 
-    const length = mentionableEntries.length
-    const selectedIndex = mentionableEntries.indexOf(highlightedMentionable)
+    const length = visibleTagEntries.length
+    const selectedIndex = visibleTagEntries.indexOf(highlightedTag)
 
     let highlighted = null
 
-    if (!highlightedMentionable) {
-      highlighted = mentionableEntries[length - 1]
+    if (!highlightedTag) {
+      highlighted = visibleTagEntries[length - 1]
     } else if (selectedIndex > 0) {
-      highlighted = mentionableEntries[selectedIndex - 1]
+      highlighted = visibleTagEntries[selectedIndex - 1]
     }
 
-    handleMentionHighlight(highlighted)
+    handleTagHighlight(highlighted)
   }
 
   const moveSelectionDown = () => {
-    if (!mentionableEntries.length) {
+    if (!visibleTagEntries.length) {
       return
     }
 
-    const length = mentionableEntries.length
-    const selectedIndex = mentionableEntries.indexOf(highlightedMentionable)
+    const length = visibleTagEntries.length
+    const selectedIndex = visibleTagEntries.indexOf(highlightedTag)
 
     let highlighted = null
 
-    if (!highlightedMentionable) {
-      highlighted = mentionableEntries[0]
+    if (!highlightedTag) {
+      highlighted = visibleTagEntries[0]
     } else if (selectedIndex < length - 1) {
-      highlighted = mentionableEntries[selectedIndex + 1]
+      highlighted = visibleTagEntries[selectedIndex + 1]
     }
 
-    handleMentionHighlight(highlighted)
+    handleTagHighlight(highlighted)
   }
 
   const handleBlur = (evt: React.FocusEvent) => {
@@ -163,15 +163,15 @@ const MentionsEditor: React.FunctionComponent<Props> = ({
     onBlur && onBlur(evt)
   }
 
-  const handleMentionSelect = useCallback(
-    (mention: MentionableEntry) => {
-      const editorWithMention = replaceMentionInEditorState(
-        mention,
+  const handleTagSelect = useCallback(
+    (tag: TaggableEntry) => {
+      const editorWithTags = replaceTagInEditorState(
+        tag,
         editorState,
         characterOffset
       )
 
-      onChange(editorWithMention)
+      onChange(editorWithTags)
       dispatch({ type: 'reset' })
     },
     [characterOffset, editorState, onChange]
@@ -181,8 +181,8 @@ const MentionsEditor: React.FunctionComponent<Props> = ({
     evt: React.KeyboardEvent,
     editorState: EditorState
   ): DraftHandleValue => {
-    if (highlightedMentionable) {
-      handleMentionSelect(highlightedMentionable)
+    if (highlightedTag) {
+      handleTagSelect(highlightedTag)
       return 'handled'
     } else if (handleContentReturn) {
       return handleContentReturn(evt, editorState)
@@ -190,10 +190,10 @@ const MentionsEditor: React.FunctionComponent<Props> = ({
     return 'not-handled'
   }
 
-  const showingMentions = !!(mentionableEntries && mentionableEntries.length)
+  const showingTags = !!(visibleTagEntries && visibleTagEntries.length)
 
   const keyBinder = (e: React.KeyboardEvent) => {
-    if (showingMentions) {
+    if (showingTags) {
       if (e.keyCode === KeyCode.KEY_TAB) {
         return 'handle-autocomplete'
       } else if (e.keyCode === KeyCode.KEY_ESCAPE) {
@@ -211,13 +211,13 @@ const MentionsEditor: React.FunctionComponent<Props> = ({
   const handleKeyCommand = (command: string): DraftHandleValue => {
     switch (command) {
       case 'handle-autocomplete':
-        if (highlightedMentionable) {
-          handleMentionSelect(highlightedMentionable)
+        if (highlightedTag) {
+          handleTagSelect(highlightedTag)
         }
 
         return 'handled'
       case 'cancel-autocomplete':
-        if (mentionableEntries.length) {
+        if (visibleTagEntries.length) {
           dispatch({ type: 'reset' })
         }
         return 'handled'
@@ -237,7 +237,7 @@ const MentionsEditor: React.FunctionComponent<Props> = ({
       <Editor
         {...props}
         ariaAutoComplete={ariaAutoComplete}
-        ariaExpanded={showingMentions}
+        ariaExpanded={showingTags}
         role="combobox"
         spellCheck
         editorState={editorState}
@@ -247,16 +247,16 @@ const MentionsEditor: React.FunctionComponent<Props> = ({
         handleKeyCommand={handleKeyCommand}
         keyBindingFn={keyBinder}
       />
-      <MentionsPopup
-        mentionableEntries={mentionableEntries}
+      <TagsPopup
+        tagEntries={visibleTagEntries}
         selection={editorState.getSelection()}
-        onMentionSelect={handleMentionSelect}
-        onMentionHighlight={handleMentionHighlight}
+        onTagSelect={handleTagSelect}
+        onTagHighlight={handleTagHighlight}
         characterOffset={characterOffset}
-        highlightedMentionable={highlightedMentionable}
+        highlightedTag={highlightedTag}
       />
     </>
   )
 }
 
-export default MentionsEditor
+export default TagEditor

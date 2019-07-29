@@ -1,4 +1,4 @@
-.mention::before {
+.tag::before {
   position: absolute;
   content: ' ';
   top: 0;

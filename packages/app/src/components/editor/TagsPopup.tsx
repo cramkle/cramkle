@@ -1,25 +1,25 @@
 import { SelectionState } from 'draft-js'
 import React from 'react'
 
-import MentionSpan from './MentionSpan'
-import { findMentionEntities } from './strategies'
+import TagSpan from './TagSpan'
+import { findTagEntities } from './strategies'
 import getSelectionRect from './getSelectionRect'
 import Portal from '../Portal'
 import TypeaheadView from '../views/TypeaheadView'
-import { MentionableEntry } from '../../model/MentionableEntry'
+import { TaggableEntry } from './TaggableEntry'
 
 export const decorators = [
   {
-    strategy: findMentionEntities,
-    component: MentionSpan,
+    strategy: findTagEntities,
+    component: TagSpan,
   },
 ]
 
 interface Props {
-  mentionableEntries: MentionableEntry[]
-  highlightedMentionable?: MentionableEntry
-  onMentionSelect: (mention: MentionableEntry) => void
-  onMentionHighlight: (mention: MentionableEntry) => void
+  tagEntries: TaggableEntry[]
+  highlightedTag?: TaggableEntry
+  onTagSelect: (tag: TaggableEntry) => void
+  onTagHighlight: (tag: TaggableEntry) => void
   selection: SelectionState
   offset?: number
   characterOffset: number
@@ -81,11 +81,11 @@ const getStyleForSelectionRect = (
   }
 }
 
-const MentionsPopup: React.FunctionComponent<Props> = ({
-  onMentionSelect,
-  onMentionHighlight,
-  mentionableEntries,
-  highlightedMentionable,
+const TagsPopup: React.FunctionComponent<Props> = ({
+  onTagSelect,
+  onTagHighlight,
+  tagEntries,
+  highlightedTag,
   offset = 5,
   characterOffset,
   selection,
@@ -93,9 +93,7 @@ const MentionsPopup: React.FunctionComponent<Props> = ({
   const selectionRect = getSelectionRect(characterOffset)
 
   const show =
-    selection.isCollapsed() &&
-    selection.getHasFocus() &&
-    mentionableEntries.length
+    selection.isCollapsed() && selection.getHasFocus() && tagEntries.length
 
   if (!show) {
     return null
@@ -107,13 +105,13 @@ const MentionsPopup: React.FunctionComponent<Props> = ({
     <Portal>
       <TypeaheadView
         style={style}
-        highlightedEntry={highlightedMentionable}
-        entries={mentionableEntries}
-        onSelect={onMentionSelect}
-        onHighlight={onMentionHighlight}
+        highlightedEntry={highlightedTag}
+        entries={tagEntries}
+        onSelect={onTagSelect}
+        onHighlight={onTagHighlight}
       />
     </Portal>
   )
 }
 
-export default MentionsPopup
+export default TagsPopup

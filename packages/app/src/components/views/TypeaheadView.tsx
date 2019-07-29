@@ -1,14 +1,14 @@
 import React from 'react'
 
 import TypeaheadViewItem from './TypeaheadViewItem'
-import { MentionableEntry } from '../../model/MentionableEntry'
+import { TaggableEntry } from '../editor/TaggableEntry'
 
 interface Props {
   style?: object
-  highlightedEntry: MentionableEntry
-  entries: MentionableEntry[]
-  onSelect: (entry: MentionableEntry) => void
-  onHighlight: (entry: MentionableEntry) => void
+  highlightedEntry: TaggableEntry
+  entries: TaggableEntry[]
+  onSelect: (entry: TaggableEntry) => void
+  onHighlight: (entry: TaggableEntry) => void
 }
 
 const TypeaheadView: React.FunctionComponent<Props> = ({

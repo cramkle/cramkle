@@ -1,15 +1,15 @@
 import classNames from 'classnames'
 import React from 'react'
 
-import { MentionableEntry } from '../../model/MentionableEntry'
+import { TaggableEntry } from '../editor/TaggableEntry'
 
 import styles from './TypeaheadViewItem.css'
 
 interface Props {
   highlighted: boolean
-  entry: MentionableEntry
-  onSelect: (entry: MentionableEntry) => void
-  onHighlight: (entry: MentionableEntry) => void
+  entry: TaggableEntry
+  onSelect: (entry: TaggableEntry) => void
+  onHighlight: (entry: TaggableEntry) => void
 }
 
 const TypeaheadViewItem: React.FunctionComponent<Props> = ({

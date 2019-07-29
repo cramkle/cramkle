@@ -1,10 +1,10 @@
 import { ContentBlock, ContentState } from 'draft-js'
 
-import { MENTION_TYPE } from './constants'
+import { TAG_TYPE } from './constants'
 
 type Callback = (s: number, e: number) => void
 
-export const findMentionEntities = (
+export const findTagEntities = (
   contentBlock: ContentBlock,
   callback: Callback,
   contentState: ContentState
@@ -13,7 +13,7 @@ export const findMentionEntities = (
     const entityKey = character.getEntity()
     return (
       entityKey !== null &&
-      contentState.getEntity(entityKey).getType() === MENTION_TYPE
+      contentState.getEntity(entityKey).getType() === TAG_TYPE
     )
   }, callback)
 }

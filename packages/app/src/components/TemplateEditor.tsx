@@ -13,13 +13,13 @@ import { TabController } from 'react-tab-controller'
 
 import InlineStyleControls from './editor/InlineStyleControls'
 import BlockStyleControls from './editor/BlockStyleControls'
-import { decorators as mentionsDecorators } from './editor/MentionsPopup'
-import MentionsEditor from './editor/MentionsEditor'
+import { decorators as tagsDecorators } from './editor/TagsPopup'
+import TagEditor from './editor/TagEditor'
 import { useHints } from './HintsContext'
 import SaveTemplateButton from './SaveTemplateButton'
 import { ModelQuery_cardModel_templates_frontSide as TemplateContent } from './pages/__generated__/ModelQuery'
 
-const decorators = new CompositeDecorator(mentionsDecorators)
+const decorators = new CompositeDecorator(tagsDecorators)
 
 const TemplateEditor: React.FunctionComponent<{
   initialContentState: TemplateContent
@@ -74,8 +74,8 @@ const TemplateEditor: React.FunctionComponent<{
         </CardActions>
       )}
       <div className="pa3">
-        <MentionsEditor
-          mentionSource={fields}
+        <TagEditor
+          tagSource={fields}
           editorState={editor}
           onChange={setEditor}
           readOnly={isMobile}
