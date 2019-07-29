@@ -42,7 +42,7 @@ export const getStyleLoaders = ({
     options: {
       importLoaders: 1 + loaders.length,
       modules: cssModules,
-      exportOnlyLocals: isServer,
+      onlyLocals: isServer,
     },
   }
 
