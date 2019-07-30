@@ -51,7 +51,7 @@ const Button: React.FC<Props> = ({
 }) => {
   const ref = useRef<any>(null)
 
-  const [rippleStyle, rippleClassName] = useRipple({ ref })
+  const [rippleStyle, rippleClassName] = useRipple({ surfaceRef: ref })
 
   const classes = classNames(CSS_CLASSES.ROOT, className, rippleClassName, {
     [CSS_CLASSES.RAISED]: raised,

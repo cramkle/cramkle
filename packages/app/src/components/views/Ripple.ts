@@ -34,13 +34,15 @@ const useEventListener = (
   }, [eventName, element]) // Re-run if eventName or element changes
 }
 
-export function useRipple<T extends HTMLElement>({
-  ref,
+export function useRipple<T extends HTMLElement, U extends HTMLElement = T>({
+  surfaceRef,
+  activatorRef,
   unbounded = false,
   disabled = false,
   computeBoundingRect,
 }: {
-  ref: React.RefObject<T>
+  surfaceRef: React.RefObject<T>
+  activatorRef?: React.RefObject<U>
   unbounded?: boolean
   disabled?: boolean
   computeBoundingRect?: (surface: T) => ClientRect
@@ -62,12 +64,17 @@ export function useRipple<T extends HTMLElement>({
 
   useEffect(() => {
     let isCurrent = true
-    const surface = ref.current
+    const surface = surfaceRef.current
+    const activator = activatorRef && activatorRef.current
 
     const adapter: MDCRippleAdapter = {
       browserSupportsCssVars: () => util.supportsCssVariables(window),
       isUnbounded: () => unboundedRef.current,
       isSurfaceActive: () => {
+        if (activator) {
+          return ponyfill.matches(activator, ':active')
+        }
+
         return ponyfill.matches(surface, ':active')
       },
       isSurfaceDisabled: () => disabledRef.current,
@@ -151,8 +158,8 @@ export function useRipple<T extends HTMLElement>({
         return surface.getBoundingClientRect()
       },
       containsEventTarget: target => {
-        if (surface && target !== null) {
-          return surface.contains(target as Node)
+        if (activator && target !== null) {
+          return activator.contains(target as Node)
         }
         return false
       },
@@ -171,7 +178,7 @@ export function useRipple<T extends HTMLElement>({
       isCurrent = false
       foundationRef.current.destroy()
     }
-  }, [computeBoundingRect, ref])
+  }, [computeBoundingRect, surfaceRef, activatorRef])
 
   useEffect(() => {
     if (disabled) {
@@ -190,17 +197,19 @@ export function useRipple<T extends HTMLElement>({
     foundationRef.current.deactivate()
   }, [foundationRef])
 
-  useEventListener('focus', activateRipple, ref.current)
-  useEventListener('blur', deactivateRipple, ref.current)
+  const eventTargetRef = activatorRef || surfaceRef
 
-  useEventListener('mousedown', activateRipple, ref.current)
-  useEventListener('mouseup', deactivateRipple, ref.current)
+  useEventListener('focus', activateRipple, eventTargetRef.current)
+  useEventListener('blur', deactivateRipple, eventTargetRef.current)
 
-  useEventListener('touchstart', activateRipple, ref.current)
-  useEventListener('touchend', deactivateRipple, ref.current)
+  useEventListener('mousedown', activateRipple, eventTargetRef.current)
+  useEventListener('mouseup', deactivateRipple, eventTargetRef.current)
 
-  useEventListener('keydown', activateRipple, ref.current)
-  useEventListener('keyup', deactivateRipple, ref.current)
+  useEventListener('touchstart', activateRipple, eventTargetRef.current)
+  useEventListener('touchend', deactivateRipple, eventTargetRef.current)
+
+  useEventListener('keydown', activateRipple, eventTargetRef.current)
+  useEventListener('keyup', deactivateRipple, eventTargetRef.current)
 
   return [style, Array.from(classList).join(' ')]
 }
