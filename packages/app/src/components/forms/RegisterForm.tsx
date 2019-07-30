@@ -33,6 +33,11 @@ const REGISTER_MUTATION = gql`
   }
 `
 
+const usernameRequired = t`Username is required`
+const emailRequired = t`E-mail is required`
+const passwordRequired = t`Password is required`
+const agreementRequired = t`Agreement is required`
+
 const RegisterForm: React.FunctionComponent<
   ChildMutateProps<Props> & RouteComponentProps
 > = ({ mutate: register, title = t`Register`, history }) => {
@@ -44,7 +49,12 @@ const RegisterForm: React.FunctionComponent<
         username: '',
         email: '',
         password: '',
-        consent: false,
+        consent: [],
+      }}
+      initialErrors={{
+        username: i18n._(usernameRequired),
+        email: i18n._(emailRequired),
+        password: i18n._(passwordRequired),
       }}
       validationSchema={yup.object().shape({
         username: yup
@@ -57,23 +67,23 @@ const RegisterForm: React.FunctionComponent<
               t`Username must consist only of alphanumeric characters and underscores`
             )
           )
-          .required(i18n._(t`Username is required`)),
+          .required(i18n._(usernameRequired)),
         email: yup
           .string()
           .email()
-          .required(i18n._(t`E-mail is required`)),
+          .required(i18n._(emailRequired)),
         password: yup
           .string()
           .min(6)
-          .required(i18n._(t`Password is required`)),
+          .required(i18n._(passwordRequired)),
         consent: yup
-          .bool()
+          .array(yup.string())
           .test(
             'consent',
-            i18n._(t`Agreement is required`),
-            value => value === true
+            i18n._(agreementRequired),
+            value => value.indexOf('on') !== -1
           )
-          .required(i18n._(t`Agreement is required`)),
+          .required(i18n._(agreementRequired)),
       })}
       onSubmit={user =>
         register({ variables: user }).then(() => {
@@ -117,7 +127,7 @@ const RegisterForm: React.FunctionComponent<
             />
             {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
             <label className="flex items-center">
-              <CheckboxField name="consent" />
+              <CheckboxField name="consent" value="on" />
               <span className="ml2">
                 <Trans>
                   I agree to the{' '}
@@ -133,6 +143,7 @@ const RegisterForm: React.FunctionComponent<
                   className="w-100"
                   raised
                   disabled={!isValid || isSubmitting}
+                  data-testid="register-submit-btn"
                 >
                   <Trans>Register</Trans>
                 </Button>

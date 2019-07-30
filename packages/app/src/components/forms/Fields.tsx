@@ -42,7 +42,7 @@ export const TextInputField = <T extends HTMLElement>({
   )
 }
 
-type CheckboxFieldProps = Pick<
+type CheckboxFieldProps = { value?: string } & Pick<
   CheckboxProps,
   | 'name'
   | 'children'
@@ -55,7 +55,11 @@ type CheckboxFieldProps = Pick<
 export const CheckboxField: React.FunctionComponent<
   CheckboxFieldProps
 > = props => {
-  const [field] = useField(props.name)
+  const [field] = useField({
+    name: props.name,
+    type: 'checkbox',
+    value: props.value,
+  })
 
-  return <Checkbox checked={field.value} {...field} {...props} />
+  return <Checkbox {...field} {...props} />
 }
