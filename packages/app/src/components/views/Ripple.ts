@@ -199,8 +199,16 @@ export function useRipple<T extends HTMLElement, U extends HTMLElement = T>({
 
   const eventTargetRef = activatorRef || surfaceRef
 
-  useEventListener('focus', activateRipple, eventTargetRef.current)
-  useEventListener('blur', deactivateRipple, eventTargetRef.current)
+  const handleFocus = useCallback(() => {
+    foundationRef.current.handleFocus()
+  }, [foundationRef])
+
+  const handleBlur = useCallback(() => {
+    foundationRef.current.handleBlur()
+  }, [foundationRef])
+
+  useEventListener('focus', handleFocus, eventTargetRef.current)
+  useEventListener('blur', handleBlur, eventTargetRef.current)
 
   useEventListener('mousedown', activateRipple, eventTargetRef.current)
   useEventListener('mouseup', deactivateRipple, eventTargetRef.current)
