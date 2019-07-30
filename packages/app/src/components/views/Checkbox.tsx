@@ -1,7 +1,11 @@
 import classNames from 'classnames'
-import React, { useState, useRef, useMemo, useEffect, useCallback } from 'react'
+import React, { useState, useRef, useEffect, useCallback } from 'react'
 
-import { cssClasses, strings, numbers } from '@material/checkbox'
+import {
+  cssClasses,
+  MDCCheckboxFoundation,
+  MDCCheckboxAdapter,
+} from '@material/checkbox'
 import { useRipple } from './Ripple'
 
 export interface CheckboxProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -13,50 +17,7 @@ export interface CheckboxProps extends React.HTMLAttributes<HTMLDivElement> {
   nativeControlId?: string
   onChange?: (evt: React.ChangeEvent<HTMLInputElement>) => void
   children?: React.ReactNode
-  unbounded?: boolean
-}
-
-const getTransitionAnimationClass = (
-  oldState: string,
-  newState: string
-): string => {
-  const {
-    TRANSITION_STATE_INIT,
-    TRANSITION_STATE_CHECKED,
-    TRANSITION_STATE_UNCHECKED,
-  } = strings
-
-  const {
-    ANIM_UNCHECKED_CHECKED,
-    ANIM_UNCHECKED_INDETERMINATE,
-    ANIM_CHECKED_UNCHECKED,
-    ANIM_CHECKED_INDETERMINATE,
-    ANIM_INDETERMINATE_CHECKED,
-    ANIM_INDETERMINATE_UNCHECKED,
-  } = cssClasses
-
-  switch (oldState) {
-    case TRANSITION_STATE_INIT:
-      if (newState === TRANSITION_STATE_UNCHECKED) {
-        return ''
-      }
-      return newState === TRANSITION_STATE_CHECKED
-        ? ANIM_INDETERMINATE_CHECKED
-        : ANIM_INDETERMINATE_UNCHECKED
-    case TRANSITION_STATE_UNCHECKED:
-      return newState === TRANSITION_STATE_CHECKED
-        ? ANIM_UNCHECKED_CHECKED
-        : ANIM_UNCHECKED_INDETERMINATE
-    case TRANSITION_STATE_CHECKED:
-      return newState === TRANSITION_STATE_UNCHECKED
-        ? ANIM_CHECKED_UNCHECKED
-        : ANIM_CHECKED_INDETERMINATE
-    default:
-      // TRANSITION_STATE_INDETERMINATE
-      return newState === TRANSITION_STATE_CHECKED
-        ? ANIM_INDETERMINATE_CHECKED
-        : ANIM_INDETERMINATE_UNCHECKED
-  }
+  value?: string
 }
 
 const Checkbox: React.FC<CheckboxProps> = ({
@@ -67,110 +28,115 @@ const Checkbox: React.FC<CheckboxProps> = ({
   indeterminate,
   name,
   onChange,
+  value,
   nativeControlId,
   children,
-  unbounded,
   ...otherProps
 }) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const [classList, setClassList] = useState<string[]>([])
+  const foundationRef = useRef<MDCCheckboxFoundation>(null)
+  const [inputProps, setInputProps] = useState<
+    React.InputHTMLAttributes<HTMLInputElement>
+  >({})
 
-  const addClass = useCallback(
-    (cls: string) => {
-      setClassList(prevList => [...prevList, cls])
-    },
-    [setClassList]
-  )
+  const addClass = useCallback((cls: string) => {
+    setClassList(prevList => [...prevList, cls])
+  }, [])
 
-  const removeClass = useCallback(
-    (cls: string) => {
-      setClassList(prevList => prevList.filter(c => c !== cls))
-    },
-    [setClassList]
-  )
+  const removeClass = useCallback((cls: string) => {
+    setClassList(prevList => prevList.filter(c => c !== cls))
+  }, [])
 
   const [rippleStyle, rippleClassName] = useRipple({
     surfaceRef: containerRef,
     activatorRef: inputRef,
     disabled,
-    unbounded,
+    unbounded: true,
   })
 
-  const checkState = useMemo(() => {
-    const {
-      TRANSITION_STATE_INDETERMINATE,
-      TRANSITION_STATE_CHECKED,
-      TRANSITION_STATE_UNCHECKED,
-    } = strings
+  useEffect(() => {
+    inputRef.current.indeterminate = indeterminate
+  }, [indeterminate])
 
-    if (indeterminate) {
-      return TRANSITION_STATE_INDETERMINATE
+  const checkedRef = useRef(checked)
+
+  useEffect(() => {
+    checkedRef.current = checked
+  }, [checked])
+
+  const indeterminateRef = useRef(indeterminate)
+
+  useEffect(() => {
+    indeterminateRef.current = indeterminate
+  }, [indeterminate])
+
+  useEffect(() => {
+    const adapter: MDCCheckboxAdapter = {
+      addClass: cls => addClass(cls),
+      removeClass: cls => removeClass(cls),
+      forceLayout: () => null,
+      hasNativeControl: () => true,
+      isAttachedToDOM: () => true,
+      isChecked: () => checkedRef.current,
+      isIndeterminate: () => indeterminateRef.current,
+      setNativeControlAttr: (attr, value) => {
+        setInputProps(prevProps => {
+          return {
+            ...prevProps,
+            [attr]: value,
+          }
+        })
+      },
+      removeNativeControlAttr: attr => {
+        setInputProps(prevProps => {
+          const updatedProps = Object.assign({}, prevProps)
+
+          delete updatedProps[
+            attr as keyof React.HTMLAttributes<HTMLInputElement>
+          ]
+
+          return updatedProps
+        })
+      },
+      setNativeControlDisabled: disabled => {
+        setInputProps(prevProps => {
+          const updatedProps = Object.assign({}, prevProps)
+
+          if (disabled) {
+            updatedProps.disabled = disabled
+          } else {
+            delete updatedProps.disabled
+          }
+
+          return updatedProps
+        })
+      },
     }
-    return checked ? TRANSITION_STATE_CHECKED : TRANSITION_STATE_UNCHECKED
+
+    foundationRef.current = new MDCCheckboxFoundation(adapter)
+    foundationRef.current.init()
+  }, [addClass, removeClass])
+
+  useEffect(() => {
+    foundationRef.current.setDisabled(disabled)
+  }, [disabled])
+
+  useEffect(() => {
+    foundationRef.current.handleChange()
   }, [checked, indeterminate])
 
-  const prevCheckState = useRef<string>()
-
-  useEffect(() => {
-    prevCheckState.current = checkState
-  }, [checkState])
-
-  const animationClassRef = useRef('')
-
-  const enableAnimationEndHandlerRef = useRef(false)
-
-  const animationLatchTimerRef = useRef(null)
-
-  useEffect(() => {
-    //updateAriaChecked_()
-
-    const { TRANSITION_STATE_UNCHECKED } = strings
-    const { SELECTED } = cssClasses
-    if (checkState === TRANSITION_STATE_UNCHECKED) {
-      removeClass(SELECTED)
-    } else {
-      addClass(SELECTED)
-    }
-
-    // Check to ensure that there isn't a previously existing animation class, in case for example
-    // the user interacted with the checkbox before the animation was finished.
-    if (animationClassRef.current.length > 0) {
-      clearTimeout(animationLatchTimerRef.current)
-      removeClass(animationClassRef.current)
-    }
-
-    animationClassRef.current = getTransitionAnimationClass(
-      prevCheckState.current,
-      checkState
-    )
-
-    if (animationClassRef.current.length > 0) {
-      addClass(animationClassRef.current)
-      enableAnimationEndHandlerRef.current = true
-    }
-  }, [addClass, checkState, removeClass])
+  const handleAnimationEnd = () => {
+    foundationRef.current.handleAnimationEnd()
+  }
 
   const classes = classNames(
     className,
     classList,
     rippleClassName,
-    cssClasses.ROOT,
-    {
-      [cssClasses.DISABLED]: disabled,
-    }
+    cssClasses.ROOT
   )
-
-  const handleAnimationEnd = () => {
-    if (!enableAnimationEndHandlerRef.current) {
-      return
-    }
-
-    animationLatchTimerRef.current = setTimeout(() => {
-      removeClass(animationClassRef.current)
-      enableAnimationEndHandlerRef.current = false
-    }, numbers.ANIM_END_LATCH_MS)
-  }
 
   return (
     <div
@@ -184,14 +150,14 @@ const Checkbox: React.FC<CheckboxProps> = ({
       {...otherProps}
     >
       <input
+        {...inputProps}
         type="checkbox"
         className={cssClasses.NATIVE_CONTROL}
         id={nativeControlId}
         checked={checked}
-        disabled={disabled}
-        aria-checked={checked.toString() as ('true' | 'false')}
         name={name}
         onChange={onChange}
+        value={value}
         ref={inputRef}
       />
       <div className={cssClasses.BACKGROUND}>
