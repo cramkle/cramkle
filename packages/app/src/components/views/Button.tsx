@@ -49,7 +49,7 @@ const Button: React.FC<Props> = ({
   style,
   ...props
 }) => {
-  const ref = useRef<HTMLAnchorElement | HTMLButtonElement>(null)
+  const ref = useRef<any>(null)
 
   const [rippleStyle, rippleClassName] = useRipple({ ref })
 
@@ -67,7 +67,6 @@ const Button: React.FC<Props> = ({
 
   if ('href' in props) {
     return (
-      // @ts-ignore
       <a {...props} className={classes} ref={ref} style={elementStyle}>
         {!trailingIcon ? renderIcon(icon) : null}
         <span className={CSS_CLASSES.LABEL}>{children}</span>
@@ -77,7 +76,6 @@ const Button: React.FC<Props> = ({
   }
 
   return (
-    // @ts-ignore
     <button {...props} style={elementStyle} className={classes} ref={ref}>
       {!trailingIcon ? renderIcon(icon) : null}
       <span className={CSS_CLASSES.LABEL}>{children}</span>
