@@ -41,7 +41,7 @@ describe('<RegisterForm />', () => {
   })
 
   it('should be enabled with filled fields', async () => {
-    const { getByLabelText, getByTestId, debug } = render(<RegisterForm />)
+    const { getByLabelText, getByTestId } = render(<RegisterForm />)
 
     const submitButton = getByTestId('register-submit-btn')
 
@@ -57,8 +57,6 @@ describe('<RegisterForm />', () => {
 
     await flushPromises()
     jest.runAllTimers()
-
-    debug()
 
     expect(submitButton).toBeEnabled()
   })
