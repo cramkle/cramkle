@@ -1,10 +1,10 @@
 import { Trans } from '@lingui/macro'
-import Button from '@material/react-button'
 import { RawDraftContentState } from 'draft-js'
 import gql from 'graphql-tag'
 import React, { useState } from 'react'
 import { graphql, ChildMutateProps } from 'react-apollo'
 
+import Button from './views/Button'
 import {
   UpdateContentStateMutation,
   UpdateContentStateMutationVariables,

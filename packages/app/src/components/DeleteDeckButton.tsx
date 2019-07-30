@@ -1,5 +1,4 @@
 import { Trans } from '@lingui/macro'
-import Button from '@material/react-button'
 import Dialog, {
   DialogTitle,
   DialogContent,
@@ -12,6 +11,7 @@ import React, { useState, useCallback } from 'react'
 import { graphql, ChildMutateProps } from 'react-apollo'
 import { withRouter, RouteComponentProps } from 'react-router'
 
+import Button from './views/Button'
 import {
   DeleteDeckMutation,
   DeleteDeckMutationVariables,

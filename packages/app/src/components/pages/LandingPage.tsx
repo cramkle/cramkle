@@ -1,5 +1,4 @@
 import { Trans, t } from '@lingui/macro'
-import Button from '@material/react-button'
 import TopAppBar, {
   TopAppBarFixedAdjust,
   TopAppBarIcon,
@@ -11,8 +10,9 @@ import { Headline2, Headline4 } from '@material/react-typography'
 import React from 'react'
 import { withRouter, RouteComponentProps, Link } from 'react-router-dom'
 
-import { ReactComponent as Logo } from '../../assets/logo.svg'
+import Button from '../views/Button'
 import RegisterForm from '../forms/RegisterForm'
+import { ReactComponent as Logo } from '../../assets/logo.svg'
 import bgUrl from '../../assets/landing-bg.svg'
 
 const LandingPage: React.FunctionComponent<RouteComponentProps> = ({

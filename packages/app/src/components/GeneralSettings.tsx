@@ -1,9 +1,10 @@
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import Button from '@material/react-button'
 import Select, { Option } from '@material/react-select'
 import React, { useState, useCallback } from 'react'
 import Cookies from 'universal-cookie'
+
+import Button from './views/Button'
 
 const OPTIONS = [
   {
