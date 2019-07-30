@@ -8,7 +8,9 @@ $mdc-theme-on-secondary: #000;
 $mdc-theme-surface: #fff;
 $mdc-theme-on-surface: #000;
 
-@import '@material/react-button/index.scss';
+@import '@material/button/mdc-button.scss';
+@import '@material/ripple/mdc-ripple.scss';
+
 @import '@material/react-card/index.scss';
 @import '@material/react-checkbox/index.scss';
 @import '@material/react-chips/index.scss';
