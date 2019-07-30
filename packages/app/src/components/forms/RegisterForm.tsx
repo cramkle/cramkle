@@ -1,7 +1,6 @@
 import { MessageDescriptor } from '@lingui/core'
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import Button from '@material/react-button'
 import Card, { CardActions, CardActionButtons } from '@material/react-card'
 import { Headline5 } from '@material/react-typography'
 import classNames from 'classnames'
@@ -13,6 +12,7 @@ import { withRouter, RouteComponentProps } from 'react-router'
 import * as yup from 'yup'
 
 import { TextInputField, CheckboxField } from './Fields'
+import Button from '../views/Button'
 import { notificationState } from '../../notification/index'
 
 import styles from './RegisterForm.scss'

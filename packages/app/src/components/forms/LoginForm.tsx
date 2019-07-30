@@ -1,6 +1,5 @@
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import Button from '@material/react-button'
 import Card, { CardActions, CardActionButtons } from '@material/react-card'
 import { Headline5 } from '@material/react-typography'
 import classNames from 'classnames'
@@ -9,6 +8,7 @@ import React from 'react'
 import { object, string } from 'yup'
 
 import { TextInputField } from './Fields'
+import Button from '../views/Button'
 
 import styles from './LoginForm.scss'
 

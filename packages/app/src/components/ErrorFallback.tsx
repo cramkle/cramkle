@@ -1,8 +1,9 @@
 import { Trans } from '@lingui/macro'
-import Button from '@material/react-button'
 import { Headline4, Overline, Body1 } from '@material/react-typography'
 import React from 'react'
 import { FallbackProps } from 'react-error-boundary'
+
+import Button from './views/Button'
 
 const ErrorFallback: React.FC<FallbackProps> = ({ error, componentStack }) => {
   return (

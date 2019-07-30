@@ -1,6 +1,5 @@
 import { plural, Trans } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import Button from '@material/react-button'
 import Dialog, {
   DialogTitle,
   DialogContent,
@@ -13,6 +12,7 @@ import React, { useState } from 'react'
 import { compose, graphql, ChildMutateProps } from 'react-apollo'
 import { withRouter, RouteComponentProps } from 'react-router'
 
+import Button from './views/Button'
 import { MODELS_QUERY } from './ModelList'
 import { ModelsQuery } from './__generated__/ModelsQuery'
 
