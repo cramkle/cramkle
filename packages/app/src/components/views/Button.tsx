@@ -25,7 +25,6 @@ type Props = {
   disabled?: boolean
   className?: string
   icon?: React.ReactElement<React.HTMLProps<HTMLOrSVGElement>>
-  href?: string
   trailingIcon?: React.ReactElement<React.HTMLProps<HTMLOrSVGElement>>
 } & ConditionalProps
 
@@ -66,7 +65,7 @@ const Button: React.FC<Props> = ({
     ...style,
   }
 
-  if (props.href) {
+  if ('href' in props) {
     return (
       // @ts-ignore
       <a {...props} className={classes} ref={ref} style={elementStyle}>
