@@ -46,7 +46,7 @@ export function useRipple<T extends HTMLElement, U extends HTMLElement = T>({
   unbounded?: boolean
   disabled?: boolean
   computeBoundingRect?: (surface: T) => ClientRect
-}): [React.CSSProperties, string] {
+}) {
   const [style, setStyle] = useState<React.CSSProperties>({})
   const [classList, setClassList] = useState<string[]>([])
   const foundationRef = useRef<MDCRippleFoundation>(null)
@@ -219,5 +219,9 @@ export function useRipple<T extends HTMLElement, U extends HTMLElement = T>({
   useEventListener('keydown', activateRipple, eventTargetRef.current)
   useEventListener('keyup', deactivateRipple, eventTargetRef.current)
 
-  return [style, Array.from(classList).join(' ')]
+  return {
+    rippleStyle: style,
+    rippleClasses: Array.from(classList).join(' '),
+    rippleFoundation: foundationRef.current,
+  }
 }

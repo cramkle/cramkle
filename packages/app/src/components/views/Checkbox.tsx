@@ -1,11 +1,18 @@
-import classNames from 'classnames'
-import React, { useState, useRef, useEffect, useCallback } from 'react'
-
 import {
   cssClasses,
   MDCCheckboxFoundation,
   MDCCheckboxAdapter,
 } from '@material/checkbox'
+import { MDCRippleFoundation } from '@material/ripple'
+import classNames from 'classnames'
+import React, {
+  useState,
+  useRef,
+  useEffect,
+  useCallback,
+  useImperativeHandle,
+} from 'react'
+
 import { useRipple } from './Ripple'
 
 export interface CheckboxProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -20,19 +27,26 @@ export interface CheckboxProps extends React.HTMLAttributes<HTMLDivElement> {
   value?: string
 }
 
-const Checkbox: React.FC<CheckboxProps> = ({
-  checked,
-  className,
-  style = {},
-  disabled,
-  indeterminate,
-  name,
-  onChange,
-  value,
-  nativeControlId,
-  children,
-  ...otherProps
-}) => {
+export interface CheckboxRef {
+  ripple: MDCRippleFoundation
+}
+
+const Checkbox: React.RefForwardingComponent<CheckboxRef, CheckboxProps> = (
+  {
+    checked,
+    className,
+    style = {},
+    disabled,
+    indeterminate,
+    name,
+    onChange,
+    value,
+    nativeControlId,
+    children,
+    ...otherProps
+  },
+  ref
+) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const [classList, setClassList] = useState<string[]>([])
@@ -49,12 +63,16 @@ const Checkbox: React.FC<CheckboxProps> = ({
     setClassList(prevList => prevList.filter(c => c !== cls))
   }, [])
 
-  const [rippleStyle, rippleClassName] = useRipple({
+  const { rippleStyle, rippleClasses, rippleFoundation } = useRipple({
     surfaceRef: containerRef,
     activatorRef: inputRef,
     disabled,
     unbounded: true,
   })
+
+  useImperativeHandle(ref, () => ({
+    ripple: rippleFoundation,
+  }))
 
   useEffect(() => {
     inputRef.current.indeterminate = indeterminate
@@ -134,7 +152,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
   const classes = classNames(
     className,
     classList,
-    rippleClassName,
+    rippleClasses,
     cssClasses.ROOT
   )
 
@@ -178,4 +196,4 @@ const Checkbox: React.FC<CheckboxProps> = ({
   )
 }
 
-export default Checkbox
+export default React.forwardRef(Checkbox)

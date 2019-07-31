@@ -6,7 +6,7 @@ import TextField, {
 import { useField } from 'formik'
 import React from 'react'
 
-import Checkbox, { CheckboxProps } from '../views/Checkbox'
+import Checkbox, { CheckboxProps, CheckboxRef } from '../views/Checkbox'
 
 interface TextInputProps<T extends HTMLElement>
   extends Pick<
@@ -53,14 +53,17 @@ type CheckboxFieldProps = { value?: string } & Pick<
   | 'nativeControlId'
 >
 
-export const CheckboxField: React.FunctionComponent<
+const CheckboxFieldRender: React.RefForwardingComponent<
+  CheckboxRef,
   CheckboxFieldProps
-> = props => {
+> = (props, ref) => {
   const [field] = useField({
     name: props.name,
     type: 'checkbox',
     value: props.value,
   })
 
-  return <Checkbox {...field} {...props} />
+  return <Checkbox {...field} {...props} ref={ref} />
 }
+
+export const CheckboxField = React.forwardRef(CheckboxFieldRender)
