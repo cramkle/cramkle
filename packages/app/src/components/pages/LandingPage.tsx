@@ -11,6 +11,7 @@ import React from 'react'
 import { withRouter, RouteComponentProps, Link } from 'react-router-dom'
 
 import Button from '../views/Button'
+import Footer from '../Footer'
 import RegisterForm from '../forms/RegisterForm'
 import { ReactComponent as Logo } from '../../assets/logo.svg'
 import bgUrl from '../../assets/landing-bg.svg'
@@ -74,6 +75,7 @@ const LandingPage: React.FunctionComponent<RouteComponentProps> = ({
           </div>
         </div>
       </div>
+      <Footer />
     </TopAppBarFixedAdjust>
   </>
 )
