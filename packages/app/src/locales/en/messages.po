@@ -17,17 +17,21 @@ msgstr ""
 msgid "A new update is available!"
 msgstr "A new update is available!"
 
-#: src/components/forms/RegisterForm.tsx:44
+#: src/components/Footer.tsx:10
+msgid "About"
+msgstr "About"
+
+#: src/components/forms/RegisterForm.tsx:64
 msgid "Account created successfully"
 msgstr "Account created successfully"
 
-#: src/components/forms/AddDeckForm.tsx:41
+#: src/components/forms/AddDeckForm.tsx:54
 #: src/components/pages/DecksSection.tsx:27
 #: src/components/pages/DecksSection.tsx:27
 msgid "Add Deck"
 msgstr "Add Deck"
 
-#: src/components/pages/AddModelPage.tsx:110
+#: src/components/pages/AddModelPage.tsx:130
 msgid "Add field"
 msgstr "Add field"
 
@@ -36,25 +40,24 @@ msgstr "Add field"
 msgid "Add model"
 msgstr "Add model"
 
-#: src/components/pages/AddModelPage.tsx:85
+#: src/components/pages/AddModelPage.tsx:105
 msgid "Add template"
 msgstr "Add template"
 
-#: src/components/forms/RegisterForm.tsx:40
-#: src/components/forms/RegisterForm.tsx:41
+#: src/components/forms/RegisterForm.tsx:31
 msgid "Agreement is required"
 msgstr "Agreement is required"
 
-#: src/components/pages/LandingPage.tsx:47
+#: src/components/pages/LandingPage.tsx:48
 #: src/components/pages/RegisterPage.tsx:20
 msgid "Already have an account? <0>Log In</0>"
 msgstr "Already have an account? <0>Log In</0>"
 
-#: src/components/DeleteDeckButton.tsx:40
+#: src/components/DeleteDeckButton.tsx:47
 msgid "Are you sure you want to delete this deck?"
 msgstr "Are you sure you want to delete this deck?"
 
-#: src/components/DeleteModelButton.tsx:45
+#: src/components/DeleteModelButton.tsx:52
 msgid "Are you sure you want to delete this model? {0} and {1} associated with it."
 msgstr "Are you sure you want to delete this model? {0} and {1} associated with it."
 
@@ -66,7 +69,7 @@ msgstr "Blockquote"
 msgid "Bold"
 msgstr "Bold"
 
-#: src/components/DeleteDeckButton.tsx:44
+#: src/components/DeleteDeckButton.tsx:51
 msgid "Cancel"
 msgstr "Cancel"
 
@@ -78,12 +81,16 @@ msgstr "Clear search"
 msgid "Code Block"
 msgstr "Code Block"
 
-#: src/components/forms/AddDeckForm.tsx:49
-#: src/components/pages/AddModelPage.tsx:117
+#: src/components/Footer.tsx:44
+msgid "Company"
+msgstr "Company"
+
+#: src/components/forms/AddDeckForm.tsx:62
+#: src/components/pages/AddModelPage.tsx:137
 msgid "Create"
 msgstr "Create"
 
-#: src/components/pages/AddModelPage.tsx:25
+#: src/components/pages/AddModelPage.tsx:45
 msgid "Create Model"
 msgstr "Create Model"
 
@@ -91,26 +98,26 @@ msgstr "Create Model"
 msgid "Decks"
 msgstr "Decks"
 
-#: src/components/DeleteDeckButton.tsx:33
-#: src/components/DeleteDeckButton.tsx:47
-#: src/components/DeleteModelButton.tsx:38
-#: src/components/DeleteModelButton.tsx:62
+#: src/components/DeleteDeckButton.tsx:40
+#: src/components/DeleteDeckButton.tsx:54
+#: src/components/DeleteModelButton.tsx:45
+#: src/components/DeleteModelButton.tsx:69
 msgid "Delete"
 msgstr "Delete"
 
-#: src/components/DeleteDeckButton.tsx:37
+#: src/components/DeleteDeckButton.tsx:44
 msgid "Delete deck"
 msgstr "Delete deck"
 
-#: src/components/DeleteModelButton.tsx:42
+#: src/components/DeleteModelButton.tsx:49
 msgid "Delete model"
 msgstr "Delete model"
 
-#: src/components/forms/AddDeckForm.tsx:45
+#: src/components/forms/AddDeckForm.tsx:58
 msgid "Description"
 msgstr "Description"
 
-#: src/components/forms/RegisterForm.tsx:45
+#: src/components/forms/RegisterForm.tsx:65
 msgid "Dismiss"
 msgstr "Dismiss"
 
@@ -118,11 +125,11 @@ msgstr "Dismiss"
 msgid "Don't have an account? <0>Sign Up</0>"
 msgstr "Don't have an account? <0>Sign Up</0>"
 
-#: src/components/forms/RegisterForm.tsx:53
+#: src/components/forms/RegisterForm.tsx:73
 msgid "E-mail"
 msgstr "E-mail"
 
-#: src/components/forms/RegisterForm.tsx:33
+#: src/components/forms/RegisterForm.tsx:29
 msgid "E-mail is required"
 msgstr "E-mail is required"
 
@@ -130,16 +137,16 @@ msgstr "E-mail is required"
 msgid "English"
 msgstr "English"
 
-#: src/components/pages/AddModelPage.tsx:98
+#: src/components/pages/AddModelPage.tsx:118
 msgid "Field name"
 msgstr "Field name"
 
-#: src/components/pages/AddModelPage.tsx:31
+#: src/components/pages/AddModelPage.tsx:51
 msgid "Field name is required"
 msgstr "Field name is required"
 
-#: src/components/pages/AddModelPage.tsx:93
-#: src/components/pages/ModelPage.tsx:60
+#: src/components/pages/AddModelPage.tsx:113
+#: src/components/pages/ModelPage.tsx:107
 msgid "Fields"
 msgstr "Fields"
 
@@ -180,15 +187,15 @@ msgstr "H6"
 msgid "Home"
 msgstr "Home"
 
-#: src/components/forms/RegisterForm.tsx:59
+#: src/components/forms/RegisterForm.tsx:75
 msgid "I agree to the <0>Terms & Conditions</0>"
 msgstr "I agree to the <0>Terms & Conditions</0>"
 
-#: src/components/forms/LoginForm.tsx:19
+#: src/components/forms/LoginForm.tsx:32
 msgid "Invalid username"
 msgstr "Invalid username"
 
-#: src/components/forms/LoginForm.tsx:42
+#: src/components/forms/LoginForm.tsx:52
 msgid "Invalid username and/or password"
 msgstr "Invalid username and/or password"
 
@@ -200,8 +207,8 @@ msgstr "Italic"
 msgid "Language"
 msgstr "Language"
 
-#: src/components/forms/LoginForm.tsx:50
-#: src/components/pages/LandingPage.tsx:24
+#: src/components/forms/LoginForm.tsx:60
+#: src/components/pages/LandingPage.tsx:25
 #: src/components/pages/LoginPage.tsx:12
 msgid "Login"
 msgstr "Login"
@@ -210,11 +217,11 @@ msgstr "Login"
 msgid "Logout"
 msgstr "Logout"
 
-#: src/components/Shell.tsx:64
+#: src/components/Shell.tsx:71
 msgid "Main menu"
 msgstr "Main menu"
 
-#: src/components/pages/LandingPage.tsx:34
+#: src/components/pages/LandingPage.tsx:35
 msgid "Make sure your knowledge will last"
 msgstr "Make sure your knowledge will last"
 
@@ -222,7 +229,7 @@ msgstr "Make sure your knowledge will last"
 msgid "Marketplace"
 msgstr "Marketplace"
 
-#: src/components/pages/AddModelPage.tsx:52
+#: src/components/pages/AddModelPage.tsx:72
 msgid "Model created successfully"
 msgstr "Model created successfully"
 
@@ -234,19 +241,19 @@ msgstr "Models"
 msgid "Monospace"
 msgstr "Monospace"
 
-#: src/components/pages/AddModelPage.tsx:62
+#: src/components/pages/AddModelPage.tsx:82
 msgid "Name"
 msgstr "Name"
 
-#: src/components/pages/AddModelPage.tsx:29
+#: src/components/pages/AddModelPage.tsx:49
 msgid "Name is required"
 msgstr "Name is required"
 
-#: src/components/pages/AddModelPage.tsx:105
+#: src/components/pages/AddModelPage.tsx:125
 msgid "No fields added"
 msgstr "No fields added"
 
-#: src/components/pages/AddModelPage.tsx:80
+#: src/components/pages/AddModelPage.tsx:100
 msgid "No templates added"
 msgstr "No templates added"
 
@@ -254,17 +261,17 @@ msgstr "No templates added"
 msgid "OL"
 msgstr "OL"
 
-#: src/components/pages/LandingPage.tsx:37
+#: src/components/pages/LandingPage.tsx:38
 msgid "Optimize your knowledge retention with this effective study method."
 msgstr "Optimize your knowledge retention with this effective study method."
 
-#: src/components/forms/LoginForm.tsx:54
-#: src/components/forms/RegisterForm.tsx:54
+#: src/components/forms/LoginForm.tsx:64
+#: src/components/forms/RegisterForm.tsx:74
 msgid "Password"
 msgstr "Password"
 
 #: src/components/forms/LoginForm.tsx:21
-#: src/components/forms/RegisterForm.tsx:37
+#: src/components/forms/RegisterForm.tsx:30
 msgid "Password is required"
 msgstr "Password is required"
 
@@ -276,6 +283,10 @@ msgstr "Please, try reloading the page"
 msgid "Portuguese"
 msgstr "Portuguese"
 
+#: src/components/Footer.tsx:18
+msgid "Privacy Policy"
+msgstr "Privacy Policy"
+
 #: src/components/pages/HomePage.tsx:40
 msgid "Ready to work offline"
 msgstr "Ready to work offline"
@@ -285,17 +296,17 @@ msgstr "Ready to work offline"
 msgid "Refresh"
 msgstr "Refresh"
 
-#: src/components/forms/RegisterForm.tsx:16
-#: src/components/forms/RegisterForm.tsx:70
+#: src/components/forms/RegisterForm.tsx:32
+#: src/components/forms/RegisterForm.tsx:84
 #: src/components/pages/RegisterPage.tsx:12
 msgid "Register"
 msgstr "Register"
 
-#: src/components/pages/AddModelPage.tsx:101
+#: src/components/pages/AddModelPage.tsx:121
 msgid "Remove field"
 msgstr "Remove field"
 
-#: src/components/pages/AddModelPage.tsx:76
+#: src/components/pages/AddModelPage.tsx:96
 msgid "Remove template"
 msgstr "Remove template"
 
@@ -303,7 +314,7 @@ msgstr "Remove template"
 msgid "Save"
 msgstr "Save"
 
-#: src/components/SaveTemplateButton.tsx:14
+#: src/components/SaveTemplateButton.tsx:24
 msgid "Save Template"
 msgstr "Save Template"
 
@@ -317,11 +328,11 @@ msgstr "Search"
 msgid "Settings"
 msgstr "Settings"
 
-#: src/components/pages/LandingPage.tsx:21
+#: src/components/pages/LandingPage.tsx:22
 msgid "Sign Up"
 msgstr "Sign Up"
 
-#: src/components/pages/LandingPage.tsx:44
+#: src/components/pages/LandingPage.tsx:45
 msgid "Sign up now!"
 msgstr "Sign up now!"
 
@@ -337,36 +348,40 @@ msgstr "Statistics"
 msgid "Study"
 msgstr "Study"
 
-#: src/components/pages/ModelPage.tsx:51
+#: src/components/pages/ModelPage.tsx:98
 msgid "Template back side"
 msgstr "Template back side"
 
-#: src/components/pages/ModelPage.tsx:46
+#: src/components/pages/ModelPage.tsx:93
 msgid "Template front side"
 msgstr "Template front side"
 
-#: src/components/pages/AddModelPage.tsx:73
+#: src/components/pages/AddModelPage.tsx:93
 msgid "Template name"
 msgstr "Template name"
 
-#: src/components/pages/AddModelPage.tsx:34
+#: src/components/pages/AddModelPage.tsx:54
 msgid "Template name is required"
 msgstr "Template name is required"
 
-#: src/components/pages/AddModelPage.tsx:68
-#: src/components/pages/ModelPage.tsx:37
+#: src/components/pages/AddModelPage.tsx:88
+#: src/components/pages/ModelPage.tsx:84
 msgid "Templates"
 msgstr "Templates"
 
-#: src/components/DeckList.tsx:19
+#: src/components/Footer.tsx:14
+msgid "Terms and Conditions"
+msgstr "Terms and Conditions"
+
+#: src/components/DeckList.tsx:29
 msgid "The decks you create will appear here."
 msgstr "The decks you create will appear here."
 
-#: src/components/ModelList.tsx:19
+#: src/components/ModelList.tsx:35
 msgid "The models you create will appear here."
 msgstr "The models you create will appear here."
 
-#: src/components/forms/AddDeckForm.tsx:17
+#: src/components/forms/AddDeckForm.tsx:21
 msgid "The title is required"
 msgstr "The title is required"
 
@@ -374,11 +389,11 @@ msgstr "The title is required"
 msgid "This link may be broken or the typed URL is incorrect."
 msgstr "This link may be broken or the typed URL is incorrect."
 
-#: src/components/pages/ModelPage.tsx:67
+#: src/components/pages/ModelPage.tsx:114
 msgid "This model doesn't have any fields yet."
 msgstr "This model doesn't have any fields yet."
 
-#: src/components/forms/AddDeckForm.tsx:44
+#: src/components/forms/AddDeckForm.tsx:57
 msgid "Title"
 msgstr "Title"
 
@@ -390,21 +405,21 @@ msgstr "UL"
 msgid "Underline"
 msgstr "Underline"
 
-#: src/components/forms/LoginForm.tsx:53
-#: src/components/forms/RegisterForm.tsx:52
+#: src/components/forms/LoginForm.tsx:63
+#: src/components/forms/RegisterForm.tsx:72
 msgid "Username"
 msgstr "Username"
 
 #: src/components/forms/LoginForm.tsx:20
-#: src/components/forms/RegisterForm.tsx:29
+#: src/components/forms/RegisterForm.tsx:28
 msgid "Username is required"
 msgstr "Username is required"
 
-#: src/components/forms/RegisterForm.tsx:28
+#: src/components/forms/RegisterForm.tsx:48
 msgid "Username must consist only of alphanumeric characters and underscores"
 msgstr "Username must consist only of alphanumeric characters and underscores"
 
-#: src/components/pages/AddModelPage.tsx:53
+#: src/components/pages/AddModelPage.tsx:73
 msgid "View"
 msgstr "View"
 
@@ -412,11 +427,11 @@ msgstr "View"
 msgid "We couldn't find the page you requested"
 msgstr "We couldn't find the page you requested"
 
-#: src/components/pages/ModelPage.tsx:56
+#: src/components/pages/ModelPage.tsx:103
 msgid "You haven't created any templates on this model yet."
 msgstr "You haven't created any templates on this model yet."
 
-#: src/components/forms/LoginForm.tsx:59
+#: src/components/forms/LoginForm.tsx:69
 msgid "login.button"
 msgstr "Login"
 
@@ -424,11 +439,11 @@ msgstr "Login"
 msgid "{0, plural, one {# field} other {# fields}}"
 msgstr "{0, plural, one {# field} other {# fields}}"
 
-#: src/components/DeleteModelButton.tsx:52
+#: src/components/DeleteModelButton.tsx:59
 #: src/components/ModelCard.tsx:15
 msgid "{0, plural, one {# template} other {# templates}}"
 msgstr "{0, plural, one {# template} other {# templates}}"
 
-#: src/components/DeleteModelButton.tsx:47
+#: src/components/DeleteModelButton.tsx:54
 msgid "{0, plural, one {There's # note} other {There're # notes}}"
 msgstr "{0, plural, one {There's # note} other {There're # notes}}"
