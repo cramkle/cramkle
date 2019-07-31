@@ -13,6 +13,7 @@ import * as yup from 'yup'
 
 import { TextInputField, CheckboxField } from './Fields'
 import Button from '../views/Button'
+import FormField from '../views/FormField'
 import { notificationState } from '../../notification/index'
 
 import styles from './RegisterForm.scss'
@@ -125,18 +126,24 @@ const RegisterForm: React.FunctionComponent<
               type="password"
               label={i18n._(t`Password`)}
             />
-            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-            <label className="flex items-center">
-              <CheckboxField name="consent" value="on" />
-              <span className="ml2">
+            <FormField
+              input={
+                <CheckboxField
+                  name="consent"
+                  value="on"
+                  nativeControlId="consent-agreement"
+                />
+              }
+              inputId="consent-agreement"
+              label={
                 <Trans>
                   I agree to the{' '}
                   <a href="/terms" target="_blank">
                     Terms & Conditions
                   </a>
                 </Trans>
-              </span>
-            </label>
+              }
+            />
             <CardActions className="pa0 justify-end">
               <CardActionButtons className="w-100">
                 <Button
