@@ -94,7 +94,13 @@ const getBaseWebpackConfig = (options?: Options): Configuration => {
   const chunkFilename = dev ? '[name]' : '[name].[contenthash]'
   const extractedCssFilename = dev ? '[name]' : '[name].[contenthash:8]'
 
-  const externals = isServer ? nodeExternals() : undefined
+  const externals = isServer
+    ? nodeExternals({
+        // include material packages in the server bundle because
+        // some files are es6 modules, and we need babel to compile them
+        whitelist: [/@material(?:\/|\\{1,2})/],
+      })
+    : undefined
 
   const baseBabelOptions = {
     babelrc: false,
