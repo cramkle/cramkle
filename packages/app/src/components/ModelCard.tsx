@@ -1,11 +1,11 @@
 import { plural } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import Card, { CardPrimaryContent } from '@material/react-card'
 import { Chip } from '@material/react-chips'
 import { Headline6 } from '@material/react-typography'
 import React from 'react'
 import { withRouter, RouteComponentProps } from 'react-router'
 
+import Card, { CardPrimaryContent } from './views/Card'
 import { ModelsQuery_cardModels } from './__generated__/ModelsQuery'
 
 interface Props {
