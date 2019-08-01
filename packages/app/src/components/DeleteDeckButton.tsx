@@ -5,13 +5,13 @@ import Dialog, {
   DialogFooter,
   DialogButton,
 } from '@material/react-dialog'
-import Icon from '@material/react-material-icon'
 import gql from 'graphql-tag'
 import React, { useState, useCallback } from 'react'
 import { graphql, ChildMutateProps } from 'react-apollo'
 import { withRouter, RouteComponentProps } from 'react-router'
 
 import Button from './views/Button'
+import Icon from './views/Icon'
 import {
   DeleteDeckMutation,
   DeleteDeckMutationVariables,

@@ -7,7 +7,7 @@ import StyleButton, { Style } from './StyleButton'
 export const INLINE_STYLES: Style[] = [
   { label: t`Bold`, style: 'BOLD', icon: 'format_bold' },
   { label: t`Italic`, style: 'ITALIC', icon: 'format_italic' },
-  { label: t`Underline`, style: 'UNDERLINE', icon: 'format_underline' },
+  { label: t`Underline`, style: 'UNDERLINE', icon: 'format_underlined' },
   { label: t`Monospace`, style: 'CODE' },
 ]
 

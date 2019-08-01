@@ -1,16 +1,18 @@
 import { MessageDescriptor } from '@lingui/core'
 import { useLingui } from '@lingui/react'
-import Icon from '@material/react-material-icon'
 import cx from 'classnames'
 import React, { memo, useRef } from 'react'
 import { useControlledTabIndex } from 'react-tab-controller'
+
+import Icon from '../views/Icon'
+import { IconTypes } from '../views/IconTypes'
 
 import styles from './StyleButton.css'
 
 export interface Style {
   label: MessageDescriptor | string
   style: string
-  icon?: string
+  icon?: IconTypes
 }
 
 interface Props extends Style {
