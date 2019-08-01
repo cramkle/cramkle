@@ -1,12 +1,12 @@
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import Icon from '@material/react-material-icon'
 import Fab from '@material/react-fab'
 import classNames from 'classnames'
 import React from 'react'
 import { withRouter, RouteComponentProps } from 'react-router'
 
 import ModelList from '../ModelList'
+import Icon from '../views/Icon'
 import { useHints } from '../HintsContext'
 
 import styles from './ModelsSection.css'

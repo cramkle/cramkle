@@ -2204,14 +2204,6 @@
     classnames "^2.2.6"
     memoize-one "^5.0.4"
 
-"@material/react-material-icon@^0.14.1":
-  version "0.14.1"
-  resolved "https://registry.yarnpkg.com/@material/react-material-icon/-/react-material-icon-0.14.1.tgz#d869053a2e8b94038d8cf28722ad2b6fdb76c582"
-  integrity sha512-npJReSYXMd6nTptQCm+hoDAbhWjeKvg1gOa8lotBOYOlj4VAa2uvLflxrquhCdnn7RvvnElSG6/0royOt00eBw==
-  dependencies:
-    "@material/react-ripple" "^0.14.1"
-    classnames "^2.2.6"
-
 "@material/react-menu-surface@^0.14.1":
   version "0.14.1"
   resolved "https://registry.yarnpkg.com/@material/react-menu-surface/-/react-menu-surface-0.14.1.tgz#9bc53cb1756cb88e871e72651283bfbdd057faf0"

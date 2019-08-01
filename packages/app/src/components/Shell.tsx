@@ -1,7 +1,6 @@
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import LinearProgress from '@material/react-linear-progress'
-import Icon from '@material/react-material-icon'
 import TopAppBar, {
   TopAppBarFixedAdjust,
   TopAppBarIcon,
@@ -18,6 +17,7 @@ import AppDrawer from './AppDrawer'
 import NoSSR from './NoSSR'
 import SearchBar from './SearchBar'
 import { useHints } from './HintsContext'
+import Icon from './views/Icon'
 import useLocalStorage from '../hooks/useLocalStorage'
 import useOffline from '../hooks/useOffline'
 import { ReactComponent as Logo } from '../assets/logo.svg'

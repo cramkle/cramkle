@@ -1,9 +1,10 @@
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import IconButton from '@material/react-icon-button'
-import Icon from '@material/react-material-icon'
 import cx from 'classnames'
 import React, { useState, useRef } from 'react'
+
+import Icon from './views/Icon'
 
 import styles from './SearchBar.css'
 

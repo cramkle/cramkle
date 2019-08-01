@@ -6,13 +6,13 @@ import Dialog, {
   DialogFooter,
   DialogButton,
 } from '@material/react-dialog'
-import Icon from '@material/react-material-icon'
 import gql from 'graphql-tag'
 import React, { useState } from 'react'
 import { compose, graphql, ChildMutateProps } from 'react-apollo'
 import { withRouter, RouteComponentProps } from 'react-router'
 
 import Button from './views/Button'
+import Icon from './views/Icon'
 import { MODELS_QUERY } from './ModelList'
 import { ModelsQuery } from './__generated__/ModelsQuery'
 

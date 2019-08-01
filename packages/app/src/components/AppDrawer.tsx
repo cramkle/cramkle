@@ -12,7 +12,6 @@ import List, {
   ListItemText,
   ListItemGraphic,
 } from '@material/react-list'
-import Icon from '@material/react-material-icon'
 import React, {
   ReactNode,
   useRef,
@@ -25,6 +24,7 @@ import { withRouter, RouteComponentProps } from 'react-router'
 
 import NoSSR from './NoSSR'
 import { useHints } from './HintsContext'
+import Icon from './views/Icon'
 import USER_QUERY from './userQuery.gql'
 import { UserQuery } from './__generated__/UserQuery'
 

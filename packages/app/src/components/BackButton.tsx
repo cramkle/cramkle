@@ -1,9 +1,9 @@
-import Icon from '@material/react-material-icon'
 import { Trans } from '@lingui/macro'
 import React, { useCallback } from 'react'
 import { withRouter, RouteComponentProps } from 'react-router'
 
 import Button from './views/Button'
+import Icon from './views/Icon'
 
 const BackButton: React.FunctionComponent<RouteComponentProps> = ({
   history,
