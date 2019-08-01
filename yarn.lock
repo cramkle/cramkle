@@ -1745,17 +1745,17 @@
     "@material/theme" "^3.1.0"
     "@material/typography" "^3.1.0"
 
-"@material/card@^2.1.1":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@material/card/-/card-2.3.0.tgz#f59ac3b16d21d21af5747a530624f14622286c29"
-  integrity sha512-udVIanyz3KhZ8IfZjX2Yg+YJxU+oYdP9RbCM3hl7l1aqvNr8WSAy/YZ60Ue54fuN+0CpXiNpz1J8GyDktUZKKg==
+"@material/card@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@material/card/-/card-3.1.0.tgz#9d26eb995cae9593de81ac2ae931b3ba351e6c37"
+  integrity sha512-NOTr7wbBCOPzw3T2z5zNWJ3XTjmUONhHUJbUs24T1p2FywdgAyJ8a3F9kAcyNuKuITNTdky8/0gmmVv7uJYpUw==
   dependencies:
-    "@material/elevation" "^1.1.0"
-    "@material/feature-targeting" "^0.44.1"
-    "@material/ripple" "^2.3.0"
-    "@material/rtl" "^0.42.0"
-    "@material/shape" "^1.1.1"
-    "@material/theme" "^1.1.0"
+    "@material/elevation" "^3.1.0"
+    "@material/feature-targeting" "^3.1.0"
+    "@material/ripple" "^3.1.0"
+    "@material/rtl" "^3.1.0"
+    "@material/shape" "^3.1.0"
+    "@material/theme" "^3.1.0"
 
 "@material/checkbox@^2.1.1", "@material/checkbox@^2.3.0":
   version "2.3.0"
@@ -2098,15 +2098,6 @@
   integrity sha512-ZgBXykYhi71/s4qUP3PA3nj+TMLXJH2eGvmeIU2grNwxuYJSmg0uu9q/ZNG88nF7UBLOMBfvBxYJ8eUeMBUm3A==
   dependencies:
     "@material/button" "^1.1.0"
-    "@material/react-ripple" "^0.14.1"
-    classnames "^2.2.6"
-
-"@material/react-card@^0.14.1":
-  version "0.14.1"
-  resolved "https://registry.yarnpkg.com/@material/react-card/-/react-card-0.14.1.tgz#0ac3acc5ab6cc80a08e08211e218d0a06a7a7970"
-  integrity sha512-w2iOu/1pnfkTWeFyX0AbPqBzf/EIGkx/oZWM0l3KBtREgxPjb8BWrOevUdrNjQjmDIicpm5l9FV+50BZL4qKyw==
-  dependencies:
-    "@material/card" "^2.1.1"
     "@material/react-ripple" "^0.14.1"
     classnames "^2.2.6"
 
