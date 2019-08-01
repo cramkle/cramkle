@@ -7,7 +7,7 @@ export const HintsProvider: React.FunctionComponent<{ userAgent?: string }> = ({
   userAgent,
 }) => {
   const isMobile = /android|ios|iphone|ipad/i.test(
-    !process.browser ? userAgent : window.userAgent || navigator.userAgent
+    !process.browser ? userAgent : navigator.userAgent
   )
 
   const context = useMemo(
