@@ -1,9 +1,11 @@
 import { setupI18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
+import { NormalizedCacheObject } from 'apollo-cache-inmemory'
 import React, { StrictMode } from 'react'
 import { ApolloProvider } from 'react-apollo'
 import ReactDOM from 'react-dom'
 import { Helmet } from 'react-helmet'
+import { StaticRouterContext } from 'react-router'
 import { BrowserRouter } from 'react-router-dom'
 import Cookies from 'universal-cookie'
 
@@ -20,6 +22,12 @@ interface RenderOptions {
   cookie?: string
   userAgent: string
   requestLanguage: string
+}
+
+interface RenderResult {
+  markup: string
+  routerContext: StaticRouterContext
+  state: NormalizedCacheObject
 }
 
 const render = ({
