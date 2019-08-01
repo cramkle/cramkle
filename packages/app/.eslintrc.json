@@ -1,0 +1,5 @@
+{
+  "rules": {
+    "no-underscore-dangle": ["warn", { "allow": ["__APOLLO_STATE__"] }]
+  }
+}

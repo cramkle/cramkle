@@ -43,8 +43,7 @@ export const createApolloClient = (uri: string, cookie?: string) => {
     resolvers,
     cache:
       typeof window !== 'undefined'
-        ? // eslint-disable-next-line no-underscore-dangle
-          cache.restore(window.__APOLLO_STATE__)
+        ? cache.restore(window.__APOLLO_STATE__)
         : cache,
   })
 
