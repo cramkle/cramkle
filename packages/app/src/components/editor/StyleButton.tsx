@@ -1,8 +1,8 @@
 import { MessageDescriptor } from '@lingui/core'
 import { useLingui } from '@lingui/react'
+import { useControlledTabIndex } from '@lucasecdb/react-tab-controller'
 import cx from 'classnames'
 import React, { memo, useRef } from 'react'
-import { useControlledTabIndex } from 'react-tab-controller'
 
 import Icon from '../views/Icon'
 import { IconTypes } from '../views/IconTypes'

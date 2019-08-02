@@ -19,6 +19,7 @@
   "dependencies": {
     "@cramkle/app-server": "^0.4.9",
     "@lingui/react": "3.0.0-5",
+    "@lucasecdb/react-tab-controller": "^0.2.1",
     "@material/button": "^3.1.0",
     "@material/card": "^3.1.0",
     "@material/checkbox": "^3.1.0",
@@ -65,7 +66,6 @@
     "react-hot-loader": "^4.8.8",
     "react-router": "^5.0.1",
     "react-router-dom": "^5.0.1",
-    "react-tab-controller": "^0.2.0",
     "tachyons-sass": "^4.9.5",
     "universal-cookie": "^4.0.0",
     "uuid": "^3.3.2",

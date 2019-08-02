@@ -1670,8 +1670,8 @@
 
 "@lucasecdb/eslint-config@^0.3.9":
   version "0.3.9"
-  resolved "https://registry.yarnpkg.com/@lucasecdb/eslint-config/-/eslint-config-0.3.9.tgz#4d9ab66c1ddac8b7910905525ee552cb53ad0da2"
-  integrity sha512-fVY9fMozlkV2gTVgilg/c+t14y9PdV+gaefFW1sYRfDXnCLjtXi4LGWagn8+dxfnk4HYBxNh9XqM/CxWgSh6sg==
+  resolved "https://npm.pkg.github.com/download/@lucasecdb/eslint-config/0.3.9/c3172ac116e54fb5c23aad87cc786f8cfd4ca7b1dd29f5e035cc71c440520952#0731b56c32baf48588fdf29fd7e2c500fa9347f9"
+  integrity sha1-BzG1bDK69IWI/fKf1+LFAPqTR/k=
   dependencies:
     "@typescript-eslint/eslint-plugin" "^1.11.0"
     "@typescript-eslint/parser" "^1.11.0"
@@ -1680,6 +1680,13 @@
     eslint-plugin-prettier "^3.1.0"
     eslint-plugin-react "~7.14.2"
     eslint-plugin-react-hooks "^1.6.1"
+
+"@lucasecdb/react-tab-controller@^0.2.1":
+  version "0.2.1"
+  resolved "https://npm.pkg.github.com/download/@lucasecdb/react-tab-controller/0.2.1/4be378b1775060d5a15f31ef53b1c23f6453de68102b6bba13ce712142c0b41a#067e1b5cfc6a8c9cff5a153ce9252f2f95850c0b"
+  integrity sha1-Bn4bXPxqjJz/WhU86SUvL5WFDAs=
+  dependencies:
+    tiny-warning "^1.0.2"
 
 "@material/animation@^0.41.0":
   version "0.41.0"
@@ -12786,13 +12793,6 @@ react-side-effect@^1.1.0:
   dependencies:
     exenv "^1.2.1"
     shallowequal "^1.0.1"
-
-react-tab-controller@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/react-tab-controller/-/react-tab-controller-0.2.0.tgz#af0b483f6aad0cb11b5218b30200e6109213403b"
-  integrity sha512-kq/jL3d8AEdt5LnYQryYinRYd/M1nzNoI0s9BzaEGcKe0JHoPsTLlmAGA2UD/Qzf7Wt+YMgKDB53AAoYPlU+cg==
-  dependencies:
-    tiny-warning "^1.0.2"
 
 react@^16.8.6:
   version "16.8.6"
