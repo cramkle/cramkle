@@ -129,6 +129,7 @@ const Shell: React.FunctionComponent<Props> = ({
                       aria-expanded={drawerOpen}
                       onClick={handleNavigationIconClick}
                       onKeyDown={handleNavigationIconKeyDown}
+                      rippled
                     />
                   </TopAppBarIcon>
                   <TopAppBarTitle

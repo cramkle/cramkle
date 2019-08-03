@@ -9,25 +9,26 @@ import styles from './Icon.scss'
 interface Props extends React.HTMLAttributes<HTMLElement> {
   icon?: IconTypes
   className?: string
-  hasRipple?: boolean
+  rippled?: boolean
   unbounded?: boolean
 }
 
 const Icon: React.FunctionComponent<Props> = ({
   icon = '',
   className,
-  unbounded,
-  hasRipple = false,
+  unbounded = true,
+  rippled = false,
   ...otherProps
 }) => {
   const ref = useRef<HTMLElement>(null)
   const { rippleClasses, rippleStyle } = useRipple({
     surfaceRef: ref,
-    disabled: !hasRipple,
+    disabled: !rippled,
+    unbounded,
   })
 
   const classes = classNames('material-icons', className, rippleClasses, {
-    [styles.rippleSurface]: hasRipple,
+    [styles.rippleSurface]: rippled,
   })
 
   return (
