@@ -1,10 +1,4 @@
-import { Trans } from '@lingui/macro'
-import Dialog, {
-  DialogTitle,
-  DialogContent,
-  DialogFooter,
-  DialogButton,
-} from '@material/react-dialog'
+import { t, Trans } from '@lingui/macro'
 import gql from 'graphql-tag'
 import React, { useState, useCallback } from 'react'
 import { graphql, ChildMutateProps } from 'react-apollo'
@@ -12,12 +6,18 @@ import { withRouter, RouteComponentProps } from 'react-router'
 
 import Button from './views/Button'
 import Icon from './views/Icon'
+import Dialog, {
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+} from './views/Dialog'
 import {
   DeleteDeckMutation,
   DeleteDeckMutationVariables,
 } from './__generated__/DeleteDeckMutation'
 import { DECKS_QUERY } from './DeckList'
 import { DecksQuery } from './__generated__/DecksQuery'
+import { notificationState } from '../notification'
 
 interface Props {
   deckId: string
@@ -36,38 +36,55 @@ const DeleteDeckButton: React.FunctionComponent<
     ChildMutateProps<Props, DeleteDeckMutation, DeleteDeckMutationVariables>
 > = ({ deckId, history, mutate }) => {
   const [dialogOpen, setDialogOpen] = useState(false)
+  const [deleting, setDeleting] = useState(false)
 
-  const handleClose = useCallback(
-    (action: string) => {
-      if (action === 'confirm') {
-        mutate({
-          variables: { deckId },
-          update: (
-            cache,
-            {
-              data: {
-                deleteDeck: { id },
-              },
-            }
-          ) => {
-            const { decks } = cache.readQuery<DecksQuery>({
-              query: DECKS_QUERY,
-            })
+  const handleDelete = useCallback(() => {
+    setDeleting(true)
 
-            cache.writeQuery({
-              query: DECKS_QUERY,
-              data: { decks: decks.filter(deck => deck.id !== id) },
-            })
+    mutate({
+      variables: { deckId },
+      update: (
+        cache,
+        {
+          data: {
+            deleteDeck: { id },
           },
-        }).then(() => {
-          history.push('/decks')
+        }
+      ) => {
+        const { decks } = cache.readQuery<DecksQuery>({
+          query: DECKS_QUERY,
         })
-      }
 
-      setDialogOpen(false)
-    },
-    [deckId, history, mutate]
-  )
+        cache.writeQuery({
+          query: DECKS_QUERY,
+          data: { decks: decks.filter(deck => deck.id !== id) },
+        })
+      },
+    })
+      .then(() => {
+        history.push('/decks')
+
+        notificationState.addNotification({
+          message: t`Deck deleted successfully`,
+        })
+      })
+      .catch(() => {
+        setDeleting(false)
+
+        notificationState.addNotification({
+          message: t`An error ocurred when deleting the deck`,
+          actionText: t`Dismiss`,
+        })
+      })
+  }, [deckId, history, mutate])
+
+  const handleClose = useCallback(() => {
+    if (deleting) {
+      return
+    }
+
+    setDialogOpen(false)
+  }, [deleting])
 
   return (
     <>
@@ -86,14 +103,14 @@ const DeleteDeckButton: React.FunctionComponent<
         <DialogContent>
           <Trans>Are you sure you want to delete this deck?</Trans>
         </DialogContent>
-        <DialogFooter>
-          <DialogButton action="cancel">
+        <DialogActions>
+          <Button onClick={() => setDialogOpen(false)} disabled={deleting}>
             <Trans>Cancel</Trans>
-          </DialogButton>
-          <DialogButton action="confirm" isDefault>
+          </Button>
+          <Button onClick={handleDelete} disabled={deleting}>
             <Trans>Delete</Trans>
-          </DialogButton>
-        </DialogFooter>
+          </Button>
+        </DialogActions>
       </Dialog>
     </>
   )

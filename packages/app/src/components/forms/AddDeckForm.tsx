@@ -1,15 +1,10 @@
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import Dialog, {
-  DialogContent,
-  DialogTitle,
-  DialogFooter,
-  DialogButton,
-} from '@material/react-dialog'
 import { Formik } from 'formik'
 import gql from 'graphql-tag'
 import React from 'react'
 import { graphql, ChildMutateProps } from 'react-apollo'
+import { RouteComponentProps, withRouter } from 'react-router'
 import * as yup from 'yup'
 
 import { TextInputField } from './Fields'
@@ -17,12 +12,19 @@ import {
   CreateDeckMutation,
   CreateDeckMutationVariables,
 } from './__generated__/CreateDeckMutation'
+import Dialog, {
+  DialogContent,
+  DialogTitle,
+  DialogActions,
+} from '../views/Dialog'
+import Button from '../views/Button'
 import { DECKS_QUERY } from '../DeckList'
 import { DecksQuery } from '../__generated__/DecksQuery'
+import { notificationState } from '../../notification'
 
 interface Props {
   open: boolean
-  onClose: (action: string) => void
+  onClose: () => void
 }
 
 export const CREATE_DECK_MUTATION = gql`
@@ -39,8 +41,9 @@ export const CREATE_DECK_MUTATION = gql`
 const titleRequired = t`The title is required`
 
 const AddDeckForm: React.FunctionComponent<
-  ChildMutateProps<Props, CreateDeckMutation, CreateDeckMutationVariables>
-> = ({ open, onClose, mutate }) => {
+  ChildMutateProps<Props, CreateDeckMutation, CreateDeckMutationVariables> &
+    RouteComponentProps
+> = ({ open, onClose, mutate, history }) => {
   const { i18n } = useLingui()
 
   return (
@@ -56,33 +59,55 @@ const AddDeckForm: React.FunctionComponent<
         title: yup.string().required(i18n._(titleRequired)),
         description: yup.string(),
       })}
-      onSubmit={(values, props) => {
-        return mutate({
-          variables: values,
-          update: (proxy, { data: { createDeck } }) => {
-            const data = proxy.readQuery<DecksQuery>({ query: DECKS_QUERY })
+      onSubmit={async (values, { resetForm }) => {
+        try {
+          const mutationResult = await mutate({
+            variables: values,
+            update: (proxy, { data: { createDeck } }) => {
+              const data = proxy.readQuery<DecksQuery>({ query: DECKS_QUERY })
 
-            data.decks.push(createDeck)
+              data.decks.push(createDeck)
 
-            proxy.writeQuery({ query: DECKS_QUERY, data })
-          },
-        }).then(() => {
-          props.resetForm()
-          onClose('created')
-        })
-      }}
-    >
-      {({ isValid, handleSubmit }) => {
-        const handleClose = (action: string) => {
-          if (action === 'create') {
-            handleSubmit()
+              proxy.writeQuery({ query: DECKS_QUERY, data })
+            },
+          })
+
+          if (!mutationResult) {
+            return
           }
 
-          onClose(action)
+          const slug = mutationResult.data.createDeck.slug
+
+          notificationState.addNotification({
+            message: t`Deck created successfully!`,
+            actionText: t`View`,
+            onAction: () => {
+              history.push(`/d/${slug}`)
+            },
+          })
+
+          resetForm()
+          onClose()
+        } catch (e) {
+          console.error(e)
+          notificationState.addNotification({
+            message: t`An error ocurred when creating the deck`,
+            actionText: t`Dismiss`,
+          })
+        }
+      }}
+    >
+      {({ isValid, handleSubmit, isSubmitting }) => {
+        const handleClose = () => {
+          onClose()
+        }
+
+        const handleCreate = () => {
+          handleSubmit()
         }
 
         return (
-          <Dialog scrimClickAction="dismiss" open={open} onClose={handleClose}>
+          <Dialog open={open} onClose={handleClose}>
             <DialogTitle>
               <Trans>Add Deck</Trans>
             </DialogTitle>
@@ -101,16 +126,15 @@ const AddDeckForm: React.FunctionComponent<
                 textarea
               />
             </DialogContent>
-            <DialogFooter>
-              <DialogButton
-                action="create"
-                isDefault
+            <DialogActions>
+              <Button
                 type="submit"
-                disabled={!isValid}
+                disabled={!isValid || isSubmitting}
+                onClick={handleCreate}
               >
                 <Trans>Create</Trans>
-              </DialogButton>
-            </DialogFooter>
+              </Button>
+            </DialogActions>
           </Dialog>
         )
       }}
@@ -120,4 +144,4 @@ const AddDeckForm: React.FunctionComponent<
 
 export default graphql<Props, CreateDeckMutation, CreateDeckMutationVariables>(
   CREATE_DECK_MUTATION
-)(AddDeckForm)
+)(withRouter(AddDeckForm))
