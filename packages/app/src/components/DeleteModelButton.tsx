@@ -1,11 +1,5 @@
-import { plural, Trans } from '@lingui/macro'
+import { t, plural, Trans } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import Dialog, {
-  DialogTitle,
-  DialogContent,
-  DialogFooter,
-  DialogButton,
-} from '@material/react-dialog'
 import gql from 'graphql-tag'
 import React, { useState } from 'react'
 import { compose, graphql, ChildMutateProps } from 'react-apollo'
@@ -13,8 +7,14 @@ import { withRouter, RouteComponentProps } from 'react-router'
 
 import Button from './views/Button'
 import Icon from './views/Icon'
+import Dialog, {
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+} from './views/Dialog'
 import { MODELS_QUERY } from './ModelList'
 import { ModelsQuery } from './__generated__/ModelsQuery'
+import { notificationState } from '../notification'
 
 interface Props {
   model: { id: string; templates: {}[]; notes: {}[] }
@@ -40,31 +40,51 @@ const DeleteModelButton: React.FunctionComponent<
   const { i18n } = useLingui()
 
   const [dialogOpen, setDialogOpen] = useState(false)
+  const [deleting, setDeleting] = useState(false)
 
-  const handleClose = (action: string) => {
-    if (action === 'confirm') {
-      mutate({
-        variables: { modelId: model.id },
-        update: (
-          cache,
-          {
-            data: {
-              deleteModel: { id },
-            },
-          }
-        ) => {
-          const { cardModels } = cache.readQuery<ModelsQuery>({
-            query: MODELS_QUERY,
-          })
+  const handleDelete = () => {
+    setDeleting(true)
 
-          cache.writeQuery({
-            query: MODELS_QUERY,
-            data: { cardModels: cardModels.filter(model => model.id !== id) },
-          })
-        },
-      }).then(() => {
+    mutate({
+      variables: { modelId: model.id },
+      update: (
+        cache,
+        {
+          data: {
+            deleteModel: { id },
+          },
+        }
+      ) => {
+        const { cardModels } = cache.readQuery<ModelsQuery>({
+          query: MODELS_QUERY,
+        })
+
+        cache.writeQuery({
+          query: MODELS_QUERY,
+          data: { cardModels: cardModels.filter(model => model.id !== id) },
+        })
+      },
+    })
+      .then(() => {
         history.push('/models')
+
+        notificationState.addNotification({
+          message: t`Model deleted successfully`,
+        })
       })
+      .catch(() => {
+        setDeleting(false)
+
+        notificationState.addNotification({
+          message: t`An error ocurred when deleting the model`,
+          actionText: t`Dismiss`,
+        })
+      })
+  }
+
+  const handleClose = () => {
+    if (deleting) {
+      return
     }
 
     setDialogOpen(false)
@@ -106,12 +126,14 @@ const DeleteModelButton: React.FunctionComponent<
             associated with it.
           </Trans>
         </DialogContent>
-        <DialogFooter>
-          <DialogButton action="cancel">Cancel</DialogButton>
-          <DialogButton action="confirm" isDefault>
+        <DialogActions>
+          <Button onClick={handleClose} disabled={deleting}>
+            Cancel
+          </Button>
+          <Button onClick={handleDelete} disabled={deleting}>
             <Trans>Delete</Trans>
-          </DialogButton>
-        </DialogFooter>
+          </Button>
+        </DialogActions>
       </Dialog>
     </>
   )
