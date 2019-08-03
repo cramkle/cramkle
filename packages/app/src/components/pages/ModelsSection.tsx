@@ -25,7 +25,7 @@ const ModelsSection: React.FunctionComponent<RouteComponentProps> = ({
     <>
       <ModelList />
 
-      <div className={classNames(styles.fab, 'fixed')}>
+      <div className={classNames(styles.fab, 'fixed z-1')}>
         <Fab
           icon={<Icon icon="add" aria-hidden="true" />}
           aria-label={i18n._(t`Add model`)}
