@@ -107,35 +107,37 @@ const AddDeckForm: React.FunctionComponent<
         }
 
         return (
-          <Dialog open={open} onClose={handleClose}>
-            <DialogTitle>
-              <Trans>Add Deck</Trans>
-            </DialogTitle>
-            <DialogContent style={{ width: '320px' }}>
-              <TextInputField
-                id="title"
-                className="w-100"
-                name="title"
-                label={i18n._(t`Title`)}
-              />
-              <TextInputField
-                id="description"
-                className="w-100 mt3"
-                name="description"
-                label={i18n._(t`Description`)}
-                textarea
-              />
-            </DialogContent>
-            <DialogActions>
-              <Button
-                type="submit"
-                disabled={!isValid || isSubmitting}
-                onClick={handleCreate}
-              >
-                <Trans>Create</Trans>
-              </Button>
-            </DialogActions>
-          </Dialog>
+          <form onSubmit={handleSubmit}>
+            <Dialog open={open} onClose={handleClose}>
+              <DialogTitle>
+                <Trans>Add Deck</Trans>
+              </DialogTitle>
+              <DialogContent style={{ width: '320px' }}>
+                <TextInputField
+                  id="title"
+                  className="w-100"
+                  name="title"
+                  label={i18n._(t`Title`)}
+                />
+                <TextInputField
+                  id="description"
+                  className="w-100 mt3"
+                  name="description"
+                  label={i18n._(t`Description`)}
+                  textarea
+                />
+              </DialogContent>
+              <DialogActions>
+                <Button
+                  type="submit"
+                  disabled={!isValid || isSubmitting}
+                  onClick={handleCreate}
+                >
+                  <Trans>Create</Trans>
+                </Button>
+              </DialogActions>
+            </Dialog>
+          </form>
         )
       }}
     </Formik>
