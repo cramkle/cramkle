@@ -1,10 +1,10 @@
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import IconButton from '@material/react-icon-button'
 import cx from 'classnames'
 import React, { useState, useRef } from 'react'
 
 import Icon from './views/Icon'
+import IconButton from './views/IconButton'
 
 import styles from './SearchBar.css'
 
@@ -30,6 +30,7 @@ const SearchBar: React.FunctionComponent = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     // TODO: go to search page
+    // eslint-disable-next-line no-console
     console.log(searchValue)
   }
 

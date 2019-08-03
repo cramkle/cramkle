@@ -5,15 +5,10 @@ import {
 } from '@material/checkbox'
 import { MDCRippleFoundation } from '@material/ripple'
 import classNames from 'classnames'
-import React, {
-  useState,
-  useRef,
-  useEffect,
-  useCallback,
-  useImperativeHandle,
-} from 'react'
+import React, { useState, useRef, useEffect, useImperativeHandle } from 'react'
 
 import { useRipple } from './Ripple'
+import useClassList from '../../hooks/useClassList'
 
 export interface CheckboxProps extends React.HTMLAttributes<HTMLDivElement> {
   checked?: boolean
@@ -49,19 +44,11 @@ const Checkbox: React.RefForwardingComponent<CheckboxRef, CheckboxProps> = (
 ) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
-  const [classList, setClassList] = useState<string[]>([])
+  const { classList, addClass, removeClass } = useClassList()
   const foundationRef = useRef<MDCCheckboxFoundation>(null)
   const [inputProps, setInputProps] = useState<
     React.InputHTMLAttributes<HTMLInputElement>
   >({})
-
-  const addClass = useCallback((cls: string) => {
-    setClassList(prevList => [...prevList, cls])
-  }, [])
-
-  const removeClass = useCallback((cls: string) => {
-    setClassList(prevList => prevList.filter(c => c !== cls))
-  }, [])
 
   const { rippleStyle, rippleClasses, rippleFoundation } = useRipple({
     surfaceRef: containerRef,
