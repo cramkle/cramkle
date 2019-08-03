@@ -20,6 +20,7 @@ import {
 const MODELS_QUERY = gql`
   query NoteFormQuery($slug: String!) {
     deck(slug: $slug) {
+      id
       title
     }
     cardModels {
