@@ -1,7 +1,8 @@
 import { setupI18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
-import { render as rtlRender, fireEvent } from '@testing-library/react'
+import { render as rtlRender, fireEvent, wait } from '@testing-library/react'
 import React from 'react'
+import { MemoryRouter } from 'react-router'
 import { MockedProvider, MockedResponse } from 'react-apollo/test-utils'
 
 import AddDeckForm, { CREATE_DECK_MUTATION } from '../AddDeckForm'
@@ -42,11 +43,13 @@ const render = (ui: React.ReactElement, options: Options = {}) => {
   i18n.activate('en')
 
   const utils = rtlRender(
-    <I18nProvider i18n={i18n}>
-      <MockedProvider mocks={mutationMocks} addTypename={false}>
-        {ui}
-      </MockedProvider>
-    </I18nProvider>
+    <MemoryRouter>
+      <I18nProvider i18n={i18n}>
+        <MockedProvider mocks={mutationMocks} addTypename={false}>
+          {ui}
+        </MockedProvider>
+      </I18nProvider>
+    </MemoryRouter>
   )
 
   return {
@@ -56,15 +59,11 @@ const render = (ui: React.ReactElement, options: Options = {}) => {
 }
 
 describe('<AddDeckForm />', () => {
-  function flushPromises() {
-    return new Promise(resolve => setImmediate(resolve))
-  }
-
   beforeEach(() => {
-    jest.useFakeTimers()
+    //jest.useFakeTimers()
   })
 
-  it('should add deck on submit click', async () => {
+  it('should add deck on submit click', () => {
     const closeCallback = jest.fn()
     const { getByLabelText, getByText, deckMock } = render(
       <AddDeckForm open onClose={closeCallback} />
@@ -74,28 +73,29 @@ describe('<AddDeckForm />', () => {
     const submitButton = getByText(/create/i)
 
     fireEvent.input(titleInput, { target: { value: deckMock.title } })
+
+    wait(() => expect(submitButton).toBeEnabled())
+
     fireEvent.click(submitButton)
 
-    await flushPromises()
-    jest.runAllTimers()
-
-    expect(closeCallback).toHaveBeenCalledTimes(1)
+    wait(() => expect(closeCallback).toHaveBeenCalledTimes(1))
   })
 
-  it.skip('should add one deck on input enter', async () => {
+  it('should add one deck on input enter', () => {
     const closeCallback = jest.fn()
-    const { getByLabelText, deckMock } = render(
+    const { getByLabelText, getByText, deckMock } = render(
       <AddDeckForm open onClose={closeCallback} />
     )
 
     const titleInput = getByLabelText(/title/i)
+    const submitButton = getByText(/create/i)
 
     fireEvent.input(titleInput, { target: { value: deckMock.title } })
+
+    wait(() => expect(submitButton).toBeEnabled())
+
     fireEvent.keyPress(titleInput, { key: 'Enter', code: 13 })
 
-    await flushPromises()
-    jest.runAllTimers()
-
-    expect(closeCallback).toHaveBeenCalledTimes(1)
+    wait(() => expect(closeCallback).toHaveBeenCalledTimes(1))
   })
 })
