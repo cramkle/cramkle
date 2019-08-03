@@ -50,6 +50,10 @@ const FormField: React.FC<Props> = ({
 
     foundationRef.current = new MDCFormFieldFoundation(adapter)
     foundationRef.current.init()
+
+    return () => {
+      foundationRef.current.destroy()
+    }
   }, [])
 
   return (

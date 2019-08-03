@@ -122,6 +122,10 @@ const Checkbox: React.RefForwardingComponent<CheckboxRef, CheckboxProps> = (
 
     foundationRef.current = new MDCCheckboxFoundation(adapter)
     foundationRef.current.init()
+
+    return () => {
+      foundationRef.current.destroy()
+    }
   }, [addClass, removeClass])
 
   useEffect(() => {
