@@ -3,6 +3,8 @@ import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { MDCRippleFoundation, MDCRippleAdapter, util } from '@material/ripple'
 import { ponyfill, events } from '@material/dom'
 
+import useClassList from '../../hooks/useClassList'
+
 const useEventListener = (
   eventName: string,
   handler: EventListener,
@@ -48,7 +50,7 @@ export function useRipple<T extends HTMLElement, U extends HTMLElement = T>({
   computeBoundingRect?: (surface: T) => ClientRect
 }) {
   const [style, setStyle] = useState<React.CSSProperties>({})
-  const [classList, setClassList] = useState<string[]>([])
+  const { classList, addClass, removeClass } = useClassList()
   const foundationRef = useRef<MDCRippleFoundation>(null)
 
   const disabledRef = useRef(disabled)
@@ -82,21 +84,13 @@ export function useRipple<T extends HTMLElement, U extends HTMLElement = T>({
         if (!isCurrent) {
           return
         }
-        setClassList(prevList => {
-          const classSet = new Set(prevList)
-          classSet.add(className)
-          return Array.from(classSet)
-        })
+        addClass(className)
       },
       removeClass: className => {
         if (!isCurrent) {
           return
         }
-        setClassList(prevList => {
-          const classSet = new Set(prevList)
-          classSet.delete(className)
-          return Array.from(classSet)
-        })
+        removeClass(className)
       },
       registerDocumentInteractionHandler: (evtType, handler) => {
         document.documentElement.addEventListener(
@@ -178,7 +172,7 @@ export function useRipple<T extends HTMLElement, U extends HTMLElement = T>({
       isCurrent = false
       foundationRef.current.destroy()
     }
-  }, [computeBoundingRect, surfaceRef, activatorRef])
+  }, [computeBoundingRect, surfaceRef, activatorRef, addClass, removeClass])
 
   useEffect(() => {
     if (disabled) {
