@@ -1726,7 +1726,7 @@
   dependencies:
     tslib "^1.9.3"
 
-"@material/button@^1.1.0", "@material/button@^1.1.1":
+"@material/button@^1.1.1":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@material/button/-/button-1.1.1.tgz#35af0d295f6ce6e3df9d4978485b5294d794f682"
   integrity sha512-03aEyzZBIeqpgZkqLjro/enz8ORUnfQslBUdAgkPqdjh1X0oIEugr3UaFyC5QlSBTU3j3GIsnKIxWaggkRenpQ==
@@ -1808,21 +1808,21 @@
     "@material/typography" "^2.3.0"
     tslib "^1.9.3"
 
-"@material/dialog@^2.2.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@material/dialog/-/dialog-2.3.0.tgz#4525daf31e1d65e50c67f1cc944e69184134734a"
-  integrity sha512-T0xEKUW4uY5ZK7S92bdCVjFo9naasTRFNTXccIk+lBkbUlTsCOJMtix+dSJcj8ba8NOZjjq7phfAQqnNKUOhvg==
+"@material/dialog@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@material/dialog/-/dialog-3.1.0.tgz#d2b011258e165e724740b1056b62fb475a8643fa"
+  integrity sha512-mxir1rx7By1s6Xohs6rPKge8Dw8xCMldpm4m0+PHKJVLxCHydmG3jGWtXE7GtYFWg6T8SfKtAKEylc9y3Y5tVg==
   dependencies:
-    "@material/animation" "^1.0.0"
-    "@material/base" "^1.0.0"
-    "@material/dom" "^1.1.0"
-    "@material/elevation" "^1.1.0"
-    "@material/feature-targeting" "^0.44.1"
-    "@material/ripple" "^2.3.0"
-    "@material/rtl" "^0.42.0"
-    "@material/shape" "^1.1.1"
-    "@material/theme" "^1.1.0"
-    "@material/typography" "^2.3.0"
+    "@material/animation" "^3.1.0"
+    "@material/base" "^3.1.0"
+    "@material/dom" "^3.1.0"
+    "@material/elevation" "^3.1.0"
+    "@material/feature-targeting" "^3.1.0"
+    "@material/ripple" "^3.1.0"
+    "@material/rtl" "^3.1.0"
+    "@material/shape" "^3.1.0"
+    "@material/theme" "^3.1.0"
+    "@material/typography" "^3.1.0"
     focus-trap "^5.0.0"
     tslib "^1.9.3"
 
@@ -2099,15 +2099,6 @@
     "@material/theme" "^1.1.0"
     tslib "^1.9.3"
 
-"@material/react-button@^0.14.1":
-  version "0.14.1"
-  resolved "https://registry.yarnpkg.com/@material/react-button/-/react-button-0.14.1.tgz#b12581feff906b9f94eda2a8160cc6a04a303a7c"
-  integrity sha512-ZgBXykYhi71/s4qUP3PA3nj+TMLXJH2eGvmeIU2grNwxuYJSmg0uu9q/ZNG88nF7UBLOMBfvBxYJ8eUeMBUm3A==
-  dependencies:
-    "@material/button" "^1.1.0"
-    "@material/react-ripple" "^0.14.1"
-    classnames "^2.2.6"
-
 "@material/react-checkbox@^0.14.1":
   version "0.14.1"
   resolved "https://registry.yarnpkg.com/@material/react-checkbox/-/react-checkbox-0.14.1.tgz#1ba512daab47d8c2d3a3cd8fbc03c304489a6023"
@@ -2126,17 +2117,6 @@
     "@material/react-ripple" "^0.14.1"
     classnames "^2.2.6"
     react-is "^16.8.6"
-
-"@material/react-dialog@^0.14.1":
-  version "0.14.1"
-  resolved "https://registry.yarnpkg.com/@material/react-dialog/-/react-dialog-0.14.1.tgz#01b5ee00e6e5704d719caf4bc647267fda5b63e4"
-  integrity sha512-hHEmHRrTTZ9MVCtLAMNRw42Z0eRmVbTaMXmqlJMT9sM98Fo5BhLXDMjJFRBPdsk1CuFgs6E41gkw72NDSBK9iw==
-  dependencies:
-    "@material/dialog" "^2.2.0"
-    "@material/dom" "^1.0.0"
-    "@material/react-button" "^0.14.1"
-    classnames "^2.2.6"
-    focus-trap "^5.0.0"
 
 "@material/react-drawer@^0.14.1":
   version "0.14.1"
