@@ -70,7 +70,7 @@ const IconButton: React.FC<Props> = ({
     return () => {
       foundationRef.current.destroy()
     }
-  })
+  }, [addClass, removeClass])
 
   const classes = classNames(
     'mdc-icon-button',
