@@ -3,7 +3,7 @@ import { Grid } from '@material/react-layout-grid'
 import { Body1 } from '@material/react-typography'
 import gql from 'graphql-tag'
 import React, { useEffect } from 'react'
-import { compose, graphql, ChildProps } from 'react-apollo'
+import { ChildProps, compose, graphql } from 'react-apollo'
 
 import ModelCard from './ModelCard'
 import { ModelsQuery } from './__generated__/ModelsQuery'

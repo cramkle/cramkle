@@ -1,6 +1,6 @@
 import {
-  MDCFormFieldFoundation,
   MDCFormFieldAdapter,
+  MDCFormFieldFoundation,
   cssClasses,
 } from '@material/form-field'
 import { MDCRippleFoundation } from '@material/ripple'

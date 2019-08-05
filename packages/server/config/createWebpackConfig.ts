@@ -21,12 +21,12 @@ import { createOptimizationConfig } from './webpack/optimization'
 import getClientEnvironment from './env'
 import * as paths from './paths'
 import {
-  STATIC_RUNTIME_MAIN,
-  STATIC_RUNTIME_WEBPACK,
-  STATIC_RUNTIME_HOT,
+  ASSET_MANIFEST_FILE,
   STATIC_CHUNKS_PATH,
   STATIC_MEDIA_PATH,
-  ASSET_MANIFEST_FILE,
+  STATIC_RUNTIME_HOT,
+  STATIC_RUNTIME_MAIN,
+  STATIC_RUNTIME_WEBPACK,
 } from './constants'
 
 // style files regexes

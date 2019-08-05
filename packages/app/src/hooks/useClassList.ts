@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useCallback, useState } from 'react'
 
 const useClassList = () => {
   const [classList, setClassList] = useState<string[]>([])

@@ -8,7 +8,7 @@ import TopAppBar, {
 } from '@material/react-top-app-bar'
 import { Headline2, Headline4 } from '@material/react-typography'
 import React from 'react'
-import { withRouter, RouteComponentProps, Link } from 'react-router-dom'
+import { Link, RouteComponentProps, withRouter } from 'react-router-dom'
 
 import Button from '../views/Button'
 import Footer from '../Footer'

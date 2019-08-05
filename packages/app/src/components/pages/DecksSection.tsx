@@ -1,7 +1,7 @@
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import classNames from 'classnames'
-import React, { useState, useCallback } from 'react'
+import React, { useCallback, useState } from 'react'
 
 import DeckList from '../DeckList'
 import Fab from '../views/Fab'

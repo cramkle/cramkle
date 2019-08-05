@@ -3,7 +3,7 @@ import { useLingui } from '@lingui/react'
 import { Chip } from '@material/react-chips'
 import { Headline6 } from '@material/react-typography'
 import React from 'react'
-import { withRouter, RouteComponentProps } from 'react-router'
+import { RouteComponentProps, withRouter } from 'react-router'
 
 import Card, { CardPrimaryContent } from './views/Card'
 import { ModelsQuery_cardModels } from './__generated__/ModelsQuery'

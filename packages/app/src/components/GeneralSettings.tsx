@@ -1,7 +1,7 @@
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import Select, { Option } from '@material/react-select'
-import React, { useState, useCallback } from 'react'
+import React, { useCallback, useState } from 'react'
 import Cookies from 'universal-cookie'
 
 import Button from './views/Button'

@@ -1,4 +1,4 @@
-import { EditorState, ContentState, Modifier, SelectionState } from 'draft-js'
+import { ContentState, EditorState, Modifier, SelectionState } from 'draft-js'
 
 import { TaggableEntry } from './TaggableEntry'
 import { TAG_TYPE } from './constants'

@@ -2,7 +2,7 @@ import { Trans } from '@lingui/macro'
 import { RawDraftContentState } from 'draft-js'
 import gql from 'graphql-tag'
 import React, { useState } from 'react'
-import { graphql, ChildMutateProps } from 'react-apollo'
+import { ChildMutateProps, graphql } from 'react-apollo'
 
 import Button from './views/Button'
 import {

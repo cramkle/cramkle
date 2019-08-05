@@ -2,8 +2,8 @@ import { Resolvers } from 'apollo-client'
 
 import {
   initialState as topBarInitialState,
-  queries as topBarQueries,
   mutations as topBarMutations,
+  queries as topBarQueries,
 } from './topBar'
 
 export const defaults = {

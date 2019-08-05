@@ -1,15 +1,15 @@
-import { t, Trans } from '@lingui/macro'
+import { Trans, t } from '@lingui/macro'
 import gql from 'graphql-tag'
-import React, { useState, useCallback } from 'react'
-import { graphql, ChildMutateProps } from 'react-apollo'
-import { withRouter, RouteComponentProps } from 'react-router'
+import React, { useCallback, useState } from 'react'
+import { ChildMutateProps, graphql } from 'react-apollo'
+import { RouteComponentProps, withRouter } from 'react-router'
 
 import Button from './views/Button'
 import Icon from './views/Icon'
 import Dialog, {
-  DialogTitle,
-  DialogContent,
   DialogActions,
+  DialogContent,
+  DialogTitle,
 } from './views/Dialog'
 import {
   DeleteDeckMutation,

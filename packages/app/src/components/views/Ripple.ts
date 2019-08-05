@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 
-import { MDCRippleFoundation, MDCRippleAdapter, util } from '@material/ripple'
-import { ponyfill, events } from '@material/dom'
+import { MDCRippleAdapter, MDCRippleFoundation, util } from '@material/ripple'
+import { events, ponyfill } from '@material/dom'
 
 import useClassList from '../../hooks/useClassList'
 

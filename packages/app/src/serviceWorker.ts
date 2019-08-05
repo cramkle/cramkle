@@ -4,10 +4,10 @@ import { precacheAndRoute } from 'workbox-precaching'
 import { Plugin as CacheableResponsePlugin } from 'workbox-cacheable-response'
 import { Plugin as ExpirationPlugin } from 'workbox-expiration'
 import {
-  NetworkFirst,
-  StaleWhileRevalidate,
   CacheFirst,
+  NetworkFirst,
   NetworkOnly,
+  StaleWhileRevalidate,
 } from 'workbox-strategies'
 import { registerRoute } from 'workbox-routing'
 

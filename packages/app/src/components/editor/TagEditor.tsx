@@ -1,12 +1,12 @@
 import {
+  DraftHandleValue,
   Editor,
   EditorProps,
   EditorState,
-  DraftHandleValue,
   getDefaultKeyBinding,
 } from 'draft-js'
 import * as KeyCode from 'keycode-js'
-import React, { useEffect, useReducer, useCallback, useRef } from 'react'
+import React, { useCallback, useEffect, useReducer, useRef } from 'react'
 
 import TagsPopup from './TagsPopup'
 import searchTags from './searchTags'

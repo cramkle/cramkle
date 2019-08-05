@@ -1,5 +1,5 @@
 import { Trans } from '@lingui/macro'
-import { Headline5, Body1 } from '@material/react-typography'
+import { Body1, Headline5 } from '@material/react-typography'
 import React from 'react'
 import { Link } from 'react-router-dom'
 

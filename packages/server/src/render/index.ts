@@ -4,13 +4,13 @@ import * as path from 'path'
 import { promisify } from 'util'
 
 import * as Log from '../output/log'
-import { ok, error } from '../templates'
-import { appDistServer, appDist } from '../../config/paths'
+import { error, ok } from '../templates'
+import { appDist, appDistServer } from '../../config/paths'
 import {
+  ASSET_MANIFEST_FILE,
+  STATIC_RUNTIME_HOT,
   STATIC_RUNTIME_MAIN,
   STATIC_RUNTIME_WEBPACK,
-  STATIC_RUNTIME_HOT,
-  ASSET_MANIFEST_FILE,
 } from '../../config/constants'
 
 interface RenderOptions {

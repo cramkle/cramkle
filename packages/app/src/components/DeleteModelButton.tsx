@@ -1,16 +1,16 @@
-import { t, plural, Trans } from '@lingui/macro'
+import { Trans, plural, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import gql from 'graphql-tag'
 import React, { useState } from 'react'
-import { compose, graphql, ChildMutateProps } from 'react-apollo'
-import { withRouter, RouteComponentProps } from 'react-router'
+import { ChildMutateProps, compose, graphql } from 'react-apollo'
+import { RouteComponentProps, withRouter } from 'react-router'
 
 import Button from './views/Button'
 import Icon from './views/Icon'
 import Dialog, {
-  DialogTitle,
-  DialogContent,
   DialogActions,
+  DialogContent,
+  DialogTitle,
 } from './views/Dialog'
 import { MODELS_QUERY } from './ModelList'
 import { ModelsQuery } from './__generated__/ModelsQuery'

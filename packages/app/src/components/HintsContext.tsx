@@ -1,4 +1,4 @@
-import React, { useContext, createContext, useMemo } from 'react'
+import React, { createContext, useContext, useMemo } from 'react'
 
 export const HintsContext = createContext({ isMobile: true })
 

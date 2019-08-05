@@ -1,7 +1,7 @@
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import cx from 'classnames'
-import React, { useState, useRef } from 'react'
+import React, { useRef, useState } from 'react'
 
 import Icon from './views/Icon'
 import IconButton from './views/IconButton'

@@ -1,11 +1,11 @@
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import { Headline5, Body1, Body2 } from '@material/react-typography'
-import { Formik, FieldArray } from 'formik'
+import { Body1, Body2, Headline5 } from '@material/react-typography'
+import { FieldArray, Formik } from 'formik'
 import gql from 'graphql-tag'
 import React from 'react'
-import { graphql, compose, ChildMutateProps } from 'react-apollo'
-import { withRouter, RouteComponentProps } from 'react-router'
+import { ChildMutateProps, compose, graphql } from 'react-apollo'
+import { RouteComponentProps, withRouter } from 'react-router'
 import * as yup from 'yup'
 
 import {

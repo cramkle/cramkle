@@ -10,8 +10,8 @@ import TopAppBar, {
 } from '@material/react-top-app-bar'
 import gql from 'graphql-tag'
 import React, { Suspense, useCallback, useEffect, useRef } from 'react'
-import { compose, graphql, ChildDataProps } from 'react-apollo'
-import { withRouter, RouteComponentProps } from 'react-router'
+import { ChildDataProps, compose, graphql } from 'react-apollo'
+import { RouteComponentProps, withRouter } from 'react-router'
 
 import AppDrawer from './AppDrawer'
 import NoSSR from './NoSSR'

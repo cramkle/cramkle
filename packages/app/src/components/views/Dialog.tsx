@@ -1,8 +1,8 @@
-import { cssClasses, strings, numbers, util } from '@material/dialog'
+import { cssClasses, numbers, strings, util } from '@material/dialog'
 import { ponyfill } from '@material/dom'
 import classNames from 'classnames'
 import { FocusTrap } from 'focus-trap'
-import React, { useRef, useEffect, useReducer } from 'react'
+import React, { useEffect, useReducer, useRef } from 'react'
 
 import Button from './Button'
 

@@ -1,26 +1,26 @@
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import Drawer, {
-  DrawerHeader,
-  DrawerTitle,
-  DrawerSubtitle,
-  DrawerContent,
   DrawerAppContent,
+  DrawerContent,
+  DrawerHeader,
+  DrawerSubtitle,
+  DrawerTitle,
 } from '@material/react-drawer'
 import List, {
   ListItem,
-  ListItemText,
   ListItemGraphic,
+  ListItemText,
 } from '@material/react-list'
 import React, {
   ReactNode,
-  useRef,
   useCallback,
-  useState,
   useEffect,
+  useRef,
+  useState,
 } from 'react'
-import { compose, graphql, ChildDataProps } from 'react-apollo'
-import { withRouter, RouteComponentProps } from 'react-router'
+import { ChildDataProps, compose, graphql } from 'react-apollo'
+import { RouteComponentProps, withRouter } from 'react-router'
 
 import NoSSR from './NoSSR'
 import { useHints } from './HintsContext'

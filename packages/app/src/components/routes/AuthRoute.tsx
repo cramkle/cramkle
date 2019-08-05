@@ -1,7 +1,7 @@
-import { compose, not, isNil } from 'ramda'
+import { compose, isNil, not } from 'ramda'
 import React from 'react'
-import { Route, Redirect, RouteProps } from 'react-router-dom'
-import { graphql, ChildProps } from 'react-apollo'
+import { Redirect, Route, RouteProps } from 'react-router-dom'
+import { ChildProps, graphql } from 'react-apollo'
 
 import USER_QUERY from '../userQuery.gql'
 import { UserQuery } from '../__generated__/UserQuery'

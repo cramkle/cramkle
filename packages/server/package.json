@@ -12,7 +12,7 @@
     "start": "NODE_ENV=development node dist/server/start-dev.js",
     "start-prod": "NODE_ENV=production node dist/server/start.js",
     "build": "tsc",
-    "lint": "eslint --ext ts src && tsc --noEmit"
+    "lint": "tsc --noEmit --pretty && yarn eslint --ext ts src config bin scripts"
   },
   "dependencies": {
     "chalk": "^2.4.2",

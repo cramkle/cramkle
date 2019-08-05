@@ -1,5 +1,5 @@
 import { Trans } from '@lingui/macro'
-import { Headline4, Overline, Body1 } from '@material/react-typography'
+import { Body1, Headline4, Overline } from '@material/react-typography'
 import React from 'react'
 import { FallbackProps } from 'react-error-boundary'
 

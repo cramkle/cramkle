@@ -6,7 +6,7 @@ import { createPersistedQueryLink } from 'apollo-link-persisted-queries'
 import { ApolloLink } from 'apollo-link'
 
 import fetch from './fetch'
-import { resolvers, defaults } from '../resolvers'
+import { defaults, resolvers } from '../resolvers'
 
 export const createApolloClient = (uri: string, cookie?: string) => {
   const cache = new InMemoryCache()

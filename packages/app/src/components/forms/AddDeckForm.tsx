@@ -3,7 +3,7 @@ import { useLingui } from '@lingui/react'
 import { Formik } from 'formik'
 import gql from 'graphql-tag'
 import React from 'react'
-import { graphql, ChildMutateProps } from 'react-apollo'
+import { ChildMutateProps, graphql } from 'react-apollo'
 import { RouteComponentProps, withRouter } from 'react-router'
 import * as yup from 'yup'
 
@@ -13,9 +13,9 @@ import {
   CreateDeckMutationVariables,
 } from './__generated__/CreateDeckMutation'
 import Dialog, {
+  DialogActions,
   DialogContent,
   DialogTitle,
-  DialogActions,
 } from '../views/Dialog'
 import Button from '../views/Button'
 import { DECKS_QUERY } from '../DeckList'

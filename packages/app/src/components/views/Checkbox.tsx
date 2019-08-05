@@ -1,11 +1,11 @@
 import {
-  cssClasses,
-  MDCCheckboxFoundation,
   MDCCheckboxAdapter,
+  MDCCheckboxFoundation,
+  cssClasses,
 } from '@material/checkbox'
 import { MDCRippleFoundation } from '@material/ripple'
 import classNames from 'classnames'
-import React, { useState, useRef, useEffect, useImperativeHandle } from 'react'
+import React, { useEffect, useImperativeHandle, useRef, useState } from 'react'
 
 import { useRipple } from './Ripple'
 import useClassList from '../../hooks/useClassList'

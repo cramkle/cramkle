@@ -1,6 +1,6 @@
 import { useLingui } from '@lingui/react'
 import { Snackbar } from '@material/react-snackbar'
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 
 import { notificationState } from '../notification/index'
 import { NotificationEvent } from '../notification/state'

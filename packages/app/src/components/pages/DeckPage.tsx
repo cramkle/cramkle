@@ -1,7 +1,7 @@
 import { Body1, Headline4 } from '@material/react-typography'
 import gql from 'graphql-tag'
 import React, { useEffect } from 'react'
-import { compose, graphql, ChildProps } from 'react-apollo'
+import { ChildProps, compose, graphql } from 'react-apollo'
 import { Helmet } from 'react-helmet'
 import { RouteComponentProps } from 'react-router'
 
