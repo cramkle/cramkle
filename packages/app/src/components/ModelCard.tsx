@@ -2,7 +2,7 @@ import { plural } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { Chip } from '@material/react-chips'
 import { Headline6 } from '@material/react-typography'
-import React from 'react'
+import React, { useCallback } from 'react'
 import { RouteComponentProps, withRouter } from 'react-router'
 
 import Card, { CardPrimaryContent } from './views/Card'
@@ -16,7 +16,11 @@ const ModelCard: React.FunctionComponent<
   Props & ModelsQuery_cardModels & RouteComponentProps
 > = ({ className = '', id, name, history, fields, templates }) => {
   const { i18n } = useLingui()
-  const handleClick = () => history.push(`/m/${id}`)
+  const handleClick = useCallback(() => history.push(`/m/${id}`), [history, id])
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent) => e.key === 'Enter' && handleClick(),
+    [handleClick]
+  )
 
   return (
     <Card outlined className={className}>
@@ -25,9 +29,7 @@ const ModelCard: React.FunctionComponent<
         tabIndex={0}
         role="article"
         onClick={handleClick}
-        onKeyDown={(e: React.KeyboardEvent) =>
-          e.key === 'Enter' && handleClick()
-        }
+        onKeyDown={handleKeyDown}
       >
         <Headline6>{name}</Headline6>
         {!!(templates.length || fields.length) && (
