@@ -1,4 +1,4 @@
-import { ChildProps, graphql } from '@apollo/react-hoc'
+import { useQuery } from '@apollo/react-hooks'
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import LinearProgress from '@material/react-linear-progress'
@@ -10,6 +10,7 @@ import TopAppBar, {
   TopAppBarTitle,
 } from '@material/react-top-app-bar'
 import gql from 'graphql-tag'
+import { path } from 'ramda'
 import React, { Suspense, useCallback, useEffect, useRef } from 'react'
 import { RouteComponentProps, withRouter } from 'react-router'
 
@@ -24,7 +25,7 @@ import { ReactComponent as Logo } from '../assets/logo.svg'
 import { ReactComponent as LogoGray } from '../assets/logo-gray.svg'
 import { TopBarLoadingQuery } from './__generated__/TopBarLoadingQuery'
 
-type Props = ChildProps<RouteComponentProps, TopBarLoadingQuery>
+type Props = RouteComponentProps
 
 const TOP_BAR_LOADING_QUERY = gql`
   query TopBarLoadingQuery {
@@ -36,11 +37,11 @@ const TOP_BAR_LOADING_QUERY = gql`
 
 const Shell: React.FunctionComponent<Props> = ({
   children,
-  data: { topBar },
   history,
   location: { pathname },
 }) => {
-  const loading = topBar && topBar.loading
+  const { data } = useQuery<TopBarLoadingQuery>(TOP_BAR_LOADING_QUERY)
+  const loading = path(['topBar', 'loading'], data)
 
   const { i18n } = useLingui()
   const { isMobile } = useHints()
@@ -115,7 +116,7 @@ const Shell: React.FunctionComponent<Props> = ({
         open={drawerOpen}
         onClose={handleDrawerClose}
         content={content}
-        render={(children: JSX.Element) => (
+        render={children => (
           <>
             <TopAppBar fixed>
               <TopAppBarRow>
@@ -156,6 +157,4 @@ const Shell: React.FunctionComponent<Props> = ({
   )
 }
 
-export default graphql<{}, TopBarLoadingQuery>(TOP_BAR_LOADING_QUERY)(
-  withRouter(Shell)
-)
+export default withRouter(Shell)
