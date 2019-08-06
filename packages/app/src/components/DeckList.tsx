@@ -1,4 +1,4 @@
-import { ChildProps, graphql } from '@apollo/react-hoc'
+import { useQuery } from '@apollo/react-hooks'
 import { Trans } from '@lingui/macro'
 import { Cell, Grid, Row } from '@material/react-layout-grid'
 import { Body1 } from '@material/react-typography'
@@ -20,9 +20,12 @@ export const DECKS_QUERY = gql`
   }
 `
 
-const DeckList: React.FunctionComponent<ChildProps<{}, DecksQuery>> = ({
-  data: { loading, decks = [] },
-}) => {
+const DeckList: React.FunctionComponent = () => {
+  const {
+    loading,
+    data: { decks = [] },
+  } = useQuery<DecksQuery>(DECKS_QUERY)
+
   useTopBarLoading(loading)
 
   if (loading) {
@@ -52,4 +55,4 @@ const DeckList: React.FunctionComponent<ChildProps<{}, DecksQuery>> = ({
   )
 }
 
-export default graphql<{}, DecksQuery>(DECKS_QUERY)(DeckList)
+export default DeckList

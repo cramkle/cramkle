@@ -1,4 +1,4 @@
-import { ChildProps, graphql } from '@apollo/react-hoc'
+import { useMutation } from '@apollo/react-hooks'
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { Formik } from 'formik'
@@ -40,10 +40,15 @@ export const CREATE_DECK_MUTATION = gql`
 
 const titleRequired = t`The title is required`
 
-const AddDeckForm: React.FunctionComponent<
-  ChildProps<Props, CreateDeckMutation, CreateDeckMutationVariables> &
-    RouteComponentProps
-> = ({ open, onClose, mutate, history }) => {
+const AddDeckForm: React.FunctionComponent<Props & RouteComponentProps> = ({
+  open,
+  onClose,
+  history,
+}) => {
+  const [mutate] = useMutation<CreateDeckMutation, CreateDeckMutationVariables>(
+    CREATE_DECK_MUTATION
+  )
+
   const { i18n } = useLingui()
 
   return (
@@ -144,6 +149,4 @@ const AddDeckForm: React.FunctionComponent<
   )
 }
 
-export default graphql<Props, CreateDeckMutation, CreateDeckMutationVariables>(
-  CREATE_DECK_MUTATION
-)(withRouter(AddDeckForm))
+export default withRouter(AddDeckForm)

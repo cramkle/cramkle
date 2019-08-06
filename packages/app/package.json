@@ -17,7 +17,6 @@
     "compile": "lingui compile"
   },
   "dependencies": {
-    "@apollo/react-hoc": "^3.0.0",
     "@apollo/react-hooks": "^3.0.0",
     "@apollo/react-ssr": "^3.0.0",
     "@cramkle/app-server": "^0.4.9",

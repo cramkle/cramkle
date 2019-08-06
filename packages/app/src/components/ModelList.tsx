@@ -1,4 +1,4 @@
-import { ChildProps, graphql } from '@apollo/react-hoc'
+import { useQuery } from '@apollo/react-hooks'
 import { Trans } from '@lingui/macro'
 import { Grid } from '@material/react-layout-grid'
 import { Body1 } from '@material/react-typography'
@@ -8,8 +8,6 @@ import React from 'react'
 import ModelCard from './ModelCard'
 import { ModelsQuery } from './__generated__/ModelsQuery'
 import useTopBarLoading from '../hooks/useTopBarLoading'
-
-type Query = ModelsQuery
 
 export const MODELS_QUERY = gql`
   query ModelsQuery {
@@ -28,9 +26,12 @@ export const MODELS_QUERY = gql`
   }
 `
 
-const ModelList: React.FunctionComponent<ChildProps<{}, Query>> = ({
-  data: { loading, cardModels: models = [] },
-}) => {
+const ModelList: React.FunctionComponent = () => {
+  const {
+    data: { cardModels: models = [] },
+    loading,
+  } = useQuery<ModelsQuery>(MODELS_QUERY)
+
   useTopBarLoading(loading)
 
   if (loading) {
@@ -60,4 +61,4 @@ const ModelList: React.FunctionComponent<ChildProps<{}, Query>> = ({
   )
 }
 
-export default graphql<{}, ModelsQuery>(MODELS_QUERY)(ModelList)
+export default ModelList

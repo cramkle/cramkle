@@ -1,4 +1,4 @@
-import { ChildProps, graphql } from '@apollo/react-hoc'
+import { useMutation } from '@apollo/react-hooks'
 import { Trans } from '@lingui/macro'
 import { RawDraftContentState } from 'draft-js'
 import gql from 'graphql-tag'
@@ -23,13 +23,16 @@ const UPDATE_CONTENT_STATE_MUTATION = gql`
   }
 `
 
-const SaveTemplateButton: React.FunctionComponent<
-  ChildProps<
-    Props,
+const SaveTemplateButton: React.FunctionComponent<Props> = ({
+  id,
+  blocks,
+  entityMap,
+}) => {
+  const [mutate] = useMutation<
     UpdateContentStateMutation,
     UpdateContentStateMutationVariables
-  >
-> = ({ id, blocks, entityMap, mutate }) => {
+  >(UPDATE_CONTENT_STATE_MUTATION)
+
   const [loading, setLoading] = useState(false)
 
   return (
@@ -48,4 +51,4 @@ const SaveTemplateButton: React.FunctionComponent<
   )
 }
 
-export default graphql<Props>(UPDATE_CONTENT_STATE_MUTATION)(SaveTemplateButton)
+export default SaveTemplateButton

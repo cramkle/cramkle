@@ -1,4 +1,4 @@
-import { ChildProps, graphql } from '@apollo/react-hoc'
+import { useQuery } from '@apollo/react-hooks'
 import { compose, isNil, not } from 'ramda'
 import React from 'react'
 import { Redirect, Route, RouteProps } from 'react-router-dom'
@@ -12,47 +12,54 @@ interface Input {
   displayName: string
 }
 
-const withUser = graphql<RouteProps, UserQuery>(USER_QUERY)
-
 type SupportedRouteProps = Pick<
   RouteProps,
   Exclude<keyof RouteProps, 'children'>
 >
 
 const createRoute = ({ challenge, redirectPath, displayName }: Input) => {
-  const CustomRoute: React.FunctionComponent<
-    ChildProps<SupportedRouteProps, UserQuery>
-  > = ({ data: { me, loading }, render, component: Component, ...rest }) => (
-    <Route
-      {...rest}
-      render={props => {
-        if (loading) {
-          return null
-        }
+  const CustomRoute: React.FunctionComponent<SupportedRouteProps> = ({
+    render,
+    component: Component,
+    ...rest
+  }) => {
+    const {
+      data: { me },
+      loading,
+    } = useQuery<UserQuery>(USER_QUERY)
 
-        if (challenge(me)) {
-          if (typeof render === 'function') {
-            return render(props)
+    return (
+      <Route
+        {...rest}
+        render={props => {
+          if (loading) {
+            return null
           }
 
-          return <Component {...props} />
-        }
+          if (challenge(me)) {
+            if (typeof render === 'function') {
+              return render(props)
+            }
 
-        return (
-          <Redirect
-            to={{
-              pathname: redirectPath,
-              state: { from: props.location },
-            }}
-          />
-        )
-      }}
-    />
-  )
+            return <Component {...props} />
+          }
+
+          return (
+            <Redirect
+              to={{
+                pathname: redirectPath,
+                state: { from: props.location },
+              }}
+            />
+          )
+        }}
+      />
+    )
+  }
 
   CustomRoute.displayName = displayName
 
-  return withUser(CustomRoute)
+  return CustomRoute
 }
 
 export const GuestRoute = createRoute({

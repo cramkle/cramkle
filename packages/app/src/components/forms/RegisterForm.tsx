@@ -1,4 +1,4 @@
-import { ChildProps, graphql } from '@apollo/react-hoc'
+import { useMutation } from '@apollo/react-hooks'
 import { MessageDescriptor } from '@lingui/core'
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
@@ -39,9 +39,11 @@ const emailRequired = t`E-mail is required`
 const passwordRequired = t`Password is required`
 const agreementRequired = t`Agreement is required`
 
-const RegisterForm: React.FunctionComponent<
-  ChildProps<Props> & RouteComponentProps
-> = ({ mutate: register, title = t`Register`, history }) => {
+const RegisterForm: React.FunctionComponent<Props & RouteComponentProps> = ({
+  title = t`Register`,
+  history,
+}) => {
+  const [register] = useMutation(REGISTER_MUTATION)
   const { i18n } = useLingui()
 
   return (
@@ -163,4 +165,4 @@ const RegisterForm: React.FunctionComponent<
   )
 }
 
-export default graphql<Props>(REGISTER_MUTATION)(withRouter(RegisterForm))
+export default withRouter(RegisterForm)
