@@ -3,7 +3,20 @@
   "compilerOptions": {
     "target": "es5",
     "lib": ["es6", "dom"],
-    "jsx": "react"
+    "jsx": "react",
+    "baseUrl": "./",
+    "paths": {
+      "hooks/*": ["./src/hooks/*"],
+      "assets/*": ["./src/assets/*"],
+      "notification/*": ["./src/notification/*"],
+      "utils/*": ["./src/utils/*"],
+      "components/*": ["./src/components/*"],
+      "views/*": ["./src/components/views/*"],
+      "forms/*": ["./src/components/forms/*"],
+      "pages/*": ["./src/components/pages/*"],
+      "routes/*": ["./src/components/routes/*"],
+      "resolvers/*": ["./src/resolvers/*"]
+    }
   },
   "exclude": ["node_modules", "jest/**/*"]
 }

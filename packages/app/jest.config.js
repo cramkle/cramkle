@@ -21,6 +21,16 @@ module.exports = {
   moduleNameMapper: {
     '^react-native$': 'react-native-web',
     '^.+\\.global\\.(css|sass|scss)$': 'identity-obj-proxy',
+    '^hooks/(.*)': '<rootDir>/src/hooks/$1',
+    '^assets/(.*)': '<rootDir>/src/assets/$1',
+    '^notification/(.*)': '<rootDir>/src/notification/$1',
+    '^utils/(.*)': '<rootDir>/src/utils/$1',
+    '^components/(.*)': '<rootDir>/src/components/$1',
+    '^views/(.*)': '<rootDir>/src/components/views/$1',
+    '^forms/(.*)': '<rootDir>/src/components/forms/$1',
+    '^pages/(.*)': '<rootDir>/src/components/pages/$1',
+    '^routes/(.*)': '<rootDir>/src/components/routes/$1',
+    '^resolvers/(.*)': '<rootDir>/src/resolvers/$1',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'json', 'jsx', 'node'],
 }

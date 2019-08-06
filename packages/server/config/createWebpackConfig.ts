@@ -179,6 +179,16 @@ const getBaseWebpackConfig = (options?: Options): Configuration => {
       plugins: [new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson])],
       alias: {
         'react-dom': dev ? '@hot-loader/react-dom' : 'react-dom',
+        hooks: path.join(paths.appSrc, 'hooks'),
+        resolvers: path.join(paths.appSrc, 'resolvers'),
+        assets: path.join(paths.appSrc, 'assets'),
+        utils: path.join(paths.appSrc, 'utils'),
+        notification: path.join(paths.appSrc, 'notification'),
+        components: path.join(paths.appSrc, 'components'),
+        views: path.join(paths.appSrc, 'components', 'views'),
+        forms: path.join(paths.appSrc, 'components', 'forms'),
+        pages: path.join(paths.appSrc, 'components', 'pages'),
+        routes: path.join(paths.appSrc, 'components', 'routes'),
       },
     },
     module: {
