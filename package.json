@@ -11,5 +11,15 @@
   },
   "devDependencies": {
     "release-it": "^12.0.1"
+  },
+  "renovate": {
+    "extends": [
+      "config:base",
+      ":preserveSemverRanges"
+    ],
+    "automerge": false,
+    "branchPrefix": "chore/",
+    "enabledManagers": ["yarn"],
+    "labels": ["dependencies"]
   }
 }
