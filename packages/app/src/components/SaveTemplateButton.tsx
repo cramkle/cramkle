@@ -4,7 +4,7 @@ import { RawDraftContentState } from 'draft-js'
 import gql from 'graphql-tag'
 import React, { useState } from 'react'
 
-import Button from './views/Button'
+import Button from 'views/Button'
 import {
   UpdateContentStateMutation,
   UpdateContentStateMutationVariables,

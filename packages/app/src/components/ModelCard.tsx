@@ -5,7 +5,7 @@ import { Headline6 } from '@material/react-typography'
 import React, { useCallback } from 'react'
 import { RouteComponentProps, withRouter } from 'react-router'
 
-import Card, { CardPrimaryContent } from './views/Card'
+import Card, { CardPrimaryContent } from 'views/Card'
 import { ModelsQuery_cardModels } from './__generated__/ModelsQuery'
 
 interface Props {

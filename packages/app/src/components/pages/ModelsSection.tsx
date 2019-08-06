@@ -4,10 +4,10 @@ import classNames from 'classnames'
 import React from 'react'
 import { RouteComponentProps, withRouter } from 'react-router'
 
-import ModelList from '../ModelList'
-import Fab from '../views/Fab'
-import Icon from '../views/Icon'
-import { useHints } from '../HintsContext'
+import ModelList from 'components/ModelList'
+import Fab from 'views/Fab'
+import Icon from 'views/Icon'
+import { useHints } from 'components/HintsContext'
 
 import styles from './ModelsSection.css'
 

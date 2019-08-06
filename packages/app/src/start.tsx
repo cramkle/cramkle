@@ -9,12 +9,12 @@ import { StaticRouterContext } from 'react-router'
 import { BrowserRouter } from 'react-router-dom'
 import Cookies from 'universal-cookie'
 
+import { HintsProvider } from 'components/HintsContext'
+import { createApolloClient } from 'utils/apolloClient'
 import App from './App'
 import registerSW from './registerSW'
-import { HintsProvider } from './components/HintsContext'
 import catalogEn from './locales/en/messages'
 import catalogPt from './locales/pt/messages'
-import { createApolloClient } from './utils/apolloClient'
 
 interface RenderOptions {
   requestUrl: string

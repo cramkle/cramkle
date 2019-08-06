@@ -4,8 +4,8 @@ import { useControlledTabIndex } from '@lucasecdb/react-tab-controller'
 import cx from 'classnames'
 import React, { memo, useRef } from 'react'
 
-import Icon from '../views/Icon'
-import { IconTypes } from '../views/IconTypes'
+import Icon from 'views/Icon'
+import { IconTypes } from 'views/IconTypes'
 
 import styles from './StyleButton.css'
 

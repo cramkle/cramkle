@@ -7,8 +7,8 @@ import React from 'react'
 import { object, string } from 'yup'
 
 import { TextInputField } from './Fields'
-import Button from '../views/Button'
-import Card, { CardActionButtons, CardActions } from '../views/Card'
+import Button from 'views/Button'
+import Card, { CardActionButtons, CardActions } from 'views/Card'
 
 import styles from './LoginForm.scss'
 

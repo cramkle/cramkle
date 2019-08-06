@@ -2,8 +2,8 @@ import { Trans } from '@lingui/macro'
 import React, { useCallback } from 'react'
 import { RouteComponentProps, withRouter } from 'react-router'
 
-import Button from './views/Button'
-import Icon from './views/Icon'
+import Button from 'views/Button'
+import Icon from 'views/Icon'
 
 const BackButton: React.FunctionComponent<RouteComponentProps> = ({
   history,

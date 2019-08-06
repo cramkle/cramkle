@@ -4,7 +4,7 @@ import Select, { Option } from '@material/react-select'
 import React, { useCallback, useState } from 'react'
 import Cookies from 'universal-cookie'
 
-import Button from './views/Button'
+import Button from 'views/Button'
 
 const OPTIONS = [
   {

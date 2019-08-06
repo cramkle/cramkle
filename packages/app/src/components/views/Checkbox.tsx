@@ -8,7 +8,7 @@ import classNames from 'classnames'
 import React, { useEffect, useImperativeHandle, useRef, useState } from 'react'
 
 import { useRipple } from './Ripple'
-import useClassList from '../../hooks/useClassList'
+import useClassList from 'hooks/useClassList'
 
 export interface CheckboxProps extends React.HTMLAttributes<HTMLDivElement> {
   checked?: boolean

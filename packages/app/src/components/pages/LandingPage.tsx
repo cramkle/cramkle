@@ -10,11 +10,11 @@ import { Headline2, Headline4 } from '@material/react-typography'
 import React from 'react'
 import { Link, RouteComponentProps, withRouter } from 'react-router-dom'
 
-import Button from '../views/Button'
-import Footer from '../Footer'
-import RegisterForm from '../forms/RegisterForm'
-import { ReactComponent as Logo } from '../../assets/logo.svg'
-import bgUrl from '../../assets/landing-bg.svg'
+import Button from 'views/Button'
+import Footer from 'components/Footer'
+import RegisterForm from 'forms/RegisterForm'
+import { ReactComponent as Logo } from 'assets/logo.svg'
+import bgUrl from 'assets/landing-bg.svg'
 
 const LandingPage: React.FunctionComponent<RouteComponentProps> = ({
   history,

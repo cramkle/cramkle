@@ -1,11 +1,11 @@
 import { SelectionState } from 'draft-js'
 import React from 'react'
 
+import Portal from 'components/Portal'
+import TypeaheadView from 'views/TypeaheadView'
 import TagSpan from './TagSpan'
 import { findTagEntities } from './strategies'
 import getSelectionRect from './getSelectionRect'
-import Portal from '../Portal'
-import TypeaheadView from '../views/TypeaheadView'
 import { TaggableEntry } from './TaggableEntry'
 
 export const decorators = [

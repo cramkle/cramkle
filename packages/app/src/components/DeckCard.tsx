@@ -2,7 +2,7 @@ import React from 'react'
 import { RouteComponentProps, withRouter } from 'react-router'
 import { Body2, Headline6 } from '@material/react-typography'
 
-import Card, { CardPrimaryContent } from './views/Card'
+import Card, { CardPrimaryContent } from 'views/Card'
 
 interface Props extends RouteComponentProps {
   title: string

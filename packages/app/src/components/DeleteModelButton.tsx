@@ -5,29 +5,19 @@ import gql from 'graphql-tag'
 import React, { useState } from 'react'
 import { RouteComponentProps, withRouter } from 'react-router'
 
-import Button from './views/Button'
-import Icon from './views/Icon'
-import Dialog, {
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-} from './views/Dialog'
+import { notificationState } from 'notification/index'
+import Button from 'views/Button'
+import Icon from 'views/Icon'
+import Dialog, { DialogActions, DialogContent, DialogTitle } from 'views/Dialog'
 import {
   DeleteModelMutation,
   DeleteModelMutationVariables,
 } from './__generated__/DeleteModelMutation'
 import { MODELS_QUERY } from './ModelList'
 import { ModelsQuery } from './__generated__/ModelsQuery'
-import { notificationState } from '../notification'
 
 interface Props {
   model: { id: string; templates: {}[]; notes: {}[] }
-}
-
-interface Mutation {
-  deleteModel: {
-    id: string
-  }
 }
 
 const DELETE_MODEL_MUTATION = gql`

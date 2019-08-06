@@ -12,15 +12,11 @@ import {
   CreateDeckMutation,
   CreateDeckMutationVariables,
 } from './__generated__/CreateDeckMutation'
-import Dialog, {
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-} from '../views/Dialog'
-import Button from '../views/Button'
+import Dialog, { DialogActions, DialogContent, DialogTitle } from 'views/Dialog'
+import Button from 'views/Button'
 import { DECKS_QUERY } from '../DeckList'
 import { DecksQuery } from '../__generated__/DecksQuery'
-import { notificationState } from '../../notification'
+import { notificationState } from 'notification/index'
 
 interface Props {
   open: boolean

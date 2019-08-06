@@ -5,7 +5,7 @@ import {
 import classNames from 'classnames'
 import React, { useEffect, useRef, useState } from 'react'
 
-import useClassList from '../../hooks/useClassList'
+import useClassList from 'hooks/useClassList'
 import { useRipple } from './Ripple'
 
 interface ToggleProps {

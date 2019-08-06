@@ -4,8 +4,8 @@ import * as T from '@material/react-typography'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import { ReactComponent as GithubLogo } from '../assets/github-logo.svg'
-import { ReactComponent as TwitterLogo } from '../assets/twitter-logo.svg'
+import { ReactComponent as GithubLogo } from 'assets/github-logo.svg'
+import { ReactComponent as TwitterLogo } from 'assets/twitter-logo.svg'
 
 const links = [
   {

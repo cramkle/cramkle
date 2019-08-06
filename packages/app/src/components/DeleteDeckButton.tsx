@@ -4,20 +4,16 @@ import gql from 'graphql-tag'
 import React, { useCallback, useState } from 'react'
 import { RouteComponentProps, withRouter } from 'react-router'
 
-import Button from './views/Button'
-import Icon from './views/Icon'
-import Dialog, {
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-} from './views/Dialog'
+import { notificationState } from 'notification/index'
+import Button from 'views/Button'
+import Icon from 'views/Icon'
+import Dialog, { DialogActions, DialogContent, DialogTitle } from 'views/Dialog'
 import {
   DeleteDeckMutation,
   DeleteDeckMutationVariables,
 } from './__generated__/DeleteDeckMutation'
 import { DECKS_QUERY } from './DeckList'
 import { DecksQuery } from './__generated__/DecksQuery'
-import { notificationState } from '../notification'
 
 interface Props {
   deckId: string

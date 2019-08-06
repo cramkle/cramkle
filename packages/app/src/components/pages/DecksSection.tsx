@@ -3,11 +3,11 @@ import { useLingui } from '@lingui/react'
 import classNames from 'classnames'
 import React, { useCallback, useState } from 'react'
 
-import DeckList from '../DeckList'
-import Fab from '../views/Fab'
-import Icon from '../views/Icon'
-import AddDeckForm from '../forms/AddDeckForm'
-import { useHints } from '../HintsContext'
+import DeckList from 'components/DeckList'
+import Fab from 'views/Fab'
+import Icon from 'views/Icon'
+import AddDeckForm from 'forms/AddDeckForm'
+import { useHints } from 'components/HintsContext'
 
 import styles from './DecksSection.css'
 

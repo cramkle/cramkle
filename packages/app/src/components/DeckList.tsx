@@ -7,7 +7,7 @@ import React from 'react'
 
 import DeckCard from './DeckCard'
 import { DecksQuery } from './__generated__/DecksQuery'
-import useTopBarLoading from '../hooks/useTopBarLoading'
+import useTopBarLoading from 'hooks/useTopBarLoading'
 
 export const DECKS_QUERY = gql`
   query DecksQuery {

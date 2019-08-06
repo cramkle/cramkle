@@ -12,13 +12,13 @@ import {
   CreateModelMutation,
   CreateModelMutationVariables,
 } from './__generated__/CreateModelMutation'
-import BackButton from '../BackButton'
-import { TextInputField } from '../forms/Fields'
-import Container from '../views/Container'
-import Button from '../views/Button'
-import Icon from '../views/Icon'
-import IconButton from '../views/IconButton'
-import { notificationState } from '../../notification/index'
+import BackButton from 'components/BackButton'
+import { TextInputField } from 'forms/Fields'
+import Container from 'views/Container'
+import Button from 'views/Button'
+import Icon from 'views/Icon'
+import IconButton from 'views/IconButton'
+import { notificationState } from 'notification/index'
 import { MODELS_QUERY } from '../ModelList'
 import { ModelsQuery } from '../__generated__/ModelsQuery'
 

@@ -11,10 +11,10 @@ import { RouteComponentProps, withRouter } from 'react-router'
 import * as yup from 'yup'
 
 import { CheckboxField, TextInputField } from './Fields'
-import Button from '../views/Button'
-import FormField from '../views/FormField'
-import Card, { CardActionButtons, CardActions } from '../views/Card'
-import { notificationState } from '../../notification/index'
+import Button from 'views/Button'
+import FormField from 'views/FormField'
+import Card, { CardActionButtons, CardActions } from 'views/Card'
+import { notificationState } from 'notification/index'
 
 import styles from './RegisterForm.scss'
 

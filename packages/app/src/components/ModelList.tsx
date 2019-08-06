@@ -7,7 +7,7 @@ import React from 'react'
 
 import ModelCard from './ModelCard'
 import { ModelsQuery } from './__generated__/ModelsQuery'
-import useTopBarLoading from '../hooks/useTopBarLoading'
+import useTopBarLoading from 'hooks/useTopBarLoading'
 
 export const MODELS_QUERY = gql`
   query ModelsQuery {

@@ -3,8 +3,8 @@ import { useLingui } from '@lingui/react'
 import cx from 'classnames'
 import React, { useRef, useState } from 'react'
 
-import Icon from './views/Icon'
-import IconButton from './views/IconButton'
+import Icon from 'views/Icon'
+import IconButton from 'views/IconButton'
 
 import styles from './SearchBar.css'
 

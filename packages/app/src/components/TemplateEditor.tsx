@@ -17,7 +17,7 @@ import TagEditor from './editor/TagEditor'
 import { useHints } from './HintsContext'
 import SaveTemplateButton from './SaveTemplateButton'
 import { ModelQuery_cardModel_templates_frontSide as TemplateContent } from './pages/__generated__/ModelQuery'
-import Card, { CardActionButtons, CardActions } from './views/Card'
+import Card, { CardActionButtons, CardActions } from 'views/Card'
 
 const decorators = new CompositeDecorator(tagsDecorators)
 

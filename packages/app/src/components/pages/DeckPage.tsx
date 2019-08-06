@@ -6,10 +6,10 @@ import { Helmet } from 'react-helmet'
 import { RouteComponentProps } from 'react-router'
 
 import { DeckQuery, DeckQueryVariables } from './__generated__/DeckQuery'
-import BackButton from '../BackButton'
-import DeleteDeckButton from '../DeleteDeckButton'
-import Container from '../views/Container'
-import useTopBarLoading from '../../hooks/useTopBarLoading'
+import BackButton from 'components/BackButton'
+import DeleteDeckButton from 'components/DeleteDeckButton'
+import Container from 'views/Container'
+import useTopBarLoading from 'hooks/useTopBarLoading'
 
 type Props = RouteComponentProps<{ slug: string }>
 

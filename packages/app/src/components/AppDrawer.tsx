@@ -24,7 +24,7 @@ import { RouteComponentProps, withRouter } from 'react-router'
 
 import NoSSR from './NoSSR'
 import { useHints } from './HintsContext'
-import Icon from './views/Icon'
+import Icon from 'views/Icon'
 import USER_QUERY from './userQuery.gql'
 import { UserQuery } from './__generated__/UserQuery'
 

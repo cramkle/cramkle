@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, RouteProps } from 'react-router'
 
-import Shell from '../Shell'
+import Shell from 'components/Shell'
 
 interface Props
   extends Pick<RouteProps, Exclude<keyof RouteProps, 'children' | 'render'>> {

@@ -9,9 +9,9 @@ import { RouteComponentProps, withRouter } from 'react-router'
 import StudySection from './StudySection'
 import DecksSection from './DecksSection'
 import ModelsSection from './ModelsSection'
-import Icon from '../views/Icon'
+import Icon from 'views/Icon'
 import registerSW from '../../registerSW'
-import { notificationState } from '../../notification/index'
+import { notificationState } from 'notification/index'
 
 const HomePage: React.FunctionComponent<RouteComponentProps> = ({
   history,

@@ -10,11 +10,11 @@ import { Helmet } from 'react-helmet'
 import { RouteComponentProps } from 'react-router'
 
 import { ModelQuery, ModelQueryVariables } from './__generated__/ModelQuery'
-import DeleteModelButton from '../DeleteModelButton'
-import TemplateEditor from '../TemplateEditor'
-import BackButton from '../BackButton'
-import Container from '../views/Container'
-import useTopBarLoading from '../../hooks/useTopBarLoading'
+import DeleteModelButton from 'components/DeleteModelButton'
+import TemplateEditor from 'components/TemplateEditor'
+import BackButton from 'components/BackButton'
+import Container from 'views/Container'
+import useTopBarLoading from 'hooks/useTopBarLoading'
 
 type Props = RouteComponentProps<{ id: string }>
 type Query = ModelQuery
