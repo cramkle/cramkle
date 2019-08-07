@@ -5,7 +5,7 @@ import { fireEvent, render as rtlRender } from '@testing-library/react'
 import { MemoryRouter } from 'react-router'
 import React from 'react'
 
-import RegisterForm from 'components/RegisterForm'
+import RegisterForm from 'forms/RegisterForm'
 
 const render = (ui: React.ReactElement<any>) => {
   const i18n = setupI18n()

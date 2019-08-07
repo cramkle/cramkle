@@ -5,7 +5,7 @@ import { fireEvent, render as rtlRender, wait } from '@testing-library/react'
 import React from 'react'
 import { MemoryRouter } from 'react-router'
 
-import AddDeckForm, { CREATE_DECK_MUTATION } from '../AddDeckForm'
+import AddDeckForm, { CREATE_DECK_MUTATION } from 'forms/AddDeckForm'
 
 interface Options {
   mutationMocks?: MockedResponse[]
