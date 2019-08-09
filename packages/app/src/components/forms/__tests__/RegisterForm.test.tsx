@@ -1,7 +1,7 @@
 import { MockedProvider } from '@apollo/react-testing'
 import { setupI18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
-import { fireEvent, render as rtlRender } from '@testing-library/react'
+import { fireEvent, render as rtlRender, wait } from '@testing-library/react'
 import { MemoryRouter } from 'react-router'
 import React from 'react'
 
@@ -24,14 +24,6 @@ const render = (ui: React.ReactElement<any>) => {
 }
 
 describe('<RegisterForm />', () => {
-  function flushPromises() {
-    return new Promise(resolve => setImmediate(resolve))
-  }
-
-  beforeEach(() => {
-    jest.useFakeTimers()
-  })
-
   it('should be initially disabled', () => {
     const { getByTestId } = render(<RegisterForm />)
 
@@ -40,7 +32,7 @@ describe('<RegisterForm />', () => {
     expect(submitButton).toBeDisabled()
   })
 
-  it('should be enabled with filled fields', async () => {
+  it('should be enabled with filled fields', () => {
     const { getByLabelText, getByTestId } = render(<RegisterForm />)
 
     const submitButton = getByTestId('register-submit-btn')
@@ -55,10 +47,7 @@ describe('<RegisterForm />', () => {
     fireEvent.change(passwordInput, { target: { value: 'hunter2' } })
     fireEvent.click(agreementCheckbox)
 
-    await flushPromises()
-    jest.runAllTimers()
-
-    expect(submitButton).toBeEnabled()
+    wait(() => expect(submitButton).toBeEnabled())
   })
 
   it('should be disabled without terms agreement', () => {

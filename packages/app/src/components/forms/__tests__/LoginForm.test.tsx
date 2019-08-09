@@ -1,6 +1,6 @@
 import { setupI18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
-import { fireEvent, render as rtlRender } from '@testing-library/react'
+import { fireEvent, render as rtlRender, wait } from '@testing-library/react'
 import React from 'react'
 
 import LoginForm from 'forms/LoginForm'
@@ -20,15 +20,7 @@ const render = () => {
 }
 
 describe('<LoginForm />', () => {
-  function flushPromises() {
-    return new Promise(resolve => setImmediate(resolve))
-  }
-
-  beforeEach(() => {
-    jest.useFakeTimers()
-  })
-
-  it('should show error message on failure', async () => {
+  it('should show error message on failure', () => {
     global.fetch.mockResponse('Unauthorized', {
       status: 401,
       statusText: 'Unauthorized',
@@ -41,21 +33,19 @@ describe('<LoginForm />', () => {
 
     const submitButton = getByTestId('submit-btn')
 
-    expect(submitButton).toBeDisabled()
+    wait(() => expect(submitButton).toBeDisabled())
 
     fireEvent.change(usernameInput, { target: { value: 'lucas' } })
     fireEvent.change(passwordInput, { target: { value: 'password' } })
 
-    await flushPromises()
-    jest.runAllTimers()
-
-    expect(submitButton).toBeEnabled()
+    wait(() => expect(submitButton).toBeEnabled())
 
     fireEvent.click(submitButton)
 
-    await flushPromises()
-    jest.runAllTimers()
-
-    expect(getByText(/invalid username and\/or password/i)).toBeInTheDocument()
+    wait(() =>
+      expect(
+        getByText(/invalid username and\/or password/i)
+      ).toBeInTheDocument()
+    )
   })
 })
