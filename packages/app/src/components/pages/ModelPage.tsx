@@ -122,6 +122,8 @@ const ModelPage: React.FunctionComponent<Props> = ({
                   <Trans>Template front side</Trans>
                 </Caption>
                 <TemplateEditor
+                  id={template.id}
+                  isFrontSide
                   initialContentState={template.frontSide}
                   fields={cardModel.fields}
                 />
@@ -130,6 +132,7 @@ const ModelPage: React.FunctionComponent<Props> = ({
                   <Trans>Template back side</Trans>
                 </Caption>
                 <TemplateEditor
+                  id={template.id}
                   initialContentState={template.backSide}
                   fields={cardModel.fields}
                 />

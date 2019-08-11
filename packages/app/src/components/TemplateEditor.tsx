@@ -21,10 +21,19 @@ import Card, { CardActionButtons, CardActions } from 'views/Card'
 
 const decorators = new CompositeDecorator(tagsDecorators)
 
-const TemplateEditor: React.FunctionComponent<{
+interface Props {
+  id: string
+  isFrontSide?: boolean
   initialContentState: TemplateContent
   fields: { id: string; name: string }[]
-}> = ({ initialContentState, fields }) => {
+}
+
+const TemplateEditor: React.FunctionComponent<Props> = ({
+  id,
+  isFrontSide = false,
+  initialContentState,
+  fields,
+}) => {
   const { isMobile } = useHints()
 
   const [editor, setEditor] = useState(() => {
@@ -85,7 +94,8 @@ const TemplateEditor: React.FunctionComponent<{
         <CardActions className="bt b--inherit">
           <CardActionButtons>
             <SaveTemplateButton
-              id={initialContentState.id}
+              id={id}
+              isFrontSide={isFrontSide}
               {...convertToRaw(editor.getCurrentContent())}
             />
           </CardActionButtons>

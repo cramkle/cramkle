@@ -6,18 +6,19 @@ import React, { useState } from 'react'
 
 import Button from 'views/Button'
 import {
-  UpdateContentStateMutation,
-  UpdateContentStateMutationVariables,
-} from './__generated__/UpdateContentStateMutation'
+  UpdateTemplateContentMutation,
+  UpdateTemplateContentMutationVariables,
+} from './__generated__/UpdateTemplateContentMutation'
 
-type Props = RawDraftContentState & { id: string }
+type Props = RawDraftContentState & { id: string; isFrontSide: boolean }
 
-const UPDATE_CONTENT_STATE_MUTATION = gql`
-  mutation UpdateContentStateMutation(
+const UPDATE_TEMPLATE_MUTATION = gql`
+  mutation UpdateTemplateContentMutation(
     $id: ID!
-    $contentState: ContentStateInput
+    $frontSide: ContentStateInput
+    $backSide: ContentStateInput
   ) {
-    updateContentState(id: $id, contentState: $contentState) {
+    updateTemplate(id: $id, frontSide: $frontSide, backSide: $backSide) {
       id
     }
   }
@@ -25,13 +26,14 @@ const UPDATE_CONTENT_STATE_MUTATION = gql`
 
 const SaveTemplateButton: React.FunctionComponent<Props> = ({
   id,
+  isFrontSide,
   blocks,
   entityMap,
 }) => {
   const [mutate] = useMutation<
-    UpdateContentStateMutation,
-    UpdateContentStateMutationVariables
-  >(UPDATE_CONTENT_STATE_MUTATION)
+    UpdateTemplateContentMutation,
+    UpdateTemplateContentMutationVariables
+  >(UPDATE_TEMPLATE_MUTATION)
 
   const [loading, setLoading] = useState(false)
 
@@ -40,7 +42,10 @@ const SaveTemplateButton: React.FunctionComponent<Props> = ({
       onClick={() => {
         setLoading(true)
         mutate({
-          variables: { id, contentState: { blocks, entityMap } },
+          variables: {
+            id,
+            [isFrontSide ? 'frontSide' : 'backSide']: { blocks, entityMap },
+          },
         }).finally(() => setLoading(false))
       }}
       disabled={loading}
