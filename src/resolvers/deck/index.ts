@@ -31,7 +31,8 @@ export const mutations: IResolverObject = {
   updateDeck: (_, { id: _id, title, description }, { user }) => {
     return Deck.findOneAndUpdate(
       { _id, ownerId: user._id },
-      { title, description }
+      { title, description },
+      { new: true }
     )
   },
   deleteDeck: async (_, { id: _id }, { user }) => {
@@ -40,13 +41,17 @@ export const mutations: IResolverObject = {
   publishDeck: (_, { id: _id }, { user }) => {
     return Deck.findOneAndUpdate(
       { _id, ownerId: user._id },
-      { published: true }
+      { published: true },
+      { new: true }
     )
   },
   unpublishDeck: (_, { id: _id }, { user }) => {
     return Deck.findOneAndUpdate(
       { _id, ownerId: user._id },
-      { published: false }
+      { published: false },
+      {
+        new: true,
+      }
     )
   },
 }

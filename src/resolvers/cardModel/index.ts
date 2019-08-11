@@ -43,7 +43,10 @@ export const mutations: IResolverObject = {
 
     const templateRefs = await Promise.all(
       templates.map(async template => {
-        return Template.create(template)
+        return Template.create({
+          ...template,
+          ownerId: user._id,
+        })
       })
     )
 
@@ -57,7 +60,11 @@ export const mutations: IResolverObject = {
     return cardModel
   },
   updateModel: (_, { id: _id, name }, { user }) => {
-    return CardModel.findOneAndUpdate({ _id, ownerId: user._id }, { name })
+    return CardModel.findOneAndUpdate(
+      { _id, ownerId: user._id },
+      { name },
+      { new: true }
+    )
   },
   deleteModel: async (_, { id: _id }, { user }) => {
     const model = await CardModel.findOne({ _id, ownerId: user._id })

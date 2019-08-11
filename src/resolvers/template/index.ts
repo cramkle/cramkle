@@ -31,17 +31,24 @@ export const mutations: IResolverObject = {
 
     return template
   },
-  updateTemplate: async (
-    _,
-    { id: _id, name, frontSide, backSide },
-    { user }
-  ) => {
+  updateTemplate: (_, { id: _id, name, frontSide, backSide }, { user }) => {
+    const updatedFields: { [name: string]: any } = { name, frontSide, backSide }
+
+    for (const key of Object.keys(updatedFields)) {
+      if (updatedFields[key] == null) {
+        delete updatedFields[key]
+      }
+    }
+
     return Template.findOneAndUpdate(
       {
         _id,
         ownerId: user._id,
       },
-      { name, frontSide, backSide }
+      updatedFields,
+      {
+        new: true,
+      }
     )
   },
 }
