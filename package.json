@@ -10,6 +10,6 @@
     "update-versions": "node ./scripts/update-versions.js"
   },
   "devDependencies": {
-    "release-it": "^12.0.1"
+    "release-it": "^12.3.5"
   }
 }
