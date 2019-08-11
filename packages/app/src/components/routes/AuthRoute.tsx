@@ -1,5 +1,4 @@
 import { useQuery } from '@apollo/react-hooks'
-import { compose, isNil, not } from 'ramda'
 import React from 'react'
 import { Redirect, Route, RouteProps } from 'react-router-dom'
 
@@ -26,7 +25,7 @@ const createRoute = ({ challenge, redirectPath, displayName }: Input) => {
     const {
       data: { me },
       loading,
-    } = useQuery<UserQuery>(USER_QUERY)
+    } = useQuery<UserQuery>(USER_QUERY, { errorPolicy: 'ignore' })
 
     return (
       <Route
@@ -63,16 +62,13 @@ const createRoute = ({ challenge, redirectPath, displayName }: Input) => {
 }
 
 export const GuestRoute = createRoute({
-  challenge: isNil,
+  challenge: user => user == null,
   redirectPath: '/home',
   displayName: 'GuestRoute',
 })
 
 export const UserRoute = createRoute({
-  challenge: compose(
-    not,
-    isNil
-  ),
+  challenge: user => user != null,
   redirectPath: '/login',
   displayName: 'UserRoute',
 })
