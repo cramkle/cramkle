@@ -11,7 +11,7 @@
 scalar JSON
 scalar JSONObject
 
-directive @authenticate(roles: [String]) on FIELD_DEFINITION
+directive @authenticate(roles: [String] = ["REGULAR"]) on FIELD_DEFINITION
 
 """
 App queries
@@ -20,59 +20,59 @@ type Query {
   """
   Retrieve all decks for the logged user
   """
-  decks: [Deck] @authenticate(roles: ["REGULAR"])
+  decks: [Deck] @authenticate
 
   """
   Retrieve all card models for the logged user
   """
-  cardModels: [CardModel] @authenticate(roles: ["REGULAR"])
+  cardModels: [CardModel] @authenticate
 
   """
   Get single deck
   """
-  deck(slug: String!): Deck @authenticate(roles: ["REGULAR"])
+  deck(slug: String!): Deck @authenticate
 
   """
   Get single card
   """
-  card(id: ID!): Card @authenticate(roles: ["REGULAR"])
+  card(noteId: ID!, id: ID!): Card @authenticate
 
   """
   Get single card model
   """
-  cardModel(id: ID!): CardModel @authenticate(roles: ["REGULAR"])
+  cardModel(id: ID!): CardModel @authenticate
 
   """
   Get single field
   """
-  field(id: ID!): Field @authenticate(roles: ["REGULAR"])
+  field(id: ID!): Field @authenticate
 
   """
   Get single field value
   """
-  fieldValue(id: ID!): FieldValue @authenticate(roles: ["REGULAR"])
+  fieldValue(id: ID!): FieldValue @authenticate
 
   """
   Get single template
   """
-  template(id: ID!): Template @authenticate(roles: ["REGULAR"])
+  template(id: ID!): Template @authenticate
 
   """
   Get single note
   """
-  note(id: ID!): Note @authenticate(roles: ["REGULAR"])
+  note(id: ID!): Note @authenticate
 
   """
   Get currently logged user
   """
   user: User
     @deprecated(reason: "Use the 'me' query instead")
-    @authenticate(roles: ["REGULAR"])
+    @authenticate
 
   """
   Get currently logged user
   """
-  me: User @authenticate(roles: ["REGULAR"])
+  me: User @authenticate
 }
 
 """
@@ -91,7 +91,7 @@ type Mutation {
     Deck description
     """
     description: String
-  ): Deck @authenticate(roles: ["REGULAR"])
+  ): Deck @authenticate
 
   """
   Delete a deck
@@ -101,7 +101,7 @@ type Mutation {
     Deck id
     """
     id: ID!
-  ): Deck @authenticate(roles: ["REGULAR"])
+  ): Deck @authenticate
 
   """
   Update a deck
@@ -119,7 +119,7 @@ type Mutation {
     New description
     """
     description: String
-  ): Deck @authenticate(roles: ["REGULAR"])
+  ): Deck @authenticate
 
   """
   Publish a deck to the marketplace
@@ -129,7 +129,7 @@ type Mutation {
     Deck id
     """
     id: ID!
-  ): Deck @authenticate(roles: ["REGULAR"])
+  ): Deck @authenticate
 
   """
   Remove a deck from the marketplace
@@ -139,7 +139,7 @@ type Mutation {
     Deck id
     """
     id: ID!
-  ): Deck @authenticate(roles: ["REGULAR"])
+  ): Deck @authenticate
 
   """
   Create a new user
@@ -175,7 +175,7 @@ type Mutation {
     Password confirmation
     """
     confirmPassword: String!
-  ): User @authenticate(roles: ["REGULAR"])
+  ): User @authenticate
 
   """
   Create a new model
@@ -193,17 +193,17 @@ type Mutation {
     Templates
     """
     templates: [TemplateInput]
-  ): CardModel @authenticate(roles: ["REGULAR"])
+  ): CardModel @authenticate
 
   """
   Update model name
   """
-  updateModel(name: String!): CardModel @authenticate(roles: ["REGULAR"])
+  updateModel(name: String!): CardModel @authenticate
 
   """
   Deletes a card model and all associated entities
   """
-  deleteModel(id: ID!): CardModel @authenticate(roles: ["REGULAR"])
+  deleteModel(id: ID!): CardModel @authenticate
 
   """
   Adds a new template to a card model
@@ -217,7 +217,7 @@ type Mutation {
     Model associated id
     """
     modelId: ID!
-  ): Template @authenticate(roles: ["REGULAR"])
+  ): Template @authenticate
 
   """
   Updates an existing template
@@ -231,7 +231,7 @@ type Mutation {
     Template name
     """
     name: String
-  ): Template @authenticate(roles: ["REGULAR"])
+  ): Template @authenticate
 
   """
   Update a content state
@@ -245,7 +245,7 @@ type Mutation {
     Content state
     """
     contentState: ContentStateInput
-  ): ContentState @authenticate(roles: ["REGULAR"])
+  ): ContentState @authenticate
 
   """
   Adds a new field to a card model
@@ -259,5 +259,5 @@ type Mutation {
     Model associated
     """
     modelId: ID!
-  ): Field @authenticate(roles: ["REGULAR"])
+  ): Field @authenticate
 }
