@@ -10,7 +10,6 @@ import TopAppBar, {
   TopAppBarTitle,
 } from '@material/react-top-app-bar'
 import gql from 'graphql-tag'
-import { path } from 'ramda'
 import React, { Suspense, useCallback, useEffect, useRef } from 'react'
 import { RouteComponentProps, withRouter } from 'react-router'
 
@@ -40,8 +39,11 @@ const Shell: React.FunctionComponent<Props> = ({
   history,
   location: { pathname },
 }) => {
-  const { data } = useQuery<TopBarLoadingQuery>(TOP_BAR_LOADING_QUERY)
-  const loading = path(['topBar', 'loading'], data)
+  const {
+    data: { topBar },
+  } = useQuery<TopBarLoadingQuery>(TOP_BAR_LOADING_QUERY)
+
+  const loading = topBar && topBar.loading
 
   const { i18n } = useLingui()
   const { isMobile } = useHints()
@@ -100,7 +102,7 @@ const Shell: React.FunctionComponent<Props> = ({
 
   let content = (
     <main className="h-100 overflow-auto w-100 relative">
-      <NoSSR>
+      <NoSSR fallback={loader}>
         <Suspense fallback={loader}>
           {loading && loader}
           {children}
