@@ -27,6 +27,10 @@ const UserSchema = new Schema<UserDocument>({
     unique: true,
     required: [true, 'E-mail is required'],
   },
+  roles: {
+    type: [{ type: String }],
+    default: ['REGULAR'],
+  },
 })
 
 UserSchema.methods.hashifyAndSave = function() {

@@ -6,7 +6,7 @@
   "repository": "https://github.com/lucasecdb/cramkle-api.git",
   "scripts": {
     "build": "tsc",
-    "prettier": "prettier --write 'src/**/*.ts'",
+    "prettier-graphql": "prettier --write 'graphql/**/*.graphql'",
     "lint": "tsc --noEmit --pretty && eslint --ext ts src",
     "start": "node dist/index.js",
     "dev": "tsc-watch --onSuccess \"node ./dist/index.js\"",

@@ -11,23 +11,23 @@ on the number of templates.
 """
 type Note {
   """
-   Note id
+  Note id
   """
   id: ID!
   """
-   Deck containing this note
+  Deck containing this note
   """
   deck: Deck
   """
-   Model of this note
+  Model of this note
   """
   model: CardModel
   """
-   Values of this note
+  Values of this note
   """
   values: [FieldValue]
   """
-   Generated cards
+  Generated cards
   """
   cards: [Card]
 }

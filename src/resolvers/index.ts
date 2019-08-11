@@ -1,8 +1,6 @@
-import { mapObjIndexed } from 'ramda'
 // @ts-ignore typings are outdated
-import JSON, { GraphQLJSONObject } from 'graphql-type-json'
+import JSON, { GraphQLJSONObject as JSONObject } from 'graphql-type-json'
 
-import { withAuthentication } from './utils'
 import {
   queries as deckQueries,
   root as deckRoot,
@@ -41,7 +39,7 @@ import {
 
 export default {
   JSON,
-  JSONObject: GraphQLJSONObject,
+  JSONObject,
   ...deckRoot,
   ...noteRoot,
   ...templateRoot,
@@ -52,21 +50,21 @@ export default {
   ...userRoot,
   ...contentStateRoot,
   Query: {
-    ...mapObjIndexed(withAuthentication, deckQueries),
-    ...mapObjIndexed(withAuthentication, noteQueries),
-    ...mapObjIndexed(withAuthentication, templateQueries),
-    ...mapObjIndexed(withAuthentication, fieldQueries),
-    ...mapObjIndexed(withAuthentication, fieldValueQueries),
-    ...mapObjIndexed(withAuthentication, cardQueries),
-    ...mapObjIndexed(withAuthentication, cardModelQueries),
+    ...deckQueries,
+    ...noteQueries,
+    ...templateQueries,
+    ...fieldQueries,
+    ...fieldValueQueries,
+    ...cardQueries,
+    ...cardModelQueries,
     ...userQueries,
   },
   Mutation: {
-    ...mapObjIndexed(withAuthentication, deckMutations),
-    ...mapObjIndexed(withAuthentication, cardModelMutations),
-    ...mapObjIndexed(withAuthentication, templateMutations),
-    ...mapObjIndexed(withAuthentication, fieldMutations),
-    ...mapObjIndexed(withAuthentication, contentStateMutations),
+    ...deckMutations,
+    ...cardModelMutations,
+    ...templateMutations,
+    ...fieldMutations,
+    ...contentStateMutations,
     ...userMutations,
   },
 }

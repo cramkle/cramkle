@@ -1,17 +1,26 @@
 """
- User entity
+User entity
 """
 type User {
   """
-   User id
+  User id
   """
   id: ID!
   """
-   User's username
+  User's username
   """
   username: String
   """
-   User's e-mail
+  User's e-mail
   """
   email: String
+  """
+  User's available roles
+  """
+  roles: [UserRoles]
+}
+
+enum UserRoles {
+  REGULAR
+  ADMIN
 }

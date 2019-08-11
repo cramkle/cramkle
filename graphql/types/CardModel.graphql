@@ -8,27 +8,27 @@ Represents a model for a collection of notes.
 """
 type CardModel {
   """
-   Card model id
+  Card model id
   """
   id: ID!
   """
-   Name of this card model (e.g. "Basic", "Basic with Reversed")
+  Name of this card model (e.g. "Basic", "Basic with Reversed")
   """
   name: String
   """
-   Owner user entity
+  Owner user entity
   """
   owner: User
   """
-   Fields associated with this model
+  Fields associated with this model
   """
   fields: [Field]
   """
-   Templates associated with this model
+  Templates associated with this model
   """
   templates: [Template]
   """
-   Notes associated with this model
+  Notes associated with this model
   """
   notes: [Note]
 }
