@@ -1,6 +1,11 @@
 # import Field from "Field.graphql"
 # import ContentState from "ContentState.graphql"
 
+input FieldValueInput {
+  data: ContentStateInput
+  field: FieldInput
+}
+
 """
 Holds the value for a particular field in a card model.
 

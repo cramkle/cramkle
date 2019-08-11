@@ -260,4 +260,16 @@ type Mutation {
     """
     modelId: ID!
   ): Field @authenticate
+
+  """
+  Create new note in deck
+  """
+  createNote(
+    """ Deck id """
+    deckId: ID!,
+    """ Model id """
+    modelId: ID!,
+    """ Values in note """
+    fieldValues: [FieldValueInput]!
+  ): Note @authenticate
 }

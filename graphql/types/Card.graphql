@@ -1,6 +1,10 @@
 # import Template from "Template.graphql"
 # import Note from "Note.graphql"
 
+enum CardStatus {
+  NEW, LEARNING, DUE
+}
+
 """
 Cards are what the user reviews in the study sessions.
 
@@ -13,11 +17,11 @@ number of templates.
 """
 type Card {
   """
-  Card id
+  Card id.
   """
   id: ID!
   """
-  Template associated with this card
+  Template associated with this card.
   """
   template: Template
   """
@@ -27,7 +31,33 @@ type Card {
   """
   active: Boolean
   """
-  Parent note of the card
+  Current status of this card.
+  """
+  state: CardStatus
+  """
+  Number of times the user has forgotten the answer
+  to this card.
+  """
+  lapses: Int
+  """
+  Number of times the user has reviewed this card.
+  """
+  reviews: Int
+  """
+  Base interval number used for calculating the next due date.
+  """
+  interval: Int
+  """
+  Ease factor used for calculating the interval when the user correctly
+  answers the card.
+  """
+  easeFactor: Float
+  """
+  Due date of this card, in a timestamp format.
+  """
+  due: Int
+  """
+  Parent note of the card.
   """
   note: Note
 }

@@ -1,4 +1,3 @@
-export { default as Card } from './Card'
 export { default as CardModel } from './CardModel'
 export { default as Template } from './Template'
 export { default as Field } from './Field'

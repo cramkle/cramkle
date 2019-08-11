@@ -1,7 +1,10 @@
-import { Schema, model, Document } from 'mongoose'
+import { Schema, Types, model, Document } from 'mongoose'
 
-// eslint-disable-next-line
-interface Note {}
+import { CardSchema, CardDocument } from './Card'
+
+interface Note {
+  cards: Types.DocumentArray<CardDocument>
+}
 
 interface NoteDocument extends Note, Document {}
 
@@ -20,12 +23,7 @@ const NoteSchema = new Schema<NoteDocument>({
       ref: 'FieldValue',
     },
   ],
-  cards: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Card',
-    },
-  ],
+  cards: [CardSchema],
 })
 
 export default model<NoteDocument>('Note', NoteSchema)

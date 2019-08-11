@@ -1,5 +1,5 @@
 import { IResolvers, IResolverObject } from 'graphql-tools'
-import { Card, Note, Template } from '../../models'
+import { Note, Template } from '../../models'
 
 export const root: IResolvers = {
   Card: {
@@ -10,8 +10,9 @@ export const root: IResolvers = {
 }
 
 export const queries: IResolverObject = {
-  card: async (_, { id }) => {
-    const card = await Card.findById(id)
+  card: async (_, { noteId, id }) => {
+    const note = await Note.findById(noteId)
+    const card = note.cards.id(id)
 
     return card
   },
