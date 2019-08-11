@@ -19,4 +19,4 @@ COPY --from=build-env /usr/src/app/ .
 RUN yarn --prod
 
 EXPOSE 5000
-CMD ["yarn", "serve"]
+CMD ["yarn", "start"]
