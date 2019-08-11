@@ -24,7 +24,11 @@ graphqlMiddleware.set(app)
 app.use('/auth', authRouter)
 
 mongoose
-  .connect(MONGO_URI, { useNewUrlParser: true, useCreateIndex: true })
+  .connect(MONGO_URI, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  })
   .then(() => {
     app.listen(PORT, () => {
       console.log(`App listening on https://localhost:${PORT}`)
