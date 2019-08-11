@@ -37,7 +37,7 @@ const TemplateEditor: React.FunctionComponent<Props> = ({
   const { isMobile } = useHints()
 
   const [editor, setEditor] = useState(() => {
-    if (initialContentState.blocks.length === 0) {
+    if (!initialContentState || initialContentState.blocks.length === 0) {
       return EditorState.createEmpty(decorators)
     }
 
