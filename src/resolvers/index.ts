@@ -22,20 +22,14 @@ import {
   root as fieldRoot,
   mutations as fieldMutations,
 } from './field'
-import {
-  queries as fieldValueQueries,
-  root as fieldValueRoot,
-} from './fieldValue'
+import { root as fieldValueRoot } from './fieldValue'
 import { queries as cardQueries, root as cardRoot } from './card'
 import {
   queries as cardModelQueries,
   root as cardModelRoot,
   mutations as cardModelMutations,
 } from './cardModel'
-import {
-  root as contentStateRoot,
-  mutations as contentStateMutations,
-} from './contentState'
+import { root as contentStateRoot } from './contentState'
 
 export default {
   JSON,
@@ -54,7 +48,6 @@ export default {
     ...noteQueries,
     ...templateQueries,
     ...fieldQueries,
-    ...fieldValueQueries,
     ...cardQueries,
     ...cardModelQueries,
     ...userQueries,
@@ -64,7 +57,6 @@ export default {
     ...cardModelMutations,
     ...templateMutations,
     ...fieldMutations,
-    ...contentStateMutations,
     ...userMutations,
   },
 }

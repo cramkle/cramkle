@@ -1,9 +1,11 @@
 import { Schema, model, Document } from 'mongoose'
 
+import { ContentStateSchema, ContentStateDocument } from './ContentState'
+
 export interface Template {
   name: string
-  frontSideId: Schema.Types.ObjectId
-  backSideId: Schema.Types.ObjectId
+  frontSide: ContentStateDocument
+  backSide: ContentStateDocument
   modelId: Schema.Types.ObjectId
   ownerId: Schema.Types.ObjectId
 }
@@ -12,14 +14,8 @@ export interface TemplateDocument extends Template, Document {}
 
 const TemplateSchema = new Schema<TemplateDocument>({
   name: String,
-  frontSideId: {
-    type: Schema.Types.ObjectId,
-    ref: 'ContentState',
-  },
-  backSideId: {
-    type: Schema.Types.ObjectId,
-    ref: 'ContentState',
-  },
+  frontSide: ContentStateSchema,
+  backSide: ContentStateSchema,
   modelId: {
     type: Schema.Types.ObjectId,
     ref: 'CardModel',

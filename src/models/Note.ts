@@ -1,9 +1,11 @@
 import { Schema, Types, model, Document } from 'mongoose'
 
 import { CardSchema, CardDocument } from './Card'
+import { FieldValueSchema, FieldValueDocument } from './FieldValue'
 
 interface Note {
   cards: Types.DocumentArray<CardDocument>
+  values: Types.DocumentArray<FieldValueDocument>
 }
 
 interface NoteDocument extends Note, Document {}
@@ -17,12 +19,7 @@ const NoteSchema = new Schema<NoteDocument>({
     type: Schema.Types.ObjectId,
     ref: 'CardModel',
   },
-  values: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'FieldValue',
-    },
-  ],
+  values: [FieldValueSchema],
   cards: [CardSchema],
 })
 

@@ -1,11 +1,11 @@
-import { Schema, model, Document } from 'mongoose'
+import { Schema, Document } from 'mongoose'
 
-export interface CharacterBlock {
+interface CharacterBlock {
   style: string[]
   entity: string
 }
 
-export interface ContentState {
+interface ContentState {
   blocks: {
     key: string
     type: string
@@ -32,9 +32,9 @@ export interface ContentState {
   }
 }
 
-interface ContentStateDocument extends ContentState, Document {}
+export interface ContentStateDocument extends ContentState, Document {}
 
-const ContentStateSchema = new Schema<ContentStateDocument>({
+export const ContentStateSchema = new Schema<ContentStateDocument>({
   blocks: [
     {
       key: String,
@@ -64,5 +64,3 @@ const ContentStateSchema = new Schema<ContentStateDocument>({
     ref: 'User',
   },
 })
-
-export default model<ContentStateDocument>('ContentState', ContentStateSchema)

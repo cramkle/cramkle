@@ -2,14 +2,7 @@ import { ApolloError } from 'apollo-server'
 import { IResolvers, IResolverObject } from 'graphql-tools'
 
 import { findRefFromList } from '../utils'
-import {
-  CardModel,
-  User,
-  Template,
-  Field,
-  Note,
-  ContentState,
-} from '../../models'
+import { CardModel, User, Template, Field, Note } from '../../models'
 import { Field as FieldType } from '../../models/Field'
 import { Template as TemplateType } from '../../models/Template'
 
@@ -50,12 +43,6 @@ export const mutations: IResolverObject = {
 
     const templateRefs = await Promise.all(
       templates.map(async template => {
-        const frontSideRef = await ContentState.create({ ownerId: user._id })
-        const backSideRef = await ContentState.create({ ownerId: user._id })
-
-        template.frontSideId = frontSideRef._id
-        template.backSideId = backSideRef._id
-
         return Template.create(template)
       })
     )

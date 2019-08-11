@@ -1,23 +1,17 @@
-import { Schema, model, Document } from 'mongoose'
+import { Schema, Document } from 'mongoose'
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface FieldValue {}
+import { ContentStateSchema, ContentStateDocument } from './ContentState'
 
-interface FieldValueDocument extends FieldValue, Document {}
+interface FieldValue {
+  data: ContentStateDocument
+}
 
-const FieldValueSchema = new Schema<FieldValueDocument>({
-  dataId: {
-    type: Schema.Types.ObjectId,
-    ref: 'ContentState',
-  },
+export interface FieldValueDocument extends FieldValue, Document {}
+
+export const FieldValueSchema = new Schema<FieldValueDocument>({
+  data: ContentStateSchema,
   fieldId: {
     type: Schema.Types.ObjectId,
     ref: 'Field',
   },
-  ownerId: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
-  },
 })
-
-export default model<FieldValueDocument>('FieldValue', FieldValueSchema)

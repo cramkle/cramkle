@@ -48,11 +48,6 @@ type Query {
   field(id: ID!): Field @authenticate
 
   """
-  Get single field value
-  """
-  fieldValue(id: ID!): FieldValue @authenticate
-
-  """
   Get single template
   """
   template(id: ID!): Template @authenticate
@@ -231,21 +226,15 @@ type Mutation {
     Template name
     """
     name: String
+    """
+    Front side template
+    """
+    frontSide: ContentStateInput
+    """
+    Back side template
+    """
+    backSide: ContentStateInput
   ): Template @authenticate
-
-  """
-  Update a content state
-  """
-  updateContentState(
-    """
-    Content state id
-    """
-    id: ID!
-    """
-    Content state
-    """
-    contentState: ContentStateInput
-  ): ContentState @authenticate
 
   """
   Adds a new field to a card model
