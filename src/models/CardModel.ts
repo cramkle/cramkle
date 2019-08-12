@@ -1,10 +1,10 @@
-import { Schema, model, Document } from 'mongoose'
+import { Schema, Types, model, Document } from 'mongoose'
 
 interface CardModel {
   name: string
-  fields: Schema.Types.ObjectId[]
-  templates: Schema.Types.ObjectId[]
-  notes: Schema.Types.ObjectId[]
+  fields: Types.Array<Types.ObjectId>
+  templates: Types.Array<Types.ObjectId>
+  notes: Types.Array<Types.ObjectId>
 }
 
 interface CardModelDocument extends CardModel, Document {}

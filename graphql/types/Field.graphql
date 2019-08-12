@@ -1,7 +1,8 @@
 # import CardModel from "CardModel.graphql"
 
 input FieldInput {
-  name: String!
+  id: ID
+  name: String
 }
 
 """

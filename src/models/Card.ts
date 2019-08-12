@@ -1,4 +1,4 @@
-import { Document, Schema } from 'mongoose'
+import { Document, model, Schema, Types } from 'mongoose'
 
 enum CardStatus {
   NEW = 'NEW',
@@ -14,6 +14,7 @@ interface Card {
   interval: number
   easeFactor: number
   due: Date
+  templateId: Types.ObjectId
 }
 
 export interface CardDocument extends Document, Card {}
@@ -30,8 +31,6 @@ export const CardSchema = new Schema<CardDocument>({
     type: Schema.Types.ObjectId,
     ref: 'Template',
   },
-  noteId: {
-    type: Schema.Types.ObjectId,
-    ref: 'Note',
-  },
 })
+
+export default model<CardDocument>('Card', CardSchema)
