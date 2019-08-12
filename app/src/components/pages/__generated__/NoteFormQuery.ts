@@ -9,6 +9,10 @@
 export interface NoteFormQuery_deck {
   __typename: "Deck";
   /**
+   * Deck id
+   */
+  id: string;
+  /**
    * Title of the deck
    */
   title: string;

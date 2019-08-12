@@ -29,7 +29,12 @@ export interface EntityRangeInput {
 
 export interface FieldInput {
   id?: string | null;
-  name?: string | null;
+  name: string;
+}
+
+export interface FieldValueInput {
+  data?: ContentStateInput | null;
+  field?: FieldInput | null;
 }
 
 export interface InlineStyleRangeInput {

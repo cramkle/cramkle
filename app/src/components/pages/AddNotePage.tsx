@@ -1,9 +1,9 @@
-import { useQuery } from '@apollo/react-hooks'
+import { useMutation, useQuery } from '@apollo/react-hooks'
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import Select, { Option } from '@material/react-select'
 import gql from 'graphql-tag'
-import React, { useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import { useParams } from 'react-router'
 
 import BackButton from 'components/BackButton'
@@ -16,6 +16,10 @@ import {
   NoteFormQuery,
   NoteFormQueryVariables,
 } from './__generated__/NoteFormQuery'
+import {
+  CreateNoteMutation,
+  CreateNoteMutationVariables,
+} from './__generated__/CreateNoteMutation'
 
 const MODELS_QUERY = gql`
   query NoteFormQuery($slug: String!) {
@@ -34,6 +38,18 @@ const MODELS_QUERY = gql`
   }
 `
 
+const CREATE_NOTE_MUTATION = gql`
+  mutation CreateNoteMutation(
+    $deckId: ID!
+    $modelId: ID!
+    $values: [FieldValueInput]!
+  ) {
+    createNote(deckId: $deckId, modelId: $modelId, fieldValues: $values) {
+      id
+    }
+  }
+`
+
 const AddNotePage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>()
   const {
@@ -43,16 +59,39 @@ const AddNotePage: React.FC = () => {
     variables: { slug },
   })
 
+  const [createNote] = useMutation<
+    CreateNoteMutation,
+    CreateNoteMutationVariables
+  >(CREATE_NOTE_MUTATION)
+
   const { i18n } = useLingui()
   const [selectedModelId, setSelectedModelId] = useState('')
 
+  const selectedModel = useMemo(() => {
+    if (!models) {
+      return null
+    }
+
+    return models.find(model => model.id === selectedModelId)
+  }, [models, selectedModelId])
+
   useTopBarLoading(loading)
+
+  const handleSubmit = useCallback(async () => {
+    const { id } = await createNote({
+      // @ts-ignore
+      variables: {
+        modelId: selectedModelId,
+        deckId: deck.id,
+      },
+    })
+
+    console.log('created note id', id)
+  }, [createNote, deck, selectedModelId])
 
   if (loading) {
     return null
   }
-
-  const selectedModel = models.find(model => model.id === selectedModelId)
 
   if (!models.length) {
     return (
@@ -109,7 +148,11 @@ const AddNotePage: React.FC = () => {
                   </React.Fragment>
                 ))}
 
-                <Button raised className="mt3 self-start">
+                <Button
+                  raised
+                  className="mt3 self-start"
+                  onClick={handleSubmit}
+                >
                   <Trans>Add Note</Trans>
                 </Button>
               </>
