@@ -12,7 +12,7 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   schemaDirectives: directives,
-  context: ({ req }: { req: Request }) => ({
+  context: ({ req }: { req: Request }): Context => ({
     user: req.user,
   }),
 })

@@ -17,13 +17,9 @@ import {
   root as templateRoot,
   mutations as templateMutations,
 } from './template'
-import {
-  queries as fieldQueries,
-  root as fieldRoot,
-  mutations as fieldMutations,
-} from './field'
+import { root as fieldRoot } from './field'
 import { root as fieldValueRoot } from './fieldValue'
-import { queries as cardQueries, root as cardRoot } from './card'
+import { root as cardRoot } from './card'
 import {
   queries as cardModelQueries,
   root as cardModelRoot,
@@ -47,8 +43,6 @@ export default {
     ...deckQueries,
     ...noteQueries,
     ...templateQueries,
-    ...fieldQueries,
-    ...cardQueries,
     ...cardModelQueries,
     ...userQueries,
   },
@@ -56,7 +50,6 @@ export default {
     ...deckMutations,
     ...cardModelMutations,
     ...templateMutations,
-    ...fieldMutations,
     ...userMutations,
   },
 }

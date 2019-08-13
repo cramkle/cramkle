@@ -45,7 +45,7 @@ UserSchema.methods.hashifyAndSave = function() {
       }
 
       user.password = hash
-      user.save().then(res)
+      user.save().then(() => res())
     })
   })
 }

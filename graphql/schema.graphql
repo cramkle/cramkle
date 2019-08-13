@@ -33,19 +33,9 @@ type Query {
   deck(slug: String!): Deck @authenticate
 
   """
-  Get single card
-  """
-  card(noteId: ID!, id: ID!): Card @authenticate
-
-  """
   Get single card model
   """
   cardModel(id: ID!): CardModel @authenticate
-
-  """
-  Get single field
-  """
-  field(id: ID!): Field @authenticate
 
   """
   Get single template
@@ -56,13 +46,6 @@ type Query {
   Get single note
   """
   note(id: ID!): Note @authenticate
-
-  """
-  Get currently logged user
-  """
-  user: User
-    @deprecated(reason: "Use the 'me' query instead")
-    @authenticate
 
   """
   Get currently logged user
@@ -203,7 +186,7 @@ type Mutation {
   """
   Adds a new template to a card model
   """
-  addTemplate(
+  addTemplateToModel(
     """
     Template name
     """
@@ -239,7 +222,7 @@ type Mutation {
   """
   Adds a new field to a card model
   """
-  addField(
+  addFieldToModel(
     """
     Field name
     """

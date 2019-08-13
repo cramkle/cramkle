@@ -4,6 +4,7 @@
     "esModuleInterop": true,
     "target": "es6",
     "noImplicitAny": true,
+    "strict": true,
     "skipLibCheck": true,
     "moduleResolution": "node",
     "sourceMap": true,

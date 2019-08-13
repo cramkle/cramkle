@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 import morgan from 'morgan'
 import helmet from 'helmet'
 
-import graphqlMiddleware from './middlewares/graphql'
+import graphqlMiddleware from './middlewares/apollo'
 import ioMiddleware from './middlewares/io'
 import authMiddleware from './middlewares/auth'
 
@@ -31,6 +31,7 @@ mongoose
   })
   .then(() => {
     app.listen(PORT, () => {
+      // eslint-disable-next-line no-console
       console.log(`App listening on https://localhost:${PORT}`)
     })
   })

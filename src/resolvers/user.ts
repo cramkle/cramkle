@@ -1,7 +1,7 @@
 import { AuthenticationError } from 'apollo-server'
 import { filter, isNil, compose, not } from 'ramda'
-import { IResolvers, IResolverObject, IFieldResolver } from 'graphql-tools'
-import { User } from '../../models'
+import { IResolvers, IResolverObject } from 'graphql-tools'
+import { User } from '../models'
 
 export const root: IResolvers = {
   User: {
@@ -18,10 +18,6 @@ export const queries: IResolverObject = {
     const dbUser = await User.findById(user._id).exec()
 
     return dbUser
-  },
-  user: (root, args, ctx, info) => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return (queries.me as IFieldResolver<any, any, any>)(root, args, ctx, info)
   },
 }
 

@@ -1,7 +1,7 @@
 import { ApolloError } from 'apollo-server'
 import { IResolvers, IResolverObject } from 'graphql-tools'
 
-import { Note, Deck, CardModel, Card } from '../../models'
+import { Note, Deck, CardModel, Card } from '../models'
 
 export const root: IResolvers = {
   Note: {
@@ -12,7 +12,7 @@ export const root: IResolvers = {
 }
 
 export const queries: IResolverObject = {
-  note: async (_, { id }, { user }) => {
+  note: async (_, { id }, { user }: Context) => {
     const note = await Note.findOne({ _id: id, ownerId: user._id })
 
     if (!note) {
@@ -24,7 +24,11 @@ export const queries: IResolverObject = {
 }
 
 export const mutations: IResolverObject = {
-  createNote: async (_, { modelId, deckId, fieldValues }, { user }) => {
+  createNote: async (
+    _,
+    { modelId, deckId, fieldValues },
+    { user }: Context
+  ) => {
     const deck = await Deck.findOne({ _id: deckId, ownerId: user._id })
     const model = await CardModel.findOne({ _id: modelId, ownerId: user._id })
 
