@@ -1,5 +1,4 @@
 import { AuthenticationError } from 'apollo-server'
-import { filter, isNil, compose, not } from 'ramda'
 import { IResolvers, IResolverObject } from 'graphql-tools'
 import { User } from '../models'
 
@@ -10,7 +9,7 @@ export const root: IResolvers = {
 }
 
 export const queries: IResolverObject = {
-  me: async (_, __, { user }) => {
+  me: async (_, __, { user }: Context) => {
     if (!user) {
       return null
     }
@@ -21,23 +20,36 @@ export const queries: IResolverObject = {
   },
 }
 
+interface UpdateProfileInput {
+  email: string
+  username: string
+  password: string
+  confirmPassword: string
+}
+
 export const mutations: IResolverObject = {
   updateProfile: async (
     _,
-    { email, username, password, confirmPassword },
-    { user }
+    { email, username, password, confirmPassword }: UpdateProfileInput,
+    { user }: Context
   ) => {
     if (!(await user.comparePassword(confirmPassword))) {
       return new AuthenticationError('User not authenticated')
     }
 
-    const updateProps = filter(
-      compose(
-        not,
-        isNil
-      ),
-      { email, username, password }
-    )
+    const updateProps: Partial<Omit<UpdateProfileInput, 'confirmPassword'>> = {}
+
+    if (email) {
+      updateProps.email = email
+    }
+
+    if (username) {
+      updateProps.username = username
+    }
+
+    if (password) {
+      updateProps.password = password
+    }
 
     Object.assign(user, updateProps)
 

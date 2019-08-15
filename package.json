@@ -32,7 +32,6 @@
     "morgan": "^1.9.1",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
-    "ramda": "^0.26.1",
     "shortid": "^2.2.13"
   },
   "devDependencies": {
@@ -53,7 +52,6 @@
     "@types/node": "^12.7.1",
     "@types/passport": "^1.0.0",
     "@types/passport-local": "^1.0.33",
-    "@types/ramda": "types/npm-ramda#dist",
     "@types/shortid": "^0.0.29",
     "auto-changelog": "^1.14.1",
     "eslint": "^6.1.0",
