@@ -50,11 +50,11 @@ export const TopAppBarFixedAdjust: React.FunctionComponent<
   const base = 'mdc-top-app-bar'
   const suffix = '-fixed-adjust'
   const classes = classNames(className, {
-    [base + '--short' + suffix]: short,
-    [base + '--dense' + suffix]: dense && !prominent,
-    [base + '--dense-prominent' + suffix]: dense && prominent,
-    [base + '--prominent' + suffix]: !dense && prominent,
-    [base + '-' + suffix]: !short && !dense && !prominent,
+    [`${base}--short${suffix}`]: short,
+    [`${base}--dense${suffix}`]: dense && !prominent,
+    [`${base}--dense-prominent${suffix}`]: dense && prominent,
+    [`${base}--prominent${suffix}`]: !dense && prominent,
+    [`${base}-${suffix}`]: !short && !dense && !prominent,
   })
 
   return (
