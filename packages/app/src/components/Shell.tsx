@@ -2,18 +2,18 @@ import { useQuery } from '@apollo/react-hooks'
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import LinearProgress from '@material/react-linear-progress'
+import gql from 'graphql-tag'
+import React, { Suspense, useCallback, useEffect, useRef } from 'react'
+import { RouteComponentProps, withRouter } from 'react-router'
+
+import Icon from 'views/Icon'
 import TopAppBar, {
   TopAppBarFixedAdjust,
   TopAppBarIcon,
   TopAppBarRow,
   TopAppBarSection,
   TopAppBarTitle,
-} from '@material/react-top-app-bar'
-import gql from 'graphql-tag'
-import React, { Suspense, useCallback, useEffect, useRef } from 'react'
-import { RouteComponentProps, withRouter } from 'react-router'
-
-import Icon from 'views/Icon'
+} from 'views/TopAppBar'
 import useLocalStorage from 'hooks/useLocalStorage'
 import useOffline from 'hooks/useOffline'
 import { ReactComponent as Logo } from 'assets/logo.svg'

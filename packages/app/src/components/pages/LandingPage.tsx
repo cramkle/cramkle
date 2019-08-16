@@ -1,16 +1,16 @@
 import { Trans, t } from '@lingui/macro'
+import { Headline2, Headline4 } from '@material/react-typography'
+import React from 'react'
+import { Link, RouteComponentProps, withRouter } from 'react-router-dom'
+
+import Button from 'views/Button'
 import TopAppBar, {
   TopAppBarFixedAdjust,
   TopAppBarIcon,
   TopAppBarRow,
   TopAppBarSection,
   TopAppBarTitle,
-} from '@material/react-top-app-bar'
-import { Headline2, Headline4 } from '@material/react-typography'
-import React from 'react'
-import { Link, RouteComponentProps, withRouter } from 'react-router-dom'
-
-import Button from 'views/Button'
+} from 'views/TopAppBar'
 import Footer from 'components/Footer'
 import RegisterForm from 'forms/RegisterForm'
 import { ReactComponent as Logo } from 'assets/logo.svg'

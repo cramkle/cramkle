@@ -1875,15 +1875,6 @@
     "@material/textfield" "^2.3.1"
     classnames "^2.2.6"
 
-"@material/react-top-app-bar@^0.14.1":
-  version "0.14.1"
-  resolved "https://registry.yarnpkg.com/@material/react-top-app-bar/-/react-top-app-bar-0.14.1.tgz#2ce9e38dedfb66e8c5142b87ae54423166bfc244"
-  integrity sha512-3jKlOd3oM04w0g3+GjYEhCM+mVwpMlUDZcmdYV24j2M0rBM1VILk838OS+YXe/y2hRNRTsfEzyXSZF1pKcIWCw==
-  dependencies:
-    "@material/react-ripple" "^0.14.1"
-    "@material/top-app-bar" "^1.1.0"
-    classnames "^2.2.6"
-
 "@material/react-typography@^0.14.1":
   version "0.14.1"
   resolved "https://registry.yarnpkg.com/@material/react-typography/-/react-typography-0.14.1.tgz#b2a6e30963b90d0a54f7029305aa66d0ce73b817"
@@ -2091,19 +2082,20 @@
   dependencies:
     "@material/feature-targeting" "^3.1.0"
 
-"@material/top-app-bar@^1.1.0":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@material/top-app-bar/-/top-app-bar-1.1.1.tgz#a7a339fbb49fcd11a6362ca9b301fac4e28398c4"
-  integrity sha512-UZ2aHB+lzI+ddy/Hcy61hvNbSZBLArgWwVtA1r4UvQAlvht0Zl85jCj1vs+GM+qxbMFfXFet2q0n5p4ykk9v7g==
+"@material/top-app-bar@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@material/top-app-bar/-/top-app-bar-3.1.0.tgz#1610dac4d85263195ccca55d8a362453cf9ceca2"
+  integrity sha512-wqxcLFmIOflvQN/g3VZacPrWOy2bCtxXYKdIAIfmfnLs8+ahO5DYzI+Y57eumIVTQUVc8PXAMMiUoWiWQ1/dRQ==
   dependencies:
-    "@material/animation" "^1.0.0"
-    "@material/base" "^1.0.0"
-    "@material/elevation" "^1.1.0"
-    "@material/ripple" "^1.1.0"
-    "@material/rtl" "^0.42.0"
-    "@material/shape" "^1.1.1"
-    "@material/theme" "^1.1.0"
-    "@material/typography" "^1.0.0"
+    "@material/animation" "^3.1.0"
+    "@material/base" "^3.1.0"
+    "@material/elevation" "^3.1.0"
+    "@material/icon-button" "^3.1.0"
+    "@material/ripple" "^3.1.0"
+    "@material/rtl" "^3.1.0"
+    "@material/shape" "^3.1.0"
+    "@material/theme" "^3.1.0"
+    "@material/typography" "^3.1.0"
     tslib "^1.9.3"
 
 "@material/typography@^0.41.0":
