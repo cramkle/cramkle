@@ -16,6 +16,7 @@ $mdc-theme-on-surface: #000;
 @import '@material/form-field/mdc-form-field.scss';
 @import '@material/icon-button/mdc-icon-button.scss';
 @import '@material/ripple/mdc-ripple.scss';
+@import '@material/top-app-bar/mdc-top-app-bar.scss';
 
 @import '@material/react-chips/index.scss';
 @import '@material/react-drawer/index.scss';
@@ -29,7 +30,6 @@ $mdc-theme-on-surface: #000;
 @import '@material/react-tab-indicator/index.scss';
 @import '@material/react-tab-scroller/index.scss';
 @import '@material/react-text-field/index.scss';
-@import '@material/react-top-app-bar/index.scss';
 @import '@material/react-typography/index.scss';
 
 @import 'tachyons-sass/tachyons.scss';
