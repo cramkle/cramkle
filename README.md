@@ -16,12 +16,7 @@ start the development server, run the following commands
 
 ```sh
 yarn
+
 yarn workspace @cramkle/app-server build
-
-# this is needed for the bin link to work
-yarn install --force
-
 yarn workspace @cramkle/app dev
-# or
-cd packages/app && yarn dev
 ```

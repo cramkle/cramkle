@@ -11,8 +11,13 @@ const command = process.argv[2]
 const hasCommand = Boolean(commands[command])
 
 if (!hasCommand) {
+  // @ts-ignore
+  const formatter = new Intl.ListFormat('en-GB')
+
+  const availableCommands = formatter.format(Object.keys(commands))
+
   console.error(
-    `Unkown command ${command}. Available ones are 'dev', 'build' and 'start'.`
+    `Unkown command '${command}'. Available ones are ${availableCommands}.`
   )
   process.exit(0)
 }

@@ -32,6 +32,4 @@ matrix:
       install: yarn install
       script:
         - yarn workspace @cramkle/app-server build
-        - rm -rf packages/app/node_modules
-        - yarn install
         - yarn workspace @cramkle/app build

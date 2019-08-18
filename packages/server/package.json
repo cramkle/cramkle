@@ -3,7 +3,7 @@
   "version": "0.4.9",
   "private": true,
   "bin": {
-    "cks": "./dist/bin/cks.js"
+    "cks": "./bin/cks-bin.js"
   },
   "files": [
     "dist"
