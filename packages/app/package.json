@@ -19,7 +19,7 @@
   "dependencies": {
     "@apollo/react-hooks": "^3.0.0",
     "@apollo/react-ssr": "^3.0.0",
-    "@cramkle/app-server": "^0.4.9",
+    "@cramkle/server": "^0.4.9",
     "@lingui/react": "3.0.0-5",
     "@lucasecdb/react-tab-controller": "^0.2.1",
     "@material/button": "^3.1.0",

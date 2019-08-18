@@ -1,5 +1,5 @@
 {
-  "name": "@cramkle/app-server",
+  "name": "@cramkle/server",
   "version": "0.4.9",
   "private": true,
   "bin": {

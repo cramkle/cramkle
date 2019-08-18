@@ -5,7 +5,7 @@ COPY . .
 
 RUN yarn --frozen-lockfile
 
-RUN yarn workspace @cramkle/app-server build
+RUN yarn workspace @cramkle/server build
 RUN yarn workspace @cramkle/app build
 
 FROM node:12-alpine

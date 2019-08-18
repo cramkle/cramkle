@@ -20,8 +20,8 @@ const update = async () => {
   appPackageJson.version = version
   serverPackageJson.version = version
 
-  if (appPackageJson.dependencies['@cramkle/app-server']) {
-    appPackageJson.dependencies['@cramkle/app-server'] = `^${version}`
+  if (appPackageJson.dependencies['@cramkle/server']) {
+    appPackageJson.dependencies['@cramkle/server'] = `^${version}`
   }
 
   await writeFile(
