@@ -343,8 +343,8 @@ const getBaseWebpackConfig = (options?: Options): Configuration => {
       // If you require a missing module and then `npm install` it, you still have
       // to restart the development server for Webpack to discover it. This plugin
       // makes the discovery automatic so you don't have to restart.
-      // See https://github.com/facebook/create-react-app/issues/186
       dev && new WatchMissingNodeModulesPlugin(paths.appNodeModules),
+      dev && new WatchMissingNodeModulesPlugin(paths.rootNodeModules),
       !isServer &&
         new ForkTsCheckerPlugin({
           typescript: require.resolve('typescript', {
