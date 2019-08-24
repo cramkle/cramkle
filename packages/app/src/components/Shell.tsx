@@ -7,6 +7,7 @@ import React, { Suspense, useCallback, useEffect, useRef } from 'react'
 import { RouteComponentProps, withRouter } from 'react-router'
 
 import Icon from 'views/Icon'
+import IconButton from 'views/IconButton'
 import TopAppBar, {
   TopAppBarFixedAdjust,
   TopAppBarIcon,
@@ -124,16 +125,16 @@ const Shell: React.FunctionComponent<Props> = ({
               <TopAppBarRow>
                 <TopAppBarSection align="start">
                   <TopAppBarIcon navIcon>
-                    <Icon
-                      icon="menu"
+                    <IconButton
                       tabIndex={0}
                       role="button"
                       aria-label={i18n._(t`Main menu`)}
                       aria-expanded={drawerOpen}
                       onClick={handleNavigationIconClick}
                       onKeyDown={handleNavigationIconKeyDown}
-                      rippled
-                    />
+                    >
+                      <Icon icon="menu" />
+                    </IconButton>
                   </TopAppBarIcon>
                   <TopAppBarTitle
                     className="flex items-center pl1 link color-inherit"
