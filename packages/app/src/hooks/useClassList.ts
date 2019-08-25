@@ -4,7 +4,13 @@ const useClassList = () => {
   const [classList, setClassList] = useState<string[]>([])
 
   const addClass = useCallback((cls: string) => {
-    setClassList(prevList => [...prevList, cls])
+    setClassList(prevList => {
+      if (prevList.includes(cls)) {
+        return prevList
+      }
+
+      return [...prevList, cls]
+    })
   }, [])
 
   const removeClass = useCallback((cls: string) => {
