@@ -30,6 +30,7 @@
     "@material/fab": "^3.1.0",
     "@material/form-field": "^3.1.0",
     "@material/icon-button": "^3.1.0",
+    "@material/line-ripple": "^3.1.0",
     "@material/react-chips": "^0.14.1",
     "@material/react-drawer": "^0.14.1",
     "@material/react-layout-grid": "^0.14.1",
