@@ -1,0 +1,14 @@
+.button {
+  padding: .125rem .25rem;
+  text-align: center;
+  outline: none;
+}
+
+.button:not(.buttonSelected) {
+  color: var(--color-text-primary);
+}
+
+.icon {
+  font-size: 1.25rem !important;
+  vertical-align: middle;
+}
