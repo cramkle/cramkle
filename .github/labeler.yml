@@ -1,0 +1,5 @@
+server: packages/server/**/*
+
+app: packages/app/**/*
+
+views: packages/app/src/components/views/**/*
