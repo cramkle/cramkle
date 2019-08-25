@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 
 import { MDCRippleAdapter, MDCRippleFoundation, util } from '@material/ripple'
@@ -218,4 +219,37 @@ export function useRipple<T extends HTMLElement, U extends HTMLElement = T>({
     rippleClasses: Array.from(classList).join(' '),
     rippleFoundation: foundationRef.current,
   }
+}
+
+interface RippleProps {
+  className: string
+  unbounded: boolean
+  primary: boolean
+  secondary: boolean
+}
+
+export const Ripple: React.FC<RippleProps> = ({
+  className,
+  unbounded = false,
+  primary = false,
+  secondary = false,
+}) => {
+  const ref = useRef<HTMLDivElement>(null)
+
+  const { rippleStyle, rippleClasses } = useRipple({
+    surfaceRef: ref,
+    unbounded: true,
+  })
+
+  return (
+    <div
+      className={classNames(className, rippleClasses, 'mdc-ripple-surface', {
+        'mdc-ripple-surface--primary': primary,
+        'mdc-ripple-surface--secondary': secondary,
+      })}
+      style={rippleStyle}
+      ref={ref}
+      data-mdc-ripple-is-unbounded={unbounded}
+    />
+  )
 }
