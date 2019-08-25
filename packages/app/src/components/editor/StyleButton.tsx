@@ -37,7 +37,7 @@ const StyleButton: React.FunctionComponent<Props> = ({
 
   const className = cx(
     styles.button,
-    'relative pointer mr2 pv1 dib bn bg-surface flex items-center',
+    'mdc-typography relative pointer mr2 pv1 dib bn bg-surface flex items-center',
     {
       'c-primary': active,
       [styles.buttonSelected]: active,
