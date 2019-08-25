@@ -1581,6 +1581,16 @@
     "@material/theme" "^1.1.0"
     tslib "^1.9.3"
 
+"@material/line-ripple@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@material/line-ripple/-/line-ripple-3.1.0.tgz#63a4f41f2a2a5df01c2e229a76fc2b0735cd62c0"
+  integrity sha512-o6E6wrDqoOK4esCnM1MQ9t7DC/JQrzSrwYsYdqtOpGnr3G5Jx7WWVt6GEVh2eNXy8OnVYkJdQbMjyPVEVJb/Dg==
+  dependencies:
+    "@material/animation" "^3.1.0"
+    "@material/base" "^3.1.0"
+    "@material/theme" "^3.1.0"
+    tslib "^1.9.3"
+
 "@material/linear-progress@^1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@material/linear-progress/-/linear-progress-1.1.0.tgz#559921d4274fce0131fdf146698582d292855d6a"
