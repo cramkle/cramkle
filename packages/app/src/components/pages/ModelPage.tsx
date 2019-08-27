@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/react-hooks'
 import { Trans } from '@lingui/macro'
 import List, { ListItem, ListItemText } from '@material/react-list'
-import { Body1, Body2, Caption, Headline4 } from '@material/react-typography'
+import { Body1, Body2, Caption, Headline4 } from 'views/Typography'
 import gql from 'graphql-tag'
 import React, { useCallback, useState } from 'react'
 import { Helmet } from 'react-helmet'

@@ -1,6 +1,6 @@
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import { Headline5 } from '@material/react-typography'
+import { Headline5 } from 'views/Typography'
 import classNames from 'classnames'
 import { Formik } from 'formik'
 import React from 'react'

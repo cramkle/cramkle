@@ -1,5 +1,5 @@
 import { Trans } from '@lingui/macro'
-import { Headline5 } from '@material/react-typography'
+import { Headline5 } from 'views/Typography'
 import React from 'react'
 
 import GeneralSettings from 'components/GeneralSettings'

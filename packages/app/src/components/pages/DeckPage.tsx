@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/react-hooks'
-import { Body1, Headline4 } from '@material/react-typography'
+import { Body1, Headline4 } from 'views/Typography'
 import gql from 'graphql-tag'
 import React from 'react'
 import { Helmet } from 'react-helmet'
