@@ -1,7 +1,7 @@
 import { plural } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { Chip } from '@material/react-chips'
-import { Headline6 } from '@material/react-typography'
+import { Headline6 } from 'views/Typography'
 import React, { useCallback } from 'react'
 import { RouteComponentProps, withRouter } from 'react-router'
 

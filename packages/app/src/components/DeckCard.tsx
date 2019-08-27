@@ -1,6 +1,6 @@
 import React from 'react'
 import { RouteComponentProps, withRouter } from 'react-router'
-import { Body2, Headline6 } from '@material/react-typography'
+import { Body2, Headline6 } from 'views/Typography'
 
 import Card, { CardPrimaryContent } from 'views/Card'
 

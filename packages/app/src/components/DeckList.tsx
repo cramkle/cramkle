@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/react-hooks'
 import { Trans } from '@lingui/macro'
 import { Cell, Grid, Row } from '@material/react-layout-grid'
-import { Body1 } from '@material/react-typography'
+import { Body1 } from 'views/Typography'
 import gql from 'graphql-tag'
 import React from 'react'
 

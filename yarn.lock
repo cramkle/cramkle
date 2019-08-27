@@ -1873,14 +1873,6 @@
     "@material/textfield" "^2.3.1"
     classnames "^2.2.6"
 
-"@material/react-typography@^0.14.1":
-  version "0.14.1"
-  resolved "https://registry.yarnpkg.com/@material/react-typography/-/react-typography-0.14.1.tgz#b2a6e30963b90d0a54f7029305aa66d0ce73b817"
-  integrity sha512-NP27YNcO7RlIDw9tK75FjcD6LzANCYSvhBtrobHpViJh4/8rF0Ie2v/fpzws16YPlCd19kocGEniD8uUlfZSqw==
-  dependencies:
-    "@material/typography" "^1.0.0"
-    classnames "^2.2.6"
-
 "@material/ripple@^0.41.0":
   version "0.41.0"
   resolved "https://registry.yarnpkg.com/@material/ripple/-/ripple-0.41.0.tgz#73dbb9bf0e1d72382926b39f2527c011e689dde2"

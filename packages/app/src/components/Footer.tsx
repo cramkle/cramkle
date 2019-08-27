@@ -1,6 +1,6 @@
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import * as T from '@material/react-typography'
+import * as T from 'views/Typography'
 import React from 'react'
 import { Link } from 'react-router-dom'
 

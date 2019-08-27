@@ -1,7 +1,7 @@
 import { useMutation } from '@apollo/react-hooks'
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import { Body1, Body2, Headline5 } from '@material/react-typography'
+import { Body1, Body2, Headline5 } from 'views/Typography'
 import { FieldArray, Formik } from 'formik'
 import gql from 'graphql-tag'
 import React from 'react'
