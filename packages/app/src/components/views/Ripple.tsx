@@ -1,5 +1,11 @@
 import classNames from 'classnames'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, {
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from 'react'
 
 import { MDCRippleAdapter, MDCRippleFoundation, util } from '@material/ripple'
 import { events, ponyfill } from '@material/dom'
@@ -222,24 +228,43 @@ export function useRipple<T extends HTMLElement, U extends HTMLElement = T>({
 }
 
 interface RippleProps {
-  className: string
-  unbounded: boolean
-  primary: boolean
-  secondary: boolean
+  className?: string
+  unbounded?: boolean
+  primary?: boolean
+  secondary?: boolean
 }
 
-export const Ripple: React.FC<RippleProps> = ({
-  className,
-  unbounded = false,
-  primary = false,
-  secondary = false,
-}) => {
-  const ref = useRef<HTMLDivElement>(null)
+interface RippleRef {
+  focus: () => void
+  blur: () => void
+}
 
-  const { rippleStyle, rippleClasses } = useRipple({
-    surfaceRef: ref,
+export const RippleComponent: React.RefForwardingComponent<
+  RippleRef,
+  RippleProps
+> = (
+  { className, unbounded = false, primary = false, secondary = false },
+  ref
+) => {
+  const elementRef = useRef<HTMLDivElement>(null)
+
+  const {
+    rippleStyle,
+    rippleClasses,
+    rippleFoundation: foundation,
+  } = useRipple({
+    surfaceRef: elementRef,
     unbounded: true,
   })
+
+  useImperativeHandle(
+    ref,
+    () => ({
+      focus: () => foundation && foundation.handleFocus(),
+      blur: () => foundation && foundation.handleBlur(),
+    }),
+    [foundation]
+  )
 
   return (
     <div
@@ -248,8 +273,10 @@ export const Ripple: React.FC<RippleProps> = ({
         'mdc-ripple-surface--secondary': secondary,
       })}
       style={rippleStyle}
-      ref={ref}
+      ref={elementRef}
       data-mdc-ripple-is-unbounded={unbounded}
     />
   )
 }
+
+export const Ripple = React.forwardRef(RippleComponent)

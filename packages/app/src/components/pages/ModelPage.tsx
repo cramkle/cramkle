@@ -1,11 +1,9 @@
 import { useQuery } from '@apollo/react-hooks'
 import { Trans } from '@lingui/macro'
 import List, { ListItem, ListItemText } from '@material/react-list'
-import Tab from '@material/react-tab'
-import TabBar from '@material/react-tab-bar'
 import { Body1, Body2, Caption, Headline4 } from '@material/react-typography'
 import gql from 'graphql-tag'
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { RouteComponentProps } from 'react-router'
 
@@ -14,10 +12,11 @@ import DeleteModelButton from 'components/DeleteModelButton'
 import TemplateEditor from 'components/TemplateEditor'
 import BackButton from 'components/BackButton'
 import Container from 'views/Container'
+import Tab from 'views/Tab'
+import TabBar from 'views/TabBar'
 import useTopBarLoading from 'hooks/useTopBarLoading'
 
 type Props = RouteComponentProps<{ id: string }>
-type Query = ModelQuery
 
 const MODEL_QUERY = gql`
   query ModelQuery($id: ID!) {
@@ -83,9 +82,9 @@ const ModelPage: React.FunctionComponent<Props> = ({
 
   const [selectedTemplate, setSelectedTemplate] = useState(0)
 
-  const handleTemplateSelect = (index: number) => {
+  const handleTemplateSelect = useCallback((index: number) => {
     setSelectedTemplate(index)
-  }
+  }, [])
 
   if (loading) {
     return null
@@ -109,7 +108,7 @@ const ModelPage: React.FunctionComponent<Props> = ({
           <>
             <TabBar
               activeIndex={selectedTemplate}
-              handleActiveIndexUpdate={handleTemplateSelect}
+              onActiveIndexUpdate={handleTemplateSelect}
             >
               {cardModel.templates.map(template => (
                 <Tab key={template.id}>{template.name}</Tab>

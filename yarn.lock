@@ -1862,43 +1862,6 @@
     "@material/snackbar" "^1.0.0"
     classnames "^2.2.6"
 
-"@material/react-tab-bar@^0.14.1":
-  version "0.14.1"
-  resolved "https://registry.yarnpkg.com/@material/react-tab-bar/-/react-tab-bar-0.14.1.tgz#7518e80f50d71c5a32403c54781f66834936dd92"
-  integrity sha512-DmsAXdzPOhO6JVJfK+aGk5H8jD9VOKZDRJtvWMnYgJtJtSIf5hL9FLVLhLozdyGieSbFD1rmyEceTUJtnjE+LQ==
-  dependencies:
-    "@material/react-tab" "^0.14.1"
-    "@material/react-tab-scroller" "^0.14.1"
-    "@material/tab-bar" "^1.0.0"
-    classnames "^2.2.6"
-
-"@material/react-tab-indicator@^0.14.1":
-  version "0.14.1"
-  resolved "https://registry.yarnpkg.com/@material/react-tab-indicator/-/react-tab-indicator-0.14.1.tgz#47ca1e3e7eb15517f70a77747ef442cdec37a991"
-  integrity sha512-h2SPcIAyxi08tPLs2opGSta61lzUPE55Au9TUM+Lp5a7d/+hzaMXMpZYtTDSl165hO/IZxK1qoD3XPXevJ0xbg==
-  dependencies:
-    "@material/tab-indicator" "^1.0.0"
-    classnames "^2.2.6"
-
-"@material/react-tab-scroller@^0.14.1":
-  version "0.14.1"
-  resolved "https://registry.yarnpkg.com/@material/react-tab-scroller/-/react-tab-scroller-0.14.1.tgz#342f9395cadf8f3a92f535a238c335afb26ec49a"
-  integrity sha512-YAaj+m05A2FB/FuuXRD1fIgOnFrDcRIxFL8s55wAMD0Dz5JSjuUtCpNHFs8ef4HGoUF9qWyvHKnmJ3z0SAPGvg==
-  dependencies:
-    "@material/dom" "^1.0.0"
-    "@material/tab-scroller" "^1.0.0"
-    classnames "^2.2.6"
-
-"@material/react-tab@^0.14.1":
-  version "0.14.1"
-  resolved "https://registry.yarnpkg.com/@material/react-tab/-/react-tab-0.14.1.tgz#ec797c60490b0234706d91375c100bd4385bb2b1"
-  integrity sha512-j8jQmKm1fngb3UgdQnkfRATViPtKy/8ILhc1jeJ6g5WuAQUrNj7tD5jTyzDhIkpePUr6AtuFqqK2xv+U24nJAw==
-  dependencies:
-    "@material/react-ripple" "^0.14.1"
-    "@material/react-tab-indicator" "^0.14.1"
-    "@material/tab" "^1.0.0"
-    classnames "^2.2.6"
-
 "@material/react-text-field@^0.14.1":
   version "0.14.1"
   resolved "https://registry.yarnpkg.com/@material/react-text-field/-/react-text-field-0.14.1.tgz#4cbaae7c24b56a443c458a439ffe0b1b2df9d1db"
@@ -2035,49 +1998,53 @@
     "@material/typography" "^1.0.0"
     tslib "^1.9.3"
 
-"@material/tab-bar@^1.0.0":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@material/tab-bar/-/tab-bar-1.1.1.tgz#f0f17fafd2e97b04d1a3dd7a3ad3861624d193b2"
-  integrity sha512-BwMcZlaQmlN919jugVl4AOnt/sQYfv42/TRT2EFbFQGfFUN+8C0kwWL8m5TDhZkQ5S6IR5oPLX7kqC0NDYqW+Q==
+"@material/tab-bar@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@material/tab-bar/-/tab-bar-3.1.0.tgz#07a30103160f54928831f85c6a20b2d657407725"
+  integrity sha512-ixfvNtSHlNKJ51M4BWvdsvpu2NKdOZTG6+9p77GdHQf0AUiRSWErWcG5yDPVLc7vkfcoszpJs1bgu01nVacQ3A==
   dependencies:
-    "@material/base" "^1.0.0"
-    "@material/elevation" "^1.1.0"
-    "@material/tab" "^1.1.1"
-    "@material/tab-scroller" "^1.1.1"
+    "@material/base" "^3.1.0"
+    "@material/elevation" "^3.1.0"
+    "@material/feature-targeting" "^3.1.0"
+    "@material/tab" "^3.1.0"
+    "@material/tab-scroller" "^3.1.0"
     tslib "^1.9.3"
 
-"@material/tab-indicator@^1.0.0", "@material/tab-indicator@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@material/tab-indicator/-/tab-indicator-1.1.0.tgz#2c37e8fe146d84a99482509cbb785f67336f0463"
-  integrity sha512-wbZMFCfQo62einr/Ju9PDAeFpRR/Ori5oV2lcsF1uSQXeLxougarwcbk0egWnEtY4Wa6dPgM5P6wQQsYnIeUIQ==
+"@material/tab-indicator@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@material/tab-indicator/-/tab-indicator-3.1.0.tgz#aac5de4af5cb56da492535ff63bb2495a063fd31"
+  integrity sha512-U4H1bg792ZP4BzjiG3i3htHKmRGlGUZ8c9iroRN6W5B4hYQ5/4DbFA2h2OaAZ1fhyjHiyFosK5ctvgu7qSfZ/g==
   dependencies:
-    "@material/animation" "^1.0.0"
-    "@material/base" "^1.0.0"
-    "@material/theme" "^1.1.0"
+    "@material/animation" "^3.1.0"
+    "@material/base" "^3.1.0"
+    "@material/feature-targeting" "^3.1.0"
+    "@material/theme" "^3.1.0"
     tslib "^1.9.3"
 
-"@material/tab-scroller@^1.0.0", "@material/tab-scroller@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@material/tab-scroller/-/tab-scroller-1.1.1.tgz#e7704b2d3c4de9b7474d4b017e440ed655ee9c2e"
-  integrity sha512-LwYXIdk0rzjisnRTNBw1OPMvBzRWhMVGfVV73pEuDV3lkpcp1v4gfig3GR6JI8U8iPZXpxbPqaVEl/K/r8zhYw==
+"@material/tab-scroller@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@material/tab-scroller/-/tab-scroller-3.1.0.tgz#795c984f7d3c9487d6f62f6c8a62306c2167e853"
+  integrity sha512-tV/+imklWOrbZuNF1egCbIY2/sHunSmxdiyW2ppF1t26M8NnKYHv7H5JRejdJDAwODWrmvMhwXE+rPBT50FvgA==
   dependencies:
-    "@material/animation" "^1.0.0"
-    "@material/base" "^1.0.0"
-    "@material/dom" "^1.1.0"
-    "@material/tab" "^1.1.1"
+    "@material/animation" "^3.1.0"
+    "@material/base" "^3.1.0"
+    "@material/dom" "^3.1.0"
+    "@material/feature-targeting" "^3.1.0"
+    "@material/tab" "^3.1.0"
     tslib "^1.9.3"
 
-"@material/tab@^1.0.0", "@material/tab@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@material/tab/-/tab-1.1.1.tgz#8d4890929be3c44cc076925f83f6366ac107b7ac"
-  integrity sha512-PpBehtp1eeh9wNDkYdRS3JpFa4Do9wMqK4OZo7ZSntKucjd9bx0TiA2TLj8WuFVWIWmXMcsz3DAWshyG3JAs0Q==
+"@material/tab@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@material/tab/-/tab-3.1.0.tgz#7bb863d347cf8a8c91489921ec98cc86c6b5f318"
+  integrity sha512-AcHlmS5l0rjHTEP1GuVVt6F7h8NqzlLMM1cXabHTrZYPvF2QwHnFnMesE74TJPHArW9xMgP7wYsJ88ZREolRow==
   dependencies:
-    "@material/base" "^1.0.0"
-    "@material/ripple" "^1.1.0"
-    "@material/rtl" "^0.42.0"
-    "@material/tab-indicator" "^1.1.0"
-    "@material/theme" "^1.1.0"
-    "@material/typography" "^1.0.0"
+    "@material/base" "^3.1.0"
+    "@material/feature-targeting" "^3.1.0"
+    "@material/ripple" "^3.1.0"
+    "@material/rtl" "^3.1.0"
+    "@material/tab-indicator" "^3.1.0"
+    "@material/theme" "^3.1.0"
+    "@material/typography" "^3.1.0"
     tslib "^1.9.3"
 
 "@material/textfield@^2.3.1":

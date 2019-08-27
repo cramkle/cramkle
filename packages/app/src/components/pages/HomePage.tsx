@@ -1,8 +1,6 @@
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import Tab from '@material/react-tab'
-import TabBar from '@material/react-tab-bar'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { RouteComponentProps, withRouter } from 'react-router'
 
@@ -10,6 +8,8 @@ import StudySection from './StudySection'
 import DecksSection from './DecksSection'
 import ModelsSection from './ModelsSection'
 import Icon from 'views/Icon'
+import Tab from 'views/Tab'
+import TabBar from 'views/TabBar'
 import registerSW from '../../registerSW'
 import { notificationState } from 'notification/index'
 
@@ -67,9 +67,12 @@ const HomePage: React.FunctionComponent<RouteComponentProps> = ({
     }
   }, [])
 
-  const handleActiveIndexUpdate = (index: number) => {
-    history.push('/home', { currentTab: index })
-  }
+  const handleActiveIndexUpdate = useCallback(
+    (index: number) => {
+      history.push('/home', { currentTab: index })
+    },
+    [history]
+  )
 
   return (
     <>
@@ -80,7 +83,7 @@ const HomePage: React.FunctionComponent<RouteComponentProps> = ({
       <div className="h-100 flex flex-column">
         <TabBar
           activeIndex={index}
-          handleActiveIndexUpdate={handleActiveIndexUpdate}
+          onActiveIndexUpdate={handleActiveIndexUpdate}
         >
           <Tab>
             <Icon
