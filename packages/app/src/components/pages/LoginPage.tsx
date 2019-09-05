@@ -16,7 +16,7 @@ const LoginPage: React.FunctionComponent = () => {
         <title>{i18n._(t`Login`)}</title>
       </Helmet>
 
-      <Logo className="w3 h3 mb4" />
+      <Logo className="w3 mb4" />
 
       <LoginForm />
 

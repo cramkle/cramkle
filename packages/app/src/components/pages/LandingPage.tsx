@@ -24,7 +24,7 @@ const LandingPage: React.FunctionComponent<RouteComponentProps> = ({
       <TopAppBarRow>
         <TopAppBarSection align="start">
           <TopAppBarIcon>
-            <Logo height="24" width="24" />
+            <Logo width={24} />
           </TopAppBarIcon>
           <TopAppBarTitle>Cramkle</TopAppBarTitle>
         </TopAppBarSection>

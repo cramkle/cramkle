@@ -16,7 +16,7 @@ const RegisterPage: React.FunctionComponent = () => {
         <title>{i18n._(t`Register`)}</title>
       </Helmet>
 
-      <Logo className="w3 h3 mb4" />
+      <Logo className="w3 mb4" />
 
       <RegisterForm />
 
