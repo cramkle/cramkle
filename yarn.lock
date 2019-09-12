@@ -1313,19 +1313,6 @@
   dependencies:
     tslib "^1.9.3"
 
-"@material/button@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@material/button/-/button-1.1.1.tgz#35af0d295f6ce6e3df9d4978485b5294d794f682"
-  integrity sha512-03aEyzZBIeqpgZkqLjro/enz8ORUnfQslBUdAgkPqdjh1X0oIEugr3UaFyC5QlSBTU3j3GIsnKIxWaggkRenpQ==
-  dependencies:
-    "@material/elevation" "^1.1.0"
-    "@material/feature-targeting" "^0.44.1"
-    "@material/ripple" "^1.1.0"
-    "@material/rtl" "^0.42.0"
-    "@material/shape" "^1.1.1"
-    "@material/theme" "^1.1.0"
-    "@material/typography" "^1.0.0"
-
 "@material/button@^3.1.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@material/button/-/button-3.1.0.tgz#bee60a7a5ec0a7c3dcb242dac48bbdaf16bac66b"
@@ -1544,17 +1531,6 @@
     "@material/rtl" "^3.1.0"
     "@material/theme" "^3.1.0"
     "@material/typography" "^3.1.0"
-    tslib "^1.9.3"
-
-"@material/icon-button@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@material/icon-button/-/icon-button-1.1.0.tgz#a7c649b3549e6e9ecd9c82a8ef124757bfcc98b8"
-  integrity sha512-3HYOfFhlgpY32HyNt1thQJfTycjy0Cfd4B4IZmt2irfaETdj6JuP0wKs9kdEx1VHTbfWFkJHENArz0lPW+6r2A==
-  dependencies:
-    "@material/base" "^1.0.0"
-    "@material/feature-targeting" "^0.44.1"
-    "@material/ripple" "^1.1.0"
-    "@material/theme" "^1.1.0"
     tslib "^1.9.3"
 
 "@material/icon-button@^3.1.0":
@@ -1854,14 +1830,6 @@
     "@material/select" "^1.1.1"
     classnames "^2.2.6"
 
-"@material/react-snackbar@^0.14.1":
-  version "0.14.1"
-  resolved "https://registry.yarnpkg.com/@material/react-snackbar/-/react-snackbar-0.14.1.tgz#fc19b97df0e138db9752fc91c4e602d14696ca21"
-  integrity sha512-YzvujVXUryHn8e8fQLHAgk32uCyqh5CO68UbuIkUxbqQU4A+xbyeFIGgr+MEh7dV04CiWg5O6pYMq1Uiz8skRA==
-  dependencies:
-    "@material/snackbar" "^1.0.0"
-    classnames "^2.2.6"
-
 "@material/react-text-field@^0.14.1":
   version "0.14.1"
   resolved "https://registry.yarnpkg.com/@material/react-text-field/-/react-text-field-0.14.1.tgz#4cbaae7c24b56a443c458a439ffe0b1b2df9d1db"
@@ -1973,21 +1941,22 @@
   dependencies:
     "@material/feature-targeting" "^3.1.0"
 
-"@material/snackbar@^1.0.0":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@material/snackbar/-/snackbar-1.1.1.tgz#6547ad3f2fa02d49753ceb925aaae0403d101d31"
-  integrity sha512-pnWAJuEC+Q+EF95kjEnBuQu7P6hSWeJQ/R1ljd1VthUd87M/uBhqOcoXqGrPbFVYlOj01Fy5/wctf9wFIJdQiA==
+"@material/snackbar@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@material/snackbar/-/snackbar-3.1.0.tgz#6ec0a7e291cc550e5f30487972b56d4fe72daf0e"
+  integrity sha512-A+wRzcJbHLeroDUigiZppiCeXga2CK3oyQz1WUV1nf22q22dT0+pQVW+sm3ejjBY3fMpc3xOnjf8Yg/FAvfLPQ==
   dependencies:
-    "@material/animation" "^1.0.0"
-    "@material/base" "^1.0.0"
-    "@material/button" "^1.1.1"
-    "@material/dom" "^1.1.0"
-    "@material/icon-button" "^1.1.0"
-    "@material/ripple" "^1.1.0"
-    "@material/rtl" "^0.42.0"
-    "@material/shape" "^1.1.1"
-    "@material/theme" "^1.1.0"
-    "@material/typography" "^1.0.0"
+    "@material/animation" "^3.1.0"
+    "@material/base" "^3.1.0"
+    "@material/button" "^3.1.0"
+    "@material/dom" "^3.1.0"
+    "@material/feature-targeting" "^3.1.0"
+    "@material/icon-button" "^3.1.0"
+    "@material/ripple" "^3.1.0"
+    "@material/rtl" "^3.1.0"
+    "@material/shape" "^3.1.0"
+    "@material/theme" "^3.1.0"
+    "@material/typography" "^3.1.0"
     tslib "^1.9.3"
 
 "@material/tab-bar@^3.1.0":
