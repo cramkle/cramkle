@@ -20,12 +20,12 @@ type Query {
   """
   Retrieve all decks for the logged user
   """
-  decks: [Deck] @authenticate
+  decks: [Deck!] @authenticate
 
   """
   Retrieve all card models for the logged user
   """
-  cardModels: [CardModel] @authenticate
+  cardModels: [CardModel!] @authenticate
 
   """
   Get single deck
