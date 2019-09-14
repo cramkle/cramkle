@@ -6,7 +6,7 @@ import Card, { CardPrimaryContent } from 'views/Card'
 
 interface Props extends RouteComponentProps {
   title: string
-  description: string | null
+  description?: string | null
   slug: string
 }
 
