@@ -89,13 +89,13 @@ export const Snackbar: React.FC<Props> = ({
 
   useEffect(() => {
     if (timeoutMs) {
-      this.foundation.setTimeoutMs(timeoutMs)
+      foundationRef.current.setTimeoutMs(timeoutMs)
     }
   }, [timeoutMs])
 
   useEffect(() => {
     if (closeOnEscape) {
-      this.foundation.setCloseOnEscape(closeOnEscape)
+      foundationRef.current.setCloseOnEscape(closeOnEscape)
     }
   }, [closeOnEscape])
 
