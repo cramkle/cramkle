@@ -1,4 +1,4 @@
-import { TabController } from '@lucasecdb/react-tab-controller'
+import { TabController } from 'react-tab-controller'
 import {
   CompositeDecorator,
   EditorState,

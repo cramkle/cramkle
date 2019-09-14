@@ -1,6 +1,6 @@
 import { MessageDescriptor } from '@lingui/core'
 import { useLingui } from '@lingui/react'
-import { useControlledTabIndex } from '@lucasecdb/react-tab-controller'
+import { useControlledTabIndex } from 'react-tab-controller'
 import classNames from 'classnames'
 import React, { memo, useRef } from 'react'
 

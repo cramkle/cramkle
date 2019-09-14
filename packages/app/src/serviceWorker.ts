@@ -1,8 +1,8 @@
 /* env: webworker */
 
 import { precacheAndRoute } from 'workbox-precaching'
-import { Plugin as CacheableResponsePlugin } from 'workbox-cacheable-response'
-import { Plugin as ExpirationPlugin } from 'workbox-expiration'
+import { CacheableResponsePlugin } from 'workbox-cacheable-response'
+import { ExpirationPlugin } from 'workbox-expiration'
 import {
   CacheFirst,
   NetworkFirst,
@@ -22,72 +22,59 @@ declare global {
 
 precacheAndRoute(self.__WB_MANIFEST, {})
 
-const networkFirstHandler = new NetworkFirst()
-
 // api
-registerRoute(/_c/, networkFirstHandler.handle.bind(networkFirstHandler))
+registerRoute(/_c/, new NetworkFirst())
 
 // google fonts
-const googleStylesheetsHandler = new StaleWhileRevalidate({
-  cacheName: 'google-fonts-stylesheets',
-})
-
 registerRoute(
   /^https:\/\/fonts\.googleapis\.com/,
-  googleStylesheetsHandler.handle.bind(googleStylesheetsHandler)
+  new StaleWhileRevalidate({ cacheName: 'google-fonts-stylesheets' })
 )
-
-const googleWebfontsHandler = new CacheFirst({
-  cacheName: 'google-fonts-webfonts',
-  plugins: [
-    new CacheableResponsePlugin({
-      statuses: [0, 200],
-    }),
-    new ExpirationPlugin({
-      maxEntries: 20,
-      // cache for a year
-      maxAgeSeconds: 60 * 60 * 24 * 365,
-    }),
-  ],
-})
 
 registerRoute(
   /^https:\/\/fonts\.gstatic\.com/,
-  googleWebfontsHandler.handle.bind(googleWebfontsHandler)
+  new CacheFirst({
+    cacheName: 'google-fonts-webfonts',
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [0, 200],
+      }),
+      new ExpirationPlugin({
+        maxEntries: 20,
+        // cache for a year
+        maxAgeSeconds: 60 * 60 * 24 * 365,
+      }),
+    ],
+  })
 )
 
 // image assets
-const imagesHandler = new CacheFirst({
-  cacheName: 'images',
-  plugins: [
-    new ExpirationPlugin({
-      maxEntries: 60,
-      // cache for 30 days
-      maxAgeSeconds: 60 * 60 * 24 * 30,
-    }),
-  ],
-})
-
-registerRoute(IMAGE_REGEX, imagesHandler.handle.bind(imagesHandler))
+registerRoute(
+  IMAGE_REGEX,
+  new CacheFirst({
+    cacheName: 'images',
+    plugins: [
+      new ExpirationPlugin({
+        maxEntries: 60,
+        // cache for 30 days
+        maxAgeSeconds: 60 * 60 * 24 * 30,
+      }),
+    ],
+  })
+)
 
 // javascript and css
-const assetsHandler = new (process.env.NODE_ENV === 'development'
-  ? NetworkOnly
-  : StaleWhileRevalidate)({
-  cacheName: 'static-resources',
-})
-registerRoute(JS_CSS_REGEX, assetsHandler.handle.bind(assetsHandler))
+registerRoute(
+  JS_CSS_REGEX,
+  new (process.env.NODE_ENV === 'development'
+    ? NetworkOnly
+    : StaleWhileRevalidate)({
+    cacheName: 'static-resources',
+  })
+)
 
 if (process.env.NODE_ENV === 'development') {
-  const hmrHandler = new NetworkOnly()
-
-  registerRoute(
-    /(__webpack_hmr|hot-update)/,
-    hmrHandler.handle.bind(hmrHandler)
-  )
+  registerRoute(/(__webpack_hmr|hot-update)/, new NetworkOnly())
 } else {
-  registerRoute(
-    /^https:\/\/(www\.)?cramkle\.com/,
-    networkFirstHandler.handle.bind(networkFirstHandler)
-  )
+  registerRoute(/^https:\/\/(www\.)?cramkle\.com/, new NetworkFirst())
 }
