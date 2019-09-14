@@ -21,9 +21,13 @@
               "kind": "LIST",
               "name": null,
               "ofType": {
-                "kind": "OBJECT",
-                "name": "Deck",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Deck",
+                  "ofType": null
+                }
               }
             },
             "isDeprecated": false,
@@ -37,9 +41,13 @@
               "kind": "LIST",
               "name": null,
               "ofType": {
-                "kind": "OBJECT",
-                "name": "CardModel",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "CardModel",
+                  "ofType": null
+                }
               }
             },
             "isDeprecated": false,
@@ -73,47 +81,6 @@
             "deprecationReason": null
           },
           {
-            "name": "card",
-            "description": "Get single card",
-            "args": [
-              {
-                "name": "noteId",
-                "description": "",
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "ID",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "id",
-                "description": "",
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "ID",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null
-              }
-            ],
-            "type": {
-              "kind": "OBJECT",
-              "name": "Card",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "cardModel",
             "description": "Get single card model",
             "args": [
@@ -135,33 +102,6 @@
             "type": {
               "kind": "OBJECT",
               "name": "CardModel",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "field",
-            "description": "Get single field",
-            "args": [
-              {
-                "name": "id",
-                "description": "",
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "ID",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null
-              }
-            ],
-            "type": {
-              "kind": "OBJECT",
-              "name": "Field",
               "ofType": null
             },
             "isDeprecated": false,
@@ -220,18 +160,6 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
-          },
-          {
-            "name": "user",
-            "description": "Get currently logged user",
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "User",
-              "ofType": null
-            },
-            "isDeprecated": true,
-            "deprecationReason": "Use the 'me' query instead"
           },
           {
             "name": "me",
@@ -1701,7 +1629,7 @@
             "deprecationReason": null
           },
           {
-            "name": "addTemplate",
+            "name": "addTemplateToModel",
             "description": "Adds a new template to a card model",
             "args": [
               {
@@ -1799,7 +1727,7 @@
             "deprecationReason": null
           },
           {
-            "name": "addField",
+            "name": "addFieldToModel",
             "description": "Adds a new field to a card model",
             "args": [
               {
@@ -1911,16 +1839,22 @@
         "fields": null,
         "inputFields": [
           {
+            "name": "id",
+            "description": "",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "name",
             "description": "",
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "defaultValue": null
           }

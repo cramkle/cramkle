@@ -28,7 +28,8 @@ export interface EntityRangeInput {
 }
 
 export interface FieldInput {
-  name: string;
+  id?: string | null;
+  name?: string | null;
 }
 
 export interface InlineStyleRangeInput {

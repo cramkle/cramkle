@@ -30,5 +30,5 @@ export interface DecksQuery {
   /**
    * Retrieve all decks for the logged user
    */
-  decks: (DecksQuery_decks | null)[] | null;
+  decks: DecksQuery_decks[] | null;
 }

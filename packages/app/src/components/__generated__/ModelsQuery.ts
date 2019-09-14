@@ -54,5 +54,5 @@ export interface ModelsQuery {
   /**
    * Retrieve all card models for the logged user
    */
-  cardModels: (ModelsQuery_cardModels | null)[] | null;
+  cardModels: ModelsQuery_cardModels[] | null;
 }
