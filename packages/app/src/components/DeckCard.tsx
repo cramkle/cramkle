@@ -6,13 +6,13 @@ import Card, { CardPrimaryContent } from 'views/Card'
 
 interface Props extends RouteComponentProps {
   title: string
-  description?: string
+  description: string | null
   slug: string
 }
 
 const DeckCard: React.FunctionComponent<Props> = ({
   title,
-  description,
+  description = null,
   slug,
   history,
 }) => {
@@ -34,10 +34,6 @@ const DeckCard: React.FunctionComponent<Props> = ({
       </CardPrimaryContent>
     </Card>
   )
-}
-
-DeckCard.defaultProps = {
-  description: null,
 }
 
 export default withRouter(DeckCard)

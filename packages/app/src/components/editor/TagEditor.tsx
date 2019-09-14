@@ -21,14 +21,14 @@ interface Props extends Omit<EditorProps, 'keyBindingFn' | 'handleKeyCommand'> {
 
 interface State {
   visibleTagEntries: TaggableEntry[]
-  highlightedTag: TaggableEntry
+  highlightedTag: TaggableEntry | null
   characterOffset: number
 }
 
 type Action =
   | { type: 'reset' }
   | ({ type: 'update' } & State)
-  | { type: 'update_highlighted'; highlightedTag: TaggableEntry }
+  | { type: 'update_highlighted'; highlightedTag: TaggableEntry | null }
 
 const initialState: State = {
   visibleTagEntries: [],
@@ -73,7 +73,7 @@ const TagEditor: React.FunctionComponent<Props> = ({
 
   const onShowTags = useCallback(
     (taggables, offset) => {
-      if (taggables === null) {
+      if (taggables == null) {
         dispatch({ type: 'reset' })
         return
       }
@@ -116,7 +116,7 @@ const TagEditor: React.FunctionComponent<Props> = ({
     searchTags(tagSource, selection, contentState, onShowTags)
   }, [editorState, tagSource, onShowTags])
 
-  const handleTagHighlight = useCallback((tag: TaggableEntry) => {
+  const handleTagHighlight = useCallback((tag: TaggableEntry | null) => {
     dispatch({ type: 'update_highlighted', highlightedTag: tag })
   }, [])
 
@@ -126,7 +126,9 @@ const TagEditor: React.FunctionComponent<Props> = ({
     }
 
     const length = visibleTagEntries.length
-    const selectedIndex = visibleTagEntries.indexOf(highlightedTag)
+    const selectedIndex = highlightedTag
+      ? visibleTagEntries.indexOf(highlightedTag)
+      : 0
 
     let highlighted = null
 
@@ -145,7 +147,9 @@ const TagEditor: React.FunctionComponent<Props> = ({
     }
 
     const length = visibleTagEntries.length
-    const selectedIndex = visibleTagEntries.indexOf(highlightedTag)
+    const selectedIndex = highlightedTag
+      ? visibleTagEntries.indexOf(highlightedTag)
+      : 0
 
     let highlighted = null
 

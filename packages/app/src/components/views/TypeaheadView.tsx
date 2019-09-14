@@ -5,7 +5,7 @@ import { TaggableEntry } from '../editor/TaggableEntry'
 
 interface Props {
   style?: object
-  highlightedEntry: TaggableEntry
+  highlightedEntry: TaggableEntry | null
   entries: TaggableEntry[]
   onSelect: (entry: TaggableEntry) => void
   onHighlight: (entry: TaggableEntry) => void

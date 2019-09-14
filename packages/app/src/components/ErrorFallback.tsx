@@ -17,7 +17,7 @@ const ErrorFallback: React.FC<FallbackProps> = ({ error, componentStack }) => {
       <Button className="mt3" onClick={() => window.location.reload()}>
         <Trans>Refresh</Trans>
       </Button>
-      {process.env.NODE_ENV === 'development' && (
+      {process.env.NODE_ENV === 'development' && error && (
         <>
           <Overline className="mt3">Error message: "{error.message}"</Overline>
           <pre>{componentStack}</pre>

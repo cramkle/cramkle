@@ -17,7 +17,7 @@ export const decorators = [
 
 interface Props {
   tagEntries: TaggableEntry[]
-  highlightedTag?: TaggableEntry
+  highlightedTag: TaggableEntry | null
   onTagSelect: (tag: TaggableEntry) => void
   onTagHighlight: (tag: TaggableEntry) => void
   selection: SelectionState
@@ -26,9 +26,9 @@ interface Props {
 }
 
 const findRelativeParentElement = (
-  element: HTMLElement
+  element: HTMLElement | null
 ): HTMLElement | null => {
-  if (!element) {
+  if (element == null) {
     return null
   }
 
@@ -41,7 +41,7 @@ const findRelativeParentElement = (
 }
 
 const getStyleForSelectionRect = (
-  selectionRect: ClientRect,
+  selectionRect: ClientRect | null,
   offset: number
 ): object => {
   const parent = findRelativeParentElement(
@@ -55,14 +55,14 @@ const getStyleForSelectionRect = (
     top: 0,
   }
 
-  if (parent) {
+  if (selectionRect && parent) {
     relativeRect.scrollLeft = parent.scrollLeft
     relativeRect.scrollTop = parent.scrollTop
 
     const relativeParentRect = parent.getBoundingClientRect()
     relativeRect.left = selectionRect.left - relativeParentRect.left
     relativeRect.top = selectionRect.bottom - relativeParentRect.top
-  } else {
+  } else if (selectionRect) {
     relativeRect.scrollTop =
       window.pageYOffset || document.documentElement.scrollTop
     relativeRect.scrollLeft =

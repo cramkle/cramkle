@@ -21,10 +21,9 @@ export const DECKS_QUERY = gql`
 `
 
 const DeckList: React.FunctionComponent = () => {
-  const {
-    loading,
-    data: { decks = [] },
-  } = useQuery<DecksQuery>(DECKS_QUERY)
+  const { loading, data } = useQuery<DecksQuery>(DECKS_QUERY)
+
+  const decks = data && data.decks
 
   useTopBarLoading(loading)
 
@@ -32,7 +31,7 @@ const DeckList: React.FunctionComponent = () => {
     return null
   }
 
-  if (decks.length === 0) {
+  if (!decks || decks.length === 0) {
     return (
       <div className="flex flex-column items-center">
         <Body1 className="mt4">

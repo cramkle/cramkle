@@ -46,22 +46,25 @@ const DeleteModelButton: React.FunctionComponent<
 
     mutate({
       variables: { modelId: model.id },
-      update: (
-        cache,
-        {
-          data: {
-            deleteModel: { id },
-          },
-        }
-      ) => {
-        const { cardModels } = cache.readQuery<ModelsQuery>({
+      update: (cache, { data }) => {
+        const deletedModelId = data && data.deleteModel && data.deleteModel.id
+
+        const cachedModelsQuery = cache.readQuery<ModelsQuery>({
           query: MODELS_QUERY,
         })
 
-        cache.writeQuery({
-          query: MODELS_QUERY,
-          data: { cardModels: cardModels.filter(model => model.id !== id) },
-        })
+        const cardModels = cachedModelsQuery && cachedModelsQuery.cardModels
+
+        if (cardModels && deletedModelId) {
+          cache.writeQuery({
+            query: MODELS_QUERY,
+            data: {
+              cardModels: cardModels.filter(
+                model => model.id !== deletedModelId
+              ),
+            },
+          })
+        }
       },
     })
       .then(() => {

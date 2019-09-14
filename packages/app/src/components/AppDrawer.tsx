@@ -60,9 +60,9 @@ const AppDrawer: React.FunctionComponent<Props> = ({
   history,
   location,
 }) => {
-  const {
-    data: { me },
-  } = useQuery<UserQuery>(USER_QUERY)
+  const { data } = useQuery<UserQuery>(USER_QUERY)
+
+  const me = data && data.me
 
   const { i18n } = useLingui()
 
@@ -136,8 +136,12 @@ const AppDrawer: React.FunctionComponent<Props> = ({
 
   const header = (
     <DrawerHeader>
-      <DrawerTitle>{me.username}</DrawerTitle>
-      <DrawerSubtitle>{me.email}</DrawerSubtitle>
+      {me && (
+        <>
+          <DrawerTitle>{me.username}</DrawerTitle>
+          <DrawerSubtitle>{me.email}</DrawerSubtitle>
+        </>
+      )}
     </DrawerHeader>
   )
 

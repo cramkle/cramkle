@@ -20,7 +20,10 @@ export default function searchTags(
   source: TaggableEntry[],
   selection: SelectionState,
   contentState: ContentState,
-  callback: (taggableEntries: TaggableEntry[], characterOffset: number) => void
+  callback: (
+    taggableEntries: TaggableEntry[] | null,
+    characterOffset: number
+  ) => void
 ) {
   const anchorKey = selection.getAnchorKey()
   const anchorOffset = selection.getAnchorOffset()

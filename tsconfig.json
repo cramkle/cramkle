@@ -5,9 +5,12 @@
     "allowJs": true,
     "sourceMap": true,
     "noImplicitAny": true,
+    "noImplicitThis": true,
     "moduleResolution": "node",
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
-    "strict": true
+    "alwaysStrict": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true
   }
 }

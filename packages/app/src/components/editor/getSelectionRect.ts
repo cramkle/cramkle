@@ -1,7 +1,7 @@
 const getSelectionRect = (offset: number) => {
   const selection = window.getSelection()
 
-  if (!selection.rangeCount) {
+  if (!selection || !selection.rangeCount) {
     return null
   }
 
