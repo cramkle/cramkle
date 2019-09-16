@@ -117,7 +117,6 @@
     "jest-transform-graphql": "^2.1.0",
     "prettier": "^1.18.2",
     "react-app-polyfill": "^1.0.2",
-    "release-it": "^12.3.5",
     "stylelint": "^10.1.0",
     "stylelint-config-recommended-scss": "^3.2.0",
     "stylelint-scss": "^3.9.3",
