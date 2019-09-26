@@ -57,13 +57,12 @@ const App: React.FunctionComponent<{}> = () => {
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <NotificationToasts />
         <Switch>
-          <GuestRoute component={LandingPage} path="/" exact />
-          <ShellRoute
-            component={HomePage}
-            RouteComponent={UserRoute}
-            path="/home"
-            exact
-          />
+          <GuestRoute path="/" exact>
+            <LandingPage />
+          </GuestRoute>
+          <ShellRoute RouteComponent={UserRoute} path="/home" exact>
+            <HomePage />
+          </ShellRoute>
           <Redirect
             from="/decks"
             to={{ pathname: '/home', state: { currentTab: 1 } }}
@@ -74,46 +73,36 @@ const App: React.FunctionComponent<{}> = () => {
             to={{ pathname: '/home', state: { currentTab: 2 } }}
             exact
           />
-          <ShellRoute
-            component={DeckPage}
-            RouteComponent={UserRoute}
-            path="/d/:slug"
-            exact
-          />
-          <ShellRoute
-            component={ModelPage}
-            RouteComponent={UserRoute}
-            path="/m/:id"
-            exact
-          />
-          <ShellRoute
-            component={AddModelPage}
-            RouteComponent={UserRoute}
-            path="/models/create"
-            exact
-          />
-          <ShellRoute
-            component={MarketplacePage}
-            RouteComponent={UserRoute}
-            path="/marketplace"
-            exact
-          />
-          <ShellRoute
-            component={StatisticsPage}
-            RouteComponent={UserRoute}
-            path="/statistics"
-            exact
-          />
-          <ShellRoute
-            component={SettingsPage}
-            RouteComponent={UserRoute}
-            path="/settings"
-            exact
-          />
-          <GuestRoute component={RegisterPage} path="/register" exact />
-          <GuestRoute component={LoginPage} path="/login" exact />
-          <Route component={AboutPage} path="/about" exact />
-          <Route component={NotFoundPage} />
+          <ShellRoute RouteComponent={UserRoute} path="/d/:slug" exact>
+            <DeckPage />
+          </ShellRoute>
+          <ShellRoute RouteComponent={UserRoute} path="/m/:id" exact>
+            <ModelPage />
+          </ShellRoute>
+          <ShellRoute RouteComponent={UserRoute} path="/models/create" exact>
+            <AddModelPage />
+          </ShellRoute>
+          <ShellRoute RouteComponent={UserRoute} path="/marketplace" exact>
+            <MarketplacePage />
+          </ShellRoute>
+          <ShellRoute RouteComponent={UserRoute} path="/statistics" exact>
+            <StatisticsPage />
+          </ShellRoute>
+          <ShellRoute RouteComponent={UserRoute} path="/settings" exact>
+            <SettingsPage />
+          </ShellRoute>
+          <GuestRoute path="/register" exact>
+            <RegisterPage />
+          </GuestRoute>
+          <GuestRoute path="/login" exact>
+            <LoginPage />
+          </GuestRoute>
+          <Route path="/about" exact>
+            <AboutPage />
+          </Route>
+          <Route>
+            <NotFoundPage />
+          </Route>
         </Switch>
       </ErrorBoundary>
     </>

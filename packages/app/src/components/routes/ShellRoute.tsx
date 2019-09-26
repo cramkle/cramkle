@@ -4,23 +4,18 @@ import { Route, RouteProps } from 'react-router'
 import Shell from 'components/Shell'
 
 interface Props
-  extends Pick<RouteProps, Exclude<keyof RouteProps, 'children' | 'render'>> {
+  extends Pick<RouteProps, Exclude<keyof RouteProps, 'component' | 'render'>> {
   RouteComponent: React.ComponentType<RouteProps>
 }
 
 const ShellRoute: React.FunctionComponent<Props> = ({
   RouteComponent = Route,
-  component: Component,
-  ...rest
+  children,
+  ...routeProps
 }) => (
-  <RouteComponent
-    {...rest}
-    render={props => (
-      <Shell>
-        <Component {...props} />
-      </Shell>
-    )}
-  />
+  <RouteComponent {...routeProps}>
+    <Shell>{children}</Shell>
+  </RouteComponent>
 )
 
 export default ShellRoute

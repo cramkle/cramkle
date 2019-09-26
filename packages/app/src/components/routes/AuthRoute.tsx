@@ -1,9 +1,10 @@
 import { useQuery } from '@apollo/react-hooks'
-import React from 'react'
+import React, { ReactElement } from 'react'
 import { Redirect, Route, RouteProps } from 'react-router-dom'
 
 import USER_QUERY from '../userQuery.gql'
 import { UserQuery } from '../__generated__/UserQuery'
+import { useLocation } from 'react-router'
 
 interface Input {
   challenge: (user: UserQuery['me']) => boolean
@@ -13,46 +14,43 @@ interface Input {
 
 type SupportedRouteProps = Pick<
   RouteProps,
-  Exclude<keyof RouteProps, 'children'>
+  Exclude<keyof RouteProps, 'render' | 'component'>
 >
 
 const createRoute = ({ challenge, redirectPath, displayName }: Input) => {
-  const CustomRoute: React.FunctionComponent<SupportedRouteProps> = ({
-    render,
-    component: Component,
-    ...rest
-  }) => {
+  const RouteComponent: React.FC = ({ children }) => {
+    const location = useLocation()
     const {
       data: { me },
       loading,
     } = useQuery<UserQuery>(USER_QUERY, { errorPolicy: 'ignore' })
 
+    if (loading) {
+      return null
+    }
+
+    if (challenge(me)) {
+      return children as ReactElement
+    }
+
     return (
-      <Route
-        {...rest}
-        render={props => {
-          if (loading) {
-            return null
-          }
-
-          if (challenge(me)) {
-            if (typeof render === 'function') {
-              return render(props)
-            }
-
-            return <Component {...props} />
-          }
-
-          return (
-            <Redirect
-              to={{
-                pathname: redirectPath,
-                state: { from: props.location },
-              }}
-            />
-          )
+      <Redirect
+        to={{
+          pathname: redirectPath,
+          state: { from: location },
         }}
       />
+    )
+  }
+
+  const CustomRoute: React.FunctionComponent<SupportedRouteProps> = ({
+    children,
+    ...routeProps
+  }) => {
+    return (
+      <Route {...routeProps}>
+        <RouteComponent>{children}</RouteComponent>
+      </Route>
     )
   }
 
