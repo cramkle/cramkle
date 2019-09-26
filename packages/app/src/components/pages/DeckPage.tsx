@@ -24,18 +24,20 @@ const DECK_QUERY = gql`
 
 const DeckPage: React.FunctionComponent = () => {
   const { slug } = useParams<{ slug: string }>()
-  const {
-    data: { deck },
-    loading,
-  } = useQuery<DeckQuery, DeckQueryVariables>(DECK_QUERY, {
-    variables: { slug },
-  })
+  const { data, loading } = useQuery<DeckQuery, DeckQueryVariables>(
+    DECK_QUERY,
+    {
+      variables: { slug },
+    }
+  )
 
   useTopBarLoading(loading)
 
   if (loading) {
     return null
   }
+
+  const { deck } = data
 
   return (
     <>

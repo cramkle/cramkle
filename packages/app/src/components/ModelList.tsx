@@ -27,10 +27,9 @@ export const MODELS_QUERY = gql`
 `
 
 const ModelList: React.FunctionComponent = () => {
-  const {
-    data: { cardModels: models = [] },
-    loading,
-  } = useQuery<ModelsQuery>(MODELS_QUERY)
+  const { data: { cardModels: models = [] } = {}, loading } = useQuery<
+    ModelsQuery
+  >(MODELS_QUERY)
 
   useTopBarLoading(loading)
 

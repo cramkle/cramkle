@@ -66,12 +66,12 @@ const MODEL_QUERY = gql`
 
 const ModelPage: React.FunctionComponent = () => {
   const { id } = useParams<{ id: string }>()
-  const {
-    data: { cardModel },
-    loading,
-  } = useQuery<ModelQuery, ModelQueryVariables>(MODEL_QUERY, {
-    variables: { id },
-  })
+  const { data, loading } = useQuery<ModelQuery, ModelQueryVariables>(
+    MODEL_QUERY,
+    {
+      variables: { id },
+    }
+  )
 
   useTopBarLoading(loading)
 
@@ -84,6 +84,8 @@ const ModelPage: React.FunctionComponent = () => {
   if (loading) {
     return null
   }
+
+  const { cardModel } = data
 
   return (
     <>

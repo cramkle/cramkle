@@ -1,10 +1,10 @@
 import { useQuery } from '@apollo/react-hooks'
 import React, { ReactElement } from 'react'
+import { useLocation } from 'react-router'
 import { Redirect, Route, RouteProps } from 'react-router-dom'
 
 import USER_QUERY from '../userQuery.gql'
 import { UserQuery } from '../__generated__/UserQuery'
-import { useLocation } from 'react-router'
 
 interface Input {
   challenge: (user: UserQuery['me']) => boolean
@@ -20,16 +20,15 @@ type SupportedRouteProps = Pick<
 const createRoute = ({ challenge, redirectPath, displayName }: Input) => {
   const RouteComponent: React.FC = ({ children }) => {
     const location = useLocation()
-    const {
-      data: { me },
-      loading,
-    } = useQuery<UserQuery>(USER_QUERY, { errorPolicy: 'ignore' })
+    const { data, loading } = useQuery<UserQuery>(USER_QUERY, {
+      errorPolicy: 'ignore',
+    })
 
     if (loading) {
       return null
     }
 
-    if (challenge(me)) {
+    if (challenge(data.me)) {
       return children as ReactElement
     }
 
