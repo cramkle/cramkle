@@ -2,7 +2,7 @@ import { useMutation } from '@apollo/react-hooks'
 import { Trans, t } from '@lingui/macro'
 import gql from 'graphql-tag'
 import React, { useCallback, useState } from 'react'
-import { RouteComponentProps, withRouter } from 'react-router'
+import { useHistory } from 'react-router'
 
 import { notificationState } from 'notification/index'
 import Button from 'views/Button'
@@ -27,9 +27,8 @@ const DELETE_DECK_MUTATION = gql`
   }
 `
 
-const DeleteDeckButton: React.FunctionComponent<
-  RouteComponentProps & Props
-> = ({ deckId, history }) => {
+const DeleteDeckButton: React.FunctionComponent<Props> = ({ deckId }) => {
+  const history = useHistory()
   const [mutate] = useMutation<DeleteDeckMutation, DeleteDeckMutationVariables>(
     DELETE_DECK_MUTATION
   )
@@ -113,4 +112,4 @@ const DeleteDeckButton: React.FunctionComponent<
   )
 }
 
-export default withRouter(DeleteDeckButton)
+export default DeleteDeckButton

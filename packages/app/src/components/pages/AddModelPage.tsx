@@ -5,7 +5,7 @@ import { Body1, Body2, Headline5 } from 'views/Typography'
 import { FieldArray, Formik } from 'formik'
 import gql from 'graphql-tag'
 import React from 'react'
-import { RouteComponentProps, withRouter } from 'react-router'
+import { useHistory } from 'react-router'
 import * as yup from 'yup'
 
 import {
@@ -45,9 +45,8 @@ const CREATE_MODEL_MUTATION = gql`
   }
 `
 
-const AddModelPage: React.FunctionComponent<RouteComponentProps> = ({
-  history,
-}) => {
+const AddModelPage: React.FunctionComponent = () => {
+  const history = useHistory()
   const { i18n } = useLingui()
 
   const [mutate] = useMutation<
@@ -211,4 +210,4 @@ const AddModelPage: React.FunctionComponent<RouteComponentProps> = ({
   )
 }
 
-export default withRouter(AddModelPage)
+export default AddModelPage

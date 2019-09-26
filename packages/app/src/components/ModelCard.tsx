@@ -3,7 +3,7 @@ import { useLingui } from '@lingui/react'
 import { Chip } from '@material/react-chips'
 import { Headline6 } from 'views/Typography'
 import React, { useCallback } from 'react'
-import { RouteComponentProps, withRouter } from 'react-router'
+import { useHistory } from 'react-router'
 
 import Card, { CardPrimaryContent } from 'views/Card'
 import { ModelsQuery_cardModels } from './__generated__/ModelsQuery'
@@ -12,9 +12,14 @@ interface Props {
   className?: string
 }
 
-const ModelCard: React.FunctionComponent<
-  Props & ModelsQuery_cardModels & RouteComponentProps
-> = ({ className = '', id, name, history, fields, templates }) => {
+const ModelCard: React.FunctionComponent<Props & ModelsQuery_cardModels> = ({
+  className = '',
+  id,
+  name,
+  fields,
+  templates,
+}) => {
+  const history = useHistory()
   const { i18n } = useLingui()
   const handleClick = useCallback(() => history.push(`/m/${id}`), [history, id])
   const handleKeyDown = useCallback(
@@ -61,4 +66,4 @@ const ModelCard: React.FunctionComponent<
   )
 }
 
-export default withRouter(ModelCard)
+export default ModelCard

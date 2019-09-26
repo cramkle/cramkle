@@ -1,13 +1,12 @@
 import { Trans } from '@lingui/macro'
 import React, { useCallback } from 'react'
-import { RouteComponentProps, withRouter } from 'react-router'
+import { useHistory } from 'react-router'
 
 import Button from 'views/Button'
 import Icon from 'views/Icon'
 
-const BackButton: React.FunctionComponent<RouteComponentProps> = ({
-  history,
-}) => {
+const BackButton: React.FunctionComponent = () => {
+  const history = useHistory()
   const handleClick = useCallback(() => {
     history.goBack()
   }, [history])
@@ -24,4 +23,4 @@ const BackButton: React.FunctionComponent<RouteComponentProps> = ({
   )
 }
 
-export default withRouter(BackButton)
+export default BackButton

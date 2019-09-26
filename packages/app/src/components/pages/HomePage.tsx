@@ -2,7 +2,7 @@ import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet'
-import { RouteComponentProps, withRouter } from 'react-router'
+import { useHistory, useLocation } from 'react-router'
 
 import StudySection from './StudySection'
 import DecksSection from './DecksSection'
@@ -13,10 +13,9 @@ import TabBar from 'views/TabBar'
 import registerSW from '../../registerSW'
 import { notificationState } from 'notification/index'
 
-const HomePage: React.FunctionComponent<RouteComponentProps> = ({
-  history,
-  location,
-}) => {
+const HomePage: React.FunctionComponent = () => {
+  const history = useHistory()
+  const location = useLocation()
   const { i18n } = useLingui()
 
   const [index, setIndex] = useState(
@@ -119,4 +118,4 @@ const HomePage: React.FunctionComponent<RouteComponentProps> = ({
   )
 }
 
-export default withRouter(HomePage)
+export default HomePage

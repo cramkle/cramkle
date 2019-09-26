@@ -20,7 +20,7 @@ import React, {
   useRef,
   useState,
 } from 'react'
-import { RouteComponentProps, withRouter } from 'react-router'
+import { useHistory, useLocation } from 'react-router'
 
 import NoSSR from './NoSSR'
 import { useHints } from './HintsContext'
@@ -28,7 +28,7 @@ import Icon from 'views/Icon'
 import USER_QUERY from './userQuery.gql'
 import { UserQuery } from './__generated__/UserQuery'
 
-interface Props extends RouteComponentProps {
+interface Props {
   content: ReactNode
   render: (content: ReactNode) => JSX.Element
   open: boolean
@@ -57,9 +57,9 @@ const AppDrawer: React.FunctionComponent<Props> = ({
   render,
   open,
   onClose,
-  history,
-  location,
 }) => {
+  const history = useHistory()
+  const location = useLocation()
   const { data } = useQuery<UserQuery>(USER_QUERY)
 
   const me = data && data.me
@@ -182,4 +182,4 @@ const AppDrawer: React.FunctionComponent<Props> = ({
   )
 }
 
-export default withRouter(AppDrawer)
+export default AppDrawer

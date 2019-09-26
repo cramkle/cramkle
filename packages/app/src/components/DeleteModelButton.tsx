@@ -3,7 +3,7 @@ import { Trans, plural, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import gql from 'graphql-tag'
 import React, { useState } from 'react'
-import { RouteComponentProps, withRouter } from 'react-router'
+import { useHistory } from 'react-router'
 
 import { notificationState } from 'notification/index'
 import Button from 'views/Button'
@@ -28,9 +28,8 @@ const DELETE_MODEL_MUTATION = gql`
   }
 `
 
-const DeleteModelButton: React.FunctionComponent<
-  Props & RouteComponentProps
-> = ({ model, history }) => {
+const DeleteModelButton: React.FunctionComponent<Props> = ({ model }) => {
+  const history = useHistory()
   const [mutate] = useMutation<
     DeleteModelMutation,
     DeleteModelMutationVariables
@@ -141,4 +140,4 @@ const DeleteModelButton: React.FunctionComponent<
   )
 }
 
-export default withRouter(DeleteModelButton)
+export default DeleteModelButton

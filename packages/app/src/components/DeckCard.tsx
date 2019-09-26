@@ -1,10 +1,10 @@
 import React from 'react'
-import { RouteComponentProps, withRouter } from 'react-router'
+import { useHistory } from 'react-router'
 import { Body2, Headline6 } from 'views/Typography'
 
 import Card, { CardPrimaryContent } from 'views/Card'
 
-interface Props extends RouteComponentProps {
+interface Props {
   title: string
   description?: string | null
   slug: string
@@ -14,8 +14,8 @@ const DeckCard: React.FunctionComponent<Props> = ({
   title,
   description = null,
   slug,
-  history,
 }) => {
+  const history = useHistory()
   const handleClick = () => history.push(`/d/${slug}`)
 
   return (
@@ -36,4 +36,4 @@ const DeckCard: React.FunctionComponent<Props> = ({
   )
 }
 
-export default withRouter(DeckCard)
+export default DeckCard

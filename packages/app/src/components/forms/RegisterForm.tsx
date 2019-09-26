@@ -7,7 +7,7 @@ import classNames from 'classnames'
 import { Formik } from 'formik'
 import gql from 'graphql-tag'
 import React from 'react'
-import { RouteComponentProps, withRouter } from 'react-router'
+import { useHistory } from 'react-router'
 import * as yup from 'yup'
 
 import { CheckboxField, TextInputField } from './Fields'
@@ -39,10 +39,10 @@ const emailRequired = t`E-mail is required`
 const passwordRequired = t`Password is required`
 const agreementRequired = t`Agreement is required`
 
-const RegisterForm: React.FunctionComponent<Props & RouteComponentProps> = ({
+const RegisterForm: React.FunctionComponent<Props> = ({
   title = t`Register`,
-  history,
 }) => {
+  const history = useHistory()
   const [register] = useMutation(REGISTER_MUTATION)
   const { i18n } = useLingui()
 
@@ -165,4 +165,4 @@ const RegisterForm: React.FunctionComponent<Props & RouteComponentProps> = ({
   )
 }
 
-export default withRouter(RegisterForm)
+export default RegisterForm

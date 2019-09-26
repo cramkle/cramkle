@@ -2,7 +2,7 @@ import { useLingui } from '@lingui/react'
 import React, { lazy } from 'react'
 import ErrorBoundary from 'react-error-boundary'
 import { Helmet } from 'react-helmet'
-import { Redirect, Route, Switch, withRouter } from 'react-router'
+import { Redirect, Route, Switch } from 'react-router'
 import { hot } from 'react-hot-loader/root'
 
 import NotificationToasts from 'components/NotificationToasts'
@@ -120,4 +120,4 @@ const App: React.FunctionComponent<{}> = () => {
   )
 }
 
-export default hot(withRouter(App))
+export default hot(App)

@@ -2,7 +2,7 @@ import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import classNames from 'classnames'
 import React from 'react'
-import { RouteComponentProps, withRouter } from 'react-router'
+import { useHistory } from 'react-router'
 
 import ModelList from 'components/ModelList'
 import Fab from 'views/Fab'
@@ -11,9 +11,8 @@ import { useHints } from 'components/HintsContext'
 
 import styles from './ModelsSection.css'
 
-const ModelsSection: React.FunctionComponent<RouteComponentProps> = ({
-  history,
-}) => {
+const ModelsSection: React.FunctionComponent = () => {
+  const history = useHistory()
   const { i18n } = useLingui()
   const { isMobile } = useHints()
 
@@ -37,4 +36,4 @@ const ModelsSection: React.FunctionComponent<RouteComponentProps> = ({
   )
 }
 
-export default withRouter(ModelsSection)
+export default ModelsSection

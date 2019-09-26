@@ -4,7 +4,7 @@ import { useLingui } from '@lingui/react'
 import LinearProgress from '@material/react-linear-progress'
 import gql from 'graphql-tag'
 import React, { Suspense, useCallback, useEffect, useRef } from 'react'
-import { RouteComponentProps, withRouter } from 'react-router'
+import { useHistory, useLocation } from 'react-router'
 
 import Icon from 'views/Icon'
 import IconButton from 'views/IconButton'
@@ -25,8 +25,6 @@ import SearchBar from './SearchBar'
 import { useHints } from './HintsContext'
 import { TopBarLoadingQuery } from './__generated__/TopBarLoadingQuery'
 
-type Props = RouteComponentProps
-
 const TOP_BAR_LOADING_QUERY = gql`
   query TopBarLoadingQuery {
     topBar @client {
@@ -35,11 +33,9 @@ const TOP_BAR_LOADING_QUERY = gql`
   }
 `
 
-const Shell: React.FunctionComponent<Props> = ({
-  children,
-  history,
-  location: { pathname },
-}) => {
+const Shell: React.FunctionComponent = ({ children }) => {
+  const history = useHistory()
+  const { pathname } = useLocation()
   const {
     data: { topBar },
   } = useQuery<TopBarLoadingQuery>(TOP_BAR_LOADING_QUERY)
@@ -101,7 +97,7 @@ const Shell: React.FunctionComponent<Props> = ({
     />
   )
 
-  let content = (
+  const content = (
     <main className="h-100 overflow-auto w-100 relative">
       <NoSSR fallback={loader}>
         <Suspense fallback={loader}>
@@ -160,4 +156,4 @@ const Shell: React.FunctionComponent<Props> = ({
   )
 }
 
-export default withRouter(Shell)
+export default Shell
