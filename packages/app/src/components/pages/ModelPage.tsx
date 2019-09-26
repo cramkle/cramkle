@@ -5,7 +5,7 @@ import { Body1, Body2, Caption, Headline4 } from 'views/Typography'
 import gql from 'graphql-tag'
 import React, { useCallback, useState } from 'react'
 import { Helmet } from 'react-helmet'
-import { RouteComponentProps } from 'react-router'
+import { useParams } from 'react-router'
 
 import { ModelQuery, ModelQueryVariables } from './__generated__/ModelQuery'
 import DeleteModelButton from 'components/DeleteModelButton'
@@ -15,8 +15,6 @@ import Container from 'views/Container'
 import Tab from 'views/Tab'
 import TabBar from 'views/TabBar'
 import useTopBarLoading from 'hooks/useTopBarLoading'
-
-type Props = RouteComponentProps<{ id: string }>
 
 const MODEL_QUERY = gql`
   query ModelQuery($id: ID!) {
@@ -66,11 +64,8 @@ const MODEL_QUERY = gql`
   }
 `
 
-const ModelPage: React.FunctionComponent<Props> = ({
-  match: {
-    params: { id },
-  },
-}) => {
+const ModelPage: React.FunctionComponent = () => {
+  const { id } = useParams<{ id: string }>()
   const {
     data: { cardModel },
     loading,

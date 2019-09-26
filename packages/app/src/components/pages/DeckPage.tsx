@@ -3,15 +3,13 @@ import { Body1, Headline4 } from 'views/Typography'
 import gql from 'graphql-tag'
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import { RouteComponentProps } from 'react-router'
+import { useParams } from 'react-router'
 
 import { DeckQuery, DeckQueryVariables } from './__generated__/DeckQuery'
 import BackButton from 'components/BackButton'
 import DeleteDeckButton from 'components/DeleteDeckButton'
 import Container from 'views/Container'
 import useTopBarLoading from 'hooks/useTopBarLoading'
-
-type Props = RouteComponentProps<{ slug: string }>
 
 const DECK_QUERY = gql`
   query DeckQuery($slug: String!) {
@@ -24,11 +22,8 @@ const DECK_QUERY = gql`
   }
 `
 
-const DeckPage: React.FunctionComponent<Props> = ({
-  match: {
-    params: { slug },
-  },
-}) => {
+const DeckPage: React.FunctionComponent = () => {
+  const { slug } = useParams<{ slug: string }>()
   const {
     data: { deck },
     loading,
