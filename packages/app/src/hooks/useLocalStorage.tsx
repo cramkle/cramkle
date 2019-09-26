@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 const useLocalStorage = <T extends {}>(
   key: string,
   value: T,
-  forceInitial: boolean = false
+  forceInitial = false
 ): [T, ((updater: T | ((prevValue: T) => T)) => void)] => {
   const [storedValue, setStoredValue] = useState(() => {
     try {

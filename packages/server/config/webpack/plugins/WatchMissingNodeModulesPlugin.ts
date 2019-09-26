@@ -9,8 +9,8 @@ export default class WatchMissingNodeModulesPlugin implements Plugin {
 
   public apply(compiler: Compiler) {
     compiler.hooks.emit.tap('WatchMissingNodeModulesPlugin', compilation => {
-      let missingDeps = Array.from(compilation.missingDependencies)
-      let nodeModulesPath = this.nodeModulesPath
+      const missingDeps = Array.from(compilation.missingDependencies)
+      const nodeModulesPath = this.nodeModulesPath
 
       // If any missing files are expected to appear in node_modules...
       if (missingDeps.some(file => file.includes(nodeModulesPath))) {

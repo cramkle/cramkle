@@ -49,7 +49,6 @@ const Tab: React.FC<TabProps> = ({
 
   const computeIndicatorClientRect = useCallback(() => {
     if (!tabIndicatorRef.current) {
-      // eslint-disable-next-line @typescript-eslint/no-object-literal-type-assertion
       return {} as ClientRect
     }
     return tabIndicatorRef.current.computeContentClientRect()

@@ -76,7 +76,7 @@ interface ErrorInput {
   warnings: string[]
 }
 
-const logsOrMessage = (logs: string[], defaultMessage: string = '') => {
+const logsOrMessage = (logs: string[], defaultMessage = '') => {
   if (logs.length) {
     return logs.join('\n')
   }

@@ -111,7 +111,6 @@ const render = ({
 }
 
 export default async function start(opts?: RenderOptions) {
-  // eslint-disable-next-line @typescript-eslint/no-object-literal-type-assertion
   const maybeRenderResult = await render(opts || ({} as RenderOptions))
 
   if (!maybeRenderResult) {

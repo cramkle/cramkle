@@ -12,7 +12,7 @@ import '../config/env'
 
 import chalk from 'chalk'
 import fs from 'fs-extra'
-import webpack from 'webpack'
+import webpack, { MultiCompiler, Stats, compilation } from 'webpack'
 // @ts-ignore
 import bfj from 'bfj'
 
@@ -37,12 +37,16 @@ const printFileSizesAfterBuild = FileSizeReporter.printFileSizesAfterBuild
 function build(previousFileSizes: OpaqueFileSizes, writeStatsJson = false) {
   console.log('Creating an optimized production build...')
 
-  let compiler = webpack([
+  const compiler: MultiCompiler = webpack([
     getBaseWebpackConfig(),
     getBaseWebpackConfig({ isServer: true }),
   ])
 
-  return new Promise((resolve, reject) => {
+  return new Promise<{
+    stats: Stats
+    previousFileSizes: OpaqueFileSizes
+    warnings: string[]
+  }>((resolve, reject) => {
     compiler.run((err, stats) => {
       let messages
       if (err) {
@@ -156,7 +160,9 @@ export default function startBuild() {
           console.log(chalk.green('Compiled successfully.\n'))
         }
 
-        const [clientStats] = stats.stats
+        const [
+          clientStats,
+        ] = ((stats as unknown) as compilation.MultiStats).stats
 
         console.log('File sizes after gzip:\n')
         printFileSizesAfterBuild(

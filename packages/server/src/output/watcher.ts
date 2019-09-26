@@ -68,7 +68,7 @@ buildStore.subscribe(state => {
       loading: true,
     }
   } else {
-    let { errors, warnings, typeChecking } = status
+    const { errors, warnings, typeChecking } = status
 
     if (errors == null && typeChecking) {
       nextState = {

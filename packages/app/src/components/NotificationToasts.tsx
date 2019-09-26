@@ -51,7 +51,7 @@ const NotificationToasts: React.FunctionComponent = () => {
           closeOnEscape = false,
         } = options
 
-        let translatedActionText = actionText && i18n._(actionText)
+        const translatedActionText = actionText && i18n._(actionText)
 
         return (
           <Snackbar
