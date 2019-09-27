@@ -2,7 +2,8 @@
   "version": "0.4.9",
   "private": true,
   "workspaces": [
-    "app"
+    "app",
+    "api"
   ],
   "scripts": {
     "release": "release-it",
