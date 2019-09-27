@@ -51,8 +51,29 @@ const App: React.FunctionComponent<{}> = () => {
             name: 'keywords',
             content: 'flashcards,anki,srs,spaced repetition',
           },
+          {
+            name: 'theme-color',
+            content: '#2962ff',
+          },
         ]}
-        link={icons}
+        style={[
+          {
+            cssText:
+              'html,body{height: 100%;}body{overscroll-behavior-y:none;}',
+          },
+        ]}
+        link={[
+          ...icons,
+          {
+            rel: 'stylesheet',
+            href:
+              'https://fonts.googleapis.com/css?family=Libre+Franklin:300,400,500,600|Material+Icons',
+          },
+          {
+            rel: 'manifest',
+            href: '/manifest.json',
+          },
+        ]}
       />
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <NotificationToasts />
