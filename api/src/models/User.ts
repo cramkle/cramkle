@@ -1,4 +1,4 @@
-import { Schema, model, Document } from 'mongoose'
+import { Document, Schema, model } from 'mongoose'
 import bcrypt from 'bcrypt'
 
 export interface User {
@@ -34,27 +34,23 @@ const UserSchema = new Schema<UserDocument>({
 })
 
 UserSchema.methods.hashifyAndSave = function() {
-  const user = this
-
   return new Promise((res, rej) => {
-    bcrypt.hash(user.password, 12, (err, hash) => {
+    bcrypt.hash(this.password, 12, (err, hash) => {
       if (err) {
         console.error(err) // eslint-disable-line no-console
         rej(err)
         return
       }
 
-      user.password = hash
-      user.save().then(() => res())
+      this.password = hash
+      this.save().then(() => res())
     })
   })
 }
 
 UserSchema.methods.comparePassword = function(candidate) {
-  const user = this
-
   return new Promise((res, rej) => {
-    bcrypt.compare(candidate, user.password, (err, isMatch) => {
+    bcrypt.compare(candidate, this.password, (err, isMatch) => {
       if (err) {
         console.error(err) // eslint-disable-line no-console
         return rej(err)

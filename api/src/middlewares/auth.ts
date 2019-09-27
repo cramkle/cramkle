@@ -54,7 +54,7 @@ passport.deserializeUser(async (id, done) => {
 
 export default {
   set: (app: Application) => {
-    let cookieOpts = {
+    const cookieOpts = {
       httpOnly: true,
       secure: false,
       maxAge: 365 * 24 * 60 * 60 * 1000,
