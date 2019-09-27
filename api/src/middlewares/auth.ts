@@ -2,6 +2,7 @@ import { Application } from 'express'
 import passport from 'passport'
 import { Strategy } from 'passport-local'
 import session from 'express-session'
+import redis from 'redis'
 import createStore from 'connect-redis'
 
 import UserModel, { UserDocument } from '../models/User'
@@ -65,13 +66,19 @@ export default {
       cookieOpts.secure = true
     }
 
+    const client = redis.createClient({
+      host: process.env.REDIS_HOST || 'localhost',
+      port: Number(process.env.REDIS_PORT) || 6379,
+      db: 1,
+    })
+
+    client.unref()
+    client.on('error', console.error)
+
     app.use(
       session({
         name: 'sessid',
-        store: new RedisStore({
-          host: process.env.REDIS_HOST || 'localhost',
-          port: Number(process.env.REDIS_PORT) || 6379,
-        }),
+        store: new RedisStore({ client }),
         cookie: cookieOpts,
         secret: process.env.SESSION_SECRET || '__development__',
         resave: false,

@@ -5637,13 +5637,10 @@ configstore@^4.0.0:
     write-file-atomic "^2.0.0"
     xdg-basedir "^3.0.0"
 
-connect-redis@^3.4.2:
-  version "3.4.2"
-  resolved "https://registry.yarnpkg.com/connect-redis/-/connect-redis-3.4.2.tgz#e339fd0b00e1381e130101556657669cc855417e"
-  integrity sha512-ozA1Z0GDnsCJECfNyNJOqPuW3Fk43fUbKC65Sa/V9hkCBNtXsFU2xtTOVsQGUsflpywuJMgGOV4xrnKzIPFqvA==
-  dependencies:
-    debug "^4.1.1"
-    redis "^2.8.0"
+connect-redis@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/connect-redis/-/connect-redis-4.0.2.tgz#b3ea8c6a92e9c6c04cf9ec957c193558ddad0bbc"
+  integrity sha512-SuOGp/2dgpH738SYj0rZfoeKpuV/C4W0APGWrvyC3ijgXkKq/LKdgyCfW2oSxIPE1ndeOgmuei2bh3wIU50ZLw==
 
 console-browserify@^1.1.0:
   version "1.1.0"
@@ -15124,10 +15121,10 @@ ts-node@^7:
     source-map-support "^0.5.6"
     yn "^2.0.0"
 
-tsc-watch@^2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/tsc-watch/-/tsc-watch-2.4.0.tgz#0b3b9d98d8032ba02acae1d38a7ebb16da0591f7"
-  integrity sha512-HTNRQm/P2YdP34b7bhaSOjVQ/YdTJGkNYyAD0scEcK7qXX7BWsBG8n3YlYHC9a6mX//gs5ouWQ3DXrBWjVp6rQ==
+tsc-watch@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/tsc-watch/-/tsc-watch-4.0.0.tgz#bc50db2351babd3df1978f42b9742695cf2874d3"
+  integrity sha512-I+1cE7WN9YhDknNRAO5NRI7jzeiIZCxUZ0dFEM/Gf+3KTlHasusDEftwezJ+PSFkECSn3RQmf28RdovjTptkRA==
   dependencies:
     cross-spawn "^5.1.0"
     node-cleanup "^2.1.2"
