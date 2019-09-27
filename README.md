@@ -17,6 +17,5 @@ start the development server, run the following commands
 ```sh
 yarn
 
-yarn workspace @cramkle/server build
 yarn workspace @cramkle/app dev
 ```
