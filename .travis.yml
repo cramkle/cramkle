@@ -31,5 +31,4 @@ matrix:
       env: TEST_SUIT=build
       install: yarn install
       script:
-        - yarn workspace @cramkle/server build
-        - yarn workspace @cramkle/app build
+        - yarn workspaces run build
