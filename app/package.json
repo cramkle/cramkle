@@ -130,5 +130,14 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "proxy": {
+    "path": "/_c",
+    "config": {
+      "target": "http://localhost:5000",
+      "pathRewrite": {
+        "^/_c": ""
+      }
+    }
+  }
 }
