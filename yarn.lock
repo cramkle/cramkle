@@ -12914,10 +12914,10 @@ react-app-polyfill@^1.0.2:
     regenerator-runtime "0.13.3"
     whatwg-fetch "3.0.0"
 
-react-app-server@^0.1.3:
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/react-app-server/-/react-app-server-0.1.3.tgz#d7dc63e9f4046c1713f6aedbabbb35ffab95e6d6"
-  integrity sha512-gImkeqEKYGYH3iVMilMk3+2BtR0Sxa/T673/+trUbhpSMqtwbo29jHPuZtzwgnlsLn0EgC6dh8i7shO7q9iWuA==
+react-app-server@^0.1.4:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/react-app-server/-/react-app-server-0.1.4.tgz#e8008d563af150efd755e299604acb1f58dbbfe7"
+  integrity sha512-owJjwsdhXWxGpwZ1PyUqySicHGDEYrz0+KsGMpN8281cwgstveCfYAQi2dZLRw3x/dF5YOn9GBbzlsZQFJdrHg==
   dependencies:
     "@babel/core" "^7.6.2"
     "@babel/plugin-proposal-class-properties" "^7.5.5"
