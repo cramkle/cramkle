@@ -1,15 +1,9 @@
 {
-  "version": "0.4.9",
+  "name": "cramkle",
+  "license": "UNLICENSED",
   "private": true,
   "workspaces": [
     "app",
     "api"
-  ],
-  "scripts": {
-    "release": "release-it",
-    "update-changelog": "node ./scripts/update-changelog.js"
-  },
-  "devDependencies": {
-    "release-it": "^12.4.1"
-  }
+  ]
 }
