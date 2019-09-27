@@ -1,13 +1,11 @@
-scripts:
-  beforeStage:
-    - yarn update-changelog
-    - yarn update-versions
-  afterRelease:
+hooks:
+  after:bump: yarn update-changelog
+  after:release:
     - 'docker build -t gcr.io/cramkle/cramkle-app:${version} .'
     - 'docker push gcr.io/cramkle/cramkle-app:${version}'
 git:
-  tagName: 'v${version}',
-  tagAnnotation: 'Release v${version}',
+  tagName: 'v${version}'
+  tagAnnotation: 'Release v${version}'
   commitMessage: 'Release v${version}'
 npm:
   publish: false

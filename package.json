@@ -6,10 +6,9 @@
   ],
   "scripts": {
     "release": "release-it",
-    "update-changelog": "node ./scripts/update-changelog.js",
-    "update-versions": "node ./scripts/update-versions.js"
+    "update-changelog": "node ./scripts/update-changelog.js"
   },
   "devDependencies": {
-    "release-it": "^12.3.5"
+    "release-it": "^12.4.1"
   }
 }
