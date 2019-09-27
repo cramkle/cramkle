@@ -1,4 +1,4 @@
-import { Model, Document } from 'mongoose'
+import { Document, Model } from 'mongoose'
 
 export function findRefFromList<T extends Document>(
   model: Model<T>,

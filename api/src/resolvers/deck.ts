@@ -1,7 +1,7 @@
-import { IResolvers, IResolverObject } from 'graphql-tools'
+import { IResolverObject, IResolvers } from 'graphql-tools'
 
 import { findRefFromList } from './utils'
-import { Deck, User, Note } from '../models'
+import { Deck, Note, User } from '../models'
 
 export const root: IResolvers = {
   Deck: {

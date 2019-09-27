@@ -1,7 +1,7 @@
 import {
-  SchemaDirectiveVisitor,
   AuthenticationError,
   ForbiddenError,
+  SchemaDirectiveVisitor,
 } from 'apollo-server'
 import { GraphQLField, defaultFieldResolver } from 'graphql'
 

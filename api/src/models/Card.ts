@@ -1,4 +1,4 @@
-import { Document, model, Schema, Types } from 'mongoose'
+import { Document, Schema, Types, model } from 'mongoose'
 
 enum CardStatus {
   NEW = 'NEW',

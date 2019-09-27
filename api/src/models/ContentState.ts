@@ -1,4 +1,4 @@
-import { Schema, Document } from 'mongoose'
+import { Document, Schema } from 'mongoose'
 
 interface CharacterBlock {
   style: string[]

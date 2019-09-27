@@ -1,7 +1,7 @@
 import { ApolloError } from 'apollo-server'
-import { IResolvers, IResolverObject } from 'graphql-tools'
+import { IResolverObject, IResolvers } from 'graphql-tools'
 
-import { Note, Deck, CardModel, Card } from '../models'
+import { Card, CardModel, Deck, Note } from '../models'
 
 export const root: IResolvers = {
   Note: {

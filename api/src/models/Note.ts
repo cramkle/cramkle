@@ -1,7 +1,7 @@
-import { Schema, Types, model, Document } from 'mongoose'
+import { Document, Schema, Types, model } from 'mongoose'
 
-import { CardSchema, CardDocument } from './Card'
-import { FieldValueSchema, FieldValueDocument } from './FieldValue'
+import { CardDocument, CardSchema } from './Card'
+import { FieldValueDocument, FieldValueSchema } from './FieldValue'
 
 interface Note {
   cards: Types.DocumentArray<CardDocument>

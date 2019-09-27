@@ -1,6 +1,6 @@
-import { IResolvers, IResolverObject } from 'graphql-tools'
+import { IResolverObject, IResolvers } from 'graphql-tools'
 
-import { Template, CardModel } from '../models'
+import { CardModel, Template } from '../models'
 import { ContentStateDocument } from '../models/ContentState'
 
 export const root: IResolvers = {

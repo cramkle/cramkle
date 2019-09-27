@@ -1,6 +1,6 @@
-import { Schema, model, Document } from 'mongoose'
+import { Document, Schema, model } from 'mongoose'
 
-import { ContentStateSchema, ContentStateDocument } from './ContentState'
+import { ContentStateDocument, ContentStateSchema } from './ContentState'
 
 export interface Template {
   name: string

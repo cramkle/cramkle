@@ -1,8 +1,8 @@
 import { ApolloError } from 'apollo-server'
-import { IResolvers, IResolverObject } from 'graphql-tools'
+import { IResolverObject, IResolvers } from 'graphql-tools'
 
 import { findRefFromList } from './utils'
-import { CardModel, User, Template, Field, Note } from '../models'
+import { CardModel, Field, Note, Template, User } from '../models'
 import { Field as FieldType } from '../models/Field'
 import { Template as TemplateType } from '../models/Template'
 

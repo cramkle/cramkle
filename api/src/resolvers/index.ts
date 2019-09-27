@@ -2,28 +2,28 @@
 import JSON, { GraphQLJSONObject as JSONObject } from 'graphql-type-json'
 
 import {
+  mutations as deckMutations,
   queries as deckQueries,
   root as deckRoot,
-  mutations as deckMutations,
 } from './deck'
 import { queries as noteQueries, root as noteRoot } from './note'
 import {
+  mutations as userMutations,
   queries as userQueries,
   root as userRoot,
-  mutations as userMutations,
 } from './user'
 import {
+  mutations as templateMutations,
   queries as templateQueries,
   root as templateRoot,
-  mutations as templateMutations,
 } from './template'
 import { root as fieldRoot } from './field'
 import { root as fieldValueRoot } from './fieldValue'
 import { root as cardRoot } from './card'
 import {
+  mutations as cardModelMutations,
   queries as cardModelQueries,
   root as cardModelRoot,
-  mutations as cardModelMutations,
 } from './cardModel'
 import { root as contentStateRoot } from './contentState'
 

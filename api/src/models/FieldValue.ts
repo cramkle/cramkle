@@ -1,6 +1,6 @@
-import { Schema, Document } from 'mongoose'
+import { Document, Schema } from 'mongoose'
 
-import { ContentStateSchema, ContentStateDocument } from './ContentState'
+import { ContentStateDocument, ContentStateSchema } from './ContentState'
 
 interface FieldValue {
   data: ContentStateDocument
