@@ -1,0 +1,26 @@
+"""
+User entity
+"""
+type User {
+  """
+  User id
+  """
+  id: ID!
+  """
+  User's username
+  """
+  username: String
+  """
+  User's e-mail
+  """
+  email: String
+  """
+  User's available roles
+  """
+  roles: [UserRoles]
+}
+
+enum UserRoles {
+  REGULAR
+  ADMIN
+}

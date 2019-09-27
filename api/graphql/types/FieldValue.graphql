@@ -1,0 +1,27 @@
+# import Field from "Field.graphql"
+# import ContentState from "ContentState.graphql"
+
+input FieldValueInput {
+  data: ContentStateInput
+  field: FieldInput
+}
+
+"""
+Holds the value for a particular field in a card model.
+
+Contained by the note.
+"""
+type FieldValue {
+  """
+  Field value id
+  """
+  id: ID!
+  """
+  Field data
+  """
+  data: ContentState
+  """
+  Associated field
+  """
+  field: Field
+}

@@ -1,0 +1,247 @@
+# import Deck from "types/Deck.graphql"
+# import Card from "types/Card.graphql"
+# import CardModel from "types/CardModel.graphql"
+# import Field from "types/Field.graphql"
+# import FieldValue from "types/FieldValue.graphql"
+# import Template from "types/Template.graphql"
+# import Note from "types/Note.graphql"
+# import User, UserRoles from "types/User.graphql"
+# import ContentState from "types/ContentState.graphql"
+
+scalar JSON
+scalar JSONObject
+
+directive @authenticate(roles: [String] = ["REGULAR"]) on FIELD_DEFINITION
+
+"""
+App queries
+"""
+type Query {
+  """
+  Retrieve all decks for the logged user
+  """
+  decks: [Deck!] @authenticate
+
+  """
+  Retrieve all card models for the logged user
+  """
+  cardModels: [CardModel!] @authenticate
+
+  """
+  Get single deck
+  """
+  deck(slug: String!): Deck @authenticate
+
+  """
+  Get single card model
+  """
+  cardModel(id: ID!): CardModel @authenticate
+
+  """
+  Get single template
+  """
+  template(id: ID!): Template @authenticate
+
+  """
+  Get single note
+  """
+  note(id: ID!): Note @authenticate
+
+  """
+  Get currently logged user
+  """
+  me: User @authenticate
+}
+
+"""
+App mutations
+"""
+type Mutation {
+  """
+  Create a deck entity
+  """
+  createDeck(
+    """
+    Deck title
+    """
+    title: String!
+    """
+    Deck description
+    """
+    description: String
+  ): Deck @authenticate
+
+  """
+  Delete a deck
+  """
+  deleteDeck(
+    """
+    Deck id
+    """
+    id: ID!
+  ): Deck @authenticate
+
+  """
+  Update a deck
+  """
+  updateDeck(
+    """
+    Deck id
+    """
+    id: ID!
+    """
+    New title
+    """
+    title: String
+    """
+    New description
+    """
+    description: String
+  ): Deck @authenticate
+
+  """
+  Publish a deck to the marketplace
+  """
+  publishDeck(
+    """
+    Deck id
+    """
+    id: ID!
+  ): Deck @authenticate
+
+  """
+  Remove a deck from the marketplace
+  """
+  unpublishDeck(
+    """
+    Deck id
+    """
+    id: ID!
+  ): Deck @authenticate
+
+  """
+  Create a new user
+  """
+  createUser(
+    """
+    User's username
+    """
+    username: String!
+    """
+    User's email
+    """
+    email: String!
+    """
+    User's password
+    """
+    password: String!
+  ): User
+
+  """
+  Update user profile information
+  """
+  updateProfile(
+    """
+    New username
+    """
+    username: String
+    """
+    New password
+    """
+    password: String
+    """
+    Password confirmation
+    """
+    confirmPassword: String!
+  ): User @authenticate
+
+  """
+  Create a new model
+  """
+  createModel(
+    """
+    Card model name
+    """
+    name: String!
+    """
+    Fields
+    """
+    fields: [FieldInput]
+    """
+    Templates
+    """
+    templates: [TemplateInput]
+  ): CardModel @authenticate
+
+  """
+  Update model name
+  """
+  updateModel(name: String!): CardModel @authenticate
+
+  """
+  Deletes a card model and all associated entities
+  """
+  deleteModel(id: ID!): CardModel @authenticate
+
+  """
+  Adds a new template to a card model
+  """
+  addTemplateToModel(
+    """
+    Template name
+    """
+    name: String!
+    """
+    Model associated id
+    """
+    modelId: ID!
+  ): Template @authenticate
+
+  """
+  Updates an existing template
+  """
+  updateTemplate(
+    """
+    Template id
+    """
+    id: ID!
+    """
+    Template name
+    """
+    name: String
+    """
+    Front side template
+    """
+    frontSide: ContentStateInput
+    """
+    Back side template
+    """
+    backSide: ContentStateInput
+  ): Template @authenticate
+
+  """
+  Adds a new field to a card model
+  """
+  addFieldToModel(
+    """
+    Field name
+    """
+    name: String!
+    """
+    Model associated
+    """
+    modelId: ID!
+  ): Field @authenticate
+
+  """
+  Create new note in deck
+  """
+  createNote(
+    """ Deck id """
+    deckId: ID!,
+    """ Model id """
+    modelId: ID!,
+    """ Values in note """
+    fieldValues: [FieldValueInput]!
+  ): Note @authenticate
+}

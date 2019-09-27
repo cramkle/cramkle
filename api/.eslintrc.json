@@ -1,0 +1,16 @@
+{
+  "extends": "@lucasecdb",
+  "env": {
+    "es6": true,
+    "node": true,
+    "browser": false
+  },
+  "settings": {
+    "react": {
+      "version": "none"
+    }
+  },
+  "rules": {
+    "no-underscore-dangle": ["warn", { "allow": ["_id"] }]
+  }
+}
