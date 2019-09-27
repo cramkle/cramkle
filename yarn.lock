@@ -9774,10 +9774,10 @@ kareem@2.3.1:
   resolved "https://registry.yarnpkg.com/kareem/-/kareem-2.3.1.tgz#def12d9c941017fabfb00f873af95e9c99e1be87"
   integrity sha512-l3hLhffs9zqoDe8zjmb/mAN4B8VT3L56EUvKNqLFVs9YlFA+zx7ke1DO8STAdDyYNkeSo1nKmjuvQeI12So8Xw==
 
-keycode-js@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/keycode-js/-/keycode-js-1.0.4.tgz#3c56ce1363169291fa6fcc255190a87e81fa6667"
-  integrity sha512-kGZKTIlTtbZSb8NyBDb7xU/LlZf+bsHiAjb595M3flVPbSUCknGK/w2KXs8r9sVCcwwafQcrAGWDt7d38ajemw==
+keycode-js@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/keycode-js/-/keycode-js-2.0.3.tgz#0ef559be057847aae6c520ce03577f4a12f7e257"
+  integrity sha512-nGuOQ0zvYQFr0OOBOZS47e/ifsiuNz1pleQIFS+LX+udj3St6AvHpv55MI8DCre6Yg9D2CG/qqWbuAx7iQt9FQ==
 
 keyv@3.0.0:
   version "3.0.0"
