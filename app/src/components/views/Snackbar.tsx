@@ -1,5 +1,4 @@
-import { MDCSnackbarFoundation } from '@material/snackbar/foundation'
-import { MDCSnackbarAdapter } from '@material/snackbar/adapter'
+import { MDCSnackbarAdapter, MDCSnackbarFoundation } from '@material/snackbar'
 import React, { useEffect, useRef } from 'react'
 import classNames from 'classnames'
 
