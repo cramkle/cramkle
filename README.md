@@ -17,5 +17,9 @@ start the development server, run the following commands
 ```sh
 yarn
 
+# run the API
+yarn workspace @cramkle/api dev
+
+# run the app
 yarn workspace @cramkle/app dev
 ```
