@@ -4,7 +4,7 @@ const useLocalStorage = <T extends {}>(
   key: string,
   value: T,
   forceInitial = false
-): [T, ((updater: T | ((prevValue: T) => T)) => void)] => {
+): [T, (updater: T | ((prevValue: T) => T)) => void] => {
   const [storedValue, setStoredValue] = useState(() => {
     try {
       const item = localStorage.getItem(key)

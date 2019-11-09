@@ -27,7 +27,7 @@ export const IconButtonToggle: React.FC<ToggleProps> = ({
 
 type Props =
   | React.ButtonHTMLAttributes<HTMLButtonElement>
-  | { href: string } & React.AnchorHTMLAttributes<HTMLAnchorElement>
+  | ({ href: string } & React.AnchorHTMLAttributes<HTMLAnchorElement>)
 
 const IconButton: React.FC<Props> = ({
   className,

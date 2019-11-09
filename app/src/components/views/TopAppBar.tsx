@@ -36,9 +36,7 @@ export interface TopAppbarFixedAdjustProps {
   short?: boolean
 }
 
-export const TopAppBarFixedAdjust: React.FunctionComponent<
-  TopAppbarFixedAdjustProps
-> = ({
+export const TopAppBarFixedAdjust: React.FunctionComponent<TopAppbarFixedAdjustProps> = ({
   tag: Tag = 'main',
   children,
   className = '',

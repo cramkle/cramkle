@@ -187,9 +187,13 @@ export interface PrimaryContentProps extends React.HTMLProps<HTMLDivElement> {
   unbounded?: boolean
 }
 
-export const CardPrimaryContent: React.FunctionComponent<
-  PrimaryContentProps
-> = ({ className = '', style, children, unbounded, ...otherProps }) => {
+export const CardPrimaryContent: React.FunctionComponent<PrimaryContentProps> = ({
+  className = '',
+  style,
+  children,
+  unbounded,
+  ...otherProps
+}) => {
   const ref = useRef<HTMLDivElement>(null)
 
   const { rippleClasses, rippleStyle } = useRipple({

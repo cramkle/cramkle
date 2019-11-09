@@ -14,7 +14,7 @@ const CSS_CLASSES = {
 }
 
 type ConditionalProps =
-  | { href: string } & React.AnchorHTMLAttributes<HTMLAnchorElement>
+  | ({ href: string } & React.AnchorHTMLAttributes<HTMLAnchorElement>)
   | React.ButtonHTMLAttributes<HTMLButtonElement>
 
 type Props = {

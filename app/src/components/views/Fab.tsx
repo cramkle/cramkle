@@ -44,9 +44,8 @@ const TextLabel: React.FunctionComponent<{ textLabel: string }> = ({
   return <span className={cssClasses.LABEL}>{textLabel}</span>
 }
 
-const Fab: React.FunctionComponent<
-  FabProps & React.HTMLProps<HTMLButtonElement>
-> = ({
+const Fab: React.FunctionComponent<FabProps &
+  React.HTMLProps<HTMLButtonElement>> = ({
   exited = false,
   mini = false,
   icon,
