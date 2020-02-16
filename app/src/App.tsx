@@ -34,7 +34,11 @@ const App: React.FunctionComponent<{}> = () => {
       <Helmet
         defaultTitle="Cramkle"
         titleTemplate="%s - Cramkle"
-        htmlAttributes={{ lang: i18n.locale, style: 'font-size: 15px;' }}
+        htmlAttributes={{
+          lang: i18n.locale,
+          // @ts-ignore this works but typescript complains
+          style: 'font-size: 15px;',
+        }}
         bodyAttributes={{ class: 'mdc-typography' }}
         meta={[
           {

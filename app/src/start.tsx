@@ -83,10 +83,8 @@ const render = ({
     const renderWithData = async () => {
       // use dynamic import here to avoid placing these
       // dependencies in the client bundle.
-      const [{ renderToStringWithData }, { StaticRouter }] = await Promise.all([
-        import('@apollo/react-ssr'),
-        import('react-router-dom'),
-      ])
+      const { renderToStringWithData } = await import('@apollo/react-ssr')
+      const { StaticRouter } = await import('react-router-dom')
 
       const routerContext = {}
 
