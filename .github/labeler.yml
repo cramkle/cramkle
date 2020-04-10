@@ -1,5 +1,5 @@
-server: packages/server/**/*
+API: api/**/*
+app: app/**/*
 
-app: packages/app/**/*
-
-views: packages/app/src/components/views/**/*
+"Component: Views": app/src/components/views/**/*
+"Component: Editor": app/src/components/editor/**/*
