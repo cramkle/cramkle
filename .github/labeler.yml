@@ -1,5 +1,3 @@
-server: packages/server/**/*
+app: app/**/*
 
-app: packages/app/**/*
-
-views: packages/app/src/components/views/**/*
+views: app/src/components/views/**/*
