@@ -1,3 +1,5 @@
+API: api/**/*
 app: app/**/*
 
-views: app/src/components/views/**/*
+"Component: Views": app/src/components/views/**/*
+"Component: Editor": app/src/components/editor/**/*
