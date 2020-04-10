@@ -8,7 +8,8 @@ RUN apk add --no-cache --virtual .gyp python make g++
 COPY . .
 
 RUN yarn --frozen-lockfile
-RUN yarn build
+
+RUN yarn workspace @cramkle/api build
 
 FROM node:12-alpine
 
