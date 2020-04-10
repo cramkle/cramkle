@@ -18,7 +18,9 @@ jobs:
     - name: Install dependencies
       run: yarn
     - name: Lint
-      run: yarn workspaces run lint
+      run: |
+        yarn workspace @cramkle/app compile
+        yarn workspaces run lint
       env:
         CI: true
 
