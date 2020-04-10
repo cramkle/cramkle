@@ -1,6 +1,8 @@
 FROM node:12-alpine AS build-env
 WORKDIR /cramkle
 
+RUN apk add --no-cache --virtual .gyp python make g++
+
 COPY . .
 
 RUN yarn --frozen-lockfile
