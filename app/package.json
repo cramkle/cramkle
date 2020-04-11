@@ -13,6 +13,7 @@
     "prettier": "prettier --write 'src/**/*.ts' 'src/**/*.tsx'",
     "test": "jest -c jest.config.js",
     "lint": "tsc --noEmit --pretty && eslint --ext ts,tsx src",
+    "lint-css": "stylelint '**/*.{scss,css}'",
     "schema-download": "apollo service:download --endpoint=http://localhost:5000/graphql -k",
     "gen-types": "apollo client:codegen __generated__ --target=typescript --localSchemaFile=schema.json",
     "add-locale": "lingui add-locale",
