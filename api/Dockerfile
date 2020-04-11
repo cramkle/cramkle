@@ -20,4 +20,4 @@ COPY --from=build-env /usr/src/app/ .
 RUN yarn --prod
 
 EXPOSE 5000
-CMD ["yarn", "start"]
+CMD ["yarn", "workspace", "@cramkle/api", "start"]
