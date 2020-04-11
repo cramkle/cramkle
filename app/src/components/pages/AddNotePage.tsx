@@ -1,7 +1,6 @@
 import { useMutation, useQuery } from '@apollo/react-hooks'
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import Select, { Option } from '@material/react-select'
 import gql from 'graphql-tag'
 import React, { useCallback, useMemo, useState } from 'react'
 import { useParams } from 'react-router'
@@ -42,7 +41,7 @@ const CREATE_NOTE_MUTATION = gql`
   mutation CreateNoteMutation(
     $deckId: ID!
     $modelId: ID!
-    $values: [FieldValueInput]!
+    $values: [FieldValueInput!]!
   ) {
     createNote(deckId: $deckId, modelId: $modelId, fieldValues: $values) {
       id
@@ -81,7 +80,6 @@ const AddNotePage: React.FC = () => {
 
   const handleSubmit = useCallback(async () => {
     const { id } = await createNote({
-      // @ts-ignore
       variables: {
         modelId: selectedModelId,
         deckId: deck.id,
@@ -114,23 +112,24 @@ const AddNotePage: React.FC = () => {
       </Headline5>
 
       <div className="flex flex-column mt3">
-        {
-          // @ts-ignore
-          <Select
-            label={i18n._(t`Select a model`)}
-            value={selectedModelId}
-            onChange={e =>
-              setSelectedModelId((e.target as HTMLSelectElement).value)
-            }
-          >
-            <Option value="" disabled />
-            {models.map(model => (
-              <Option key={model.id} value={model.id}>
-                {model.name}
-              </Option>
-            ))}
-          </Select>
-        }
+        <label className="flex flex-column">
+          {i18n._(t`Select a model`)}
+          {
+            // eslint-disable-next-line jsx-a11y/no-onchange
+            <select
+              className="mt3"
+              value={selectedModelId}
+              onChange={e => setSelectedModelId(e.target.value)}
+            >
+              <option value="" disabled />
+              {models.map(model => (
+                <option key={model.id} value={model.id}>
+                  {model.name}
+                </option>
+              ))}
+            </select>
+          }
+        </label>
 
         {selectedModelId !== '' && (
           <>

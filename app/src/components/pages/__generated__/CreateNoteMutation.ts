@@ -1,5 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
+// @generated
 // This file was automatically generated and should not be edited.
 
 import { FieldValueInput } from "./../../../../__generated__/globalTypes";
@@ -26,5 +27,5 @@ export interface CreateNoteMutation {
 export interface CreateNoteMutationVariables {
   deckId: string;
   modelId: string;
-  values: (FieldValueInput | null)[];
+  values: FieldValueInput[];
 }

@@ -1,5 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
+// @generated
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -54,7 +55,7 @@ export interface NoteFormQuery {
   /**
    * Retrieve all card models for the logged user
    */
-  cardModels: (NoteFormQuery_cardModels | null)[] | null;
+  cardModels: NoteFormQuery_cardModels[] | null;
 }
 
 export interface NoteFormQueryVariables {

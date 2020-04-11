@@ -242,6 +242,6 @@ type Mutation {
     """ Model id """
     modelId: ID!,
     """ Values in note """
-    fieldValues: [FieldValueInput]!
+    fieldValues: [FieldValueInput!]!
   ): Note @authenticate
 }
