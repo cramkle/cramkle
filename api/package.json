@@ -51,7 +51,7 @@
     "@types/mongodb": "^3.3.16",
     "@types/mongoose": "^5.7.1",
     "@types/morgan": "^1.7.36",
-    "@types/node": "^13.7.1",
+    "@types/node": "^13.11.1",
     "@types/passport": "^1.0.2",
     "@types/passport-local": "^1.0.33",
     "@types/shortid": "^0.0.29",
@@ -60,6 +60,6 @@
     "prettier": "^2.0.4",
     "release-it": "^13.5.2",
     "tsc-watch": "^4.1.0",
-    "typescript": "^3.7.5"
+    "typescript": "^3.8.3"
   }
 }
