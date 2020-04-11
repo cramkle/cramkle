@@ -16,7 +16,7 @@ export const queries: IResolverObject = {
     const note = await Note.findOne({ _id: id, ownerId: user._id })
 
     if (!note) {
-      return new ApolloError('Note not found')
+      throw new ApolloError('Note not found')
     }
 
     return note
@@ -33,7 +33,7 @@ export const mutations: IResolverObject = {
     const model = await CardModel.findOne({ _id: modelId, ownerId: user._id })
 
     if (!deck || !model) {
-      return new ApolloError('Model or deck not found')
+      throw new ApolloError('Model or deck not found')
     }
 
     const note = await Note.create({

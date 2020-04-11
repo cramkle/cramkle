@@ -90,7 +90,7 @@ export const mutations: IResolverObject = {
       .exec()
 
     if (!model) {
-      return new ApolloError('Model not found', '404')
+      throw new ApolloError('Model not found', '404')
     }
 
     await Promise.all(
