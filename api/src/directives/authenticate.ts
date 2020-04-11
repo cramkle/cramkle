@@ -14,13 +14,13 @@ export default class AuthenticateDirective extends SchemaDirectiveVisitor {
       const user = context.user
 
       if (!user) {
-        return new AuthenticationError('User is not authenticated')
+        throw new AuthenticationError('User is not authenticated')
       }
 
       const userRoles = user.roles || ['REGULAR']
 
       if (!requiredRoles.every((role) => userRoles.includes(role))) {
-        return new ForbiddenError("User doesn't have enough access")
+        throw new ForbiddenError("User doesn't have enough access")
       }
 
       return resolve.call(this, root, args, context, info)

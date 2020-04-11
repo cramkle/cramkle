@@ -34,7 +34,7 @@ export const mutations: IResolverObject = {
     { user }: Context
   ) => {
     if (!(await user.comparePassword(confirmPassword))) {
-      return new AuthenticationError('User not authenticated')
+      throw new AuthenticationError('User not authenticated')
     }
 
     const updateProps: Partial<Omit<UpdateProfileInput, 'confirmPassword'>> = {}
