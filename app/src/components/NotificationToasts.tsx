@@ -13,13 +13,13 @@ const NotificationToasts: React.FunctionComponent = () => {
   )
 
   const handleNotificationRemove = useCallback((id: string) => {
-    setNotifications(prev => prev.filter(event => event.id !== id))
+    setNotifications((prev) => prev.filter((event) => event.id !== id))
   }, [])
 
   useEffect(
     () =>
-      notificationState.onNotification(event => {
-        setNotifications(prev => [...prev, event])
+      notificationState.onNotification((event) => {
+        setNotifications((prev) => [...prev, event])
       }),
     []
   )
@@ -34,7 +34,7 @@ const NotificationToasts: React.FunctionComponent = () => {
 
   return (
     <>
-      {notificationEvents.map(event => {
+      {notificationEvents.map((event) => {
         const {
           id,
           notification: {
@@ -62,11 +62,11 @@ const NotificationToasts: React.FunctionComponent = () => {
             message={i18n._(message)}
             actionText={translatedActionText}
             timeoutMs={timeoutMs}
-            onClose={action => {
+            onClose={(action) => {
               handleNotificationRemove(id)
 
               if (action === 'action') {
-                onAction && onAction()
+                onAction?.()
               }
             }}
           />

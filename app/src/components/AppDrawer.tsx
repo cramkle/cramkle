@@ -62,7 +62,7 @@ const AppDrawer: React.FunctionComponent<Props> = ({
   const location = useLocation()
   const { data } = useQuery<UserQuery>(USER_QUERY)
 
-  const me = data && data.me
+  const me = data?.me
 
   const { i18n } = useLingui()
 

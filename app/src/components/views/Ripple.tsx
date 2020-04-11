@@ -33,7 +33,7 @@ const useEventListener = (
       return
     }
 
-    const eventListener: EventListener = event => handlerRef.current(event)
+    const eventListener: EventListener = (event) => handlerRef.current(event)
 
     element.addEventListener(eventName, eventListener)
 
@@ -74,7 +74,7 @@ export function useRipple<T extends HTMLElement, U extends HTMLElement = T>({
   useEffect(() => {
     let isCurrent = true
     const surface = surfaceRef.current
-    const activator = activatorRef && activatorRef.current
+    const activator = activatorRef?.current
 
     const adapter: MDCRippleAdapter = {
       browserSupportsCssVars: () => util.supportsCssVariables(window),
@@ -87,13 +87,13 @@ export function useRipple<T extends HTMLElement, U extends HTMLElement = T>({
         return ponyfill.matches(surface, ':active')
       },
       isSurfaceDisabled: () => disabledRef.current,
-      addClass: className => {
+      addClass: (className) => {
         if (!isCurrent) {
           return
         }
         addClass(className)
       },
-      removeClass: className => {
+      removeClass: (className) => {
         if (!isCurrent) {
           return
         }
@@ -113,10 +113,10 @@ export function useRipple<T extends HTMLElement, U extends HTMLElement = T>({
           events.applyPassive()
         )
       },
-      registerResizeHandler: handler => {
+      registerResizeHandler: (handler) => {
         window.addEventListener('resize', handler)
       },
-      deregisterResizeHandler: handler => {
+      deregisterResizeHandler: (handler) => {
         window.removeEventListener('resize', handler)
       },
       updateCssVariable: (varName, value) => {
@@ -124,7 +124,7 @@ export function useRipple<T extends HTMLElement, U extends HTMLElement = T>({
           return
         }
 
-        setStyle(prevStyle => {
+        setStyle((prevStyle) => {
           const updatedStyle = Object.assign({}, prevStyle)
 
           if (value === null) {
@@ -158,7 +158,7 @@ export function useRipple<T extends HTMLElement, U extends HTMLElement = T>({
         }
         return surface.getBoundingClientRect()
       },
-      containsEventTarget: target => {
+      containsEventTarget: (target) => {
         if (activator && target !== null) {
           return activator.contains(target as Node)
         }
@@ -260,8 +260,8 @@ export const RippleComponent: React.RefForwardingComponent<
   useImperativeHandle(
     ref,
     () => ({
-      focus: () => foundation && foundation.handleFocus(),
-      blur: () => foundation && foundation.handleBlur(),
+      focus: () => foundation?.handleFocus(),
+      blur: () => foundation?.handleBlur(),
     }),
     [foundation]
   )

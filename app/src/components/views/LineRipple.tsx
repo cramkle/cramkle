@@ -32,9 +32,9 @@ const LineRipple: React.FC<LineRippleProps> = ({
     const adapter: MDCLineRippleAdapter = {
       addClass,
       removeClass,
-      hasClass: className => classListRef.current.includes(className),
+      hasClass: (className) => classListRef.current.includes(className),
       setStyle: (varName, value) => {
-        setStyles(prevStyles => {
+        setStyles((prevStyles) => {
           const updatedStyle = Object.assign({}, prevStyles)
           // @ts-ignore
           updatedStyle[varName as keyof React.CSSProperties] = value

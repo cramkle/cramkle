@@ -5,9 +5,9 @@ import { Card, CardModel, Deck, Note } from '../models'
 
 export const root: IResolvers = {
   Note: {
-    id: root => root._id.toString(),
-    deck: root => Deck.findById(root.deckId),
-    model: root => CardModel.findById(root.modelId),
+    id: (root) => root._id.toString(),
+    deck: (root) => Deck.findById(root.deckId),
+    model: (root) => CardModel.findById(root.modelId),
   },
 }
 
@@ -40,7 +40,7 @@ export const mutations: IResolverObject = {
       modelId,
       deckId,
       cards: model.templates.map(
-        templateId =>
+        (templateId) =>
           new Card({
             templateId,
           })

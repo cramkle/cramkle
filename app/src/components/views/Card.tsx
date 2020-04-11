@@ -40,7 +40,7 @@ export const CardActionButtons: React.FunctionComponent<ActionButtonsProps> = ({
   }
   return (
     <div className={classes} {...otherProps}>
-      {React.Children.map(children, item => {
+      {React.Children.map(children, (item) => {
         if (typeof item !== 'object' || !('props' in item)) {
           return item
         }
@@ -79,7 +79,7 @@ export const CardActionIcons: React.FunctionComponent<ActionIconsProps> = ({
   }
   return (
     <div className={classes} {...otherProps}>
-      {React.Children.map(children, item => {
+      {React.Children.map(children, (item) => {
         if (typeof item !== 'object' || !('props' in item)) {
           return item
         }

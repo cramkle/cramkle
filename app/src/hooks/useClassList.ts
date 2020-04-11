@@ -4,7 +4,7 @@ const useClassList = () => {
   const [classList, setClassList] = useState<string[]>([])
 
   const addClass = useCallback((cls: string) => {
-    setClassList(prevList => {
+    setClassList((prevList) => {
       if (prevList.includes(cls)) {
         return prevList
       }
@@ -14,7 +14,7 @@ const useClassList = () => {
   }, [])
 
   const removeClass = useCallback((cls: string) => {
-    setClassList(prevList => prevList.filter(c => c !== cls))
+    setClassList((prevList) => prevList.filter((c) => c !== cls))
   }, [])
 
   return { classList, addClass, removeClass }

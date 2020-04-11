@@ -23,7 +23,7 @@ export const DECKS_QUERY = gql`
 const DeckList: React.FunctionComponent = () => {
   const { loading, data } = useQuery<DecksQuery>(DECKS_QUERY)
 
-  const decks = data && data.decks
+  const decks = data?.decks
 
   useTopBarLoading(loading)
 
@@ -44,7 +44,7 @@ const DeckList: React.FunctionComponent = () => {
   return (
     <Grid className="w-100">
       <Row>
-        {decks.map(deck => (
+        {decks.map((deck) => (
           <Cell key={deck.id}>
             <DeckCard {...deck} />
           </Cell>

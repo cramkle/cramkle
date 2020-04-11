@@ -11,21 +11,21 @@
          "import",
          "global",
          "local",
-         "external",
-       ],
-      },
+         "external"
+       ]
+      }
     ],
     "selector-type-no-unknown": [
       true,
       {
-        "ignoreTypes": ["from"],
-      },
+        "ignoreTypes": ["from"]
+      }
     ],
     "property-no-unknown": [
       true,
       {
-        "ignoreProperties": ["composes", "compose-with"],
-      },
+        "ignoreProperties": ["composes", "compose-with"]
+      }
     ]
   }
 }

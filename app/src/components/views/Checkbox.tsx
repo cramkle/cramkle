@@ -79,23 +79,23 @@ const Checkbox: React.RefForwardingComponent<CheckboxRef, CheckboxProps> = (
 
   useEffect(() => {
     const adapter: MDCCheckboxAdapter = {
-      addClass: cls => addClass(cls),
-      removeClass: cls => removeClass(cls),
+      addClass: (cls) => addClass(cls),
+      removeClass: (cls) => removeClass(cls),
       forceLayout: () => null,
       hasNativeControl: () => true,
       isAttachedToDOM: () => true,
       isChecked: () => checkedRef.current,
       isIndeterminate: () => indeterminateRef.current,
       setNativeControlAttr: (attr, value) => {
-        setInputProps(prevProps => {
+        setInputProps((prevProps) => {
           return {
             ...prevProps,
             [attr]: value,
           }
         })
       },
-      removeNativeControlAttr: attr => {
-        setInputProps(prevProps => {
+      removeNativeControlAttr: (attr) => {
+        setInputProps((prevProps) => {
           const updatedProps = Object.assign({}, prevProps)
 
           delete updatedProps[
@@ -105,8 +105,8 @@ const Checkbox: React.RefForwardingComponent<CheckboxRef, CheckboxProps> = (
           return updatedProps
         })
       },
-      setNativeControlDisabled: disabled => {
-        setInputProps(prevProps => {
+      setNativeControlDisabled: (disabled) => {
+        setInputProps((prevProps) => {
           const updatedProps = Object.assign({}, prevProps)
 
           if (disabled) {

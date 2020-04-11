@@ -41,7 +41,7 @@ const TabIndicator: React.RefForwardingComponent<
   ref
 ) => {
   const [_, setCounter] = useState<number>(0)
-  const forceUpdate = useCallback(() => setCounter(prev => prev + 1), [])
+  const forceUpdate = useCallback(() => setCounter((prev) => prev + 1), [])
 
   const tabIndicatorElement = useRef<HTMLSpanElement>(null)
   const foundationRef = useRef<
@@ -62,7 +62,7 @@ const TabIndicator: React.RefForwardingComponent<
 
   const computeContentClientRect = useCallback(() => {
     const contentElement = getNativeContentElement()
-    if (!(contentElement && contentElement.getBoundingClientRect)) {
+    if (!contentElement?.getBoundingClientRect) {
       // new DOMRect is not IE11 compatible
       const defaultDOMRect = {
         bottom: 0,

@@ -8,7 +8,7 @@ const registerSW = ({ onUpdate, onInstall }: Options = {}) => {
     return
   }
 
-  navigator.serviceWorker.register('/service-worker.js').then(reg => {
+  navigator.serviceWorker.register('/service-worker.js').then((reg) => {
     if (!reg) {
       return
     }
@@ -18,9 +18,9 @@ const registerSW = ({ onUpdate, onInstall }: Options = {}) => {
       installingWorker.onstatechange = () => {
         if (installingWorker.state === 'installed') {
           if (navigator.serviceWorker.controller) {
-            onUpdate && onUpdate()
+            onUpdate?.()
           } else {
-            onInstall && onInstall()
+            onInstall?.()
           }
         }
       }

@@ -5,8 +5,8 @@ import { ContentStateDocument } from '../models/ContentState'
 
 export const root: IResolvers = {
   Template: {
-    id: root => root._id.toString(),
-    model: root => CardModel.findById(root.modelId),
+    id: (root) => root._id.toString(),
+    model: (root) => CardModel.findById(root.modelId),
   },
 }
 

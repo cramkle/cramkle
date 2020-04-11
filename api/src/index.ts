@@ -11,8 +11,8 @@ import authRouter from './routes/auth'
 
 const app = express()
 
-const PORT = process.env.PORT || 5000
-const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/cramkle'
+const PORT = process.env.PORT ?? 5000
+const MONGO_URI = process.env.MONGO_URI ?? 'mongodb://localhost:27017/cramkle'
 
 app.use(helmet())
 app.use(morgan('dev'))
@@ -36,7 +36,7 @@ mongoose
       console.log(`App listening on https://localhost:${PORT}`)
     })
   })
-  .catch(e => {
+  .catch((e) => {
     console.error('Failed to obtain a connection to MongoDB')
     console.error(e)
     process.exit(1)

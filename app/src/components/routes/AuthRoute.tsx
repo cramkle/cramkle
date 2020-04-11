@@ -59,13 +59,13 @@ const createRoute = ({ challenge, redirectPath, displayName }: Input) => {
 }
 
 export const GuestRoute = createRoute({
-  challenge: user => user == null,
+  challenge: (user) => user == null,
   redirectPath: '/home',
   displayName: 'GuestRoute',
 })
 
 export const UserRoute = createRoute({
-  challenge: user => user != null,
+  challenge: (user) => user != null,
   redirectPath: '/login',
   displayName: 'UserRoute',
 })

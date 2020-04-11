@@ -29,7 +29,7 @@ const BlockStyleControls: React.FunctionComponent<{
 
   return (
     <div className="mb2 f6">
-      {BLOCK_TYPES.map(type => (
+      {BLOCK_TYPES.map((type) => (
         <StyleButton
           key={type.style}
           active={type.style === blockType}

@@ -118,24 +118,24 @@ const TabScroller: React.RefForwardingComponent<
       removeClass,
       addScrollAreaClass,
       setScrollAreaStyleProperty: (prop, value) => {
-        setAreaStyle(prevStyles => ({
+        setAreaStyle((prevStyles) => ({
           ...prevStyles,
           [convertDashToCamelCase(prop)]: value,
         }))
       },
       setScrollContentStyleProperty: (prop, value) => {
-        setContentStyle(prevStyles => ({
+        setContentStyle((prevStyles) => ({
           ...prevStyles,
           [convertDashToCamelCase(prop)]: value,
         }))
       },
-      getScrollContentStyleValue: propName =>
+      getScrollContentStyleValue: (propName) =>
         contentElement.current
           ? window
               .getComputedStyle(contentElement.current)
               .getPropertyValue(propName)
           : '',
-      setScrollAreaScrollLeft: scrollX => {
+      setScrollAreaScrollLeft: (scrollX) => {
         if (!areaElement.current) {
           return
         }
@@ -176,32 +176,32 @@ const TabScroller: React.RefForwardingComponent<
   )
 
   const handleWheel = (evt: React.WheelEvent<HTMLDivElement>) => {
-    onWheel && onWheel(evt)
+    onWheel?.(evt)
     foundationRef.current.handleInteraction()
   }
 
   const handleTouchStart = (evt: React.TouchEvent<HTMLDivElement>) => {
-    onTouchStart && onTouchStart(evt)
+    onTouchStart?.(evt)
     foundationRef.current.handleInteraction()
   }
 
   const handlePointerDown = (evt: React.PointerEvent<HTMLDivElement>) => {
-    onPointerDown && onPointerDown(evt)
+    onPointerDown?.(evt)
     foundationRef.current.handleInteraction()
   }
 
   const handleMouseDown = (evt: React.MouseEvent<HTMLDivElement>) => {
-    onMouseDown && onMouseDown(evt)
+    onMouseDown?.(evt)
     foundationRef.current.handleInteraction()
   }
 
   const handleKeyDown = (evt: React.KeyboardEvent<HTMLDivElement>) => {
-    onKeyDown && onKeyDown(evt)
+    onKeyDown?.(evt)
     foundationRef.current.handleInteraction()
   }
 
   const handleTransitionEnd = (evt: React.TransitionEvent<HTMLDivElement>) => {
-    onTransitionEnd && onTransitionEnd(evt)
+    onTransitionEnd?.(evt)
     foundationRef.current.handleTransitionEnd(evt.nativeEvent)
   }
 

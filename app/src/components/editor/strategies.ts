@@ -9,7 +9,7 @@ export const findTagEntities = (
   callback: Callback,
   contentState: ContentState
 ) => {
-  contentBlock.findEntityRanges(character => {
+  contentBlock.findEntityRanges((character) => {
     const entityKey = character.getEntity()
     return (
       entityKey !== null &&

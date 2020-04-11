@@ -77,7 +77,7 @@ const AddModelPage: React.FunctionComponent = () => {
             })
           ),
         })}
-        onSubmit={values => {
+        onSubmit={(values) => {
           return mutate({
             variables: values,
             update: (proxy, { data: { createModel } }) => {
@@ -89,7 +89,7 @@ const AddModelPage: React.FunctionComponent = () => {
 
               proxy.writeQuery({ query: MODELS_QUERY, data })
             },
-          }).then(query => {
+          }).then((query) => {
             // make typescript happy
             if (!query) {
               return

@@ -23,6 +23,10 @@ jobs:
         yarn workspaces run lint
       env:
         CI: true
+    - name: Lint CSS
+      run: yarn workspace @cramkle/app lint-css
+      env:
+        CI: true
 
   build:
 

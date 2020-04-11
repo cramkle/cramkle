@@ -33,7 +33,7 @@ const UserSchema = new Schema<UserDocument>({
   },
 })
 
-UserSchema.methods.hashifyAndSave = function() {
+UserSchema.methods.hashifyAndSave = function () {
   return new Promise((res, rej) => {
     bcrypt.hash(this.password, 12, (err, hash) => {
       if (err) {
@@ -48,7 +48,7 @@ UserSchema.methods.hashifyAndSave = function() {
   })
 }
 
-UserSchema.methods.comparePassword = function(candidate) {
+UserSchema.methods.comparePassword = function (candidate) {
   return new Promise((res, rej) => {
     bcrypt.compare(candidate, this.password, (err, isMatch) => {
       if (err) {

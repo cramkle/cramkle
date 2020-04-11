@@ -33,7 +33,7 @@ const DeckSchema = new Schema<DeckDocument>({
   published: Boolean,
 })
 
-DeckSchema.pre('save', function(next) {
+DeckSchema.pre('save', function (next) {
   const deck = this as DeckDocument
 
   if (!deck.isNew) {
