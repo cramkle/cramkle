@@ -18,13 +18,15 @@ import Card, { CardActionButtons, CardActions } from 'views/Card'
 interface Props {
   className?: string
   initialContentState?: any
-  onChange?: (state: EditorState) => void
+  onChange?: (field: { id: string; name: string }, state: EditorState) => void
+  field: { id: string; name: string }
 }
 
 const FieldValueEditor: React.FC<Props> = ({
   className,
   onChange,
   initialContentState,
+  field,
 }) => {
   const { i18n } = useLingui()
 
@@ -41,8 +43,8 @@ const FieldValueEditor: React.FC<Props> = ({
   })
 
   useEffect(() => {
-    onChange?.(editor)
-  }, [editor, onChange])
+    onChange?.(field, editor)
+  }, [field, editor, onChange])
 
   const handleStyleToggle = useCallback(
     (style: string) => {

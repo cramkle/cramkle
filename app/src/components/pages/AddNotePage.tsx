@@ -19,6 +19,8 @@ import {
   CreateNoteMutation,
   CreateNoteMutationVariables,
 } from './__generated__/CreateNoteMutation'
+import { FieldInput, FieldValueInput } from '__generated__/globalTypes'
+import { EditorState, convertToRaw } from 'draft-js'
 
 const MODELS_QUERY = gql`
   query NoteFormQuery($slug: String!) {
@@ -60,6 +62,10 @@ const AddNotePage: React.FC = () => {
 
   const { cardModels: models, deck } = data || {}
 
+  const [fieldValueMap, setFieldValueMap] = useState<{
+    [fieldId: string]: FieldValueInput
+  }>({})
+
   const [createNote] = useMutation<
     CreateNoteMutation,
     CreateNoteMutationVariables
@@ -79,15 +85,32 @@ const AddNotePage: React.FC = () => {
   useTopBarLoading(loading)
 
   const handleSubmit = useCallback(async () => {
-    const { id } = await createNote({
+    const { data } = await createNote({
       variables: {
         modelId: selectedModelId,
         deckId: deck.id,
+        values: Object.values(fieldValueMap),
       },
     })
 
-    console.log('created note id', id)
-  }, [createNote, deck, selectedModelId])
+    console.log('created note id', data?.createNote.id)
+  }, [createNote, deck, selectedModelId, fieldValueMap])
+
+  const handleFieldValueChange = useCallback(
+    (field: FieldInput, editorState: EditorState) => {
+      setFieldValueMap((prevValue) => ({
+        ...prevValue,
+        [field.id]: {
+          field: {
+            id: field.id,
+            name: field.name,
+          },
+          data: convertToRaw(editorState.getCurrentContent()),
+        },
+      }))
+    },
+    []
+  )
 
   if (loading) {
     return null
@@ -145,7 +168,11 @@ const AddNotePage: React.FC = () => {
                       {field.name}
                     </Caption>
 
-                    <FieldValueEditor className="mt1" />
+                    <FieldValueEditor
+                      className="mt1"
+                      onChange={handleFieldValueChange}
+                      field={field}
+                    />
                   </React.Fragment>
                 ))}
 
