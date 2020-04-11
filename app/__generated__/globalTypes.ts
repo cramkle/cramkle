@@ -1,5 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
+// @generated
 // This file was automatically generated and should not be edited.
 
 //==============================================================
@@ -29,7 +30,7 @@ export interface EntityRangeInput {
 
 export interface FieldInput {
   id?: string | null;
-  name: string;
+  name?: string | null;
 }
 
 export interface FieldValueInput {

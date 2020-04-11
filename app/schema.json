@@ -1809,9 +1809,13 @@
                     "kind": "LIST",
                     "name": null,
                     "ofType": {
-                      "kind": "INPUT_OBJECT",
-                      "name": "FieldValueInput",
-                      "ofType": null
+                      "kind": "NON_NULL",
+                      "name": null,
+                      "ofType": {
+                        "kind": "INPUT_OBJECT",
+                        "name": "FieldValueInput",
+                        "ofType": null
+                      }
                     }
                   }
                 },
