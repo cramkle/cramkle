@@ -6,7 +6,11 @@ import {
   queries as deckQueries,
   root as deckRoot,
 } from './deck'
-import { queries as noteQueries, root as noteRoot } from './note'
+import {
+  mutations as noteMutations,
+  queries as noteQueries,
+  root as noteRoot,
+} from './note'
 import {
   mutations as userMutations,
   queries as userQueries,
@@ -51,5 +55,6 @@ export default {
     ...cardModelMutations,
     ...templateMutations,
     ...userMutations,
+    ...noteMutations,
   },
 }
