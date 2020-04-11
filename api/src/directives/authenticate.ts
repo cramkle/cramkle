@@ -10,7 +10,7 @@ export default class AuthenticateDirective extends SchemaDirectiveVisitor {
     const { resolve = defaultFieldResolver } = field
     const requiredRoles: string[] = this.args.roles
 
-    field.resolve = function(root, args, context, info) {
+    field.resolve = function (root, args, context, info) {
       const user = context.user
 
       if (!user) {
@@ -19,7 +19,7 @@ export default class AuthenticateDirective extends SchemaDirectiveVisitor {
 
       const userRoles = user.roles || ['REGULAR']
 
-      if (!requiredRoles.every(role => userRoles.includes(role))) {
+      if (!requiredRoles.every((role) => userRoles.includes(role))) {
         return new ForbiddenError("User doesn't have enough access")
       }
 

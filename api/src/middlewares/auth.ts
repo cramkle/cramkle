@@ -42,9 +42,7 @@ passport.deserializeUser(async (id, done) => {
   let user = null
 
   try {
-    user = await UserModel.findOne({ _id: id })
-      .lean()
-      .exec()
+    user = await UserModel.findOne({ _id: id }).lean().exec()
   } catch (e) {
     done(e)
     return
@@ -67,7 +65,7 @@ export default {
     }
 
     const client = redis.createClient({
-      host: process.env.REDIS_HOST || 'localhost',
+      host: process.env.REDIS_HOST ?? 'localhost',
       port: Number(process.env.REDIS_PORT) || 6379,
       db: 1,
     })
@@ -80,7 +78,7 @@ export default {
         name: 'sessid',
         store: new RedisStore({ client }),
         cookie: cookieOpts,
-        secret: process.env.SESSION_SECRET || '__development__',
+        secret: process.env.SESSION_SECRET ?? '__development__',
         resave: false,
         saveUninitialized: true,
       })

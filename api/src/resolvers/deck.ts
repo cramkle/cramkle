@@ -5,9 +5,9 @@ import { Deck, Note, User } from '../models'
 
 export const root: IResolvers = {
   Deck: {
-    id: root => root._id.toString(),
-    owner: root => User.findById(root.ownerId),
-    notes: root => Promise.all(findRefFromList(Note, root.notes)),
+    id: (root) => root._id.toString(),
+    owner: (root) => User.findById(root.ownerId),
+    notes: (root) => Promise.all(findRefFromList(Note, root.notes)),
   },
 }
 

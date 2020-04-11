@@ -40,7 +40,7 @@ const Shell: React.FunctionComponent = ({ children }) => {
     data: { topBar },
   } = useQuery<TopBarLoadingQuery>(TOP_BAR_LOADING_QUERY)
 
-  const loading = topBar && topBar.loading
+  const loading = topBar?.loading
 
   const { i18n } = useLingui()
   const { isMobile } = useHints()
@@ -62,7 +62,7 @@ const Shell: React.FunctionComponent = ({ children }) => {
   }, [drawerOpen, isMobile, pathname, setDrawerOpen])
 
   const handleLogoClick = useCallback(
-    e => {
+    (e) => {
       e.preventDefault()
       history.push('/home')
     },
@@ -70,13 +70,13 @@ const Shell: React.FunctionComponent = ({ children }) => {
   )
 
   const handleNavigationIconClick = useCallback(() => {
-    setDrawerOpen(isOpen => !isOpen)
+    setDrawerOpen((isOpen) => !isOpen)
   }, [setDrawerOpen])
 
   const handleNavigationIconKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
       if (e.key === ' ' || e.key === 'Enter') {
-        setDrawerOpen(isOpen => !isOpen)
+        setDrawerOpen((isOpen) => !isOpen)
       }
     },
     [setDrawerOpen]
@@ -115,7 +115,7 @@ const Shell: React.FunctionComponent = ({ children }) => {
         open={drawerOpen}
         onClose={handleDrawerClose}
         content={content}
-        render={children => (
+        render={(children) => (
           <>
             <TopAppBar fixed>
               <TopAppBarRow>

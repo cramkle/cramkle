@@ -112,7 +112,7 @@ const TabBar: React.FC<TabBarProps> = ({
         return -1
       },
       getIndexOfTabById: (id: string) => {
-        return tabList.current.map(tab => tab.props.id).indexOf(id)
+        return tabList.current.map((tab) => tab.props.id).indexOf(id)
       },
       getTabListLength: () => {
         return tabList.current.length
@@ -167,7 +167,7 @@ const TabBar: React.FC<TabBarProps> = ({
         idIndexMap.current[id] = index - 1
 
         return () => {
-          tabList.current = tabList.current.filter(t => t !== tab)
+          tabList.current = tabList.current.filter((t) => t !== tab)
           delete idIndexMap.current[id]
         }
       },

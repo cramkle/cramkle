@@ -206,11 +206,11 @@ const TopAppBar: React.FC<TopAppBarProps> = ({
     const adapter: MDCTopAppBarAdapter = {
       addClass,
       removeClass,
-      hasClass: cls => {
+      hasClass: (cls) => {
         return classListRef.current.includes(cls)
       },
       setStyle: (varName, value) => {
-        setStyles(prevStyles => {
+        setStyles((prevStyles) => {
           const updatedStyle = Object.assign({}, prevStyles)
           // @ts-ignore
           updatedStyle[varName as keyof React.CSSProperties] = value
@@ -218,18 +218,18 @@ const TopAppBar: React.FC<TopAppBarProps> = ({
         })
       },
       getTopAppBarHeight: () => {
-        if (headerRef && headerRef.current) {
+        if (headerRef?.current) {
           return headerRef.current.clientHeight
         }
         return 0
       },
       getViewportScrollY: () => {
-        return scrollTarget && scrollTarget.current
+        return scrollTarget?.current
           ? scrollTarget.current.scrollTop
           : window.pageYOffset
       },
       getTotalActionItems: () => {
-        if (headerRef && headerRef.current) {
+        if (headerRef?.current) {
           const actionItems = headerRef.current.querySelectorAll(
             `.${CSS_CLASSES.ACTION_ITEM}`
           )
@@ -262,8 +262,7 @@ const TopAppBar: React.FC<TopAppBarProps> = ({
   useEffect(() => {
     const handler = () => foundationRef.current.handleTargetScroll()
 
-    const eventTarget =
-      scrollTarget && scrollTarget.current ? scrollTarget.current : window
+    const eventTarget = scrollTarget?.current ? scrollTarget.current : window
 
     eventTarget.addEventListener('scroll', handler)
 

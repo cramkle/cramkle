@@ -8,11 +8,11 @@ import { Template as TemplateType } from '../models/Template'
 
 export const root: IResolvers = {
   CardModel: {
-    id: root => root._id.toString(),
-    owner: root => User.findById(root.ownerId),
-    templates: root => Promise.all(findRefFromList(Template, root.templates)),
-    fields: root => Promise.all(findRefFromList(Field, root.fields)),
-    notes: root => Promise.all(findRefFromList(Note, root.notes)),
+    id: (root) => root._id.toString(),
+    owner: (root) => User.findById(root.ownerId),
+    templates: (root) => Promise.all(findRefFromList(Template, root.templates)),
+    fields: (root) => Promise.all(findRefFromList(Field, root.fields)),
+    notes: (root) => Promise.all(findRefFromList(Note, root.notes)),
   },
 }
 
@@ -55,11 +55,11 @@ export const mutations: IResolverObject = {
     { user }: Context
   ) => {
     const fieldRefs = await Promise.all(
-      fields.map(field => Field.create(field))
+      fields.map((field) => Field.create(field))
     )
 
     const templateRefs = await Promise.all(
-      templates.map(async template => {
+      templates.map(async (template) => {
         return Template.create({
           ...template,
           ownerId: user._id,
@@ -94,11 +94,11 @@ export const mutations: IResolverObject = {
     }
 
     await Promise.all(
-      model.fields.map(fieldRef => Field.findByIdAndDelete(fieldRef))
+      model.fields.map((fieldRef) => Field.findByIdAndDelete(fieldRef))
     )
 
     await Promise.all(
-      model.templates.map(templateRef =>
+      model.templates.map((templateRef) =>
         Template.findByIdAndDelete(templateRef)
       )
     )

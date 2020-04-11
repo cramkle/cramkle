@@ -46,7 +46,7 @@ export const Snackbar: React.FC<Props> = ({
       removeClass,
       announce: () => {
         // Usually it works automatically if this component uses conditional rendering
-        onAnnounce && onAnnounce()
+        onAnnounce?.()
       },
       notifyOpening: () => {
         if (onOpening) {
@@ -58,12 +58,12 @@ export const Snackbar: React.FC<Props> = ({
           onOpen()
         }
       },
-      notifyClosing: reason => {
+      notifyClosing: (reason) => {
         if (onClosing) {
           onClosing(reason)
         }
       },
-      notifyClosed: reason => {
+      notifyClosed: (reason) => {
         if (onClose) {
           onClose(reason)
         }

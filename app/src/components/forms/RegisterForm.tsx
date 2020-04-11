@@ -71,24 +71,18 @@ const RegisterForm: React.FunctionComponent<Props> = ({
             )
           )
           .required(i18n._(usernameRequired)),
-        email: yup
-          .string()
-          .email()
-          .required(i18n._(emailRequired)),
-        password: yup
-          .string()
-          .min(6)
-          .required(i18n._(passwordRequired)),
+        email: yup.string().email().required(i18n._(emailRequired)),
+        password: yup.string().min(6).required(i18n._(passwordRequired)),
         consent: yup
           .array(yup.string())
           .test(
             'consent',
             i18n._(agreementRequired),
-            value => value.indexOf('on') !== -1
+            (value) => value.indexOf('on') !== -1
           )
           .required(i18n._(agreementRequired)),
       })}
-      onSubmit={user =>
+      onSubmit={(user) =>
         register({ variables: user }).then(() => {
           notificationState.addNotification({
             message: t`Account created successfully`,

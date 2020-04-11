@@ -19,7 +19,7 @@ const InlineStyleControls: React.FunctionComponent<{
 
   return (
     <div className="f6">
-      {INLINE_STYLES.map(type => (
+      {INLINE_STYLES.map((type) => (
         <StyleButton
           key={type.style}
           active={currentStyle.has(type.style)}

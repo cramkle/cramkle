@@ -55,11 +55,11 @@ const IconButton: React.FC<Props> = ({
     const adapter: MDCIconButtonToggleAdapter = {
       addClass,
       removeClass,
-      hasClass: cls => {
+      hasClass: (cls) => {
         return classListRef.current.includes(cls)
       },
       setAttr: (attr, value) => {
-        setAttrs(prevAttrs => ({ ...prevAttrs, [attr]: value }))
+        setAttrs((prevAttrs) => ({ ...prevAttrs, [attr]: value }))
       },
       notifyChange: () => {},
     }

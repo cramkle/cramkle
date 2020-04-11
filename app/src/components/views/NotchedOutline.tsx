@@ -40,7 +40,7 @@ const NotchedOutline: React.FC<NotchedOutlineProps> = ({
     const adapter: MDCNotchedOutlineAdapter = {
       addClass,
       removeClass,
-      setNotchWidthProperty: foundationNotchWidth =>
+      setNotchWidthProperty: (foundationNotchWidth) =>
         setNotchWidth(foundationNotchWidth),
       removeNotchWidthProperty: () => setNotchWidth(undefined),
     }

@@ -89,7 +89,7 @@ const Tab: React.FC<TabProps> = ({
     const adapter: MDCTabAdapter = {
       addClass,
       removeClass,
-      hasClass: cls => classListRef.current.includes(cls),
+      hasClass: (cls) => classListRef.current.includes(cls),
       setAttr: (attr, value) => {
         setAttributes((prevAttributes: any) => ({
           ...prevAttributes,
@@ -105,7 +105,7 @@ const Tab: React.FC<TabProps> = ({
         tabContentRef.current ? tabContentRef.current.offsetWidth : 0,
       focus: () => tabRef.current && tabRef.current.focus(),
       notifyInteracted: onInteraction,
-      activateIndicator: clientRect => {
+      activateIndicator: (clientRect) => {
         previousIndicatorClientRectRef.current = clientRect
         setIndicatorActive(true)
       },

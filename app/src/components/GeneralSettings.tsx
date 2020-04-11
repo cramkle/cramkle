@@ -33,11 +33,11 @@ const GeneralSettings: React.FunctionComponent = () => {
       <Select
         label={i18n._(t`Language`)}
         value={currentLanguage}
-        onChange={e =>
+        onChange={(e) =>
           setCurrentLanguage((e.target as HTMLSelectElement).value)
         }
       >
-        {OPTIONS.map(option => (
+        {OPTIONS.map((option) => (
           <Option key={option.locale} value={option.locale}>
             {i18n._(option.label)}
           </Option>

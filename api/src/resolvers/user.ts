@@ -4,7 +4,7 @@ import { User } from '../models'
 
 export const root: IResolvers = {
   User: {
-    id: root => root._id.toString(),
+    id: (root) => root._id.toString(),
   },
 }
 

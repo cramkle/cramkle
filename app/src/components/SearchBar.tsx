@@ -58,7 +58,7 @@ const SearchBar: React.FunctionComponent = () => {
         placeholder={i18n._(t`Search`)}
         name="q"
         value={searchValue}
-        onChange={e => setSearchValue(e.target.value)}
+        onChange={(e) => setSearchValue(e.target.value)}
       />
       {searchValue.length > 0 && (
         <IconButton

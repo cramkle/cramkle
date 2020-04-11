@@ -45,7 +45,7 @@ export const DialogActions: React.FC<React.HTMLAttributes<HTMLElement>> = ({
 
   return (
     <footer className={classes} {...props}>
-      {React.Children.map(children, element => {
+      {React.Children.map(children, (element) => {
         if (typeof element !== 'object' || !('props' in element)) {
           return element
         }

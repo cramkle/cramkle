@@ -10,7 +10,7 @@ export default class Emitter<T> {
   }
 
   public emit = (event: T) => {
-    this.listeners.forEach(callback => {
+    this.listeners.forEach((callback) => {
       callback(event)
     })
   }

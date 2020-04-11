@@ -164,7 +164,7 @@ const TagEditor: React.FunctionComponent<Props> = ({
 
   const handleBlur = (evt: React.FocusEvent) => {
     dispatch({ type: 'reset' })
-    onBlur && onBlur(evt)
+    onBlur?.(evt)
   }
 
   const handleTagSelect = useCallback(
@@ -194,7 +194,7 @@ const TagEditor: React.FunctionComponent<Props> = ({
     return 'not-handled'
   }
 
-  const showingTags = !!(visibleTagEntries && visibleTagEntries.length)
+  const showingTags = !!visibleTagEntries?.length
 
   const keyBinder = (e: React.KeyboardEvent) => {
     if (showingTags) {

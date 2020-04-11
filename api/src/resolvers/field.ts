@@ -3,7 +3,7 @@ import { CardModel } from '../models'
 
 export const root: IResolvers = {
   Field: {
-    id: root => root._id.toString(),
-    model: root => CardModel.findById(root.modelId),
+    id: (root) => root._id.toString(),
+    model: (root) => CardModel.findById(root.modelId),
   },
 }

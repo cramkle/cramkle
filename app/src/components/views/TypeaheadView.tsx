@@ -24,7 +24,7 @@ const TypeaheadView: React.FunctionComponent<Props> = ({
       className="absolute z-2 bg-surface pv2 br2 shadow-4"
       role="listbox"
     >
-      {entries.map(entry => {
+      {entries.map((entry) => {
         const highlighted = highlightedEntry === entry
 
         return (

@@ -107,7 +107,7 @@ const ModelPage: React.FunctionComponent = () => {
               activeIndex={selectedTemplate}
               onActiveIndexUpdate={handleTemplateSelect}
             >
-              {cardModel.templates.map(template => (
+              {cardModel.templates.map((template) => (
                 <Tab key={template.id}>{template.name}</Tab>
               ))}
             </TabBar>
@@ -146,7 +146,7 @@ const ModelPage: React.FunctionComponent = () => {
         </Body1>
         {cardModel.fields.length ? (
           <List dense>
-            {cardModel.fields.map(field => (
+            {cardModel.fields.map((field) => (
               <ListItem key={field.id}>
                 <ListItemText primaryText={field.name} />
               </ListItem>
