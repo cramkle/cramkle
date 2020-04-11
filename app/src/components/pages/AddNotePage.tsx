@@ -73,7 +73,7 @@ const AddNotePage: React.FC = () => {
       return null
     }
 
-    return models.find(model => model.id === selectedModelId)
+    return models.find((model) => model.id === selectedModelId)
   }, [models, selectedModelId])
 
   useTopBarLoading(loading)
@@ -119,10 +119,10 @@ const AddNotePage: React.FC = () => {
             <select
               className="mt3"
               value={selectedModelId}
-              onChange={e => setSelectedModelId(e.target.value)}
+              onChange={(e) => setSelectedModelId(e.target.value)}
             >
               <option value="" disabled />
-              {models.map(model => (
+              {models.map((model) => (
                 <option key={model.id} value={model.id}>
                   {model.name}
                 </option>
@@ -139,7 +139,7 @@ const AddNotePage: React.FC = () => {
 
             {selectedModel.fields.length > 0 ? (
               <>
-                {selectedModel.fields.map(field => (
+                {selectedModel.fields.map((field) => (
                   <React.Fragment key={field.id}>
                     <Caption className="mt3" key={field.id}>
                       {field.name}
