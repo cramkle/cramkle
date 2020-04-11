@@ -92,7 +92,7 @@
     "@hot-loader/react-dom": "^16.11.0",
     "@lingui/cli": "3.0.0-5",
     "@lingui/macro": "3.0.0-5",
-    "@lucasecdb/eslint-config": "^0.6.1",
+    "@lucasecdb/eslint-config": "^0.8.1",
     "@testing-library/jest-dom": "^5.1.1",
     "@testing-library/react": "^9.4.0",
     "@types/classnames": "^2.2.9",
@@ -118,11 +118,11 @@
     "jest-fetch-mock": "^3.0.1",
     "jest-resolve": "^25.1.0",
     "jest-transform-graphql": "^2.1.0",
-    "prettier": "^1.19.1",
+    "prettier": "^2.0.4",
     "react-app-polyfill": "^1.0.2",
-    "stylelint": "^13.2.0",
+    "stylelint": "^13.3.2",
     "stylelint-config-recommended-scss": "^4.2.0",
-    "stylelint-scss": "^3.14.2",
+    "stylelint-scss": "^3.16.1",
     "typescript": "^3.7.5"
   },
   "browserslist": [
