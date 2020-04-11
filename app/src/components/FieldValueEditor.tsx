@@ -41,7 +41,7 @@ const FieldValueEditor: React.FC<Props> = ({
   })
 
   useEffect(() => {
-    onChange && onChange(editor)
+    onChange?.(editor)
   }, [editor, onChange])
 
   const handleStyleToggle = useCallback(
