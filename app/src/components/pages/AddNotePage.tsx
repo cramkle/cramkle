@@ -52,12 +52,14 @@ const CREATE_NOTE_MUTATION = gql`
 
 const AddNotePage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>()
-  const {
-    data: { cardModels: models, deck },
-    loading,
-  } = useQuery<NoteFormQuery, NoteFormQueryVariables>(MODELS_QUERY, {
-    variables: { slug },
-  })
+  const { data, loading } = useQuery<NoteFormQuery, NoteFormQueryVariables>(
+    MODELS_QUERY,
+    {
+      variables: { slug },
+    }
+  )
+
+  const { cardModels: models, deck } = data || {}
 
   const [createNote] = useMutation<
     CreateNoteMutation,
