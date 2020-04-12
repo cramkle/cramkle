@@ -3,10 +3,12 @@ on:
   pull_request:
     branches:
     - master
+  push:
+    branches:
+    - master
 
 jobs:
   lint:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -33,7 +35,6 @@ jobs:
         CI: true
 
   build:
-
     runs-on: ubuntu-latest
 
     steps:

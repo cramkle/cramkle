@@ -1,6 +1,6 @@
 # Cramkle
 
-![CI](https://github.com/lucasecdb/cramkle/workflows/CI/badge.svg)
+![CI](https://github.com/lucasecdb/cramkle/workflows/CI/badge.svg?branch=master)
 
 Cramkle is a *web-based* flashcard studying app that helps you
 organize your study using a [spaced repetition](https://en.wikipedia.org/wiki/Spaced_repetition)
@@ -15,11 +15,12 @@ start the development server, run the following commands
 > You need to have yarn installed to run this project
 
 ```sh
-yarn
+yarn --cwd api
+yarn --cwd app
 
 # run the API
-yarn workspace @cramkle/api dev
+yarn --cwd api dev
 
 # run the app
-yarn workspace @cramkle/app dev
+yarn --cwd app dev
 ```
