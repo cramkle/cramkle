@@ -7,6 +7,12 @@
 // START Enums and Input Objects
 //==============================================================
 
+export enum CardStatus {
+  DUE = "DUE",
+  LEARNING = "LEARNING",
+  NEW = "NEW",
+}
+
 export interface BlockInput {
   key: string;
   type: string;
