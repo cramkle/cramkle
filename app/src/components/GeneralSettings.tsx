@@ -1,6 +1,6 @@
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import Select, { Option } from '@material/react-select'
+import { Listbox, ListboxOption } from '@reach/listbox'
 import React, { useCallback, useState } from 'react'
 import Cookies from 'universal-cookie'
 
@@ -30,19 +30,14 @@ const GeneralSettings: React.FunctionComponent = () => {
 
   return (
     <div className="pt2 flex flex-column">
-      <Select
-        label={i18n._(t`Language`)}
-        value={currentLanguage}
-        onChange={(e) =>
-          setCurrentLanguage((e.target as HTMLSelectElement).value)
-        }
-      >
+      {i18n._(t`Language`)}
+      <Listbox value={currentLanguage} onChange={(e) => setCurrentLanguage(e)}>
         {OPTIONS.map((option) => (
-          <Option key={option.locale} value={option.locale}>
+          <ListboxOption key={option.locale} value={option.locale}>
             {i18n._(option.label)}
-          </Option>
+          </ListboxOption>
         ))}
-      </Select>
+      </Listbox>
       <Button className="mt3 self-end" unelevated onClick={handleSave}>
         <Trans>Save</Trans>
       </Button>
