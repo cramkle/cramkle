@@ -1,4 +1,9 @@
 {
+  "extends": "@lucasecdb",
+  "env": {
+    "es6": true,
+    "node": true
+  },
   "parserOptions": {
     "project": "tsconfig.json"
   },
@@ -8,6 +13,7 @@
     }
   },
   "rules": {
-    "@typescript-eslint/no-non-null-assertion": "off"
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/ban-ts-ignore": "off"
   }
 }

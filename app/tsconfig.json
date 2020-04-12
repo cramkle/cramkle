@@ -1,10 +1,22 @@
 {
-  "extends": "../tsconfig.json",
   "compilerOptions": {
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "allowJs": true,
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "alwaysStrict": true,
+    "skipLibCheck": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
     "target": "es5",
     "lib": ["es6", "dom"],
     "jsx": "react",
     "baseUrl": "./",
+    "types": ["graphql"],
     "paths": {
       "hooks/*": ["./src/hooks/*"],
       "assets/*": ["./src/assets/*"],
@@ -18,5 +30,5 @@
       "resolvers/*": ["./src/resolvers/*"]
     }
   },
-  "exclude": ["node_modules", "jest/**/*"]
+  "exclude": ["jest/**/*"]
 }

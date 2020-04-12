@@ -1,9 +1,0 @@
-{
-  "name": "cramkle",
-  "license": "UNLICENSED",
-  "private": true,
-  "workspaces": [
-    "app",
-    "api"
-  ]
-}

@@ -9,7 +9,7 @@ COPY . .
 
 RUN yarn --frozen-lockfile
 
-RUN yarn workspace @cramkle/api build
+RUN yarn build
 
 FROM node:12-alpine
 
@@ -20,4 +20,4 @@ COPY --from=build-env /usr/src/app/ .
 RUN yarn --prod
 
 EXPOSE 5000
-CMD ["yarn", "workspace", "@cramkle/api", "start"]
+CMD ["yarn", "start"]

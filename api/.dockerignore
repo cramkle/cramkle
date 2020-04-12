@@ -1,5 +1,3 @@
 node_modules
 yarn-error.log
-app/.dist
-app/dist
-api/dist
+dist
