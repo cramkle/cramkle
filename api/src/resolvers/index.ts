@@ -23,12 +23,12 @@ import {
 } from './template'
 import { root as fieldRoot } from './field'
 import { root as fieldValueRoot } from './fieldValue'
-import { root as cardRoot } from './card'
+import { root as flashCardRoot } from './flashCard'
 import {
-  mutations as cardModelMutations,
-  queries as cardModelQueries,
-  root as cardModelRoot,
-} from './cardModel'
+  mutations as modelMutations,
+  queries as modelQueries,
+  root as modelRoot,
+} from './model'
 import { root as contentStateRoot } from './contentState'
 
 export default {
@@ -39,20 +39,20 @@ export default {
   ...templateRoot,
   ...fieldRoot,
   ...fieldValueRoot,
-  ...cardRoot,
-  ...cardModelRoot,
+  ...flashCardRoot,
+  ...modelRoot,
   ...userRoot,
   ...contentStateRoot,
   Query: {
     ...deckQueries,
     ...noteQueries,
     ...templateQueries,
-    ...cardModelQueries,
+    ...modelQueries,
     ...userQueries,
   },
   Mutation: {
     ...deckMutations,
-    ...cardModelMutations,
+    ...modelMutations,
     ...templateMutations,
     ...userMutations,
     ...noteMutations,
