@@ -24,8 +24,9 @@
 @import '@material/react-layout-grid/index.scss';
 @import '@material/react-linear-progress/index.scss';
 @import '@material/react-list/index.scss';
-@import '@material/react-select/index.scss';
 @import '@material/react-text-field/index.scss';
+
+@import '~@reach/listbox/styles.css';
 
 @import 'tachyons-sass/tachyons.scss';
 @import './styles/_tachyons-custom.scss';
