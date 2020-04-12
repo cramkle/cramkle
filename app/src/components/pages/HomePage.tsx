@@ -15,17 +15,15 @@ import { notificationState } from 'notification/index'
 
 const HomePage: React.FunctionComponent = () => {
   const history = useHistory()
-  const location = useLocation()
+  const location = useLocation<{ currentTab?: number }>()
   const { i18n } = useLingui()
 
-  const [index, setIndex] = useState(
-    (location.state && location.state.currentTab) || 0
-  )
+  const [index, setIndex] = useState(location.state?.currentTab ?? 0)
 
   const prevTabRef = useRef(index)
 
   useEffect(() => {
-    const stateIndex = (location.state && location.state.currentTab) || 0
+    const stateIndex = location.state?.currentTab ?? 0
 
     if (prevTabRef.current !== stateIndex) {
       setIndex(stateIndex)

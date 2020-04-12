@@ -1,3 +1,5 @@
+/// <reference types="graphql" />
+
 import { NormalizedCacheObject } from 'apollo-cache-inmemory'
 
 declare global {
