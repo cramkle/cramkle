@@ -36,10 +36,9 @@ const TOP_BAR_LOADING_QUERY = gql`
 const Shell: React.FunctionComponent = ({ children }) => {
   const history = useHistory()
   const { pathname } = useLocation()
-  const {
-    data: { topBar },
-  } = useQuery<TopBarLoadingQuery>(TOP_BAR_LOADING_QUERY)
+  const { data } = useQuery<TopBarLoadingQuery>(TOP_BAR_LOADING_QUERY)
 
+  const topBar = data?.topBar
   const loading = topBar?.loading
 
   const { i18n } = useLingui()
