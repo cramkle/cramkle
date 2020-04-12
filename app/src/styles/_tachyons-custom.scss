@@ -1,0 +1,68 @@
+.c-primary {
+  color: var(--color-primary);
+}
+.bg-primary {
+  background-color: var(--color-primary);
+}
+.b--primary {
+  border-color: var(--color-primary);
+}
+
+.hover-bg-primary:hover,
+.hover-bg-primary:focus {
+  background-color: var(--color-primary);
+}
+
+.c-on-primary {
+  color: var(--color-on-primary);
+}
+
+.hover-c-on-primary:hover,
+.hover-c-on-primary:focus {
+  color: var(--color-on-primary);
+}
+
+.c-secondary {
+  color: var(--color-secondary);
+}
+.bg-secondary {
+  background-color: var(--color-secondary);
+}
+.b--secondary {
+  border-color: var(--color-secondary);
+}
+
+.hover-bg-secondary:hover,
+.hover-bg-secondary:focus {
+  background-color: var(--color-secondary);
+}
+
+.c-on-secondary {
+  color: var(--color-on-secondary);
+}
+
+.hover-c-on-secondary:hover,
+.hover-c-on-secondary:focus {
+  color: var(--color-on-secondary);
+}
+
+.bg-surface {
+  background-color: var(--color-surface);
+}
+.b--surface {
+  border-color: var(--color-surface-border);
+}
+
+.hover-bg-surface:hover,
+.hover-bg-surface:focus {
+  background-color: var(--color-surface);
+}
+
+.c-on-surface {
+  color: var(--color-on-surface);
+}
+
+.hover-c-on-surface:hover,
+.hover-c-on-surface:focus {
+  color: var(--color-on-surface);
+}
