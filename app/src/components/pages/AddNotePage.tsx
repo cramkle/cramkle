@@ -4,7 +4,7 @@ import { useLingui } from '@lingui/react'
 import { Listbox, ListboxOption } from '@reach/listbox'
 import gql from 'graphql-tag'
 import React, { useCallback, useMemo, useState } from 'react'
-import { useParams } from 'react-router'
+import { useHistory, useParams } from 'react-router'
 
 import BackButton from 'components/BackButton'
 import FieldValueEditor from 'components/FieldValueEditor'
@@ -22,6 +22,8 @@ import {
 } from './__generated__/CreateNoteMutation'
 import { FieldInput, FieldValueInput } from '__generated__/globalTypes'
 import { EditorState, convertToRaw } from 'draft-js'
+import CircularProgress from 'components/views/CircularProgress'
+import { notificationState } from 'notification/index'
 
 const MODELS_QUERY = gql`
   query NoteFormQuery($slug: String!) {
@@ -54,6 +56,7 @@ const CREATE_NOTE_MUTATION = gql`
 
 const AddNotePage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>()
+  const history = useHistory()
   const { data, loading } = useQuery<NoteFormQuery, NoteFormQueryVariables>(
     MODELS_QUERY,
     {
@@ -67,7 +70,7 @@ const AddNotePage: React.FC = () => {
     [fieldId: string]: FieldValueInput
   }>({})
 
-  const [createNote] = useMutation<
+  const [createNote, { loading: submitLoading }] = useMutation<
     CreateNoteMutation,
     CreateNoteMutationVariables
   >(CREATE_NOTE_MUTATION)
@@ -86,7 +89,7 @@ const AddNotePage: React.FC = () => {
   useTopBarLoading(loading)
 
   const handleSubmit = useCallback(async () => {
-    const { data } = await createNote({
+    await createNote({
       variables: {
         modelId: selectedModelId,
         deckId: deck.id,
@@ -94,8 +97,12 @@ const AddNotePage: React.FC = () => {
       },
     })
 
-    console.log('created note id', data?.createNote.id)
-  }, [createNote, deck, selectedModelId, fieldValueMap])
+    notificationState.addNotification({
+      message: t`Note created successfully`,
+    })
+
+    history.push(`/d/${slug}`)
+  }, [createNote, deck, selectedModelId, fieldValueMap, history, slug])
 
   const handleFieldValueChange = useCallback(
     (field: FieldInput, editorState: EditorState) => {
@@ -178,8 +185,13 @@ const AddNotePage: React.FC = () => {
                   raised
                   className="mt3 self-start"
                   onClick={handleSubmit}
+                  disabled={submitLoading}
                 >
-                  <Trans>Add Note</Trans>
+                  {!submitLoading ? (
+                    <Trans>Add Note</Trans>
+                  ) : (
+                    <CircularProgress />
+                  )}
                 </Button>
               </>
             ) : (
