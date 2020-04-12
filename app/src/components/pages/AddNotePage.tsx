@@ -1,6 +1,7 @@
 import { useMutation, useQuery } from '@apollo/react-hooks'
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
+import { Listbox, ListboxOption } from '@reach/listbox'
 import gql from 'graphql-tag'
 import React, { useCallback, useMemo, useState } from 'react'
 import { useParams } from 'react-router'
@@ -137,21 +138,18 @@ const AddNotePage: React.FC = () => {
       <div className="flex flex-column mt3">
         <label className="flex flex-column">
           {i18n._(t`Select a model`)}
-          {
-            // eslint-disable-next-line jsx-a11y/no-onchange
-            <select
-              className="mt3"
-              value={selectedModelId}
-              onChange={(e) => setSelectedModelId(e.target.value)}
-            >
-              <option value="" disabled />
-              {models.map((model) => (
-                <option key={model.id} value={model.id}>
-                  {model.name}
-                </option>
-              ))}
-            </select>
-          }
+          <Listbox
+            className="mt3"
+            value={selectedModelId}
+            onChange={(value) => setSelectedModelId(value)}
+          >
+            <ListboxOption value="default" disabled />
+            {models.map((model) => (
+              <ListboxOption key={model.id} value={model.id}>
+                {model.name}
+              </ListboxOption>
+            ))}
+          </Listbox>
         </label>
 
         {selectedModelId !== '' && (
