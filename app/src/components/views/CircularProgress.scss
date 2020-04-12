@@ -1,5 +1,3 @@
-@import "@material/theme/mixins";
-
 @keyframes spinner-left-spin {
   from { transform: rotate(130deg); }
   50% { transform: rotate(-5deg); }
@@ -41,7 +39,7 @@
   position: relative;
   width: var(--size);
   height: var(--size);
-  @include mdc-theme-prop(border-color, primary);
+  border-color: var(--color-primary);
 }
 
 .spinnerCircle {
