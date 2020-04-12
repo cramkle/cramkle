@@ -34,6 +34,15 @@ const DECK_QUERY = gql`
         model {
           name
         }
+        cards {
+          id
+          active
+          state
+          due
+          template {
+            name
+          }
+        }
       }
     }
   }
@@ -91,9 +100,11 @@ const DeckPage: React.FunctionComponent = () => {
 
           <DeleteDeckButton deckId={deck.id} />
         </div>
-        <Body1>{deck.description}</Body1>
+        <Body1 className="mt2">{deck.description}</Body1>
 
-        <NotesTable notes={deck.notes} />
+        <div className="mt3">
+          <NotesTable notes={deck.notes} />
+        </div>
 
         {!isMobile && (
           <div className="fixed" style={{ bottom: 20, right: 20 }}>

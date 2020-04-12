@@ -3,6 +3,8 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { CardStatus } from "./../../../../__generated__/globalTypes";
+
 // ====================================================
 // GraphQL query operation: DeckQuery
 // ====================================================
@@ -55,6 +57,40 @@ export interface DeckQuery_deck_notes_model {
   name: string | null;
 }
 
+export interface DeckQuery_deck_notes_cards_template {
+  __typename: "Template";
+  /**
+   * Name of the template
+   */
+  name: string | null;
+}
+
+export interface DeckQuery_deck_notes_cards {
+  __typename: "Card";
+  /**
+   * Card id.
+   */
+  id: string;
+  /**
+   * Whether to be filtered of not.
+   * 
+   * Acts like a logical deletion it when comes to the review.
+   */
+  active: boolean | null;
+  /**
+   * Current status of this card.
+   */
+  state: CardStatus | null;
+  /**
+   * Due date of this card, in a timestamp format.
+   */
+  due: number | null;
+  /**
+   * Template associated with this card.
+   */
+  template: DeckQuery_deck_notes_cards_template | null;
+}
+
 export interface DeckQuery_deck_notes {
   __typename: "Note";
   /**
@@ -69,6 +105,10 @@ export interface DeckQuery_deck_notes {
    * Model of this note
    */
   model: DeckQuery_deck_notes_model | null;
+  /**
+   * Generated cards
+   */
+  cards: (DeckQuery_deck_notes_cards | null)[] | null;
 }
 
 export interface DeckQuery_deck {
