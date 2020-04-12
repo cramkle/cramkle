@@ -1,10 +1,10 @@
 import { IResolvers } from 'graphql-tools'
 
-import { Field } from '../models'
+import { FieldModel } from '../models'
 
 export const root: IResolvers = {
   FieldValue: {
     id: (root) => root._id.toString(),
-    field: (root) => Field.findById(root.fieldId),
+    field: (root) => FieldModel.findById(root.fieldId),
   },
 }

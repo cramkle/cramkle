@@ -1,6 +1,6 @@
 import { AuthenticationError } from 'apollo-server'
 import { IResolverObject, IResolvers } from 'graphql-tools'
-import { User } from '../models'
+import { UserModel } from '../models'
 
 export const root: IResolvers = {
   User: {
@@ -14,7 +14,7 @@ export const queries: IResolverObject = {
       return null
     }
 
-    const dbUser = await User.findById(user._id).exec()
+    const dbUser = await UserModel.findById(user._id).exec()
 
     return dbUser
   },
@@ -58,7 +58,7 @@ export const mutations: IResolverObject = {
     return user
   },
   createUser: async (_, { username, email, password }) => {
-    const user = new User({ username, email, password })
+    const user = new UserModel({ username, email, password })
 
     const validation = user.validateSync()
 

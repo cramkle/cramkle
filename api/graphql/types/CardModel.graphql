@@ -20,15 +20,20 @@ type CardModel {
   """
   owner: User
   """
+  Primary field that should represent each individual note
+  of this model.
+  """
+  primaryField: Field
+  """
   Fields associated with this model
   """
-  fields: [Field]
+  fields: [Field!]!
   """
   Templates associated with this model
   """
-  templates: [Template]
+  templates: [Template!]!
   """
   Notes associated with this model
   """
-  notes: [Note]
+  notes: [Note!]
 }

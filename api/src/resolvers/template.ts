@@ -1,18 +1,18 @@
 import { IResolverObject, IResolvers } from 'graphql-tools'
 
-import { CardModel, Template } from '../models'
+import { ModelModel, TemplateModel } from '../models'
 import { ContentStateDocument } from '../models/ContentState'
 
 export const root: IResolvers = {
   Template: {
     id: (root) => root._id.toString(),
-    model: (root) => CardModel.findById(root.modelId),
+    model: (root) => ModelModel.findById(root.modelId),
   },
 }
 
 export const queries: IResolverObject = {
   template: async (_, { id }) => {
-    const template = await Template.findById(id)
+    const template = await TemplateModel.findById(id)
 
     return template
   },
@@ -45,7 +45,7 @@ export const mutations: IResolverObject = {
       updatedFields.backSide = backSide
     }
 
-    return Template.findOneAndUpdate(
+    return TemplateModel.findOneAndUpdate(
       {
         _id,
         ownerId: user._id,

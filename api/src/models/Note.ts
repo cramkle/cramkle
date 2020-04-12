@@ -1,6 +1,6 @@
 import { Document, Schema, Types, model } from 'mongoose'
 
-import { CardDocument, CardSchema } from './Card'
+import { CardDocument, CardSchema } from './FlashCard'
 import { FieldValueDocument, FieldValueSchema } from './FieldValue'
 
 interface Note {

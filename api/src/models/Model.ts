@@ -1,19 +1,25 @@
-import { Document, Schema, Types, model } from 'mongoose'
+import { Document, Schema, Types, model as mongooseModel } from 'mongoose'
 
-interface CardModel {
+export interface Model {
   name: string
+  ownerId: Types.ObjectId
+  primaryFieldId: Types.ObjectId
   fields: Types.Array<Types.ObjectId>
   templates: Types.Array<Types.ObjectId>
   notes: Types.Array<Types.ObjectId>
 }
 
-interface CardModelDocument extends CardModel, Document {}
+export interface ModelDocument extends Model, Document {}
 
-const CardModelSchema = new Schema<CardModelDocument>({
+const ModelSchema = new Schema<ModelDocument>({
   name: String,
   ownerId: {
     type: Schema.Types.ObjectId,
     ref: 'User',
+  },
+  primaryFieldId: {
+    type: Schema.Types.ObjectId,
+    ref: 'Field',
   },
   fields: [
     {
@@ -35,4 +41,4 @@ const CardModelSchema = new Schema<CardModelDocument>({
   ],
 })
 
-export default model<CardModelDocument>('CardModel', CardModelSchema)
+export default mongooseModel<ModelDocument>('CardModel', ModelSchema)
