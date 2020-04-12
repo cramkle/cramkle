@@ -16,15 +16,19 @@ jobs:
       with:
         node-version: 12.x
     - name: Install dependencies
-      run: yarn
+      run: |
+        yarn --cwd api
+        yarn --cwd app
     - name: Lint
       run: |
-        yarn workspace @cramkle/app compile
-        yarn workspaces run lint
+        yarn --cwd api lint
+
+        yarn --cwd app compile
+        yarn --cwd app lint
       env:
         CI: true
     - name: Lint CSS
-      run: yarn workspace @cramkle/app lint-css
+      run: yarn --cwd app lint-css
       env:
         CI: true
 
@@ -39,8 +43,12 @@ jobs:
       with:
         node-version: 12.x
     - name: Install dependencies
-      run: yarn
+      run: |
+        yarn --cwd api
+        yarn --cwd app
     - name: Build
-      run: yarn workspaces run build
+      run: |
+        yarn --cwd api build
+        yarn --cwd app build
       env:
         CI: true
