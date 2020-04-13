@@ -2,11 +2,12 @@ import { IResolverObject, IResolvers } from 'graphql-tools'
 
 import { ModelModel, TemplateModel } from '../models'
 import { ContentStateDocument } from '../models/ContentState'
+import { TemplateDocument } from '../models/Template'
 
 export const root: IResolvers = {
   Template: {
-    id: (root) => root._id.toString(),
-    model: (root) => ModelModel.findById(root.modelId),
+    id: (root: TemplateDocument) => root._id.toString(),
+    model: (root: TemplateDocument) => ModelModel.findById(root.modelId),
   },
 }
 

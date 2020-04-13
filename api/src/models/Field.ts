@@ -1,10 +1,11 @@
-import { Document, Schema, model } from 'mongoose'
+import { Document, Schema, Types, model } from 'mongoose'
 
 export interface Field {
   name: string
+  modelId: Types.ObjectId
 }
 
-interface FieldDocument extends Field, Document {}
+export interface FieldDocument extends Field, Document {}
 
 const FieldSchema = new Schema<FieldDocument>({
   name: { type: String, required: true },

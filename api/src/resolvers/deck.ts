@@ -2,12 +2,14 @@ import { IResolverObject, IResolvers } from 'graphql-tools'
 
 import { findRefFromList } from './utils'
 import { DeckModel, NoteModel, UserModel } from '../models'
+import { DeckDocument } from '../models/Deck'
 
 export const root: IResolvers = {
   Deck: {
-    id: (root) => root._id.toString(),
-    owner: (root) => UserModel.findById(root.ownerId),
-    notes: (root) => Promise.all(findRefFromList(NoteModel, root.notes)),
+    id: (root: DeckDocument) => root._id.toString(),
+    owner: (root: DeckDocument) => UserModel.findById(root.ownerId),
+    notes: (root: DeckDocument) =>
+      Promise.all(findRefFromList(NoteModel, root.notes)),
   },
 }
 
@@ -24,7 +26,11 @@ export const queries: IResolverObject = {
 
 export const mutations: IResolverObject = {
   createDeck: async (_, { title, description }, { user }: Context) => {
-    const deck = await DeckModel.create({ title, description, ownerId: user._id })
+    const deck = await DeckModel.create({
+      title,
+      description,
+      ownerId: user._id,
+    })
 
     return deck
   },
