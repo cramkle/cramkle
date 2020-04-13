@@ -14,11 +14,7 @@
     "strictFunctionTypes": true,
     "target": "es6",
     "strict": true,
-    "outDir": "dist",
-    "baseUrl": ".",
-    "paths": {
-      "*": ["node_modules/*", "types/*"]
-    }
+    "outDir": "dist"
   },
   "include": ["src/**/*"]
 }
