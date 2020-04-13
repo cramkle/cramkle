@@ -24,10 +24,21 @@ export const queries: IResolverObject = {
   },
 }
 
+interface CreateNoteMutationInput {
+  modelId: string
+  deckId: string
+  fieldValues: Array<{
+    data: ContentStateInput
+    field: {
+      id: string
+    }
+  }>
+}
+
 export const mutations: IResolverObject = {
   createNote: async (
     _,
-    { modelId, deckId, fieldValues },
+    { modelId, deckId, fieldValues }: CreateNoteMutationInput,
     { user }: Context
   ) => {
     const deck = await DeckModel.findOne({ _id: deckId, ownerId: user._id })
