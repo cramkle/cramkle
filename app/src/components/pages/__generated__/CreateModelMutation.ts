@@ -46,11 +46,11 @@ export interface CreateModelMutation_createModel {
   /**
    * Templates associated with this model
    */
-  templates: (CreateModelMutation_createModel_templates | null)[] | null;
+  templates: CreateModelMutation_createModel_templates[];
   /**
    * Fields associated with this model
    */
-  fields: (CreateModelMutation_createModel_fields | null)[] | null;
+  fields: CreateModelMutation_createModel_fields[];
 }
 
 export interface CreateModelMutation {

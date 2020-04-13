@@ -44,7 +44,7 @@ export interface NoteFormQuery_cardModels {
   /**
    * Fields associated with this model
    */
-  fields: (NoteFormQuery_cardModels_fields | null)[] | null;
+  fields: NoteFormQuery_cardModels_fields[];
 }
 
 export interface NoteFormQuery {

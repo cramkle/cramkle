@@ -30,9 +30,15 @@ const DECK_QUERY = gql`
           data {
             ...DraftContent
           }
+          field {
+            id
+          }
         }
         model {
           name
+          primaryField {
+            id
+          }
         }
         cards {
           id

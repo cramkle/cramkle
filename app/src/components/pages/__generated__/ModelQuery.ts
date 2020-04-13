@@ -124,15 +124,15 @@ export interface ModelQuery_cardModel {
   /**
    * Fields associated with this model
    */
-  fields: (ModelQuery_cardModel_fields | null)[] | null;
+  fields: ModelQuery_cardModel_fields[];
   /**
    * Templates associated with this model
    */
-  templates: (ModelQuery_cardModel_templates | null)[] | null;
+  templates: ModelQuery_cardModel_templates[];
   /**
    * Notes associated with this model
    */
-  notes: (ModelQuery_cardModel_notes | null)[] | null;
+  notes: ModelQuery_cardModel_notes[] | null;
 }
 
 export interface ModelQuery {

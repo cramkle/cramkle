@@ -44,11 +44,11 @@ export interface ModelsQuery_cardModels {
   /**
    * Templates associated with this model
    */
-  templates: (ModelsQuery_cardModels_templates | null)[] | null;
+  templates: ModelsQuery_cardModels_templates[];
   /**
    * Fields associated with this model
    */
-  fields: (ModelsQuery_cardModels_fields | null)[] | null;
+  fields: ModelsQuery_cardModels_fields[];
 }
 
 export interface ModelsQuery {

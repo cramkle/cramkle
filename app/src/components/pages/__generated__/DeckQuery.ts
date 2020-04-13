@@ -41,12 +41,32 @@ export interface DeckQuery_deck_notes_values_data {
   entityMap: any | null;
 }
 
+export interface DeckQuery_deck_notes_values_field {
+  __typename: "Field";
+  /**
+   * Field id
+   */
+  id: string;
+}
+
 export interface DeckQuery_deck_notes_values {
   __typename: "FieldValue";
   /**
    * Field data
    */
   data: DeckQuery_deck_notes_values_data | null;
+  /**
+   * Associated field
+   */
+  field: DeckQuery_deck_notes_values_field | null;
+}
+
+export interface DeckQuery_deck_notes_model_primaryField {
+  __typename: "Field";
+  /**
+   * Field id
+   */
+  id: string;
 }
 
 export interface DeckQuery_deck_notes_model {
@@ -55,6 +75,11 @@ export interface DeckQuery_deck_notes_model {
    * Name of this card model (e.g. "Basic", "Basic with Reversed")
    */
   name: string | null;
+  /**
+   * Primary field that should represent each individual note
+   * of this model.
+   */
+  primaryField: DeckQuery_deck_notes_model_primaryField | null;
 }
 
 export interface DeckQuery_deck_notes_cards_template {
