@@ -1,14 +1,16 @@
-import { Document, Schema, model } from 'mongoose'
+import { Document, Schema, Types, model } from 'mongoose'
 import shortid from 'shortid'
 
-interface Deck {
+export interface Deck {
   title: string
   description?: string
   slug: string
   published: boolean
+  ownerId: Types.ObjectId
+  notes: Types.Array<Types.ObjectId>
 }
 
-interface DeckDocument extends Deck, Document {}
+export interface DeckDocument extends Deck, Document {}
 
 const DeckSchema = new Schema<DeckDocument>({
   title: {

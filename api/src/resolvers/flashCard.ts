@@ -1,10 +1,12 @@
 import { IResolvers } from 'graphql-tools'
 import { NoteModel, TemplateModel } from '../models'
+import { FlashCardDocument } from '../models/Note'
 
 export const root: IResolvers = {
   Card: {
-    id: (root) => root._id.toString(),
-    note: (root) => NoteModel.findById(root.noteId),
-    template: (root) => TemplateModel.findById(root.templateId),
+    id: (root: FlashCardDocument) => root._id.toString(),
+    note: (root: FlashCardDocument) => NoteModel.findById(root.noteId),
+    template: (root: FlashCardDocument) =>
+      TemplateModel.findById(root.templateId),
   },
 }
