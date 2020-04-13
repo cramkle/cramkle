@@ -1,13 +1,14 @@
 import { ApolloError } from 'apollo-server'
 import { IResolverObject, IResolvers } from 'graphql-tools'
 
-import { DeckModel, FlashCardModel, ModelModel, NoteModel } from '../models'
+import { DeckModel, ModelModel, NoteModel } from '../models'
+import { NoteDocument } from '../models/Note'
 
 export const root: IResolvers = {
   Note: {
-    id: (root) => root._id.toString(),
-    deck: (root) => DeckModel.findById(root.deckId),
-    model: (root) => ModelModel.findById(root.modelId),
+    id: (root: NoteDocument) => root._id.toString(),
+    deck: (root: NoteDocument) => DeckModel.findById(root.deckId),
+    model: (root: NoteDocument) => ModelModel.findById(root.modelId),
   },
 }
 
@@ -42,17 +43,18 @@ export const mutations: IResolverObject = {
     const note = await NoteModel.create({
       modelId,
       deckId,
-      cards: model.templates.map(
-        (templateId) =>
-          new FlashCardModel({
-            templateId,
-          })
-      ),
-      values: fieldValues.map((fieldValue: any) => ({
-        ...fieldValue,
-        field: fieldValue.field.id,
+      values: fieldValues.map((fieldValue) => ({
+        data: fieldValue.data,
+        fieldId: fieldValue.field.id,
       })),
     })
+
+    note.set(
+      'cards',
+      model.templates.map((templateId) => ({ templateId, noteId: note._id }))
+    )
+
+    await note.save()
 
     await ModelModel.findOneAndUpdate(
       { _id: modelId, ownerId: user._id },
