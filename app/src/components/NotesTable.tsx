@@ -1,11 +1,11 @@
 import { Trans } from '@lingui/macro'
 import React from 'react'
+import { RawDraftContentState, convertFromRaw } from 'draft-js'
 
+import Button from 'views/Button'
 import Card from 'views/Card'
 import { Body2 } from 'views/Typography'
-
 import { DeckQuery_deck_notes } from 'pages/__generated__/DeckQuery'
-import Button from './views/Button'
 
 interface Props {
   notes: DeckQuery_deck_notes[]
@@ -23,15 +23,15 @@ const NotesTable: React.FC<Props> = ({ notes }) => {
   }
 
   return (
-    <div>
-      <table className="w-100 ba br3 b--light-gray collapse">
+    <div className="ba br2 b--light-gray w-100">
+      <table className="w-100 collapse">
         <thead>
           <tr>
             <th className="h3 tl ph3 lh-copy">
-              <Trans>ID</Trans>
+              <Trans>Note</Trans>
             </th>
             <th className="h3 tl ph3 lh-copy">
-              <Trans>Model name</Trans>
+              <Trans>Model type</Trans>
             </th>
             <th className="h3 tl ph3 lh-copy">
               <Trans>Flashcards</Trans>
@@ -40,11 +40,21 @@ const NotesTable: React.FC<Props> = ({ notes }) => {
         </thead>
         <tbody>
           {notes.map((note) => {
+            let noteIdentifier = note.id
+
+            if (note.model.primaryField) {
+              const contentState = convertFromRaw(
+                note.values.find(
+                  (value) => value.field?.id === note.model.primaryField?.id
+                )?.data as RawDraftContentState
+              )
+
+              noteIdentifier = contentState.getPlainText()
+            }
+
             return (
               <tr key={note.id} className="bt b--light-gray">
-                <td className="ph3">
-                  <code>{note.id}</code>
-                </td>
+                <td className="ph3">{noteIdentifier}</td>
                 <td className="ph3">{note.model.name}</td>
                 <td className="ph3">{note.cards.length}</td>
                 <td className="ph3">
