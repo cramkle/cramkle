@@ -74,9 +74,14 @@ const decorators = new CompositeDecorator([
 interface Props {
   template: Template
   values: NoteValue[]
+  hideLabels?: boolean
 }
 
-const FlashCardRenderer: React.FC<Props> = ({ template, values }) => {
+const FlashCardRenderer: React.FC<Props> = ({
+  template,
+  values,
+  hideLabels = false,
+}) => {
   const frontSideState = useMemo(() => {
     const contentState = convertFromRaw(template.frontSide)
 
@@ -91,16 +96,20 @@ const FlashCardRenderer: React.FC<Props> = ({ template, values }) => {
 
   return (
     <div className="c-on-surface">
-      <t.Caption className="mb2">
-        <Trans>Front Side</Trans>
-      </t.Caption>
+      {!hideLabels && (
+        <t.Caption className="mb2">
+          <Trans>Front Side</Trans>
+        </t.Caption>
+      )}
       <ValuesContext.Provider value={values}>
         <Editor editorState={frontSideState} onChange={noop} readOnly />
       </ValuesContext.Provider>
       <Divider className="mv3" />
-      <t.Caption className="mb2">
-        <Trans>Back Side</Trans>
-      </t.Caption>
+      {!hideLabels && (
+        <t.Caption className="mb2">
+          <Trans>Back Side</Trans>
+        </t.Caption>
+      )}
       <ValuesContext.Provider value={values}>
         <Editor editorState={backSideState} onChange={noop} readOnly />
       </ValuesContext.Provider>
