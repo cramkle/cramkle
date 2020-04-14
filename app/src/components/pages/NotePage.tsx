@@ -1,15 +1,32 @@
 import { useQuery } from '@apollo/react-hooks'
+import { Trans } from '@lingui/macro'
 import gql from 'graphql-tag'
 import { RawDraftContentState, convertFromRaw } from 'draft-js'
-import React from 'react'
+import React, { useState } from 'react'
 import { useParams } from 'react-router'
 import { Helmet } from 'react-helmet'
 
 import useTopBarLoading from 'hooks/useTopBarLoading'
 import Container from 'views/Container'
+import Divider from 'views/Divider'
 import BackButton from 'components/BackButton'
-import { Headline4 } from 'views/Typography'
-import { NoteQuery, NoteQueryVariables } from './__generated__/NoteQuery'
+import * as t from 'views/Typography'
+import {
+  NoteQuery,
+  NoteQueryVariables,
+  NoteQuery_note_cards,
+} from './__generated__/NoteQuery'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+} from 'components/views/Table'
+import Checkbox from 'components/views/Checkbox'
+import Button from 'components/views/Button'
+import Dialog, { DialogContent } from 'components/views/Dialog'
+import FlashCardRenderer from 'components/FlashCardRenderer'
 
 const NOTE_QUERY = gql`
   query NoteQuery($noteId: ID!) {
@@ -31,6 +48,21 @@ const NOTE_QUERY = gql`
         field {
           id
           name
+        }
+      }
+      cards {
+        id
+        active
+        lapses
+        due
+        template {
+          name
+          frontSide {
+            ...DraftContent
+          }
+          backSide {
+            ...DraftContent
+          }
         }
       }
     }
@@ -65,8 +97,20 @@ const NotePage: React.FC = () => {
     NOTE_QUERY,
     { variables: { noteId } }
   )
+  const [
+    flashCardPreview,
+    setFlashCardPreview,
+  ] = useState<NoteQuery_note_cards | null>(null)
 
   useTopBarLoading(loading)
+
+  const handleShowFlashCardPreview = (flashCard: NoteQuery_note_cards) => {
+    setFlashCardPreview(flashCard)
+  }
+
+  const handleCloseFlashCardPreview = () => {
+    setFlashCardPreview(null)
+  }
 
   if (loading) {
     return null
@@ -78,6 +122,7 @@ const NotePage: React.FC = () => {
       values,
       deck,
       model: { primaryField },
+      cards,
     },
   } = data
 
@@ -90,15 +135,70 @@ const NotePage: React.FC = () => {
 
   return (
     <>
-      <Helmet title={deck.title} />
+      {flashCardPreview && (
+        <Dialog open onClose={handleCloseFlashCardPreview}>
+          <DialogContent>
+            <FlashCardRenderer
+              values={values.map(({ data, ...value }) => ({
+                ...value,
+                data: data as RawDraftContentState,
+              }))}
+              template={
+                flashCardPreview.template as {
+                  frontSide: RawDraftContentState
+                  backSide: RawDraftContentState
+                }
+              }
+            />
+          </DialogContent>
+        </Dialog>
+      )}
+      <Helmet title={noteIdentifier} />
       <Container>
         <BackButton />
 
-        <div className="flex justify-between">
-          <Headline4>
-            Note "{noteIdentifier}" of Deck {deck.title}
-          </Headline4>
+        <div className="flex flex-column">
+          <t.Caption>
+            <Trans>Deck "{deck.title}"</Trans>
+          </t.Caption>
+          <t.Headline5 className="mt1">
+            <Trans>Note "{noteIdentifier}"</Trans>
+          </t.Headline5>
         </div>
+
+        <Divider className="mv2" />
+
+        <t.Body1>Flashcards</t.Body1>
+
+        <Table className="mt3">
+          <TableHead>
+            <TableRow>
+              <TableCell />
+              <TableCell>Flash Card</TableCell>
+              <TableCell>Template</TableCell>
+              <TableCell>Lapses</TableCell>
+              <TableCell>Due Date</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {cards.map((flashCard) => (
+              <TableRow key={flashCard.id}>
+                <TableCell className="flex justify-center items-center">
+                  <Checkbox checked={flashCard.active} />
+                </TableCell>
+                <TableCell>{flashCard.id}</TableCell>
+                <TableCell>{flashCard.template.name}</TableCell>
+                <TableCell align="right">{flashCard.lapses}</TableCell>
+                <TableCell>{flashCard.due}</TableCell>
+                <TableCell>
+                  <Button onClick={() => handleShowFlashCardPreview(flashCard)}>
+                    Preview
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
       </Container>
     </>
   )
