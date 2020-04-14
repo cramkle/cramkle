@@ -27,6 +27,7 @@ import Checkbox from 'components/views/Checkbox'
 import Button from 'components/views/Button'
 import Dialog, { DialogContent } from 'components/views/Dialog'
 import FlashCardRenderer from 'components/FlashCardRenderer'
+import FieldValueEditor from 'components/FieldValueEditor'
 
 const NOTE_QUERY = gql`
   query NoteQuery($noteId: ID!) {
@@ -158,7 +159,7 @@ const NotePage: React.FC = () => {
       <Container>
         <BackButton />
 
-        <div className="flex flex-column">
+        <div className="flex flex-column mb3">
           <t.Caption>
             <Trans>Deck "{deck.title}"</Trans>
           </t.Caption>
@@ -167,9 +168,20 @@ const NotePage: React.FC = () => {
           </t.Headline5>
         </div>
 
-        <Divider className="mv2" />
+        {values.map((value) => (
+          <React.Fragment key={value.id}>
+            <t.Caption>{value.field.name}</t.Caption>
+            <FieldValueEditor
+              className="mb3 mt1"
+              initialContentState={value.data}
+              field={value.field}
+            />
+          </React.Fragment>
+        ))}
 
-        <t.Body1>Flashcards</t.Body1>
+        <Divider className="mv3" />
+
+        <t.Body1 className="fw5">Flashcards</t.Body1>
 
         <Table className="mt3 w-100">
           <TableHead>
