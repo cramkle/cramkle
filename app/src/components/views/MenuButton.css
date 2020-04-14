@@ -1,11 +1,3 @@
-.menuButton:hover::after {
-  opacity: .04;
-}
-
-.menuButton:focus::after {
-  opacity: .12;
-}
-
 .menuButton::after {
   content: ' ';
   position: absolute;
@@ -15,6 +7,14 @@
   bottom: 0;
   left: 0;
   right: 0;
+}
+
+.menuButton:hover::after {
+  opacity: .04;
+}
+
+.menuButton:focus::after {
+  opacity: .12;
 }
 
 .menuItem {
@@ -29,10 +29,6 @@
   color: var(--color-primary);
 }
 
-.menuItem[data-selected=""]::after, .menuItem:hover::after, .menuItem:focus::after {
-  position: absolute;
-}
-
 .menuItem::after {
   content: ' ';
   background-color: var(--color-primary);
@@ -41,4 +37,8 @@
   bottom: 0;
   left: 0;
   right: 0;
+}
+
+.menuItem[data-selected=""]::after, .menuItem:hover::after, .menuItem:focus::after {
+  position: absolute;
 }
