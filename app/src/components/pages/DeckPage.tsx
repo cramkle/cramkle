@@ -109,7 +109,7 @@ const DeckPage: React.FunctionComponent = () => {
         <Body1 className="mt2">{deck.description}</Body1>
 
         <div className="mt3">
-          <NotesTable notes={deck.notes} />
+          <NotesTable notes={deck.notes} deckSlug={deck.slug} />
         </div>
 
         {!isMobile && (
