@@ -20,8 +20,8 @@ interface NoteValue {
 }
 
 interface Template {
-  frontSide: RawDraftContentState
-  backSide: RawDraftContentState
+  frontSide: RawDraftContentState | null
+  backSide: RawDraftContentState | null
 }
 
 const noop = () => {}
@@ -71,48 +71,79 @@ const decorators = new CompositeDecorator([
   },
 ])
 
+interface PanelProps {
+  hideLabel: boolean
+  label: React.ReactNode
+  templateContent: RawDraftContentState | null
+  values: NoteValue[]
+  emptyMessage: React.ReactNode
+}
+
+const FlashCardPanel: React.FC<PanelProps> = ({
+  hideLabel,
+  label,
+  templateContent,
+  values,
+  emptyMessage,
+}) => {
+  const editorState = useMemo(() => {
+    if (!templateContent) {
+      return EditorState.createEmpty()
+    }
+
+    const contentState = convertFromRaw(templateContent)
+
+    return EditorState.createWithContent(contentState, decorators)
+  }, [templateContent])
+
+  return (
+    <>
+      {!hideLabel && <t.Caption className="mb2">{label}</t.Caption>}
+      {templateContent == null ? (
+        <t.Body2 className="db mv2">{emptyMessage}</t.Body2>
+      ) : (
+        <ValuesContext.Provider value={values}>
+          <Editor editorState={editorState} onChange={noop} readOnly />
+        </ValuesContext.Provider>
+      )}
+    </>
+  )
+}
+
 interface Props {
   template: Template
   values: NoteValue[]
   hideLabels?: boolean
+  hideBackSide?: boolean
 }
 
 const FlashCardRenderer: React.FC<Props> = ({
   template,
   values,
   hideLabels = false,
+  hideBackSide = true,
 }) => {
-  const frontSideState = useMemo(() => {
-    const contentState = convertFromRaw(template.frontSide)
-
-    return EditorState.createWithContent(contentState, decorators)
-  }, [template])
-
-  const backSideState = useMemo(() => {
-    const contentState = convertFromRaw(template.backSide)
-
-    return EditorState.createWithContent(contentState, decorators)
-  }, [template])
-
   return (
     <div className="c-on-surface">
-      {!hideLabels && (
-        <t.Caption className="mb2">
-          <Trans>Front Side</Trans>
-        </t.Caption>
+      <FlashCardPanel
+        label={<Trans>Front side</Trans>}
+        hideLabel={hideLabels}
+        emptyMessage={<Trans>Front side template is empty</Trans>}
+        values={values}
+        templateContent={template.frontSide}
+      />
+      {!hideBackSide && (
+        <>
+          <Divider className="mv3" />
+          <FlashCardPanel
+            label={<Trans>Back side</Trans>}
+            hideLabel={hideLabels}
+            emptyMessage={<Trans>Back side template is empty</Trans>}
+            values={values}
+            templateContent={template.backSide}
+          />
+        </>
       )}
-      <ValuesContext.Provider value={values}>
-        <Editor editorState={frontSideState} onChange={noop} readOnly />
-      </ValuesContext.Provider>
-      <Divider className="mv3" />
-      {!hideLabels && (
-        <t.Caption className="mb2">
-          <Trans>Back Side</Trans>
-        </t.Caption>
-      )}
-      <ValuesContext.Provider value={values}>
-        <Editor editorState={backSideState} onChange={noop} readOnly />
-      </ValuesContext.Provider>
     </div>
   )
 }
