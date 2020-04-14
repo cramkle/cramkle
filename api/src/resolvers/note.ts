@@ -14,7 +14,14 @@ export const root: IResolvers = {
 
 export const queries: IResolverObject = {
   note: async (_, { id }, { user }: Context) => {
-    const note = await NoteModel.findOne({ _id: id, ownerId: user?._id })
+    const userDecks = await DeckModel.find({ ownerId: user?._id })
+
+    const note = await NoteModel.findOne({
+      _id: id,
+      deckId: {
+        $in: userDecks.map(({ _id }) => _id),
+      },
+    })
 
     if (!note) {
       throw new ApolloError('Note not found')
