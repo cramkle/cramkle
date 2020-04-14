@@ -54,6 +54,8 @@ const CREATE_NOTE_MUTATION = gql`
   }
 `
 
+const DEFAULT_OPTION = 'default'
+
 const AddNotePage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>()
   const history = useHistory()
@@ -76,7 +78,7 @@ const AddNotePage: React.FC = () => {
   >(CREATE_NOTE_MUTATION)
 
   const { i18n } = useLingui()
-  const [selectedModelId, setSelectedModelId] = useState('')
+  const [selectedModelId, setSelectedModelId] = useState(DEFAULT_OPTION)
 
   const selectedModel = useMemo(() => {
     if (!models) {
@@ -144,13 +146,14 @@ const AddNotePage: React.FC = () => {
 
       <div className="flex flex-column mt3">
         <label className="flex flex-column">
-          {i18n._(t`Select a model`)}
           <Listbox
             className="mt3"
             value={selectedModelId}
             onChange={(value) => setSelectedModelId(value)}
           >
-            <ListboxOption value="default" disabled />
+            <ListboxOption value={DEFAULT_OPTION} disabled>
+              {i18n._(t`Select a model`)}
+            </ListboxOption>
             {models.map((model) => (
               <ListboxOption key={model.id} value={model.id}>
                 {model.name}
@@ -159,7 +162,7 @@ const AddNotePage: React.FC = () => {
           </Listbox>
         </label>
 
-        {selectedModelId !== '' && (
+        {selectedModel != null && (
           <>
             <Subtitle1 className="mt2">
               <Trans>Fields</Trans>
