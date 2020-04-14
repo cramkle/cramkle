@@ -14,7 +14,7 @@ export const root: IResolvers = {
 
 export const queries: IResolverObject = {
   note: async (_, { id }, { user }: Context) => {
-    const note = await NoteModel.findOne({ _id: id, ownerId: user._id })
+    const note = await NoteModel.findOne({ _id: id, ownerId: user?._id })
 
     if (!note) {
       throw new ApolloError('Note not found')
@@ -41,10 +41,10 @@ export const mutations: IResolverObject = {
     { modelId, deckId, fieldValues }: CreateNoteMutationInput,
     { user }: Context
   ) => {
-    const deck = await DeckModel.findOne({ _id: deckId, ownerId: user._id })
+    const deck = await DeckModel.findOne({ _id: deckId, ownerId: user?._id })
     const model = await ModelModel.findOne({
       _id: modelId,
-      ownerId: user._id,
+      ownerId: user?._id,
     })
 
     if (!deck || !model) {
@@ -68,11 +68,11 @@ export const mutations: IResolverObject = {
     await note.save()
 
     await ModelModel.findOneAndUpdate(
-      { _id: modelId, ownerId: user._id },
+      { _id: modelId, ownerId: user?._id },
       { $push: { notes: note } }
     )
     await DeckModel.findOneAndUpdate(
-      { _id: deckId, ownerId: user._id },
+      { _id: deckId, ownerId: user?._id },
       { $push: { notes: note } }
     )
 

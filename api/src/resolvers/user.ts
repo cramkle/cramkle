@@ -34,7 +34,7 @@ export const mutations: IResolverObject = {
     { email, username, password, confirmPassword }: UpdateProfileInput,
     { user }: Context
   ) => {
-    if (!(await user.comparePassword(confirmPassword))) {
+    if (!(await user?.comparePassword(confirmPassword))) {
       throw new AuthenticationError('User not authenticated')
     }
 
@@ -54,21 +54,21 @@ export const mutations: IResolverObject = {
 
     Object.assign(user, updateProps)
 
-    await user.save()
+    await user?.save()
 
     return user
   },
   createUser: async (_, { username, email, password }) => {
     const user = new UserModel({ username, email, password })
 
-    const validation = user.validateSync()
+    const validation = user?.validateSync()
 
     if (validation) {
       const error = Object.values(validation.errors)[0]
       return Promise.reject(error)
     }
 
-    await user.hashifyAndSave()
+    await user?.hashifyAndSave()
 
     return user
   },

@@ -49,7 +49,7 @@ export const mutations: IResolverObject = {
     return TemplateModel.findOneAndUpdate(
       {
         _id,
-        ownerId: user._id,
+        ownerId: user?._id,
       },
       updatedFields,
       {
