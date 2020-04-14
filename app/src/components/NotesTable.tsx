@@ -14,6 +14,7 @@ import {
 } from 'views/MenuButton'
 import { DeckQuery_deck_notes } from 'pages/__generated__/DeckQuery'
 import Icon from './views/Icon'
+import { Table, TableBody, TableCell, TableHead, TableRow } from './views/Table'
 
 interface Props {
   notes: DeckQuery_deck_notes[]
@@ -34,61 +35,59 @@ const NotesTable: React.FC<Props> = ({ notes, deckSlug }) => {
   }
 
   return (
-    <div className="ba br2 b--outline w-100">
-      <table className="w-100 collapse">
-        <thead>
-          <tr>
-            <th className="h3 tl ph3 lh-copy">
-              <Trans>Note</Trans>
-            </th>
-            <th className="h3 tl ph3 lh-copy">
-              <Trans>Model type</Trans>
-            </th>
-            <th className="h3 tl ph3 lh-copy">
-              <Trans>Flashcards</Trans>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {notes.map((note) => {
-            let noteIdentifier = note.id
+    <Table className="w-100">
+      <TableHead>
+        <TableRow>
+          <TableCell>
+            <Trans>Note</Trans>
+          </TableCell>
+          <TableCell>
+            <Trans>Model type</Trans>
+          </TableCell>
+          <TableCell>
+            <Trans>Flashcards</Trans>
+          </TableCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {notes.map((note) => {
+          let noteIdentifier = note.id
 
-            if (note.model.primaryField) {
-              const contentState = convertFromRaw(
-                note.values.find(
-                  (value) => value.field?.id === note.model.primaryField?.id
-                )?.data as RawDraftContentState
-              )
-
-              noteIdentifier = contentState.getPlainText()
-            }
-
-            return (
-              <tr key={note.id} className="bt b--outline">
-                <td className="ph3 pv2">{noteIdentifier}</td>
-                <td className="ph3 pv2">{note.model.name}</td>
-                <td className="ph3 pv2">{note.cards.length}</td>
-                <td className="ph3 pv2">
-                  <Menu>
-                    <MenuButton icon className="flex items-center">
-                      <Icon aria-label={i18n._(t`Actions`)} icon="more_vert" />
-                    </MenuButton>
-                    <MenuList>
-                      <MenuLink to={`/d/${deckSlug}/note/${note.id}`}>
-                        <Trans>Edit</Trans>
-                      </MenuLink>
-                      <MenuItem onSelect={() => console.log('delete')}>
-                        <Trans>Delete</Trans>
-                      </MenuItem>
-                    </MenuList>
-                  </Menu>
-                </td>
-              </tr>
+          if (note.model.primaryField) {
+            const contentState = convertFromRaw(
+              note.values.find(
+                (value) => value.field?.id === note.model.primaryField?.id
+              )?.data as RawDraftContentState
             )
-          })}
-        </tbody>
-      </table>
-    </div>
+
+            noteIdentifier = contentState.getPlainText()
+          }
+
+          return (
+            <TableRow key={note.id}>
+              <TableCell>{noteIdentifier}</TableCell>
+              <TableCell>{note.model.name}</TableCell>
+              <TableCell>{note.cards.length}</TableCell>
+              <TableCell>
+                <Menu>
+                  <MenuButton icon className="flex items-center">
+                    <Icon aria-label={i18n._(t`Actions`)} icon="more_vert" />
+                  </MenuButton>
+                  <MenuList>
+                    <MenuLink to={`/d/${deckSlug}/note/${note.id}`}>
+                      <Trans>Edit</Trans>
+                    </MenuLink>
+                    <MenuItem onSelect={() => console.log('delete')}>
+                      <Trans>Delete</Trans>
+                    </MenuItem>
+                  </MenuList>
+                </Menu>
+              </TableCell>
+            </TableRow>
+          )
+        })}
+      </TableBody>
+    </Table>
   )
 }
 
