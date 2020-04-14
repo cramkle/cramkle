@@ -34,7 +34,7 @@ const NotesTable: React.FC<Props> = ({ notes, deckSlug }) => {
   }
 
   return (
-    <div className="ba br2 b--light-gray w-100">
+    <div className="ba br2 b--outline w-100">
       <table className="w-100 collapse">
         <thead>
           <tr>
@@ -64,7 +64,7 @@ const NotesTable: React.FC<Props> = ({ notes, deckSlug }) => {
             }
 
             return (
-              <tr key={note.id} className="bt b--light-gray">
+              <tr key={note.id} className="bt b--outline">
                 <td className="ph3 pv2">{noteIdentifier}</td>
                 <td className="ph3 pv2">{note.model.name}</td>
                 <td className="ph3 pv2">{note.cards.length}</td>
