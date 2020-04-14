@@ -8,6 +8,11 @@
   border-color: var(--color-primary);
 }
 
+.hover-c-primary:hover,
+.hover-c-primary:focus {
+  color: var(--color-primary);
+}
+
 .hover-bg-primary:hover,
 .hover-bg-primary:focus {
   background-color: var(--color-primary);
@@ -30,6 +35,11 @@
 }
 .b--secondary {
   border-color: var(--color-secondary);
+}
+
+.hover-c-secondary:hover,
+.hover-c-secondary:focus {
+  color: var(--color-secondary);
 }
 
 .hover-bg-secondary:hover,
