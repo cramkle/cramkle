@@ -11,6 +11,7 @@ import {
 } from '@reach/menu-button'
 import classnames from 'classnames'
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import styles from './MenuButton.css'
 
@@ -62,7 +63,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({ children, ...props }) => {
 
 export const MenuLink: React.FC<MenuLinkProps> = ({ children, ...props }) => {
   return (
-    <ReachMenuLink {...props} className={classnames(styles.menuItem)}>
+    <ReachMenuLink {...props} className={classnames(styles.menuItem)} as={Link}>
       {children}
     </ReachMenuLink>
   )
