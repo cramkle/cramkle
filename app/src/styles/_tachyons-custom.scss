@@ -76,3 +76,28 @@
 .hover-c-on-surface:focus {
   color: var(--color-on-surface);
 }
+
+.c-outline {
+  color: var(--color-outline);
+}
+.bg-outline {
+  background-color: var(--color-outline);
+}
+.b--outline {
+  border-color: var(--color-outline);
+}
+
+.hover-c-outline:hover,
+.hover-c-outline:focus {
+  color: var(--color-outline);
+}
+
+.hover-bg-outline:hover,
+.hover-bg-outline:focus {
+  background-color: var(--color-outline);
+}
+
+.hover-b--outline:hover,
+.hover-b--outline:focus {
+  border-color: var(--color-outline);
+}
