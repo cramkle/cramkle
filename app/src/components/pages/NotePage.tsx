@@ -143,6 +143,7 @@ const NotePage: React.FC = () => {
                 ...value,
                 data: data as RawDraftContentState,
               }))}
+              hideBackSide={false}
               template={
                 flashCardPreview.template as {
                   frontSide: RawDraftContentState
