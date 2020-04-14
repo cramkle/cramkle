@@ -1,8 +1,8 @@
-import { UserModel } from '../models'
+import { UserDocument } from '../models/User'
 
 declare global {
   interface Context {
-    user?: UserModel
+    user?: UserDocument
   }
 
   namespace Express {

@@ -15,12 +15,12 @@ export const root: IResolvers = {
 
 export const queries: IResolverObject = {
   decks: async (_, __, { user }: Context) => {
-    const decks = await DeckModel.find({ ownerId: user._id })
+    const decks = await DeckModel.find({ ownerId: user?._id })
 
     return decks
   },
   deck: async (_, { slug }, { user }: Context) => {
-    return await DeckModel.findOne({ slug, ownerId: user._id })
+    return await DeckModel.findOne({ slug, ownerId: user?._id })
   },
 }
 
@@ -29,31 +29,31 @@ export const mutations: IResolverObject = {
     const deck = await DeckModel.create({
       title,
       description,
-      ownerId: user._id,
+      ownerId: user?._id,
     })
 
     return deck
   },
   updateDeck: (_, { id: _id, title, description }, { user }: Context) => {
     return DeckModel.findOneAndUpdate(
-      { _id, ownerId: user._id },
+      { _id, ownerId: user?._id },
       { title, description },
       { new: true }
     )
   },
   deleteDeck: async (_, { id: _id }, { user }: Context) => {
-    return await DeckModel.findOneAndDelete({ _id, ownerId: user._id }).exec()
+    return await DeckModel.findOneAndDelete({ _id, ownerId: user?._id }).exec()
   },
   publishDeck: (_, { id: _id }, { user }: Context) => {
     return DeckModel.findOneAndUpdate(
-      { _id, ownerId: user._id },
+      { _id, ownerId: user?._id },
       { published: true },
       { new: true }
     )
   },
   unpublishDeck: (_, { id: _id }, { user }: Context) => {
     return DeckModel.findOneAndUpdate(
-      { _id, ownerId: user._id },
+      { _id, ownerId: user?._id },
       { published: false },
       {
         new: true,

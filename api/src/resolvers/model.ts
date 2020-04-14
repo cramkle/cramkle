@@ -44,7 +44,7 @@ export const queries: IResolverObject = {
     return cardModel
   },
   cardModels: async (_, __, { user }: Context) => {
-    return ModelModel.find({ ownerId: user._id })
+    return ModelModel.find({ ownerId: user?._id })
   },
 }
 
@@ -83,7 +83,7 @@ export const mutations: IResolverObject = {
       templates.map(async (template) => {
         return TemplateModel.create({
           ...template,
-          ownerId: user._id,
+          ownerId: user?._id,
         })
       })
     )
@@ -92,7 +92,7 @@ export const mutations: IResolverObject = {
       name,
       fields: fieldRefs,
       templates: templateRefs,
-      ownerId: user._id,
+      ownerId: user?._id,
       primaryFieldId: fieldRefs[0]._id,
     })
 
@@ -100,13 +100,13 @@ export const mutations: IResolverObject = {
   },
   updateModel: (_, { id: _id, name }: UpdateModelInput, { user }: Context) => {
     return ModelModel.findOneAndUpdate(
-      { _id, ownerId: user._id },
+      { _id, ownerId: user?._id },
       { name },
       { new: true }
     )
   },
   deleteModel: async (_, { id: _id }, { user }: Context) => {
-    const model = await ModelModel.findOne({ _id, ownerId: user._id })
+    const model = await ModelModel.findOne({ _id, ownerId: user?._id })
       .populate('fields')
       .populate('templates')
       .exec()
@@ -137,7 +137,7 @@ export const mutations: IResolverObject = {
     const template = await TemplateModel.create({
       name,
       modelId,
-      ownerId: user._id,
+      ownerId: user?._id,
     })
 
     await ModelModel.findByIdAndUpdate(modelId, {
@@ -151,7 +151,7 @@ export const mutations: IResolverObject = {
     { name, modelId }: AddFieldInput,
     { user }: Context
   ) => {
-    const field = await FieldModel.create({ name, modelId, ownerId: user._id })
+    const field = await FieldModel.create({ name, modelId, ownerId: user?._id })
 
     await ModelModel.findByIdAndUpdate(modelId, {
       $push: { fields: field },
