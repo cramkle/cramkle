@@ -171,7 +171,7 @@ const NotePage: React.FC = () => {
 
         <t.Body1>Flashcards</t.Body1>
 
-        <Table className="mt3">
+        <Table className="mt3 w-100">
           <TableHead>
             <TableRow>
               <TableCell />
