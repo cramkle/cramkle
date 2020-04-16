@@ -3,6 +3,8 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { CardStatus } from "./../../../../__generated__/globalTypes";
+
 // ====================================================
 // GraphQL query operation: NoteQuery
 // ====================================================
@@ -193,6 +195,10 @@ export interface NoteQuery_note_cards {
    * Due date of this card, in a timestamp format.
    */
   due: number | null;
+  /**
+   * Current status of this card.
+   */
+  state: CardStatus | null;
   /**
    * Template associated with this card.
    */

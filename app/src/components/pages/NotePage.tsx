@@ -28,6 +28,7 @@ import Button from 'components/views/Button'
 import Dialog, { DialogContent } from 'components/views/Dialog'
 import FlashCardRenderer from 'components/FlashCardRenderer'
 import FieldValueEditor from 'components/FieldValueEditor'
+import FlashCardStatus from 'components/FlashCardStatus'
 
 const NOTE_QUERY = gql`
   query NoteQuery($noteId: ID!) {
@@ -56,6 +57,7 @@ const NOTE_QUERY = gql`
         active
         lapses
         due
+        state
         template {
           name
           frontSide {
@@ -188,6 +190,7 @@ const NotePage: React.FC = () => {
             <TableRow>
               <TableCell />
               <TableCell>Flash Card</TableCell>
+              <TableCell>Status</TableCell>
               <TableCell>Template</TableCell>
               <TableCell>Lapses</TableCell>
               <TableCell>Due Date</TableCell>
@@ -200,6 +203,9 @@ const NotePage: React.FC = () => {
                   <Checkbox checked={flashCard.active} />
                 </TableCell>
                 <TableCell>{flashCard.id}</TableCell>
+                <TableCell>
+                  <FlashCardStatus status={flashCard.state} />
+                </TableCell>
                 <TableCell>{flashCard.template.name}</TableCell>
                 <TableCell align="right">{flashCard.lapses}</TableCell>
                 <TableCell>{flashCard.due}</TableCell>
