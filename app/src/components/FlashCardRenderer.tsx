@@ -98,7 +98,9 @@ const FlashCardPanel: React.FC<PanelProps> = ({
 
   return (
     <>
-      {!hideLabel && <t.Caption className="mb2">{label}</t.Caption>}
+      {!hideLabel && (
+        <t.Caption className="mb2 c-text-secondary">{label}</t.Caption>
+      )}
       {templateContent == null ? (
         <t.Body2 className="db mv2">{emptyMessage}</t.Body2>
       ) : (
