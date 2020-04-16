@@ -161,13 +161,14 @@ const NotePage: React.FC = () => {
       <Container>
         <BackButton />
 
-        <div className="flex flex-column mb3">
-          <t.Caption>
-            <Trans>Deck "{deck.title}"</Trans>
+        <div className="flex flex-column mb4">
+          <t.Headline4>
+            <Trans>Note details</Trans>
+          </t.Headline4>
+          <t.Headline6 className="mt3">{noteIdentifier}</t.Headline6>
+          <t.Caption className="mt1 c-text-secondary">
+            <Trans>Deck {deck.title}</Trans>
           </t.Caption>
-          <t.Headline5 className="mt1">
-            <Trans>Note "{noteIdentifier}"</Trans>
-          </t.Headline5>
         </div>
 
         {values.map((value) => (
@@ -181,11 +182,13 @@ const NotePage: React.FC = () => {
           </React.Fragment>
         ))}
 
-        <Divider className="mv3" />
+        <Divider className="mv4" />
 
-        <t.Body1 className="fw5">Flashcards</t.Body1>
+        <t.Headline6 className="fw5">
+          <Trans>Flashcards</Trans>
+        </t.Headline6>
 
-        <Table className="mt3 w-100">
+        <Table className="mv4 w-100">
           <TableHead>
             <TableRow>
               <TableCell />
@@ -211,7 +214,7 @@ const NotePage: React.FC = () => {
                 <TableCell>{flashCard.due}</TableCell>
                 <TableCell>
                   <Button onClick={() => handleShowFlashCardPreview(flashCard)}>
-                    Preview
+                    <Trans>Preview</Trans>
                   </Button>
                 </TableCell>
               </TableRow>

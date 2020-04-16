@@ -13,7 +13,7 @@ const BackButton: React.FunctionComponent = () => {
 
   return (
     <Button
-      className="mb2 mt2-ns"
+      className="mb3 mt2-ns"
       icon={<Icon icon="arrow_back" aria-hidden="true" />}
       onClick={handleClick}
       dense
