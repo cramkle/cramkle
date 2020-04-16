@@ -1,3 +1,4 @@
+/* Primary */
 .c-primary {
   color: var(--color-primary);
 }
@@ -18,6 +19,7 @@
   background-color: var(--color-primary);
 }
 
+/* On Primary */
 .c-on-primary {
   color: var(--color-on-primary);
 }
@@ -27,6 +29,7 @@
   color: var(--color-on-primary);
 }
 
+/* Secondary */
 .c-secondary {
   color: var(--color-secondary);
 }
@@ -47,6 +50,7 @@
   background-color: var(--color-secondary);
 }
 
+/* On Secondary */
 .c-on-secondary {
   color: var(--color-on-secondary);
 }
@@ -56,11 +60,12 @@
   color: var(--color-on-secondary);
 }
 
+/* Surface */
 .bg-surface {
   background-color: var(--color-surface);
 }
 .b--surface {
-  border-color: var(--color-surface-border);
+  border-color: var(--color-surface);
 }
 
 .hover-bg-surface:hover,
@@ -68,6 +73,7 @@
   background-color: var(--color-surface);
 }
 
+/* On Surface */
 .c-on-surface {
   color: var(--color-on-surface);
 }
@@ -77,6 +83,7 @@
   color: var(--color-on-surface);
 }
 
+/* Outline */
 .c-outline {
   color: var(--color-outline);
 }
@@ -100,4 +107,80 @@
 .hover-b--outline:hover,
 .hover-b--outline:focus {
   border-color: var(--color-outline);
+}
+
+/* Muted */
+.c-muted {
+  color: var(--color-muted);
+}
+.bg-muted {
+  background-color: var(--color-muted);
+}
+.b--muted {
+  border-color: var(--color-muted);
+}
+
+.hover-c-muted:hover,
+.hover-c-muted:focus {
+  color: var(--color-muted);
+}
+
+.hover-bg-muted:hover,
+.hover-bg-muted:focus {
+  background-color: var(--color-muted);
+}
+
+.hover-b--muted:hover,
+.hover-b--muted:focus {
+  border-color: var(--color-muted);
+}
+
+/* Text Primary */
+.c-text-primary {
+  color: var(--color-text-primary);
+}
+
+.hover-c-text-primary:hover,
+.hover-c-text-primary:focus {
+  color: var(--color-text-primary);
+}
+
+/* Text Secondary */
+.c-text-secondary {
+  color: var(--color-text-secondary);
+}
+
+.hover-c-text-secondary:hover,
+.hover-c-text-secondary:focus {
+  color: var(--color-text-secondary);
+}
+
+/* Text Disabled */
+.c-text-disabled {
+  color: var(--color-text-disabled);
+}
+
+.hover-c-text-disabled:hover,
+.hover-c-text-disabled:focus {
+  color: var(--color-text-disabled);
+}
+
+/* Text Hint */
+.c-text-hint {
+  color: var(--color-text-hint);
+}
+
+.hover-c-text-hint:hover,
+.hover-c-text-hint:focus {
+  color: var(--color-text-hint);
+}
+
+/* Text Icon */
+.c-text-icon {
+  color: var(--color-text-icon);
+}
+
+.hover-c-text-icon:hover,
+.hover-c-text-icon:focus {
+  color: var(--color-text-icon);
 }

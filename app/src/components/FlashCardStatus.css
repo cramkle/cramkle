@@ -1,0 +1,14 @@
+.new {
+  color: var(--color-on-success);
+  background-color: var(--color-success);
+}
+
+.learning {
+  color: var(--color-on-surface);
+  background-color: var(--color-muted);
+}
+
+.due {
+  color: var(--color-on-emphasis);
+  background-color: var(--color-emphasis);
+}
