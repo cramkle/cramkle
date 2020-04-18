@@ -238,10 +238,30 @@ type Mutation {
   """
   createNote(
     """ Deck id """
-    deckId: ID!,
+    deckId: ID!
     """ Model id """
-    modelId: ID!,
+    modelId: ID!
     """ Values in note """
     fieldValues: [FieldValueInput!]!
   ): Note @authenticate
+
+  """
+  Delete a give note
+  """
+  deleteNote(
+    """ Note id """
+    noteId: ID!
+  ): Note @authenticate
+
+  """
+  Update the field value of a note
+  """
+  updateFieldValue(
+    """ Note id  """
+    noteId: ID!
+    """ Field id """
+    fieldId: ID!
+    """ Field value content """
+    data: ContentStateInput!
+  ): FieldValue @authenticate
 }

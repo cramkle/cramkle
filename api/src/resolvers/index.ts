@@ -22,7 +22,10 @@ import {
   root as templateRoot,
 } from './template'
 import { root as fieldRoot } from './field'
-import { root as fieldValueRoot } from './fieldValue'
+import {
+  mutations as fieldValueMutations,
+  root as fieldValueRoot,
+} from './fieldValue'
 import { root as flashCardRoot } from './flashCard'
 import {
   mutations as modelMutations,
@@ -56,5 +59,6 @@ export default {
     ...templateMutations,
     ...userMutations,
     ...noteMutations,
+    ...fieldValueMutations,
   },
 }
