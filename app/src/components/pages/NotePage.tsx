@@ -1,8 +1,8 @@
-import { useQuery } from '@apollo/react-hooks'
+import { useMutation, useQuery } from '@apollo/react-hooks'
 import { Trans } from '@lingui/macro'
 import gql from 'graphql-tag'
-import { RawDraftContentState, convertFromRaw } from 'draft-js'
-import React, { useState } from 'react'
+import { ContentState, RawDraftContentState, convertToRaw } from 'draft-js'
+import React, { useCallback, useRef, useState } from 'react'
 import { useParams } from 'react-router'
 import { Helmet } from 'react-helmet'
 
@@ -15,6 +15,7 @@ import {
   NoteQuery,
   NoteQueryVariables,
   NoteQuery_note_cards,
+  NoteQuery_note_values,
 } from './__generated__/NoteQuery'
 import {
   Table,
@@ -29,9 +30,40 @@ import Dialog, { DialogContent } from 'components/views/Dialog'
 import FlashCardRenderer from 'components/FlashCardRenderer'
 import FieldValueEditor from 'components/FieldValueEditor'
 import FlashCardStatus from 'components/FlashCardStatus'
+import {
+  UpdateFieldValue,
+  UpdateFieldValueVariables,
+} from './__generated__/UpdateFieldValue'
+import CircularProgress from 'components/views/CircularProgress'
 import { getNoteIdentifier } from 'utils/noteIdentifier'
 
+const DRAFT_CONTENT_FRAGMENT = gql`
+  fragment DraftContent on ContentState {
+    id
+    blocks {
+      key
+      type
+      text
+      depth
+      inlineStyleRanges {
+        style
+        offset
+        length
+      }
+      entityRanges {
+        key
+        length
+        offset
+      }
+      data
+    }
+    entityMap
+  }
+`
+
 const NOTE_QUERY = gql`
+  ${DRAFT_CONTENT_FRAGMENT}
+
   query NoteQuery($noteId: ID!) {
     note(id: $noteId) {
       id
@@ -71,29 +103,77 @@ const NOTE_QUERY = gql`
       }
     }
   }
+`
 
-  fragment DraftContent on ContentState {
-    id
-    blocks {
-      key
-      type
-      text
-      depth
-      inlineStyleRanges {
-        style
-        offset
-        length
+const UPDATE_FIELD_VALUE_MUTATION = gql`
+  ${DRAFT_CONTENT_FRAGMENT}
+
+  mutation UpdateFieldValue(
+    $noteId: ID!
+    $fieldId: ID!
+    $data: ContentStateInput!
+  ) {
+    updateFieldValue(noteId: $noteId, fieldId: $fieldId, data: $data) {
+      id
+      data {
+        ...DraftContent
       }
-      entityRanges {
-        key
-        length
-        offset
-      }
-      data
     }
-    entityMap
   }
 `
+
+const FIELD_VALUE_CHANGE_DEBOUNCE = 500 /* ms */
+
+interface FieldValueDetailProps {
+  noteId: string
+  fieldValue: NoteQuery_note_values
+}
+
+const FieldValueDetail: React.FC<FieldValueDetailProps> = ({
+  noteId,
+  fieldValue,
+}) => {
+  const [updateFieldValueMutation, { loading }] = useMutation<
+    UpdateFieldValue,
+    UpdateFieldValueVariables
+  >(UPDATE_FIELD_VALUE_MUTATION)
+
+  const debounceIdRef = useRef<NodeJS.Timeout | null>(null)
+
+  const handleChange = useCallback(
+    (content: ContentState, field: { id: string }) => {
+      if (debounceIdRef.current) {
+        clearTimeout(debounceIdRef.current)
+      }
+
+      debounceIdRef.current = setTimeout(() => {
+        updateFieldValueMutation({
+          variables: {
+            noteId,
+            fieldId: field.id,
+            data: convertToRaw(content),
+          },
+        })
+      }, FIELD_VALUE_CHANGE_DEBOUNCE)
+    },
+    [noteId, updateFieldValueMutation]
+  )
+
+  return (
+    <>
+      <t.Body1 className="h2 flex items-center">
+        <Trans>{fieldValue.field.name} field</Trans>{' '}
+        {loading && <CircularProgress className="ml2" size={16} />}
+      </t.Body1>
+      <FieldValueEditor
+        className="mb3 mt1"
+        initialContentState={fieldValue.data}
+        field={fieldValue.field}
+        onChange={handleChange}
+      />
+    </>
+  )
+}
 
 const NotePage: React.FC = () => {
   const { slug: deckSlug, noteId } = useParams<{
@@ -166,14 +246,11 @@ const NotePage: React.FC = () => {
         </div>
 
         {values.map((value) => (
-          <React.Fragment key={value.id}>
-            <t.Caption>{value.field.name}</t.Caption>
-            <FieldValueEditor
-              className="mb3 mt1"
-              initialContentState={value.data}
-              field={value.field}
-            />
-          </React.Fragment>
+          <FieldValueDetail
+            noteId={data.note.id}
+            fieldValue={value}
+            key={value.id}
+          />
         ))}
 
         <Divider className="mv4" />
