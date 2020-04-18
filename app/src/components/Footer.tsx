@@ -34,7 +34,7 @@ const Footer: React.FC = () => {
         <ul className="list mt3 flex">
           <li>
             <a
-              href="https://github.com/lucasecdb/cramkle"
+              href="https://github.com/cramkle/cramkle"
               rel="noopener noreferrer"
               target="_blank"
             >
