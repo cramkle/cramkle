@@ -27,11 +27,13 @@ const DECK_QUERY = gql`
       notes {
         id
         values {
+          id
           data {
             ...DraftContent
           }
           field {
             id
+            name
           }
         }
         model {

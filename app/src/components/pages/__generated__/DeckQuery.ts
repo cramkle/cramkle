@@ -47,10 +47,18 @@ export interface DeckQuery_deck_notes_values_field {
    * Field id
    */
   id: string;
+  /**
+   * Name of the field
+   */
+  name: string;
 }
 
 export interface DeckQuery_deck_notes_values {
   __typename: "FieldValue";
+  /**
+   * Field value id
+   */
+  id: string;
   /**
    * Field data
    */
