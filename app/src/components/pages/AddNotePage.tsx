@@ -21,7 +21,7 @@ import {
   CreateNoteMutationVariables,
 } from './__generated__/CreateNoteMutation'
 import { FieldInput, FieldValueInput } from '__generated__/globalTypes'
-import { EditorState, convertToRaw } from 'draft-js'
+import { ContentState, convertToRaw } from 'draft-js'
 import CircularProgress from 'components/views/CircularProgress'
 import { notificationState } from 'notification/index'
 
@@ -107,7 +107,7 @@ const AddNotePage: React.FC = () => {
   }, [createNote, deck, selectedModelId, fieldValueMap, history, slug])
 
   const handleFieldValueChange = useCallback(
-    (field: FieldInput, editorState: EditorState) => {
+    (content: ContentState, field: FieldInput) => {
       setFieldValueMap((prevValue) => ({
         ...prevValue,
         [field.id]: {
@@ -115,7 +115,7 @@ const AddNotePage: React.FC = () => {
             id: field.id,
             name: field.name,
           },
-          data: convertToRaw(editorState.getCurrentContent()),
+          data: convertToRaw(content),
         },
       }))
     },
