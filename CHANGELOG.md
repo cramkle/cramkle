@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Generic error page.
 - Chips with quantity of fields and templates on model card.
 - Babel's runtime plugin. (server)
+- Ability to add, edit and delete notes inside a Deck.
 
 ### Changed
 - Disabled React's Concurrent Mode.
