@@ -1,6 +1,7 @@
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import {
+  ContentState,
   Editor,
   EditorState,
   RawDraftContentState,
@@ -8,7 +9,7 @@ import {
   convertFromRaw,
 } from 'draft-js'
 import 'draft-js/dist/Draft.css'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { TabController } from 'react-tab-controller'
 
 import InlineStyleControls from 'components/editor/InlineStyleControls'
@@ -18,7 +19,10 @@ import Card, { CardActionButtons, CardActions } from 'views/Card'
 interface Props {
   className?: string
   initialContentState?: any
-  onChange?: (field: { id: string; name: string }, state: EditorState) => void
+  onChange?: (
+    content: ContentState,
+    field: { id: string; name: string }
+  ) => void
   field: { id: string; name: string }
 }
 
@@ -42,9 +46,17 @@ const FieldValueEditor: React.FC<Props> = ({
     return EditorState.createWithContent(contentState)
   })
 
+  const contentState = editor.getCurrentContent()
+  const prevContentState = useRef(contentState)
+
   useEffect(() => {
-    onChange?.(field, editor)
-  }, [field, editor, onChange])
+    if (contentState === prevContentState.current) {
+      return
+    }
+
+    prevContentState.current = contentState
+    onChange?.(contentState, field)
+  }, [onChange, contentState, field])
 
   const handleStyleToggle = useCallback(
     (style: string) => {
