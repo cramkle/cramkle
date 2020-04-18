@@ -29,6 +29,7 @@ import Dialog, { DialogContent } from 'components/views/Dialog'
 import FlashCardRenderer from 'components/FlashCardRenderer'
 import FieldValueEditor from 'components/FieldValueEditor'
 import FlashCardStatus from 'components/FlashCardStatus'
+import { getNoteIdentifier } from 'utils/noteIdentifier'
 
 const NOTE_QUERY = gql`
   query NoteQuery($noteId: ID!) {
@@ -123,21 +124,11 @@ const NotePage: React.FC = () => {
   }
 
   const {
-    note: {
-      id,
-      values,
-      deck,
-      model: { primaryField },
-      cards,
-    },
+    note: { values, deck, cards },
+    note,
   } = data
 
-  const contentState = convertFromRaw(
-    values.find((value) => value.field.id === primaryField?.id)
-      ?.data as RawDraftContentState
-  )
-
-  const noteIdentifier = contentState?.getPlainText() ?? id
+  const noteIdentifier = getNoteIdentifier(note)
 
   return (
     <>
