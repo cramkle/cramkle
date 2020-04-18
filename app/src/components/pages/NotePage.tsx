@@ -95,7 +95,10 @@ const NOTE_QUERY = gql`
 `
 
 const NotePage: React.FC = () => {
-  const { noteId } = useParams<{ noteId: string }>()
+  const { slug: deckSlug, noteId } = useParams<{
+    slug: string
+    noteId: string
+  }>()
   const { data, loading } = useQuery<NoteQuery, NoteQueryVariables>(
     NOTE_QUERY,
     { variables: { noteId } }
@@ -159,7 +162,7 @@ const NotePage: React.FC = () => {
       )}
       <Helmet title={noteIdentifier} />
       <Container>
-        <BackButton />
+        <BackButton to={`/d/${deckSlug}`} />
 
         <div className="flex flex-column mb4">
           <t.Headline4>

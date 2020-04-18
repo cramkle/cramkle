@@ -5,11 +5,19 @@ import { useHistory } from 'react-router'
 import Button from 'views/Button'
 import Icon from 'views/Icon'
 
-const BackButton: React.FunctionComponent = () => {
+interface Props {
+  to?: string
+}
+
+const BackButton: React.FC<Props> = ({ to }) => {
   const history = useHistory()
   const handleClick = useCallback(() => {
-    history.goBack()
-  }, [history])
+    if (to) {
+      history.push(to)
+    } else {
+      history.goBack()
+    }
+  }, [to, history])
 
   return (
     <Button

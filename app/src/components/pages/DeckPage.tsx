@@ -100,7 +100,7 @@ const DeckPage: React.FunctionComponent = () => {
     <>
       <Helmet title={deck.title} />
       <Container>
-        <BackButton />
+        <BackButton to="/decks" />
         <div className="flex flex-wrap justify-between items-center">
           <Headline4>{deck.title}</Headline4>
 

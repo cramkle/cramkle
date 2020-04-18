@@ -138,7 +138,7 @@ const AddNotePage: React.FC = () => {
 
   return (
     <Container>
-      <BackButton />
+      <BackButton to={`/d/${slug}`} />
 
       <Headline5>
         <Trans>Create Note for deck "{deck.title}"</Trans>
