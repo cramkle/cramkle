@@ -1,10 +1,24 @@
-import React from 'react'
+import classnames from 'classnames'
+import React, { CSSProperties } from 'react'
 
 import styles from './CircularProgress.scss'
 
-const CircularProgress: React.FC = () => {
+interface Props extends React.HTMLProps<HTMLDivElement> {
+  size?: number
+}
+
+const CircularProgress: React.FC<Props> = ({
+  size = 28,
+  style = {},
+  className = '',
+  ...props
+}) => {
   return (
-    <div className={styles.spinner}>
+    <div
+      {...props}
+      className={classnames(className, styles.spinner)}
+      style={{ '--size': `${size}px`, ...style } as CSSProperties}
+    >
       <div className={styles.spinnerContainer}>
         <div className={styles.spinnerLayer}>
           <div
