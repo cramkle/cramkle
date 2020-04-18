@@ -1,6 +1,5 @@
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import { RawDraftContentState, convertFromRaw } from 'draft-js'
 import React from 'react'
 
 import Card from 'views/Card'
@@ -15,6 +14,7 @@ import {
 import { DeckQuery_deck_notes } from 'pages/__generated__/DeckQuery'
 import Icon from './views/Icon'
 import { Table, TableBody, TableCell, TableHead, TableRow } from './views/Table'
+import { getNoteIdentifier } from 'utils/noteIdentifier'
 
 interface Props {
   notes: DeckQuery_deck_notes[]
@@ -51,17 +51,7 @@ const NotesTable: React.FC<Props> = ({ notes, deckSlug }) => {
       </TableHead>
       <TableBody>
         {notes.map((note) => {
-          let noteIdentifier = note.id
-
-          if (note.model.primaryField) {
-            const contentState = convertFromRaw(
-              note.values.find(
-                (value) => value.field?.id === note.model.primaryField?.id
-              )?.data as RawDraftContentState
-            )
-
-            noteIdentifier = contentState.getPlainText()
-          }
+          const noteIdentifier = getNoteIdentifier(note)
 
           return (
             <TableRow key={note.id}>
