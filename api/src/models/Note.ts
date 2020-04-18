@@ -66,6 +66,7 @@ export interface Note {
   values: Types.DocumentArray<FieldValueDocument>
   deckId: Types.ObjectId
   modelId: Types.ObjectId
+  ownerId: Types.ObjectId
 }
 
 export interface NoteDocument extends Note, Document {}
@@ -78,6 +79,10 @@ const NoteSchema = new Schema<NoteDocument>({
   modelId: {
     type: Schema.Types.ObjectId,
     ref: 'CardModel',
+  },
+  ownerId: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
   },
   values: [FieldValueSchema],
   cards: [FlashCardSchema],

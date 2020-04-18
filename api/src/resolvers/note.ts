@@ -61,6 +61,7 @@ export const mutations: IResolverObject = {
     const note = await NoteModel.create({
       modelId,
       deckId,
+      ownerId: user!.id,
       values: fieldValues.map((fieldValue) => ({
         data: fieldValue.data,
         fieldId: fieldValue.field.id,
@@ -82,6 +83,25 @@ export const mutations: IResolverObject = {
       { _id: deckId, ownerId: user?._id },
       { $push: { notes: note } }
     )
+
+    return note
+  },
+  deleteNote: async (
+    _: unknown,
+    { noteId }: { noteId: string },
+    ctx: Context
+  ) => {
+    const note = await NoteModel.findOne({ _id: noteId, ownerId: ctx.user?.id })
+
+    if (!note) {
+      throw new ApolloError('Note not found')
+    }
+
+    await note.remove()
+
+    await DeckModel.findByIdAndUpdate(note.deckId, {
+      $pull: { notes: note._id },
+    })
 
     return note
   },

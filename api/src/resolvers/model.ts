@@ -109,6 +109,7 @@ export const mutations: IResolverObject = {
     const model = await ModelModel.findOne({ _id, ownerId: user?._id })
       .populate('fields')
       .populate('templates')
+      .populate('notes')
       .exec()
 
     if (!model) {
@@ -123,6 +124,10 @@ export const mutations: IResolverObject = {
       model.templates.map((templateRef) =>
         TemplateModel.findByIdAndDelete(templateRef)
       )
+    )
+
+    await Promise.all(
+      model.notes.map((noteRef) => NoteModel.findByIdAndDelete(noteRef))
     )
 
     await model.remove()
