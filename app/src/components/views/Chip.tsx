@@ -25,6 +25,7 @@ export const Chip: React.FC<ChipProps> = ({
           [styles.success]: type === 'success',
           [styles.error]: type === 'error',
           [styles.emphasis]: type === 'emphasis',
+          [styles.default]: type === undefined,
         }
       )}
       role="row"

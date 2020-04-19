@@ -38,7 +38,7 @@ const ModelCard: React.FunctionComponent<Props & ModelsQuery_cardModels> = ({
       >
         <Headline6>{name}</Headline6>
         {!!(templates.length || fields.length) && (
-          <div className="mdc-chip-set">
+          <div className="flex">
             {!!templates.length && (
               <Chip>
                 {i18n._(
@@ -50,7 +50,7 @@ const ModelCard: React.FunctionComponent<Props & ModelsQuery_cardModels> = ({
               </Chip>
             )}
             {!!fields.length && (
-              <Chip>
+              <Chip className="ml2">
                 {i18n._(
                   plural(fields.length, {
                     one: '# field',
