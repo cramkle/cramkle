@@ -1,6 +1,6 @@
 import { IResolvers } from 'graphql-tools'
-import { NoteModel, TemplateModel } from '../models'
-import { FlashCardDocument } from '../models/Note'
+import { NoteModel, TemplateModel } from '../mongo'
+import { FlashCardDocument } from '../mongo/Note'
 
 export const root: IResolvers = {
   Card: {

@@ -1,7 +1,7 @@
 import { IResolverObject, IResolvers } from 'graphql-tools'
 
-import { FieldModel, NoteModel } from '../models'
-import { FieldValueDocument } from '../models/Note'
+import { FieldModel, NoteModel } from '../mongo'
+import { FieldValueDocument } from '../mongo/Note'
 import { ApolloError } from 'apollo-server'
 
 export const root: IResolvers = {

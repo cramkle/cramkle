@@ -1,8 +1,8 @@
 import { IResolverObject, IResolvers } from 'graphql-tools'
 
-import { ModelModel, TemplateModel } from '../models'
-import { ContentStateDocument } from '../models/ContentState'
-import { TemplateDocument } from '../models/Template'
+import { ModelModel, TemplateModel } from '../mongo'
+import { ContentStateDocument } from '../mongo/ContentState'
+import { TemplateDocument } from '../mongo/Template'
 
 export const root: IResolvers = {
   Template: {

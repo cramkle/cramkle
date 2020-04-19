@@ -1,6 +1,6 @@
 import { IResolvers } from 'graphql-tools'
-import { ModelModel } from '../models'
-import { FieldDocument } from '../models/Field'
+import { ModelModel } from '../mongo'
+import { FieldDocument } from '../mongo/Field'
 
 export const root: IResolvers = {
   Field: {

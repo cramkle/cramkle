@@ -5,7 +5,7 @@ import session from 'express-session'
 import redis from 'redis'
 import createStore from 'connect-redis'
 
-import UserModel, { UserDocument } from '../models/User'
+import UserModel, { UserDocument } from '../mongo/User'
 
 const RedisStore = createStore(session)
 

@@ -8,10 +8,10 @@ import {
   NoteModel,
   TemplateModel,
   UserModel,
-} from '../models'
-import { Field as FieldType } from '../models/Field'
-import { Template as TemplateType } from '../models/Template'
-import { ModelDocument } from '../models/Model'
+} from '../mongo'
+import { Field as FieldType } from '../mongo/Field'
+import { Template as TemplateType } from '../mongo/Template'
+import { ModelDocument } from '../mongo/Model'
 
 export const root: IResolvers = {
   CardModel: {
