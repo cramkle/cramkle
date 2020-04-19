@@ -1,7 +1,7 @@
 import { ApolloError } from 'apollo-server'
 import { IResolverObject, IResolvers } from 'graphql-tools'
 
-import { DeckModel, ModelModel, NoteModel } from '../mongo'
+import { DeckModel, ModelModel, NoteModel, TemplateModel } from '../mongo'
 import { NoteDocument } from '../mongo/Note'
 
 export const root: IResolvers = {
@@ -68,21 +68,17 @@ export const mutations: IResolverObject = {
       })),
     })
 
+    const modelTemplates = await TemplateModel.find({ modelId: model._id })
+
     note.set(
       'cards',
-      model.templates.map((templateId) => ({ templateId, noteId: note._id }))
+      modelTemplates.map(({ _id: templateId }) => ({
+        templateId,
+        noteId: note._id,
+      }))
     )
 
     await note.save()
-
-    await ModelModel.findOneAndUpdate(
-      { _id: modelId, ownerId: user?._id },
-      { $push: { notes: note } }
-    )
-    await DeckModel.findOneAndUpdate(
-      { _id: deckId, ownerId: user?._id },
-      { $push: { notes: note } }
-    )
 
     return note
   },
@@ -98,10 +94,6 @@ export const mutations: IResolverObject = {
     }
 
     await note.remove()
-
-    await DeckModel.findByIdAndUpdate(note.deckId, {
-      $pull: { notes: note._id },
-    })
 
     return note
   },

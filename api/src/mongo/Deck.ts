@@ -7,7 +7,6 @@ export interface Deck {
   slug: string
   published: boolean
   ownerId: Types.ObjectId
-  notes: Types.Array<Types.ObjectId>
 }
 
 export interface DeckDocument extends Deck, Document {}
@@ -22,12 +21,6 @@ const DeckSchema = new Schema<DeckDocument>({
     type: String,
     unique: true,
   },
-  notes: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Note',
-    },
-  ],
   ownerId: {
     type: Schema.Types.ObjectId,
     ref: 'User',

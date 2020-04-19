@@ -2,14 +2,12 @@ import { IResolverObject, IResolvers } from 'graphql-tools'
 
 import { DeckModel, NoteModel, UserModel } from '../mongo'
 import { DeckDocument } from '../mongo/Deck'
-import { findRefFromList } from './utils'
 
 export const root: IResolvers = {
   Deck: {
     id: (root: DeckDocument) => root._id.toString(),
     owner: (root: DeckDocument) => UserModel.findById(root.ownerId),
-    notes: (root: DeckDocument) =>
-      Promise.all(findRefFromList(NoteModel, root.notes)),
+    notes: (root: DeckDocument) => NoteModel.find({ deckId: root._id }),
   },
 }
 
