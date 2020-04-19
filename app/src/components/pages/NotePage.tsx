@@ -1,22 +1,13 @@
 import { useMutation, useQuery } from '@apollo/react-hooks'
 import { Trans } from '@lingui/macro'
-import gql from 'graphql-tag'
-import { ContentState, RawDraftContentState, convertToRaw } from 'draft-js'
-import React, { useCallback, useRef, useState } from 'react'
-import { useParams } from 'react-router'
-import { Helmet } from 'react-helmet'
-
-import useTopBarLoading from 'hooks/useTopBarLoading'
-import Container from 'views/Container'
-import Divider from 'views/Divider'
 import BackButton from 'components/BackButton'
-import * as t from 'views/Typography'
-import {
-  NoteQuery,
-  NoteQueryVariables,
-  NoteQuery_note_cards,
-  NoteQuery_note_values,
-} from './__generated__/NoteQuery'
+import FieldValueEditor from 'components/FieldValueEditor'
+import FlashCardRenderer from 'components/FlashCardRenderer'
+import FlashCardStatus from 'components/FlashCardStatus'
+import Button from 'components/views/Button'
+import Checkbox from 'components/views/Checkbox'
+import CircularProgress from 'components/views/CircularProgress'
+import Dialog, { DialogContent } from 'components/views/Dialog'
 import {
   Table,
   TableBody,
@@ -24,18 +15,27 @@ import {
   TableHead,
   TableRow,
 } from 'components/views/Table'
-import Checkbox from 'components/views/Checkbox'
-import Button from 'components/views/Button'
-import Dialog, { DialogContent } from 'components/views/Dialog'
-import FlashCardRenderer from 'components/FlashCardRenderer'
-import FieldValueEditor from 'components/FieldValueEditor'
-import FlashCardStatus from 'components/FlashCardStatus'
+import { ContentState, RawDraftContentState, convertToRaw } from 'draft-js'
+import gql from 'graphql-tag'
+import useTopBarLoading from 'hooks/useTopBarLoading'
+import React, { useCallback, useRef, useState } from 'react'
+import { Helmet } from 'react-helmet'
+import { useParams } from 'react-router'
+import { getNoteIdentifier } from 'utils/noteIdentifier'
+import Container from 'views/Container'
+import Divider from 'views/Divider'
+import * as t from 'views/Typography'
+
+import {
+  NoteQuery,
+  NoteQueryVariables,
+  NoteQuery_note_cards,
+  NoteQuery_note_values,
+} from './__generated__/NoteQuery'
 import {
   UpdateFieldValue,
   UpdateFieldValueVariables,
 } from './__generated__/UpdateFieldValue'
-import CircularProgress from 'components/views/CircularProgress'
-import { getNoteIdentifier } from 'utils/noteIdentifier'
 
 const DRAFT_CONTENT_FRAGMENT = gql`
   fragment DraftContent on ContentState {

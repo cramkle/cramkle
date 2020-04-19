@@ -1,4 +1,3 @@
-import { TabController } from 'react-tab-controller'
 import {
   CompositeDecorator,
   EditorState,
@@ -9,15 +8,16 @@ import {
 } from 'draft-js'
 import 'draft-js/dist/Draft.css'
 import React, { useCallback, useState } from 'react'
+import { TabController } from 'react-tab-controller'
+import Card, { CardActionButtons, CardActions } from 'views/Card'
 
-import InlineStyleControls from './editor/InlineStyleControls'
-import BlockStyleControls from './editor/BlockStyleControls'
-import { decorators as tagsDecorators } from './editor/TagsPopup'
-import TagEditor from './editor/TagEditor'
 import { useHints } from './HintsContext'
 import SaveTemplateButton from './SaveTemplateButton'
+import BlockStyleControls from './editor/BlockStyleControls'
+import InlineStyleControls from './editor/InlineStyleControls'
+import TagEditor from './editor/TagEditor'
+import { decorators as tagsDecorators } from './editor/TagsPopup'
 import { ModelQuery_cardModel_templates_frontSide as TemplateContent } from './pages/__generated__/ModelQuery'
-import Card, { CardActionButtons, CardActions } from 'views/Card'
 
 const decorators = new CompositeDecorator(tagsDecorators)
 

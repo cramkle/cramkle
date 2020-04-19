@@ -1,9 +1,8 @@
 import { Trans } from '@lingui/macro'
-import { Headline5 } from 'views/Typography'
-import React from 'react'
-
 import GeneralSettings from 'components/GeneralSettings'
+import React from 'react'
 import Container from 'views/Container'
+import { Headline5 } from 'views/Typography'
 
 const SettingsPage: React.FunctionComponent = () => {
   return (

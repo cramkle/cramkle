@@ -1,26 +1,12 @@
 // @ts-ignore typings are outdated
 import JSON, { GraphQLJSONObject as JSONObject } from 'graphql-type-json'
 
+import { root as contentStateRoot } from './contentState'
 import {
   mutations as deckMutations,
   queries as deckQueries,
   root as deckRoot,
 } from './deck'
-import {
-  mutations as noteMutations,
-  queries as noteQueries,
-  root as noteRoot,
-} from './note'
-import {
-  mutations as userMutations,
-  queries as userQueries,
-  root as userRoot,
-} from './user'
-import {
-  mutations as templateMutations,
-  queries as templateQueries,
-  root as templateRoot,
-} from './template'
 import { root as fieldRoot } from './field'
 import {
   mutations as fieldValueMutations,
@@ -32,7 +18,21 @@ import {
   queries as modelQueries,
   root as modelRoot,
 } from './model'
-import { root as contentStateRoot } from './contentState'
+import {
+  mutations as noteMutations,
+  queries as noteQueries,
+  root as noteRoot,
+} from './note'
+import {
+  mutations as templateMutations,
+  queries as templateQueries,
+  root as templateRoot,
+} from './template'
+import {
+  mutations as userMutations,
+  queries as userQueries,
+  root as userRoot,
+} from './user'
 
 export default {
   JSON,

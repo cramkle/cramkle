@@ -1,4 +1,5 @@
 import { IResolvers } from 'graphql-tools'
+
 import { ContentStateDocument } from '../mongo/ContentState'
 
 export const root: IResolvers = {

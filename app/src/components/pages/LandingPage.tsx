@@ -1,9 +1,11 @@
 import { Trans, t } from '@lingui/macro'
-import { Headline2, Headline4 } from 'views/Typography'
+import bgUrl from 'assets/landing-bg.svg'
+import { ReactComponent as Logo } from 'assets/logo.svg'
+import Footer from 'components/Footer'
+import RegisterForm from 'forms/RegisterForm'
 import React from 'react'
 import { useHistory } from 'react-router'
 import { Link } from 'react-router-dom'
-
 import Button from 'views/Button'
 import TopAppBar, {
   TopAppBarFixedAdjust,
@@ -12,10 +14,7 @@ import TopAppBar, {
   TopAppBarSection,
   TopAppBarTitle,
 } from 'views/TopAppBar'
-import Footer from 'components/Footer'
-import RegisterForm from 'forms/RegisterForm'
-import { ReactComponent as Logo } from 'assets/logo.svg'
-import bgUrl from 'assets/landing-bg.svg'
+import { Headline2, Headline4 } from 'views/Typography'
 
 const LandingPage: React.FunctionComponent = () => {
   const history = useHistory()

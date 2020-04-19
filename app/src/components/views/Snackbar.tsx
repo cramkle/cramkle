@@ -1,8 +1,7 @@
 import { MDCSnackbarAdapter, MDCSnackbarFoundation } from '@material/snackbar'
-import React, { useEffect, useRef } from 'react'
 import classNames from 'classnames'
-
 import useClassList from 'hooks/useClassList'
+import React, { useEffect, useRef } from 'react'
 
 export interface Props {
   message: string

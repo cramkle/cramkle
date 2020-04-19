@@ -1,9 +1,9 @@
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
+import { DeckQuery_deck_notes } from 'pages/__generated__/DeckQuery'
 import React, { useState } from 'react'
-
+import { getNoteIdentifier } from 'utils/noteIdentifier'
 import Card from 'views/Card'
-import { Body2 } from 'views/Typography'
 import {
   Menu,
   MenuButton,
@@ -11,11 +11,11 @@ import {
   MenuLink,
   MenuList,
 } from 'views/MenuButton'
-import { DeckQuery_deck_notes } from 'pages/__generated__/DeckQuery'
+import { Body2 } from 'views/Typography'
+
+import DeleteNoteDialog from './DeleteNoteDialog'
 import Icon from './views/Icon'
 import { Table, TableBody, TableCell, TableHead, TableRow } from './views/Table'
-import { getNoteIdentifier } from 'utils/noteIdentifier'
-import DeleteNoteDialog from './DeleteNoteDialog'
 
 interface Props {
   notes: DeckQuery_deck_notes[]

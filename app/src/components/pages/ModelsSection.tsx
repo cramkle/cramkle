@@ -1,13 +1,12 @@
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import classNames from 'classnames'
+import { useHints } from 'components/HintsContext'
+import ModelList from 'components/ModelList'
 import React from 'react'
 import { useHistory } from 'react-router'
-
-import ModelList from 'components/ModelList'
 import Fab from 'views/Fab'
 import Icon from 'views/Icon'
-import { useHints } from 'components/HintsContext'
 
 import styles from './ModelsSection.css'
 

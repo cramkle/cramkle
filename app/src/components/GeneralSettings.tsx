@@ -3,7 +3,6 @@ import { useLingui } from '@lingui/react'
 import { Listbox, ListboxOption } from '@reach/listbox'
 import React, { useCallback, useState } from 'react'
 import Cookies from 'universal-cookie'
-
 import Button from 'views/Button'
 
 const OPTIONS = [

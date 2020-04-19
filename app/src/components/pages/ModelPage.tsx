@@ -1,20 +1,20 @@
 import { useQuery } from '@apollo/react-hooks'
 import { Trans } from '@lingui/macro'
 import List, { ListItem, ListItemText } from '@material/react-list'
-import { Body1, Body2, Caption, Headline4 } from 'views/Typography'
+import BackButton from 'components/BackButton'
+import DeleteModelButton from 'components/DeleteModelButton'
+import TemplateEditor from 'components/TemplateEditor'
 import gql from 'graphql-tag'
+import useTopBarLoading from 'hooks/useTopBarLoading'
 import React, { useCallback, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { useParams } from 'react-router'
-
-import { ModelQuery, ModelQueryVariables } from './__generated__/ModelQuery'
-import DeleteModelButton from 'components/DeleteModelButton'
-import TemplateEditor from 'components/TemplateEditor'
-import BackButton from 'components/BackButton'
 import Container from 'views/Container'
 import Tab from 'views/Tab'
 import TabBar from 'views/TabBar'
-import useTopBarLoading from 'hooks/useTopBarLoading'
+import { Body1, Body2, Caption, Headline4 } from 'views/Typography'
+
+import { ModelQuery, ModelQueryVariables } from './__generated__/ModelQuery'
 
 const MODEL_QUERY = gql`
   query ModelQuery($id: ID!) {

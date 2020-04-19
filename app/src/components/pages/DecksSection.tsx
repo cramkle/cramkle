@@ -1,13 +1,12 @@
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import classNames from 'classnames'
-import React, { useCallback, useState } from 'react'
-
 import DeckList from 'components/DeckList'
+import { useHints } from 'components/HintsContext'
+import AddDeckForm from 'forms/AddDeckForm'
+import React, { useCallback, useState } from 'react'
 import Fab from 'views/Fab'
 import Icon from 'views/Icon'
-import AddDeckForm from 'forms/AddDeckForm'
-import { useHints } from 'components/HintsContext'
 
 import styles from './DecksSection.css'
 

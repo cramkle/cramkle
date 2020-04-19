@@ -1,4 +1,5 @@
 import { ContentState, SelectionState } from 'draft-js'
+
 import { TaggableEntry } from './TaggableEntry'
 
 const PUNCTUATION_REGEX =

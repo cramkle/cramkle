@@ -1,21 +1,21 @@
 import { useQuery } from '@apollo/react-hooks'
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import { Body1, Headline4 } from 'views/Typography'
-import gql from 'graphql-tag'
-import React from 'react'
-import { Helmet } from 'react-helmet'
-import { useHistory, useParams } from 'react-router'
-
-import { DeckQuery, DeckQueryVariables } from './__generated__/DeckQuery'
-import NotesTable from 'components/NotesTable'
 import BackButton from 'components/BackButton'
 import DeleteDeckButton from 'components/DeleteDeckButton'
 import { useHints } from 'components/HintsContext'
-import Container from 'views/Container'
+import NotesTable from 'components/NotesTable'
+import gql from 'graphql-tag'
 import useTopBarLoading from 'hooks/useTopBarLoading'
-import Icon from 'views/Icon'
+import React from 'react'
+import { Helmet } from 'react-helmet'
+import { useHistory, useParams } from 'react-router'
+import Container from 'views/Container'
 import Fab from 'views/Fab'
+import Icon from 'views/Icon'
+import { Body1, Headline4 } from 'views/Typography'
+
+import { DeckQuery, DeckQueryVariables } from './__generated__/DeckQuery'
 
 const DECK_QUERY = gql`
   query DeckQuery($slug: String!) {

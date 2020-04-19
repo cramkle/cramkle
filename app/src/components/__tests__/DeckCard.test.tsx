@@ -1,8 +1,7 @@
 import { render } from '@testing-library/react'
+import DeckCard from 'components/DeckCard'
 import React from 'react'
 import { MemoryRouter } from 'react-router'
-
-import DeckCard from 'components/DeckCard'
 
 describe('<DeckCard />', () => {
   it('should match snapshot', () => {

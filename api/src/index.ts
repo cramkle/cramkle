@@ -1,12 +1,11 @@
 import express from 'express'
+import helmet from 'helmet'
 import mongoose from 'mongoose'
 import morgan from 'morgan'
-import helmet from 'helmet'
 
 import graphqlMiddleware from './middlewares/apollo'
-import ioMiddleware from './middlewares/io'
 import authMiddleware from './middlewares/auth'
-
+import ioMiddleware from './middlewares/io'
 import authRouter from './routes/auth'
 
 const app = express()

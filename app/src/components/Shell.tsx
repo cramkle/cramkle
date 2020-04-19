@@ -2,10 +2,13 @@ import { useQuery } from '@apollo/react-hooks'
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import LinearProgress from '@material/react-linear-progress'
+import { ReactComponent as LogoGray } from 'assets/logo-gray.svg'
+import { ReactComponent as Logo } from 'assets/logo.svg'
 import gql from 'graphql-tag'
+import useLocalStorage from 'hooks/useLocalStorage'
+import useOffline from 'hooks/useOffline'
 import React, { Suspense, useCallback, useEffect, useRef } from 'react'
 import { useHistory, useLocation } from 'react-router'
-
 import Icon from 'views/Icon'
 import IconButton from 'views/IconButton'
 import TopAppBar, {
@@ -15,14 +18,11 @@ import TopAppBar, {
   TopAppBarSection,
   TopAppBarTitle,
 } from 'views/TopAppBar'
-import useLocalStorage from 'hooks/useLocalStorage'
-import useOffline from 'hooks/useOffline'
-import { ReactComponent as Logo } from 'assets/logo.svg'
-import { ReactComponent as LogoGray } from 'assets/logo-gray.svg'
+
 import AppDrawer from './AppDrawer'
+import { useHints } from './HintsContext'
 import NoSSR from './NoSSR'
 import SearchBar from './SearchBar'
-import { useHints } from './HintsContext'
 import { TopBarLoadingQuery } from './__generated__/TopBarLoadingQuery'
 
 const TOP_BAR_LOADING_QUERY = gql`

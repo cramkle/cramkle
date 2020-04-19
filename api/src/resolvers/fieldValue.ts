@@ -1,8 +1,8 @@
+import { ApolloError } from 'apollo-server'
 import { IResolverObject, IResolvers } from 'graphql-tools'
 
 import { FieldModel, NoteModel } from '../mongo'
 import { FieldValueDocument } from '../mongo/Note'
-import { ApolloError } from 'apollo-server'
 
 export const root: IResolvers = {
   FieldValue: {

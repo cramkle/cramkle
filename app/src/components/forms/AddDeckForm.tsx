@@ -3,20 +3,20 @@ import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { Formik } from 'formik'
 import gql from 'graphql-tag'
+import { notificationState } from 'notification/index'
 import React from 'react'
 import { useHistory } from 'react-router'
+import Button from 'views/Button'
+import Dialog, { DialogActions, DialogContent, DialogTitle } from 'views/Dialog'
 import * as yup from 'yup'
 
+import { DECKS_QUERY } from '../DeckList'
+import { DecksQuery } from '../__generated__/DecksQuery'
 import { TextInputField } from './Fields'
 import {
   CreateDeckMutation,
   CreateDeckMutationVariables,
 } from './__generated__/CreateDeckMutation'
-import Dialog, { DialogActions, DialogContent, DialogTitle } from 'views/Dialog'
-import Button from 'views/Button'
-import { DECKS_QUERY } from '../DeckList'
-import { DecksQuery } from '../__generated__/DecksQuery'
-import { notificationState } from 'notification/index'
 
 interface Props {
   open: boolean

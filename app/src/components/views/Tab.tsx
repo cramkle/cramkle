@@ -1,12 +1,12 @@
 import { MDCTabAdapter, MDCTabFoundation } from '@material/tab'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
 import classNames from 'classnames'
+import useClassList from 'hooks/useClassList'
+import useId from 'hooks/useId'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 
 import { Ripple } from './Ripple'
 import { useTabBar } from './TabBar'
 import TabIndicator from './TabIndicator'
-import useClassList from 'hooks/useClassList'
-import useId from 'hooks/useId'
 
 export interface TabProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {

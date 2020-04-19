@@ -1,5 +1,7 @@
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
+import BlockStyleControls from 'components/editor/BlockStyleControls'
+import InlineStyleControls from 'components/editor/InlineStyleControls'
 import {
   ContentState,
   Editor,
@@ -11,9 +13,6 @@ import {
 import 'draft-js/dist/Draft.css'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { TabController } from 'react-tab-controller'
-
-import InlineStyleControls from 'components/editor/InlineStyleControls'
-import BlockStyleControls from 'components/editor/BlockStyleControls'
 import Card, { CardActionButtons, CardActions } from 'views/Card'
 
 interface Props {

@@ -2,7 +2,6 @@ import classNames from 'classnames'
 import React from 'react'
 
 import { TaggableEntry } from '../editor/TaggableEntry'
-
 import styles from './TypeaheadViewItem.css'
 
 interface Props {

@@ -1,13 +1,13 @@
 import { useQuery } from '@apollo/react-hooks'
 import { Trans } from '@lingui/macro'
 import { Grid } from '@material/react-layout-grid'
-import { Body1 } from 'views/Typography'
 import gql from 'graphql-tag'
+import useTopBarLoading from 'hooks/useTopBarLoading'
 import React from 'react'
+import { Body1 } from 'views/Typography'
 
 import ModelCard from './ModelCard'
 import { ModelsQuery } from './__generated__/ModelsQuery'
-import useTopBarLoading from 'hooks/useTopBarLoading'
 
 export const MODELS_QUERY = gql`
   query ModelsQuery {

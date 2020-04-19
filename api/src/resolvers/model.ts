@@ -1,7 +1,6 @@
 import { ApolloError } from 'apollo-server'
 import { IResolverObject, IResolvers } from 'graphql-tools'
 
-import { findRefFromList } from './utils'
 import {
   FieldModel,
   ModelModel,
@@ -10,8 +9,9 @@ import {
   UserModel,
 } from '../mongo'
 import { Field as FieldType } from '../mongo/Field'
-import { Template as TemplateType } from '../mongo/Template'
 import { ModelDocument } from '../mongo/Model'
+import { Template as TemplateType } from '../mongo/Template'
+import { findRefFromList } from './utils'
 
 export const root: IResolvers = {
   CardModel: {

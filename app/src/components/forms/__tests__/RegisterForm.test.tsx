@@ -2,10 +2,9 @@ import { MockedProvider } from '@apollo/react-testing'
 import { setupI18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
 import { fireEvent, render as rtlRender, wait } from '@testing-library/react'
-import { MemoryRouter } from 'react-router'
-import React from 'react'
-
 import RegisterForm from 'forms/RegisterForm'
+import React from 'react'
+import { MemoryRouter } from 'react-router'
 
 const render = (ui: React.ReactElement<any>) => {
   const i18n = setupI18n()
