@@ -1,8 +1,8 @@
 import { IResolverObject, IResolvers } from 'graphql-tools'
 
 import { findRefFromList } from './utils'
-import { DeckModel, NoteModel, UserModel } from '../models'
-import { DeckDocument } from '../models/Deck'
+import { DeckModel, NoteModel, UserModel } from '../mongo'
+import { DeckDocument } from '../mongo/Deck'
 
 export const root: IResolvers = {
   Deck: {

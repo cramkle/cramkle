@@ -1,8 +1,8 @@
 import { ApolloError } from 'apollo-server'
 import { IResolverObject, IResolvers } from 'graphql-tools'
 
-import { DeckModel, ModelModel, NoteModel } from '../models'
-import { NoteDocument } from '../models/Note'
+import { DeckModel, ModelModel, NoteModel } from '../mongo'
+import { NoteDocument } from '../mongo/Note'
 
 export const root: IResolvers = {
   Note: {
