@@ -1,10 +1,9 @@
 import classNames from 'classnames'
 import React, { useRef } from 'react'
 
-import { useRipple } from './Ripple'
-import { IconTypes } from './IconTypes'
-
 import styles from './Icon.scss'
+import { IconTypes } from './IconTypes'
+import { useRipple } from './Ripple'
 
 interface Props extends React.HTMLAttributes<HTMLElement> {
   icon?: IconTypes

@@ -3,6 +3,7 @@ import {
   MDCSlidingTabIndicatorFoundation,
   MDCTabIndicatorAdapter,
 } from '@material/tab-indicator'
+import classNames from 'classnames'
 import React, {
   useCallback,
   useEffect,
@@ -10,7 +11,6 @@ import React, {
   useRef,
   useState,
 } from 'react'
-import classNames from 'classnames'
 
 export interface TabIndicatorProps
   extends React.HTMLAttributes<HTMLSpanElement> {

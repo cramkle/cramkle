@@ -1,15 +1,14 @@
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import { Headline5 } from 'views/Typography'
 import classNames from 'classnames'
 import { Formik } from 'formik'
 import React from 'react'
+import Button from 'views/Button'
+import Card, { CardActionButtons, CardActions } from 'views/Card'
+import { Headline5 } from 'views/Typography'
 import { object, string } from 'yup'
 
 import { TextInputField } from './Fields'
-import Button from 'views/Button'
-import Card, { CardActionButtons, CardActions } from 'views/Card'
-
 import styles from './LoginForm.scss'
 
 interface LoginFormValues {

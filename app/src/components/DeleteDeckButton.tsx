@@ -1,19 +1,19 @@
 import { useMutation } from '@apollo/react-hooks'
 import { Trans, t } from '@lingui/macro'
 import gql from 'graphql-tag'
+import { notificationState } from 'notification/index'
 import React, { useCallback, useState } from 'react'
 import { useHistory } from 'react-router'
-
-import { notificationState } from 'notification/index'
 import Button from 'views/Button'
-import Icon from 'views/Icon'
 import Dialog, { DialogActions, DialogContent, DialogTitle } from 'views/Dialog'
+import Icon from 'views/Icon'
+
+import { DECKS_QUERY } from './DeckList'
+import { DecksQuery } from './__generated__/DecksQuery'
 import {
   DeleteDeckMutation,
   DeleteDeckMutationVariables,
 } from './__generated__/DeleteDeckMutation'
-import { DECKS_QUERY } from './DeckList'
-import { DecksQuery } from './__generated__/DecksQuery'
 
 interface Props {
   deckId: string

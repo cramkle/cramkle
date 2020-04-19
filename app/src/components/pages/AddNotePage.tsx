@@ -2,28 +2,28 @@ import { useMutation, useQuery } from '@apollo/react-hooks'
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { Listbox, ListboxOption } from '@reach/listbox'
-import gql from 'graphql-tag'
-import React, { useCallback, useMemo, useState } from 'react'
-import { useHistory, useParams } from 'react-router'
-
+import { FieldInput, FieldValueInput } from '__generated__/globalTypes'
 import BackButton from 'components/BackButton'
 import FieldValueEditor from 'components/FieldValueEditor'
+import CircularProgress from 'components/views/CircularProgress'
+import { ContentState, convertToRaw } from 'draft-js'
+import gql from 'graphql-tag'
+import useTopBarLoading from 'hooks/useTopBarLoading'
+import { notificationState } from 'notification/index'
+import React, { useCallback, useMemo, useState } from 'react'
+import { useHistory, useParams } from 'react-router'
 import Button from 'views/Button'
 import Container from 'views/Container'
 import { Body2, Caption, Headline5, Subtitle1 } from 'views/Typography'
-import useTopBarLoading from 'hooks/useTopBarLoading'
-import {
-  NoteFormQuery,
-  NoteFormQueryVariables,
-} from './__generated__/NoteFormQuery'
+
 import {
   CreateNoteMutation,
   CreateNoteMutationVariables,
 } from './__generated__/CreateNoteMutation'
-import { FieldInput, FieldValueInput } from '__generated__/globalTypes'
-import { ContentState, convertToRaw } from 'draft-js'
-import CircularProgress from 'components/views/CircularProgress'
-import { notificationState } from 'notification/index'
+import {
+  NoteFormQuery,
+  NoteFormQueryVariables,
+} from './__generated__/NoteFormQuery'
 
 const MODELS_QUERY = gql`
   query NoteFormQuery($slug: String!) {

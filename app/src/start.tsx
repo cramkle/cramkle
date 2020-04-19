@@ -1,20 +1,20 @@
+import { ApolloProvider } from '@apollo/react-hooks'
 import { setupI18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
 import { NormalizedCacheObject } from 'apollo-cache-inmemory'
+import { HintsProvider } from 'components/HintsContext'
 import React, { StrictMode } from 'react'
-import { ApolloProvider } from '@apollo/react-hooks'
 import ReactDOM from 'react-dom'
 import { Helmet } from 'react-helmet'
 import { StaticRouterContext } from 'react-router'
 import { BrowserRouter } from 'react-router-dom'
 import Cookies from 'universal-cookie'
-
-import { HintsProvider } from 'components/HintsContext'
 import { createApolloClient } from 'utils/apolloClient'
+
 import App from './App'
-import registerSW from './registerSW'
 import catalogEn from './locales/en/messages'
 import catalogPt from './locales/pt/messages'
+import registerSW from './registerSW'
 
 interface RenderOptions {
   requestUrl: string

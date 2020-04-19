@@ -1,12 +1,11 @@
-import React, { useEffect, useImperativeHandle, useRef } from 'react'
-import classNames from 'classnames'
 import {
   MDCFloatingLabelAdapter,
   MDCFloatingLabelFoundation,
   cssClasses,
 } from '@material/floating-label'
-
+import classNames from 'classnames'
 import useClassList from 'hooks/useClassList'
+import React, { useEffect, useImperativeHandle, useRef } from 'react'
 
 export interface FloatingLabelProps
   extends React.LabelHTMLAttributes<HTMLLabelElement> {

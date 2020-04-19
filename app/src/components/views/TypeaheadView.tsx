@@ -1,7 +1,7 @@
 import React from 'react'
 
-import TypeaheadViewItem from './TypeaheadViewItem'
 import { TaggableEntry } from '../editor/TaggableEntry'
+import TypeaheadViewItem from './TypeaheadViewItem'
 
 interface Props {
   style?: object

@@ -1,28 +1,27 @@
 import { useMutation } from '@apollo/react-hooks'
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import { Body1, Body2, Headline5 } from 'views/Typography'
+import BackButton from 'components/BackButton'
 import { FieldArray, Formik } from 'formik'
+import { TextInputField } from 'forms/Fields'
 import gql from 'graphql-tag'
+import { notificationState } from 'notification/index'
 import React from 'react'
 import { useHistory } from 'react-router'
+import Button from 'views/Button'
+import Container from 'views/Container'
+import Icon from 'views/Icon'
+import IconButton from 'views/IconButton'
+import { Body1, Body2, Headline5 } from 'views/Typography'
 import * as yup from 'yup'
 
+import { MODELS_QUERY } from '../ModelList'
+import { ModelsQuery } from '../__generated__/ModelsQuery'
+import styles from './AddModelPage.css'
 import {
   CreateModelMutation,
   CreateModelMutationVariables,
 } from './__generated__/CreateModelMutation'
-import BackButton from 'components/BackButton'
-import { TextInputField } from 'forms/Fields'
-import Container from 'views/Container'
-import Button from 'views/Button'
-import Icon from 'views/Icon'
-import IconButton from 'views/IconButton'
-import { notificationState } from 'notification/index'
-import { MODELS_QUERY } from '../ModelList'
-import { ModelsQuery } from '../__generated__/ModelsQuery'
-
-import styles from './AddModelPage.css'
 
 const CREATE_MODEL_MUTATION = gql`
   mutation CreateModelMutation(

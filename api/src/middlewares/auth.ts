@@ -1,9 +1,9 @@
+import createStore from 'connect-redis'
 import { Application } from 'express'
+import session from 'express-session'
 import passport from 'passport'
 import { Strategy } from 'passport-local'
-import session from 'express-session'
 import redis from 'redis'
-import createStore from 'connect-redis'
 
 import UserModel, { UserDocument } from '../mongo/User'
 

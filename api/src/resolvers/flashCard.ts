@@ -1,4 +1,5 @@
 import { IResolvers } from 'graphql-tools'
+
 import { NoteModel, TemplateModel } from '../mongo'
 import { FlashCardDocument } from '../mongo/Note'
 

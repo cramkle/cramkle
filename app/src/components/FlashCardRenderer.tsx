@@ -1,5 +1,4 @@
 import { Trans } from '@lingui/macro'
-import React, { useContext, useMemo } from 'react'
 import {
   CompositeDecorator,
   ContentState,
@@ -8,10 +7,11 @@ import {
   RawDraftContentState,
   convertFromRaw,
 } from 'draft-js'
+import React, { useContext, useMemo } from 'react'
 
-import * as t from './views/Typography'
-import Divider from './views/Divider'
 import { findTagEntities } from './editor/strategies'
+import Divider from './views/Divider'
+import * as t from './views/Typography'
 
 interface NoteValue {
   data: RawDraftContentState

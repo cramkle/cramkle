@@ -1,15 +1,15 @@
 /* env: webworker */
 
-import { precacheAndRoute } from 'workbox-precaching'
 import { CacheableResponsePlugin } from 'workbox-cacheable-response'
 import { ExpirationPlugin } from 'workbox-expiration'
+import { precacheAndRoute } from 'workbox-precaching'
+import { registerRoute } from 'workbox-routing'
 import {
   CacheFirst,
   NetworkFirst,
   NetworkOnly,
   StaleWhileRevalidate,
 } from 'workbox-strategies'
-import { registerRoute } from 'workbox-routing'
 
 const JS_CSS_REGEX = /\.(?:js|css)$/
 const IMAGE_REGEX = /\.(?:png|gif|jpg|jpeg|webp|svg)$/

@@ -8,10 +8,10 @@ import {
 import * as KeyCode from 'keycode-js'
 import React, { useCallback, useEffect, useReducer, useRef } from 'react'
 
-import TagsPopup from './TagsPopup'
-import searchTags from './searchTags'
-import replaceTagInEditorState from './replaceTagInEditorState'
 import { TaggableEntry } from './TaggableEntry'
+import TagsPopup from './TagsPopup'
+import replaceTagInEditorState from './replaceTagInEditorState'
+import searchTags from './searchTags'
 
 interface Props extends Omit<EditorProps, 'keyBindingFn' | 'handleKeyCommand'> {
   tagSource: TaggableEntry[]

@@ -1,4 +1,5 @@
 import { IResolvers } from 'graphql-tools'
+
 import { ModelModel } from '../mongo'
 import { FieldDocument } from '../mongo/Field'
 

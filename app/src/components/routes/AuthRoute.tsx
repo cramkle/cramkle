@@ -3,8 +3,8 @@ import React, { ReactElement } from 'react'
 import { useLocation } from 'react-router'
 import { Redirect, Route, RouteProps } from 'react-router-dom'
 
-import USER_QUERY from '../userQuery.gql'
 import { UserQuery } from '../__generated__/UserQuery'
+import USER_QUERY from '../userQuery.gql'
 
 interface Input {
   challenge: (user: UserQuery['me']) => boolean

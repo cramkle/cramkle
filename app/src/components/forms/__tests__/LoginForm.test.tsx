@@ -1,9 +1,8 @@
 import { setupI18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
 import { fireEvent, render as rtlRender, wait } from '@testing-library/react'
-import React from 'react'
-
 import LoginForm from 'forms/LoginForm'
+import React from 'react'
 
 const render = () => {
   const i18n = setupI18n()

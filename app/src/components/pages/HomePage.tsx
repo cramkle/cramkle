@@ -1,17 +1,17 @@
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
+import { notificationState } from 'notification/index'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { useHistory, useLocation } from 'react-router'
-
-import StudySection from './StudySection'
-import DecksSection from './DecksSection'
-import ModelsSection from './ModelsSection'
 import Icon from 'views/Icon'
 import Tab from 'views/Tab'
 import TabBar from 'views/TabBar'
+
 import registerSW from '../../registerSW'
-import { notificationState } from 'notification/index'
+import DecksSection from './DecksSection'
+import ModelsSection from './ModelsSection'
+import StudySection from './StudySection'
 
 const HomePage: React.FunctionComponent = () => {
   const history = useHistory()

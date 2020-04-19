@@ -1,9 +1,9 @@
+import { ApolloServer, gql } from 'apollo-server-express'
 import { Application, Request } from 'express'
 import { importSchema } from 'graphql-import'
-import { ApolloServer, gql } from 'apollo-server-express'
 
-import resolvers from '../resolvers'
 import directives from '../directives'
+import resolvers from '../resolvers'
 
 const schema = importSchema('./graphql/schema.graphql')
 const typeDefs = gql(schema)
