@@ -2671,7 +2671,7 @@
     "@material/shape" "^3.1.0"
     "@material/theme" "^3.1.0"
 
-"@material/checkbox@^2.1.1", "@material/checkbox@^2.3.0":
+"@material/checkbox@^2.1.1":
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/@material/checkbox/-/checkbox-2.3.0.tgz#3fd2d8ad4d602b8486f841fc561e01107f06b4a3"
   integrity sha512-ejDn0CyXITF8mKcBZHCLa0fc0a/agej9o4viMLOXXkUIfOY3NJuY11MyZ07MxAgin11NK9HpUX7cIxu3upV+6w==
@@ -2697,22 +2697,6 @@
     "@material/ripple" "^3.1.0"
     "@material/rtl" "^3.1.0"
     "@material/theme" "^3.1.0"
-    tslib "^1.9.3"
-
-"@material/chips@^2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@material/chips/-/chips-2.3.0.tgz#c778dfd61ab072a9771e69edb8b00917a6faf558"
-  integrity sha512-jIyThwx3Ax8mFQSmNtfMsI66zJINPis1zZ5LBFTEDN2+iEf7KUgnke8UmQzQac4fPkdZQpsXuiUrMNe4PGf8iA==
-  dependencies:
-    "@material/animation" "^1.0.0"
-    "@material/base" "^1.0.0"
-    "@material/checkbox" "^2.3.0"
-    "@material/elevation" "^1.1.0"
-    "@material/feature-targeting" "^0.44.1"
-    "@material/ripple" "^2.3.0"
-    "@material/shape" "^1.1.1"
-    "@material/theme" "^1.1.0"
-    "@material/typography" "^2.3.0"
     tslib "^1.9.3"
 
 "@material/dialog@^3.1.0":
@@ -3038,16 +3022,6 @@
     "@material/checkbox" "^2.1.1"
     "@material/react-ripple" "^0.14.1"
     classnames "^2.2.6"
-
-"@material/react-chips@^0.14.1":
-  version "0.14.1"
-  resolved "https://registry.yarnpkg.com/@material/react-chips/-/react-chips-0.14.1.tgz#a2ef9f0e38f51804990e876fc15ce6778d4cb5d6"
-  integrity sha512-DclhEaAEOwK/c8OTOr/1sE9l5ZgfeqFn+JyArtgQdYbTXa51RhAdleaXy5jUUrl16CMFwGf4DT3lmSMME/n0qA==
-  dependencies:
-    "@material/chips" "^2.3.0"
-    "@material/react-ripple" "^0.14.1"
-    classnames "^2.2.6"
-    react-is "^16.8.6"
 
 "@material/react-drawer@^0.14.1":
   version "0.14.1"
@@ -13391,7 +13365,7 @@ react-is@^16.12.0:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.12.0.tgz#2cc0fe0fba742d97fd527c42a13bec4eeb06241c"
   integrity sha512-rPCkf/mWBtKc97aLL9/txD8DZdemK0vkA3JMLShjlJB3Pj3s+lpf1KaBzMfQrAmhMQB0n1cU/SUGgKKBCe837Q==
 
-react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.8.6:
+react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4:
   version "16.8.6"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.8.6.tgz#5bbc1e2d29141c9fbdfed456343fe2bc430a6a16"
   integrity sha512-aUk3bHfZ2bRSVFFbbeVS4i+lNPZr3/WM5jT2J5omUVV1zzcs1nAaf3l51ctA5FFvCRbhrH0bdAsRRQddFJZPtA==

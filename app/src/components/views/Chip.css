@@ -1,0 +1,64 @@
+.inverted::before {
+  opacity: .08;
+}
+
+.chip::before {
+  content: ' ';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.chip .text {
+  z-index: 1;
+}
+
+.default .text {
+  color: var(--color-on-surface);
+}
+
+.default.inverted::before {
+  opacity: 1;
+}
+
+.default::before {
+  background-color: var(--color-muted);
+}
+
+.error .text {
+  color: var(--color-on-error);
+}
+
+.emphasis .text {
+  color: var(--color-on-emphasis);
+}
+
+.success .text {
+  color: var(--color-on-success);
+}
+
+.success.inverted .text {
+  color: var(--color-success);
+}
+
+.success::before {
+  background-color: var(--color-success);
+}
+
+.error.inverted .text {
+  color: var(--color-error);
+}
+
+.error::before {
+  background-color: var(--color-error);
+}
+
+.emphasis.inverted .text {
+  color: var(--color-emphasis);
+}
+
+.emphasis::before {
+  background-color: var(--color-emphasis);
+}

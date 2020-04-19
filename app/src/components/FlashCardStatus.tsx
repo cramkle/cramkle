@@ -1,9 +1,8 @@
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import classnames from 'classnames'
 import React from 'react'
 
-import styles from './FlashCardStatus.css'
+import { Chip } from './views/Chip'
 
 enum CardStatus {
   DUE = 'DUE',
@@ -20,6 +19,12 @@ const messages = {
   due: t`Due`,
 }
 
+const chipTypeByStatus = {
+  [CardStatus.DUE]: 'emphasis',
+  [CardStatus.NEW]: 'success',
+  [CardStatus.LEARNING]: undefined as undefined,
+} as const
+
 const FlashCardStatus: React.FC<Props> = ({ status }) => {
   const { i18n } = useLingui()
 
@@ -32,20 +37,15 @@ const FlashCardStatus: React.FC<Props> = ({ status }) => {
   } else if (status === CardStatus.DUE) {
     message = i18n._(messages.due)
   } else {
-    throw new Error('FlashCardStatus rendering failed.')
+    throw new Error(
+      `FlashCardStatus rendering failed: invalid status "${status}"`
+    )
   }
 
   return (
-    <div
-      className={classnames('inline-flex items-center h2 f6 br4 ph2', {
-        [styles.new]: status === CardStatus.NEW,
-        [styles.learning]: status === CardStatus.LEARNING,
-        [styles.due]: status === CardStatus.DUE,
-      })}
-      role="row"
-    >
-      <span className="dib mh1">{message}</span>
-    </div>
+    <Chip type={chipTypeByStatus[status]} inverted>
+      {message}
+    </Chip>
   )
 }
 
