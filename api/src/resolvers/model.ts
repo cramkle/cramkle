@@ -11,29 +11,30 @@ import {
 import { Field as FieldType } from '../mongo/Field'
 import { ModelDocument } from '../mongo/Model'
 import { Template as TemplateType } from '../mongo/Template'
-import { findRefFromList } from './utils'
 
 export const root: IResolvers = {
   CardModel: {
     id: (root: ModelDocument) => root._id.toString(),
     owner: (root: ModelDocument) => UserModel.findById(root.ownerId),
-    primaryField: (root: ModelDocument) => {
-      if (!root.primaryFieldId && !root.fields.length) {
+    primaryField: async (root: ModelDocument) => {
+      const modelFields = await FieldModel.find({ modelId: root._id })
+
+      if (!root.primaryFieldId && !modelFields.length) {
         return null
       }
 
       if (root.primaryFieldId) {
-        return FieldModel.findById(root.primaryFieldId)
+        return modelFields.find(
+          ({ _id }) => root.primaryFieldId === _id.toString()
+        )
       }
 
-      return FieldModel.findById(root.fields[0])
+      return modelFields[0]
     },
     templates: (root: ModelDocument) =>
-      Promise.all(findRefFromList(TemplateModel, root.templates)),
-    fields: (root: ModelDocument) =>
-      Promise.all(findRefFromList(FieldModel, root.fields)),
-    notes: (root: ModelDocument) =>
-      Promise.all(findRefFromList(NoteModel, root.notes)),
+      TemplateModel.find({ modelId: root._id }),
+    fields: (root: ModelDocument) => FieldModel.find({ modelId: root._id }),
+    notes: (root: ModelDocument) => NoteModel.find({ modelId: root._id }),
   },
 }
 
@@ -75,26 +76,26 @@ export const mutations: IResolverObject = {
     { name, fields, templates }: CreateModelInput,
     { user }: Context
   ) => {
-    const fieldRefs = await Promise.all(
-      fields.map((field) => FieldModel.create(field))
-    )
-
-    const templateRefs = await Promise.all(
-      templates.map(async (template) => {
-        return TemplateModel.create({
-          ...template,
-          ownerId: user?._id,
-        })
-      })
-    )
-
     const cardModel = await ModelModel.create({
       name,
-      fields: fieldRefs,
-      templates: templateRefs,
       ownerId: user?._id,
-      primaryFieldId: fieldRefs[0]._id,
     })
+
+    await Promise.all(
+      fields.map((field) =>
+        FieldModel.create({ ...field, modelId: cardModel._id })
+      )
+    )
+
+    await Promise.all(
+      templates.map((template) =>
+        TemplateModel.create({
+          ...template,
+          modelId: cardModel._id,
+          ownerId: user?._id,
+        })
+      )
+    )
 
     return cardModel
   },
@@ -107,28 +108,16 @@ export const mutations: IResolverObject = {
   },
   deleteModel: async (_, { id: _id }, { user }: Context) => {
     const model = await ModelModel.findOne({ _id, ownerId: user?._id })
-      .populate('fields')
-      .populate('templates')
-      .populate('notes')
-      .exec()
 
     if (!model) {
       throw new ApolloError('Model not found', '404')
     }
 
-    await Promise.all(
-      model.fields.map((fieldRef) => FieldModel.findByIdAndDelete(fieldRef))
-    )
+    await FieldModel.deleteMany({ modelId: model._id })
 
-    await Promise.all(
-      model.templates.map((templateRef) =>
-        TemplateModel.findByIdAndDelete(templateRef)
-      )
-    )
+    await TemplateModel.deleteMany({ modelId: model._id })
 
-    await Promise.all(
-      model.notes.map((noteRef) => NoteModel.findByIdAndDelete(noteRef))
-    )
+    await NoteModel.deleteMany({ modelId: model._id })
 
     await model.remove()
 
@@ -145,10 +134,6 @@ export const mutations: IResolverObject = {
       ownerId: user?._id,
     })
 
-    await ModelModel.findByIdAndUpdate(modelId, {
-      $push: { templates: template },
-    })
-
     return template
   },
   addFieldToModel: async (
@@ -157,10 +142,6 @@ export const mutations: IResolverObject = {
     { user }: Context
   ) => {
     const field = await FieldModel.create({ name, modelId, ownerId: user?._id })
-
-    await ModelModel.findByIdAndUpdate(modelId, {
-      $push: { fields: field },
-    })
 
     return field
   },
