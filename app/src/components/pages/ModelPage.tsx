@@ -16,7 +16,12 @@ import Tab from 'views/Tab'
 import TabBar from 'views/TabBar'
 import { Body1, Body2, Caption, Headline4 } from 'views/Typography'
 
-import { ModelQuery, ModelQueryVariables } from './__generated__/ModelQuery'
+import {
+  ModelQuery,
+  ModelQueryVariables,
+  ModelQuery_cardModel_fields,
+  ModelQuery_cardModel_templates,
+} from './__generated__/ModelQuery'
 
 const DRAFT_CONTENT_FRAGMENT = gql`
   fragment DraftContent on ContentState {
@@ -104,7 +109,15 @@ const UPDATE_BACK_TEMPLATE_MUTATION = gql`
 
 const TEMPLATE_CONTENT_UPDATE_DEBOUNCE = 2000
 
-const TemplateDetails: React.FC<any> = ({ template, fields }) => {
+interface TemplateDetailsProps {
+  template: ModelQuery_cardModel_templates
+  fields: ModelQuery_cardModel_fields[]
+}
+
+const TemplateDetails: React.FC<TemplateDetailsProps> = ({
+  template,
+  fields,
+}) => {
   const [
     updateTemplateFrontContent,
     { loading: frontUpdateLoading },
