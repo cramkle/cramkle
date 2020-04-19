@@ -1,12 +1,14 @@
-import { useQuery } from '@apollo/react-hooks'
+import { useMutation, useQuery } from '@apollo/react-hooks'
 import { Trans } from '@lingui/macro'
 import List, { ListItem, ListItemText } from '@material/react-list'
 import BackButton from 'components/BackButton'
 import DeleteModelButton from 'components/DeleteModelButton'
 import TemplateEditor from 'components/TemplateEditor'
+import CircularProgress from 'components/views/CircularProgress'
+import { ContentState, convertToRaw } from 'draft-js'
 import gql from 'graphql-tag'
 import useTopBarLoading from 'hooks/useTopBarLoading'
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { useParams } from 'react-router'
 import Container from 'views/Container'
@@ -14,33 +16,14 @@ import Tab from 'views/Tab'
 import TabBar from 'views/TabBar'
 import { Body1, Body2, Caption, Headline4 } from 'views/Typography'
 
-import { ModelQuery, ModelQueryVariables } from './__generated__/ModelQuery'
+import {
+  ModelQuery,
+  ModelQueryVariables,
+  ModelQuery_cardModel_fields,
+  ModelQuery_cardModel_templates,
+} from './__generated__/ModelQuery'
 
-const MODEL_QUERY = gql`
-  query ModelQuery($id: ID!) {
-    cardModel(id: $id) {
-      id
-      name
-      fields {
-        id
-        name
-      }
-      templates {
-        id
-        name
-        frontSide {
-          ...DraftContent
-        }
-        backSide {
-          ...DraftContent
-        }
-      }
-      notes {
-        id
-      }
-    }
-  }
-
+const DRAFT_CONTENT_FRAGMENT = gql`
   fragment DraftContent on ContentState {
     id
     blocks {
@@ -64,7 +47,153 @@ const MODEL_QUERY = gql`
   }
 `
 
-const ModelPage: React.FunctionComponent = () => {
+const MODEL_QUERY = gql`
+  ${DRAFT_CONTENT_FRAGMENT}
+
+  query ModelQuery($id: ID!) {
+    cardModel(id: $id) {
+      id
+      name
+      fields {
+        id
+        name
+      }
+      templates {
+        id
+        name
+        frontSide {
+          ...DraftContent
+        }
+        backSide {
+          ...DraftContent
+        }
+      }
+      notes {
+        id
+      }
+    }
+  }
+`
+
+const UPDATE_FRONT_TEMPLATE_MUTATION = gql`
+  ${DRAFT_CONTENT_FRAGMENT}
+
+  mutation UpdateTemplateContentMutation(
+    $id: ID!
+    $content: ContentStateInput
+  ) {
+    updateTemplate(id: $id, frontSide: $content) {
+      id
+      frontSide {
+        ...DraftContent
+      }
+    }
+  }
+`
+
+const UPDATE_BACK_TEMPLATE_MUTATION = gql`
+  ${DRAFT_CONTENT_FRAGMENT}
+
+  mutation UpdateTemplateContentMutation(
+    $id: ID!
+    $content: ContentStateInput
+  ) {
+    updateTemplate(id: $id, backSide: $content) {
+      id
+      backSide {
+        ...DraftContent
+      }
+    }
+  }
+`
+
+const TEMPLATE_CONTENT_UPDATE_DEBOUNCE = 2000
+
+interface TemplateDetailsProps {
+  template: ModelQuery_cardModel_templates
+  fields: ModelQuery_cardModel_fields[]
+}
+
+const TemplateDetails: React.FC<TemplateDetailsProps> = ({
+  template,
+  fields,
+}) => {
+  const [
+    updateTemplateFrontContent,
+    { loading: frontUpdateLoading },
+  ] = useMutation(UPDATE_FRONT_TEMPLATE_MUTATION)
+  const [
+    updateTemplateBackContent,
+    { loading: backUpdateLoading },
+  ] = useMutation(UPDATE_BACK_TEMPLATE_MUTATION)
+
+  const frontDebounceIdRef = useRef<NodeJS.Timeout | null>(null)
+  const backDebounceIdRef = useRef<NodeJS.Timeout | null>(null)
+
+  const handleFrontSideChange = useCallback(
+    (contentState: ContentState) => {
+      if (frontDebounceIdRef.current) {
+        clearTimeout(frontDebounceIdRef.current)
+      }
+
+      frontDebounceIdRef.current = setTimeout(() => {
+        updateTemplateFrontContent({
+          variables: {
+            id: template.id,
+            content: convertToRaw(contentState),
+          },
+        })
+      }, TEMPLATE_CONTENT_UPDATE_DEBOUNCE)
+    },
+    [template.id, updateTemplateFrontContent]
+  )
+
+  const handleBackSideChange = useCallback(
+    (contentState: ContentState) => {
+      if (backDebounceIdRef.current) {
+        clearTimeout(backDebounceIdRef.current)
+      }
+
+      backDebounceIdRef.current = setTimeout(() => {
+        updateTemplateBackContent({
+          variables: {
+            id: template.id,
+            content: convertToRaw(contentState),
+          },
+        })
+      }, TEMPLATE_CONTENT_UPDATE_DEBOUNCE)
+    },
+    [template.id, updateTemplateBackContent]
+  )
+
+  return (
+    <>
+      <Caption className="h2 flex items-center mt3">
+        <Trans>Template front side</Trans>{' '}
+        {frontUpdateLoading && <CircularProgress className="ml2" size={16} />}
+      </Caption>
+      <TemplateEditor
+        id={template.id}
+        initialContentState={template.frontSide}
+        fields={fields}
+        onChange={handleFrontSideChange}
+      />
+
+      <Caption className="h2 flex items-center mt3">
+        <Trans>Template back side</Trans>{' '}
+        {backUpdateLoading && <CircularProgress className="ml2" size={16} />}
+      </Caption>
+      <TemplateEditor
+        id={template.id}
+        initialContentState={template.backSide}
+        fields={fields}
+        onChange={handleBackSideChange}
+      />
+    </>
+  )
+}
+
+const ModelPage: React.FC = () => {
   const { id } = useParams<{ id: string }>()
   const { data, loading } = useQuery<ModelQuery, ModelQueryVariables>(
     MODEL_QUERY,
@@ -114,22 +243,8 @@ const ModelPage: React.FunctionComponent = () => {
 
             {cardModel.templates.map((template, index) => (
               <div hidden={selectedTemplate !== index} key={template.id}>
-                <Caption className="dib mt3">
-                  <Trans>Template front side</Trans>
-                </Caption>
-                <TemplateEditor
-                  id={template.id}
-                  isFrontSide
-                  initialContentState={template.frontSide}
-                  fields={cardModel.fields}
-                />
-
-                <Caption className="dib mt3">
-                  <Trans>Template back side</Trans>
-                </Caption>
-                <TemplateEditor
-                  id={template.id}
-                  initialContentState={template.backSide}
+                <TemplateDetails
+                  template={template}
                   fields={cardModel.fields}
                 />
               </div>
