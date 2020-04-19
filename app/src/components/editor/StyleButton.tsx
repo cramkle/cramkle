@@ -7,7 +7,7 @@ import Icon from 'views/Icon'
 import { IconTypes } from 'views/IconTypes'
 import { useRipple } from 'views/Ripple'
 
-import styles from './StyleButton.scss'
+import styles from './StyleButton.css'
 
 export interface Style {
   label: MessageDescriptor | string

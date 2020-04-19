@@ -1,31 +1,31 @@
 import { useMutation, useQuery } from '@apollo/react-hooks'
 import { Trans } from '@lingui/macro'
-import BackButton from 'components/BackButton'
-import FieldValueEditor from 'components/FieldValueEditor'
-import FlashCardRenderer from 'components/FlashCardRenderer'
-import FlashCardStatus from 'components/FlashCardStatus'
-import Button from 'components/views/Button'
-import Checkbox from 'components/views/Checkbox'
-import CircularProgress from 'components/views/CircularProgress'
-import Dialog, { DialogContent } from 'components/views/Dialog'
+import { ContentState, RawDraftContentState, convertToRaw } from 'draft-js'
+import gql from 'graphql-tag'
+import React, { useCallback, useRef, useState } from 'react'
+import { Helmet } from 'react-helmet'
+import { useParams } from 'react-router'
+
+import useTopBarLoading from '../../hooks/useTopBarLoading'
+import { getNoteIdentifier } from '../../utils/noteIdentifier'
+import BackButton from '../BackButton'
+import FieldValueEditor from '../FieldValueEditor'
+import FlashCardRenderer from '../FlashCardRenderer'
+import FlashCardStatus from '../FlashCardStatus'
+import Button from '../views/Button'
+import Checkbox from '../views/Checkbox'
+import CircularProgress from '../views/CircularProgress'
+import Container from '../views/Container'
+import Dialog, { DialogContent } from '../views/Dialog'
+import Divider from '../views/Divider'
 import {
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableRow,
-} from 'components/views/Table'
-import { ContentState, RawDraftContentState, convertToRaw } from 'draft-js'
-import gql from 'graphql-tag'
-import useTopBarLoading from 'hooks/useTopBarLoading'
-import React, { useCallback, useRef, useState } from 'react'
-import { Helmet } from 'react-helmet'
-import { useParams } from 'react-router'
-import { getNoteIdentifier } from 'utils/noteIdentifier'
-import Container from 'views/Container'
-import Divider from 'views/Divider'
-import * as t from 'views/Typography'
-
+} from '../views/Table'
+import * as t from '../views/Typography'
 import {
   NoteQuery,
   NoteQueryVariables,
