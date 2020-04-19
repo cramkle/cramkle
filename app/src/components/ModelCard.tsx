@@ -1,9 +1,9 @@
 import { plural } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import { Chip } from '@material/react-chips'
 import React, { useCallback } from 'react'
 import { useHistory } from 'react-router'
 import Card, { CardPrimaryContent } from 'views/Card'
+import { Chip } from 'views/Chip'
 import { Headline6 } from 'views/Typography'
 
 import { ModelsQuery_cardModels } from './__generated__/ModelsQuery'
@@ -40,24 +40,24 @@ const ModelCard: React.FunctionComponent<Props & ModelsQuery_cardModels> = ({
         {!!(templates.length || fields.length) && (
           <div className="mdc-chip-set">
             {!!templates.length && (
-              <Chip
-                label={i18n._(
+              <Chip>
+                {i18n._(
                   plural(templates.length, {
                     one: '# template',
                     other: '# templates',
                   })
                 )}
-              />
+              </Chip>
             )}
             {!!fields.length && (
-              <Chip
-                label={i18n._(
+              <Chip>
+                {i18n._(
                   plural(fields.length, {
                     one: '# field',
                     other: '# fields',
                   })
                 )}
-              />
+              </Chip>
             )}
           </div>
         )}
