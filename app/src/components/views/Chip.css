@@ -27,6 +27,14 @@
   background-color: var(--color-muted);
 }
 
+.error .text {
+  color: var(--color-on-error);
+}
+
+.emphasis .text {
+  color: var(--color-on-emphasis);
+}
+
 .success .text {
   color: var(--color-on-success);
 }
@@ -39,20 +47,12 @@
   background-color: var(--color-success);
 }
 
-.error .text {
-  color: var(--color-on-error);
-}
-
 .error.inverted .text {
   color: var(--color-error);
 }
 
 .error::before {
   background-color: var(--color-error);
-}
-
-.emphasis .text {
-  color: var(--color-on-emphasis);
 }
 
 .emphasis.inverted .text {
