@@ -1,18 +1,17 @@
 import {
   CompositeDecorator,
+  ContentState,
   EditorState,
   RawDraftContentState,
   RichUtils,
   convertFromRaw,
-  convertToRaw,
 } from 'draft-js'
 import 'draft-js/dist/Draft.css'
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { TabController } from 'react-tab-controller'
 import Card, { CardActionButtons, CardActions } from 'views/Card'
 
 import { useHints } from './HintsContext'
-import SaveTemplateButton from './SaveTemplateButton'
 import BlockStyleControls from './editor/BlockStyleControls'
 import InlineStyleControls from './editor/InlineStyleControls'
 import TagEditor from './editor/TagEditor'
@@ -23,16 +22,16 @@ const decorators = new CompositeDecorator(tagsDecorators)
 
 interface Props {
   id: string
-  isFrontSide?: boolean
   initialContentState: TemplateContent
   fields: { id: string; name: string }[]
+  onChange?: (content: ContentState, templateId: string) => void
 }
 
 const TemplateEditor: React.FunctionComponent<Props> = ({
   id,
-  isFrontSide = false,
   initialContentState,
   fields,
+  onChange,
 }) => {
   const { isMobile } = useHints()
 
@@ -47,6 +46,18 @@ const TemplateEditor: React.FunctionComponent<Props> = ({
 
     return EditorState.createWithContent(contentState, decorators)
   })
+
+  const contentState = editor.getCurrentContent()
+  const prevContentState = useRef(contentState)
+
+  useEffect(() => {
+    if (contentState === prevContentState.current) {
+      return
+    }
+
+    prevContentState.current = contentState
+    onChange?.(contentState, id)
+  }, [contentState, onChange, id])
 
   const handleStyleToggle = useCallback(
     (style: string) => {
@@ -90,17 +101,6 @@ const TemplateEditor: React.FunctionComponent<Props> = ({
           readOnly={isMobile}
         />
       </div>
-      {!isMobile && (
-        <CardActions className="bt b--inherit">
-          <CardActionButtons>
-            <SaveTemplateButton
-              id={id}
-              isFrontSide={isFrontSide}
-              {...convertToRaw(editor.getCurrentContent())}
-            />
-          </CardActionButtons>
-        </CardActions>
-      )}
     </Card>
   )
 }
