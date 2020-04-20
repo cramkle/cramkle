@@ -5,7 +5,7 @@
     "jest": true
   },
   "parserOptions": {
-    "project": "tsconfig.json"
+    "project": "./app/tsconfig.json"
   },
   "rules": {
     "no-underscore-dangle": [
