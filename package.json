@@ -1,0 +1,31 @@
+{
+  "name": "cramkle",
+  "private": true,
+  "license": "UNLICENSED",
+  "repository": "https://github.com/cramkle/cramkle",
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,jsx,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,graphql,gql}": [
+      "prettier --write"
+    ]
+  },
+  "devDependencies": {
+    "@lucasecdb/eslint-config": "^0.9.1",
+    "eslint": "^6.8.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.1.6",
+    "prettier": "^2.0.4",
+    "typescript": "^3.8.3"
+  }
+}

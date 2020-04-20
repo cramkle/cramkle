@@ -19,14 +19,13 @@ jobs:
         node-version: 12.x
     - name: Install dependencies
       run: |
+        yarn
         yarn --cwd api
         yarn --cwd app
     - name: Lint
       run: |
-        yarn --cwd api lint
-
         yarn --cwd app compile
-        yarn --cwd app lint
+        yarn lint
       env:
         CI: true
     - name: Lint CSS
