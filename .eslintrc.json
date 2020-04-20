@@ -1,0 +1,7 @@
+{
+  "extends": "@lucasecdb",
+  "root": true,
+  "env": {
+    "es6": true
+  }
+}

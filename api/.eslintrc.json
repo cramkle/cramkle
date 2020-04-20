@@ -1,7 +1,5 @@
 {
-  "extends": "@lucasecdb",
   "env": {
-    "es6": true,
     "node": true
   },
   "parserOptions": {
