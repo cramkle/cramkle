@@ -1,5 +1,5 @@
 import { ApolloProvider } from '@apollo/react-hooks'
-import { setupI18n } from '@lingui/core'
+import { i18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
 import { NormalizedCacheObject } from 'apollo-cache-inmemory'
 import React, { StrictMode } from 'react'
@@ -45,8 +45,6 @@ const render = ({
     const cookies = new Cookies()
     language = cookies.get('language') || 'en'
   }
-
-  const i18n = setupI18n()
 
   i18n.load('en', enMessages)
   i18n.load('pt', ptMessages)
