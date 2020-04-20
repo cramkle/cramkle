@@ -22,7 +22,6 @@ import TopAppBar, {
 import AppDrawer from './AppDrawer'
 import { useHints } from './HintsContext'
 import NoSSR from './NoSSR'
-import SearchBar from './SearchBar'
 import { TopBarLoadingQuery } from './__generated__/TopBarLoadingQuery'
 
 const TOP_BAR_LOADING_QUERY = gql`
@@ -140,8 +139,6 @@ const Shell: React.FunctionComponent = ({ children }) => {
                     {!isOffline ? <Logo width="32" /> : <LogoGray width="32" />}
                     <span className="ml2">Cramkle</span>
                   </TopAppBarTitle>
-
-                  {!isMobile && <SearchBar />}
                 </TopAppBarSection>
               </TopAppBarRow>
             </TopAppBar>
