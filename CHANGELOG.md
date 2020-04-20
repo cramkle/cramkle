@@ -20,6 +20,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Back arrow not working in home for initial page.
 - Top bar position on mobile view.
 
+### Removed
+- Search bar from top bar.
+
 ## [0.4.9] - 2019-05-19
 ### Added
 - Persisted query link.
