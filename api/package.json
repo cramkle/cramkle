@@ -39,7 +39,6 @@
     "shortid": "^2.2.13"
   },
   "devDependencies": {
-    "@lucasecdb/eslint-config": "^0.9.1",
     "@types/bcrypt": "^3.0.0",
     "@types/body-parser": "^1.19.0",
     "@types/connect-redis": "^0.0.13",
@@ -58,8 +57,6 @@
     "@types/passport-local": "^1.0.33",
     "@types/shortid": "^0.0.29",
     "auto-changelog": "^1.16.2",
-    "eslint": "^6.8.0",
-    "prettier": "^2.0.4",
     "release-it": "^13.5.2",
     "tsc-watch": "^4.1.0",
     "typescript": "^3.8.3"
