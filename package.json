@@ -4,7 +4,7 @@
   "license": "UNLICENSED",
   "repository": "https://github.com/cramkle/cramkle",
   "scripts": {
-    "lint": "eslint ."
+    "lint": "eslint --ext ts,tsx ."
   },
   "husky": {
     "hooks": {

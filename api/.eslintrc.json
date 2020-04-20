@@ -3,7 +3,7 @@
     "node": true
   },
   "parserOptions": {
-    "project": "tsconfig.json"
+    "project": "./api/tsconfig.json"
   },
   "settings": {
     "react": {

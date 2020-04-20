@@ -8,9 +8,7 @@
   "scripts": {
     "build": "tsc",
     "prettier-graphql": "prettier --write 'graphql/**/*.graphql'",
-    "lint": "yarn lint-ts && yarn lint-js",
-    "lint-ts": "tsc --noEmit --pretty",
-    "lint-js": "eslint --ext ts src",
+    "lint": "tsc --noEmit --pretty",
     "start": "node dist/index.js",
     "dev": "tsc-watch --onSuccess \"node ./dist/index.js\"",
     "release": "release-it"
