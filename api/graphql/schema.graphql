@@ -1,5 +1,5 @@
 # import Deck from "types/Deck.graphql"
-# import Card from "types/Card.graphql"
+# import FlashCard from "types/FlashCard.graphql"
 # import CardModel from "types/CardModel.graphql"
 # import Field from "types/Field.graphql"
 # import FieldValue from "types/FieldValue.graphql"
@@ -237,11 +237,17 @@ type Mutation {
   Create new note in deck
   """
   createNote(
-    """ Deck id """
+    """
+     Deck id
+    """
     deckId: ID!
-    """ Model id """
+    """
+     Model id
+    """
     modelId: ID!
-    """ Values in note """
+    """
+     Values in note
+    """
     fieldValues: [FieldValueInput!]!
   ): Note @authenticate
 
@@ -249,7 +255,9 @@ type Mutation {
   Delete a give note
   """
   deleteNote(
-    """ Note id """
+    """
+     Note id
+    """
     noteId: ID!
   ): Note @authenticate
 
@@ -257,11 +265,17 @@ type Mutation {
   Update the field value of a note
   """
   updateFieldValue(
-    """ Note id  """
+    """
+     Note id
+    """
     noteId: ID!
-    """ Field id """
+    """
+     Field id
+    """
     fieldId: ID!
-    """ Field value content """
+    """
+     Field value content
+    """
     data: ContentStateInput!
   ): FieldValue @authenticate
 }

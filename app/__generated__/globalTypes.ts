@@ -7,51 +7,51 @@
 // START Enums and Input Objects
 //==============================================================
 
-export enum CardStatus {
-  DUE = "DUE",
-  LEARNING = "LEARNING",
-  NEW = "NEW",
+export enum FlashCardStatus {
+  DUE = 'DUE',
+  LEARNING = 'LEARNING',
+  NEW = 'NEW',
 }
 
 export interface BlockInput {
-  key: string;
-  type: string;
-  text: string;
-  depth: number;
-  inlineStyleRanges?: (InlineStyleRangeInput | null)[] | null;
-  entityRanges?: (EntityRangeInput | null)[] | null;
-  data?: any | null;
+  key: string
+  type: string
+  text: string
+  depth: number
+  inlineStyleRanges?: (InlineStyleRangeInput | null)[] | null
+  entityRanges?: (EntityRangeInput | null)[] | null
+  data?: any | null
 }
 
 export interface ContentStateInput {
-  blocks?: (BlockInput | null)[] | null;
-  entityMap?: any | null;
+  blocks?: (BlockInput | null)[] | null
+  entityMap?: any | null
 }
 
 export interface EntityRangeInput {
-  key: number;
-  length: number;
-  offset: number;
+  key: number
+  length: number
+  offset: number
 }
 
 export interface FieldInput {
-  id?: string | null;
-  name?: string | null;
+  id?: string | null
+  name?: string | null
 }
 
 export interface FieldValueInput {
-  data?: ContentStateInput | null;
-  field?: FieldInput | null;
+  data?: ContentStateInput | null
+  field?: FieldInput | null
 }
 
 export interface InlineStyleRangeInput {
-  style?: string | null;
-  offset?: number | null;
-  length?: number | null;
+  style?: string | null
+  offset?: number | null
+  length?: number | null
 }
 
 export interface TemplateInput {
-  name: string;
+  name: string
 }
 
 //==============================================================
