@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/react-hooks'
-import { t } from '@lingui/macro'
+import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import BackButton from 'components/BackButton'
 import DeleteDeckButton from 'components/DeleteDeckButton'
@@ -13,8 +13,8 @@ import { useHistory, useParams } from 'react-router'
 import Container from 'views/Container'
 import Fab from 'views/Fab'
 import Icon from 'views/Icon'
-import { Body1, Headline4 } from 'views/Typography'
 
+import { Body1, Headline4, Headline5, Headline6 } from '../views/Typography'
 import { DeckQuery, DeckQueryVariables } from './__generated__/DeckQuery'
 
 const DECK_QUERY = gql`
@@ -50,6 +50,9 @@ const DECK_QUERY = gql`
           template {
             name
           }
+        }
+        deck {
+          title
         }
       }
     }
@@ -103,14 +106,26 @@ const DeckPage: React.FunctionComponent = () => {
       <Helmet title={deck.title} />
       <Container>
         <BackButton to="/decks" />
-        <div className="flex flex-wrap justify-between items-center">
-          <Headline4>{deck.title}</Headline4>
 
-          <DeleteDeckButton deckId={deck.id} />
+        <div className="flex flex-column mb4">
+          <div className="flex justify-between items-center">
+            <Headline4>
+              <Trans>Deck details</Trans>
+            </Headline4>
+
+            <DeleteDeckButton deckId={deck.id} />
+          </div>
+          <Headline5 className="mt3">{deck.title}</Headline5>
+          {deck.description && (
+            <Body1 className="mt1">{deck.description}</Body1>
+          )}
         </div>
-        <Body1 className="mt2">{deck.description}</Body1>
 
-        <div className="mt3">
+        <Headline6 className="fw5">
+          <Trans>Notes</Trans>
+        </Headline6>
+
+        <div className="mv4">
           <NotesTable notes={deck.notes} deckSlug={deck.slug} />
         </div>
 

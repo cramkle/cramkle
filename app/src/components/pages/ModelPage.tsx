@@ -1,5 +1,6 @@
 import { useMutation, useQuery } from '@apollo/react-hooks'
-import { Trans } from '@lingui/macro'
+import { Trans, plural } from '@lingui/macro'
+import { useLingui } from '@lingui/react'
 import List, { ListItem, ListItemText } from '@material/react-list'
 import BackButton from 'components/BackButton'
 import DeleteModelButton from 'components/DeleteModelButton'
@@ -14,7 +15,7 @@ import { useParams } from 'react-router'
 import Container from 'views/Container'
 import Tab from 'views/Tab'
 import TabBar from 'views/TabBar'
-import { Body1, Body2, Caption, Headline4 } from 'views/Typography'
+import { Body1, Body2, Caption, Headline4, Headline5 } from 'views/Typography'
 
 import {
   ModelQuery,
@@ -78,6 +79,9 @@ const MODEL_QUERY = gql`
       }
       notes {
         id
+        cards {
+          id
+        }
       }
     }
   }
@@ -209,6 +213,7 @@ const TemplateDetails: React.FC<TemplateDetailsProps> = ({
 
 const ModelPage: React.FC = () => {
   const { id } = useParams<{ id: string }>()
+  const { i18n } = useLingui()
   const { data, loading } = useQuery<ModelQuery, ModelQueryVariables>(
     MODEL_QUERY,
     {
@@ -230,18 +235,44 @@ const ModelPage: React.FC = () => {
 
   const { cardModel } = data
 
+  const totalFlashCards = cardModel.notes.reduce(
+    (total, note) => total + note.cards.length,
+    0
+  )
+
   return (
     <>
       <Helmet title={cardModel.name} />
       <Container>
         <BackButton />
-        <div className="flex justify-between">
-          <Headline4>{cardModel.name}</Headline4>
+        <div className="flex flex-column mb4">
+          <div className="flex justify-between">
+            <Headline4>
+              <Trans>Model details</Trans>
+            </Headline4>
 
-          <DeleteModelButton model={cardModel} />
+            <DeleteModelButton model={cardModel} />
+          </div>
+
+          <Headline5 className="mt3">{cardModel.name}</Headline5>
+          <Caption className="mt1 c-text-secondary f6">
+            {i18n._(
+              plural(cardModel.notes.length, {
+                one: '# note',
+                other: '# notes',
+              })
+            )}{' '}
+            <span className="dib mh1">&middot;</span>{' '}
+            {i18n._(
+              plural(totalFlashCards, {
+                one: '# flashcard',
+                other: '# flashcards',
+              })
+            )}
+          </Caption>
         </div>
 
-        <Body1 className="dib mv3">
+        <Body1 className="dib mb3">
           <Trans>Templates</Trans>
         </Body1>
         {cardModel.templates.length ? (
