@@ -3,29 +3,29 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { ContentStateInput } from "./../../../__generated__/globalTypes";
+import { ContentStateInput } from './../../globalTypes'
 
 // ====================================================
 // GraphQL mutation operation: UpdateTemplateContentMutation
 // ====================================================
 
 export interface UpdateTemplateContentMutation_updateTemplate {
-  __typename: "Template";
+  __typename: 'Template'
   /**
    * Template id
    */
-  id: string;
+  id: string
 }
 
 export interface UpdateTemplateContentMutation {
   /**
    * Updates an existing template
    */
-  updateTemplate: UpdateTemplateContentMutation_updateTemplate | null;
+  updateTemplate: UpdateTemplateContentMutation_updateTemplate | null
 }
 
 export interface UpdateTemplateContentMutationVariables {
-  id: string;
-  frontSide?: ContentStateInput | null;
-  backSide?: ContentStateInput | null;
+  id: string
+  frontSide?: ContentStateInput | null
+  backSide?: ContentStateInput | null
 }

@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { FlashCardStatus } from './../../../../__generated__/globalTypes'
+import { FlashCardStatus } from './../../../globalTypes'
 
 // ====================================================
 // GraphQL query operation: NoteQuery
