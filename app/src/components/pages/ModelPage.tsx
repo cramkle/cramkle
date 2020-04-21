@@ -22,6 +22,14 @@ import {
   ModelQuery_cardModel_fields,
   ModelQuery_cardModel_templates,
 } from './__generated__/ModelQuery'
+import {
+  UpdateTemplateBackContentMutation,
+  UpdateTemplateBackContentMutationVariables,
+} from './__generated__/UpdateTemplateBackContentMutation'
+import {
+  UpdateTemplateFrontContentMutation,
+  UpdateTemplateFrontContentMutationVariables,
+} from './__generated__/UpdateTemplateFrontContentMutation'
 
 const DRAFT_CONTENT_FRAGMENT = gql`
   fragment DraftContent on ContentState {
@@ -121,11 +129,17 @@ const TemplateDetails: React.FC<TemplateDetailsProps> = ({
   const [
     updateTemplateFrontContent,
     { loading: frontUpdateLoading },
-  ] = useMutation(UPDATE_FRONT_TEMPLATE_MUTATION)
+  ] = useMutation<
+    UpdateTemplateFrontContentMutation,
+    UpdateTemplateFrontContentMutationVariables
+  >(UPDATE_FRONT_TEMPLATE_MUTATION)
   const [
     updateTemplateBackContent,
     { loading: backUpdateLoading },
-  ] = useMutation(UPDATE_BACK_TEMPLATE_MUTATION)
+  ] = useMutation<
+    UpdateTemplateBackContentMutation,
+    UpdateTemplateBackContentMutationVariables
+  >(UPDATE_BACK_TEMPLATE_MUTATION)
 
   const frontDebounceIdRef = useRef<NodeJS.Timeout | null>(null)
   const backDebounceIdRef = useRef<NodeJS.Timeout | null>(null)
