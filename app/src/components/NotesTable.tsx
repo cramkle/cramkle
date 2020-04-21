@@ -54,6 +54,9 @@ const NotesTable: React.FC<Props> = ({ notes, deckSlug }) => {
               <Trans>Note</Trans>
             </TableCell>
             <TableCell>
+              <Trans>Deck</Trans>
+            </TableCell>
+            <TableCell>
               <Trans>Model type</Trans>
             </TableCell>
             <TableCell>
@@ -68,6 +71,7 @@ const NotesTable: React.FC<Props> = ({ notes, deckSlug }) => {
             return (
               <TableRow key={note.id}>
                 <TableCell>{noteIdentifier}</TableCell>
+                <TableCell>{note.deck.title}</TableCell>
                 <TableCell>{note.model.name}</TableCell>
                 <TableCell>{note.cards.length}</TableCell>
                 <TableCell>

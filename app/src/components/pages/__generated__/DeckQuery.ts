@@ -128,6 +128,14 @@ export interface DeckQuery_deck_notes_cards {
   template: DeckQuery_deck_notes_cards_template | null
 }
 
+export interface DeckQuery_deck_notes_deck {
+  __typename: 'Deck'
+  /**
+   * Title of the deck
+   */
+  title: string
+}
+
 export interface DeckQuery_deck_notes {
   __typename: 'Note'
   /**
@@ -146,6 +154,10 @@ export interface DeckQuery_deck_notes {
    * Generated flashcards
    */
   cards: (DeckQuery_deck_notes_cards | null)[] | null
+  /**
+   * Deck containing this note
+   */
+  deck: DeckQuery_deck_notes_deck | null
 }
 
 export interface DeckQuery_deck {
