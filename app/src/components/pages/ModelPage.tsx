@@ -78,7 +78,7 @@ const MODEL_QUERY = gql`
 const UPDATE_FRONT_TEMPLATE_MUTATION = gql`
   ${DRAFT_CONTENT_FRAGMENT}
 
-  mutation UpdateTemplateContentMutation(
+  mutation UpdateTemplateFrontContentMutation(
     $id: ID!
     $content: ContentStateInput
   ) {
@@ -94,7 +94,7 @@ const UPDATE_FRONT_TEMPLATE_MUTATION = gql`
 const UPDATE_BACK_TEMPLATE_MUTATION = gql`
   ${DRAFT_CONTENT_FRAGMENT}
 
-  mutation UpdateTemplateContentMutation(
+  mutation UpdateTemplateBackContentMutation(
     $id: ID!
     $content: ContentStateInput
   ) {

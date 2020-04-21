@@ -2,13 +2,8 @@ import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import React from 'react'
 
+import { FlashCardStatus } from '../globalTypes'
 import { Chip } from './views/Chip'
-
-enum FlashCardStatus {
-  DUE = 'DUE',
-  LEARNING = 'LEARNING',
-  NEW = 'NEW',
-}
 
 interface Props {
   status: FlashCardStatus

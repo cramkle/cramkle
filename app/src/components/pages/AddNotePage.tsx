@@ -2,7 +2,6 @@ import { useMutation, useQuery } from '@apollo/react-hooks'
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { Listbox, ListboxOption } from '@reach/listbox'
-import { FieldInput, FieldValueInput } from '__generated__/globalTypes'
 import BackButton from 'components/BackButton'
 import FieldValueEditor from 'components/FieldValueEditor'
 import CircularProgress from 'components/views/CircularProgress'
@@ -16,6 +15,7 @@ import Button from 'views/Button'
 import Container from 'views/Container'
 import { Body2, Caption, Headline5, Subtitle1 } from 'views/Typography'
 
+import { FieldInput, FieldValueInput } from '../../globalTypes'
 import {
   CreateNoteMutation,
   CreateNoteMutationVariables,
