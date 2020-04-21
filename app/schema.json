@@ -373,14 +373,14 @@
           },
           {
             "name": "cards",
-            "description": "Generated cards",
+            "description": "Generated flashcards",
             "args": [],
             "type": {
               "kind": "LIST",
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "Card",
+                "name": "FlashCard",
                 "ofType": null
               }
             },
@@ -1097,12 +1097,12 @@
       },
       {
         "kind": "OBJECT",
-        "name": "Card",
-        "description": "Cards are what the user reviews in the study sessions.\n\nThe objects of this type are auto generated when creating\nthe note and depend of the number of templates that are\nassociated with the card model.\n\nThe number of cards on each note is always equals the\nnumber of templates.",
+        "name": "FlashCard",
+        "description": "FlashCards are what the user study/reviews in the study sessions.\n\nThe objects of this type are auto generated when creating\nthe note and depend of the number of templates that are\nassociated with the model.\n\nThe number of flashcards on each note is always equal to the\nnumber of templates.",
         "fields": [
           {
             "name": "id",
-            "description": "Card id.",
+            "description": "FlashCard id.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1118,7 +1118,7 @@
           },
           {
             "name": "template",
-            "description": "Template associated with this card.",
+            "description": "Template associated with this flashcard.",
             "args": [],
             "type": {
               "kind": "OBJECT",
@@ -1142,11 +1142,11 @@
           },
           {
             "name": "state",
-            "description": "Current status of this card.",
+            "description": "Current status of this flashcard.",
             "args": [],
             "type": {
               "kind": "ENUM",
-              "name": "CardStatus",
+              "name": "FlashCardStatus",
               "ofType": null
             },
             "isDeprecated": false,
@@ -1154,7 +1154,7 @@
           },
           {
             "name": "lapses",
-            "description": "Number of times the user has forgotten the answer\nto this card.",
+            "description": "Number of times the user has forgotten the answer\nto this flashcard.",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -1166,7 +1166,7 @@
           },
           {
             "name": "reviews",
-            "description": "Number of times the user has reviewed this card.",
+            "description": "Number of times the user has reviewed this flashcard.",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -1190,7 +1190,7 @@
           },
           {
             "name": "easeFactor",
-            "description": "Ease factor used for calculating the interval when the user correctly\nanswers the card.",
+            "description": "Ease factor used for calculating the interval when the user correctly\nanswers the flashcard.",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -1202,7 +1202,7 @@
           },
           {
             "name": "due",
-            "description": "Due date of this card, in a timestamp format.",
+            "description": "Due date of this flashcard, in a timestamp format.",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -1214,7 +1214,7 @@
           },
           {
             "name": "note",
-            "description": "Parent note of the card.",
+            "description": "Parent note of the flashcard.",
             "args": [],
             "type": {
               "kind": "OBJECT",
@@ -1242,7 +1242,7 @@
       },
       {
         "kind": "ENUM",
-        "name": "CardStatus",
+        "name": "FlashCardStatus",
         "description": "",
         "fields": null,
         "inputFields": null,
@@ -3115,9 +3115,7 @@
       {
         "name": "authenticate",
         "description": "",
-        "locations": [
-          "FIELD_DEFINITION"
-        ],
+        "locations": ["FIELD_DEFINITION"],
         "args": [
           {
             "name": "roles",
@@ -3138,11 +3136,7 @@
       {
         "name": "cacheControl",
         "description": "",
-        "locations": [
-          "FIELD_DEFINITION",
-          "OBJECT",
-          "INTERFACE"
-        ],
+        "locations": ["FIELD_DEFINITION", "OBJECT", "INTERFACE"],
         "args": [
           {
             "name": "maxAge",
@@ -3169,11 +3163,7 @@
       {
         "name": "skip",
         "description": "Directs the executor to skip this field or fragment when the `if` argument is true.",
-        "locations": [
-          "FIELD",
-          "FRAGMENT_SPREAD",
-          "INLINE_FRAGMENT"
-        ],
+        "locations": ["FIELD", "FRAGMENT_SPREAD", "INLINE_FRAGMENT"],
         "args": [
           {
             "name": "if",
@@ -3194,11 +3184,7 @@
       {
         "name": "include",
         "description": "Directs the executor to include this field or fragment only when the `if` argument is true.",
-        "locations": [
-          "FIELD",
-          "FRAGMENT_SPREAD",
-          "INLINE_FRAGMENT"
-        ],
+        "locations": ["FIELD", "FRAGMENT_SPREAD", "INLINE_FRAGMENT"],
         "args": [
           {
             "name": "if",
@@ -3219,10 +3205,7 @@
       {
         "name": "deprecated",
         "description": "Marks an element of a GraphQL schema as no longer supported.",
-        "locations": [
-          "FIELD_DEFINITION",
-          "ENUM_VALUE"
-        ],
+        "locations": ["FIELD_DEFINITION", "ENUM_VALUE"],
         "args": [
           {
             "name": "reason",

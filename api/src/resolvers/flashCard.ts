@@ -4,7 +4,7 @@ import { NoteModel, TemplateModel } from '../mongo'
 import { FlashCardDocument } from '../mongo/Note'
 
 export const root: IResolvers = {
-  Card: {
+  FlashCard: {
     id: (root: FlashCardDocument) => root._id.toString(),
     note: (root: FlashCardDocument) => NoteModel.findById(root.noteId),
     template: (root: FlashCardDocument) =>

@@ -1,4 +1,4 @@
-# import Card from "Card.graphql"
+# import FlashCard from "FlashCard.graphql"
 # import Deck from "Deck.graphql"
 # import CardModel from "CardModel.graphql"
 # import FieldValue from "FieldValue.graphql"
@@ -27,7 +27,7 @@ type Note {
   """
   values: [FieldValue]
   """
-  Generated cards
+  Generated flashcards
   """
-  cards: [Card]
+  cards: [FlashCard]
 }

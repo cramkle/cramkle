@@ -1,27 +1,29 @@
 # import Template from "Template.graphql"
 # import Note from "Note.graphql"
 
-enum CardStatus {
-  NEW, LEARNING, DUE
+enum FlashCardStatus {
+  NEW
+  LEARNING
+  DUE
 }
 
 """
-Cards are what the user reviews in the study sessions.
+FlashCards are what the user study/reviews in the study sessions.
 
 The objects of this type are auto generated when creating
 the note and depend of the number of templates that are
-associated with the card model.
+associated with the model.
 
-The number of cards on each note is always equals the
+The number of flashcards on each note is always equal to the
 number of templates.
 """
-type Card {
+type FlashCard {
   """
-  Card id.
+  FlashCard id.
   """
   id: ID!
   """
-  Template associated with this card.
+  Template associated with this flashcard.
   """
   template: Template
   """
@@ -31,16 +33,16 @@ type Card {
   """
   active: Boolean
   """
-  Current status of this card.
+  Current status of this flashcard.
   """
-  state: CardStatus
+  state: FlashCardStatus
   """
   Number of times the user has forgotten the answer
-  to this card.
+  to this flashcard.
   """
   lapses: Int
   """
-  Number of times the user has reviewed this card.
+  Number of times the user has reviewed this flashcard.
   """
   reviews: Int
   """
@@ -49,15 +51,15 @@ type Card {
   interval: Int
   """
   Ease factor used for calculating the interval when the user correctly
-  answers the card.
+  answers the flashcard.
   """
   easeFactor: Float
   """
-  Due date of this card, in a timestamp format.
+  Due date of this flashcard, in a timestamp format.
   """
   due: Int
   """
-  Parent note of the card.
+  Parent note of the flashcard.
   """
   note: Note
 }

@@ -3,178 +3,182 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { CardStatus } from "./../../../../__generated__/globalTypes";
+import { FlashCardStatus } from './../../../../__generated__/globalTypes'
 
 // ====================================================
 // GraphQL query operation: DeckQuery
 // ====================================================
 
 export interface DeckQuery_deck_notes_values_data_blocks_inlineStyleRanges {
-  __typename: "InlineStyleRange";
-  style: string | null;
-  offset: number | null;
-  length: number | null;
+  __typename: 'InlineStyleRange'
+  style: string | null
+  offset: number | null
+  length: number | null
 }
 
 export interface DeckQuery_deck_notes_values_data_blocks_entityRanges {
-  __typename: "EntityRange";
-  key: number;
-  length: number;
-  offset: number;
+  __typename: 'EntityRange'
+  key: number
+  length: number
+  offset: number
 }
 
 export interface DeckQuery_deck_notes_values_data_blocks {
-  __typename: "Block";
-  key: string;
-  type: string;
-  text: string;
-  depth: number;
-  inlineStyleRanges: (DeckQuery_deck_notes_values_data_blocks_inlineStyleRanges | null)[] | null;
-  entityRanges: (DeckQuery_deck_notes_values_data_blocks_entityRanges | null)[] | null;
-  data: any | null;
+  __typename: 'Block'
+  key: string
+  type: string
+  text: string
+  depth: number
+  inlineStyleRanges:
+    | (DeckQuery_deck_notes_values_data_blocks_inlineStyleRanges | null)[]
+    | null
+  entityRanges:
+    | (DeckQuery_deck_notes_values_data_blocks_entityRanges | null)[]
+    | null
+  data: any | null
 }
 
 export interface DeckQuery_deck_notes_values_data {
-  __typename: "ContentState";
-  id: string;
-  blocks: (DeckQuery_deck_notes_values_data_blocks | null)[] | null;
-  entityMap: any | null;
+  __typename: 'ContentState'
+  id: string
+  blocks: (DeckQuery_deck_notes_values_data_blocks | null)[] | null
+  entityMap: any | null
 }
 
 export interface DeckQuery_deck_notes_values_field {
-  __typename: "Field";
+  __typename: 'Field'
   /**
    * Field id
    */
-  id: string;
+  id: string
   /**
    * Name of the field
    */
-  name: string;
+  name: string
 }
 
 export interface DeckQuery_deck_notes_values {
-  __typename: "FieldValue";
+  __typename: 'FieldValue'
   /**
    * Field value id
    */
-  id: string;
+  id: string
   /**
    * Field data
    */
-  data: DeckQuery_deck_notes_values_data | null;
+  data: DeckQuery_deck_notes_values_data | null
   /**
    * Associated field
    */
-  field: DeckQuery_deck_notes_values_field | null;
+  field: DeckQuery_deck_notes_values_field | null
 }
 
 export interface DeckQuery_deck_notes_model_primaryField {
-  __typename: "Field";
+  __typename: 'Field'
   /**
    * Field id
    */
-  id: string;
+  id: string
 }
 
 export interface DeckQuery_deck_notes_model {
-  __typename: "CardModel";
+  __typename: 'CardModel'
   /**
    * Name of this card model (e.g. "Basic", "Basic with Reversed")
    */
-  name: string | null;
+  name: string | null
   /**
    * Primary field that should represent each individual note
    * of this model.
    */
-  primaryField: DeckQuery_deck_notes_model_primaryField | null;
+  primaryField: DeckQuery_deck_notes_model_primaryField | null
 }
 
 export interface DeckQuery_deck_notes_cards_template {
-  __typename: "Template";
+  __typename: 'Template'
   /**
    * Name of the template
    */
-  name: string | null;
+  name: string | null
 }
 
 export interface DeckQuery_deck_notes_cards {
-  __typename: "Card";
+  __typename: 'FlashCard'
   /**
-   * Card id.
+   * FlashCard id.
    */
-  id: string;
+  id: string
   /**
    * Whether to be filtered of not.
-   * 
+   *
    * Acts like a logical deletion it when comes to the review.
    */
-  active: boolean | null;
+  active: boolean | null
   /**
-   * Current status of this card.
+   * Current status of this flashcard.
    */
-  state: CardStatus | null;
+  state: FlashCardStatus | null
   /**
-   * Due date of this card, in a timestamp format.
+   * Due date of this flashcard, in a timestamp format.
    */
-  due: number | null;
+  due: number | null
   /**
-   * Template associated with this card.
+   * Template associated with this flashcard.
    */
-  template: DeckQuery_deck_notes_cards_template | null;
+  template: DeckQuery_deck_notes_cards_template | null
 }
 
 export interface DeckQuery_deck_notes {
-  __typename: "Note";
+  __typename: 'Note'
   /**
    * Note id
    */
-  id: string;
+  id: string
   /**
    * Values of this note
    */
-  values: (DeckQuery_deck_notes_values | null)[] | null;
+  values: (DeckQuery_deck_notes_values | null)[] | null
   /**
    * Model of this note
    */
-  model: DeckQuery_deck_notes_model | null;
+  model: DeckQuery_deck_notes_model | null
   /**
-   * Generated cards
+   * Generated flashcards
    */
-  cards: (DeckQuery_deck_notes_cards | null)[] | null;
+  cards: (DeckQuery_deck_notes_cards | null)[] | null
 }
 
 export interface DeckQuery_deck {
-  __typename: "Deck";
+  __typename: 'Deck'
   /**
    * Deck id
    */
-  id: string;
+  id: string
   /**
    * Unique identifiable slug
    */
-  slug: string;
+  slug: string
   /**
    * Title of the deck
    */
-  title: string;
+  title: string
   /**
    * Description of the deck
    */
-  description: string | null;
+  description: string | null
   /**
    * Notes contained in this deck
    */
-  notes: (DeckQuery_deck_notes | null)[] | null;
+  notes: (DeckQuery_deck_notes | null)[] | null
 }
 
 export interface DeckQuery {
   /**
    * Get single deck
    */
-  deck: DeckQuery_deck | null;
+  deck: DeckQuery_deck | null
 }
 
 export interface DeckQueryVariables {
-  slug: string;
+  slug: string
 }
