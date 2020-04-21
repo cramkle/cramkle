@@ -4,13 +4,14 @@ import React from 'react'
 
 import { Chip } from './views/Chip'
 
-enum CardStatus {
+enum FlashCardStatus {
   DUE = 'DUE',
   LEARNING = 'LEARNING',
   NEW = 'NEW',
 }
+
 interface Props {
-  status: CardStatus
+  status: FlashCardStatus
 }
 
 const messages = {
@@ -20,21 +21,21 @@ const messages = {
 }
 
 const chipTypeByStatus = {
-  [CardStatus.DUE]: 'emphasis',
-  [CardStatus.NEW]: 'success',
-  [CardStatus.LEARNING]: undefined as undefined,
+  [FlashCardStatus.DUE]: 'emphasis',
+  [FlashCardStatus.NEW]: 'success',
+  [FlashCardStatus.LEARNING]: undefined as undefined,
 } as const
 
-const FlashCardStatus: React.FC<Props> = ({ status }) => {
+const FlashCardStatusChip: React.FC<Props> = ({ status }) => {
   const { i18n } = useLingui()
 
   let message = null
 
-  if (status === CardStatus.NEW) {
+  if (status === FlashCardStatus.NEW) {
     message = i18n._(messages.new)
-  } else if (status === CardStatus.LEARNING) {
+  } else if (status === FlashCardStatus.LEARNING) {
     message = i18n._(messages.learning)
-  } else if (status === CardStatus.DUE) {
+  } else if (status === FlashCardStatus.DUE) {
     message = i18n._(messages.due)
   } else {
     throw new Error(
@@ -49,4 +50,4 @@ const FlashCardStatus: React.FC<Props> = ({ status }) => {
   )
 }
 
-export default FlashCardStatus
+export default FlashCardStatusChip
