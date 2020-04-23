@@ -33,6 +33,27 @@ jobs:
       env:
         CI: true
 
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: NodeJS 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: Install dependencies
+        run: |
+          yarn
+          yarn --cwd api
+          yarn --cwd app
+      - name: Test
+        run: |
+          yarn --cwd app compile
+          yarn --cwd app test
+        env:
+          CI: true
+
   build:
     runs-on: ubuntu-latest
 
