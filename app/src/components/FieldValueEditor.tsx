@@ -1,6 +1,8 @@
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import BlockStyleControls from 'components/editor/BlockStyleControls'
+import BlockStyleControls, {
+  blockStyleFn,
+} from 'components/editor/BlockStyleControls'
 import InlineStyleControls from 'components/editor/InlineStyleControls'
 import {
   ContentState,
@@ -65,8 +67,12 @@ const FieldValueEditor: React.FC<Props> = ({
   )
 
   const handleBlockStyleToggle = useCallback(
-    (style: string) => {
-      setEditor(RichUtils.toggleBlockType(editor, style))
+    (style: string | ContentState) => {
+      if (typeof style === 'string') {
+        setEditor(RichUtils.toggleBlockType(editor, style))
+      } else {
+        setEditor(EditorState.push(editor, style, 'change-block-data'))
+      }
     },
     [editor]
   )
@@ -91,6 +97,7 @@ const FieldValueEditor: React.FC<Props> = ({
           editorState={editor}
           onChange={setEditor}
           placeholder={i18n._(t`Field value...`)}
+          blockStyleFn={blockStyleFn}
         />
       </div>
     </Card>

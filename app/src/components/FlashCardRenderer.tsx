@@ -12,6 +12,7 @@ import 'draft-js/dist/Draft.css'
 import React, { useContext, useMemo } from 'react'
 
 import styles from './FlashCardRenderer.css'
+import { blockStyleFn } from './editor/BlockStyleControls'
 import { findTagEntities } from './editor/strategies'
 import Divider from './views/Divider'
 import * as t from './views/Typography'
@@ -108,7 +109,12 @@ const FlashCardPanel: React.FC<PanelProps> = ({
         <t.Body2 className="db mv2">{emptyMessage}</t.Body2>
       ) : (
         <ValuesContext.Provider value={values}>
-          <Editor editorState={editorState} onChange={noop} readOnly />
+          <Editor
+            editorState={editorState}
+            onChange={noop}
+            blockStyleFn={blockStyleFn}
+            readOnly
+          />
         </ValuesContext.Provider>
       )}
     </>
