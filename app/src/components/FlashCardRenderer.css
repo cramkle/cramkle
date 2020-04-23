@@ -1,0 +1,36 @@
+.renderer > :last-child {
+  margin-bottom: 1rem;
+}
+
+/**
+ * This selector is supposed to match just the field values
+ * we interpolate inside each template, so they are treated
+ * as inline blocks. Example:
+ *
+ * Template:
+ *
+ *   What is the meaning of @Question?
+ *
+ * Question value:
+ *
+ *   life
+ *
+ * Without this rule, the `@Question` would be a `display: block`
+ * (because the Draft Editor root is a `div`), and would be displayed
+ * in the flashcard like:
+ *
+ * FlashCard:
+ *
+ *   What is the meaning of
+ *   life
+ *   ?
+ *
+ * And the desired result should be the same as the template
+ *
+ * FlashCard:
+ *
+ *   What is the meaning of life?
+ */
+.renderer :global(.DraftEditor-root) :global(.DraftEditor-root) {
+  display: inline-block;
+}
