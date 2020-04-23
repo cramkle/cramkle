@@ -21,15 +21,19 @@ export const FieldValueSchema = new Schema<FieldValueDocument>({
 
 // ----------
 // Flash cards
-enum FlashCardStatus {
+export enum FlashCardStatus {
   NEW = 'NEW',
   LEARNING = 'LEARNING',
-  DUE = 'DUE',
+  REVIEW = 'REVIEW',
 }
 
-interface FlashCard {
+export interface FlashCard {
   active: boolean
+  /**
+   * @deprecated Use `status` instead
+   */
   state: FlashCardStatus
+  status: FlashCardStatus
   lapses: number
   reviews: number
   interval: number
@@ -43,7 +47,7 @@ export interface FlashCardDocument extends Document, FlashCard {}
 
 export const FlashCardSchema = new Schema<FlashCardDocument>({
   active: { type: Boolean, default: true },
-  state: { type: FlashCardStatus, default: 'NEW' },
+  status: { type: FlashCardStatus, default: 'NEW' },
   lapses: { type: Number, default: 0 },
   reviews: { type: Number, default: 0 },
   interval: { type: Number },

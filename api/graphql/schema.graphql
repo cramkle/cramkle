@@ -48,6 +48,12 @@ type Query {
   note(id: ID!): Note @authenticate
 
   """
+  Retrieves the next flashcard for a study
+  session in the given deck
+  """
+  studyFlashCard(deckSlug: String!): FlashCard @authenticate
+
+  """
   Get currently logged user
   """
   me: User @authenticate
@@ -238,15 +244,15 @@ type Mutation {
   """
   createNote(
     """
-     Deck id
+    Deck id
     """
     deckId: ID!
     """
-     Model id
+    Model id
     """
     modelId: ID!
     """
-     Values in note
+    Values in note
     """
     fieldValues: [FieldValueInput!]!
   ): Note @authenticate
@@ -256,7 +262,7 @@ type Mutation {
   """
   deleteNote(
     """
-     Note id
+    Note id
     """
     noteId: ID!
   ): Note @authenticate
@@ -266,16 +272,35 @@ type Mutation {
   """
   updateFieldValue(
     """
-     Note id
+    Note id
     """
     noteId: ID!
     """
-     Field id
+    Field id
     """
     fieldId: ID!
     """
-     Field value content
+    Field value content
     """
     data: ContentStateInput!
   ): FieldValue @authenticate
+
+  answerFlashCard(
+    """
+    Note id
+    """
+    noteId: ID!
+    """
+    FlashCard id
+    """
+    flashCardId: ID!
+    """
+    Answer value
+    """
+    answer: FlashCardAnswer!
+    """
+    Time the user took to show the answer
+    """
+    timespan: Int!
+  ): FlashCard! @authenticate
 }
