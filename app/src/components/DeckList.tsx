@@ -2,10 +2,10 @@ import { useQuery } from '@apollo/react-hooks'
 import { Trans } from '@lingui/macro'
 import { Cell, Grid, Row } from '@material/react-layout-grid'
 import gql from 'graphql-tag'
-import useTopBarLoading from 'hooks/useTopBarLoading'
 import React from 'react'
 import { Body1 } from 'views/Typography'
 
+import useTopBarLoading from '../hooks/useTopBarLoading'
 import DeckCard from './DeckCard'
 import { DecksQuery } from './__generated__/DecksQuery'
 

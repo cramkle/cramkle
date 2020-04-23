@@ -5,7 +5,6 @@ import {
   util,
 } from '@material/tab-scroller'
 import classNames from 'classnames'
-import useClassList from 'hooks/useClassList'
 import React, {
   useCallback,
   useEffect,
@@ -13,6 +12,8 @@ import React, {
   useRef,
   useState,
 } from 'react'
+
+import useClassList from '../../hooks/useClassList'
 
 const convertDashToCamelCase = (propName: string) =>
   propName.replace(/-(\w)/g, (_, v) => v.toUpperCase())

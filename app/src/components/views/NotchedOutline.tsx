@@ -2,8 +2,9 @@ import { MDCFloatingLabelFoundation } from '@material/floating-label/foundation'
 import { MDCNotchedOutlineAdapter } from '@material/notched-outline/adapter'
 import { MDCNotchedOutlineFoundation } from '@material/notched-outline/foundation'
 import classNames from 'classnames'
-import useClassList from 'hooks/useClassList'
 import React, { useEffect, useMemo, useRef, useState } from 'react'
+
+import useClassList from '../../hooks/useClassList'
 
 const { cssClasses } = MDCNotchedOutlineFoundation
 

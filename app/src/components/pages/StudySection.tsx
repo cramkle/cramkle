@@ -9,10 +9,10 @@ import Dialog, {
   DialogTitle,
 } from 'components/views/Dialog'
 import gql from 'graphql-tag'
-import useTopBarLoading from 'hooks/useTopBarLoading'
 import React, { useState } from 'react'
 import { useHistory } from 'react-router'
 
+import useTopBarLoading from '../../hooks/useTopBarLoading'
 import { DecksToStudy } from './__generated__/DecksToStudy'
 
 const DECKS_TO_STUDY_QUERY = gql`

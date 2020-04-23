@@ -1,7 +1,6 @@
 import { events, ponyfill } from '@material/dom'
 import { MDCRippleAdapter, MDCRippleFoundation, util } from '@material/ripple'
 import classNames from 'classnames'
-import useClassList from 'hooks/useClassList'
 import React, {
   useCallback,
   useEffect,
@@ -9,6 +8,8 @@ import React, {
   useRef,
   useState,
 } from 'react'
+
+import useClassList from '../../hooks/useClassList'
 
 const useEventListener = (
   eventName: string,
