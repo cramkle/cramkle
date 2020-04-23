@@ -18,7 +18,6 @@
     "baseUrl": "./",
     "types": ["graphql"],
     "paths": {
-      "components/*": ["./src/components/*"],
       "views/*": ["./src/components/views/*"]
     }
   },

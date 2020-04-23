@@ -2,10 +2,6 @@ import { useMutation, useQuery } from '@apollo/react-hooks'
 import { Trans, plural } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import List, { ListItem, ListItemText } from '@material/react-list'
-import BackButton from 'components/BackButton'
-import DeleteModelButton from 'components/DeleteModelButton'
-import TemplateEditor from 'components/TemplateEditor'
-import CircularProgress from 'components/views/CircularProgress'
 import { ContentState, convertToRaw } from 'draft-js'
 import gql from 'graphql-tag'
 import React, { useCallback, useRef, useState } from 'react'
@@ -17,6 +13,10 @@ import TabBar from 'views/TabBar'
 import { Body1, Body2, Caption, Headline4, Headline5 } from 'views/Typography'
 
 import useTopBarLoading from '../../hooks/useTopBarLoading'
+import BackButton from '../BackButton'
+import DeleteModelButton from '../DeleteModelButton'
+import TemplateEditor from '../TemplateEditor'
+import CircularProgress from '../views/CircularProgress'
 import {
   ModelQuery,
   ModelQueryVariables,

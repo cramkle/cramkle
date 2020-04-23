@@ -1,18 +1,18 @@
 import { useQuery } from '@apollo/react-hooks'
 import { Trans } from '@lingui/macro'
 import { Cell, Grid, Row } from '@material/react-layout-grid'
-import DeckCard from 'components/DeckCard'
-import Button from 'components/views/Button'
-import Dialog, {
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-} from 'components/views/Dialog'
 import gql from 'graphql-tag'
 import React, { useState } from 'react'
 import { useHistory } from 'react-router'
 
 import useTopBarLoading from '../../hooks/useTopBarLoading'
+import DeckCard from '../DeckCard'
+import Button from '../views/Button'
+import Dialog, {
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+} from '../views/Dialog'
 import { DecksToStudy } from './__generated__/DecksToStudy'
 
 const DECKS_TO_STUDY_QUERY = gql`

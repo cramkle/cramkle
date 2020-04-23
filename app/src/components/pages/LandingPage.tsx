@@ -1,5 +1,4 @@
 import { Trans, t } from '@lingui/macro'
-import Footer from 'components/Footer'
 import React from 'react'
 import { useHistory } from 'react-router'
 import { Link } from 'react-router-dom'
@@ -15,6 +14,7 @@ import { Headline2, Headline4 } from 'views/Typography'
 
 import bgUrl from '../../assets/landing-bg.svg'
 import { ReactComponent as Logo } from '../../assets/logo.svg'
+import Footer from '../Footer'
 import RegisterForm from '../forms/RegisterForm'
 
 const LandingPage: React.FunctionComponent = () => {

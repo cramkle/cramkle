@@ -1,11 +1,6 @@
 import { useLazyQuery } from '@apollo/react-hooks'
 import { Trans } from '@lingui/macro'
 import classnames from 'classnames'
-import Dialog, {
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-} from 'components/views/Dialog'
 import gql from 'graphql-tag'
 import React, { useEffect, useState } from 'react'
 import { useHistory, useParams } from 'react-router'
@@ -14,6 +9,11 @@ import FlashCardRenderer from '../FlashCardRenderer'
 import Portal from '../Portal'
 import Button from '../views/Button'
 import CircularProgress from '../views/CircularProgress'
+import Dialog, {
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+} from '../views/Dialog'
 
 const STUDY_CARD_QUERY = gql`
   query FlashCards($deckSlug: String!) {
