@@ -3,9 +3,9 @@ import {
   MDCIconButtonToggleFoundation,
 } from '@material/icon-button'
 import classNames from 'classnames'
-import useClassList from 'hooks/useClassList'
 import React, { useEffect, useRef, useState } from 'react'
 
+import useClassList from '../../hooks/useClassList'
 import { useRipple } from './Ripple'
 
 interface ToggleProps {

@@ -5,9 +5,9 @@ import {
 } from '@material/checkbox'
 import { MDCRippleFoundation } from '@material/ripple'
 import classNames from 'classnames'
-import useClassList from 'hooks/useClassList'
 import React, { useEffect, useImperativeHandle, useRef, useState } from 'react'
 
+import useClassList from '../../hooks/useClassList'
 import { useRipple } from './Ripple'
 
 export interface CheckboxProps extends React.HTMLAttributes<HTMLDivElement> {

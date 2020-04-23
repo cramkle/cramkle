@@ -5,8 +5,9 @@ import {
   MDCTopAppBarFoundation,
 } from '@material/top-app-bar'
 import classNames from 'classnames'
-import useClassList from 'hooks/useClassList'
 import React, { useEffect, useRef, useState } from 'react'
+
+import useClassList from '../../hooks/useClassList'
 
 const BASE = 'mdc-top-app-bar'
 const SECTION = `${BASE}__section`

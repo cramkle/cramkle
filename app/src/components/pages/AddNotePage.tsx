@@ -7,7 +7,6 @@ import FieldValueEditor from 'components/FieldValueEditor'
 import CircularProgress from 'components/views/CircularProgress'
 import { ContentState, convertToRaw } from 'draft-js'
 import gql from 'graphql-tag'
-import useTopBarLoading from 'hooks/useTopBarLoading'
 import React, { useCallback, useMemo, useState } from 'react'
 import { useHistory, useParams } from 'react-router'
 import Button from 'views/Button'
@@ -15,6 +14,7 @@ import Container from 'views/Container'
 import { Body2, Caption, Headline5, Subtitle1 } from 'views/Typography'
 
 import { FieldInput, FieldValueInput } from '../../globalTypes'
+import useTopBarLoading from '../../hooks/useTopBarLoading'
 import { notificationState } from '../../notification/index'
 import {
   CreateNoteMutation,

@@ -8,7 +8,6 @@ import TemplateEditor from 'components/TemplateEditor'
 import CircularProgress from 'components/views/CircularProgress'
 import { ContentState, convertToRaw } from 'draft-js'
 import gql from 'graphql-tag'
-import useTopBarLoading from 'hooks/useTopBarLoading'
 import React, { useCallback, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { useParams } from 'react-router'
@@ -17,6 +16,7 @@ import Tab from 'views/Tab'
 import TabBar from 'views/TabBar'
 import { Body1, Body2, Caption, Headline4, Headline5 } from 'views/Typography'
 
+import useTopBarLoading from '../../hooks/useTopBarLoading'
 import {
   ModelQuery,
   ModelQueryVariables,
