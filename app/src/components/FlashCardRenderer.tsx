@@ -1,4 +1,5 @@
 import { Trans } from '@lingui/macro'
+import classnames from 'classnames'
 import {
   CompositeDecorator,
   ContentState,
@@ -7,8 +8,10 @@ import {
   RawDraftContentState,
   convertFromRaw,
 } from 'draft-js'
+import 'draft-js/dist/Draft.css'
 import React, { useContext, useMemo } from 'react'
 
+import styles from './FlashCardRenderer.css'
 import { findTagEntities } from './editor/strategies'
 import Divider from './views/Divider'
 import * as t from './views/Typography'
@@ -112,7 +115,7 @@ const FlashCardPanel: React.FC<PanelProps> = ({
   )
 }
 
-interface Props {
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
   template: Template
   values: NoteValue[]
   hideLabels?: boolean
@@ -124,9 +127,14 @@ const FlashCardRenderer: React.FC<Props> = ({
   values,
   hideLabels = false,
   hideBackSide = true,
+  className = '',
+  ...props
 }) => {
   return (
-    <div className="c-on-surface">
+    <div
+      {...props}
+      className={classnames(styles.renderer, className, 'c-on-surface')}
+    >
       <FlashCardPanel
         label={<Trans>Front side</Trans>}
         hideLabel={hideLabels}
