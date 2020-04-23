@@ -4,18 +4,20 @@ import Card, { CardPrimaryContent } from 'views/Card'
 import { Body2, Headline6 } from 'views/Typography'
 
 interface Props {
-  title: string
-  description?: string | null
-  slug: string
+  deck: { id: string; title: string; description?: string | null; slug: string }
+  onClick?: (deck: { id: string; title: string; description?: string }) => void
 }
 
-const DeckCard: React.FunctionComponent<Props> = ({
-  title,
-  description = null,
-  slug,
-}) => {
+const DeckCard: React.FunctionComponent<Props> = ({ onClick, deck }) => {
   const history = useHistory()
-  const handleClick = () => history.push(`/d/${slug}`)
+
+  const handleClick = () => {
+    if (onClick) {
+      onClick(deck)
+    } else {
+      history.push(`/d/${deck.slug}`)
+    }
+  }
 
   return (
     <Card outlined className="h-100">
@@ -28,8 +30,8 @@ const DeckCard: React.FunctionComponent<Props> = ({
           e.key === 'Enter' && handleClick()
         }
       >
-        <Headline6>{title}</Headline6>
-        {description && <Body2>{description}</Body2>}
+        <Headline6>{deck.title}</Headline6>
+        {deck.description && <Body2>{deck.description}</Body2>}
       </CardPrimaryContent>
     </Card>
   )

@@ -115,7 +115,7 @@ export interface DeckQuery_deck_notes_cards {
    */
   active: boolean | null
   /**
-   * Current status of this flashcard.
+   * Deprecated
    */
   state: FlashCardStatus | null
   /**

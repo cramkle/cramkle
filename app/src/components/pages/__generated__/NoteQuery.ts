@@ -206,7 +206,7 @@ export interface NoteQuery_note_cards {
    */
   due: number | null
   /**
-   * Current status of this flashcard.
+   * Deprecated
    */
   state: FlashCardStatus | null
   /**
