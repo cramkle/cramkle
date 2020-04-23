@@ -2,8 +2,6 @@ import { useQuery } from '@apollo/react-hooks'
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import LinearProgress from '@material/react-linear-progress'
-import { ReactComponent as LogoGray } from 'assets/logo-gray.svg'
-import { ReactComponent as Logo } from 'assets/logo.svg'
 import gql from 'graphql-tag'
 import React, { Suspense, useCallback, useEffect, useRef } from 'react'
 import { useHistory, useLocation } from 'react-router'
@@ -17,6 +15,8 @@ import TopAppBar, {
   TopAppBarTitle,
 } from 'views/TopAppBar'
 
+import { ReactComponent as LogoGray } from '../assets/logo-gray.svg'
+import { ReactComponent as Logo } from '../assets/logo.svg'
 import useLocalStorage from '../hooks/useLocalStorage'
 import useOffline from '../hooks/useOffline'
 import AppDrawer from './AppDrawer'

@@ -18,14 +18,10 @@
     "baseUrl": "./",
     "types": ["graphql"],
     "paths": {
-      "assets/*": ["./src/assets/*"],
-      "utils/*": ["./src/utils/*"],
       "components/*": ["./src/components/*"],
       "views/*": ["./src/components/views/*"],
       "forms/*": ["./src/components/forms/*"],
-      "pages/*": ["./src/components/pages/*"],
-      "routes/*": ["./src/components/routes/*"],
-      "resolvers/*": ["./src/resolvers/*"]
+      "pages/*": ["./src/components/pages/*"]
     }
   },
   "exclude": ["jest/**/*"]
