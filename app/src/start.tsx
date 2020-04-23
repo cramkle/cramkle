@@ -9,12 +9,12 @@ import { Helmet } from 'react-helmet'
 import { StaticRouterContext } from 'react-router'
 import { BrowserRouter } from 'react-router-dom'
 import Cookies from 'universal-cookie'
-import { createApolloClient } from 'utils/apolloClient'
 
 import App from './App'
 import catalogEn from './locales/en/messages'
 import catalogPt from './locales/pt/messages'
 import registerSW from './registerSW'
+import { createApolloClient } from './utils/apolloClient'
 
 interface RenderOptions {
   requestUrl: string

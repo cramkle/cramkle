@@ -1,6 +1,4 @@
 import { Trans, t } from '@lingui/macro'
-import bgUrl from 'assets/landing-bg.svg'
-import { ReactComponent as Logo } from 'assets/logo.svg'
 import Footer from 'components/Footer'
 import RegisterForm from 'forms/RegisterForm'
 import React from 'react'
@@ -15,6 +13,9 @@ import TopAppBar, {
   TopAppBarTitle,
 } from 'views/TopAppBar'
 import { Headline2, Headline4 } from 'views/Typography'
+
+import bgUrl from '../../assets/landing-bg.svg'
+import { ReactComponent as Logo } from '../../assets/logo.svg'
 
 const LandingPage: React.FunctionComponent = () => {
   const history = useHistory()

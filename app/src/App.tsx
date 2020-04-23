@@ -13,9 +13,10 @@ import ErrorBoundary from 'react-error-boundary'
 import { Helmet } from 'react-helmet'
 import { hot } from 'react-hot-loader/root'
 import { Redirect, Route, Switch } from 'react-router'
-import { GuestRoute, UserRoute } from 'routes/AuthRoute'
-import ShellRoute from 'routes/ShellRoute'
-import { icons } from 'utils/headLinks'
+
+import { GuestRoute, UserRoute } from './components/routes/AuthRoute'
+import ShellRoute from './components/routes/ShellRoute'
+import { icons } from './utils/headLinks'
 
 import './theme.global.scss'
 

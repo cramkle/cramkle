@@ -1,10 +1,11 @@
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import { ReactComponent as GithubLogo } from 'assets/github-logo.svg'
-import { ReactComponent as TwitterLogo } from 'assets/twitter-logo.svg'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import * as T from 'views/Typography'
+
+import { ReactComponent as GithubLogo } from '../assets/github-logo.svg'
+import { ReactComponent as TwitterLogo } from '../assets/twitter-logo.svg'
 
 const links = [
   {

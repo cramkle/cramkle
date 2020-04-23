@@ -3,9 +3,9 @@ import { Trans, plural } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import gql from 'graphql-tag'
 import React from 'react'
-import { getNoteIdentifier } from 'utils/noteIdentifier'
 import Dialog, { DialogActions, DialogContent, DialogTitle } from 'views/Dialog'
 
+import { getNoteIdentifier } from '../utils/noteIdentifier'
 import {
   DeleteNoteMutation,
   DeleteNoteMutationVariables,
