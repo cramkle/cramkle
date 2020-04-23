@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - Back arrow not working in home for initial page.
 - Top bar position on mobile view.
+- Editor losing focus when clicking on any style button.
 
 ### Removed
 - Search bar from top bar.
