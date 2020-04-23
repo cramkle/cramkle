@@ -20,7 +20,6 @@
     "paths": {
       "components/*": ["./src/components/*"],
       "views/*": ["./src/components/views/*"],
-      "forms/*": ["./src/components/forms/*"],
       "pages/*": ["./src/components/pages/*"]
     }
   },
