@@ -8,6 +8,7 @@ import {
 import * as KeyCode from 'keycode-js'
 import React, { useCallback, useEffect, useReducer, useRef } from 'react'
 
+import { blockStyleFn } from './BlockStyleControls'
 import { TaggableEntry } from './TaggableEntry'
 import TagsPopup from './TagsPopup'
 import replaceTagInEditorState from './replaceTagInEditorState'
@@ -250,6 +251,7 @@ const TagEditor: React.FunctionComponent<Props> = ({
         handleReturn={handleReturn}
         handleKeyCommand={handleKeyCommand}
         keyBindingFn={keyBinder}
+        blockStyleFn={blockStyleFn}
       />
       <TagsPopup
         tagEntries={visibleTagEntries}

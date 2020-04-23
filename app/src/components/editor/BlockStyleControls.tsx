@@ -1,7 +1,8 @@
 import { t } from '@lingui/macro'
-import { EditorState } from 'draft-js'
-import React, { memo } from 'react'
+import { ContentBlock, ContentState, EditorState, Modifier } from 'draft-js'
+import React, { memo, useCallback } from 'react'
 
+import styles from './BlockStyleControls.css'
 import StyleButton, { Style } from './StyleButton'
 
 export const BLOCK_TYPES: Style[] = [
@@ -17,15 +18,80 @@ export const BLOCK_TYPES: Style[] = [
   { label: t`Code Block`, style: 'code-block' },
 ]
 
+export const ALIGN_LEFT = 'alignLeft'
+export const ALIGN_CENTER = 'alignCenter'
+export const ALIGN_RIGHT = 'alignRight'
+
+export const ALIGNMENT_STYLES: Style[] = [
+  {
+    label: t`Align left`,
+    style: ALIGN_LEFT,
+    icon: 'format_align_left',
+  },
+  {
+    label: t`Align center`,
+    style: ALIGN_CENTER,
+    icon: 'format_align_center',
+  },
+  {
+    label: t`Align right`,
+    style: ALIGN_RIGHT,
+    icon: 'format_align_right',
+  },
+]
+
+export const ALIGNMENT_DATA_KEY = 'textAlignment'
+
+export const blockStyleFn = (contentBlock: ContentBlock) => {
+  const blockData = contentBlock.getData()
+
+  const blockAlignment = blockData.has(ALIGNMENT_DATA_KEY)
+    ? blockData.get(ALIGNMENT_DATA_KEY)
+    : undefined
+
+  if (blockAlignment) {
+    switch (blockAlignment) {
+      case ALIGN_LEFT:
+        return styles.alignLeft
+      case ALIGN_CENTER:
+        return styles.alignCenter
+      case ALIGN_RIGHT:
+        return styles.alignRight
+    }
+  }
+}
+
 const BlockStyleControls: React.FunctionComponent<{
   editor: EditorState
-  onToggle: (s: string) => void
+  onToggle: (s: string | ContentState) => void
 }> = ({ editor, onToggle }) => {
   const selection = editor.getSelection()
-  const blockType = editor
+  const selectionBlock = editor
     .getCurrentContent()
     .getBlockForKey(selection.getStartKey())
-    .getType()
+
+  const blockType = selectionBlock.getType()
+  const blockData = selectionBlock.getData()
+
+  const currentAlignment = blockData.has(ALIGNMENT_DATA_KEY)
+    ? blockData.get(ALIGNMENT_DATA_KEY)
+    : undefined
+
+  const handleToggleAlignment = useCallback(
+    (style: string) => {
+      onToggle(
+        Modifier.mergeBlockData(
+          editor.getCurrentContent(),
+          selection,
+          blockData.set(
+            ALIGNMENT_DATA_KEY,
+            currentAlignment !== style ? style : undefined
+          )
+        )
+      )
+    },
+    [onToggle, blockData, editor, selection, currentAlignment]
+  )
 
   return (
     <div className="mb2 f6">
@@ -37,6 +103,16 @@ const BlockStyleControls: React.FunctionComponent<{
           onToggle={onToggle}
           style={type.style}
           icon={type.icon}
+        />
+      ))}
+      {ALIGNMENT_STYLES.map((alignmentStyle) => (
+        <StyleButton
+          key={alignmentStyle.style}
+          style={alignmentStyle.style}
+          label={alignmentStyle.label}
+          icon={alignmentStyle.icon}
+          onToggle={handleToggleAlignment}
+          active={currentAlignment === alignmentStyle.style}
         />
       ))}
     </div>

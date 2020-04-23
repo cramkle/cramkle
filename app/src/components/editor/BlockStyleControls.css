@@ -1,0 +1,11 @@
+.alignLeft :global(.public-DraftStyleDefault-block) {
+  text-align: left;
+}
+
+.alignCenter :global(.public-DraftStyleDefault-block) {
+  text-align: center;
+}
+
+.alignRight :global(.public-DraftStyleDefault-block) {
+  text-align: right;
+}

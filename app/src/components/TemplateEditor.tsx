@@ -67,8 +67,12 @@ const TemplateEditor: React.FunctionComponent<Props> = ({
   )
 
   const handleBlockStyleToggle = useCallback(
-    (style: string) => {
-      setEditor(RichUtils.toggleBlockType(editor, style))
+    (style: string | ContentState) => {
+      if (typeof style === 'string') {
+        setEditor(RichUtils.toggleBlockType(editor, style))
+      } else {
+        setEditor(EditorState.push(editor, style, 'change-block-data'))
+      }
     },
     [editor]
   )
