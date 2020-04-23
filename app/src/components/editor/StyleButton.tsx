@@ -5,7 +5,6 @@ import React, { memo, useRef } from 'react'
 import { useControlledTabIndex } from 'react-tab-controller'
 import Icon from 'views/Icon'
 import { IconTypes } from 'views/IconTypes'
-import { useRipple } from 'views/Ripple'
 
 import styles from './StyleButton.css'
 
@@ -30,11 +29,6 @@ const StyleButton: React.FunctionComponent<Props> = ({
   const { i18n } = useLingui()
   const buttonRef = useRef<HTMLButtonElement>(null)
 
-  const { rippleStyle, rippleClasses } = useRipple({
-    surfaceRef: buttonRef,
-    unbounded: true,
-  })
-
   const handleToggle = (e: React.MouseEvent<HTMLSpanElement>) => {
     e.preventDefault()
     onToggle(style)
@@ -42,7 +36,6 @@ const StyleButton: React.FunctionComponent<Props> = ({
 
   const className = classNames(
     styles.button,
-    rippleClasses,
     'mdc-typography mdc-ripple-surface bg-surface relative pointer mr2 pv1 dib bn br1 flex items-center',
     {
       'c-primary mdc-ripple-surface--primary': active,
@@ -56,7 +49,6 @@ const StyleButton: React.FunctionComponent<Props> = ({
 
   return (
     <button
-      style={rippleStyle}
       className={className}
       onMouseDown={handleToggle}
       ref={buttonRef}

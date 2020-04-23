@@ -9,7 +9,9 @@ export const Table: React.FC<TableProps> = ({
   ...props
 }) => {
   return (
-    <div className={classnames(className, 'ba br2 b--outline dib')}>
+    <div
+      className={classnames(className, 'ba br2 b--outline dib overflow-auto')}
+    >
       <table {...props} className="collapse w-100">
         {children}
       </table>
