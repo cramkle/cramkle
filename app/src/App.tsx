@@ -1,13 +1,14 @@
 import { useLingui } from '@lingui/react'
 import ErrorFallback from 'components/ErrorFallback'
 import { useHints } from 'components/HintsContext'
+import NoSSR from 'components/NoSSR'
 import NotificationToasts from 'components/NotificationToasts'
 import AboutPage from 'pages/AboutPage'
 import LandingPage from 'pages/LandingPage'
 import LoginPage from 'pages/LoginPage'
 import NotFoundPage from 'pages/NotFoundPage'
 import RegisterPage from 'pages/RegisterPage'
-import React, { lazy } from 'react'
+import React, { Suspense, lazy } from 'react'
 import ErrorBoundary from 'react-error-boundary'
 import { Helmet } from 'react-helmet'
 import { hot } from 'react-hot-loader/root'
@@ -18,15 +19,16 @@ import { icons } from 'utils/headLinks'
 
 import './theme.global.scss'
 
-const HomePage = lazy(() => import('pages/HomePage'))
-const DeckPage = lazy(() => import('pages/DeckPage'))
-const MarketplacePage = lazy(() => import('pages/MarketplacePage'))
-const ModelPage = lazy(() => import('pages/ModelPage'))
-const SettingsPage = lazy(() => import('pages/SettingsPage'))
-const StatisticsPage = lazy(() => import('pages/StatisticsPage'))
 const AddModelPage = lazy(() => import('pages/AddModelPage'))
 const AddNotePage = lazy(() => import('pages/AddNotePage'))
+const DeckPage = lazy(() => import('pages/DeckPage'))
+const HomePage = lazy(() => import('pages/HomePage'))
+const MarketplacePage = lazy(() => import('pages/MarketplacePage'))
+const ModelPage = lazy(() => import('pages/ModelPage'))
 const NotePage = lazy(() => import('pages/NotePage'))
+const SettingsPage = lazy(() => import('pages/SettingsPage'))
+const StatisticsPage = lazy(() => import('pages/StatisticsPage'))
+const StudyPage = lazy(() => import('components/pages/StudyPage'))
 
 const App: React.FunctionComponent<{}> = () => {
   const { i18n } = useLingui()
@@ -116,6 +118,13 @@ const App: React.FunctionComponent<{}> = () => {
           <ShellRoute RouteComponent={UserRoute} path="/d/:slug/note/:noteId">
             <NotePage />
           </ShellRoute>
+          <UserRoute path="/study/:slug" exact>
+            <NoSSR>
+              <Suspense fallback={null}>
+                <StudyPage />
+              </Suspense>
+            </NoSSR>
+          </UserRoute>
           <ShellRoute RouteComponent={UserRoute} path="/m/:id" exact>
             <ModelPage />
           </ShellRoute>

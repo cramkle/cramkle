@@ -46,7 +46,7 @@ const DeckList: React.FunctionComponent = () => {
       <Row>
         {decks.map((deck) => (
           <Cell key={deck.id}>
-            <DeckCard {...deck} />
+            <DeckCard deck={deck} />
           </Cell>
         ))}
       </Row>
