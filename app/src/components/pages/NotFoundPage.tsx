@@ -1,7 +1,8 @@
 import { Trans } from '@lingui/macro'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Body1, Headline5 } from 'views/Typography'
+
+import { Body1, Headline5 } from '../views/Typography'
 
 const NotFoundPage: React.FunctionComponent = () => {
   return (

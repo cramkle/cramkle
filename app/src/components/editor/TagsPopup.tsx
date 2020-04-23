@@ -1,8 +1,8 @@
 import { SelectionState } from 'draft-js'
 import React from 'react'
-import TypeaheadView from 'views/TypeaheadView'
 
 import Portal from '../Portal'
+import TypeaheadView from '../views/TypeaheadView'
 import TagSpan from './TagSpan'
 import { TaggableEntry } from './TaggableEntry'
 import getSelectionRect from './getSelectionRect'

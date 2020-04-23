@@ -1,8 +1,9 @@
 import { Trans } from '@lingui/macro'
 import React, { useCallback } from 'react'
 import { useHistory } from 'react-router'
-import Button from 'views/Button'
-import Icon from 'views/Icon'
+
+import Button from './views/Button'
+import Icon from './views/Icon'
 
 interface Props {
   to?: string

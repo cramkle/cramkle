@@ -5,15 +5,6 @@ import LinearProgress from '@material/react-linear-progress'
 import gql from 'graphql-tag'
 import React, { Suspense, useCallback, useEffect, useRef } from 'react'
 import { useHistory, useLocation } from 'react-router'
-import Icon from 'views/Icon'
-import IconButton from 'views/IconButton'
-import TopAppBar, {
-  TopAppBarFixedAdjust,
-  TopAppBarIcon,
-  TopAppBarRow,
-  TopAppBarSection,
-  TopAppBarTitle,
-} from 'views/TopAppBar'
 
 import { ReactComponent as LogoGray } from '../assets/logo-gray.svg'
 import { ReactComponent as Logo } from '../assets/logo.svg'
@@ -23,6 +14,15 @@ import AppDrawer from './AppDrawer'
 import { useHints } from './HintsContext'
 import NoSSR from './NoSSR'
 import { TopBarLoadingQuery } from './__generated__/TopBarLoadingQuery'
+import Icon from './views/Icon'
+import IconButton from './views/IconButton'
+import TopAppBar, {
+  TopAppBarFixedAdjust,
+  TopAppBarIcon,
+  TopAppBarRow,
+  TopAppBarSection,
+  TopAppBarTitle,
+} from './views/TopAppBar'
 
 const TOP_BAR_LOADING_QUERY = gql`
   query TopBarLoadingQuery {

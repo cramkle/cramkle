@@ -1,7 +1,7 @@
 import { MessageDescriptor } from '@lingui/core'
 import * as uuid from 'uuid'
-import { Props as SnackbarProps } from 'views/Snackbar'
 
+import { Props as SnackbarProps } from '../components/views/Snackbar'
 import Emitter from './event'
 
 export interface NotificationMessage {

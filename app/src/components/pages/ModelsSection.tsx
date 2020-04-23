@@ -3,11 +3,11 @@ import { useLingui } from '@lingui/react'
 import classNames from 'classnames'
 import React from 'react'
 import { useHistory } from 'react-router'
-import Fab from 'views/Fab'
-import Icon from 'views/Icon'
 
 import { useHints } from '../HintsContext'
 import ModelList from '../ModelList'
+import Fab from '../views/Fab'
+import Icon from '../views/Icon'
 import styles from './ModelsSection.css'
 
 const ModelsSection: React.FunctionComponent = () => {

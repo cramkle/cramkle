@@ -7,16 +7,22 @@ import gql from 'graphql-tag'
 import React, { useCallback, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { useParams } from 'react-router'
-import Container from 'views/Container'
-import Tab from 'views/Tab'
-import TabBar from 'views/TabBar'
-import { Body1, Body2, Caption, Headline4, Headline5 } from 'views/Typography'
 
 import useTopBarLoading from '../../hooks/useTopBarLoading'
 import BackButton from '../BackButton'
 import DeleteModelButton from '../DeleteModelButton'
 import TemplateEditor from '../TemplateEditor'
 import CircularProgress from '../views/CircularProgress'
+import Container from '../views/Container'
+import Tab from '../views/Tab'
+import TabBar from '../views/TabBar'
+import {
+  Body1,
+  Body2,
+  Caption,
+  Headline4,
+  Headline5,
+} from '../views/Typography'
 import {
   ModelQuery,
   ModelQueryVariables,

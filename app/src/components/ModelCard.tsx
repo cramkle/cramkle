@@ -2,11 +2,11 @@ import { plural } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import React, { useCallback } from 'react'
 import { useHistory } from 'react-router'
-import Card, { CardPrimaryContent } from 'views/Card'
-import { Chip } from 'views/Chip'
-import { Headline6 } from 'views/Typography'
 
 import { ModelsQuery_cardModels } from './__generated__/ModelsQuery'
+import Card, { CardPrimaryContent } from './views/Card'
+import { Chip } from './views/Chip'
+import { Headline6 } from './views/Typography'
 
 interface Props {
   className?: string

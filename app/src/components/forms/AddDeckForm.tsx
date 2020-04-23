@@ -5,13 +5,17 @@ import { Formik } from 'formik'
 import gql from 'graphql-tag'
 import React from 'react'
 import { useHistory } from 'react-router'
-import Button from 'views/Button'
-import Dialog, { DialogActions, DialogContent, DialogTitle } from 'views/Dialog'
 import * as yup from 'yup'
 
 import { notificationState } from '../../notification/index'
 import { DECKS_QUERY } from '../DeckList'
 import { DecksQuery } from '../__generated__/DecksQuery'
+import Button from '../views/Button'
+import Dialog, {
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+} from '../views/Dialog'
 import { TextInputField } from './Fields'
 import {
   CreateDeckMutation,

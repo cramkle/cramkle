@@ -1,7 +1,8 @@
 import React from 'react'
 import { useHistory } from 'react-router'
-import Card, { CardPrimaryContent } from 'views/Card'
-import { Body2, Headline6 } from 'views/Typography'
+
+import Card, { CardPrimaryContent } from './views/Card'
+import { Body2, Headline6 } from './views/Typography'
 
 interface Props {
   deck: { id: string; title: string; description?: string | null; slug: string }
