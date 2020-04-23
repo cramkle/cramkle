@@ -7,7 +7,9 @@ describe('<DeckCard />', () => {
   it('should match snapshot', () => {
     const comp = render(
       <MemoryRouter>
-        <DeckCard title="日本語げんき" slug="nihongo-genki" />
+        <DeckCard
+          deck={{ id: '123', title: '日本語げんき', slug: 'nihongo-genki' }}
+        />
       </MemoryRouter>
     )
 
