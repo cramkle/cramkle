@@ -3,11 +3,11 @@ import { useLingui } from '@lingui/react'
 import classNames from 'classnames'
 import DeckList from 'components/DeckList'
 import { useHints } from 'components/HintsContext'
-import AddDeckForm from 'forms/AddDeckForm'
 import React, { useCallback, useState } from 'react'
 import Fab from 'views/Fab'
 import Icon from 'views/Icon'
 
+import AddDeckForm from '../forms/AddDeckForm'
 import styles from './DecksSection.css'
 
 const DecksSection: React.FunctionComponent = () => {

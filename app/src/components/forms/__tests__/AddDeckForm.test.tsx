@@ -2,9 +2,10 @@ import { MockedProvider, MockedResponse } from '@apollo/react-testing'
 import { setupI18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
 import { fireEvent, render as rtlRender, wait } from '@testing-library/react'
-import AddDeckForm, { CREATE_DECK_MUTATION } from 'forms/AddDeckForm'
 import React from 'react'
 import { MemoryRouter } from 'react-router'
+
+import AddDeckForm, { CREATE_DECK_MUTATION } from '../AddDeckForm'
 
 interface Options {
   mutationMocks?: MockedResponse[]

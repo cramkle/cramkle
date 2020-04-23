@@ -1,11 +1,11 @@
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import RegisterForm from 'forms/RegisterForm'
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import { Link } from 'react-router-dom'
 
 import { ReactComponent as Logo } from '../../assets/logo-white.svg'
+import RegisterForm from '../forms/RegisterForm'
 
 const RegisterPage: React.FunctionComponent = () => {
   const { i18n } = useLingui()
