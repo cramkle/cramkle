@@ -20,7 +20,6 @@
     "paths": {
       "hooks/*": ["./src/hooks/*"],
       "assets/*": ["./src/assets/*"],
-      "notification/*": ["./src/notification/*"],
       "utils/*": ["./src/utils/*"],
       "components/*": ["./src/components/*"],
       "views/*": ["./src/components/views/*"],

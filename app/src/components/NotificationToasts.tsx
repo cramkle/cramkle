@@ -1,8 +1,9 @@
 import { useLingui } from '@lingui/react'
-import { notificationState } from 'notification/index'
-import { NotificationEvent } from 'notification/state'
 import React, { useCallback, useEffect, useState } from 'react'
 import { Snackbar } from 'views/Snackbar'
+
+import { notificationState } from '../notification/index'
+import { NotificationEvent } from '../notification/state'
 
 const NotificationToasts: React.FunctionComponent = () => {
   const { i18n } = useLingui()

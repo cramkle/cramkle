@@ -2,13 +2,13 @@ import { useMutation } from '@apollo/react-hooks'
 import { Trans, plural, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import gql from 'graphql-tag'
-import { notificationState } from 'notification/index'
 import React, { useState } from 'react'
 import { useHistory } from 'react-router'
 import Button from 'views/Button'
 import Dialog, { DialogActions, DialogContent, DialogTitle } from 'views/Dialog'
 import Icon from 'views/Icon'
 
+import { notificationState } from '../notification/index'
 import { MODELS_QUERY } from './ModelList'
 import {
   DeleteModelMutation,
