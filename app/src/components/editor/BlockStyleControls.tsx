@@ -1,5 +1,4 @@
 import { t } from '@lingui/macro'
-import { IconTypes } from 'components/views/IconTypes'
 import { ContentBlock, ContentState, EditorState, Modifier } from 'draft-js'
 import React, { memo, useCallback } from 'react'
 
@@ -23,21 +22,21 @@ export const ALIGN_LEFT = 'alignLeft'
 export const ALIGN_CENTER = 'alignCenter'
 export const ALIGN_RIGHT = 'alignRight'
 
-export const ALIGNMENT_STYLES = [
+export const ALIGNMENT_STYLES: Style[] = [
   {
     label: t`Align left`,
     style: ALIGN_LEFT,
-    icon: 'format_align_left' as IconTypes,
+    icon: 'format_align_left',
   },
   {
     label: t`Align center`,
     style: ALIGN_CENTER,
-    icon: 'format_align_center' as IconTypes,
+    icon: 'format_align_center',
   },
   {
     label: t`Align right`,
     style: ALIGN_RIGHT,
-    icon: 'format_align_right' as IconTypes,
+    icon: 'format_align_right',
   },
 ]
 
