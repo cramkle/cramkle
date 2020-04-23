@@ -11,7 +11,7 @@ enum FlashCardAnswer {
 enum FlashCardStatus {
   NEW
   LEARNING
-  DUE
+  REVIEW
 }
 
 """
