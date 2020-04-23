@@ -1,13 +1,13 @@
 import { useMutation } from '@apollo/react-hooks'
 import { Trans, t } from '@lingui/macro'
 import gql from 'graphql-tag'
-import { notificationState } from 'notification/index'
 import React, { useCallback, useState } from 'react'
 import { useHistory } from 'react-router'
 import Button from 'views/Button'
 import Dialog, { DialogActions, DialogContent, DialogTitle } from 'views/Dialog'
 import Icon from 'views/Icon'
 
+import { notificationState } from '../notification/index'
 import { DECKS_QUERY } from './DeckList'
 import { DecksQuery } from './__generated__/DecksQuery'
 import {
