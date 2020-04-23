@@ -21,12 +21,12 @@ import React, {
   useState,
 } from 'react'
 import { useHistory, useLocation } from 'react-router'
-import Icon from 'views/Icon'
 
 import { useHints } from './HintsContext'
 import NoSSR from './NoSSR'
 import { UserQuery } from './__generated__/UserQuery'
 import USER_QUERY from './userQuery.gql'
+import Icon from './views/Icon'
 
 interface Props {
   content: ReactNode

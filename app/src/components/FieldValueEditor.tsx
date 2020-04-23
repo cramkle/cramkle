@@ -11,10 +11,10 @@ import {
 import 'draft-js/dist/Draft.css'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { TabController } from 'react-tab-controller'
-import Card, { CardActionButtons, CardActions } from 'views/Card'
 
 import BlockStyleControls, { blockStyleFn } from './editor/BlockStyleControls'
 import InlineStyleControls from './editor/InlineStyleControls'
+import Card, { CardActionButtons, CardActions } from './views/Card'
 
 interface Props {
   className?: string

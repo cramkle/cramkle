@@ -16,10 +16,7 @@
     "lib": ["es6", "dom"],
     "jsx": "react",
     "baseUrl": "./",
-    "types": ["graphql"],
-    "paths": {
-      "views/*": ["./src/components/views/*"]
-    }
+    "types": ["graphql"]
   },
   "exclude": ["jest/**/*"]
 }

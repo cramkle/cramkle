@@ -5,7 +5,8 @@ import TextField, {
 } from '@material/react-text-field'
 import { useField } from 'formik'
 import React from 'react'
-import Checkbox, { CheckboxProps, CheckboxRef } from 'views/Checkbox'
+
+import Checkbox, { CheckboxProps, CheckboxRef } from '../views/Checkbox'
 
 interface TextInputProps<T extends HTMLElement>
   extends Pick<

@@ -3,11 +3,11 @@ import { Trans } from '@lingui/macro'
 import { Cell, Grid, Row } from '@material/react-layout-grid'
 import gql from 'graphql-tag'
 import React from 'react'
-import { Body1 } from 'views/Typography'
 
 import useTopBarLoading from '../hooks/useTopBarLoading'
 import DeckCard from './DeckCard'
 import { DecksQuery } from './__generated__/DecksQuery'
+import { Body1 } from './views/Typography'
 
 export const DECKS_QUERY = gql`
   query DecksQuery {
