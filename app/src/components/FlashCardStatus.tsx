@@ -12,11 +12,11 @@ interface Props {
 const messages = {
   new: t`New`,
   learning: t`Learning`,
-  due: t`Due`,
+  review: t`Review`,
 }
 
 const chipTypeByStatus = {
-  [FlashCardStatus.DUE]: 'emphasis',
+  [FlashCardStatus.REVIEW]: 'emphasis',
   [FlashCardStatus.NEW]: 'success',
   [FlashCardStatus.LEARNING]: undefined as undefined,
 } as const
@@ -30,8 +30,8 @@ const FlashCardStatusChip: React.FC<Props> = ({ status }) => {
     message = i18n._(messages.new)
   } else if (status === FlashCardStatus.LEARNING) {
     message = i18n._(messages.learning)
-  } else if (status === FlashCardStatus.DUE) {
-    message = i18n._(messages.due)
+  } else if (status === FlashCardStatus.REVIEW) {
+    message = i18n._(messages.review)
   } else {
     throw new Error(
       `FlashCardStatus rendering failed: invalid status "${status}"`

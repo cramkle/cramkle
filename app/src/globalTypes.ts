@@ -8,9 +8,9 @@
 //==============================================================
 
 export enum FlashCardStatus {
-  DUE = 'DUE',
   LEARNING = 'LEARNING',
   NEW = 'NEW',
+  REVIEW = 'REVIEW',
 }
 
 export interface BlockInput {

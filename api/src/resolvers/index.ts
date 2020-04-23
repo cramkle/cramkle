@@ -23,6 +23,7 @@ import {
   queries as noteQueries,
   root as noteRoot,
 } from './note'
+import { mutations as studyMutations, queries as studyQueries } from './study'
 import {
   mutations as templateMutations,
   queries as templateQueries,
@@ -37,28 +38,30 @@ import {
 export default {
   JSON,
   JSONObject,
+  ...contentStateRoot,
   ...deckRoot,
-  ...noteRoot,
-  ...templateRoot,
   ...fieldRoot,
   ...fieldValueRoot,
   ...flashCardRoot,
   ...modelRoot,
+  ...noteRoot,
+  ...templateRoot,
   ...userRoot,
-  ...contentStateRoot,
   Query: {
     ...deckQueries,
-    ...noteQueries,
-    ...templateQueries,
     ...modelQueries,
+    ...noteQueries,
+    ...studyQueries,
+    ...templateQueries,
     ...userQueries,
   },
   Mutation: {
     ...deckMutations,
+    ...fieldValueMutations,
     ...modelMutations,
+    ...noteMutations,
+    ...studyMutations,
     ...templateMutations,
     ...userMutations,
-    ...noteMutations,
-    ...fieldValueMutations,
   },
 }

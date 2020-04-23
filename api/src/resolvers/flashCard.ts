@@ -9,5 +9,7 @@ export const root: IResolvers = {
     note: (root: FlashCardDocument) => NoteModel.findById(root.noteId),
     template: (root: FlashCardDocument) =>
       TemplateModel.findById(root.templateId),
+    status: (root: FlashCardDocument) => root.status ?? root.state,
+    state: (root: FlashCardDocument) => root.status,
   },
 }

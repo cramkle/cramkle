@@ -1,10 +1,17 @@
 # import Template from "Template.graphql"
 # import Note from "Note.graphql"
 
+enum FlashCardAnswer {
+  REPEAT
+  HARD
+  GOOD
+  EASY
+}
+
 enum FlashCardStatus {
   NEW
   LEARNING
-  DUE
+  REVIEW
 }
 
 """
@@ -35,7 +42,11 @@ type FlashCard {
   """
   Current status of this flashcard.
   """
-  state: FlashCardStatus
+  status: FlashCardStatus
+  """
+  Deprecated
+  """
+  state: FlashCardStatus @deprecated(reason: "Use 'status' field")
   """
   Number of times the user has forgotten the answer
   to this flashcard.

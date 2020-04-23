@@ -162,6 +162,33 @@
             "deprecationReason": null
           },
           {
+            "name": "studyFlashCard",
+            "description": "Retrieves the next flashcard for a study\nsession in the given deck",
+            "args": [
+              {
+                "name": "deckSlug",
+                "description": "",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "FlashCard",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "me",
             "description": "Get currently logged user",
             "args": [],
@@ -1141,7 +1168,7 @@
             "deprecationReason": null
           },
           {
-            "name": "state",
+            "name": "status",
             "description": "Current status of this flashcard.",
             "args": [],
             "type": {
@@ -1151,6 +1178,18 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "state",
+            "description": "Deprecated",
+            "args": [],
+            "type": {
+              "kind": "ENUM",
+              "name": "FlashCardStatus",
+              "ofType": null
+            },
+            "isDeprecated": true,
+            "deprecationReason": "Use 'status' field"
           },
           {
             "name": "lapses",
@@ -1261,7 +1300,7 @@
             "deprecationReason": null
           },
           {
-            "name": "DUE",
+            "name": "REVIEW",
             "description": "",
             "isDeprecated": false,
             "deprecationReason": null
@@ -1805,7 +1844,7 @@
             "args": [
               {
                 "name": "deckId",
-                "description": " Deck id ",
+                "description": "Deck id",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -1819,7 +1858,7 @@
               },
               {
                 "name": "modelId",
-                "description": " Model id ",
+                "description": "Model id",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -1833,7 +1872,7 @@
               },
               {
                 "name": "fieldValues",
-                "description": " Values in note ",
+                "description": "Values in note",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -1868,7 +1907,7 @@
             "args": [
               {
                 "name": "noteId",
-                "description": " Note id ",
+                "description": "Note id",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -1895,7 +1934,7 @@
             "args": [
               {
                 "name": "noteId",
-                "description": " Note id  ",
+                "description": "Note id",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -1909,7 +1948,7 @@
               },
               {
                 "name": "fieldId",
-                "description": " Field id ",
+                "description": "Field id",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -1923,7 +1962,7 @@
               },
               {
                 "name": "data",
-                "description": " Field value content ",
+                "description": "Field value content",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -1940,6 +1979,79 @@
               "kind": "OBJECT",
               "name": "FieldValue",
               "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "answerFlashCard",
+            "description": "",
+            "args": [
+              {
+                "name": "noteId",
+                "description": "Note id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "ID",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "flashCardId",
+                "description": "FlashCard id",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "ID",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "answer",
+                "description": "Answer value",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "ENUM",
+                    "name": "FlashCardAnswer",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "timespan",
+                "description": "Time the user took to show the answer",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "FlashCard",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -2269,6 +2381,41 @@
         ],
         "interfaces": null,
         "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "FlashCardAnswer",
+        "description": "",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "REPEAT",
+            "description": "",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "HARD",
+            "description": "",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "GOOD",
+            "description": "",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "EASY",
+            "description": "",
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
         "possibleTypes": null
       },
       {
