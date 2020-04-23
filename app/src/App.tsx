@@ -1,35 +1,35 @@
 import { useLingui } from '@lingui/react'
-import ErrorFallback from 'components/ErrorFallback'
-import { useHints } from 'components/HintsContext'
-import NoSSR from 'components/NoSSR'
-import NotificationToasts from 'components/NotificationToasts'
-import AboutPage from 'pages/AboutPage'
-import LandingPage from 'pages/LandingPage'
-import LoginPage from 'pages/LoginPage'
-import NotFoundPage from 'pages/NotFoundPage'
-import RegisterPage from 'pages/RegisterPage'
 import React, { Suspense, lazy } from 'react'
 import ErrorBoundary from 'react-error-boundary'
 import { Helmet } from 'react-helmet'
 import { hot } from 'react-hot-loader/root'
 import { Redirect, Route, Switch } from 'react-router'
 
+import ErrorFallback from './components/ErrorFallback'
+import { useHints } from './components/HintsContext'
+import NoSSR from './components/NoSSR'
+import NotificationToasts from './components/NotificationToasts'
+import AboutPage from './components/pages/AboutPage'
+import LandingPage from './components/pages/LandingPage'
+import LoginPage from './components/pages/LoginPage'
+import NotFoundPage from './components/pages/NotFoundPage'
+import RegisterPage from './components/pages/RegisterPage'
 import { GuestRoute, UserRoute } from './components/routes/AuthRoute'
 import ShellRoute from './components/routes/ShellRoute'
 import { icons } from './utils/headLinks'
 
 import './theme.global.scss'
 
-const AddModelPage = lazy(() => import('pages/AddModelPage'))
-const AddNotePage = lazy(() => import('pages/AddNotePage'))
-const DeckPage = lazy(() => import('pages/DeckPage'))
-const HomePage = lazy(() => import('pages/HomePage'))
-const MarketplacePage = lazy(() => import('pages/MarketplacePage'))
-const ModelPage = lazy(() => import('pages/ModelPage'))
-const NotePage = lazy(() => import('pages/NotePage'))
-const SettingsPage = lazy(() => import('pages/SettingsPage'))
-const StatisticsPage = lazy(() => import('pages/StatisticsPage'))
-const StudyPage = lazy(() => import('components/pages/StudyPage'))
+const AddModelPage = lazy(() => import('./components/pages/AddModelPage'))
+const AddNotePage = lazy(() => import('./components/pages/AddNotePage'))
+const DeckPage = lazy(() => import('./components/pages/DeckPage'))
+const HomePage = lazy(() => import('./components/pages/HomePage'))
+const MarketplacePage = lazy(() => import('./components/pages/MarketplacePage'))
+const ModelPage = lazy(() => import('./components/pages/ModelPage'))
+const NotePage = lazy(() => import('./components/pages/NotePage'))
+const SettingsPage = lazy(() => import('./components/pages/SettingsPage'))
+const StatisticsPage = lazy(() => import('./components/pages/StatisticsPage'))
+const StudyPage = lazy(() => import('./components/pages/StudyPage'))
 
 const App: React.FunctionComponent<{}> = () => {
   const { i18n } = useLingui()

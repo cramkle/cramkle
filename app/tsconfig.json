@@ -19,8 +19,7 @@
     "types": ["graphql"],
     "paths": {
       "components/*": ["./src/components/*"],
-      "views/*": ["./src/components/views/*"],
-      "pages/*": ["./src/components/pages/*"]
+      "views/*": ["./src/components/views/*"]
     }
   },
   "exclude": ["jest/**/*"]

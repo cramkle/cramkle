@@ -1,6 +1,5 @@
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import { DeckQuery_deck_notes } from 'pages/__generated__/DeckQuery'
 import React, { useState } from 'react'
 import Card from 'views/Card'
 import {
@@ -14,6 +13,7 @@ import { Body2 } from 'views/Typography'
 
 import { getNoteIdentifier } from '../utils/noteIdentifier'
 import DeleteNoteDialog from './DeleteNoteDialog'
+import { DeckQuery_deck_notes } from './pages/__generated__/DeckQuery'
 import Icon from './views/Icon'
 import { Table, TableBody, TableCell, TableHead, TableRow } from './views/Table'
 
