@@ -11,12 +11,11 @@ import {
 import 'draft-js/dist/Draft.css'
 import React, { useContext, useMemo } from 'react'
 
+import styles from './FlashCardRenderer.css'
 import { blockStyleFn } from './editor/BlockStyleControls'
 import { findTagEntities } from './editor/strategies'
 import Divider from './views/Divider'
 import * as t from './views/Typography'
-// eslint-disable-next-line
-import styles from './FlashCardRenderer.css'
 
 interface NoteValue {
   data: RawDraftContentState

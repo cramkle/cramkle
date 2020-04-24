@@ -4,7 +4,7 @@ import { useLingui } from '@lingui/react'
 import List, { ListItem, ListItemText } from '@material/react-list'
 import { ContentState, convertToRaw } from 'draft-js'
 import gql from 'graphql-tag'
-import React, { useCallback, useRef, useState } from 'react'
+import React, { useCallback, useRef } from 'react'
 import { Helmet } from 'react-helmet'
 import { useParams } from 'react-router'
 
@@ -14,8 +14,7 @@ import DeleteModelButton from '../DeleteModelButton'
 import TemplateEditor from '../TemplateEditor'
 import CircularProgress from '../views/CircularProgress'
 import Container from '../views/Container'
-import Tab from '../views/Tab'
-import TabBar from '../views/TabBar'
+import { Tab, TabList, TabPanel, TabPanels, Tabs } from '../views/Tabs'
 import {
   Body1,
   Body2,
@@ -229,12 +228,6 @@ const ModelPage: React.FC = () => {
 
   useTopBarLoading(loading)
 
-  const [selectedTemplate, setSelectedTemplate] = useState(0)
-
-  const handleTemplateSelect = useCallback((index: number) => {
-    setSelectedTemplate(index)
-  }, [])
-
   if (loading) {
     return null
   }
@@ -282,25 +275,24 @@ const ModelPage: React.FC = () => {
           <Trans>Templates</Trans>
         </Body1>
         {cardModel.templates.length ? (
-          <>
-            <TabBar
-              activeIndex={selectedTemplate}
-              onActiveIndexUpdate={handleTemplateSelect}
-            >
+          <Tabs>
+            <TabList>
               {cardModel.templates.map((template) => (
                 <Tab key={template.id}>{template.name}</Tab>
               ))}
-            </TabBar>
+            </TabList>
 
-            {cardModel.templates.map((template, index) => (
-              <div hidden={selectedTemplate !== index} key={template.id}>
-                <TemplateDetails
-                  template={template}
-                  fields={cardModel.fields}
-                />
-              </div>
-            ))}
-          </>
+            <TabPanels>
+              {cardModel.templates.map((template) => (
+                <TabPanel key={template.id}>
+                  <TemplateDetails
+                    template={template}
+                    fields={cardModel.fields}
+                  />
+                </TabPanel>
+              ))}
+            </TabPanels>
+          </Tabs>
         ) : (
           <Body2>
             <Trans>You haven't created any templates on this model yet.</Trans>
