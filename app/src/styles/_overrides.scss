@@ -11,16 +11,3 @@ $top-bar-ink: rgba(0, 0, 0, .847);
   @include mdc-top-app-bar-icon-ink-color($top-bar-ink);
   border-bottom: 1px solid #dadce0;
 }
-
-.mdc-tab {
-  text-transform: capitalize;
-  justify-content: flex-start;
-}
-
-.mdc-tab-indicator .mdc-tab-indicator__content {
-  width: calc(100% - 1.75rem);
-  height: 3px;
-  margin: 0 auto;
-  border-radius: 5px 5px 0 0;
-  border-top-width: 3px;
-}

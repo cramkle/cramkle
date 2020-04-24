@@ -7,8 +7,7 @@ import { useHistory, useLocation } from 'react-router'
 import { notificationState } from '../../notification/index'
 import registerSW from '../../registerSW'
 import Icon from '../views/Icon'
-import Tab from '../views/Tab'
-import TabBar from '../views/TabBar'
+import { Tab, TabList, TabPanel, TabPanels, Tabs } from '../views/Tabs'
 import DecksSection from './DecksSection'
 import ModelsSection from './ModelsSection'
 import StudySection from './StudySection'
@@ -64,7 +63,7 @@ const HomePage: React.FunctionComponent = () => {
     }
   }, [])
 
-  const handleActiveIndexUpdate = useCallback(
+  const handleTabChange = useCallback(
     (index: number) => {
       history.push('/home', { currentTab: index })
     },
@@ -78,39 +77,45 @@ const HomePage: React.FunctionComponent = () => {
       </Helmet>
 
       <div className="h-100 flex flex-column">
-        <TabBar
-          activeIndex={index}
-          onActiveIndexUpdate={handleActiveIndexUpdate}
-        >
-          <Tab>
-            <Icon
-              className="mdc-tab__icon mr3"
-              icon="school"
-              aria-hidden="true"
-            />
-            <Trans>Study</Trans>
-          </Tab>
-          <Tab>
-            <Icon
-              className="mdc-tab__icon mr3"
-              icon="style"
-              aria-hidden="true"
-            />
-            <Trans>Decks</Trans>
-          </Tab>
-          <Tab>
-            <Icon
-              className="mdc-tab__icon mr3"
-              icon="flip_to_back"
-              aria-hidden="true"
-            />
-            <Trans>Models</Trans>
-          </Tab>
-        </TabBar>
-
-        {index === 0 && <StudySection />}
-        {index === 1 && <DecksSection />}
-        {index === 2 && <ModelsSection />}
+        <Tabs index={index} onChange={handleTabChange}>
+          <TabList>
+            <Tab className="w-100">
+              <Icon
+                className="mdc-tab__icon mr3"
+                icon="school"
+                aria-hidden="true"
+              />
+              <Trans>Study</Trans>
+            </Tab>
+            <Tab className="w-100">
+              <Icon
+                className="mdc-tab__icon mr3"
+                icon="style"
+                aria-hidden="true"
+              />
+              <Trans>Decks</Trans>
+            </Tab>
+            <Tab className="w-100">
+              <Icon
+                className="mdc-tab__icon mr3"
+                icon="flip_to_back"
+                aria-hidden="true"
+              />
+              <Trans>Models</Trans>
+            </Tab>
+          </TabList>
+          <TabPanels>
+            <TabPanel>
+              <StudySection />
+            </TabPanel>
+            <TabPanel>
+              <DecksSection />
+            </TabPanel>
+            <TabPanel>
+              <ModelsSection />
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
       </div>
     </>
   )
