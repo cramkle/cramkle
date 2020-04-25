@@ -1,17 +1,16 @@
 import express from 'express'
 import helmet from 'helmet'
-import mongoose from 'mongoose'
 import morgan from 'morgan'
 
 import graphqlMiddleware from './middlewares/apollo'
 import authMiddleware from './middlewares/auth'
 import ioMiddleware from './middlewares/io'
+import { getConnection } from './mongo/connection'
 import authRouter from './routes/auth'
 
 const app = express()
 
 const PORT = process.env.PORT ?? 5000
-const MONGO_URI = process.env.MONGO_URI ?? 'mongodb://localhost:27017/cramkle'
 
 app.use(helmet())
 app.use(morgan('dev'))
@@ -22,21 +21,13 @@ graphqlMiddleware.set(app)
 
 app.use('/auth', authRouter)
 
-mongoose
-  .connect(MONGO_URI, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-  })
+getConnection()
   .then(() => {
     app.listen(PORT, () => {
       // eslint-disable-next-line no-console
       console.log(`App listening on https://localhost:${PORT}`)
     })
   })
-  .catch((e) => {
-    console.error('Failed to obtain a connection to MongoDB')
-    console.error(e)
+  .catch(() => {
     process.exit(1)
   })

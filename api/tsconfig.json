@@ -12,7 +12,7 @@
     "skipLibCheck": true,
     "strictBindCallApply": true,
     "strictFunctionTypes": true,
-    "target": "es6",
+    "target": "es2017",
     "strict": true,
     "outDir": "dist"
   },
