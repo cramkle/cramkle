@@ -18,6 +18,7 @@ import {
   queries as modelQueries,
   root as modelRoot,
 } from './model'
+import { resolvers as nodeResolvers, root as nodeRoot } from './node'
 import {
   mutations as noteMutations,
   queries as noteQueries,
@@ -44,12 +45,14 @@ export default {
   ...fieldValueRoot,
   ...flashCardRoot,
   ...modelRoot,
+  ...nodeRoot,
   ...noteRoot,
   ...templateRoot,
   ...userRoot,
   Query: {
     ...deckQueries,
     ...modelQueries,
+    ...nodeResolvers,
     ...noteQueries,
     ...studyQueries,
     ...templateQueries,

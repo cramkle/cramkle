@@ -1,7 +1,7 @@
 """
 User entity
 """
-type User {
+type User implements Node {
   """
   User id
   """

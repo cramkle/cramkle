@@ -13,10 +13,18 @@ scalar JSONObject
 
 directive @authenticate(roles: [String] = ["REGULAR"]) on FIELD_DEFINITION
 
+# An object with a Globally Unique ID
+interface Node {
+  # The ID of the object.
+  id: ID!
+}
+
 """
 App queries
 """
 type Query {
+  node(id: ID!): Node
+
   """
   Retrieve all decks for the logged user
   """
