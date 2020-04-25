@@ -1,3 +1,4 @@
+import { IFieldResolver } from 'graphql-tools'
 import { Types } from 'mongoose'
 
 type Version = '01'
@@ -19,7 +20,7 @@ const decoders: {
   },
 }
 
-export const encodeModelID = (name: string, id: Types.ObjectId) => {
+export const encodeModelId = (name: string, id: Types.ObjectId) => {
   return Buffer.from(`${currentVersion}@${name}:${id}`).toString('base64')
 }
 
@@ -31,4 +32,12 @@ export const decodeModelId = (id: string) => {
   }
 
   return decoders[version](modelId)
+}
+
+export const globalIdField = (
+  typeName?: string
+): IFieldResolver<{ _id: Types.ObjectId }, Context> => {
+  return (root, _, __, info) => {
+    return encodeModelId(typeName ?? info.parentType.name, root._id)
+  }
 }

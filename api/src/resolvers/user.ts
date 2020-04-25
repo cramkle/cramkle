@@ -2,12 +2,11 @@ import { AuthenticationError } from 'apollo-server'
 import { IResolverObject, IResolvers } from 'graphql-tools'
 
 import { UserModel } from '../mongo'
-import { UserDocument } from '../mongo/User'
-import { encodeModelID } from '../utils/graphqlID'
+import { globalIdField } from '../utils/graphqlID'
 
 export const root: IResolvers = {
   User: {
-    id: (root: UserDocument) => encodeModelID('User', root._id),
+    id: globalIdField(),
   },
 }
 
