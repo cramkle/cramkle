@@ -6,7 +6,7 @@ import { decodeModelId } from '../utils/graphqlID'
 export const root: IResolvers = {
   Node: {
     __resolveType: (root: { id: string }) => {
-      const [typeName] = decodeModelId(root.id)
+      const { typeName } = decodeModelId(root.id)
 
       return typeName
     },
@@ -15,7 +15,7 @@ export const root: IResolvers = {
 
 export const resolvers: IResolverObject = {
   node: async (_: unknown, { id }: { id: string }) => {
-    const [typeName, objectId] = decodeModelId(id)
+    const { typeName, objectId } = decodeModelId(id)
 
     const mongoose = await getConnection()
 

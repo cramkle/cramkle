@@ -10,12 +10,12 @@ const isSupportedVersion = (version: string): version is Version => {
 }
 
 const decoders: {
-  [version in Version]: (str: string) => [string, string]
+  [version in Version]: (str: string) => { typeName: string; objectId: string }
 } = {
   '01': (modelId: string) => {
     const [objectTypeName, objectId] = modelId.split(':')
 
-    return [objectTypeName, objectId]
+    return { typeName: objectTypeName, objectId }
   },
 }
 
