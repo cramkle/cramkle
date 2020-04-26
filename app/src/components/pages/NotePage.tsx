@@ -16,7 +16,7 @@ import Button from '../views/Button'
 import Checkbox from '../views/Checkbox'
 import CircularProgress from '../views/CircularProgress'
 import Container from '../views/Container'
-import Dialog, { DialogContent } from '../views/Dialog'
+import { Dialog } from '../views/Dialog'
 import Divider from '../views/Divider'
 import {
   Table,
@@ -213,22 +213,20 @@ const NotePage: React.FC = () => {
   return (
     <>
       {flashCardPreview && (
-        <Dialog open onClose={handleCloseFlashCardPreview}>
-          <DialogContent>
-            <FlashCardRenderer
-              values={values.map(({ data, ...value }) => ({
-                ...value,
-                data: data as RawDraftContentState,
-              }))}
-              hideBackSide={false}
-              template={
-                flashCardPreview.template as {
-                  frontSide: RawDraftContentState
-                  backSide: RawDraftContentState
-                }
+        <Dialog isOpen onDismiss={handleCloseFlashCardPreview}>
+          <FlashCardRenderer
+            values={values.map(({ data, ...value }) => ({
+              ...value,
+              data: data as RawDraftContentState,
+            }))}
+            hideBackSide={false}
+            template={
+              flashCardPreview.template as {
+                frontSide: RawDraftContentState
+                backSide: RawDraftContentState
               }
-            />
-          </DialogContent>
+            }
+          />
         </Dialog>
       )}
       <Helmet title={noteIdentifier} />

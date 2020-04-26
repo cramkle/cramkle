@@ -11,11 +11,7 @@ import { notificationState } from '../../notification/index'
 import { DECKS_QUERY } from '../DeckList'
 import { DecksQuery } from '../__generated__/DecksQuery'
 import Button from '../views/Button'
-import Dialog, {
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-} from '../views/Dialog'
+import { Dialog, DialogTitle } from '../views/Dialog'
 import { TextInputField } from './Fields'
 import {
   CreateDeckMutation,
@@ -109,37 +105,37 @@ const AddDeckForm: React.FunctionComponent<Props> = ({ open, onClose }) => {
         }
 
         return (
-          <form onSubmit={handleSubmit}>
-            <Dialog open={open} onClose={handleClose}>
+          <Dialog
+            isOpen={open}
+            onDismiss={handleClose}
+            style={{ width: '320px' }}
+          >
+            <form onSubmit={handleSubmit}>
               <DialogTitle>
                 <Trans>Add Deck</Trans>
               </DialogTitle>
-              <DialogContent style={{ width: '320px' }}>
-                <TextInputField
-                  id="title"
-                  className="w-100"
-                  name="title"
-                  label={i18n._(t`Title`)}
-                />
-                <TextInputField
-                  id="description"
-                  className="w-100 mt3"
-                  name="description"
-                  label={i18n._(t`Description`)}
-                  textarea
-                />
-              </DialogContent>
-              <DialogActions>
-                <Button
-                  type="submit"
-                  disabled={!isValid || isSubmitting}
-                  onClick={handleCreate}
-                >
-                  <Trans>Create</Trans>
-                </Button>
-              </DialogActions>
-            </Dialog>
-          </form>
+              <TextInputField
+                id="title"
+                className="w-100"
+                name="title"
+                label={i18n._(t`Title`)}
+              />
+              <TextInputField
+                id="description"
+                className="w-100 mt3"
+                name="description"
+                label={i18n._(t`Description`)}
+                textarea
+              />
+              <Button
+                type="submit"
+                disabled={!isValid || isSubmitting}
+                onClick={handleCreate}
+              >
+                <Trans>Create</Trans>
+              </Button>
+            </form>
+          </Dialog>
         )
       }}
     </Formik>

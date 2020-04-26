@@ -12,11 +12,7 @@ import {
   DeleteDeckMutationVariables,
 } from './__generated__/DeleteDeckMutation'
 import Button from './views/Button'
-import Dialog, {
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-} from './views/Dialog'
+import { Dialog, DialogTitle } from './views/Dialog'
 import Icon from './views/Icon'
 
 interface Props {
@@ -96,21 +92,17 @@ const DeleteDeckButton: React.FunctionComponent<Props> = ({ deckId }) => {
       >
         <Trans>Delete</Trans>
       </Button>
-      <Dialog open={dialogOpen} onClose={handleClose} role="alertdialog">
+      <Dialog isOpen={dialogOpen} onDismiss={handleClose} role="alertdialog">
         <DialogTitle>
           <Trans>Delete deck</Trans>
         </DialogTitle>
-        <DialogContent>
-          <Trans>Are you sure you want to delete this deck?</Trans>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setDialogOpen(false)} disabled={deleting}>
-            <Trans>Cancel</Trans>
-          </Button>
-          <Button onClick={handleDelete} disabled={deleting}>
-            <Trans>Delete</Trans>
-          </Button>
-        </DialogActions>
+        <Trans>Are you sure you want to delete this deck?</Trans>
+        <Button onClick={() => setDialogOpen(false)} disabled={deleting}>
+          <Trans>Cancel</Trans>
+        </Button>
+        <Button onClick={handleDelete} disabled={deleting}>
+          <Trans>Delete</Trans>
+        </Button>
       </Dialog>
     </>
   )

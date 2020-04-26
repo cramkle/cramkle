@@ -9,11 +9,7 @@ import FlashCardRenderer from '../FlashCardRenderer'
 import Portal from '../Portal'
 import Button from '../views/Button'
 import CircularProgress from '../views/CircularProgress'
-import Dialog, {
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-} from '../views/Dialog'
+import { Dialog, DialogTitle } from '../views/Dialog'
 
 const STUDY_CARD_QUERY = gql`
   query FlashCards($deckSlug: String!) {
@@ -111,26 +107,22 @@ const StudyPage: React.FC = () => {
   return (
     <>
       <Dialog
-        open={showCancelConfirmation}
-        onClose={handleCloseConfirmationDialog}
+        isOpen={showCancelConfirmation}
+        onDismiss={handleCloseConfirmationDialog}
         role="alertdialog"
       >
         <DialogTitle>
           <Trans>End study session</Trans>
         </DialogTitle>
-        <DialogContent>
-          <Trans>
-            Are you sure you want to cancel the current study session?
-          </Trans>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseConfirmationDialog}>
-            <Trans>Continue Studying</Trans>
-          </Button>
-          <Button onClick={handleCancel}>
-            <Trans>End</Trans>
-          </Button>
-        </DialogActions>
+        <Trans>
+          Are you sure you want to cancel the current study session?
+        </Trans>
+        <Button onClick={handleCloseConfirmationDialog}>
+          <Trans>Continue Studying</Trans>
+        </Button>
+        <Button onClick={handleCancel}>
+          <Trans>End</Trans>
+        </Button>
       </Dialog>
       <section className="pt3 pb5 h-100 flex flex-column items-start">
         <Button

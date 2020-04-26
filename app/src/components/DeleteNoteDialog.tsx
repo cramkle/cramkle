@@ -10,11 +10,7 @@ import {
   DeleteNoteMutationVariables,
 } from './__generated__/DeleteNoteMutation'
 import Button from './views/Button'
-import Dialog, {
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-} from './views/Dialog'
+import { Dialog, DialogTitle } from './views/Dialog'
 
 const DELETE_NOTE_MUTATION = gql`
   mutation DeleteNoteMutation($noteId: ID!) {
@@ -43,29 +39,25 @@ const DeleteNoteDialog: React.FC<any> = ({ note, onClose }) => {
   }
 
   return (
-    <Dialog open onClose={onClose} role="alertdialog">
+    <Dialog isOpen onDismiss={onClose} role="alertdialog">
       <DialogTitle>
         <Trans>Delete note {noteIdentifier}</Trans>
       </DialogTitle>
-      <DialogContent>
-        <Trans>
-          Are you sure you want to delete this note?{' '}
-          {i18n._(
-            plural(note.cards.length, {
-              one: 'It contains one flashcard',
-              other: 'It contains # flashcards',
-            })
-          )}
-        </Trans>
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={onClose} disabled={loading}>
-          <Trans>Cancel</Trans>
-        </Button>
-        <Button onClick={handleDelete} disabled={loading}>
-          <Trans>Delete</Trans>
-        </Button>
-      </DialogActions>
+      <Trans>
+        Are you sure you want to delete this note?{' '}
+        {i18n._(
+          plural(note.cards.length, {
+            one: 'It contains one flashcard',
+            other: 'It contains # flashcards',
+          })
+        )}
+      </Trans>
+      <Button onClick={onClose} disabled={loading}>
+        <Trans>Cancel</Trans>
+      </Button>
+      <Button onClick={handleDelete} disabled={loading}>
+        <Trans>Delete</Trans>
+      </Button>
     </Dialog>
   )
 }

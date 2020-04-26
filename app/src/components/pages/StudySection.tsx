@@ -8,11 +8,7 @@ import { useHistory } from 'react-router'
 import useTopBarLoading from '../../hooks/useTopBarLoading'
 import DeckCard from '../DeckCard'
 import Button from '../views/Button'
-import Dialog, {
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-} from '../views/Dialog'
+import { Dialog, DialogTitle } from '../views/Dialog'
 import { DecksToStudy } from './__generated__/DecksToStudy'
 
 const DECKS_TO_STUDY_QUERY = gql`
@@ -50,24 +46,20 @@ const StudySection: React.FunctionComponent = () => {
   return (
     <>
       {selectedDeck !== null && (
-        <Dialog open onClose={() => setSelectedDeck(null)}>
+        <Dialog isOpen onDismiss={() => setSelectedDeck(null)}>
           <DialogTitle>
             <Trans>Study deck</Trans>
           </DialogTitle>
-          <DialogContent>
-            <Trans>
-              Do you want to start a study session of the deck{' '}
-              {selectedDeck.title}?
-            </Trans>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={() => setSelectedDeck(null)}>
-              <Trans>Cancel</Trans>
-            </Button>
-            <Button onClick={handleStudyDeck}>
-              <Trans>Start Session</Trans>
-            </Button>
-          </DialogActions>
+          <Trans>
+            Do you want to start a study session of the deck{' '}
+            {selectedDeck.title}?
+          </Trans>
+          <Button onClick={() => setSelectedDeck(null)}>
+            <Trans>Cancel</Trans>
+          </Button>
+          <Button onClick={handleStudyDeck}>
+            <Trans>Start Session</Trans>
+          </Button>
         </Dialog>
       )}
       <Grid className="w-100">

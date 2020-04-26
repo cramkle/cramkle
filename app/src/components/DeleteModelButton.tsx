@@ -13,11 +13,7 @@ import {
 } from './__generated__/DeleteModelMutation'
 import { ModelsQuery } from './__generated__/ModelsQuery'
 import Button from './views/Button'
-import Dialog, {
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-} from './views/Dialog'
+import { Dialog, DialogTitle } from './views/Dialog'
 import Icon from './views/Icon'
 
 interface Props {
@@ -108,37 +104,33 @@ const DeleteModelButton: React.FunctionComponent<Props> = ({ model }) => {
       >
         <Trans>Delete</Trans>
       </Button>
-      <Dialog open={dialogOpen} onClose={handleClose} role="alertdialog">
+      <Dialog isOpen={dialogOpen} onDismiss={handleClose} role="alertdialog">
         <DialogTitle>
           <Trans>Delete model</Trans>
         </DialogTitle>
-        <DialogContent>
-          <Trans>
-            Are you sure you want to delete this model?{' '}
-            {i18n._(
-              plural(model.notes.length, {
-                one: "There's # note",
-                other: "There're # notes",
-              })
-            )}{' '}
-            and{' '}
-            {i18n._(
-              plural(model.templates.length, {
-                one: '# template',
-                other: '# templates',
-              })
-            )}{' '}
-            associated with it.
-          </Trans>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} disabled={deleting}>
-            Cancel
-          </Button>
-          <Button onClick={handleDelete} disabled={deleting}>
-            <Trans>Delete</Trans>
-          </Button>
-        </DialogActions>
+        <Trans>
+          Are you sure you want to delete this model?{' '}
+          {i18n._(
+            plural(model.notes.length, {
+              one: "There's # note",
+              other: "There're # notes",
+            })
+          )}{' '}
+          and{' '}
+          {i18n._(
+            plural(model.templates.length, {
+              one: '# template',
+              other: '# templates',
+            })
+          )}{' '}
+          associated with it.
+        </Trans>
+        <Button onClick={handleClose} disabled={deleting}>
+          Cancel
+        </Button>
+        <Button onClick={handleDelete} disabled={deleting}>
+          <Trans>Delete</Trans>
+        </Button>
       </Dialog>
     </>
   )
