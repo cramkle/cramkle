@@ -2,18 +2,18 @@ import { useLazyQuery } from '@apollo/react-hooks'
 import { Trans } from '@lingui/macro'
 import classnames from 'classnames'
 import gql from 'graphql-tag'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useHistory, useParams } from 'react-router'
 
 import FlashCardRenderer from '../FlashCardRenderer'
 import Portal from '../Portal'
+import {
+  AlertDialog,
+  AlertDialogDescription,
+  AlertDialogLabel,
+} from '../views/AlertDialog'
 import Button from '../views/Button'
 import CircularProgress from '../views/CircularProgress'
-import Dialog, {
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-} from '../views/Dialog'
 
 const STUDY_CARD_QUERY = gql`
   query FlashCards($deckSlug: String!) {
@@ -100,6 +100,8 @@ const StudyPage: React.FC = () => {
     history.push('/home')
   }
 
+  const cancelRef = useRef<HTMLButtonElement>(null)
+
   if (loading || !data) {
     return (
       <div className="h-100 flex items-center justify-center">
@@ -110,28 +112,26 @@ const StudyPage: React.FC = () => {
 
   return (
     <>
-      <Dialog
-        open={showCancelConfirmation}
-        onClose={handleCloseConfirmationDialog}
-        role="alertdialog"
+      <AlertDialog
+        isOpen={showCancelConfirmation}
+        onDismiss={handleCloseConfirmationDialog}
+        leastDestructiveRef={cancelRef}
       >
-        <DialogTitle>
+        <AlertDialogLabel>
           <Trans>End study session</Trans>
-        </DialogTitle>
-        <DialogContent>
+        </AlertDialogLabel>
+        <AlertDialogDescription>
           <Trans>
             Are you sure you want to cancel the current study session?
           </Trans>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseConfirmationDialog}>
-            <Trans>Continue Studying</Trans>
-          </Button>
-          <Button onClick={handleCancel}>
-            <Trans>End</Trans>
-          </Button>
-        </DialogActions>
-      </Dialog>
+        </AlertDialogDescription>
+        <Button onClick={handleCloseConfirmationDialog} ref={cancelRef}>
+          <Trans>Continue Studying</Trans>
+        </Button>
+        <Button onClick={handleCancel}>
+          <Trans>End</Trans>
+        </Button>
+      </AlertDialog>
       <section className="pt3 pb5 h-100 flex flex-column items-start">
         <Button
           className="flex-shrink-0 ml3 mb3"

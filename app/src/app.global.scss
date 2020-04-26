@@ -3,7 +3,6 @@
 @import '@material/button/mdc-button.scss';
 @import '@material/card/mdc-card.scss';
 @import '@material/checkbox/mdc-checkbox.scss';
-@import '@material/dialog/mdc-dialog.scss';
 @import '@material/fab/mdc-fab.scss';
 @import '@material/form-field/mdc-form-field.scss';
 @import '@material/icon-button/mdc-icon-button.scss';
@@ -18,6 +17,7 @@
 @import '@material/react-list/index.scss';
 @import '@material/react-text-field/index.scss';
 
+@import '~@reach/dialog/styles.css';
 @import '~@reach/listbox/styles.css';
 @import '~@reach/menu-button/styles.css';
 @import '~@reach/tabs/styles.css';

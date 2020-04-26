@@ -11,11 +11,7 @@ import { notificationState } from '../../notification/index'
 import { DECKS_QUERY } from '../DeckList'
 import { DecksQuery } from '../__generated__/DecksQuery'
 import Button from '../views/Button'
-import Dialog, {
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-} from '../views/Dialog'
+import { Dialog, DialogTitle } from '../views/Dialog'
 import { TextInputField } from './Fields'
 import {
   CreateDeckMutation,
@@ -109,12 +105,16 @@ const AddDeckForm: React.FunctionComponent<Props> = ({ open, onClose }) => {
         }
 
         return (
-          <form onSubmit={handleSubmit}>
-            <Dialog open={open} onClose={handleClose}>
+          <Dialog
+            isOpen={open}
+            onDismiss={handleClose}
+            style={{ width: '320px' }}
+          >
+            <form onSubmit={handleSubmit}>
               <DialogTitle>
                 <Trans>Add Deck</Trans>
               </DialogTitle>
-              <DialogContent style={{ width: '320px' }}>
+              <div className="flex flex-column">
                 <TextInputField
                   id="title"
                   className="w-100"
@@ -128,18 +128,17 @@ const AddDeckForm: React.FunctionComponent<Props> = ({ open, onClose }) => {
                   label={i18n._(t`Description`)}
                   textarea
                 />
-              </DialogContent>
-              <DialogActions>
                 <Button
                   type="submit"
                   disabled={!isValid || isSubmitting}
                   onClick={handleCreate}
+                  className="self-end mt3"
                 >
                   <Trans>Create</Trans>
                 </Button>
-              </DialogActions>
-            </Dialog>
-          </form>
+              </div>
+            </form>
+          </Dialog>
         )
       }}
     </Formik>

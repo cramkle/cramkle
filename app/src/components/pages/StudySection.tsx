@@ -2,17 +2,17 @@ import { useQuery } from '@apollo/react-hooks'
 import { Trans } from '@lingui/macro'
 import { Cell, Grid, Row } from '@material/react-layout-grid'
 import gql from 'graphql-tag'
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { useHistory } from 'react-router'
 
 import useTopBarLoading from '../../hooks/useTopBarLoading'
 import DeckCard from '../DeckCard'
+import {
+  AlertDialog,
+  AlertDialogDescription,
+  AlertDialogLabel,
+} from '../views/AlertDialog'
 import Button from '../views/Button'
-import Dialog, {
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-} from '../views/Dialog'
 import { DecksToStudy } from './__generated__/DecksToStudy'
 
 const DECKS_TO_STUDY_QUERY = gql`
@@ -30,6 +30,7 @@ const StudySection: React.FunctionComponent = () => {
   const history = useHistory()
   const { data, loading } = useQuery<DecksToStudy>(DECKS_TO_STUDY_QUERY)
   const [selectedDeck, setSelectedDeck] = useState(null)
+  const cancelRef = useRef<HTMLButtonElement>(null)
 
   useTopBarLoading(loading)
 
@@ -50,25 +51,27 @@ const StudySection: React.FunctionComponent = () => {
   return (
     <>
       {selectedDeck !== null && (
-        <Dialog open onClose={() => setSelectedDeck(null)}>
-          <DialogTitle>
+        <AlertDialog
+          isOpen
+          onDismiss={() => setSelectedDeck(null)}
+          leastDestructiveRef={cancelRef}
+        >
+          <AlertDialogLabel>
             <Trans>Study deck</Trans>
-          </DialogTitle>
-          <DialogContent>
+          </AlertDialogLabel>
+          <AlertDialogDescription>
             <Trans>
               Do you want to start a study session of the deck{' '}
               {selectedDeck.title}?
             </Trans>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={() => setSelectedDeck(null)}>
-              <Trans>Cancel</Trans>
-            </Button>
-            <Button onClick={handleStudyDeck}>
-              <Trans>Start Session</Trans>
-            </Button>
-          </DialogActions>
-        </Dialog>
+          </AlertDialogDescription>
+          <Button ref={cancelRef} onClick={() => setSelectedDeck(null)}>
+            <Trans>Cancel</Trans>
+          </Button>
+          <Button onClick={handleStudyDeck}>
+            <Trans>Start Session</Trans>
+          </Button>
+        </AlertDialog>
       )}
       <Grid className="w-100">
         <Row>

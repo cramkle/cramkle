@@ -18,7 +18,7 @@ import { GuestRoute, UserRoute } from './components/routes/AuthRoute'
 import ShellRoute from './components/routes/ShellRoute'
 import { icons } from './utils/headLinks'
 
-import './theme.global.scss'
+import './app.global.scss'
 
 const AddModelPage = lazy(() => import('./components/pages/AddModelPage'))
 const AddNotePage = lazy(() => import('./components/pages/AddNotePage'))

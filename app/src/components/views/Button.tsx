@@ -37,51 +37,75 @@ const renderIcon = (
       })
     : null
 
-const Button: React.FC<Props> = ({
-  className = '',
-  raised = false,
-  unelevated = false,
-  outlined = false,
-  dense = false,
-  icon,
-  children,
-  trailingIcon,
-  style,
-  ...props
-}) => {
-  const ref = useRef<any>(null)
+const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, Props>(
+  (
+    {
+      className = '',
+      raised = false,
+      unelevated = false,
+      outlined = false,
+      dense = false,
+      icon,
+      children,
+      trailingIcon,
+      style,
+      ...props
+    },
+    inputRef
+  ) => {
+    const ref = useRef<any>(null)
 
-  const { rippleStyle, rippleClasses } = useRipple({ surfaceRef: ref })
+    const { rippleStyle, rippleClasses } = useRipple({ surfaceRef: ref })
 
-  const classes = classNames(CSS_CLASSES.ROOT, className, rippleClasses, {
-    [CSS_CLASSES.RAISED]: raised,
-    [CSS_CLASSES.UNELEVATED]: unelevated,
-    [CSS_CLASSES.OUTLINED]: outlined,
-    [CSS_CLASSES.DENSE]: dense,
-  })
+    const classes = classNames(CSS_CLASSES.ROOT, className, rippleClasses, {
+      [CSS_CLASSES.RAISED]: raised,
+      [CSS_CLASSES.UNELEVATED]: unelevated,
+      [CSS_CLASSES.OUTLINED]: outlined,
+      [CSS_CLASSES.DENSE]: dense,
+    })
 
-  const elementStyle = {
-    ...rippleStyle,
-    ...style,
-  }
+    const elementStyle = {
+      ...rippleStyle,
+      ...style,
+    }
 
-  if ('href' in props) {
+    const assignRef = (node: HTMLButtonElement | HTMLAnchorElement) => {
+      ref.current = node
+
+      if (inputRef == null) {
+        return
+      }
+
+      if (typeof inputRef === 'function') {
+        inputRef(node)
+      } else {
+        inputRef.current = node
+      }
+    }
+
+    if ('href' in props) {
+      return (
+        <a {...props} className={classes} ref={assignRef} style={elementStyle}>
+          {!trailingIcon ? renderIcon(icon) : null}
+          <span className={CSS_CLASSES.LABEL}>{children}</span>
+          {trailingIcon ? renderIcon(trailingIcon) : null}
+        </a>
+      )
+    }
+
     return (
-      <a {...props} className={classes} ref={ref} style={elementStyle}>
+      <button
+        {...props}
+        style={elementStyle}
+        className={classes}
+        ref={assignRef}
+      >
         {!trailingIcon ? renderIcon(icon) : null}
         <span className={CSS_CLASSES.LABEL}>{children}</span>
         {trailingIcon ? renderIcon(trailingIcon) : null}
-      </a>
+      </button>
     )
   }
-
-  return (
-    <button {...props} style={elementStyle} className={classes} ref={ref}>
-      {!trailingIcon ? renderIcon(icon) : null}
-      <span className={CSS_CLASSES.LABEL}>{children}</span>
-      {trailingIcon ? renderIcon(trailingIcon) : null}
-    </button>
-  )
-}
+)
 
 export default Button

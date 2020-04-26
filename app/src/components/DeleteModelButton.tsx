@@ -2,7 +2,7 @@ import { useMutation } from '@apollo/react-hooks'
 import { Trans, plural, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import gql from 'graphql-tag'
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { useHistory } from 'react-router'
 
 import { notificationState } from '../notification/index'
@@ -12,12 +12,12 @@ import {
   DeleteModelMutationVariables,
 } from './__generated__/DeleteModelMutation'
 import { ModelsQuery } from './__generated__/ModelsQuery'
+import {
+  AlertDialog,
+  AlertDialogDescription,
+  AlertDialogLabel,
+} from './views/AlertDialog'
 import Button from './views/Button'
-import Dialog, {
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-} from './views/Dialog'
 import Icon from './views/Icon'
 
 interface Props {
@@ -99,6 +99,8 @@ const DeleteModelButton: React.FunctionComponent<Props> = ({ model }) => {
     setDialogOpen(true)
   }
 
+  const cancelRef = useRef<HTMLButtonElement>(null)
+
   return (
     <>
       <Button
@@ -108,11 +110,15 @@ const DeleteModelButton: React.FunctionComponent<Props> = ({ model }) => {
       >
         <Trans>Delete</Trans>
       </Button>
-      <Dialog open={dialogOpen} onClose={handleClose} role="alertdialog">
-        <DialogTitle>
+      <AlertDialog
+        isOpen={dialogOpen}
+        onDismiss={handleClose}
+        leastDestructiveRef={cancelRef}
+      >
+        <AlertDialogLabel>
           <Trans>Delete model</Trans>
-        </DialogTitle>
-        <DialogContent>
+        </AlertDialogLabel>
+        <AlertDialogDescription>
           <Trans>
             Are you sure you want to delete this model?{' '}
             {i18n._(
@@ -130,16 +136,14 @@ const DeleteModelButton: React.FunctionComponent<Props> = ({ model }) => {
             )}{' '}
             associated with it.
           </Trans>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} disabled={deleting}>
-            Cancel
-          </Button>
-          <Button onClick={handleDelete} disabled={deleting}>
-            <Trans>Delete</Trans>
-          </Button>
-        </DialogActions>
-      </Dialog>
+        </AlertDialogDescription>
+        <Button onClick={handleClose} disabled={deleting} ref={cancelRef}>
+          Cancel
+        </Button>
+        <Button onClick={handleDelete} disabled={deleting}>
+          <Trans>Delete</Trans>
+        </Button>
+      </AlertDialog>
     </>
   )
 }
