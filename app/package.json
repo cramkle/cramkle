@@ -59,6 +59,7 @@
     "graphql-tag": "^2.10.3",
     "history": "^4.7.2",
     "keycode-js": "^2.0.3",
+    "make-plural": "^6.2.1",
     "node-fetch": "^2.6.0",
     "react": "^16.12.0",
     "react-app-server": "^0.1.9",

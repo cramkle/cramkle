@@ -2,6 +2,7 @@ import { ApolloProvider } from '@apollo/react-hooks'
 import { i18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
 import { NormalizedCacheObject } from 'apollo-cache-inmemory'
+import { en as enPlural, pt as ptPlural } from 'make-plural'
 import React, { StrictMode } from 'react'
 import ReactDOM from 'react-dom'
 import { Helmet } from 'react-helmet'
@@ -48,6 +49,8 @@ const render = ({
 
   i18n.load('en', enCatalog.messages)
   i18n.load('pt', ptCatalog.messages)
+
+  i18n.loadLocaleData({ en: { plurals: enPlural }, pt: { plurals: ptPlural } })
 
   i18n.activate(language)
 
