@@ -114,26 +114,29 @@ const AddDeckForm: React.FunctionComponent<Props> = ({ open, onClose }) => {
               <DialogTitle>
                 <Trans>Add Deck</Trans>
               </DialogTitle>
-              <TextInputField
-                id="title"
-                className="w-100"
-                name="title"
-                label={i18n._(t`Title`)}
-              />
-              <TextInputField
-                id="description"
-                className="w-100 mt3"
-                name="description"
-                label={i18n._(t`Description`)}
-                textarea
-              />
-              <Button
-                type="submit"
-                disabled={!isValid || isSubmitting}
-                onClick={handleCreate}
-              >
-                <Trans>Create</Trans>
-              </Button>
+              <div className="flex flex-column">
+                <TextInputField
+                  id="title"
+                  className="w-100"
+                  name="title"
+                  label={i18n._(t`Title`)}
+                />
+                <TextInputField
+                  id="description"
+                  className="w-100 mt3"
+                  name="description"
+                  label={i18n._(t`Description`)}
+                  textarea
+                />
+                <Button
+                  type="submit"
+                  disabled={!isValid || isSubmitting}
+                  onClick={handleCreate}
+                  className="self-end mt3"
+                >
+                  <Trans>Create</Trans>
+                </Button>
+              </div>
             </form>
           </Dialog>
         )
