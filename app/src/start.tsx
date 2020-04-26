@@ -11,8 +11,8 @@ import Cookies from 'universal-cookie'
 
 import App from './App'
 import { HintsProvider } from './components/HintsContext'
-import { messages as enMessages } from './locales/en/messages'
-import { messages as ptMessages } from './locales/pt/messages'
+import enCatalog from './locales/en/messages'
+import ptCatalog from './locales/pt/messages'
 import registerSW from './registerSW'
 import { createApolloClient } from './utils/apolloClient'
 
@@ -46,8 +46,8 @@ const render = ({
     language = cookies.get('language') || 'en'
   }
 
-  i18n.load('en', enMessages)
-  i18n.load('pt', ptMessages)
+  i18n.load('en', enCatalog.messages)
+  i18n.load('pt', ptCatalog.messages)
 
   i18n.activate(language)
 
