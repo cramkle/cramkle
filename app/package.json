@@ -88,7 +88,6 @@
     "@hot-loader/react-dom": "^16.11.0",
     "@lingui/cli": "3.0.0-11",
     "@lingui/macro": "3.0.0-11",
-    "@lucasecdb/eslint-config": "^0.9.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^10.0.2",
     "@types/classnames": "^2.2.9",
