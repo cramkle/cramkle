@@ -2,15 +2,19 @@ import { useMutation } from '@apollo/react-hooks'
 import { Trans, plural } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import gql from 'graphql-tag'
-import React from 'react'
+import React, { useRef } from 'react'
 
 import { getNoteIdentifier } from '../utils/noteIdentifier'
 import {
   DeleteNoteMutation,
   DeleteNoteMutationVariables,
 } from './__generated__/DeleteNoteMutation'
+import {
+  AlertDialog,
+  AlertDialogDescription,
+  AlertDialogLabel,
+} from './views/AlertDialog'
 import Button from './views/Button'
-import { Dialog, DialogTitle } from './views/Dialog'
 
 const DELETE_NOTE_MUTATION = gql`
   mutation DeleteNoteMutation($noteId: ID!) {
@@ -38,27 +42,31 @@ const DeleteNoteDialog: React.FC<any> = ({ note, onClose }) => {
     onClose?.()
   }
 
+  const cancelRef = useRef<HTMLButtonElement>(null)
+
   return (
-    <Dialog isOpen onDismiss={onClose} role="alertdialog">
-      <DialogTitle>
+    <AlertDialog isOpen onDismiss={onClose} leastDestructiveRef={cancelRef}>
+      <AlertDialogLabel>
         <Trans>Delete note {noteIdentifier}</Trans>
-      </DialogTitle>
-      <Trans>
-        Are you sure you want to delete this note?{' '}
-        {i18n._(
-          plural(note.cards.length, {
-            one: 'It contains one flashcard',
-            other: 'It contains # flashcards',
-          })
-        )}
-      </Trans>
-      <Button onClick={onClose} disabled={loading}>
+      </AlertDialogLabel>
+      <AlertDialogDescription>
+        <Trans>
+          Are you sure you want to delete this note?{' '}
+          {i18n._(
+            plural(note.cards.length, {
+              one: 'It contains one flashcard',
+              other: 'It contains # flashcards',
+            })
+          )}
+        </Trans>
+      </AlertDialogDescription>
+      <Button onClick={onClose} disabled={loading} ref={cancelRef}>
         <Trans>Cancel</Trans>
       </Button>
       <Button onClick={handleDelete} disabled={loading}>
         <Trans>Delete</Trans>
       </Button>
-    </Dialog>
+    </AlertDialog>
   )
 }
 

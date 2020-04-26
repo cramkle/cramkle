@@ -1,7 +1,7 @@
 import { useMutation } from '@apollo/react-hooks'
 import { Trans, t } from '@lingui/macro'
 import gql from 'graphql-tag'
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useRef, useState } from 'react'
 import { useHistory } from 'react-router'
 
 import { notificationState } from '../notification/index'
@@ -11,8 +11,12 @@ import {
   DeleteDeckMutation,
   DeleteDeckMutationVariables,
 } from './__generated__/DeleteDeckMutation'
+import {
+  AlertDialog,
+  AlertDialogDescription,
+  AlertDialogLabel,
+} from './views/AlertDialog'
 import Button from './views/Button'
-import { Dialog, DialogTitle } from './views/Dialog'
 import Icon from './views/Icon'
 
 interface Props {
@@ -82,6 +86,8 @@ const DeleteDeckButton: React.FunctionComponent<Props> = ({ deckId }) => {
     setDialogOpen(false)
   }, [deleting])
 
+  const cancelRef = useRef<HTMLButtonElement>(null)
+
   return (
     <>
       <Button
@@ -92,18 +98,28 @@ const DeleteDeckButton: React.FunctionComponent<Props> = ({ deckId }) => {
       >
         <Trans>Delete</Trans>
       </Button>
-      <Dialog isOpen={dialogOpen} onDismiss={handleClose} role="alertdialog">
-        <DialogTitle>
+      <AlertDialog
+        isOpen={dialogOpen}
+        onDismiss={handleClose}
+        leastDestructiveRef={cancelRef}
+      >
+        <AlertDialogLabel>
           <Trans>Delete deck</Trans>
-        </DialogTitle>
-        <Trans>Are you sure you want to delete this deck?</Trans>
-        <Button onClick={() => setDialogOpen(false)} disabled={deleting}>
+        </AlertDialogLabel>
+        <AlertDialogDescription>
+          <Trans>Are you sure you want to delete this deck?</Trans>
+        </AlertDialogDescription>
+        <Button
+          onClick={() => setDialogOpen(false)}
+          disabled={deleting}
+          ref={cancelRef}
+        >
           <Trans>Cancel</Trans>
         </Button>
         <Button onClick={handleDelete} disabled={deleting}>
           <Trans>Delete</Trans>
         </Button>
-      </Dialog>
+      </AlertDialog>
     </>
   )
 }
