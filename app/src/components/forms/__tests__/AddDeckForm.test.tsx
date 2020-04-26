@@ -1,7 +1,7 @@
 import { MockedProvider, MockedResponse } from '@apollo/react-testing'
 import { setupI18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
-import { fireEvent, render as rtlRender, wait } from '@testing-library/react'
+import { fireEvent, render as rtlRender, waitFor } from '@testing-library/react'
 import React from 'react'
 import { MemoryRouter } from 'react-router'
 
@@ -59,11 +59,7 @@ const render = (ui: React.ReactElement, options: Options = {}) => {
 }
 
 describe('<AddDeckForm />', () => {
-  beforeEach(() => {
-    //jest.useFakeTimers()
-  })
-
-  it('should add deck on submit click', () => {
+  it('should add deck on submit click', async () => {
     const closeCallback = jest.fn()
     const { getByLabelText, getByText, deckMock } = render(
       <AddDeckForm open onClose={closeCallback} />
@@ -74,14 +70,14 @@ describe('<AddDeckForm />', () => {
 
     fireEvent.input(titleInput, { target: { value: deckMock.title } })
 
-    wait(() => expect(submitButton).toBeEnabled())
+    await waitFor(() => expect(submitButton).toBeEnabled())
 
     fireEvent.click(submitButton)
 
-    wait(() => expect(closeCallback).toHaveBeenCalledTimes(1))
+    await waitFor(() => expect(closeCallback).toHaveBeenCalledTimes(1))
   })
 
-  it('should add one deck on input enter', () => {
+  it('should add one deck on input enter', async () => {
     const closeCallback = jest.fn()
     const { getByLabelText, getByText, deckMock } = render(
       <AddDeckForm open onClose={closeCallback} />
@@ -92,10 +88,14 @@ describe('<AddDeckForm />', () => {
 
     fireEvent.input(titleInput, { target: { value: deckMock.title } })
 
-    wait(() => expect(submitButton).toBeEnabled())
+    await waitFor(() => {
+      expect(submitButton).toBeEnabled()
+    })
 
     fireEvent.keyPress(titleInput, { key: 'Enter', code: 13 })
 
-    wait(() => expect(closeCallback).toHaveBeenCalledTimes(1))
+    await waitFor(() => {
+      expect(closeCallback).toHaveBeenCalledTimes(1)
+    })
   })
 })

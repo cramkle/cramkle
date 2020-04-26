@@ -1,6 +1,6 @@
 import { setupI18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
-import { fireEvent, render as rtlRender, wait } from '@testing-library/react'
+import { fireEvent, render as rtlRender, waitFor } from '@testing-library/react'
 import React from 'react'
 
 import LoginForm from '../LoginForm'
@@ -20,7 +20,7 @@ const render = () => {
 }
 
 describe('<LoginForm />', () => {
-  it('should show error message on failure', () => {
+  it('should show error message on failure', async () => {
     global.fetch.mockResponse('Unauthorized', {
       status: 401,
       statusText: 'Unauthorized',
@@ -33,16 +33,16 @@ describe('<LoginForm />', () => {
 
     const submitButton = getByTestId('submit-btn')
 
-    wait(() => expect(submitButton).toBeDisabled())
+    await waitFor(() => expect(submitButton).toBeDisabled())
 
     fireEvent.change(usernameInput, { target: { value: 'lucas' } })
     fireEvent.change(passwordInput, { target: { value: 'password' } })
 
-    wait(() => expect(submitButton).toBeEnabled())
+    await waitFor(() => expect(submitButton).toBeEnabled())
 
     fireEvent.click(submitButton)
 
-    wait(() =>
+    await waitFor(() =>
       expect(
         getByText(/invalid username and\/or password/i)
       ).toBeInTheDocument()
