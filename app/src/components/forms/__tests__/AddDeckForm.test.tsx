@@ -7,11 +7,7 @@ import { MemoryRouter } from 'react-router'
 
 import AddDeckForm, { CREATE_DECK_MUTATION } from '../AddDeckForm'
 
-interface Options {
-  mutationMocks?: MockedResponse[]
-}
-
-const render = (ui: React.ReactElement, options: Options = {}) => {
+const render = (ui: React.ReactElement) => {
   const deckMock = {
     id: 'id',
     slug: 'id',
@@ -19,24 +15,22 @@ const render = (ui: React.ReactElement, options: Options = {}) => {
     description: '',
   }
 
-  const {
-    mutationMocks = [
-      {
-        request: {
-          query: CREATE_DECK_MUTATION,
-          variables: {
-            title: deckMock.title,
-            description: '',
-          },
-        },
-        result: {
-          data: {
-            createDeck: deckMock,
-          },
+  const mocks: MockedResponse[] = [
+    {
+      request: {
+        query: CREATE_DECK_MUTATION,
+        variables: {
+          title: deckMock.title,
+          description: '',
         },
       },
-    ],
-  } = options
+      result: {
+        data: {
+          createDeck: deckMock,
+        },
+      },
+    },
+  ]
 
   const i18n = setupI18n()
 
@@ -45,7 +39,7 @@ const render = (ui: React.ReactElement, options: Options = {}) => {
   const utils = rtlRender(
     <MemoryRouter>
       <I18nProvider i18n={i18n}>
-        <MockedProvider mocks={mutationMocks} addTypename={false}>
+        <MockedProvider mocks={mocks} addTypename={false}>
           {ui}
         </MockedProvider>
       </I18nProvider>
@@ -92,7 +86,7 @@ describe('<AddDeckForm />', () => {
       expect(submitButton).toBeEnabled()
     })
 
-    fireEvent.keyPress(titleInput, { key: 'Enter', code: 13 })
+    fireEvent.submit(titleInput)
 
     await waitFor(() => {
       expect(closeCallback).toHaveBeenCalledTimes(1)
