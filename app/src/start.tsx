@@ -1,7 +1,8 @@
 import { ApolloProvider } from '@apollo/react-hooks'
-import { setupI18n } from '@lingui/core'
+import { i18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
 import { NormalizedCacheObject } from 'apollo-cache-inmemory'
+import { en as enPlural, pt as ptPlural } from 'make-plural'
 import React, { StrictMode } from 'react'
 import ReactDOM from 'react-dom'
 import { Helmet } from 'react-helmet'
@@ -11,8 +12,8 @@ import Cookies from 'universal-cookie'
 
 import App from './App'
 import { HintsProvider } from './components/HintsContext'
-import catalogEn from './locales/en/messages'
-import catalogPt from './locales/pt/messages'
+import enCatalog from './locales/en/messages'
+import ptCatalog from './locales/pt/messages'
 import registerSW from './registerSW'
 import { createApolloClient } from './utils/apolloClient'
 
@@ -46,10 +47,10 @@ const render = ({
     language = cookies.get('language') || 'en'
   }
 
-  const i18n = setupI18n()
+  i18n.load('en', enCatalog.messages)
+  i18n.load('pt', ptCatalog.messages)
 
-  i18n.load('en', catalogEn)
-  i18n.load('pt', catalogPt)
+  i18n.loadLocaleData({ en: { plurals: enPlural }, pt: { plurals: ptPlural } })
 
   i18n.activate(language)
 
