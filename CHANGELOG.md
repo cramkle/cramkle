@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Back arrow not working in home for initial page.
 - Top bar position on mobile view.
 - Editor losing focus when clicking on any style button.
+- Add deck form creating duplicate decks.
 
 ### Removed
 - Search bar from top bar.

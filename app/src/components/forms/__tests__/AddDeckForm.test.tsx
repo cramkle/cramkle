@@ -1,17 +1,13 @@
 import { MockedProvider, MockedResponse } from '@apollo/react-testing'
 import { setupI18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
-import { fireEvent, render as rtlRender, wait } from '@testing-library/react'
+import { fireEvent, render as rtlRender, waitFor } from '@testing-library/react'
 import React from 'react'
 import { MemoryRouter } from 'react-router'
 
 import AddDeckForm, { CREATE_DECK_MUTATION } from '../AddDeckForm'
 
-interface Options {
-  mutationMocks?: MockedResponse[]
-}
-
-const render = (ui: React.ReactElement, options: Options = {}) => {
+const render = (ui: React.ReactElement) => {
   const deckMock = {
     id: 'id',
     slug: 'id',
@@ -19,24 +15,22 @@ const render = (ui: React.ReactElement, options: Options = {}) => {
     description: '',
   }
 
-  const {
-    mutationMocks = [
-      {
-        request: {
-          query: CREATE_DECK_MUTATION,
-          variables: {
-            title: deckMock.title,
-            description: '',
-          },
-        },
-        result: {
-          data: {
-            createDeck: deckMock,
-          },
+  const mocks: MockedResponse[] = [
+    {
+      request: {
+        query: CREATE_DECK_MUTATION,
+        variables: {
+          title: deckMock.title,
+          description: '',
         },
       },
-    ],
-  } = options
+      result: {
+        data: {
+          createDeck: deckMock,
+        },
+      },
+    },
+  ]
 
   const i18n = setupI18n()
 
@@ -45,7 +39,7 @@ const render = (ui: React.ReactElement, options: Options = {}) => {
   const utils = rtlRender(
     <MemoryRouter>
       <I18nProvider i18n={i18n}>
-        <MockedProvider mocks={mutationMocks} addTypename={false}>
+        <MockedProvider mocks={mocks} addTypename={false}>
           {ui}
         </MockedProvider>
       </I18nProvider>
@@ -59,11 +53,7 @@ const render = (ui: React.ReactElement, options: Options = {}) => {
 }
 
 describe('<AddDeckForm />', () => {
-  beforeEach(() => {
-    //jest.useFakeTimers()
-  })
-
-  it('should add deck on submit click', () => {
+  it('should add deck on submit click', async () => {
     const closeCallback = jest.fn()
     const { getByLabelText, getByText, deckMock } = render(
       <AddDeckForm open onClose={closeCallback} />
@@ -74,14 +64,14 @@ describe('<AddDeckForm />', () => {
 
     fireEvent.input(titleInput, { target: { value: deckMock.title } })
 
-    wait(() => expect(submitButton).toBeEnabled())
+    await waitFor(() => expect(submitButton).toBeEnabled())
 
     fireEvent.click(submitButton)
 
-    wait(() => expect(closeCallback).toHaveBeenCalledTimes(1))
+    await waitFor(() => expect(closeCallback).toHaveBeenCalledTimes(1))
   })
 
-  it('should add one deck on input enter', () => {
+  it('should add one deck on input enter', async () => {
     const closeCallback = jest.fn()
     const { getByLabelText, getByText, deckMock } = render(
       <AddDeckForm open onClose={closeCallback} />
@@ -92,10 +82,14 @@ describe('<AddDeckForm />', () => {
 
     fireEvent.input(titleInput, { target: { value: deckMock.title } })
 
-    wait(() => expect(submitButton).toBeEnabled())
+    await waitFor(() => {
+      expect(submitButton).toBeEnabled()
+    })
 
-    fireEvent.keyPress(titleInput, { key: 'Enter', code: 13 })
+    fireEvent.submit(titleInput)
 
-    wait(() => expect(closeCallback).toHaveBeenCalledTimes(1))
+    await waitFor(() => {
+      expect(closeCallback).toHaveBeenCalledTimes(1)
+    })
   })
 })

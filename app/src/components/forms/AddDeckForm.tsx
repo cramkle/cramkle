@@ -96,22 +96,15 @@ const AddDeckForm: React.FunctionComponent<Props> = ({ open, onClose }) => {
       }}
     >
       {({ isValid, handleSubmit, isSubmitting }) => {
-        const handleClose = () => {
-          onClose()
-        }
-
-        const handleCreate = () => {
-          handleSubmit()
-        }
-
         return (
           <Dialog
             isOpen={open}
-            onDismiss={handleClose}
+            onDismiss={onClose}
             style={{ width: '320px' }}
+            aria-labelledby="add-deck-dialog-title"
           >
             <form onSubmit={handleSubmit}>
-              <DialogTitle>
+              <DialogTitle id="add-deck-dialog-title">
                 <Trans>Add Deck</Trans>
               </DialogTitle>
               <div className="flex flex-column">
@@ -131,7 +124,6 @@ const AddDeckForm: React.FunctionComponent<Props> = ({ open, onClose }) => {
                 <Button
                   type="submit"
                   disabled={!isValid || isSubmitting}
-                  onClick={handleCreate}
                   className="self-end mt3"
                 >
                   <Trans>Create</Trans>
