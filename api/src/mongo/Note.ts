@@ -51,7 +51,7 @@ export const FlashCardSchema = new Schema<FlashCardDocument>({
   lapses: { type: Number, default: 0 },
   reviews: { type: Number, default: 0 },
   interval: { type: Number },
-  easeFactor: { type: Number },
+  easeFactor: { type: Number, default: 2.5 },
   due: { type: Date },
   templateId: {
     type: Schema.Types.ObjectId,
