@@ -65,12 +65,14 @@ const StudySection: React.FunctionComponent = () => {
               {selectedDeck.title}?
             </Trans>
           </AlertDialogDescription>
-          <Button ref={cancelRef} onClick={() => setSelectedDeck(null)}>
-            <Trans>Cancel</Trans>
-          </Button>
-          <Button onClick={handleStudyDeck}>
-            <Trans>Start Session</Trans>
-          </Button>
+          <div className="flex justify-end">
+            <Button ref={cancelRef} onClick={() => setSelectedDeck(null)}>
+              <Trans>Cancel</Trans>
+            </Button>
+            <Button className="ml2" onClick={handleStudyDeck}>
+              <Trans>Start Session</Trans>
+            </Button>
+          </div>
         </AlertDialog>
       )}
       <Grid className="w-100">

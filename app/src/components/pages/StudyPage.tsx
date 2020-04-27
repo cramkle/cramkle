@@ -89,9 +89,60 @@ const ANSWER_FLASH_CARD_MUTATION = gql`
   }
 `
 
+const CancelStudyButton: React.FC = () => {
+  const history = useHistory()
+  const [showCancelConfirmation, setShowCancelConfirmation] = useState(false)
+
+  const handleCancelButtonClick = () => {
+    setShowCancelConfirmation(true)
+  }
+
+  const handleCloseConfirmationDialog = () => {
+    setShowCancelConfirmation(false)
+  }
+
+  const handleCancel = () => {
+    history.push('/home')
+  }
+
+  const cancelRef = useRef<HTMLButtonElement>(null)
+
+  return (
+    <>
+      <AlertDialog
+        isOpen={showCancelConfirmation}
+        onDismiss={handleCloseConfirmationDialog}
+        leastDestructiveRef={cancelRef}
+      >
+        <AlertDialogLabel>
+          <Trans>End study session</Trans>
+        </AlertDialogLabel>
+        <AlertDialogDescription>
+          <Trans>
+            Are you sure you want to cancel the current study session?
+          </Trans>
+        </AlertDialogDescription>
+        <div className="flex justify-end">
+          <Button onClick={handleCloseConfirmationDialog} ref={cancelRef}>
+            <Trans>Continue Studying</Trans>
+          </Button>
+          <Button className="ml2" onClick={handleCancel}>
+            <Trans>End</Trans>
+          </Button>
+        </div>
+      </AlertDialog>
+      <Button
+        className="flex-shrink-0 ml3 mb3"
+        onClick={handleCancelButtonClick}
+      >
+        <Trans>Cancel</Trans>
+      </Button>
+    </>
+  )
+}
+
 const StudyPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>()
-  const history = useHistory()
   const [queryNextFlashCard, { data, loading }] = useLazyQuery(
     STUDY_CARD_QUERY,
     {
@@ -104,7 +155,6 @@ const StudyPage: React.FC = () => {
   >(ANSWER_FLASH_CARD_MUTATION)
 
   const [showBackSide, setShowBackSide] = useState(false)
-  const [showCancelConfirmation, setShowCancelConfirmation] = useState(false)
 
   const getNextFlashCard = useCallback(() => {
     queryNextFlashCard({
@@ -134,20 +184,6 @@ const StudyPage: React.FC = () => {
     setShowBackSide(true)
   }
 
-  const handleCancelButtonClick = () => {
-    setShowCancelConfirmation(true)
-  }
-
-  const handleCloseConfirmationDialog = () => {
-    setShowCancelConfirmation(false)
-  }
-
-  const handleCancel = () => {
-    history.push('/home')
-  }
-
-  const cancelRef = useRef<HTMLButtonElement>(null)
-
   if (loading || !data) {
     return (
       <div className="h-100 flex items-center justify-center">
@@ -157,89 +193,62 @@ const StudyPage: React.FC = () => {
   }
 
   return (
-    <>
-      <AlertDialog
-        isOpen={showCancelConfirmation}
-        onDismiss={handleCloseConfirmationDialog}
-        leastDestructiveRef={cancelRef}
-      >
-        <AlertDialogLabel>
-          <Trans>End study session</Trans>
-        </AlertDialogLabel>
-        <AlertDialogDescription>
-          <Trans>
-            Are you sure you want to cancel the current study session?
-          </Trans>
-        </AlertDialogDescription>
-        <Button onClick={handleCloseConfirmationDialog} ref={cancelRef}>
-          <Trans>Continue Studying</Trans>
-        </Button>
-        <Button onClick={handleCancel}>
-          <Trans>End</Trans>
-        </Button>
-      </AlertDialog>
-      <section className="pt3 pb5 h-100 flex flex-column items-start">
-        <Button
-          className="flex-shrink-0 ml3 mb3"
-          onClick={handleCancelButtonClick}
+    <section className="pt3 pb5 h-100 flex flex-column items-start">
+      <CancelStudyButton />
+
+      <div className="self-stretch flex-auto flex flex-column items-center justify-center">
+        <FlashCardRenderer
+          className="w-100 overflow-auto pt3 ph3 ph4-m ph5-l ph6-xl"
+          values={data.studyFlashCard.note.values}
+          template={data.studyFlashCard.template}
+          hideLabels
+          hideBackSide={!showBackSide}
+        />
+      </div>
+
+      <Portal>
+        <div
+          className={classnames(
+            'z-1 bg-surface h3 fixed bottom-0 w-100 ph3 pv2 shadow-2 flex justify-center items-center'
+          )}
         >
-          <Trans>Cancel</Trans>
-        </Button>
+          {!showBackSide && (
+            <Button onClick={handleShowBackSide}>
+              <Trans>Show</Trans>
+            </Button>
+          )}
 
-        <div className="self-stretch flex-auto flex flex-column items-center justify-center">
-          <FlashCardRenderer
-            className="w-100 overflow-auto pt3 ph3 ph4-m ph5-l ph6-xl"
-            values={data.studyFlashCard.note.values}
-            template={data.studyFlashCard.template}
-            hideLabels
-            hideBackSide={!showBackSide}
-          />
-        </div>
-
-        <Portal>
-          <div
-            className={classnames(
-              'z-1 bg-surface h3 fixed bottom-0 w-100 ph3 pv2 shadow-2 flex justify-center items-center'
-            )}
-          >
-            {!showBackSide && (
-              <Button onClick={handleShowBackSide}>
-                <Trans>Show</Trans>
+          {showBackSide && (
+            <div className="w-100 mw6 flex justify-between">
+              <Button
+                onClick={handleAnswer(FlashCardAnswer.REPEAT)}
+                disabled={answerLoading}
+              >
+                <Trans>Repeat</Trans>
               </Button>
-            )}
-
-            {showBackSide && (
-              <div className="w-100 mw6 flex justify-between">
-                <Button
-                  onClick={handleAnswer(FlashCardAnswer.REPEAT)}
-                  disabled={answerLoading}
-                >
-                  <Trans>Repeat</Trans>
-                </Button>
-                <Button
-                  onClick={handleAnswer(FlashCardAnswer.HARD)}
-                  disabled={answerLoading}
-                >
-                  <Trans>Hard</Trans>
-                </Button>
-                <Button
-                  onClick={handleAnswer(FlashCardAnswer.GOOD)}
-                  disabled={answerLoading}
-                >
-                  <Trans>Good</Trans>
-                </Button>
-                <Button
-                  onClick={handleAnswer(FlashCardAnswer.EASY)}
-                  disabled={answerLoading}
-                >
-                  <Trans>Easy</Trans>
-                </Button>
-              </div>
-            )}
-          </div>
-        </Portal>
-      </section>
-    </>
+              <Button
+                onClick={handleAnswer(FlashCardAnswer.HARD)}
+                disabled={answerLoading}
+              >
+                <Trans>Hard</Trans>
+              </Button>
+              <Button
+                onClick={handleAnswer(FlashCardAnswer.GOOD)}
+                disabled={answerLoading}
+              >
+                <Trans>Good</Trans>
+              </Button>
+              <Button
+                onClick={handleAnswer(FlashCardAnswer.EASY)}
+                disabled={answerLoading}
+              >
+                <Trans>Easy</Trans>
+              </Button>
+            </div>
+          )}
+        </div>
+      </Portal>
+    </section>
   )
 }
 
