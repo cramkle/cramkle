@@ -1,5 +1,6 @@
 import { useMutation, useQuery } from '@apollo/react-hooks'
 import { Trans } from '@lingui/macro'
+import { useLingui } from '@lingui/react'
 import { ContentState, RawDraftContentState, convertToRaw } from 'draft-js'
 import gql from 'graphql-tag'
 import React, { useCallback, useRef, useState } from 'react'
@@ -188,6 +189,7 @@ const NotePage: React.FC = () => {
     flashCardPreview,
     setFlashCardPreview,
   ] = useState<NoteQuery_note_cards | null>(null)
+  const { i18n } = useLingui()
 
   useTopBarLoading(loading)
 
@@ -280,7 +282,9 @@ const NotePage: React.FC = () => {
                 </TableCell>
                 <TableCell>{flashCard.template.name}</TableCell>
                 <TableCell align="right">{flashCard.lapses}</TableCell>
-                <TableCell>{flashCard.due}</TableCell>
+                <TableCell>
+                  {flashCard.due && i18n.date(new Date(flashCard.due), {})}
+                </TableCell>
                 <TableCell>
                   <Button onClick={() => handleShowFlashCardPreview(flashCard)}>
                     <Trans>Preview</Trans>

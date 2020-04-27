@@ -68,7 +68,7 @@ type FlashCard {
   """
   Due date of this flashcard, in a timestamp format.
   """
-  due: Int
+  due: Float
   """
   Parent note of the flashcard.
   """
