@@ -1,10 +1,11 @@
-import { useLazyQuery } from '@apollo/react-hooks'
+import { useLazyQuery, useMutation } from '@apollo/react-hooks'
 import { Trans } from '@lingui/macro'
 import classnames from 'classnames'
 import gql from 'graphql-tag'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { useHistory, useParams } from 'react-router'
 
+import { FlashCardAnswer } from '../../globalTypes'
 import FlashCardRenderer from '../FlashCardRenderer'
 import Portal from '../Portal'
 import {
@@ -14,6 +15,10 @@ import {
 } from '../views/AlertDialog'
 import Button from '../views/Button'
 import CircularProgress from '../views/CircularProgress'
+import {
+  AnswerFlashCard,
+  AnswerFlashCardVariables,
+} from './__generated__/AnswerFlashCard'
 
 const STUDY_CARD_QUERY = gql`
   query FlashCards($deckSlug: String!) {
@@ -66,23 +71,64 @@ const STUDY_CARD_QUERY = gql`
   }
 `
 
+const ANSWER_FLASH_CARD_MUTATION = gql`
+  mutation AnswerFlashCard(
+    $noteId: ID!
+    $flashCardId: ID!
+    $answer: FlashCardAnswer!
+    $timespan: Int!
+  ) {
+    answerFlashCard(
+      noteId: $noteId
+      flashCardId: $flashCardId
+      answer: $answer
+      timespan: $timespan
+    ) {
+      id
+    }
+  }
+`
+
 const StudyPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>()
   const history = useHistory()
-  const [getNextFlashCard, { data, loading }] = useLazyQuery(STUDY_CARD_QUERY, {
-    fetchPolicy: 'network-only',
-  })
+  const [queryNextFlashCard, { data, loading }] = useLazyQuery(
+    STUDY_CARD_QUERY,
+    {
+      fetchPolicy: 'network-only',
+    }
+  )
+  const [answerFlashCard, { loading: answerLoading }] = useMutation<
+    AnswerFlashCard,
+    AnswerFlashCardVariables
+  >(ANSWER_FLASH_CARD_MUTATION)
 
   const [showBackSide, setShowBackSide] = useState(false)
   const [showCancelConfirmation, setShowCancelConfirmation] = useState(false)
 
-  useEffect(() => {
-    getNextFlashCard({
+  const getNextFlashCard = useCallback(() => {
+    queryNextFlashCard({
       variables: {
         deckSlug: slug,
       },
     })
-  }, [getNextFlashCard, slug])
+  }, [queryNextFlashCard, slug])
+
+  const handleAnswer = (answer: FlashCardAnswer) => async () => {
+    await answerFlashCard({
+      variables: {
+        flashCardId: data.studyFlashCard.id,
+        noteId: data.studyFlashCard.note.id,
+        answer,
+        timespan: 0,
+      },
+    })
+    getNextFlashCard()
+  }
+
+  useEffect(() => {
+    getNextFlashCard()
+  }, [getNextFlashCard])
 
   const handleShowBackSide = () => {
     setShowBackSide(true)
@@ -164,16 +210,28 @@ const StudyPage: React.FC = () => {
 
             {showBackSide && (
               <div className="w-100 mw6 flex justify-between">
-                <Button>
+                <Button
+                  onClick={handleAnswer(FlashCardAnswer.REPEAT)}
+                  disabled={answerLoading}
+                >
                   <Trans>Repeat</Trans>
                 </Button>
-                <Button>
+                <Button
+                  onClick={handleAnswer(FlashCardAnswer.HARD)}
+                  disabled={answerLoading}
+                >
                   <Trans>Hard</Trans>
                 </Button>
-                <Button>
+                <Button
+                  onClick={handleAnswer(FlashCardAnswer.GOOD)}
+                  disabled={answerLoading}
+                >
                   <Trans>Good</Trans>
                 </Button>
-                <Button>
+                <Button
+                  onClick={handleAnswer(FlashCardAnswer.EASY)}
+                  disabled={answerLoading}
+                >
                   <Trans>Easy</Trans>
                 </Button>
               </div>
