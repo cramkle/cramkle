@@ -143,6 +143,8 @@ const CancelStudyButton: React.FC = () => {
 
 const StudyPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>()
+  const [startTime, setStartTime] = useState(0)
+  const [endTime, setEndTime] = useState(0)
   const [queryNextFlashCard, { data, loading }] = useLazyQuery(
     STUDY_CARD_QUERY,
     {
@@ -164,13 +166,25 @@ const StudyPage: React.FC = () => {
     })
   }, [queryNextFlashCard, slug])
 
+  const prevLoading = useRef(loading)
+
+  useEffect(() => {
+    if (prevLoading.current && !loading) {
+      setShowBackSide(false)
+
+      setStartTime(Date.now())
+    }
+
+    prevLoading.current = loading
+  }, [loading, prevLoading])
+
   const handleAnswer = (answer: FlashCardAnswer) => async () => {
     await answerFlashCard({
       variables: {
         flashCardId: data.studyFlashCard.id,
         noteId: data.studyFlashCard.note.id,
         answer,
-        timespan: 0,
+        timespan: endTime - startTime,
       },
     })
     getNextFlashCard()
@@ -182,6 +196,7 @@ const StudyPage: React.FC = () => {
 
   const handleShowBackSide = () => {
     setShowBackSide(true)
+    setEndTime(Date.now())
   }
 
   if (loading || !data) {
