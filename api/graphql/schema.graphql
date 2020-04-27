@@ -307,7 +307,7 @@ type Mutation {
     """
     answer: FlashCardAnswer!
     """
-    Time the user took to show the answer
+    Time the user took to answer in milliseconds
     """
     timespan: Int!
   ): FlashCard! @authenticate
