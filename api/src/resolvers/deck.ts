@@ -2,6 +2,7 @@ import { IResolverObject, IResolvers } from 'graphql-tools'
 
 import { DeckModel, NoteModel, UserModel } from '../mongo'
 import { DeckDocument } from '../mongo/Deck'
+import { studyFlashCardsByDeck } from '../utils/study'
 
 export const root: IResolvers = {
   Deck: {
@@ -11,9 +12,24 @@ export const root: IResolvers = {
   },
 }
 
+interface DecksArgs {
+  studyOnly: boolean
+}
+
 export const queries: IResolverObject = {
-  decks: async (_, __, { user }: Context) => {
-    const decks = await DeckModel.find({ ownerId: user?._id })
+  decks: async (_, { studyOnly }: DecksArgs, { user }: Context) => {
+    let decks = await DeckModel.find({ ownerId: user?._id })
+
+    if (studyOnly) {
+      // eslint-disable-next-line require-atomic-updates
+      decks = await Promise.all(
+        decks.map((deck) =>
+          studyFlashCardsByDeck(deck._id).then(
+            (flashCards) => flashCards.length > 0
+          )
+        )
+      ).then((results) => decks.filter((_, index) => results[index]))
+    }
 
     return decks
   },

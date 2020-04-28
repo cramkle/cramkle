@@ -1311,7 +1311,7 @@
             "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "Int",
+              "name": "Float",
               "ofType": null
             },
             "isDeprecated": false,
@@ -2097,7 +2097,7 @@
               },
               {
                 "name": "timespan",
-                "description": "Time the user took to show the answer",
+                "description": "Time the user took to answer in milliseconds",
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,

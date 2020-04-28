@@ -26,11 +26,4 @@ declare global {
     blocks: BlockInput[]
     entityMap: object
   }
-
-  enum FlashCardAnswer {
-    REPEAT = 'REPEAT',
-    HARD = 'HARD',
-    GOOD = 'GOOD',
-    EASY = 'EASY',
-  }
 }

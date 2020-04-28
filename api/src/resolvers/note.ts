@@ -61,7 +61,7 @@ export const mutations: IResolverObject = {
     const note = await NoteModel.create({
       modelId,
       deckId,
-      ownerId: user!.id,
+      ownerId: user!._id,
       values: fieldValues.map((fieldValue) => ({
         data: fieldValue.data,
         fieldId: fieldValue.field.id,
@@ -87,7 +87,10 @@ export const mutations: IResolverObject = {
     { noteId }: { noteId: string },
     ctx: Context
   ) => {
-    const note = await NoteModel.findOne({ _id: noteId, ownerId: ctx.user?.id })
+    const note = await NoteModel.findOne({
+      _id: noteId,
+      ownerId: ctx.user?._id,
+    })
 
     if (!note) {
       throw new ApolloError('Note not found')

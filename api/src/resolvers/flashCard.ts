@@ -11,5 +11,6 @@ export const root: IResolvers = {
       TemplateModel.findById(root.templateId),
     status: (root: FlashCardDocument) => root.status ?? root.state,
     state: (root: FlashCardDocument) => root.status,
+    due: (root: FlashCardDocument) => root.due?.getTime(),
   },
 }

@@ -7,6 +7,13 @@
 // START Enums and Input Objects
 //==============================================================
 
+export enum FlashCardAnswer {
+  EASY = 'EASY',
+  GOOD = 'GOOD',
+  HARD = 'HARD',
+  REPEAT = 'REPEAT',
+}
+
 export enum FlashCardStatus {
   LEARNING = 'LEARNING',
   NEW = 'NEW',

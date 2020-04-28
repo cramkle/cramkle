@@ -1,10 +1,11 @@
-import { useLazyQuery } from '@apollo/react-hooks'
+import { useLazyQuery, useMutation } from '@apollo/react-hooks'
 import { Trans } from '@lingui/macro'
 import classnames from 'classnames'
 import gql from 'graphql-tag'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { useHistory, useParams } from 'react-router'
 
+import { FlashCardAnswer } from '../../globalTypes'
 import FlashCardRenderer from '../FlashCardRenderer'
 import Portal from '../Portal'
 import {
@@ -14,6 +15,11 @@ import {
 } from '../views/AlertDialog'
 import Button from '../views/Button'
 import CircularProgress from '../views/CircularProgress'
+import { Headline1 } from '../views/Typography'
+import {
+  AnswerFlashCard,
+  AnswerFlashCardVariables,
+} from './__generated__/AnswerFlashCard'
 
 const STUDY_CARD_QUERY = gql`
   query FlashCards($deckSlug: String!) {
@@ -66,27 +72,27 @@ const STUDY_CARD_QUERY = gql`
   }
 `
 
-const StudyPage: React.FC = () => {
-  const { slug } = useParams<{ slug: string }>()
-  const history = useHistory()
-  const [getNextFlashCard, { data, loading }] = useLazyQuery(STUDY_CARD_QUERY, {
-    fetchPolicy: 'network-only',
-  })
-
-  const [showBackSide, setShowBackSide] = useState(false)
-  const [showCancelConfirmation, setShowCancelConfirmation] = useState(false)
-
-  useEffect(() => {
-    getNextFlashCard({
-      variables: {
-        deckSlug: slug,
-      },
-    })
-  }, [getNextFlashCard, slug])
-
-  const handleShowBackSide = () => {
-    setShowBackSide(true)
+const ANSWER_FLASH_CARD_MUTATION = gql`
+  mutation AnswerFlashCard(
+    $noteId: ID!
+    $flashCardId: ID!
+    $answer: FlashCardAnswer!
+    $timespan: Int!
+  ) {
+    answerFlashCard(
+      noteId: $noteId
+      flashCardId: $flashCardId
+      answer: $answer
+      timespan: $timespan
+    ) {
+      id
+    }
   }
+`
+
+const CancelStudyButton: React.FC = () => {
+  const history = useHistory()
+  const [showCancelConfirmation, setShowCancelConfirmation] = useState(false)
 
   const handleCancelButtonClick = () => {
     setShowCancelConfirmation(true)
@@ -101,14 +107,6 @@ const StudyPage: React.FC = () => {
   }
 
   const cancelRef = useRef<HTMLButtonElement>(null)
-
-  if (loading || !data) {
-    return (
-      <div className="h-100 flex items-center justify-center">
-        <CircularProgress />
-      </div>
-    )
-  }
 
   return (
     <>
@@ -125,63 +123,168 @@ const StudyPage: React.FC = () => {
             Are you sure you want to cancel the current study session?
           </Trans>
         </AlertDialogDescription>
-        <Button onClick={handleCloseConfirmationDialog} ref={cancelRef}>
-          <Trans>Continue Studying</Trans>
-        </Button>
-        <Button onClick={handleCancel}>
-          <Trans>End</Trans>
-        </Button>
-      </AlertDialog>
-      <section className="pt3 pb5 h-100 flex flex-column items-start">
-        <Button
-          className="flex-shrink-0 ml3 mb3"
-          onClick={handleCancelButtonClick}
-        >
-          <Trans>Cancel</Trans>
-        </Button>
-
-        <div className="self-stretch flex-auto flex flex-column items-center justify-center">
-          <FlashCardRenderer
-            className="w-100 overflow-auto pt3 ph3 ph4-m ph5-l ph6-xl"
-            values={data.studyFlashCard.note.values}
-            template={data.studyFlashCard.template}
-            hideLabels
-            hideBackSide={!showBackSide}
-          />
+        <div className="flex justify-end">
+          <Button onClick={handleCloseConfirmationDialog} ref={cancelRef}>
+            <Trans>Continue Studying</Trans>
+          </Button>
+          <Button className="ml2" onClick={handleCancel}>
+            <Trans>End</Trans>
+          </Button>
         </div>
-
-        <Portal>
-          <div
-            className={classnames(
-              'z-1 bg-surface h3 fixed bottom-0 w-100 ph3 pv2 shadow-2 flex justify-center items-center'
-            )}
-          >
-            {!showBackSide && (
-              <Button onClick={handleShowBackSide}>
-                <Trans>Show</Trans>
-              </Button>
-            )}
-
-            {showBackSide && (
-              <div className="w-100 mw6 flex justify-between">
-                <Button>
-                  <Trans>Repeat</Trans>
-                </Button>
-                <Button>
-                  <Trans>Hard</Trans>
-                </Button>
-                <Button>
-                  <Trans>Good</Trans>
-                </Button>
-                <Button>
-                  <Trans>Easy</Trans>
-                </Button>
-              </div>
-            )}
-          </div>
-        </Portal>
-      </section>
+      </AlertDialog>
+      <Button
+        className="flex-shrink-0 ml3 mb3"
+        onClick={handleCancelButtonClick}
+      >
+        <Trans>Cancel</Trans>
+      </Button>
     </>
+  )
+}
+
+const StudyPage: React.FC = () => {
+  const { slug } = useParams<{ slug: string }>()
+  const [startTime, setStartTime] = useState(0)
+  const [queryNextFlashCard, { data, loading }] = useLazyQuery(
+    STUDY_CARD_QUERY,
+    {
+      fetchPolicy: 'network-only',
+    }
+  )
+  const [answerFlashCard, { loading: answerLoading }] = useMutation<
+    AnswerFlashCard,
+    AnswerFlashCardVariables
+  >(ANSWER_FLASH_CARD_MUTATION)
+
+  const [showBackSide, setShowBackSide] = useState(false)
+
+  const getNextFlashCard = useCallback(() => {
+    queryNextFlashCard({
+      variables: {
+        deckSlug: slug,
+      },
+    })
+  }, [queryNextFlashCard, slug])
+
+  useEffect(() => {
+    if (loading) {
+      setShowBackSide(false)
+    }
+
+    if (!loading) {
+      setStartTime(Date.now())
+    }
+  }, [loading])
+
+  const handleAnswer = (answer: FlashCardAnswer) => async () => {
+    const now = Date.now()
+
+    await answerFlashCard({
+      variables: {
+        flashCardId: data.studyFlashCard.id,
+        noteId: data.studyFlashCard.note.id,
+        answer,
+        timespan: now - startTime,
+      },
+    })
+
+    getNextFlashCard()
+  }
+
+  useEffect(() => {
+    getNextFlashCard()
+  }, [getNextFlashCard])
+
+  const handleShowBackSide = () => {
+    setShowBackSide(true)
+  }
+
+  const history = useHistory()
+
+  const handleGoHomeClick = () => {
+    history.push('/home')
+  }
+
+  if (loading || !data) {
+    return (
+      <div className="h-100 flex items-center justify-center">
+        <CircularProgress />
+      </div>
+    )
+  }
+
+  if (data.studyFlashCard === null) {
+    return (
+      <section className="h-100 flex flex-column items-center justify-center">
+        <Headline1 className="f4 lh-solid">
+          <Trans>
+            Congratulations, you have finished studying this deck for now.
+          </Trans>
+        </Headline1>
+        <Button className="mt3" onClick={handleGoHomeClick}>
+          <Trans>Go to Home</Trans>
+        </Button>
+      </section>
+    )
+  }
+
+  return (
+    <section className="pt3 pb5 h-100 flex flex-column items-start">
+      <CancelStudyButton />
+
+      <div className="self-stretch flex-auto flex flex-column items-center justify-center">
+        <FlashCardRenderer
+          className="w-100 overflow-auto pt3 ph3 ph4-m ph5-l ph6-xl"
+          values={data.studyFlashCard.note.values}
+          template={data.studyFlashCard.template}
+          hideLabels
+          hideBackSide={!showBackSide}
+        />
+      </div>
+
+      <Portal>
+        <div
+          className={classnames(
+            'z-1 bg-surface h3 fixed bottom-0 w-100 ph3 pv2 shadow-2 flex justify-center items-center'
+          )}
+        >
+          {!showBackSide && (
+            <Button onClick={handleShowBackSide}>
+              <Trans>Show</Trans>
+            </Button>
+          )}
+
+          {showBackSide && (
+            <div className="w-100 mw6 flex justify-between">
+              <Button
+                onClick={handleAnswer(FlashCardAnswer.REPEAT)}
+                disabled={answerLoading}
+              >
+                <Trans>Repeat</Trans>
+              </Button>
+              <Button
+                onClick={handleAnswer(FlashCardAnswer.HARD)}
+                disabled={answerLoading}
+              >
+                <Trans>Hard</Trans>
+              </Button>
+              <Button
+                onClick={handleAnswer(FlashCardAnswer.GOOD)}
+                disabled={answerLoading}
+              >
+                <Trans>Good</Trans>
+              </Button>
+              <Button
+                onClick={handleAnswer(FlashCardAnswer.EASY)}
+                disabled={answerLoading}
+              >
+                <Trans>Easy</Trans>
+              </Button>
+            </div>
+          )}
+        </div>
+      </Portal>
+    </section>
   )
 }
 
