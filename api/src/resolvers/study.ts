@@ -1,14 +1,23 @@
 import { ApolloError } from 'apollo-server'
-import { startOfToday } from 'date-fns'
+import { endOfToday, isBefore, startOfToday } from 'date-fns'
 import { IResolverObject } from 'graphql-tools'
 
 import { DeckModel, NoteModel, RevisionLogModel } from '../mongo'
-import { FlashCardDocument } from '../mongo/Note'
+import { FlashCardDocument, FlashCardStatus } from '../mongo/Note'
+import { RevisionLogDocument } from '../mongo/RevisionLog'
 import {
   FlashCardAnswer,
+  MINIMUM_ANSWER_QUALITY,
   answerToQualityValue,
   scheduleFlashCard,
 } from '../utils/scheduler'
+
+const sumByStatus = (logs: RevisionLogDocument[], status: FlashCardStatus) => {
+  return logs.reduce(
+    (total, log) => (log.status === status ? total + 1 : total),
+    0
+  )
+}
 
 export const queries: IResolverObject = {
   studyFlashCard: async (
@@ -25,9 +34,31 @@ export const queries: IResolverObject = {
       throw new ApolloError('Deck not found')
     }
 
-    const flashCards = (
-      await NoteModel.find({ deckId: deck._id }).exec()
-    ).flatMap<FlashCardDocument>((note) => note.cards)
+    const todayLogs = await RevisionLogModel.find({
+      deckId: deck._id,
+      date: { $gte: startOfToday(), $lte: endOfToday() },
+      answerQuality: { $gte: MINIMUM_ANSWER_QUALITY },
+    })
+
+    const numOfNew = sumByStatus(todayLogs, FlashCardStatus.NEW)
+    const numOfLearning = sumByStatus(todayLogs, FlashCardStatus.LEARNING)
+    const numOfReview = sumByStatus(todayLogs, FlashCardStatus.REVIEW)
+
+    const flashCards = (await NoteModel.find({ deckId: deck._id }).exec())
+      .flatMap<FlashCardDocument>((note) => note.cards)
+      .filter(
+        (flashCard) => !flashCard.due || isBefore(flashCard.due, endOfToday())
+      )
+      .filter((flashCard) => {
+        if (flashCard.status === FlashCardStatus.NEW) {
+          return numOfNew < 20
+        } else if (flashCard.status === FlashCardStatus.LEARNING) {
+          return numOfLearning < 100
+        } else if (flashCard.status === FlashCardStatus.REVIEW) {
+          return numOfReview < 50
+        }
+        return false
+      })
 
     return flashCards[0]
   },

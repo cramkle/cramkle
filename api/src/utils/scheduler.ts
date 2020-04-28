@@ -2,6 +2,8 @@ import { addDays, startOfToday } from 'date-fns'
 
 import { FlashCard, FlashCardStatus } from '../mongo/Note'
 
+export const MINIMUM_ANSWER_QUALITY = 3
+
 export enum FlashCardAnswer {
   REPEAT = 'REPEAT',
   HARD = 'HARD',
@@ -28,7 +30,7 @@ export const answerToQualityValue = (answer: FlashCardAnswer): number => {
     case FlashCardAnswer.REPEAT:
       return 0
     case FlashCardAnswer.HARD:
-      return 2
+      return 3
     case FlashCardAnswer.GOOD:
       return 4
     case FlashCardAnswer.EASY:
@@ -47,9 +49,9 @@ const _calculateNextEaseFactor = (
   answerQuality: number
 ) => {
   return Math.max(
-    // The easeFactor should never be below 130% (1.3), else the repeat
-    // of the flashCards will be high enough to not be of any value to the
-    // user.
+    // The easeFactor should never be below 130% (1.3), as a SuperMemo
+    // research found that the flashCards can become due more often than
+    // is useful and annoy users
     1.3,
     easeFactor +
       (0.1 - (5 - answerQuality) * (0.08 + (5 - answerQuality) * 0.02))
@@ -74,7 +76,7 @@ export const scheduleFlashCard = (
     responseQuality
   )
 
-  if (responseQuality < 3) {
+  if (responseQuality < MINIMUM_ANSWER_QUALITY) {
     flashCard.reviews = 1
   }
 

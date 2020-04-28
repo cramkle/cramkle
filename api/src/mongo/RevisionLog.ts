@@ -2,7 +2,7 @@ import { Document, Schema, Types, model } from 'mongoose'
 
 import { FlashCardStatus } from './Note'
 
-interface RevisionLog {
+export interface RevisionLog {
   interval: number
   lastInterval: number
   timespan: number
@@ -15,7 +15,7 @@ interface RevisionLog {
   flashCardId: Types.ObjectId
 }
 
-interface RevisionLogDocument extends Document, RevisionLog {}
+export interface RevisionLogDocument extends Document, RevisionLog {}
 
 const RevisionLogSchema = new Schema<RevisionLogDocument>(
   {
