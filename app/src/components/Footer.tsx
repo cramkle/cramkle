@@ -26,7 +26,7 @@ const Footer: React.FC = () => {
   const { i18n } = useLingui()
 
   return (
-    <footer className="w-full py-8 px-4 lg:px-8 sm:px-32 flex flex-col-reverse sm:flex-row">
+    <footer className="w-full py-8 px-4 lg:px-8 xl:px-32 flex flex-col-reverse sm:flex-row">
       <div className="flex flex-col mt-4 sm:mt-0">
         <T.Overline className="sm:leading-tight">
           &copy; {new Date().getFullYear()} Cramkle, Inc.
@@ -38,7 +38,7 @@ const Footer: React.FC = () => {
               rel="noopener noreferrer"
               target="_blank"
             >
-              <GithubLogo className="text-gray-600" />
+              <GithubLogo className="text-secondary" />
             </a>
           </li>
           <li className="ml-4">
@@ -47,7 +47,7 @@ const Footer: React.FC = () => {
               rel="noopener noreferrer"
               target="_blank"
             >
-              <TwitterLogo className="text-gray-600" />
+              <TwitterLogo className="text-secondary" />
             </a>
           </li>
         </ul>
@@ -59,7 +59,7 @@ const Footer: React.FC = () => {
         <ul className="list-reset mt-4 flex flex-col">
           {links.map((link, i) => (
             <li className="leading-normal mb-2" key={i}>
-              <Link to={link.url} className="link text-gray-600">
+              <Link to={link.url} className="link text-secondary">
                 <T.Body2>{i18n._(link.text)}</T.Body2>
               </Link>
             </li>
