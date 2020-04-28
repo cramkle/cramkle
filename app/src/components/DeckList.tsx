@@ -33,8 +33,8 @@ const DeckList: React.FunctionComponent = () => {
 
   if (!decks || decks.length === 0) {
     return (
-      <div className="flex flex-column items-center">
-        <Body1 className="mt4">
+      <div className="flex flex-col items-center">
+        <Body1 className="mt-8">
           <Trans>The decks you create will appear here.</Trans>
         </Body1>
       </div>
@@ -42,7 +42,7 @@ const DeckList: React.FunctionComponent = () => {
   }
 
   return (
-    <Grid className="w-100">
+    <Grid className="w-full">
       <Row>
         {decks.map((deck) => (
           <Cell key={deck.id}>

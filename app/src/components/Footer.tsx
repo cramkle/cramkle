@@ -26,40 +26,40 @@ const Footer: React.FC = () => {
   const { i18n } = useLingui()
 
   return (
-    <footer className="w-100 pv4 ph3 ph4-m ph6-ns flex flex-column-reverse flex-row-ns">
-      <div className="flex flex-column mt3 mt0-ns">
-        <T.Overline className="lh-title-ns">
+    <footer className="w-full py-8 px-4 lg:px-8 sm:px-32 flex flex-col-reverse sm:flex-row">
+      <div className="flex flex-col mt-4 sm:mt-0">
+        <T.Overline className="sm:leading-tight">
           &copy; {new Date().getFullYear()} Cramkle, Inc.
         </T.Overline>
-        <ul className="list mt3 flex">
+        <ul className="list-reset mt-4 flex">
           <li>
             <a
               href="https://github.com/cramkle/cramkle"
               rel="noopener noreferrer"
               target="_blank"
             >
-              <GithubLogo className="gray" />
+              <GithubLogo className="text-gray-600" />
             </a>
           </li>
-          <li className="ml3">
+          <li className="ml-4">
             <a
               href="https://twitter.com/lucasecdb"
               rel="noopener noreferrer"
               target="_blank"
             >
-              <TwitterLogo className="gray" />
+              <TwitterLogo className="text-gray-600" />
             </a>
           </li>
         </ul>
       </div>
-      <div className="ml5-ns">
-        <T.Subtitle2 className="lh-title">
+      <div className="sm:ml-16">
+        <T.Subtitle2 className="leading-tight">
           <Trans>Company</Trans>
         </T.Subtitle2>
-        <ul className="list mt3 flex flex-column">
+        <ul className="list-reset mt-4 flex flex-col">
           {links.map((link, i) => (
-            <li className="lh-copy mb2" key={i}>
-              <Link to={link.url} className="link gray">
+            <li className="leading-normal mb-2" key={i}>
+              <Link to={link.url} className="link text-gray-600">
                 <T.Body2>{i18n._(link.text)}</T.Body2>
               </Link>
             </li>

@@ -27,9 +27,9 @@ export const MenuButton: React.FC<MenuButtonProps & { icon?: boolean }> = ({
       className={classnames(
         className,
         styles.menuButton,
-        'relative bg-surface bn br2 pv2 ph1 pointer overflow-hidden',
+        'relative bg-surface border-0 border-none rounded py-2 px-1 cursor-pointer overflow-hidden',
         {
-          'ph2 br-100': icon,
+          'px-2 br-100': icon,
         }
       )}
     >
@@ -46,7 +46,10 @@ export const MenuList: React.FC<MenuListProps> = ({
   return (
     <ReachMenuList
       {...props}
-      className={classnames(className, 'mt1 pv2 bn br2 shadow-4 bg-surface')}
+      className={classnames(
+        className,
+        'mt-1 py-2 border-0 border-none rounded shadow-4 bg-surface'
+      )}
     >
       {children}
     </ReachMenuList>

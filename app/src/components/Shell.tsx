@@ -90,13 +90,13 @@ const Shell: React.FunctionComponent = ({ children }) => {
 
   const loader = (
     <LinearProgress
-      className="absolute top-0 left-0 right-0 z-2"
+      className="absolute top-0 left-0 right-0 z-20"
       indeterminate
     />
   )
 
   const content = (
-    <main className="h-100 overflow-auto w-100 relative">
+    <main className="h-full overflow-auto w-full relative">
       <NoSSR fallback={loader}>
         <Suspense fallback={loader}>
           {loading && loader}
@@ -108,7 +108,7 @@ const Shell: React.FunctionComponent = ({ children }) => {
   )
 
   return (
-    <div className="vh-100 flex">
+    <div className="h-screen flex">
       <AppDrawer
         open={drawerOpen}
         onClose={handleDrawerClose}
@@ -131,18 +131,18 @@ const Shell: React.FunctionComponent = ({ children }) => {
                     </IconButton>
                   </TopAppBarIcon>
                   <TopAppBarTitle
-                    className="flex items-center pl1 link color-inherit"
+                    className="flex items-center pl-1 link color-inherit"
                     tag="a"
                     href="/home"
                     onClick={handleLogoClick}
                   >
                     {!isOffline ? <Logo width="32" /> : <LogoGray width="32" />}
-                    <span className="ml2">Cramkle</span>
+                    <span className="ml-2">Cramkle</span>
                   </TopAppBarTitle>
                 </TopAppBarSection>
               </TopAppBarRow>
             </TopAppBar>
-            <TopAppBarFixedAdjust className="w-100 flex relative">
+            <TopAppBarFixedAdjust className="w-full flex relative">
               {children}
             </TopAppBarFixedAdjust>
           </>

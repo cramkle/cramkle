@@ -78,10 +78,10 @@ const TemplateEditor: React.FunctionComponent<Props> = ({
   )
 
   return (
-    <Card outlined className="mt2">
+    <Card outlined className="mt-2">
       {!isMobile && (
-        <CardActions className="bb b--inherit">
-          <CardActionButtons className="flex-column items-start">
+        <CardActions className="border-b b--inherit">
+          <CardActionButtons className="flex-col items-start">
             <TabController>
               <BlockStyleControls
                 editor={editor}
@@ -97,7 +97,7 @@ const TemplateEditor: React.FunctionComponent<Props> = ({
           </CardActionButtons>
         </CardActions>
       )}
-      <div className="pa3">
+      <div className="p-4">
         <TagEditor
           tagSource={fields}
           editorState={editor}

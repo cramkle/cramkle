@@ -94,7 +94,7 @@ const BlockStyleControls: React.FunctionComponent<{
   )
 
   return (
-    <div className="mb2 f6">
+    <div className="mb-2 text-sm">
       {BLOCK_TYPES.map((type) => (
         <StyleButton
           key={type.style}

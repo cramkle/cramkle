@@ -15,7 +15,7 @@ const AlertDialogDescription: React.FC<React.HTMLAttributes<HTMLDivElement>> = (
   return (
     <ReachAlertDialogDescription
       {...props}
-      className={classnames(props.className, 'c-text-secondary mt2 mb3')}
+      className={classnames(props.className, 'text-secondary mt-2 mb-4')}
     />
   )
 }
@@ -26,7 +26,10 @@ const AlertDialogLabel: React.FC<React.HTMLAttributes<HTMLDivElement>> = (
   return (
     <ReachAlertDialogLabel
       {...props}
-      className={classnames(props.className, 'f3 fw5 lh-copy')}
+      className={classnames(
+        props.className,
+        'text-2xl font-medium leading-normal'
+      )}
     />
   )
 }
@@ -36,7 +39,7 @@ const AlertDialogContent = forwardRef<HTMLDivElement, AlertDialogContentProps>(
     return (
       <ReachAlertDialogContent
         {...props}
-        className={classnames(props.className, 'br2 shadow-2')}
+        className={classnames(props.className, 'rounded shadow-2')}
         ref={ref}
       />
     )

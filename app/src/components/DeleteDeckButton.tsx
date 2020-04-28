@@ -91,7 +91,7 @@ const DeleteDeckButton: React.FunctionComponent<Props> = ({ deckId }) => {
   return (
     <>
       <Button
-        className="mv2"
+        className="my-2"
         icon={<Icon icon="delete" aria-hidden="true" />}
         outlined
         onClick={() => setDialogOpen(true)}

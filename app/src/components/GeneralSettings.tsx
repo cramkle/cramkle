@@ -29,7 +29,7 @@ const GeneralSettings: React.FunctionComponent = () => {
   }, [currentLanguage, i18n])
 
   return (
-    <div className="pt2 flex flex-column">
+    <div className="pt-2 flex flex-col">
       {i18n._(t`Language`)}
       <Listbox value={currentLanguage} onChange={(e) => setCurrentLanguage(e)}>
         {OPTIONS.map((option) => (
@@ -38,7 +38,7 @@ const GeneralSettings: React.FunctionComponent = () => {
           </ListboxOption>
         ))}
       </Listbox>
-      <Button className="mt3 self-end" unelevated onClick={handleSave}>
+      <Button className="mt-4 self-end" unelevated onClick={handleSave}>
         <Trans>Save</Trans>
       </Button>
     </div>

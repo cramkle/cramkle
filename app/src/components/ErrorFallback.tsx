@@ -7,19 +7,19 @@ import { Body1, Headline4, Overline } from './views/Typography'
 
 const ErrorFallback: React.FC<FallbackProps> = ({ error, componentStack }) => {
   return (
-    <div className="flex flex-column justify-center items-center pv4 min-vh-100">
+    <div className="flex flex-col justify-center items-center py-8 min-h-screen">
       <Headline4>
         <Trans>Something went wrong</Trans>
       </Headline4>
-      <Body1 className="mt1">
+      <Body1 className="mt-1">
         <Trans>Please, try reloading the page</Trans>
       </Body1>
-      <Button className="mt3" onClick={() => window.location.reload()}>
+      <Button className="mt-4" onClick={() => window.location.reload()}>
         <Trans>Refresh</Trans>
       </Button>
       {process.env.NODE_ENV === 'development' && error && (
         <>
-          <Overline className="mt3">Error message: "{error.message}"</Overline>
+          <Overline className="mt-4">Error message: "{error.message}"</Overline>
           <pre>{componentStack}</pre>
         </>
       )}

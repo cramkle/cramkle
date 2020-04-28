@@ -30,7 +30,7 @@ const DecksSection: React.FunctionComponent = () => {
 
       <AddDeckForm open={dialogOpen} onClose={handleDialogClose} />
 
-      <div className={classNames(styles.fab, 'fixed z-1')}>
+      <div className={classNames(styles.fab, 'fixed z-10')}>
         <Fab
           icon={<Icon icon="add" aria-hidden="true" />}
           aria-label={i18n._(t`Add Deck`)}

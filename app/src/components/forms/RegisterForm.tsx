@@ -94,28 +94,31 @@ const RegisterForm: React.FunctionComponent<Props> = ({
     >
       {({ handleSubmit, isValid, isSubmitting }) => (
         <form
-          className={classNames(styles.form, 'w-100')}
+          className={classNames(styles.form, 'w-full')}
           onSubmit={handleSubmit}
         >
           <Card
-            className={classNames(styles.formContent, 'pa3 pb0 c-on-surface')}
+            className={classNames(
+              styles.formContent,
+              'p-4 pb-0 text-on-surface'
+            )}
             outlined
           >
-            <Headline5 className="tc">{i18n._(title)}</Headline5>
+            <Headline5 className="text-center">{i18n._(title)}</Headline5>
             <TextInputField
-              className="mv2"
+              className="my-2"
               id="username"
               name="username"
               label={i18n._(t`Username`)}
             />
             <TextInputField
-              className="mv2"
+              className="my-2"
               id="email"
               name="email"
               label={i18n._(t`E-mail`)}
             />
             <TextInputField
-              className="mv2"
+              className="my-2"
               id="password"
               name="password"
               type="password"
@@ -139,10 +142,10 @@ const RegisterForm: React.FunctionComponent<Props> = ({
                 </Trans>
               }
             />
-            <CardActions className="pa0 justify-end">
-              <CardActionButtons className="w-100">
+            <CardActions className="p-0 justify-end">
+              <CardActionButtons className="w-full">
                 <Button
-                  className="w-100"
+                  className="w-full"
                   raised
                   disabled={!isValid || isSubmitting}
                   data-testid="register-submit-btn"

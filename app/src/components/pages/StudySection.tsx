@@ -70,14 +70,14 @@ const StudySection: React.FunctionComponent = () => {
             <Button ref={cancelRef} onClick={() => setSelectedDeck(null)}>
               <Trans>Cancel</Trans>
             </Button>
-            <Button className="ml2" onClick={handleStudyDeck}>
+            <Button className="ml-2" onClick={handleStudyDeck}>
               <Trans>Start Session</Trans>
             </Button>
           </div>
         </AlertDialog>
       )}
       {decks.length > 0 ? (
-        <Grid className="w-100">
+        <Grid className="w-full">
           <Row>
             {decks.map((deck) => (
               <Cell key={deck.id}>
@@ -87,8 +87,8 @@ const StudySection: React.FunctionComponent = () => {
           </Row>
         </Grid>
       ) : (
-        <div className="mt4 flex justify-center">
-          <Headline3 className="f5">
+        <div className="mt-8 flex justify-center">
+          <Headline3 className="text-base">
             <Trans>You've finished studying your decks for now.</Trans>
           </Headline3>
         </div>

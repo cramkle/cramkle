@@ -107,16 +107,16 @@ const AddDeckForm: React.FunctionComponent<Props> = ({ open, onClose }) => {
               <DialogTitle id="add-deck-dialog-title">
                 <Trans>Add Deck</Trans>
               </DialogTitle>
-              <div className="flex flex-column">
+              <div className="flex flex-col">
                 <TextInputField
                   id="title"
-                  className="w-100"
+                  className="w-full"
                   name="title"
                   label={i18n._(t`Title`)}
                 />
                 <TextInputField
                   id="description"
-                  className="w-100 mt3"
+                  className="w-full mt-4"
                   name="description"
                   label={i18n._(t`Description`)}
                   textarea
@@ -124,7 +124,7 @@ const AddDeckForm: React.FunctionComponent<Props> = ({ open, onClose }) => {
                 <Button
                   type="submit"
                   disabled={!isValid || isSubmitting}
-                  className="self-end mt3"
+                  className="self-end mt-4"
                 >
                   <Trans>Create</Trans>
                 </Button>

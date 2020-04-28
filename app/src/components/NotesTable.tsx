@@ -34,7 +34,10 @@ const NotesTable: React.FC<Props> = ({ notes, deckSlug }) => {
 
   if (!notes.length) {
     return (
-      <Card className="w-100 mt2 pv3 ph2 flex flex-row justify-center" outlined>
+      <Card
+        className="w-full mt-2 py-4 px-2 flex flex-row justify-center"
+        outlined
+      >
         <Body2>
           <Trans>You haven't created any notes on this deck yet</Trans>
         </Body2>
@@ -47,7 +50,7 @@ const NotesTable: React.FC<Props> = ({ notes, deckSlug }) => {
       {deletingNote && (
         <DeleteNoteDialog note={deletingNote} onClose={handleDeleteNoteClose} />
       )}
-      <Table className="w-100">
+      <Table className="w-full">
         <TableHead>
           <TableRow>
             <TableCell>

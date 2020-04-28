@@ -107,30 +107,30 @@ const AddModelPage: React.FunctionComponent = () => {
         }}
       >
         {({ handleSubmit, values, isValid, isSubmitting }) => (
-          <form className="flex flex-column w-100 pv3" onSubmit={handleSubmit}>
+          <form className="flex flex-col w-full py-4" onSubmit={handleSubmit}>
             <TextInputField name="name" label={i18n._(t`Name`)} />
 
-            <div className="flex flex-column flex-row-ns">
+            <div className="flex flex-col sm:flex-row">
               <FieldArray name="templates" validateOnChange={false}>
                 {({ push, remove }) => (
-                  <div className={`${styles.evenColumn} mt3 pr3-ns`}>
+                  <div className={`${styles.evenColumn} mt-4 sm:pr-4`}>
                     <Body1>
                       <Trans>Templates</Trans>
                     </Body1>
-                    <div className="pv2">
+                    <div className="py-2">
                       {values.templates && values.templates.length ? (
                         values.templates.map((_, index) => (
-                          <div className="mb2 flex items-baseline" key={index}>
-                            <div className="w-100">
+                          <div className="mb-2 flex items-baseline" key={index}>
+                            <div className="w-full">
                               <TextInputField
-                                className="w-100"
+                                className="w-full"
                                 name={`templates.${index}.name`}
                                 label={i18n._(t`Template name`)}
                               />
                             </div>
 
                             <IconButton
-                              className="ml1 c-primary"
+                              className="ml-1 text-primary"
                               onClick={() => remove(index)}
                               aria-label={i18n._(t`Remove template`)}
                             >
@@ -154,24 +154,24 @@ const AddModelPage: React.FunctionComponent = () => {
 
               <FieldArray name="fields" validateOnChange={false}>
                 {({ push, remove }) => (
-                  <div className={`${styles.evenColumn} mt3`}>
+                  <div className={`${styles.evenColumn} mt-4`}>
                     <Body1>
                       <Trans>Fields</Trans>
                     </Body1>
-                    <div className="pv2">
+                    <div className="py-2">
                       {values.fields && values.fields.length ? (
                         values.fields.map((_, index) => (
-                          <div className="mb2 flex items-baseline" key={index}>
-                            <div className="w-100">
+                          <div className="mb-2 flex items-baseline" key={index}>
+                            <div className="w-full">
                               <TextInputField
-                                className="w-100"
+                                className="w-full"
                                 name={`fields.${index}.name`}
                                 label={i18n._(t`Field name`)}
                               />
                             </div>
 
                             <IconButton
-                              className="ml1 c-primary"
+                              className="ml-1 text-primary"
                               onClick={() => remove(index)}
                               aria-label={i18n._(t`Remove field`)}
                             >
@@ -195,7 +195,7 @@ const AddModelPage: React.FunctionComponent = () => {
             </div>
 
             <Button
-              className="self-start mt3"
+              className="self-start mt-4"
               type="submit"
               raised
               disabled={!isValid || isSubmitting}

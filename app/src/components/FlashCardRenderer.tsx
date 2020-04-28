@@ -103,10 +103,10 @@ const FlashCardPanel: React.FC<PanelProps> = ({
   return (
     <>
       {!hideLabel && (
-        <t.Caption className="mb2 c-text-secondary">{label}</t.Caption>
+        <t.Caption className="mb-2 text-secondary">{label}</t.Caption>
       )}
       {templateContent == null ? (
-        <t.Body2 className="db mv2">{emptyMessage}</t.Body2>
+        <t.Body2 className="block my-2">{emptyMessage}</t.Body2>
       ) : (
         <ValuesContext.Provider value={values}>
           <Editor
@@ -139,7 +139,7 @@ const FlashCardRenderer: React.FC<Props> = ({
   return (
     <div
       {...props}
-      className={classnames(styles.renderer, className, 'c-on-surface')}
+      className={classnames(styles.renderer, className, 'text-on-surface')}
     >
       <FlashCardPanel
         label={<Trans>Front side</Trans>}
@@ -150,7 +150,7 @@ const FlashCardRenderer: React.FC<Props> = ({
       />
       {!hideBackSide && (
         <>
-          <Divider className="mv3" />
+          <Divider className="my-4" />
           <FlashCardPanel
             label={<Trans>Back side</Trans>}
             hideLabel={hideLabels}
