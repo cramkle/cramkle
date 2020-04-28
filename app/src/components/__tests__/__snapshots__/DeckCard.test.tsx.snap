@@ -3,10 +3,10 @@
 exports[`<DeckCard /> should match snapshot 1`] = `
 <div>
   <div
-    class="mdc-card h-100 mdc-card--outlined"
+    class="mdc-card h-full mdc-card--outlined"
   >
     <div
-      class="mdc-card__primary-action pa2 h-100"
+      class="mdc-card__primary-action p-2 h-full"
       role="article"
       tabindex="0"
     >
