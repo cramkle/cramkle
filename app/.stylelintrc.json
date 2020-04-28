@@ -1,18 +1,16 @@
 {
-  "extends": [
-    "stylelint-config-recommended-scss"
-  ],
+  "extends": ["stylelint-config-recommended-scss"],
   "rules": {
     "selector-pseudo-class-no-unknown": [
       true,
       {
         "ignorePseudoClasses": [
-         "export",
-         "import",
-         "global",
-         "local",
-         "external"
-       ]
+          "export",
+          "import",
+          "global",
+          "local",
+          "external"
+        ]
       }
     ],
     "selector-type-no-unknown": [
