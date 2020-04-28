@@ -63,33 +63,33 @@ const LoginForm: React.FunctionComponent = () => {
     >
       {({ isSubmitting, isValid, handleSubmit }) => (
         <form
-          className={classNames(styles.loginForm, 'w-100')}
+          className={classNames(styles.loginForm, 'w-full')}
           onSubmit={handleSubmit}
         >
           <Card outlined>
-            <div className="pa3 pb0 c-on-surface">
-              <Headline5 className="tc">
+            <div className="p-4 pb-0 text-on-surface">
+              <Headline5 className="text-center">
                 <Trans>Login</Trans>
               </Headline5>
 
               <TextInputField
-                className="w-100 mv2"
+                className="w-full my-2"
                 id="username"
                 name="username"
                 label={i18n._(t`Username`)}
               />
               <TextInputField
-                className="w-100 mv2"
+                className="w-full my-2"
                 id="password"
                 name="password"
                 type="password"
                 label={i18n._(t`Password`)}
               />
             </div>
-            <CardActions className="justify-end pv0 ph3">
-              <CardActionButtons className="w-100">
+            <CardActions className="justify-end py-0 px-4">
+              <CardActionButtons className="w-full">
                 <Button
-                  className="w-100"
+                  className="w-full"
                   raised
                   disabled={!isValid || isSubmitting}
                   type="submit"

@@ -191,9 +191,9 @@ const TemplateDetails: React.FC<TemplateDetailsProps> = ({
 
   return (
     <>
-      <Caption className="h2 flex items-center mt3">
+      <Caption className="h-8 flex items-center mt-4">
         <Trans>Template front side</Trans>{' '}
-        {frontUpdateLoading && <CircularProgress className="ml2" size={16} />}
+        {frontUpdateLoading && <CircularProgress className="ml-2" size={16} />}
       </Caption>
       <TemplateEditor
         id={template.id}
@@ -202,9 +202,9 @@ const TemplateDetails: React.FC<TemplateDetailsProps> = ({
         onChange={handleFrontSideChange}
       />
 
-      <Caption className="h2 flex items-center mt3">
+      <Caption className="h-8 flex items-center mt-4">
         <Trans>Template back side</Trans>{' '}
-        {backUpdateLoading && <CircularProgress className="ml2" size={16} />}
+        {backUpdateLoading && <CircularProgress className="ml-2" size={16} />}
       </Caption>
       <TemplateEditor
         id={template.id}
@@ -244,7 +244,7 @@ const ModelPage: React.FC = () => {
       <Helmet title={cardModel.name} />
       <Container>
         <BackButton />
-        <div className="flex flex-column mb4">
+        <div className="flex flex-col mb-8">
           <div className="flex justify-between">
             <Headline4>
               <Trans>Model details</Trans>
@@ -253,15 +253,15 @@ const ModelPage: React.FC = () => {
             <DeleteModelButton model={cardModel} />
           </div>
 
-          <Headline5 className="mt3">{cardModel.name}</Headline5>
-          <Caption className="mt1 c-text-secondary f6">
+          <Headline5 className="mt-4">{cardModel.name}</Headline5>
+          <Caption className="mt-1 text-secondary text-sm">
             {i18n._(
               plural(cardModel.notes.length, {
                 one: '# note',
                 other: '# notes',
               })
             )}{' '}
-            <span className="dib mh1">&middot;</span>{' '}
+            <span className="inline-block mx-1">&middot;</span>{' '}
             {i18n._(
               plural(totalFlashCards, {
                 one: '# flashcard',
@@ -271,7 +271,7 @@ const ModelPage: React.FC = () => {
           </Caption>
         </div>
 
-        <Body1 className="dib mb3">
+        <Body1 className="inline-block mb-4">
           <Trans>Templates</Trans>
         </Body1>
         {cardModel.templates.length ? (
@@ -299,7 +299,7 @@ const ModelPage: React.FC = () => {
           </Body2>
         )}
 
-        <Body1 className="mv3">
+        <Body1 className="my-4">
           <Trans>Fields</Trans>
         </Body1>
         {cardModel.fields.length ? (
@@ -311,7 +311,7 @@ const ModelPage: React.FC = () => {
             ))}
           </List>
         ) : (
-          <Body2 className="mv3">
+          <Body2 className="my-4">
             <Trans>This model doesn't have any fields yet.</Trans>
           </Body2>
         )}

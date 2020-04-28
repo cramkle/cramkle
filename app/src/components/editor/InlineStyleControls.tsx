@@ -18,7 +18,7 @@ const InlineStyleControls: React.FunctionComponent<{
   const currentStyle = editor.getCurrentInlineStyle()
 
   return (
-    <div className="f6">
+    <div className="text-sm flex">
       {INLINE_STYLES.map((type) => (
         <StyleButton
           key={type.style}

@@ -4,8 +4,8 @@
   outline: none;
 }
 
-.button:not(.buttonSelected) {
-  color: var(--color-text-primary);
+.buttonSelected {
+  color: var(--color-primary);
 }
 
 .icon {

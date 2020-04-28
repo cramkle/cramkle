@@ -21,9 +21,9 @@ const DeckCard: React.FunctionComponent<Props> = ({ onClick, deck }) => {
   }
 
   return (
-    <Card outlined className="h-100">
+    <Card outlined className="h-full">
       <CardPrimaryContent
-        className="pa2 h-100"
+        className="p-2 h-full"
         tabIndex={0}
         role="article"
         onClick={handleClick}

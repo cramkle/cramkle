@@ -34,7 +34,7 @@ const LandingPage: React.FunctionComponent = () => {
             <Button unelevated onClick={() => history.push('/register')}>
               <Trans>Sign Up</Trans>
             </Button>
-            <Button onClick={() => history.push('/login')} className="ml2">
+            <Button onClick={() => history.push('/login')} className="ml-2">
               <Trans>Login</Trans>
             </Button>
           </TopAppBarSection>
@@ -42,18 +42,18 @@ const LandingPage: React.FunctionComponent = () => {
       </TopAppBar>
       <TopAppBarFixedAdjust>
         <div
-          className="flex bg-primary c-on-primary min-vh-100 w-100"
+          className="flex bg-primary text-on-primary min-h-screen w-full"
           style={{ backgroundImage: `url(${bgUrl})` }}
         >
-          <div className="flex flex-column flex-row-ns justify-around items-center w-100 mh2 mh5-l pv5 pv6-ns">
+          <div className="flex flex-col sm:flex-row justify-around items-center w-full mx-2 lg:mx-16 py-16 sm:py-32">
             <div
-              className="flex flex-wrap pv4 pv0-ns w-100"
+              className="flex flex-wrap py-8 sm:py-0 w-full"
               style={{ maxWidth: 450 }}
             >
-              <Headline2 className="f2 f1-ns b lh-title">
+              <Headline2 className="text-4xl sm:text-5xl font-bold leading-tight">
                 <Trans>Make sure your knowledge will last</Trans>
               </Headline2>
-              <Headline4 className="f5 f3-ns mt3 lh-title">
+              <Headline4 className="text-base sm:text-2xl mt-4 leading-tight">
                 <Trans>
                   Optimize your knowledge retention with this effective study
                   method.
@@ -61,15 +61,15 @@ const LandingPage: React.FunctionComponent = () => {
               </Headline4>
             </div>
             <div
-              className="inline-flex flex-column items-center w-100"
+              className="inline-flex flex-col items-center w-full"
               style={{ maxWidth: 450 }}
             >
               <RegisterForm title={t`Sign up now!`} />
 
-              <span className="landing__login-text mt3">
+              <span className="landing__login-text mt-4">
                 <Trans>
                   Already have an account?{' '}
-                  <Link to="/login" className="b c-on-primary">
+                  <Link to="/login" className="font-bold text-on-primary">
                     Log In
                   </Link>
                 </Trans>

@@ -10,9 +10,12 @@ export const Table: React.FC<TableProps> = ({
 }) => {
   return (
     <div
-      className={classnames(className, 'ba br2 b--outline dib overflow-auto')}
+      className={classnames(
+        className,
+        'border border-solid rounded border-outline inline-block overflow-auto'
+      )}
     >
-      <table {...props} className="collapse w-100">
+      <table {...props} className="collapse w-full">
         {children}
       </table>
     </div>
@@ -64,7 +67,7 @@ export const TableRow: React.FC<TableRowProps> = ({
   return (
     <tr
       {...props}
-      className={classnames(className, { 'bt b--outline': !isHead })}
+      className={classnames(className, { 'border-t border-outline': !isHead })}
     >
       {children}
     </tr>
@@ -88,10 +91,10 @@ export const TableCell: React.FC<TableCellProps> = ({
   return (
     <Tag
       {...props}
-      className={classnames(className, 'h3 ph3', {
-        'lh-copy fw5': isHead,
-        tl: align === 'left',
-        tr: align === 'right',
+      className={classnames(className, 'h-16 px-4', {
+        'leading-normal font-medium': isHead,
+        'text-left': align === 'left',
+        'text-right': align === 'right',
       })}
     >
       {children}

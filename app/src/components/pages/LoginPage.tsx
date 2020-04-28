@@ -11,19 +11,19 @@ const LoginPage: React.FunctionComponent = () => {
   const { i18n } = useLingui()
 
   return (
-    <div className="flex flex-column min-vh-100 w-100 pa3 items-center justify-center bg-primary c-on-primary">
+    <div className="flex flex-col min-h-screen w-full p-4 items-center justify-center bg-primary text-on-primary">
       <Helmet>
         <title>{i18n._(t`Login`)}</title>
       </Helmet>
 
-      <Logo className="w3 mb4" />
+      <Logo className="w-16 mb-8" />
 
       <LoginForm />
 
-      <span className="mt3">
+      <span className="mt-4">
         <Trans>
           Don't have an account?{' '}
-          <Link to="/register" className="b c-on-primary">
+          <Link to="/register" className="font-bold text-on-primary">
             Sign Up
           </Link>
         </Trans>

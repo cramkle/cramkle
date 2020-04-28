@@ -78,8 +78,8 @@ const FieldValueEditor: React.FC<Props> = ({
 
   return (
     <Card outlined className={className}>
-      <CardActions className="bb b--inherit">
-        <CardActionButtons className="flex-column items-start">
+      <CardActions className="border-b border-outline">
+        <CardActionButtons className="flex-col items-start">
           <TabController>
             <BlockStyleControls
               editor={editor}
@@ -91,7 +91,7 @@ const FieldValueEditor: React.FC<Props> = ({
           </TabController>
         </CardActionButtons>
       </CardActions>
-      <div className="pa3">
+      <div className="p-4">
         <Editor
           editorState={editor}
           onChange={setEditor}

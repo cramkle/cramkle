@@ -162,12 +162,12 @@ const FieldValueDetail: React.FC<FieldValueDetailProps> = ({
 
   return (
     <>
-      <t.Body1 className="h2 flex items-center">
+      <t.Body1 className="h-8 flex items-center">
         <Trans>{fieldValue.field.name} field</Trans>{' '}
-        {loading && <CircularProgress className="ml2" size={16} />}
+        {loading && <CircularProgress className="ml-2" size={16} />}
       </t.Body1>
       <FieldValueEditor
-        className="mb3 mt1"
+        className="mb-4 mt-1"
         initialContentState={fieldValue.data}
         field={fieldValue.field}
         onChange={handleChange}
@@ -235,12 +235,12 @@ const NotePage: React.FC = () => {
       <Container>
         <BackButton to={`/d/${deckSlug}`} />
 
-        <div className="flex flex-column mb4">
+        <div className="flex flex-col mb-8">
           <t.Headline4>
             <Trans>Note details</Trans>
           </t.Headline4>
-          <t.Headline6 className="mt3">{noteIdentifier}</t.Headline6>
-          <t.Caption className="mt1 c-text-secondary">
+          <t.Headline6 className="mt-4">{noteIdentifier}</t.Headline6>
+          <t.Caption className="mt-1 text-secondary">
             <Trans>Deck {deck.title}</Trans>
           </t.Caption>
         </div>
@@ -253,13 +253,13 @@ const NotePage: React.FC = () => {
           />
         ))}
 
-        <Divider className="mv4" />
+        <Divider className="my-8" />
 
-        <t.Headline6 className="fw5">
+        <t.Headline6 className="font-medium">
           <Trans>Flashcards</Trans>
         </t.Headline6>
 
-        <Table className="mv4 w-100">
+        <Table className="my-8 w-full">
           <TableHead>
             <TableRow>
               <TableCell />

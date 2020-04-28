@@ -76,28 +76,28 @@ const HomePage: React.FunctionComponent = () => {
         <title>{i18n._(t`Home`)}</title>
       </Helmet>
 
-      <div className="h-100 flex flex-column">
+      <div className="h-full flex flex-col">
         <Tabs index={index} onChange={handleTabChange}>
           <TabList>
-            <Tab className="w-100">
+            <Tab className="w-full">
               <Icon
-                className="mdc-tab__icon mr3"
+                className="mdc-tab__icon mr-4"
                 icon="school"
                 aria-hidden="true"
               />
               <Trans>Study</Trans>
             </Tab>
-            <Tab className="w-100">
+            <Tab className="w-full">
               <Icon
-                className="mdc-tab__icon mr3"
+                className="mdc-tab__icon mr-4"
                 icon="style"
                 aria-hidden="true"
               />
               <Trans>Decks</Trans>
             </Tab>
-            <Tab className="w-100">
+            <Tab className="w-full">
               <Icon
-                className="mdc-tab__icon mr3"
+                className="mdc-tab__icon mr-4"
                 icon="flip_to_back"
                 aria-hidden="true"
               />

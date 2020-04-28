@@ -154,7 +154,9 @@ const AppDrawer: React.FunctionComponent<Props> = ({
             <DrawerContent>{drawerItems}</DrawerContent>
           </Drawer>
         </NoSSR>
-        <DrawerAppContent className="w-100">{render(content)}</DrawerAppContent>
+        <DrawerAppContent className="w-full">
+          {render(content)}
+        </DrawerAppContent>
       </>
     )
   }
@@ -165,7 +167,7 @@ const AppDrawer: React.FunctionComponent<Props> = ({
         fallback={<aside className="mdc-drawer mdc-drawer--dismissible" />}
       >
         <Drawer
-          className="br-0 bottom-0"
+          className="border-r-0 bottom-0"
           open={open}
           dismissible
           innerRef={drawerRef}
@@ -175,7 +177,7 @@ const AppDrawer: React.FunctionComponent<Props> = ({
           <DrawerContent>{drawerItems}</DrawerContent>
         </Drawer>
       </NoSSR>
-      <DrawerAppContent className="w-100 flex overflow-auto">
+      <DrawerAppContent className="w-full flex overflow-auto">
         {content}
       </DrawerAppContent>
     </>

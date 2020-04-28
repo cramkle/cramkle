@@ -43,8 +43,8 @@ const SearchBar: React.FunctionComponent = () => {
     <form
       className={cx(
         styles.searchForm,
-        { [styles.searchFormFocused]: isFocused, 'shadow-1': isFocused },
-        'inline-flex items-center center pv1'
+        { [styles.searchFormFocused]: isFocused, shadow: isFocused },
+        'inline-flex items-center mx-auto py-1'
       )}
       onFocus={handleFocus}
       onBlur={handleBlur}
@@ -53,7 +53,7 @@ const SearchBar: React.FunctionComponent = () => {
     >
       <input
         ref={inputRef}
-        className="bn w-100 h-100 pv2 bg-transparent outline-0 order-1"
+        className="border-0 border-none w-full h-full py-2 bg-transparent outline-none order-1"
         placeholder={i18n._(t`Search`)}
         name="q"
         value={searchValue}
@@ -61,7 +61,7 @@ const SearchBar: React.FunctionComponent = () => {
       />
       {searchValue.length > 0 && (
         <IconButton
-          className="mh1 order-2"
+          className="mx-1 order-2"
           onClick={handleClearSearch}
           aria-label={i18n._(t`Clear search`)}
         >
@@ -69,7 +69,7 @@ const SearchBar: React.FunctionComponent = () => {
         </IconButton>
       )}
       <IconButton
-        className="mh1 order-0"
+        className="mx-1 order-0"
         onClick={handleSearchIconClick}
         type="submit"
         aria-label={i18n._(t`Search`)}

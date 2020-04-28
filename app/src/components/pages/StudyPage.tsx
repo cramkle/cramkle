@@ -127,13 +127,13 @@ const CancelStudyButton: React.FC = () => {
           <Button onClick={handleCloseConfirmationDialog} ref={cancelRef}>
             <Trans>Continue Studying</Trans>
           </Button>
-          <Button className="ml2" onClick={handleCancel}>
+          <Button className="ml-2" onClick={handleCancel}>
             <Trans>End</Trans>
           </Button>
         </div>
       </AlertDialog>
       <Button
-        className="flex-shrink-0 ml3 mb3"
+        className="flex-shrink-0 ml-4 mb-4"
         onClick={handleCancelButtonClick}
       >
         <Trans>Cancel</Trans>
@@ -207,7 +207,7 @@ const StudyPage: React.FC = () => {
 
   if (loading || !data) {
     return (
-      <div className="h-100 flex items-center justify-center">
+      <div className="h-full flex items-center justify-center">
         <CircularProgress />
       </div>
     )
@@ -215,13 +215,13 @@ const StudyPage: React.FC = () => {
 
   if (data.studyFlashCard === null) {
     return (
-      <section className="h-100 flex flex-column items-center justify-center">
-        <Headline1 className="f4 lh-solid">
+      <section className="h-full flex flex-col items-center justify-center">
+        <Headline1 className="text-xl leading-none">
           <Trans>
             Congratulations, you have finished studying this deck for now.
           </Trans>
         </Headline1>
-        <Button className="mt3" onClick={handleGoHomeClick}>
+        <Button className="mt-4" onClick={handleGoHomeClick}>
           <Trans>Go to Home</Trans>
         </Button>
       </section>
@@ -229,12 +229,12 @@ const StudyPage: React.FC = () => {
   }
 
   return (
-    <section className="pt3 pb5 h-100 flex flex-column items-start">
+    <section className="pt-4 pb-16 h-full flex flex-col items-start">
       <CancelStudyButton />
 
-      <div className="self-stretch flex-auto flex flex-column items-center justify-center">
+      <div className="self-stretch flex-auto flex flex-col items-center justify-center">
         <FlashCardRenderer
-          className="w-100 overflow-auto pt3 ph3 ph4-m ph5-l ph6-xl"
+          className="w-full overflow-auto pt-4 px-4 lg:px-8 lg:px-16 ph6-xl"
           values={data.studyFlashCard.note.values}
           template={data.studyFlashCard.template}
           hideLabels
@@ -245,8 +245,12 @@ const StudyPage: React.FC = () => {
       <Portal>
         <div
           className={classnames(
-            'z-1 bg-surface h3 fixed bottom-0 w-100 ph3 pv2 shadow-2 flex justify-center items-center'
+            'z-10 bg-surface h-16 fixed bottom-0 w-full px-4 py-2 flex justify-center items-center'
           )}
+          style={{
+            boxShadow:
+              '0 -4px 6px -1px rgba(0, 0, 0, 0.1), 0 -2px 4px -1px rgba(0, 0, 0, 0.06)',
+          }}
         >
           {!showBackSide && (
             <Button onClick={handleShowBackSide}>
@@ -255,7 +259,7 @@ const StudyPage: React.FC = () => {
           )}
 
           {showBackSide && (
-            <div className="w-100 mw6 flex justify-between">
+            <div className="w-full max-w-lg flex justify-between">
               <Button
                 onClick={handleAnswer(FlashCardAnswer.REPEAT)}
                 disabled={answerLoading}

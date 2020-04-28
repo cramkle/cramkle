@@ -107,7 +107,7 @@ const DeckPage: React.FunctionComponent = () => {
       <Container>
         <BackButton to="/decks" />
 
-        <div className="flex flex-column mb4">
+        <div className="flex flex-col mb-8">
           <div className="flex justify-between items-center">
             <Headline4>
               <Trans>Deck details</Trans>
@@ -115,17 +115,17 @@ const DeckPage: React.FunctionComponent = () => {
 
             <DeleteDeckButton deckId={deck.id} />
           </div>
-          <Headline5 className="mt3">{deck.title}</Headline5>
+          <Headline5 className="mt-4">{deck.title}</Headline5>
           {deck.description && (
-            <Body1 className="mt1">{deck.description}</Body1>
+            <Body1 className="mt-1">{deck.description}</Body1>
           )}
         </div>
 
-        <Headline6 className="fw5">
+        <Headline6 className="font-medium">
           <Trans>Notes</Trans>
         </Headline6>
 
-        <div className="mv4">
+        <div className="my-8">
           <NotesTable notes={deck.notes} deckSlug={deck.slug} />
         </div>
 

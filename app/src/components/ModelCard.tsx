@@ -30,7 +30,7 @@ const ModelCard: React.FunctionComponent<Props & ModelsQuery_cardModels> = ({
   return (
     <Card outlined className={className}>
       <CardPrimaryContent
-        className="pa2"
+        className="p-2"
         tabIndex={0}
         role="article"
         onClick={handleClick}
@@ -50,7 +50,7 @@ const ModelCard: React.FunctionComponent<Props & ModelsQuery_cardModels> = ({
               </Chip>
             )}
             {!!fields.length && (
-              <Chip className="ml2">
+              <Chip className="ml-2">
                 {i18n._(
                   plural(fields.length, {
                     one: '# field',

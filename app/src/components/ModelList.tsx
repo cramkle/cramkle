@@ -39,8 +39,8 @@ const ModelList: React.FunctionComponent = () => {
 
   if (models.length === 0) {
     return (
-      <div className="flex flex-column items-center">
-        <Body1 className="mt4">
+      <div className="flex flex-col items-center">
+        <Body1 className="mt-8">
           <Trans>The models you create will appear here.</Trans>
         </Body1>
       </div>
@@ -48,10 +48,10 @@ const ModelList: React.FunctionComponent = () => {
   }
 
   return (
-    <Grid className="w-100">
-      <div className="flex flex-column na2">
+    <Grid className="w-full">
+      <div className="flex flex-col na2">
         {models.map((model) => (
-          <div key={model.id} className="pa2">
+          <div key={model.id} className="p-2">
             <ModelCard {...model} />
           </div>
         ))}

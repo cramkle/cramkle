@@ -33,7 +33,7 @@ export const Tab: React.FC<TabProps & HTMLAttributes<HTMLDivElement>> = ({
       className={classnames(
         className,
         styles.tab,
-        'fw5 f6 relative ttc ph3 pv2 inline-flex justify-start items-center'
+        'font-medium text-sm relative capitalize px-4 py-2 inline-flex justify-start items-center'
       )}
     >
       {children}

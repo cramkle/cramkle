@@ -125,3 +125,4 @@ tags
 build
 dist
 .dist
+app/src/_tailwind.global.css

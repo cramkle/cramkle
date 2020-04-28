@@ -144,10 +144,10 @@ const AddNotePage: React.FC = () => {
         <Trans>Create Note for deck "{deck.title}"</Trans>
       </Headline5>
 
-      <div className="flex flex-column mt3">
-        <label className="flex flex-column">
+      <div className="flex flex-col mt-4">
+        <label className="flex flex-col">
           <Listbox
-            className="mt3"
+            className="mt-4"
             value={selectedModelId}
             onChange={(value) => setSelectedModelId(value)}
           >
@@ -164,7 +164,7 @@ const AddNotePage: React.FC = () => {
 
         {selectedModel != null && (
           <>
-            <Subtitle1 className="mt2">
+            <Subtitle1 className="mt-2">
               <Trans>Fields</Trans>
             </Subtitle1>
 
@@ -172,12 +172,12 @@ const AddNotePage: React.FC = () => {
               <>
                 {selectedModel.fields.map((field) => (
                   <React.Fragment key={field.id}>
-                    <Caption className="mt3" key={field.id}>
+                    <Caption className="mt-4" key={field.id}>
                       {field.name}
                     </Caption>
 
                     <FieldValueEditor
-                      className="mt1"
+                      className="mt-1"
                       onChange={handleFieldValueChange}
                       field={field}
                     />
@@ -186,7 +186,7 @@ const AddNotePage: React.FC = () => {
 
                 <Button
                   raised
-                  className="mt3 self-start"
+                  className="mt-4 self-start"
                   onClick={handleSubmit}
                   disabled={submitLoading}
                 >
@@ -198,7 +198,7 @@ const AddNotePage: React.FC = () => {
                 </Button>
               </>
             ) : (
-              <Body2 className="mt2">
+              <Body2 className="mt-2">
                 <Trans>
                   The selected model doesn't have any fields. Please, select
                   another one

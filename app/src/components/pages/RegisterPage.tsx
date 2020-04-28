@@ -11,19 +11,19 @@ const RegisterPage: React.FunctionComponent = () => {
   const { i18n } = useLingui()
 
   return (
-    <div className="flex flex-column min-vh-100 pa3 justify-center items-center bg-primary c-on-primary">
+    <div className="flex flex-col min-h-screen p-4 justify-center items-center bg-primary text-on-primary">
       <Helmet>
         <title>{i18n._(t`Register`)}</title>
       </Helmet>
 
-      <Logo className="w3 mb4" />
+      <Logo className="w-16 mb-8" />
 
       <RegisterForm />
 
-      <span className="mt3">
+      <span className="mt-4">
         <Trans>
           Already have an account?{' '}
-          <Link to="/login" className="b c-on-primary">
+          <Link to="/login" className="font-bold text-on-primary">
             Log In
           </Link>
         </Trans>

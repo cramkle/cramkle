@@ -36,9 +36,9 @@ const StyleButton: React.FunctionComponent<Props> = ({
 
   const className = classNames(
     styles.button,
-    'mdc-typography mdc-ripple-surface bg-surface relative pointer mr2 pv1 dib bn br1 flex items-center',
+    'mdc-typography mdc-ripple-surface text-primary bg-surface relative cursor-pointer mr-2 border-0 border-none rounded-sm flex items-center',
     {
-      'c-primary mdc-ripple-surface--primary': active,
+      'mdc-ripple-surface--primary': active,
       [styles.buttonSelected]: active,
     }
   )

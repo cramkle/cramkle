@@ -21,7 +21,7 @@ const BackButton: React.FC<Props> = ({ to }) => {
 
   return (
     <Button
-      className="mb3 mt2-ns"
+      className="mb-4 sm:mt-2"
       icon={<Icon icon="arrow_back" aria-hidden="true" />}
       onClick={handleClick}
       dense

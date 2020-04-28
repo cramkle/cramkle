@@ -33,8 +33,7 @@
   left: calc(1.75rem / 2);
   right: calc(1.75rem / 2);
   bottom: 0;
-  height: 3px;
   border-radius: 5px 5px 0 0;
   border-top-width: 3px;
-  background-color: var(--color-primary);
+  border-color: var(--color-primary);
 }
