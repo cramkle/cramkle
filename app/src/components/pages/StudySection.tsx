@@ -13,11 +13,12 @@ import {
   AlertDialogLabel,
 } from '../views/AlertDialog'
 import Button from '../views/Button'
+import { Headline3 } from '../views/Typography'
 import { DecksToStudy } from './__generated__/DecksToStudy'
 
 const DECKS_TO_STUDY_QUERY = gql`
   query DecksToStudy {
-    decks {
+    decks(studyOnly: true) {
       id
       title
       slug
@@ -75,15 +76,23 @@ const StudySection: React.FunctionComponent = () => {
           </div>
         </AlertDialog>
       )}
-      <Grid className="w-100">
-        <Row>
-          {decks.map((deck) => (
-            <Cell key={deck.id}>
-              <DeckCard deck={deck} onClick={handleDeckSelect} />
-            </Cell>
-          ))}
-        </Row>
-      </Grid>
+      {decks.length > 0 ? (
+        <Grid className="w-100">
+          <Row>
+            {decks.map((deck) => (
+              <Cell key={deck.id}>
+                <DeckCard deck={deck} onClick={handleDeckSelect} />
+              </Cell>
+            ))}
+          </Row>
+        </Grid>
+      ) : (
+        <div className="mt4 flex justify-center">
+          <Headline3 className="f5">
+            <Trans>You've finished studying your decks for now.</Trans>
+          </Headline3>
+        </div>
+      )}
     </>
   )
 }

@@ -28,7 +28,12 @@ type Query {
   """
   Retrieve all decks for the logged user
   """
-  decks: [Deck!] @authenticate
+  decks(
+    """
+    Whether or not to filter only for decks to study
+    """
+    studyOnly: Boolean = false
+  ): [Deck!] @authenticate
 
   """
   Retrieve all card models for the logged user
