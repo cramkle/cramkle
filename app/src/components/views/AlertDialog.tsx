@@ -39,7 +39,7 @@ const AlertDialogContent = forwardRef<HTMLDivElement, AlertDialogContentProps>(
     return (
       <ReachAlertDialogContent
         {...props}
-        className={classnames(props.className, 'rounded shadow')}
+        className={classnames(props.className, 'rounded shadow p-6')}
         ref={ref}
       />
     )
