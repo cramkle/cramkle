@@ -19,6 +19,7 @@ import ShellRoute from './components/routes/ShellRoute'
 import { icons } from './utils/headLinks'
 
 import './app.global.scss'
+import './_tailwind.global.css'
 
 const AddModelPage = lazy(() => import('./components/pages/AddModelPage'))
 const AddNotePage = lazy(() => import('./components/pages/AddNotePage'))
