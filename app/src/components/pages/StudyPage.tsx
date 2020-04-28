@@ -15,6 +15,7 @@ import {
 } from '../views/AlertDialog'
 import Button from '../views/Button'
 import CircularProgress from '../views/CircularProgress'
+import { Headline1 } from '../views/Typography'
 import {
   AnswerFlashCard,
   AnswerFlashCardVariables,
@@ -199,11 +200,32 @@ const StudyPage: React.FC = () => {
     setEndTime(Date.now())
   }
 
+  const history = useHistory()
+
+  const handleGoHomeClick = () => {
+    history.push('/home')
+  }
+
   if (loading || !data) {
     return (
       <div className="h-100 flex items-center justify-center">
         <CircularProgress />
       </div>
+    )
+  }
+
+  if (data.studyFlashCard === null) {
+    return (
+      <section className="h-100 flex flex-column items-center justify-center">
+        <Headline1 className="f4 lh-solid">
+          <Trans>
+            Congratulations, you have finished studying this deck for now.
+          </Trans>
+        </Headline1>
+        <Button className="mt3" onClick={handleGoHomeClick}>
+          <Trans>Go to Home</Trans>
+        </Button>
+      </section>
     )
   }
 
