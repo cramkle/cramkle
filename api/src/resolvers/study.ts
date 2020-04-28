@@ -57,10 +57,15 @@ export const mutations: IResolverObject = {
       throw new ApolloError('FlashCard not found')
     }
 
+    // limits the answer timespan to 60 seconds to avoid
+    // poluting the statistics when the user gets distracted
+    // while studying.
+    const timespan = Math.min(args.timespan, 60 * 1000)
+
     const lastInterval = flashCard.interval
     const status = flashCard.status
 
-    scheduleFlashCard(flashCard, args.answer, args.timespan)
+    scheduleFlashCard(flashCard, args.answer, timespan)
 
     await NoteModel.updateOne(
       { _id: note._id, 'cards._id': flashCard._id },
@@ -75,7 +80,7 @@ export const mutations: IResolverObject = {
       status,
       answerQuality: answerToQualityValue(args.answer),
       easeFactor: flashCard.easeFactor,
-      timespan: args.timespan,
+      timespan,
       date,
       ownerId: ctx.user._id,
       noteId: note._id,
