@@ -73,7 +73,7 @@ const IconButton: React.FC<Props> = ({
   }, [addClass, removeClass])
 
   const classes = classNames(
-    'mdc-icon-button',
+    'mdc-icon-button flex items-center',
     classList,
     className,
     rippleClasses
