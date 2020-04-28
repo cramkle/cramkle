@@ -78,7 +78,7 @@ const FieldValueEditor: React.FC<Props> = ({
 
   return (
     <Card outlined className={className}>
-      <CardActions className="border-b b--inherit">
+      <CardActions className="border-b border-outline">
         <CardActionButtons className="flex-col items-start">
           <TabController>
             <BlockStyleControls

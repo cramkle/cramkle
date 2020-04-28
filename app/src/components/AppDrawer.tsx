@@ -167,7 +167,7 @@ const AppDrawer: React.FunctionComponent<Props> = ({
         fallback={<aside className="mdc-drawer mdc-drawer--dismissible" />}
       >
         <Drawer
-          className="br-0 bottom-0"
+          className="border-r-0 bottom-0"
           open={open}
           dismissible
           innerRef={drawerRef}

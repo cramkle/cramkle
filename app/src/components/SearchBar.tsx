@@ -43,7 +43,7 @@ const SearchBar: React.FunctionComponent = () => {
     <form
       className={cx(
         styles.searchForm,
-        { [styles.searchFormFocused]: isFocused, 'shadow-1': isFocused },
+        { [styles.searchFormFocused]: isFocused, shadow: isFocused },
         'inline-flex items-center mx-auto py-1'
       )}
       onFocus={handleFocus}

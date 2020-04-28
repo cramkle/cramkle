@@ -80,7 +80,7 @@ const TemplateEditor: React.FunctionComponent<Props> = ({
   return (
     <Card outlined className="mt-2">
       {!isMobile && (
-        <CardActions className="border-b b--inherit">
+        <CardActions className="border-b border-outline">
           <CardActionButtons className="flex-col items-start">
             <TabController>
               <BlockStyleControls

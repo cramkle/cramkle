@@ -18,7 +18,7 @@ export const Chip: React.FC<ChipProps> = ({
     <div
       className={classnames(
         className,
-        'relative inline-flex items-center h-8 text-sm br4 px-2 overflow-hidden',
+        'relative inline-flex items-center h-8 text-sm rounded-full px-2 overflow-hidden',
         styles.chip,
         {
           [styles.inverted]: inverted,

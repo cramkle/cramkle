@@ -245,8 +245,12 @@ const StudyPage: React.FC = () => {
       <Portal>
         <div
           className={classnames(
-            'z-10 bg-surface h-16 fixed bottom-0 w-full px-4 py-2 shadow-2 flex justify-center items-center'
+            'z-10 bg-surface h-16 fixed bottom-0 w-full px-4 py-2 flex justify-center items-center'
           )}
+          style={{
+            boxShadow:
+              '0 -4px 6px -1px rgba(0, 0, 0, 0.1), 0 -2px 4px -1px rgba(0, 0, 0, 0.06)',
+          }}
         >
           {!showBackSide && (
             <Button onClick={handleShowBackSide}>

@@ -39,7 +39,7 @@ const AlertDialogContent = forwardRef<HTMLDivElement, AlertDialogContentProps>(
     return (
       <ReachAlertDialogContent
         {...props}
-        className={classnames(props.className, 'rounded shadow-2')}
+        className={classnames(props.className, 'rounded shadow')}
         ref={ref}
       />
     )
@@ -50,7 +50,7 @@ const AlertDialogOverlay: React.FC<AlertDialogProps> = (props) => {
   return (
     <ReachAlertDialogOverlay
       {...props}
-      className={classnames(props.className, 'z-max')}
+      className={classnames(props.className, 'z-50')}
     />
   )
 }

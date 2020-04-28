@@ -29,7 +29,7 @@ export const MenuButton: React.FC<MenuButtonProps & { icon?: boolean }> = ({
         styles.menuButton,
         'relative bg-surface border-0 border-none rounded py-2 px-1 cursor-pointer overflow-hidden',
         {
-          'px-2 br-100': icon,
+          'px-2 rounded-full': icon,
         }
       )}
     >
@@ -48,10 +48,10 @@ export const MenuList: React.FC<MenuListProps> = ({
       {...props}
       className={classnames(
         className,
-        'mt-1 py-2 border-0 border-none rounded shadow-4 bg-surface'
+        'mt-1 py-0 border-0 border-none rounded shadow-lg bg-surface'
       )}
     >
-      {children}
+      <div className="py-2 h-full shadow-xs">{children}</div>
     </ReachMenuList>
   )
 }
