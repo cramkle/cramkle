@@ -3,10 +3,11 @@ import { IResolverObject, IResolvers } from 'graphql-tools'
 import { ModelModel, TemplateModel } from '../mongo'
 import { ContentStateDocument } from '../mongo/ContentState'
 import { TemplateDocument } from '../mongo/Template'
+import { globalIdField } from '../utils/graphqlID'
 
 export const root: IResolvers = {
   Template: {
-    id: (root: TemplateDocument) => root._id.toString(),
+    id: globalIdField(),
     model: (root: TemplateDocument) => ModelModel.findById(root.modelId),
   },
 }

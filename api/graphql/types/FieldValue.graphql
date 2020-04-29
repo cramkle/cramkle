@@ -11,7 +11,7 @@ Holds the value for a particular field in a card model.
 
 Contained by the note.
 """
-type FieldValue {
+type FieldValue implements Node {
   """
   Field value id
   """

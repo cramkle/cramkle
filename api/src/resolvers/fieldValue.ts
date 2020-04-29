@@ -3,10 +3,11 @@ import { IResolverObject, IResolvers } from 'graphql-tools'
 
 import { FieldModel, NoteModel } from '../mongo'
 import { FieldValueDocument } from '../mongo/Note'
+import { globalIdField } from '../utils/graphqlID'
 
 export const root: IResolvers = {
   FieldValue: {
-    id: (root: FieldValueDocument) => root._id.toString(),
+    id: globalIdField(),
     field: (root: FieldValueDocument) => FieldModel.findById(root.fieldId),
   },
 }

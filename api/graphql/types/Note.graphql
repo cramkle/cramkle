@@ -9,7 +9,7 @@ A note is what the user registers on each deck.
 This type auto generates a number of cards, based
 on the number of templates.
 """
-type Note {
+type Note implements Node {
   """
   Note id
   """
