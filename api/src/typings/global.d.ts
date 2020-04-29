@@ -1,4 +1,4 @@
-import { UserDocument } from '../models/User'
+import type { UserDocument } from '../mongo/User'
 
 declare global {
   interface Context {
