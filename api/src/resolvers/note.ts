@@ -3,10 +3,11 @@ import { IResolverObject, IResolvers } from 'graphql-tools'
 
 import { DeckModel, ModelModel, NoteModel, TemplateModel } from '../mongo'
 import { NoteDocument } from '../mongo/Note'
+import { globalIdField } from '../utils/graphqlID'
 
 export const root: IResolvers = {
   Note: {
-    id: (root: NoteDocument) => root._id.toString(),
+    id: globalIdField(),
     deck: (root: NoteDocument) => DeckModel.findById(root.deckId),
     model: (root: NoteDocument) => ModelModel.findById(root.modelId),
   },

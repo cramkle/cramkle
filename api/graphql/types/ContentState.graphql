@@ -5,7 +5,7 @@ input ContentStateInput {
   entityMap: JSONObject
 }
 
-type ContentState {
+type ContentState implements Node {
   id: ID!
   blocks: [Block]
   entityMap: JSONObject

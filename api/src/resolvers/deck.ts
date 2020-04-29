@@ -2,11 +2,12 @@ import { IResolverObject, IResolvers } from 'graphql-tools'
 
 import { DeckModel, NoteModel, UserModel } from '../mongo'
 import { DeckDocument } from '../mongo/Deck'
+import { globalIdField } from '../utils/graphqlID'
 import { studyFlashCardsByDeck } from '../utils/study'
 
 export const root: IResolvers = {
   Deck: {
-    id: (root: DeckDocument) => root._id.toString(),
+    id: globalIdField(),
     owner: (root: DeckDocument) => UserModel.findById(root.ownerId),
     notes: (root: DeckDocument) => NoteModel.find({ deckId: root._id }),
   },

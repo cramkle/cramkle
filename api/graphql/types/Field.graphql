@@ -9,7 +9,7 @@ input FieldInput {
 Field of a card model, contains the informations to
 build up the form for a note creation
 """
-type Field {
+type Field implements Node {
   """
   Field id
   """
