@@ -46,14 +46,13 @@ export const mutations: IResolverObject = {
     ctx: Context
   ) => {
     const { objectId: noteId } = decodeGlobalId(args.noteId)
-    const { objectId: flashCardId } = decodeGlobalId(args.flashCardId)
 
     const note = await NoteModel.findOne({
       _id: noteId,
       ownerId: ctx.user!._id,
     })
 
-    const flashCard = note?.cards.id(flashCardId)
+    const flashCard = note?.cards.id(args.flashCardId)
 
     if (!note || !flashCard) {
       throw new ApolloError('FlashCard not found')
