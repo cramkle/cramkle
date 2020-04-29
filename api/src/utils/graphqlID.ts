@@ -20,11 +20,11 @@ const decoders: {
   },
 }
 
-export const encodeModelId = (name: string, id: Types.ObjectId) => {
+export const encodeGlobalId = (name: string, id: Types.ObjectId) => {
   return Buffer.from(`${currentVersion}@${name}:${id}`).toString('base64')
 }
 
-export const decodeModelId = (id: string) => {
+export const decodeGlobalId = (id: string) => {
   const [version, modelId] = Buffer.from(id, 'base64').toString().split('@')
 
   if (!isSupportedVersion(version)) {
@@ -38,6 +38,6 @@ export const globalIdField = (
   typeName?: string
 ): IFieldResolver<{ _id: Types.ObjectId }, Context> => {
   return (root, _, __, info) => {
-    return encodeModelId(typeName ?? info.parentType.name, root._id)
+    return encodeGlobalId(typeName ?? info.parentType.name, root._id)
   }
 }

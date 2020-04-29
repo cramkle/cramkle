@@ -3,7 +3,7 @@ import { IResolverObject, IResolvers } from 'graphql-tools'
 
 import { DeckModel, ModelModel, NoteModel, TemplateModel } from '../mongo'
 import { NoteDocument } from '../mongo/Note'
-import { globalIdField } from '../utils/graphqlID'
+import { decodeGlobalId, globalIdField } from '../utils/graphqlID'
 
 export const root: IResolvers = {
   Note: {
@@ -44,11 +44,10 @@ interface CreateNoteMutationInput {
 }
 
 export const mutations: IResolverObject = {
-  createNote: async (
-    _,
-    { modelId, deckId, fieldValues }: CreateNoteMutationInput,
-    { user }: Context
-  ) => {
+  createNote: async (_, args: CreateNoteMutationInput, { user }: Context) => {
+    const { modelId, fieldValues } = args
+    const { objectId: deckId } = decodeGlobalId(args.deckId)
+
     const deck = await DeckModel.findOne({ _id: deckId, ownerId: user?._id })
     const model = await ModelModel.findOne({
       _id: modelId,
@@ -63,10 +62,14 @@ export const mutations: IResolverObject = {
       modelId,
       deckId,
       ownerId: user!._id,
-      values: fieldValues.map((fieldValue) => ({
-        data: fieldValue.data,
-        fieldId: fieldValue.field.id,
-      })),
+      values: fieldValues.map((fieldValue) => {
+        const { objectId: fieldId } = decodeGlobalId(fieldValue.field.id)
+
+        return {
+          data: fieldValue.data,
+          fieldId,
+        }
+      }),
     })
 
     const modelTemplates = await TemplateModel.find({ modelId: model._id })
@@ -83,11 +86,9 @@ export const mutations: IResolverObject = {
 
     return note
   },
-  deleteNote: async (
-    _: unknown,
-    { noteId }: { noteId: string },
-    ctx: Context
-  ) => {
+  deleteNote: async (_: unknown, args: { noteId: string }, ctx: Context) => {
+    const { objectId: noteId } = decodeGlobalId(args.noteId)
+
     const note = await NoteModel.findOne({
       _id: noteId,
       ownerId: ctx.user?._id,

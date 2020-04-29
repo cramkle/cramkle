@@ -3,6 +3,7 @@ import { startOfToday } from 'date-fns'
 import { IResolverObject } from 'graphql-tools'
 
 import { DeckModel, NoteModel, RevisionLogModel } from '../mongo'
+import { decodeGlobalId } from '../utils/graphqlID'
 import {
   FlashCardAnswer,
   answerToQualityValue,
@@ -44,12 +45,15 @@ export const mutations: IResolverObject = {
     args: AnswerFlashCardArgs,
     ctx: Context
   ) => {
+    const { objectId: noteId } = decodeGlobalId(args.noteId)
+    const { objectId: flashCardId } = decodeGlobalId(args.flashCardId)
+
     const note = await NoteModel.findOne({
-      _id: args.noteId,
+      _id: noteId,
       ownerId: ctx.user!._id,
     })
 
-    const flashCard = note?.cards.id(args.flashCardId)
+    const flashCard = note?.cards.id(flashCardId)
 
     if (!note || !flashCard) {
       throw new ApolloError('FlashCard not found')
