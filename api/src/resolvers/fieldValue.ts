@@ -3,7 +3,7 @@ import { IResolverObject, IResolvers } from 'graphql-tools'
 
 import { FieldModel, NoteModel } from '../mongo'
 import { FieldValueDocument } from '../mongo/Note'
-import { globalIdField } from '../utils/graphqlID'
+import { decodeGlobalId, globalIdField } from '../utils/graphqlID'
 
 export const root: IResolvers = {
   FieldValue: {
@@ -19,10 +19,11 @@ interface UpdateFieldValueArgs {
 }
 
 export const mutations: IResolverObject = {
-  updateFieldValue: async (
-    _: unknown,
-    { noteId, fieldId, data }: UpdateFieldValueArgs
-  ) => {
+  updateFieldValue: async (_: unknown, args: UpdateFieldValueArgs) => {
+    const { data } = args
+    const { objectId: noteId } = decodeGlobalId(args.noteId)
+    const { objectId: fieldId } = decodeGlobalId(args.fieldId)
+
     const note = await NoteModel.findById(noteId)
     const fieldValue = note?.values.find(
       (fieldValue) => fieldId === fieldValue.fieldId.toString()

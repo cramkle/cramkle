@@ -3,7 +3,7 @@ import { IResolverObject, IResolvers } from 'graphql-tools'
 import { ModelModel, TemplateModel } from '../mongo'
 import { ContentStateDocument } from '../mongo/ContentState'
 import { TemplateDocument } from '../mongo/Template'
-import { globalIdField } from '../utils/graphqlID'
+import { decodeGlobalId, globalIdField } from '../utils/graphqlID'
 
 export const root: IResolvers = {
   Template: {
@@ -30,9 +30,11 @@ interface UpdateTemplateInput {
 export const mutations: IResolverObject = {
   updateTemplate: (
     _,
-    { id: _id, name, frontSide, backSide }: UpdateTemplateInput,
+    { id, name, frontSide, backSide }: UpdateTemplateInput,
     { user }: Context
   ) => {
+    const { objectId: templateId } = decodeGlobalId(id)
+
     const updatedFields: Omit<UpdateTemplateInput, 'id'> = {}
 
     if (name) {
@@ -49,7 +51,7 @@ export const mutations: IResolverObject = {
 
     return TemplateModel.findOneAndUpdate(
       {
-        _id,
+        _id: templateId,
         ownerId: user?._id,
       },
       updatedFields,
