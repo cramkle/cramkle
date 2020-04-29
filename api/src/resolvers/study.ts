@@ -18,7 +18,7 @@ export const queries: IResolverObject = {
   ) => {
     const deck = await DeckModel.findOne({
       slug: deckSlug,
-      ownerId: ctx.user._id,
+      ownerId: ctx.user!._id,
     })
 
     if (!deck) {
@@ -46,7 +46,7 @@ export const mutations: IResolverObject = {
   ) => {
     const note = await NoteModel.findOne({
       _id: args.noteId,
-      ownerId: ctx.user._id,
+      ownerId: ctx.user!._id,
     })
 
     const flashCard = note?.cards.id(args.flashCardId)
@@ -80,7 +80,7 @@ export const mutations: IResolverObject = {
       easeFactor: flashCard.easeFactor,
       timespan,
       date,
-      ownerId: ctx.user._id,
+      ownerId: ctx.user!._id,
       noteId: note._id,
       flashCardId: flashCard._id,
     })
