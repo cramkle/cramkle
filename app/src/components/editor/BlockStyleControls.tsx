@@ -1,4 +1,5 @@
 import { t } from '@lingui/macro'
+import classnames from 'classnames'
 import { ContentBlock, ContentState, EditorState, Modifier } from 'draft-js'
 import React, { memo, useCallback } from 'react'
 
@@ -42,23 +43,59 @@ export const ALIGNMENT_STYLES: Style[] = [
 
 export const ALIGNMENT_DATA_KEY = 'textAlignment'
 
+const getAlignmentStyles = (blockAlignment: string) => {
+  switch (blockAlignment) {
+    case ALIGN_LEFT:
+      return styles.alignLeft
+    case ALIGN_CENTER:
+      return styles.alignCenter
+    case ALIGN_RIGHT:
+      return styles.alignRight
+  }
+}
+
+const getBlockTypeStyle = (blockType: string) => {
+  switch (blockType) {
+    case 'header-one':
+      return 'text-4xl'
+    case 'header-two':
+      return 'text-3xl'
+    case 'header-three':
+      return 'text-2xl'
+    case 'header-four':
+      return 'text-xl'
+    case 'header-five':
+      return 'text-lg'
+    case 'header-six':
+      return 'text-base'
+    case 'unordered-list-item':
+      return 'list-disc'
+    case 'ordered-list-item':
+      return 'list-decimal'
+    case 'blockquote':
+      return 'border-l-4 border-muted pl-2 text-secondary'
+    case 'code-block':
+      return 'font-mono p-2 bg-muted'
+  }
+}
+
 export const blockStyleFn = (contentBlock: ContentBlock) => {
   const blockData = contentBlock.getData()
+  const blockType = contentBlock.getType()
 
   const blockAlignment = blockData.has(ALIGNMENT_DATA_KEY)
     ? blockData.get(ALIGNMENT_DATA_KEY)
     : undefined
 
+  let alignmentStyle = ''
+
   if (blockAlignment) {
-    switch (blockAlignment) {
-      case ALIGN_LEFT:
-        return styles.alignLeft
-      case ALIGN_CENTER:
-        return styles.alignCenter
-      case ALIGN_RIGHT:
-        return styles.alignRight
-    }
+    alignmentStyle = getAlignmentStyles(blockAlignment)
   }
+
+  const blockStyle = getBlockTypeStyle(blockType)
+
+  return classnames(alignmentStyle, blockStyle)
 }
 
 const BlockStyleControls: React.FunctionComponent<{
