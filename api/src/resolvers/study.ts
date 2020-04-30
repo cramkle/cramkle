@@ -70,8 +70,8 @@ export const mutations: IResolverObject = {
     scheduleFlashCard(flashCard, args.answer, timespan)
 
     await NoteModel.updateOne(
-      { _id: note._id, 'cards._id': flashCard._id },
-      { $set: { 'cards.$': flashCard } }
+      { _id: note._id, 'flashCards._id': flashCard._id },
+      { $set: { 'flashCards.$': flashCard } }
     )
 
     const date = startOfToday()
