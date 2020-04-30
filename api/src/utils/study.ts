@@ -24,7 +24,7 @@ export const studyFlashCardsByDeck = async (deckId: string) => {
   const numOfReview = sumByStatus(todayLogs, FlashCardStatus.REVIEW)
 
   const flashCards = (await NoteModel.find({ deckId }))
-    .flatMap<FlashCardDocument>((note) => note.cards)
+    .flatMap<FlashCardDocument>((note) => note.flashCards)
     .filter(
       (flashCard) => !flashCard.due || isBefore(flashCard.due, endOfToday())
     )

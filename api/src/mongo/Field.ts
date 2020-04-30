@@ -11,7 +11,7 @@ const FieldSchema = new Schema<FieldDocument>({
   name: { type: String, required: true },
   modelId: {
     type: Schema.Types.ObjectId,
-    ref: 'CardModel',
+    ref: 'Model',
   },
 })
 

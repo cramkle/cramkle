@@ -14,11 +14,12 @@ export const root: IResolvers = {
 }
 
 export const queries: IResolverObject = {
-  note: async (_, { id }, { user }: Context) => {
+  note: async (_, args, { user }: Context) => {
+    const { objectId: noteId } = decodeGlobalId(args.id)
     const userDecks = await DeckModel.find({ ownerId: user?._id })
 
     const note = await NoteModel.findOne({
-      _id: id,
+      _id: noteId,
       deckId: {
         $in: userDecks.map(({ _id }) => _id),
       },
@@ -75,7 +76,7 @@ export const mutations: IResolverObject = {
     const modelTemplates = await TemplateModel.find({ modelId: model._id })
 
     note.set(
-      'cards',
+      'flashCards',
       modelTemplates.map(({ _id: templateId }) => ({
         templateId,
         noteId: note._id,

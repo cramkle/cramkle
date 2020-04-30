@@ -24,7 +24,7 @@ associated with the model.
 The number of flashcards on each note is always equal to the
 number of templates.
 """
-type FlashCard {
+type FlashCard implements Node {
   """
   FlashCard id.
   """

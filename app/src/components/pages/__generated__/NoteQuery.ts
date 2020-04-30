@@ -26,7 +26,7 @@ export interface NoteQuery_note_model_primaryField {
 }
 
 export interface NoteQuery_note_model {
-  __typename: 'CardModel'
+  __typename: 'Model'
   /**
    * Primary field that should represent each individual note
    * of this model.
@@ -96,79 +96,79 @@ export interface NoteQuery_note_values {
   field: NoteQuery_note_values_field | null
 }
 
-export interface NoteQuery_note_cards_template_frontSide_blocks_inlineStyleRanges {
+export interface NoteQuery_note_flashCards_template_frontSide_blocks_inlineStyleRanges {
   __typename: 'InlineStyleRange'
   style: string | null
   offset: number | null
   length: number | null
 }
 
-export interface NoteQuery_note_cards_template_frontSide_blocks_entityRanges {
+export interface NoteQuery_note_flashCards_template_frontSide_blocks_entityRanges {
   __typename: 'EntityRange'
   key: number
   length: number
   offset: number
 }
 
-export interface NoteQuery_note_cards_template_frontSide_blocks {
+export interface NoteQuery_note_flashCards_template_frontSide_blocks {
   __typename: 'Block'
   key: string
   type: string
   text: string
   depth: number
   inlineStyleRanges:
-    | (NoteQuery_note_cards_template_frontSide_blocks_inlineStyleRanges | null)[]
+    | (NoteQuery_note_flashCards_template_frontSide_blocks_inlineStyleRanges | null)[]
     | null
   entityRanges:
-    | (NoteQuery_note_cards_template_frontSide_blocks_entityRanges | null)[]
+    | (NoteQuery_note_flashCards_template_frontSide_blocks_entityRanges | null)[]
     | null
   data: any | null
 }
 
-export interface NoteQuery_note_cards_template_frontSide {
+export interface NoteQuery_note_flashCards_template_frontSide {
   __typename: 'ContentState'
   id: string
-  blocks: (NoteQuery_note_cards_template_frontSide_blocks | null)[] | null
+  blocks: (NoteQuery_note_flashCards_template_frontSide_blocks | null)[] | null
   entityMap: any | null
 }
 
-export interface NoteQuery_note_cards_template_backSide_blocks_inlineStyleRanges {
+export interface NoteQuery_note_flashCards_template_backSide_blocks_inlineStyleRanges {
   __typename: 'InlineStyleRange'
   style: string | null
   offset: number | null
   length: number | null
 }
 
-export interface NoteQuery_note_cards_template_backSide_blocks_entityRanges {
+export interface NoteQuery_note_flashCards_template_backSide_blocks_entityRanges {
   __typename: 'EntityRange'
   key: number
   length: number
   offset: number
 }
 
-export interface NoteQuery_note_cards_template_backSide_blocks {
+export interface NoteQuery_note_flashCards_template_backSide_blocks {
   __typename: 'Block'
   key: string
   type: string
   text: string
   depth: number
   inlineStyleRanges:
-    | (NoteQuery_note_cards_template_backSide_blocks_inlineStyleRanges | null)[]
+    | (NoteQuery_note_flashCards_template_backSide_blocks_inlineStyleRanges | null)[]
     | null
   entityRanges:
-    | (NoteQuery_note_cards_template_backSide_blocks_entityRanges | null)[]
+    | (NoteQuery_note_flashCards_template_backSide_blocks_entityRanges | null)[]
     | null
   data: any | null
 }
 
-export interface NoteQuery_note_cards_template_backSide {
+export interface NoteQuery_note_flashCards_template_backSide {
   __typename: 'ContentState'
   id: string
-  blocks: (NoteQuery_note_cards_template_backSide_blocks | null)[] | null
+  blocks: (NoteQuery_note_flashCards_template_backSide_blocks | null)[] | null
   entityMap: any | null
 }
 
-export interface NoteQuery_note_cards_template {
+export interface NoteQuery_note_flashCards_template {
   __typename: 'Template'
   /**
    * Name of the template
@@ -177,14 +177,14 @@ export interface NoteQuery_note_cards_template {
   /**
    * Front side template
    */
-  frontSide: NoteQuery_note_cards_template_frontSide | null
+  frontSide: NoteQuery_note_flashCards_template_frontSide | null
   /**
    * Back side template
    */
-  backSide: NoteQuery_note_cards_template_backSide | null
+  backSide: NoteQuery_note_flashCards_template_backSide | null
 }
 
-export interface NoteQuery_note_cards {
+export interface NoteQuery_note_flashCards {
   __typename: 'FlashCard'
   /**
    * FlashCard id.
@@ -212,7 +212,7 @@ export interface NoteQuery_note_cards {
   /**
    * Template associated with this flashcard.
    */
-  template: NoteQuery_note_cards_template | null
+  template: NoteQuery_note_flashCards_template | null
 }
 
 export interface NoteQuery_note {
@@ -232,11 +232,11 @@ export interface NoteQuery_note {
   /**
    * Values of this note
    */
-  values: (NoteQuery_note_values | null)[] | null
+  values: NoteQuery_note_values[]
   /**
    * Generated flashcards
    */
-  cards: (NoteQuery_note_cards | null)[] | null
+  flashCards: NoteQuery_note_flashCards[]
 }
 
 export interface NoteQuery {

@@ -31,5 +31,5 @@ export interface DecksToStudy {
   /**
    * Retrieve all decks for the logged user
    */
-  decks: DecksToStudy_decks[] | null
+  decks: DecksToStudy_decks[]
 }

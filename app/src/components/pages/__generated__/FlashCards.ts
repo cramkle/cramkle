@@ -164,7 +164,7 @@ export interface FlashCards_studyFlashCard_note {
   /**
    * Values of this note
    */
-  values: (FlashCards_studyFlashCard_note_values | null)[] | null
+  values: FlashCards_studyFlashCard_note_values[]
 }
 
 export interface FlashCards_studyFlashCard {

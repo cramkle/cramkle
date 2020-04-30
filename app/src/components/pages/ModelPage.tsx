@@ -25,8 +25,8 @@ import {
 import {
   ModelQuery,
   ModelQueryVariables,
-  ModelQuery_cardModel_fields,
-  ModelQuery_cardModel_templates,
+  ModelQuery_model_fields,
+  ModelQuery_model_templates,
 } from './__generated__/ModelQuery'
 import {
   UpdateTemplateBackContentMutation,
@@ -65,7 +65,7 @@ const MODEL_QUERY = gql`
   ${DRAFT_CONTENT_FRAGMENT}
 
   query ModelQuery($id: ID!) {
-    cardModel(id: $id) {
+    model(id: $id) {
       id
       name
       fields {
@@ -84,7 +84,7 @@ const MODEL_QUERY = gql`
       }
       notes {
         id
-        cards {
+        flashCards {
           id
         }
       }
@@ -127,8 +127,8 @@ const UPDATE_BACK_TEMPLATE_MUTATION = gql`
 const TEMPLATE_CONTENT_UPDATE_DEBOUNCE = 2000
 
 interface TemplateDetailsProps {
-  template: ModelQuery_cardModel_templates
-  fields: ModelQuery_cardModel_fields[]
+  template: ModelQuery_model_templates
+  fields: ModelQuery_model_fields[]
 }
 
 const TemplateDetails: React.FC<TemplateDetailsProps> = ({
@@ -232,16 +232,16 @@ const ModelPage: React.FC = () => {
     return null
   }
 
-  const { cardModel } = data
+  const { model } = data
 
-  const totalFlashCards = cardModel.notes.reduce(
-    (total, note) => total + note.cards.length,
+  const totalFlashCards = model.notes.reduce(
+    (total, note) => total + note.flashCards.length,
     0
   )
 
   return (
     <>
-      <Helmet title={cardModel.name} />
+      <Helmet title={model.name} />
       <Container>
         <BackButton />
         <div className="flex flex-col mb-8">
@@ -250,13 +250,13 @@ const ModelPage: React.FC = () => {
               <Trans>Model details</Trans>
             </Headline4>
 
-            <DeleteModelButton model={cardModel} />
+            <DeleteModelButton model={model} />
           </div>
 
-          <Headline5 className="mt-4">{cardModel.name}</Headline5>
+          <Headline5 className="mt-4">{model.name}</Headline5>
           <Caption className="mt-1 text-secondary text-sm">
             {i18n._(
-              plural(cardModel.notes.length, {
+              plural(model.notes.length, {
                 one: '# note',
                 other: '# notes',
               })
@@ -274,21 +274,18 @@ const ModelPage: React.FC = () => {
         <Body1 className="inline-block mb-4">
           <Trans>Templates</Trans>
         </Body1>
-        {cardModel.templates.length ? (
+        {model.templates.length ? (
           <Tabs>
             <TabList>
-              {cardModel.templates.map((template) => (
+              {model.templates.map((template) => (
                 <Tab key={template.id}>{template.name}</Tab>
               ))}
             </TabList>
 
             <TabPanels>
-              {cardModel.templates.map((template) => (
+              {model.templates.map((template) => (
                 <TabPanel key={template.id}>
-                  <TemplateDetails
-                    template={template}
-                    fields={cardModel.fields}
-                  />
+                  <TemplateDetails template={template} fields={model.fields} />
                 </TabPanel>
               ))}
             </TabPanels>
@@ -302,9 +299,9 @@ const ModelPage: React.FC = () => {
         <Body1 className="my-4">
           <Trans>Fields</Trans>
         </Body1>
-        {cardModel.fields.length ? (
+        {model.fields.length ? (
           <List dense>
-            {cardModel.fields.map((field) => (
+            {model.fields.map((field) => (
               <ListItem key={field.id}>
                 <ListItemText primaryText={field.name} />
               </ListItem>

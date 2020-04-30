@@ -1,6 +1,6 @@
 # import Deck from "types/Deck.graphql"
 # import FlashCard from "types/FlashCard.graphql"
-# import CardModel from "types/CardModel.graphql"
+# import Model from "types/Model.graphql"
 # import Field from "types/Field.graphql"
 # import FieldValue from "types/FieldValue.graphql"
 # import Template from "types/Template.graphql"
@@ -33,12 +33,12 @@ type Query {
     Whether or not to filter only for decks to study
     """
     studyOnly: Boolean = false
-  ): [Deck!] @authenticate
+  ): [Deck!]! @authenticate
 
   """
-  Retrieve all card models for the logged user
+  Retrieve all models for the logged user
   """
-  cardModels: [CardModel!] @authenticate
+  models: [Model!]! @authenticate
 
   """
   Get single deck
@@ -46,9 +46,9 @@ type Query {
   deck(slug: String!): Deck @authenticate
 
   """
-  Get single card model
+  Get single model
   """
-  cardModel(id: ID!): CardModel @authenticate
+  model(id: ID!): Model @authenticate
 
   """
   Get single template
@@ -185,22 +185,22 @@ type Mutation {
     """
     Fields
     """
-    fields: [FieldInput]
+    fields: [FieldInput!]!
     """
     Templates
     """
-    templates: [TemplateInput]
-  ): CardModel @authenticate
+    templates: [TemplateInput!]!
+  ): Model @authenticate
 
   """
   Update model name
   """
-  updateModel(name: String!): CardModel @authenticate
+  updateModel(name: String!): Model @authenticate
 
   """
-  Deletes a card model and all associated entities
+  Deletes a model and all associated entities
   """
-  deleteModel(id: ID!): CardModel @authenticate
+  deleteModel(id: ID!): Model @authenticate
 
   """
   Adds a new template to a card model
