@@ -9,6 +9,7 @@ import {
   DeleteNoteMutation,
   DeleteNoteMutationVariables,
 } from './__generated__/DeleteNoteMutation'
+import { DeckQuery_deck_notes } from './pages/__generated__/DeckQuery'
 import {
   AlertDialog,
   AlertDialogDescription,
@@ -24,7 +25,12 @@ const DELETE_NOTE_MUTATION = gql`
   }
 `
 
-const DeleteNoteDialog: React.FC<any> = ({ note, onClose }) => {
+interface Props {
+  note: DeckQuery_deck_notes
+  onClose?: () => void
+}
+
+const DeleteNoteDialog: React.FC<Props> = ({ note, onClose }) => {
   const { i18n } = useLingui()
   const noteIdentifier = getNoteIdentifier(note)
   const [deleteNote, { loading }] = useMutation<
@@ -53,7 +59,7 @@ const DeleteNoteDialog: React.FC<any> = ({ note, onClose }) => {
         <Trans>
           Are you sure you want to delete this note?{' '}
           {i18n._(
-            plural(note.cards.length, {
+            plural(note.flashCards.length, {
               one: 'It contains one flashcard',
               other: 'It contains # flashcards',
             })
