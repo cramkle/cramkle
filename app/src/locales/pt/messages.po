@@ -89,7 +89,7 @@ msgstr "Ocorreu um erro ao apagar o modelo"
 
 #: src/components/pages/StudyPage.tsx:109
 msgid "Are you sure you want to cancel the current study session?"
-msgstr "Você tem certeza que quer cancelar a sessão de estudo atual?"
+msgstr "Você tem certeza que quer encerrar a sessão de estudo atual?"
 
 #: src/components/DeleteDeckButton.tsx:72
 msgid "Are you sure you want to delete this deck?"
