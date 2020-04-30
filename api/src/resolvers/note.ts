@@ -46,8 +46,9 @@ interface CreateNoteMutationInput {
 
 export const mutations: IResolverObject = {
   createNote: async (_, args: CreateNoteMutationInput, { user }: Context) => {
-    const { modelId, fieldValues } = args
+    const { fieldValues } = args
     const { objectId: deckId } = decodeGlobalId(args.deckId)
+    const { objectId: modelId } = decodeGlobalId(args.modelId)
 
     const deck = await DeckModel.findOne({ _id: deckId, ownerId: user?._id })
     const model = await ModelModel.findOne({
