@@ -1,5 +1,7 @@
 import { IResolverObject, IResolvers } from 'graphql-tools'
+import { Document } from 'mongoose'
 
+import { NoteDocument } from '../mongo/Note'
 import { getConnection } from '../mongo/connection'
 import { decodeGlobalId } from '../utils/graphqlID'
 
@@ -19,8 +21,18 @@ export const resolvers: IResolverObject = {
 
     const mongoose = await getConnection()
 
-    const documentModel = mongoose.model(typeName)
-    const document = await documentModel.findById(objectId)
+    let document: Document | null
+
+    if (typeName === 'FlashCard') {
+      const noteModel = mongoose.model('Note')
+      document = ((await noteModel.findOne(
+        { 'flashCards._id': objectId },
+        { 'flashCards.$': true }
+      )) as NoteDocument)?.flashCards.id(objectId)
+    } else {
+      const documentModel = mongoose.model(typeName)
+      document = await documentModel.findById(objectId)
+    }
 
     if (!document) {
       return null

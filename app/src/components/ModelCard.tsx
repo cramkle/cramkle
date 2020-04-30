@@ -3,7 +3,7 @@ import { useLingui } from '@lingui/react'
 import React, { useCallback } from 'react'
 import { useHistory } from 'react-router'
 
-import { ModelsQuery_cardModels } from './__generated__/ModelsQuery'
+import { ModelsQuery_models } from './__generated__/ModelsQuery'
 import Card, { CardPrimaryContent } from './views/Card'
 import { Chip } from './views/Chip'
 import { Headline6 } from './views/Typography'
@@ -12,7 +12,7 @@ interface Props {
   className?: string
 }
 
-const ModelCard: React.FunctionComponent<Props & ModelsQuery_cardModels> = ({
+const ModelCard: React.FunctionComponent<Props & ModelsQuery_models> = ({
   className = '',
   id,
   name,

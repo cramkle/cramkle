@@ -76,7 +76,7 @@ const NotesTable: React.FC<Props> = ({ notes, deckSlug }) => {
                 <TableCell>{noteIdentifier}</TableCell>
                 <TableCell>{note.deck.title}</TableCell>
                 <TableCell>{note.model.name}</TableCell>
-                <TableCell>{note.cards.length}</TableCell>
+                <TableCell>{note.flashCards.length}</TableCell>
                 <TableCell>
                   <Menu>
                     <MenuButton icon className="flex items-center">

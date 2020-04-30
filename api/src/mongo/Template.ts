@@ -18,7 +18,7 @@ const TemplateSchema = new Schema<TemplateDocument>({
   backSide: ContentStateSchema,
   modelId: {
     type: Schema.Types.ObjectId,
-    ref: 'CardModel',
+    ref: 'Model',
   },
   ownerId: {
     type: Schema.Types.ObjectId,

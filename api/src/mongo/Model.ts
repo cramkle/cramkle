@@ -20,4 +20,4 @@ const ModelSchema = new Schema<ModelDocument>({
   },
 })
 
-export default mongooseModel<ModelDocument>('CardModel', ModelSchema)
+export default mongooseModel<ModelDocument>('Model', ModelSchema)

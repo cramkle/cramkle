@@ -43,17 +43,32 @@
           {
             "name": "decks",
             "description": "Retrieve all decks for the logged user",
-            "args": [],
+            "args": [
+              {
+                "name": "studyOnly",
+                "description": "Whether or not to filter only for decks to study",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                },
+                "defaultValue": "false"
+              }
+            ],
             "type": {
-              "kind": "LIST",
+              "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "NON_NULL",
+                "kind": "LIST",
                 "name": null,
                 "ofType": {
-                  "kind": "OBJECT",
-                  "name": "Deck",
-                  "ofType": null
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "Deck",
+                    "ofType": null
+                  }
                 }
               }
             },
@@ -61,19 +76,23 @@
             "deprecationReason": null
           },
           {
-            "name": "cardModels",
-            "description": "Retrieve all card models for the logged user",
+            "name": "models",
+            "description": "Retrieve all models for the logged user",
             "args": [],
             "type": {
-              "kind": "LIST",
+              "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "NON_NULL",
+                "kind": "LIST",
                 "name": null,
                 "ofType": {
-                  "kind": "OBJECT",
-                  "name": "CardModel",
-                  "ofType": null
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "Model",
+                    "ofType": null
+                  }
                 }
               }
             },
@@ -108,8 +127,8 @@
             "deprecationReason": null
           },
           {
-            "name": "cardModel",
-            "description": "Get single card model",
+            "name": "model",
+            "description": "Get single model",
             "args": [
               {
                 "name": "id",
@@ -128,7 +147,7 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "CardModel",
+              "name": "Model",
               "ofType": null
             },
             "isDeprecated": false,
@@ -271,10 +290,50 @@
         "possibleTypes": [
           {
             "kind": "OBJECT",
+            "name": "Deck",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "Note",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
             "name": "User",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "Field",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "Template",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ContentState",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "FieldValue",
             "ofType": null
           }
         ]
+      },
+      {
+        "kind": "SCALAR",
+        "name": "Boolean",
+        "description": "The `Boolean` scalar type represents `true` or `false`.",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
       },
       {
         "kind": "OBJECT",
@@ -383,7 +442,13 @@
           }
         ],
         "inputFields": null,
-        "interfaces": [],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Node",
+            "ofType": null
+          }
+        ],
         "enumValues": null,
         "possibleTypes": null
       },
@@ -436,7 +501,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "CardModel",
+              "name": "Model",
               "ofType": null
             },
             "isDeprecated": false,
@@ -447,28 +512,44 @@
             "description": "Values of this note",
             "args": [],
             "type": {
-              "kind": "LIST",
+              "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "OBJECT",
-                "name": "FieldValue",
-                "ofType": null
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "FieldValue",
+                    "ofType": null
+                  }
+                }
               }
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "cards",
+            "name": "flashCards",
             "description": "Generated flashcards",
             "args": [],
             "type": {
-              "kind": "LIST",
+              "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "OBJECT",
-                "name": "FlashCard",
-                "ofType": null
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "FlashCard",
+                    "ofType": null
+                  }
+                }
               }
             },
             "isDeprecated": false,
@@ -476,13 +557,19 @@
           }
         ],
         "inputFields": null,
-        "interfaces": [],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Node",
+            "ofType": null
+          }
+        ],
         "enumValues": null,
         "possibleTypes": null
       },
       {
         "kind": "OBJECT",
-        "name": "CardModel",
+        "name": "Model",
         "description": "Represents a model for a collection of notes.",
         "fields": [
           {
@@ -710,7 +797,7 @@
       {
         "kind": "OBJECT",
         "name": "Field",
-        "description": "Field of a card model, contains the informations to\nbuild up the form for a note creation",
+        "description": "Field of a model, contains the informations to\nbuild up the form for a note creation",
         "fields": [
           {
             "name": "id",
@@ -746,11 +833,11 @@
           },
           {
             "name": "model",
-            "description": "Associated card model",
+            "description": "Associated model",
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "CardModel",
+              "name": "Model",
               "ofType": null
             },
             "isDeprecated": false,
@@ -758,7 +845,13 @@
           }
         ],
         "inputFields": null,
-        "interfaces": [],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Node",
+            "ofType": null
+          }
+        ],
         "enumValues": null,
         "possibleTypes": null
       },
@@ -821,11 +914,11 @@
           },
           {
             "name": "model",
-            "description": "Associated card model",
+            "description": "Associated model",
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "CardModel",
+              "name": "Model",
               "ofType": null
             },
             "isDeprecated": false,
@@ -833,7 +926,13 @@
           }
         ],
         "inputFields": null,
-        "interfaces": [],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Node",
+            "ofType": null
+          }
+        ],
         "enumValues": null,
         "possibleTypes": null
       },
@@ -888,7 +987,13 @@
           }
         ],
         "inputFields": null,
-        "interfaces": [],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Node",
+            "ofType": null
+          }
+        ],
         "enumValues": null,
         "possibleTypes": null
       },
@@ -1184,7 +1289,13 @@
           }
         ],
         "inputFields": null,
-        "interfaces": [],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Node",
+            "ofType": null
+          }
+        ],
         "enumValues": null,
         "possibleTypes": null
       },
@@ -1332,16 +1443,6 @@
         ],
         "inputFields": null,
         "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "SCALAR",
-        "name": "Boolean",
-        "description": "The `Boolean` scalar type represents `true` or `false`.",
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
         "enumValues": null,
         "possibleTypes": null
       },
@@ -1678,12 +1779,20 @@
                 "name": "fields",
                 "description": "Fields",
                 "type": {
-                  "kind": "LIST",
+                  "kind": "NON_NULL",
                   "name": null,
                   "ofType": {
-                    "kind": "INPUT_OBJECT",
-                    "name": "FieldInput",
-                    "ofType": null
+                    "kind": "LIST",
+                    "name": null,
+                    "ofType": {
+                      "kind": "NON_NULL",
+                      "name": null,
+                      "ofType": {
+                        "kind": "INPUT_OBJECT",
+                        "name": "FieldInput",
+                        "ofType": null
+                      }
+                    }
                   }
                 },
                 "defaultValue": null
@@ -1692,12 +1801,20 @@
                 "name": "templates",
                 "description": "Templates",
                 "type": {
-                  "kind": "LIST",
+                  "kind": "NON_NULL",
                   "name": null,
                   "ofType": {
-                    "kind": "INPUT_OBJECT",
-                    "name": "TemplateInput",
-                    "ofType": null
+                    "kind": "LIST",
+                    "name": null,
+                    "ofType": {
+                      "kind": "NON_NULL",
+                      "name": null,
+                      "ofType": {
+                        "kind": "INPUT_OBJECT",
+                        "name": "TemplateInput",
+                        "ofType": null
+                      }
+                    }
                   }
                 },
                 "defaultValue": null
@@ -1705,7 +1822,7 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "CardModel",
+              "name": "Model",
               "ofType": null
             },
             "isDeprecated": false,
@@ -1732,7 +1849,7 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "CardModel",
+              "name": "Model",
               "ofType": null
             },
             "isDeprecated": false,
@@ -1740,7 +1857,7 @@
           },
           {
             "name": "deleteModel",
-            "description": "Deletes a card model and all associated entities",
+            "description": "Deletes a model and all associated entities",
             "args": [
               {
                 "name": "id",
@@ -1759,7 +1876,7 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "CardModel",
+              "name": "Model",
               "ofType": null
             },
             "isDeprecated": false,

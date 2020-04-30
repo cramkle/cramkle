@@ -42,7 +42,7 @@ const DECK_QUERY = gql`
             id
           }
         }
-        cards {
+        flashCards {
           id
           active
           state

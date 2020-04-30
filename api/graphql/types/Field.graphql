@@ -1,4 +1,4 @@
-# import CardModel from "CardModel.graphql"
+# import Model from "Model.graphql"
 
 input FieldInput {
   id: ID
@@ -6,7 +6,7 @@ input FieldInput {
 }
 
 """
-Field of a card model, contains the informations to
+Field of a model, contains the informations to
 build up the form for a note creation
 """
 type Field implements Node {
@@ -19,7 +19,7 @@ type Field implements Node {
   """
   name: String!
   """
-  Associated card model
+  Associated model
   """
-  model: CardModel
+  model: Model
 }

@@ -6,7 +6,7 @@
 """
 Represents a model for a collection of notes.
 """
-type CardModel {
+type Model implements Node {
   """
   Card model id
   """

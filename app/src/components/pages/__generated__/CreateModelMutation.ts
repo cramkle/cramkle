@@ -34,7 +34,7 @@ export interface CreateModelMutation_createModel_fields {
 }
 
 export interface CreateModelMutation_createModel {
-  __typename: 'CardModel'
+  __typename: 'Model'
   /**
    * Card model id
    */
@@ -62,6 +62,6 @@ export interface CreateModelMutation {
 
 export interface CreateModelMutationVariables {
   name: string
-  fields?: (FieldInput | null)[] | null
-  templates?: (TemplateInput | null)[] | null
+  fields: FieldInput[]
+  templates: TemplateInput[]
 }

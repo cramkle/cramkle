@@ -30,7 +30,7 @@ import * as t from '../views/Typography'
 import {
   NoteQuery,
   NoteQueryVariables,
-  NoteQuery_note_cards,
+  NoteQuery_note_flashCards,
   NoteQuery_note_values,
 } from './__generated__/NoteQuery'
 import {
@@ -86,7 +86,7 @@ const NOTE_QUERY = gql`
           name
         }
       }
-      cards {
+      flashCards {
         id
         active
         lapses
@@ -188,12 +188,12 @@ const NotePage: React.FC = () => {
   const [
     flashCardPreview,
     setFlashCardPreview,
-  ] = useState<NoteQuery_note_cards | null>(null)
+  ] = useState<NoteQuery_note_flashCards | null>(null)
   const { i18n } = useLingui()
 
   useTopBarLoading(loading)
 
-  const handleShowFlashCardPreview = (flashCard: NoteQuery_note_cards) => {
+  const handleShowFlashCardPreview = (flashCard: NoteQuery_note_flashCards) => {
     setFlashCardPreview(flashCard)
   }
 
@@ -206,7 +206,7 @@ const NotePage: React.FC = () => {
   }
 
   const {
-    note: { values, deck, cards },
+    note: { values, deck, flashCards },
     note,
   } = data
 
@@ -263,25 +263,23 @@ const NotePage: React.FC = () => {
           <TableHead>
             <TableRow>
               <TableCell />
-              <TableCell>Flash Card</TableCell>
-              <TableCell>Status</TableCell>
               <TableCell>Template</TableCell>
+              <TableCell>Status</TableCell>
               <TableCell>Lapses</TableCell>
               <TableCell>Due Date</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {cards.map((flashCard) => (
+            {flashCards.map((flashCard) => (
               <TableRow key={flashCard.id}>
                 <TableCell className="flex justify-center items-center">
                   <Checkbox checked={flashCard.active} />
                 </TableCell>
-                <TableCell>{flashCard.id}</TableCell>
+                <TableCell>{flashCard.template.name}</TableCell>
                 <TableCell>
                   <FlashCardStatus status={flashCard.state} />
                 </TableCell>
-                <TableCell>{flashCard.template.name}</TableCell>
-                <TableCell align="right">{flashCard.lapses}</TableCell>
+                <TableCell>{flashCard.lapses}</TableCell>
                 <TableCell>
                   {flashCard.due && i18n.date(new Date(flashCard.due), {})}
                 </TableCell>

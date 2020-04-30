@@ -7,7 +7,7 @@
 // GraphQL query operation: ModelQuery
 // ====================================================
 
-export interface ModelQuery_cardModel_fields {
+export interface ModelQuery_model_fields {
   __typename: 'Field'
   /**
    * Field id
@@ -19,79 +19,79 @@ export interface ModelQuery_cardModel_fields {
   name: string
 }
 
-export interface ModelQuery_cardModel_templates_frontSide_blocks_inlineStyleRanges {
+export interface ModelQuery_model_templates_frontSide_blocks_inlineStyleRanges {
   __typename: 'InlineStyleRange'
   style: string | null
   offset: number | null
   length: number | null
 }
 
-export interface ModelQuery_cardModel_templates_frontSide_blocks_entityRanges {
+export interface ModelQuery_model_templates_frontSide_blocks_entityRanges {
   __typename: 'EntityRange'
   key: number
   length: number
   offset: number
 }
 
-export interface ModelQuery_cardModel_templates_frontSide_blocks {
+export interface ModelQuery_model_templates_frontSide_blocks {
   __typename: 'Block'
   key: string
   type: string
   text: string
   depth: number
   inlineStyleRanges:
-    | (ModelQuery_cardModel_templates_frontSide_blocks_inlineStyleRanges | null)[]
+    | (ModelQuery_model_templates_frontSide_blocks_inlineStyleRanges | null)[]
     | null
   entityRanges:
-    | (ModelQuery_cardModel_templates_frontSide_blocks_entityRanges | null)[]
+    | (ModelQuery_model_templates_frontSide_blocks_entityRanges | null)[]
     | null
   data: any | null
 }
 
-export interface ModelQuery_cardModel_templates_frontSide {
+export interface ModelQuery_model_templates_frontSide {
   __typename: 'ContentState'
   id: string
-  blocks: (ModelQuery_cardModel_templates_frontSide_blocks | null)[] | null
+  blocks: (ModelQuery_model_templates_frontSide_blocks | null)[] | null
   entityMap: any | null
 }
 
-export interface ModelQuery_cardModel_templates_backSide_blocks_inlineStyleRanges {
+export interface ModelQuery_model_templates_backSide_blocks_inlineStyleRanges {
   __typename: 'InlineStyleRange'
   style: string | null
   offset: number | null
   length: number | null
 }
 
-export interface ModelQuery_cardModel_templates_backSide_blocks_entityRanges {
+export interface ModelQuery_model_templates_backSide_blocks_entityRanges {
   __typename: 'EntityRange'
   key: number
   length: number
   offset: number
 }
 
-export interface ModelQuery_cardModel_templates_backSide_blocks {
+export interface ModelQuery_model_templates_backSide_blocks {
   __typename: 'Block'
   key: string
   type: string
   text: string
   depth: number
   inlineStyleRanges:
-    | (ModelQuery_cardModel_templates_backSide_blocks_inlineStyleRanges | null)[]
+    | (ModelQuery_model_templates_backSide_blocks_inlineStyleRanges | null)[]
     | null
   entityRanges:
-    | (ModelQuery_cardModel_templates_backSide_blocks_entityRanges | null)[]
+    | (ModelQuery_model_templates_backSide_blocks_entityRanges | null)[]
     | null
   data: any | null
 }
 
-export interface ModelQuery_cardModel_templates_backSide {
+export interface ModelQuery_model_templates_backSide {
   __typename: 'ContentState'
   id: string
-  blocks: (ModelQuery_cardModel_templates_backSide_blocks | null)[] | null
+  blocks: (ModelQuery_model_templates_backSide_blocks | null)[] | null
   entityMap: any | null
 }
 
-export interface ModelQuery_cardModel_templates {
+export interface ModelQuery_model_templates {
   __typename: 'Template'
   /**
    * Template id
@@ -104,14 +104,14 @@ export interface ModelQuery_cardModel_templates {
   /**
    * Front side template
    */
-  frontSide: ModelQuery_cardModel_templates_frontSide | null
+  frontSide: ModelQuery_model_templates_frontSide | null
   /**
    * Back side template
    */
-  backSide: ModelQuery_cardModel_templates_backSide | null
+  backSide: ModelQuery_model_templates_backSide | null
 }
 
-export interface ModelQuery_cardModel_notes_cards {
+export interface ModelQuery_model_notes_flashCards {
   __typename: 'FlashCard'
   /**
    * FlashCard id.
@@ -119,7 +119,7 @@ export interface ModelQuery_cardModel_notes_cards {
   id: string
 }
 
-export interface ModelQuery_cardModel_notes {
+export interface ModelQuery_model_notes {
   __typename: 'Note'
   /**
    * Note id
@@ -128,11 +128,11 @@ export interface ModelQuery_cardModel_notes {
   /**
    * Generated flashcards
    */
-  cards: (ModelQuery_cardModel_notes_cards | null)[] | null
+  flashCards: ModelQuery_model_notes_flashCards[]
 }
 
-export interface ModelQuery_cardModel {
-  __typename: 'CardModel'
+export interface ModelQuery_model {
+  __typename: 'Model'
   /**
    * Card model id
    */
@@ -144,22 +144,22 @@ export interface ModelQuery_cardModel {
   /**
    * Fields associated with this model
    */
-  fields: ModelQuery_cardModel_fields[]
+  fields: ModelQuery_model_fields[]
   /**
    * Templates associated with this model
    */
-  templates: ModelQuery_cardModel_templates[]
+  templates: ModelQuery_model_templates[]
   /**
    * Notes associated with this model
    */
-  notes: ModelQuery_cardModel_notes[] | null
+  notes: ModelQuery_model_notes[] | null
 }
 
 export interface ModelQuery {
   /**
-   * Get single card model
+   * Get single model
    */
-  cardModel: ModelQuery_cardModel | null
+  model: ModelQuery_model | null
 }
 
 export interface ModelQueryVariables {

@@ -7,53 +7,53 @@
 // GraphQL query operation: ModelsQuery
 // ====================================================
 
-export interface ModelsQuery_cardModels_templates {
-  __typename: "Template";
+export interface ModelsQuery_models_templates {
+  __typename: 'Template'
   /**
    * Template id
    */
-  id: string;
+  id: string
   /**
    * Name of the template
    */
-  name: string | null;
+  name: string | null
 }
 
-export interface ModelsQuery_cardModels_fields {
-  __typename: "Field";
+export interface ModelsQuery_models_fields {
+  __typename: 'Field'
   /**
    * Field id
    */
-  id: string;
+  id: string
   /**
    * Name of the field
    */
-  name: string;
+  name: string
 }
 
-export interface ModelsQuery_cardModels {
-  __typename: "CardModel";
+export interface ModelsQuery_models {
+  __typename: 'Model'
   /**
    * Card model id
    */
-  id: string;
+  id: string
   /**
    * Name of this card model (e.g. "Basic", "Basic with Reversed")
    */
-  name: string | null;
+  name: string | null
   /**
    * Templates associated with this model
    */
-  templates: ModelsQuery_cardModels_templates[];
+  templates: ModelsQuery_models_templates[]
   /**
    * Fields associated with this model
    */
-  fields: ModelsQuery_cardModels_fields[];
+  fields: ModelsQuery_models_fields[]
 }
 
 export interface ModelsQuery {
   /**
-   * Retrieve all card models for the logged user
+   * Retrieve all models for the logged user
    */
-  cardModels: ModelsQuery_cardModels[] | null;
+  models: ModelsQuery_models[]
 }

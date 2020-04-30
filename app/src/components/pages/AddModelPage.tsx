@@ -26,8 +26,8 @@ import {
 const CREATE_MODEL_MUTATION = gql`
   mutation CreateModelMutation(
     $name: String!
-    $fields: [FieldInput]
-    $templates: [TemplateInput]
+    $fields: [FieldInput!]!
+    $templates: [TemplateInput!]!
   ) {
     createModel(name: $name, fields: $fields, templates: $templates) {
       id
@@ -84,7 +84,7 @@ const AddModelPage: React.FunctionComponent = () => {
                 query: MODELS_QUERY,
               })
 
-              data.cardModels.push(createModel)
+              data.models.push(createModel)
 
               proxy.writeQuery({ query: MODELS_QUERY, data })
             },

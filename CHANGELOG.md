@@ -8,16 +8,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Generic error page.
 - Chips with quantity of fields and templates on model card.
-- Babel's runtime plugin. (server)
 - Ability to add, edit and delete notes inside a Deck.
 - Implementation for study section with all Decks with pending flashcards.
 - Study page.
 - Text alignment controls in editor.
 
 ### Changed
-- Disabled React's Concurrent Mode.
 - Update logo icon for when the user is offline.
 - Default meta description.
+- [BREAKING CHANGE] Rename `CardModel` type to `Model`.
+- [BREAKING CHANGE] Rename model queries names from `cardModel` to `model`,
+  and `cardModels` to `models`.
+- [BREAKING CHANGE] Rename Flashcard field in `Model` from `cards` to `flashCards`.
 
 ### Fixed
 - Back arrow not working in home for initial page.

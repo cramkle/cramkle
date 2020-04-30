@@ -82,7 +82,7 @@ export interface DeckQuery_deck_notes_model_primaryField {
 }
 
 export interface DeckQuery_deck_notes_model {
-  __typename: 'CardModel'
+  __typename: 'Model'
   /**
    * Name of this card model (e.g. "Basic", "Basic with Reversed")
    */
@@ -94,7 +94,7 @@ export interface DeckQuery_deck_notes_model {
   primaryField: DeckQuery_deck_notes_model_primaryField | null
 }
 
-export interface DeckQuery_deck_notes_cards_template {
+export interface DeckQuery_deck_notes_flashCards_template {
   __typename: 'Template'
   /**
    * Name of the template
@@ -102,7 +102,7 @@ export interface DeckQuery_deck_notes_cards_template {
   name: string | null
 }
 
-export interface DeckQuery_deck_notes_cards {
+export interface DeckQuery_deck_notes_flashCards {
   __typename: 'FlashCard'
   /**
    * FlashCard id.
@@ -125,7 +125,7 @@ export interface DeckQuery_deck_notes_cards {
   /**
    * Template associated with this flashcard.
    */
-  template: DeckQuery_deck_notes_cards_template | null
+  template: DeckQuery_deck_notes_flashCards_template | null
 }
 
 export interface DeckQuery_deck_notes_deck {
@@ -145,7 +145,7 @@ export interface DeckQuery_deck_notes {
   /**
    * Values of this note
    */
-  values: (DeckQuery_deck_notes_values | null)[] | null
+  values: DeckQuery_deck_notes_values[]
   /**
    * Model of this note
    */
@@ -153,7 +153,7 @@ export interface DeckQuery_deck_notes {
   /**
    * Generated flashcards
    */
-  cards: (DeckQuery_deck_notes_cards | null)[] | null
+  flashCards: DeckQuery_deck_notes_flashCards[]
   /**
    * Deck containing this note
    */

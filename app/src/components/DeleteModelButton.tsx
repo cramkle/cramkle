@@ -56,7 +56,7 @@ const DeleteModelButton: React.FunctionComponent<Props> = ({ model }) => {
           query: MODELS_QUERY,
         })
 
-        const cardModels = cachedModelsQuery?.cardModels
+        const cardModels = cachedModelsQuery?.models
 
         if (cardModels && deletedModelId) {
           cache.writeQuery({

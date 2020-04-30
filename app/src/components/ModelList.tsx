@@ -11,7 +11,7 @@ import { Body1 } from './views/Typography'
 
 export const MODELS_QUERY = gql`
   query ModelsQuery {
-    cardModels {
+    models {
       id
       name
       templates {
@@ -27,9 +27,9 @@ export const MODELS_QUERY = gql`
 `
 
 const ModelList: React.FunctionComponent = () => {
-  const { data: { cardModels: models = [] } = {}, loading } = useQuery<
-    ModelsQuery
-  >(MODELS_QUERY)
+  const { data: { models = [] } = {}, loading } = useQuery<ModelsQuery>(
+    MODELS_QUERY
+  )
 
   useTopBarLoading(loading)
 

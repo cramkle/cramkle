@@ -1,6 +1,6 @@
 # import FlashCard from "FlashCard.graphql"
 # import Deck from "Deck.graphql"
-# import CardModel from "CardModel.graphql"
+# import Model from "Model.graphql"
 # import FieldValue from "FieldValue.graphql"
 
 """
@@ -21,13 +21,13 @@ type Note implements Node {
   """
   Model of this note
   """
-  model: CardModel
+  model: Model
   """
   Values of this note
   """
-  values: [FieldValue]
+  values: [FieldValue!]!
   """
   Generated flashcards
   """
-  cards: [FlashCard]
+  flashCards: [FlashCard!]!
 }

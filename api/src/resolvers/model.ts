@@ -11,10 +11,11 @@ import {
 import { Field as FieldType } from '../mongo/Field'
 import { ModelDocument } from '../mongo/Model'
 import { Template as TemplateType } from '../mongo/Template'
+import { decodeGlobalId, globalIdField } from '../utils/graphqlID'
 
 export const root: IResolvers = {
-  CardModel: {
-    id: (root: ModelDocument) => root._id.toString(),
+  Model: {
+    id: globalIdField(),
     owner: (root: ModelDocument) => UserModel.findById(root.ownerId),
     primaryField: async (root: ModelDocument) => {
       const modelFields = await FieldModel.find({ modelId: root._id })
@@ -39,13 +40,18 @@ export const root: IResolvers = {
 }
 
 export const queries: IResolverObject = {
-  cardModel: async (_, { id }) => {
-    const cardModel = await ModelModel.findById(id)
+  model: async (_, args, ctx: Context) => {
+    const { objectId: modelId } = decodeGlobalId(args.id)
 
-    return cardModel
+    const model = await ModelModel.findOne({
+      _id: modelId,
+      ownerId: ctx.user!._id,
+    })
+
+    return model
   },
-  cardModels: async (_, __, { user }: Context) => {
-    return ModelModel.find({ ownerId: user?._id })
+  models: async (_, __, { user }: Context) => {
+    return ModelModel.find({ ownerId: user!._id })
   },
 }
 
@@ -76,38 +82,40 @@ export const mutations: IResolverObject = {
     { name, fields, templates }: CreateModelInput,
     { user }: Context
   ) => {
-    const cardModel = await ModelModel.create({
+    const model = await ModelModel.create({
       name,
       ownerId: user?._id,
     })
 
     await Promise.all(
-      fields.map((field) =>
-        FieldModel.create({ ...field, modelId: cardModel._id })
-      )
+      fields.map((field) => FieldModel.create({ ...field, modelId: model._id }))
     )
 
     await Promise.all(
       templates.map((template) =>
         TemplateModel.create({
           ...template,
-          modelId: cardModel._id,
+          modelId: model._id,
           ownerId: user?._id,
         })
       )
     )
 
-    return cardModel
+    return model
   },
-  updateModel: (_, { id: _id, name }: UpdateModelInput, { user }: Context) => {
+  updateModel: (_, { id, name }: UpdateModelInput, { user }: Context) => {
+    const { objectId: modelId } = decodeGlobalId(id)
+
     return ModelModel.findOneAndUpdate(
-      { _id, ownerId: user?._id },
+      { _id: modelId, ownerId: user?._id },
       { name },
       { new: true }
     )
   },
-  deleteModel: async (_, { id: _id }, { user }: Context) => {
-    const model = await ModelModel.findOne({ _id, ownerId: user?._id })
+  deleteModel: async (_, { id }, { user }: Context) => {
+    const { objectId: modelId } = decodeGlobalId(id)
+
+    const model = await ModelModel.findOne({ _id: modelId, ownerId: user?._id })
 
     if (!model) {
       throw new ApolloError('Model not found', '404')
@@ -123,25 +131,25 @@ export const mutations: IResolverObject = {
 
     return model
   },
-  addTemplateToModel: async (
-    _,
-    { name, modelId }: AddTemplateInput,
-    { user }: Context
-  ) => {
+  addTemplateToModel: async (_, args: AddTemplateInput, { user }: Context) => {
+    const { objectId: modelId } = decodeGlobalId(args.modelId)
+
     const template = await TemplateModel.create({
-      name,
+      name: args.name,
       modelId,
       ownerId: user?._id,
     })
 
     return template
   },
-  addFieldToModel: async (
-    _,
-    { name, modelId }: AddFieldInput,
-    { user }: Context
-  ) => {
-    const field = await FieldModel.create({ name, modelId, ownerId: user?._id })
+  addFieldToModel: async (_, args: AddFieldInput, { user }: Context) => {
+    const { objectId: modelId } = decodeGlobalId(args.modelId)
+
+    const field = await FieldModel.create({
+      name: args.name,
+      modelId,
+      ownerId: user?._id,
+    })
 
     return field
   },

@@ -66,7 +66,7 @@ export const FlashCardSchema = new Schema<FlashCardDocument>({
 // ----------
 // Note
 export interface Note {
-  cards: Types.DocumentArray<FlashCardDocument>
+  flashCards: Types.DocumentArray<FlashCardDocument>
   values: Types.DocumentArray<FieldValueDocument>
   deckId: Types.ObjectId
   modelId: Types.ObjectId
@@ -82,14 +82,14 @@ const NoteSchema = new Schema<NoteDocument>({
   },
   modelId: {
     type: Schema.Types.ObjectId,
-    ref: 'CardModel',
+    ref: 'Model',
   },
   ownerId: {
     type: Schema.Types.ObjectId,
     ref: 'User',
   },
   values: [FieldValueSchema],
-  cards: [FlashCardSchema],
+  flashCards: [FlashCardSchema],
 })
 
 export default model<NoteDocument>('Note', NoteSchema)

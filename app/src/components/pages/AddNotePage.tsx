@@ -31,7 +31,7 @@ const MODELS_QUERY = gql`
       id
       title
     }
-    cardModels {
+    models {
       id
       name
       fields {
@@ -66,7 +66,7 @@ const AddNotePage: React.FC = () => {
     }
   )
 
-  const { cardModels: models, deck } = data || {}
+  const { models, deck } = data || {}
 
   const [fieldValueMap, setFieldValueMap] = useState<{
     [fieldId: string]: FieldValueInput

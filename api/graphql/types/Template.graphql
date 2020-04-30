@@ -1,4 +1,4 @@
-# import CardModel from "CardModel.graphql"
+# import Model from "Model.graphql"
 # import ContentState from "ContentState.graphql"
 
 input TemplateInput {
@@ -27,7 +27,7 @@ type Template implements Node {
   """
   backSide: ContentState
   """
-  Associated card model
+  Associated model
   """
-  model: CardModel
+  model: Model
 }
