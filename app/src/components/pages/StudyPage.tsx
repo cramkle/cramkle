@@ -229,12 +229,12 @@ const StudyPage: React.FC = () => {
   }
 
   return (
-    <section className="pt-4 pb-16 h-full flex flex-col items-start">
+    <section className="min-h-full pt-4 pb-16 flex flex-col items-start">
       <CancelStudyButton />
 
       <div className="self-stretch flex-auto flex flex-col items-center justify-center">
         <FlashCardRenderer
-          className="w-full overflow-auto pt-4 px-4 lg:px-8 lg:px-16 ph6-xl"
+          className="w-full overflow-auto pt-4 px-4 md:px-8 lg:px-16 xl:px-32"
           values={data.studyFlashCard.note.values}
           template={data.studyFlashCard.template}
           hideLabels
