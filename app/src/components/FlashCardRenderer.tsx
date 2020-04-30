@@ -150,7 +150,7 @@ const FlashCardRenderer: React.FC<Props> = ({
       />
       {!hideBackSide && (
         <>
-          <Divider className="my-4" />
+          <Divider className="my-8" />
           <FlashCardPanel
             label={<Trans>Back side</Trans>}
             hideLabel={hideLabels}
