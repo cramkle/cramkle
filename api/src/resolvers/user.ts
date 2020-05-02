@@ -3,7 +3,6 @@ import { createHmac } from 'crypto'
 import { AuthenticationError } from 'apollo-server'
 import { differenceInHours } from 'date-fns'
 import { IResolverObject, IResolvers } from 'graphql-tools'
-import { ObjectId } from 'mongodb'
 import { Types } from 'mongoose'
 
 import { UserModel } from '../mongo'
