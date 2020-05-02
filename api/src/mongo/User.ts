@@ -5,6 +5,9 @@ export interface User {
   username: string
   password: string
   email: string
+  roles: string[]
+  lastLogin: Date
+  createdAt: Date
 }
 
 export interface UserDocument extends User, Document {
@@ -12,26 +15,32 @@ export interface UserDocument extends User, Document {
   comparePassword(candidate: string): Promise<boolean>
 }
 
-const UserSchema = new Schema<UserDocument>({
-  username: {
-    type: String,
-    unique: true,
-    required: [true, 'Username is required'],
+const UserSchema = new Schema<UserDocument>(
+  {
+    username: {
+      type: String,
+      unique: true,
+      required: [true, 'Username is required'],
+    },
+    password: {
+      type: String,
+      required: [true, 'Password is required'],
+    },
+    email: {
+      type: String,
+      unique: true,
+      required: [true, 'E-mail is required'],
+    },
+    roles: {
+      type: [{ type: String }],
+      default: ['REGULAR'],
+    },
+    lastLogin: {
+      type: Date,
+    },
   },
-  password: {
-    type: String,
-    required: [true, 'Password is required'],
-  },
-  email: {
-    type: String,
-    unique: true,
-    required: [true, 'E-mail is required'],
-  },
-  roles: {
-    type: [{ type: String }],
-    default: ['REGULAR'],
-  },
-})
+  { timestamps: { createdAt: true } }
+)
 
 UserSchema.methods.hashifyAndSave = function () {
   return new Promise((res, rej) => {
