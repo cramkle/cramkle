@@ -1,45 +1,38 @@
-import TextField, {
-  HelperText,
-  Input,
-  Props as TextFieldProps,
-} from '@material/react-text-field'
 import { useField } from 'formik'
 import React from 'react'
 
 import Checkbox, { CheckboxProps, CheckboxRef } from '../views/Checkbox'
+import { HelperText, Input, Label, LabelProps, Textarea } from '../views/Input'
 
-interface TextInputProps<T extends HTMLElement>
-  extends Pick<
-    TextFieldProps<T>,
-    Exclude<keyof TextFieldProps<T>, 'children'>
-  > {
+interface TextInputProps extends LabelProps {
   label: string
   type?: string
   id?: string
   name: string
+  textarea?: boolean
 }
 
-export const TextInputField = <T extends HTMLElement>({
+export const TextInputField = ({
   type = 'text',
   id,
+  label,
   name,
+  textarea = false,
   ...props
-}: TextInputProps<T>) => {
+}: TextInputProps) => {
   const [field, meta] = useField(name)
 
   return (
-    <TextField<T>
-      {...props}
-      helperText={
-        meta.touched && meta.error ? (
-          <HelperText validation persistent>
-            {meta.error}
-          </HelperText>
-        ) : null
-      }
-    >
-      <Input id={id} type={type} name={name} {...field} />
-    </TextField>
+    <Label {...props} text={label}>
+      {textarea ? (
+        <Textarea id={id} name={name} {...field} />
+      ) : (
+        <Input id={id} type={type} name={name} {...field} />
+      )}
+      {meta.touched && meta.error ? (
+        <HelperText>{meta.error}</HelperText>
+      ) : null}
+    </Label>
   )
 }
 

@@ -11,6 +11,7 @@ import * as yup from 'yup'
 import { ReactComponent as Logo } from '../../assets/logo-white.svg'
 import { notificationState } from '../../notification'
 import CircularProgress from '../views/CircularProgress'
+import { HelperText, Input, Label } from '../views/Input'
 import { Body1, Headline1 } from '../views/Typography'
 import {
   ResetPassword,
@@ -139,8 +140,8 @@ const ResetPasswordPage: React.FC = () => {
             <Trans>Choose a new password for your account.</Trans>
           </Body1>
 
-          <label className="flex flex-col">
-            <span className="text-sm">
+          <Label
+            text={
               <Trans>
                 New password
                 <span
@@ -151,9 +152,9 @@ const ResetPasswordPage: React.FC = () => {
                   *
                 </span>
               </Trans>
-            </span>
-            <input
-              className="mt-2 rounded border py-2 px-4 focus:border-primary"
+            }
+          >
+            <Input
               placeholder={i18n._(t`New password`)}
               type="password"
               value={newPassword}
@@ -162,18 +163,14 @@ const ResetPasswordPage: React.FC = () => {
               onFocus={handlePasswordFocus}
             />
             {showPasswordError && !passwordValid && (
-              <span className="dib mt-1 text-error text-sm">
+              <HelperText variation="error">
                 <Trans>Your password must have a minimum length of 6</Trans>
-              </span>
+              </HelperText>
             )}
-          </label>
+          </Label>
 
-          <label className="flex flex-col mt-3">
-            <span className="text-sm">
-              <Trans>Confirm password</Trans>
-            </span>
-            <input
-              className="mt-2 rounded border py-2 px-4 focus:border-primary"
+          <Label text={<Trans>Confirm password</Trans>}>
+            <Input
               placeholder={i18n._(t`Confirm password`)}
               type="password"
               value={confirmPassword}
@@ -182,13 +179,13 @@ const ResetPasswordPage: React.FC = () => {
               onFocus={() => setShowConfirmPasswordError(false)}
             />
             {showConfirmPasswordError && confirmPassword !== newPassword && (
-              <span className="dib mt-1 text-error text-sm">
+              <HelperText variation="error">
                 <Trans>
                   The confirm password must be equal to the new password
                 </Trans>
-              </span>
+              </HelperText>
             )}
-          </label>
+          </Label>
 
           <button
             className={classnames(

@@ -120,7 +120,7 @@ const AddModelPage: React.FunctionComponent = () => {
                     <div className="py-2">
                       {values.templates && values.templates.length ? (
                         values.templates.map((_, index) => (
-                          <div className="mb-2 flex items-baseline" key={index}>
+                          <div className="mb-2 flex items-center" key={index}>
                             <div className="w-full">
                               <TextInputField
                                 className="w-full"
@@ -161,7 +161,7 @@ const AddModelPage: React.FunctionComponent = () => {
                     <div className="py-2">
                       {values.fields && values.fields.length ? (
                         values.fields.map((_, index) => (
-                          <div className="mb-2 flex items-baseline" key={index}>
+                          <div className="mb-2 flex items-center" key={index}>
                             <div className="w-full">
                               <TextInputField
                                 className="w-full"

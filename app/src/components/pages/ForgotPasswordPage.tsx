@@ -10,6 +10,7 @@ import * as yup from 'yup'
 import { ReactComponent as Logo } from '../../assets/logo-white.svg'
 import { notificationState } from '../../notification'
 import CircularProgress from '../views/CircularProgress'
+import { HelperText, Input, Label } from '../views/Input'
 import { Body1, Headline1 } from '../views/Typography'
 import {
   RequestPasswordReset,
@@ -102,8 +103,8 @@ const ForgotPasswordPage: React.FC = () => {
             </Trans>
           </Body1>
 
-          <label className="flex flex-col">
-            <span className="text-sm">
+          <Label
+            text={
               <Trans>
                 E-mail address
                 <span
@@ -114,9 +115,9 @@ const ForgotPasswordPage: React.FC = () => {
                   *
                 </span>
               </Trans>
-            </span>
-            <input
-              className="mt-2 rounded border py-2 px-4 focus:border-primary"
+            }
+          >
+            <Input
               placeholder={i18n._(t`Enter your e-mail address`)}
               type="text"
               value={email}
@@ -125,11 +126,11 @@ const ForgotPasswordPage: React.FC = () => {
               onFocus={handleEmailFocus}
             />
             {showEmailError && !emailValid && (
-              <span className="dib mt-1 text-error text-sm">
+              <HelperText variation="error">
                 <Trans>Invalid e-mail</Trans>
-              </span>
+              </HelperText>
             )}
-          </label>
+          </Label>
 
           <button
             className={classnames(
