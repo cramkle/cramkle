@@ -7,6 +7,7 @@
 # import Note from "types/Note.graphql"
 # import User, UserRoles from "types/User.graphql"
 # import ContentState from "types/ContentState.graphql"
+# import ResetPasswordInput, ResetPasswordPayload from "types/ResetPassword.graphql"
 
 scalar JSON
 scalar JSONObject
@@ -316,4 +317,16 @@ type Mutation {
     """
     timespan: Int!
   ): FlashCard! @authenticate
+
+  """
+  Request a user password reset given an email
+  """
+  requestPasswordReset(
+    input: RequestPasswordResetInput
+  ): RequestPasswordResetPayload!
+
+  """
+  Reset the user's password
+  """
+  resetPassword(input: ResetPasswordInput): ResetPasswordPayload!
 }
