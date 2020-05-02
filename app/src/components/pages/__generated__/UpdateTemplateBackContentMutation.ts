@@ -41,10 +41,8 @@ export interface UpdateTemplateBackContentMutation_updateTemplate_backSide_block
 export interface UpdateTemplateBackContentMutation_updateTemplate_backSide {
   __typename: 'ContentState'
   id: string
-  blocks:
-    | (UpdateTemplateBackContentMutation_updateTemplate_backSide_blocks | null)[]
-    | null
-  entityMap: any | null
+  blocks: UpdateTemplateBackContentMutation_updateTemplate_backSide_blocks[]
+  entityMap: any
 }
 
 export interface UpdateTemplateBackContentMutation_updateTemplate {

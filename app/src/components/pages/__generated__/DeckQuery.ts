@@ -41,8 +41,8 @@ export interface DeckQuery_deck_notes_values_data_blocks {
 export interface DeckQuery_deck_notes_values_data {
   __typename: 'ContentState'
   id: string
-  blocks: (DeckQuery_deck_notes_values_data_blocks | null)[] | null
-  entityMap: any | null
+  blocks: DeckQuery_deck_notes_values_data_blocks[]
+  entityMap: any
 }
 
 export interface DeckQuery_deck_notes_values_field {

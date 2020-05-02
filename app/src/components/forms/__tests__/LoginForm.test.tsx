@@ -2,6 +2,7 @@ import { setupI18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
 import { fireEvent, render as rtlRender, waitFor } from '@testing-library/react'
 import React from 'react'
+import { MemoryRouter } from 'react-router'
 
 import LoginForm from '../LoginForm'
 
@@ -11,9 +12,11 @@ const render = () => {
   i18n.activate('en')
 
   const utils = rtlRender(
-    <I18nProvider i18n={i18n}>
-      <LoginForm />
-    </I18nProvider>
+    <MemoryRouter>
+      <I18nProvider i18n={i18n}>
+        <LoginForm />
+      </I18nProvider>
+    </MemoryRouter>
   )
 
   return utils

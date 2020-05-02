@@ -3,6 +3,7 @@ import { useLingui } from '@lingui/react'
 import classNames from 'classnames'
 import { Formik } from 'formik'
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { object, string } from 'yup'
 
 import Button from '../views/Button'
@@ -86,8 +87,14 @@ const LoginForm: React.FunctionComponent = () => {
                 label={i18n._(t`Password`)}
               />
             </div>
-            <CardActions className="justify-end py-0 px-4">
-              <CardActionButtons className="w-full">
+            <CardActions className="px-4 flex flex-col items-start">
+              <Link
+                className="text-on-surface hover:underline"
+                to="/forgot-password"
+              >
+                Forgot your password?
+              </Link>
+              <CardActionButtons className="w-full mt-3">
                 <Button
                   className="w-full"
                   raised

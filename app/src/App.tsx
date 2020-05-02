@@ -10,10 +10,12 @@ import { useHints } from './components/HintsContext'
 import NoSSR from './components/NoSSR'
 import NotificationToasts from './components/NotificationToasts'
 import AboutPage from './components/pages/AboutPage'
+import ForgotPasswordPage from './components/pages/ForgotPasswordPage'
 import LandingPage from './components/pages/LandingPage'
 import LoginPage from './components/pages/LoginPage'
 import NotFoundPage from './components/pages/NotFoundPage'
 import RegisterPage from './components/pages/RegisterPage'
+import ResetPasswordPage from './components/pages/ResetPasswordPage'
 import { GuestRoute, UserRoute } from './components/routes/AuthRoute'
 import ShellRoute from './components/routes/ShellRoute'
 import { icons } from './utils/headLinks'
@@ -147,6 +149,12 @@ const App: React.FunctionComponent<{}> = () => {
           </GuestRoute>
           <GuestRoute path="/login" exact>
             <LoginPage />
+          </GuestRoute>
+          <GuestRoute path="/forgot-password" exact>
+            <ForgotPasswordPage />
+          </GuestRoute>
+          <GuestRoute path="/reset-password/:userId" exact>
+            <ResetPasswordPage />
           </GuestRoute>
           <Route path="/about" exact>
             <AboutPage />

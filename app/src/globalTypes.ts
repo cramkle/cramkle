@@ -31,7 +31,7 @@ export interface BlockInput {
 }
 
 export interface ContentStateInput {
-  blocks?: (BlockInput | null)[] | null
+  blocks: BlockInput[]
   entityMap?: any | null
 }
 

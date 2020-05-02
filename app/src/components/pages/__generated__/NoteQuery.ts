@@ -64,8 +64,8 @@ export interface NoteQuery_note_values_data_blocks {
 export interface NoteQuery_note_values_data {
   __typename: 'ContentState'
   id: string
-  blocks: (NoteQuery_note_values_data_blocks | null)[] | null
-  entityMap: any | null
+  blocks: NoteQuery_note_values_data_blocks[]
+  entityMap: any
 }
 
 export interface NoteQuery_note_values_field {
@@ -128,8 +128,8 @@ export interface NoteQuery_note_flashCards_template_frontSide_blocks {
 export interface NoteQuery_note_flashCards_template_frontSide {
   __typename: 'ContentState'
   id: string
-  blocks: (NoteQuery_note_flashCards_template_frontSide_blocks | null)[] | null
-  entityMap: any | null
+  blocks: NoteQuery_note_flashCards_template_frontSide_blocks[]
+  entityMap: any
 }
 
 export interface NoteQuery_note_flashCards_template_backSide_blocks_inlineStyleRanges {
@@ -164,8 +164,8 @@ export interface NoteQuery_note_flashCards_template_backSide_blocks {
 export interface NoteQuery_note_flashCards_template_backSide {
   __typename: 'ContentState'
   id: string
-  blocks: (NoteQuery_note_flashCards_template_backSide_blocks | null)[] | null
-  entityMap: any | null
+  blocks: NoteQuery_note_flashCards_template_backSide_blocks[]
+  entityMap: any
 }
 
 export interface NoteQuery_note_flashCards_template {
