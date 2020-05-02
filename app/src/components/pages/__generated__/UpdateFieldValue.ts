@@ -41,8 +41,8 @@ export interface UpdateFieldValue_updateFieldValue_data_blocks {
 export interface UpdateFieldValue_updateFieldValue_data {
   __typename: 'ContentState'
   id: string
-  blocks: (UpdateFieldValue_updateFieldValue_data_blocks | null)[] | null
-  entityMap: any | null
+  blocks: UpdateFieldValue_updateFieldValue_data_blocks[]
+  entityMap: any
 }
 
 export interface UpdateFieldValue_updateFieldValue {

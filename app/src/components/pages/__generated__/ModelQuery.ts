@@ -51,8 +51,8 @@ export interface ModelQuery_model_templates_frontSide_blocks {
 export interface ModelQuery_model_templates_frontSide {
   __typename: 'ContentState'
   id: string
-  blocks: (ModelQuery_model_templates_frontSide_blocks | null)[] | null
-  entityMap: any | null
+  blocks: ModelQuery_model_templates_frontSide_blocks[]
+  entityMap: any
 }
 
 export interface ModelQuery_model_templates_backSide_blocks_inlineStyleRanges {
@@ -87,8 +87,8 @@ export interface ModelQuery_model_templates_backSide_blocks {
 export interface ModelQuery_model_templates_backSide {
   __typename: 'ContentState'
   id: string
-  blocks: (ModelQuery_model_templates_backSide_blocks | null)[] | null
-  entityMap: any | null
+  blocks: ModelQuery_model_templates_backSide_blocks[]
+  entityMap: any
 }
 
 export interface ModelQuery_model_templates {
