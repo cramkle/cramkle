@@ -39,17 +39,21 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
 export interface LabelProps
   extends React.LabelHTMLAttributes<HTMLLabelElement> {
   text?: ReactNode
+  checkbox?: boolean
 }
 
 export const Label = forwardRef<HTMLLabelElement, LabelProps>(function Label(
-  { className, text, children, ...props },
+  { className, text, checkbox = false, children, ...props },
   ref
 ) {
   return (
     <label
       {...props}
       ref={ref}
-      className={classnames(className, 'flex flex-col')}
+      className={classnames(className, 'flex', {
+        'flex-col': !checkbox,
+        'flex-row-reverse items-center': checkbox,
+      })}
     >
       <span className="text-primary text-sm">{text}</span>
       {children}

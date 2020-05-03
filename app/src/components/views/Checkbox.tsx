@@ -1,190 +1,101 @@
 import {
-  MDCCheckboxAdapter,
-  MDCCheckboxFoundation,
-  cssClasses,
-} from '@material/checkbox'
-import { MDCRippleFoundation } from '@material/ripple'
-import classNames from 'classnames'
-import React, { useEffect, useImperativeHandle, useRef, useState } from 'react'
+  CustomCheckboxContainer,
+  CustomCheckboxContainerProps,
+  CustomCheckboxInput,
+} from '@reach/checkbox'
+import classnames from 'classnames'
+import React, { ReactNode, forwardRef } from 'react'
 
-import useClassList from '../../hooks/useClassList'
-import { useRipple } from './Ripple'
+import styles from './Checkbox.css'
+import { Label } from './Input'
 
-export interface CheckboxProps extends React.HTMLAttributes<HTMLDivElement> {
-  checked?: boolean
-  className?: string
-  disabled?: boolean
-  indeterminate?: boolean
+export type CheckboxProps = Omit<CustomCheckboxContainerProps, 'children'> & {
   name?: string
-  nativeControlId?: string
-  onChange?: (evt: React.ChangeEvent<HTMLInputElement>) => void
-  children?: React.ReactNode
-  value?: string
+  value?: string | number | string[]
+  children?: ReactNode
 }
 
-export interface CheckboxRef {
-  ripple: MDCRippleFoundation
-}
-
-const Checkbox: React.RefForwardingComponent<CheckboxRef, CheckboxProps> = (
-  {
-    checked,
-    className,
-    style = {},
-    disabled,
-    indeterminate,
-    name,
-    onChange,
-    value,
-    nativeControlId,
-    children,
-    ...otherProps
-  },
-  ref
-) => {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const inputRef = useRef<HTMLInputElement>(null)
-  const { classList, addClass, removeClass } = useClassList()
-  const foundationRef = useRef<MDCCheckboxFoundation>(null)
-  const [inputProps, setInputProps] = useState<
-    React.InputHTMLAttributes<HTMLInputElement>
-  >({})
-
-  const { rippleStyle, rippleClasses, rippleFoundation } = useRipple({
-    surfaceRef: containerRef,
-    activatorRef: inputRef,
-    disabled,
-    unbounded: true,
-  })
-
-  useImperativeHandle(ref, () => ({
-    ripple: rippleFoundation,
-  }))
-
-  useEffect(() => {
-    inputRef.current.indeterminate = indeterminate
-  }, [indeterminate])
-
-  const checkedRef = useRef(checked)
-
-  useEffect(() => {
-    checkedRef.current = checked
-  }, [checked])
-
-  const indeterminateRef = useRef(indeterminate)
-
-  useEffect(() => {
-    indeterminateRef.current = indeterminate
-  }, [indeterminate])
-
-  useEffect(() => {
-    const adapter: MDCCheckboxAdapter = {
-      addClass: (cls) => addClass(cls),
-      removeClass: (cls) => removeClass(cls),
-      forceLayout: () => null,
-      hasNativeControl: () => true,
-      isAttachedToDOM: () => true,
-      isChecked: () => checkedRef.current,
-      isIndeterminate: () => indeterminateRef.current,
-      setNativeControlAttr: (attr, value) => {
-        setInputProps((prevProps) => {
-          return {
-            ...prevProps,
-            [attr]: value,
-          }
-        })
-      },
-      removeNativeControlAttr: (attr) => {
-        setInputProps((prevProps) => {
-          const updatedProps = Object.assign({}, prevProps)
-
-          delete updatedProps[
-            attr as keyof React.HTMLAttributes<HTMLInputElement>
-          ]
-
-          return updatedProps
-        })
-      },
-      setNativeControlDisabled: (disabled) => {
-        setInputProps((prevProps) => {
-          const updatedProps = Object.assign({}, prevProps)
-
-          if (disabled) {
-            updatedProps.disabled = disabled
-          } else {
-            delete updatedProps.disabled
-          }
-
-          return updatedProps
-        })
-      },
-    }
-
-    foundationRef.current = new MDCCheckboxFoundation(adapter)
-    foundationRef.current.init()
-
-    return () => {
-      foundationRef.current.destroy()
-    }
-  }, [addClass, removeClass])
-
-  useEffect(() => {
-    foundationRef.current.setDisabled(disabled)
-  }, [disabled])
-
-  useEffect(() => {
-    foundationRef.current.handleChange()
-  }, [checked, indeterminate])
-
-  const handleAnimationEnd = () => {
-    foundationRef.current.handleAnimationEnd()
-  }
-
-  const classes = classNames(
-    className,
-    classList,
-    rippleClasses,
-    cssClasses.ROOT
-  )
-
-  return (
-    <div
-      className={classes}
-      onAnimationEnd={handleAnimationEnd}
-      ref={containerRef}
-      style={{
-        ...style,
-        ...rippleStyle,
-      }}
-      {...otherProps}
-    >
-      <input
-        {...inputProps}
-        type="checkbox"
-        className={cssClasses.NATIVE_CONTROL}
-        id={nativeControlId}
+export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
+  function Checkbox(
+    {
+      className,
+      children,
+      checked,
+      defaultChecked,
+      disabled,
+      onChange,
+      name,
+      value,
+      ...props
+    },
+    ref
+  ) {
+    let checkboxElement = (
+      <CustomCheckboxContainer
+        {...props}
+        className={classnames(
+          className,
+          styles.checkboxContainer,
+          'group w-auto h-auto flex items-center relative bg-surface p-3',
+          { 'mr-3': !!children }
+        )}
         checked={checked}
-        name={name}
+        defaultChecked={defaultChecked}
+        disabled={disabled}
         onChange={onChange}
-        value={value}
-        ref={inputRef}
-      />
-      <div className={cssClasses.BACKGROUND}>
-        <svg
-          className={cssClasses.CHECKMARK}
-          viewBox="0 0 24 24"
-          focusable="false"
+      >
+        <div
+          className={classnames(
+            styles.focusRing,
+            'z-0 hidden bg-secondary rounded-full w-full h-full absolute top-0 left-0 right-0'
+          )}
+        />
+        <CustomCheckboxInput
+          className="cursor-pointer"
+          name={name}
+          value={value}
+          ref={ref}
+        />
+        <div
+          className={classnames(
+            'w-5 h-5 border-2 rounded-sm z-10 pointer-events-none',
+            {
+              'bg-secondary text-on-primary border-secondary': checked,
+              'bg-transparent text-on-surface border-outline': !checked,
+            }
+          )}
+          aria-hidden
         >
-          <path
-            className={cssClasses.CHECKMARK_PATH}
-            fill="none"
-            d="M1.73,12.91 8.1,19.28 22.79,4.59"
-          />
-        </svg>
-        <div className={cssClasses.MIXEDMARK} />
-      </div>
-    </div>
-  )
-}
+          <svg viewBox="0 0 24 24">
+            {checked === true && (
+              <path
+                d="M1.73,12.91 8.1,19.28 22.79,4.59"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="3px"
+              />
+            )}
+            {checked === 'mixed' && (
+              <path
+                d="M1.73,12.91 22.79,12.91"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="3px"
+              />
+            )}
+          </svg>
+        </div>
+      </CustomCheckboxContainer>
+    )
 
-export default React.forwardRef(Checkbox)
+    if (children) {
+      checkboxElement = (
+        <Label text={children} checkbox>
+          {checkboxElement}
+        </Label>
+      )
+    }
+
+    return checkboxElement
+  }
+)

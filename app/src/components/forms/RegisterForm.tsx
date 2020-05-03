@@ -7,12 +7,12 @@ import { Formik } from 'formik'
 import gql from 'graphql-tag'
 import React from 'react'
 import { useHistory } from 'react-router'
+import { Link } from 'react-router-dom'
 import * as yup from 'yup'
 
 import { notificationState } from '../../notification/index'
 import Button from '../views/Button'
 import Card, { CardActionButtons, CardActions } from '../views/Card'
-import FormField from '../views/FormField'
 import { Headline5 } from '../views/Typography'
 import { CheckboxField, TextInputField } from './Fields'
 import styles from './RegisterForm.scss'
@@ -51,7 +51,7 @@ const RegisterForm: React.FunctionComponent<Props> = ({
         username: '',
         email: '',
         password: '',
-        consent: [],
+        consent: false,
       }}
       initialErrors={{
         username: i18n._(usernameRequired),
@@ -73,12 +73,8 @@ const RegisterForm: React.FunctionComponent<Props> = ({
         email: yup.string().email().required(i18n._(emailRequired)),
         password: yup.string().min(6).required(i18n._(passwordRequired)),
         consent: yup
-          .array(yup.string())
-          .test(
-            'consent',
-            i18n._(agreementRequired),
-            (value) => value.indexOf('on') !== -1
-          )
+          .bool()
+          .test('consent', i18n._(agreementRequired), (value) => value === true)
           .required(i18n._(agreementRequired)),
       })}
       onSubmit={(user) =>
@@ -124,24 +120,16 @@ const RegisterForm: React.FunctionComponent<Props> = ({
               type="password"
               label={i18n._(t`Password`)}
             />
-            <FormField
-              input={
-                <CheckboxField
-                  name="consent"
-                  value="on"
-                  nativeControlId="consent-agreement"
-                />
-              }
-              inputId="consent-agreement"
-              label={
+            <div className="flex">
+              <CheckboxField name="consent">
                 <Trans>
                   I agree to the{' '}
-                  <a href="/terms" target="_blank">
+                  <Link className="hover:underline" to="/terms" target="_blank">
                     Terms & Conditions
-                  </a>
+                  </Link>
                 </Trans>
-              }
-            />
+              </CheckboxField>
+            </div>
             <CardActions className="p-0 justify-end">
               <CardActionButtons className="w-full">
                 <Button
