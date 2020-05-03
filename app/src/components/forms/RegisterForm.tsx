@@ -72,7 +72,10 @@ const RegisterForm: React.FunctionComponent<Props> = ({
           .required(i18n._(usernameRequired)),
         email: yup.string().email().required(i18n._(emailRequired)),
         password: yup.string().min(6).required(i18n._(passwordRequired)),
-        consent: yup.bool().required(i18n._(agreementRequired)),
+        consent: yup
+          .bool()
+          .test('consent', i18n._(agreementRequired), (value) => value === true)
+          .required(i18n._(agreementRequired)),
       })}
       onSubmit={(user) =>
         register({ variables: user }).then(() => {
