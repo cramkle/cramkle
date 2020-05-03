@@ -1,0 +1,9 @@
+.checkboxContainer {
+  box-shadow: none !important;
+}
+
+.checkboxContainer:hover .focusRing,
+.checkboxContainer:focus-within .focusRing {
+  display: block;
+  opacity: .12;
+}

@@ -1,7 +1,7 @@
 import { useField } from 'formik'
-import React from 'react'
+import React, { useCallback } from 'react'
 
-import Checkbox, { CheckboxProps, CheckboxRef } from '../views/Checkbox'
+import { Checkbox, CheckboxProps } from '../views/Checkbox'
 import { HelperText, Input, Label, LabelProps, Textarea } from '../views/Input'
 
 interface TextInputProps extends LabelProps {
@@ -30,33 +30,32 @@ export const TextInputField = ({
         <Input id={id} type={type} name={name} {...field} />
       )}
       {meta.touched && meta.error ? (
-        <HelperText>{meta.error}</HelperText>
+        <HelperText variation="error">{meta.error}</HelperText>
       ) : null}
     </Label>
   )
 }
 
-type CheckboxFieldProps = { value?: string } & Pick<
-  CheckboxProps,
-  | 'name'
-  | 'children'
-  | 'onChange'
-  | 'checked'
-  | 'indeterminate'
-  | 'nativeControlId'
->
+export const CheckboxField = React.forwardRef<HTMLInputElement, CheckboxProps>(
+  function CheckboxField(props, ref) {
+    const [field] = useField({
+      name: props.name,
+      type: 'checkbox',
+      checked: props.checked === 'mixed' ? false : props.checked,
+      value: props.value,
+    })
 
-const CheckboxFieldRender: React.RefForwardingComponent<
-  CheckboxRef,
-  CheckboxFieldProps
-> = (props, ref) => {
-  const [field] = useField({
-    name: props.name,
-    type: 'checkbox',
-    value: props.value,
-  })
+    const handleChange = useCallback<
+      React.ChangeEventHandler<HTMLInputElement>
+    >(
+      (evt) => {
+        evt.persist()
 
-  return <Checkbox {...field} {...props} ref={ref} />
-}
+        field.onChange(props.name)(evt)
+      },
+      [props.name, field]
+    )
 
-export const CheckboxField = React.forwardRef(CheckboxFieldRender)
+    return <Checkbox {...props} {...field} onChange={handleChange} ref={ref} />
+  }
+)

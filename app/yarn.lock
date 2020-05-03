@@ -1538,20 +1538,6 @@
     "@material/theme" "^1.1.0"
     tslib "^1.9.3"
 
-"@material/checkbox@^3.1.0":
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/@material/checkbox/-/checkbox-3.2.0.tgz#168d4e16e160bec17948d06416935250fa10fac5"
-  integrity sha512-4XgQ4sM40j60n4RN43BxXtkFVvyFQgo/vc0W5hf9Qz2uwEah46Shg1nHMYZNvcNW+FXRm96gH8zz3qFgEf1ytA==
-  dependencies:
-    "@material/animation" "^3.1.0"
-    "@material/base" "^3.1.0"
-    "@material/dom" "^3.1.0"
-    "@material/feature-targeting" "^3.1.0"
-    "@material/ripple" "^3.2.0"
-    "@material/rtl" "^3.2.0"
-    "@material/theme" "^3.1.0"
-    tslib "^1.9.3"
-
 "@material/dom@^1.0.0", "@material/dom@^1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@material/dom/-/dom-1.1.0.tgz#3bd3d1a3415b4181118fecb182d93beda56a6f8c"
@@ -1635,19 +1621,6 @@
     "@material/selection-control" "^0.41.0"
     "@material/theme" "^0.41.0"
     "@material/typography" "^0.41.0"
-
-"@material/form-field@^3.1.0":
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/@material/form-field/-/form-field-3.2.0.tgz#be35298526d7436922636ec8b163733814cfafa7"
-  integrity sha512-4XjZGy1S966IOUxFaRAKcZOvr5qqvx8r1RMvfCsEzTB45y9Lo2puilNyCtatVAULRxCwszZb7Kbd++cpmMpzZA==
-  dependencies:
-    "@material/base" "^3.1.0"
-    "@material/feature-targeting" "^3.1.0"
-    "@material/ripple" "^3.2.0"
-    "@material/rtl" "^3.2.0"
-    "@material/theme" "^3.1.0"
-    "@material/typography" "^3.1.0"
-    tslib "^1.9.3"
 
 "@material/icon-button@^3.1.0", "@material/icon-button@^3.2.0":
   version "3.2.0"
@@ -2149,6 +2122,17 @@
     "@reach/utils" "^0.10.1"
     tslib "^1.11.1"
 
+"@reach/checkbox@^0.10.1":
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/@reach/checkbox/-/checkbox-0.10.1.tgz#3ee4e9fd9931d958f86d939e9d3118a2804307ad"
+  integrity sha512-bOchfdSsscQR9iwc9s944YqtMGvdbvvp3ezRNYOptyLK+jdjAy+R77tHHH+X0kanF1/65dTFekyameoTUmuFbQ==
+  dependencies:
+    "@reach/auto-id" "^0.10.1"
+    "@reach/machine" "^0.10.1"
+    "@reach/utils" "^0.10.1"
+    "@xstate/fsm" "^1.3.0"
+    tslib "^1.11.1"
+
 "@reach/descendants@^0.10.0":
   version "0.10.0"
   resolved "https://registry.yarnpkg.com/@reach/descendants/-/descendants-0.10.0.tgz#43eeba4aea10ffc62fe5144248c1455ab317964b"
@@ -2197,6 +2181,15 @@
     "@reach/utils" "^0.10.0"
     "@xstate/fsm" "^1.3.0"
     tslib "^1.10.0"
+
+"@reach/machine@^0.10.1":
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/@reach/machine/-/machine-0.10.1.tgz#03d229809aff8b642f0352ed3d8e39a50d88f8ee"
+  integrity sha512-+g+dhmP+kB4BQjRPSseW/bD3vaftwzE7bXr6+KgO3Y+NOUGFsLwTFFNvlQ/0oUNIsw1IfYjRSnYpQWdQnAaaUg==
+  dependencies:
+    "@reach/utils" "^0.10.1"
+    "@xstate/fsm" "^1.4.0"
+    tslib "^1.11.1"
 
 "@reach/menu-button@^0.10.0":
   version "0.10.0"
@@ -2914,7 +2907,7 @@
   dependencies:
     tslib "^1.9.3"
 
-"@xstate/fsm@^1.3.0":
+"@xstate/fsm@^1.3.0", "@xstate/fsm@^1.4.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@xstate/fsm/-/fsm-1.4.0.tgz#6fd082336fde4d026e9e448576189ee5265fa51a"
   integrity sha512-uTHDeu2xI5E1IFwf37JFQM31RrH7mY7877RqPBS4ZqSNUwoLDuct8AhBWaXGnVizBAYyimVwgCyGa9z/NiRhXA==
