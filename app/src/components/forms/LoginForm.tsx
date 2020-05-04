@@ -89,7 +89,7 @@ const LoginForm: React.FunctionComponent = () => {
             </div>
             <CardActions className="px-4 flex flex-col items-start">
               <Link
-                className="text-on-surface hover:underline"
+                className="text-action-primary hover:underline"
                 to="/forgot-password"
               >
                 <Trans>Forgot your password?</Trans>

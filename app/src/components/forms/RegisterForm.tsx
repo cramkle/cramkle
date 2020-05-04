@@ -130,7 +130,11 @@ const RegisterForm: React.FunctionComponent<Props> = ({
               <CheckboxField name="consent">
                 <Trans>
                   I agree to the{' '}
-                  <Link className="hover:underline" to="/terms" target="_blank">
+                  <Link
+                    className="text-action-primary hover:underline"
+                    to="/terms"
+                    target="_blank"
+                  >
                     Terms & Conditions
                   </Link>
                 </Trans>

@@ -6,7 +6,6 @@ import { useControlledTabIndex } from 'react-tab-controller'
 
 import Icon from '../views/Icon'
 import { IconTypes } from '../views/IconTypes'
-import styles from './StyleButton.css'
 
 export interface Style {
   label: MessageDescriptor | string
@@ -35,11 +34,9 @@ const StyleButton: React.FunctionComponent<Props> = ({
   }
 
   const className = classNames(
-    styles.button,
-    'mdc-typography mdc-ripple-surface text-primary bg-surface relative cursor-pointer mr-2 border-0 border-none rounded-sm flex items-center',
+    'mdc-ripple-surface text-primary bg-surface relative cursor-pointer mr-2 border-0 border-none rounded-sm flex items-center text-center outline-none p-1',
     {
-      'mdc-ripple-surface--primary': active,
-      [styles.buttonSelected]: active,
+      'mdc-ripple-surface--primary text-action-primary': active,
     }
   )
 
@@ -56,7 +53,11 @@ const StyleButton: React.FunctionComponent<Props> = ({
       onKeyDown={onKeyDown}
       aria-label={translatedLabel}
     >
-      {icon ? <Icon className={styles.icon} icon={icon} /> : translatedLabel}
+      {icon ? (
+        <Icon className="align-middle text-xl" icon={icon} />
+      ) : (
+        translatedLabel
+      )}
     </button>
   )
 }
