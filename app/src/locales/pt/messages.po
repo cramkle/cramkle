@@ -21,7 +21,7 @@ msgstr "Uma nova atualização está disponível!"
 msgid "About"
 msgstr "Sobre"
 
-#: src/components/forms/RegisterForm.tsx:60
+#: src/components/forms/RegisterForm.tsx:66
 msgid "Account created successfully"
 msgstr "Conta criada com sucesso"
 
@@ -58,15 +58,15 @@ msgstr "Adicionar template"
 msgid "Agreement is required"
 msgstr "Concordância é obrigatória"
 
-#: src/components/editor/BlockStyleControls.tsx:28
+#: src/components/editor/BlockStyleControls.tsx:29
 msgid "Align center"
 msgstr "Alinhar ao centro"
 
-#: src/components/editor/BlockStyleControls.tsx:23
+#: src/components/editor/BlockStyleControls.tsx:24
 msgid "Align left"
 msgstr "Alinhar à esquerda"
 
-#: src/components/editor/BlockStyleControls.tsx:33
+#: src/components/editor/BlockStyleControls.tsx:34
 msgid "Align right"
 msgstr "Alinhar à direita"
 
@@ -111,7 +111,7 @@ msgstr "Verso"
 msgid "Back side template is empty"
 msgstr "Verso do template está vazio"
 
-#: src/components/editor/BlockStyleControls.tsx:13
+#: src/components/editor/BlockStyleControls.tsx:14
 msgid "Blockquote"
 msgstr "Citação"
 
@@ -126,17 +126,34 @@ msgstr "Negrito"
 msgid "Cancel"
 msgstr "Cancelar"
 
+#: src/components/pages/ForgotPasswordPage.tsx:87
+msgid "Check your inbox!"
+msgstr "Verifique sua caixa de entrada!"
+
+#: src/components/pages/ResetPasswordPage.tsx:113
+msgid "Choose a new password for your account."
+msgstr "Escolha uma nova senha para sua conta."
+
 #: src/components/SearchBar.tsx:35
 msgid "Clear search"
 msgstr "Limpar busca"
 
-#: src/components/editor/BlockStyleControls.tsx:16
+#: src/components/editor/BlockStyleControls.tsx:17
 msgid "Code Block"
 msgstr "Bloco de código"
 
 #: src/components/Footer.tsx:44
 msgid "Company"
 msgstr "Empresa"
+
+#: src/components/pages/ResetPasswordPage.tsx:130
+#: src/components/pages/ResetPasswordPage.tsx:131
+msgid "Confirm password"
+msgstr "Confirmação de senha"
+
+#: src/components/pages/ResetPasswordPage.tsx:133
+msgid "Confirm password must be equal to the new password"
+msgstr "Confirmação de senha precisa ser igual à nova senha"
 
 #: src/components/pages/StudyPage.tsx:180
 msgid "Congratulations, you have finished studying this deck for now."
@@ -211,7 +228,7 @@ msgstr "Descrição"
 #: src/components/DeleteDeckButton.tsx:52
 #: src/components/DeleteModelButton.tsx:56
 #: src/components/forms/AddDeckForm.tsx:74
-#: src/components/forms/RegisterForm.tsx:61
+#: src/components/forms/RegisterForm.tsx:67
 msgid "Dismiss"
 msgstr "Dispensar"
 
@@ -223,14 +240,6 @@ msgstr "Você quer começar uma sessão de estudos para o deck {0}?"
 msgid "Don't have an account? <0>Sign Up</0>"
 msgstr "Não possui uma conta? <0>Cadastre-se</0>"
 
-#: src/components/forms/RegisterForm.tsx:69
-msgid "E-mail"
-msgstr "E-mail"
-
-#: src/components/forms/RegisterForm.tsx:29
-msgid "E-mail is required"
-msgstr "E-mail é obrigatório"
-
 #: src/components/pages/StudyPage.tsx:215
 msgid "Easy"
 msgstr "Fácil"
@@ -238,6 +247,26 @@ msgstr "Fácil"
 #: src/components/NotesTable.tsx:58
 msgid "Edit"
 msgstr "Editar"
+
+#: src/components/forms/RegisterForm.tsx:75
+msgid "Email"
+msgstr "Email"
+
+#: src/components/pages/ForgotPasswordPage.tsx:117
+msgid "Email address"
+msgstr "Endereço de email"
+
+#: src/components/forms/RegisterForm.tsx:29
+msgid "Email is required"
+msgstr "Email é obrigatório"
+
+#: src/components/forms/RegisterForm.tsx:54
+msgid "Email must be a valid email"
+msgstr "Email precisa ser um email válido"
+
+#: src/components/pages/ForgotPasswordPage.tsx:54
+msgid "Email sent!"
+msgstr "Email enviado!"
 
 #: src/components/pages/StudyPage.tsx:118
 msgid "End"
@@ -250,6 +279,14 @@ msgstr "Encerrar sessão de estudos"
 #: src/components/GeneralSettings.tsx:10
 msgid "English"
 msgstr "Inglês"
+
+#: src/components/pages/ForgotPasswordPage.tsx:110
+msgid "Enter the email associated with your account and we will send a link to reset your password"
+msgstr "Insira o email associado com a sua conta que iremos enviar um link para resetar sua senha"
+
+#: src/components/pages/ForgotPasswordPage.tsx:124
+msgid "Enter your email address"
+msgstr "Insira o seu endereço de email"
 
 #: src/components/pages/AddModelPage.tsx:120
 msgid "Field name"
@@ -274,6 +311,18 @@ msgstr "Campos"
 msgid "Flashcards"
 msgstr "Flashcards"
 
+#: src/components/pages/ForgotPasswordPage.tsx:140
+msgid "Forgot password"
+msgstr "Esqueceu a senha"
+
+#: src/components/pages/ForgotPasswordPage.tsx:106
+msgid "Forgot password?"
+msgstr "Esqueceu a senha?"
+
+#: src/components/forms/LoginForm.tsx:70
+msgid "Forgot your password?"
+msgstr "Esqueceu sua senha?"
+
 #: src/components/FlashCardRenderer.tsx:64
 msgid "Front side"
 msgstr "Frente"
@@ -291,31 +340,35 @@ msgstr "Voltar"
 msgid "Go to Home"
 msgstr "Voltar para a Página Inicial"
 
+#: src/components/pages/ForgotPasswordPage.tsx:99
+msgid "Go to login"
+msgstr "Voltar para login"
+
 #: src/components/pages/StudyPage.tsx:212
 msgid "Good"
 msgstr "Bom"
 
-#: src/components/editor/BlockStyleControls.tsx:7
+#: src/components/editor/BlockStyleControls.tsx:8
 msgid "H1"
 msgstr "H1"
 
-#: src/components/editor/BlockStyleControls.tsx:8
+#: src/components/editor/BlockStyleControls.tsx:9
 msgid "H2"
 msgstr "H2"
 
-#: src/components/editor/BlockStyleControls.tsx:9
+#: src/components/editor/BlockStyleControls.tsx:10
 msgid "H3"
 msgstr "H3"
 
-#: src/components/editor/BlockStyleControls.tsx:10
+#: src/components/editor/BlockStyleControls.tsx:11
 msgid "H4"
 msgstr "H4"
 
-#: src/components/editor/BlockStyleControls.tsx:11
+#: src/components/editor/BlockStyleControls.tsx:12
 msgid "H5"
 msgstr "H5"
 
-#: src/components/editor/BlockStyleControls.tsx:12
+#: src/components/editor/BlockStyleControls.tsx:13
 msgid "H6"
 msgstr "H6"
 
@@ -328,15 +381,19 @@ msgstr "Difícil"
 msgid "Home"
 msgstr "Página Inicial"
 
-#: src/components/forms/RegisterForm.tsx:71
+#: src/components/forms/RegisterForm.tsx:79
 msgid "I agree to the <0>Terms & Conditions</0>"
 msgstr "Eu concordo com os <0>Termos e Condições</0>"
 
-#: src/components/forms/LoginForm.tsx:33
+#: src/components/pages/ForgotPasswordPage.tsx:126
+msgid "Invalid email"
+msgstr "Email inválido"
+
+#: src/components/forms/LoginForm.tsx:34
 msgid "Invalid username"
 msgstr "Nome de usuário inválido"
 
-#: src/components/forms/LoginForm.tsx:53
+#: src/components/forms/LoginForm.tsx:54
 msgid "Invalid username and/or password"
 msgstr "Nome de usuário e/ou senha inválidos"
 
@@ -352,7 +409,7 @@ msgstr "Idioma"
 msgid "Learning"
 msgstr "Aprendendo"
 
-#: src/components/forms/LoginForm.tsx:61
+#: src/components/forms/LoginForm.tsx:62
 #: src/components/pages/LandingPage.tsx:28
 #: src/components/pages/LoginPage.tsx:12
 msgid "Login"
@@ -410,6 +467,11 @@ msgstr "Nome é obrigatório"
 msgid "New"
 msgstr "Novo"
 
+#: src/components/pages/ResetPasswordPage.tsx:117
+#: src/components/pages/ResetPasswordPage.tsx:124
+msgid "New password"
+msgstr "Nova senha"
+
 #: src/components/pages/AddModelPage.tsx:127
 msgid "No fields added"
 msgstr "Nenhum campo adicionado"
@@ -434,7 +496,7 @@ msgstr "Detalhes da nota"
 msgid "Notes"
 msgstr "Notas"
 
-#: src/components/editor/BlockStyleControls.tsx:15
+#: src/components/editor/BlockStyleControls.tsx:16
 msgid "OL"
 msgstr "Lista numerada"
 
@@ -442,15 +504,24 @@ msgstr "Lista numerada"
 msgid "Optimize your knowledge retention with this effective study method."
 msgstr "Otimize a sua retenção de conhecimento com esse método efetivo de estudo."
 
-#: src/components/forms/LoginForm.tsx:65
-#: src/components/forms/RegisterForm.tsx:70
+#: src/components/forms/LoginForm.tsx:66
+#: src/components/forms/RegisterForm.tsx:76
 msgid "Password"
 msgstr "Senha"
 
-#: src/components/forms/LoginForm.tsx:22
+#: src/components/pages/ResetPasswordPage.tsx:73
+msgid "Password changed successfully"
+msgstr "Senha alterada com sucesso"
+
+#: src/components/forms/LoginForm.tsx:23
 #: src/components/forms/RegisterForm.tsx:30
 msgid "Password is required"
 msgstr "Senha é obrigatória"
+
+#: src/components/forms/RegisterForm.tsx:58
+#: src/components/pages/ResetPasswordPage.tsx:126
+msgid "Password must be at least 6 characters"
+msgstr "Senha precisa ter pelo menos 6 caracteres"
 
 #: src/components/ErrorFallback.tsx:11
 msgid "Please, try reloading the page"
@@ -478,7 +549,7 @@ msgid "Refresh"
 msgstr "Atualizar"
 
 #: src/components/forms/RegisterForm.tsx:32
-#: src/components/forms/RegisterForm.tsx:80
+#: src/components/forms/RegisterForm.tsx:90
 #: src/components/pages/RegisterPage.tsx:12
 msgid "Register"
 msgstr "Cadastrar"
@@ -495,6 +566,23 @@ msgstr "Remover template"
 msgid "Repeat"
 msgstr "Repetir"
 
+#: src/components/pages/ForgotPasswordPage.tsx:134
+msgid "Request Password Reset"
+msgstr "Solicitar Alteração de Senha"
+
+#: src/components/pages/ResetPasswordPage.tsx:143
+msgid "Reset Password"
+msgstr "Resetar Senha"
+
+#: src/components/pages/ResetPasswordPage.tsx:101
+#: src/components/pages/ResetPasswordPage.tsx:109
+msgid "Reset password"
+msgstr "Resetar Senha"
+
+#: src/components/pages/ResetPasswordPage.tsx:79
+msgid "Reset password token is expired"
+msgstr "O token para resetar a senha expirou"
+
 #: src/components/FlashCardStatus.tsx:9
 msgid "Review"
 msgstr "Revisão"
@@ -502,10 +590,6 @@ msgstr "Revisão"
 #: src/components/GeneralSettings.tsx:33
 msgid "Save"
 msgstr "Salvar"
-
-#: src/components/SaveTemplateButton.tsx:29
-#~ msgid "Save Template"
-#~ msgstr "Salvar Template"
 
 #: src/components/SearchBar.tsx:34
 #: src/components/SearchBar.tsx:38
@@ -606,7 +690,7 @@ msgstr "Este modelo ainda não possui nenhum campo."
 msgid "Title"
 msgstr "Título"
 
-#: src/components/editor/BlockStyleControls.tsx:14
+#: src/components/editor/BlockStyleControls.tsx:15
 msgid "UL"
 msgstr "Lista de marcadores"
 
@@ -614,15 +698,27 @@ msgstr "Lista de marcadores"
 msgid "Underline"
 msgstr "Sublinha"
 
-#: src/components/forms/LoginForm.tsx:64
-#: src/components/forms/RegisterForm.tsx:68
+#: src/components/pages/ForgotPasswordPage.tsx:59
+msgid "User not found"
+msgstr "Usuário não encontrado"
+
+#: src/components/forms/LoginForm.tsx:65
+#: src/components/forms/RegisterForm.tsx:74
 msgid "Username"
 msgstr "Nome de usuário"
 
-#: src/components/forms/LoginForm.tsx:21
+#: src/components/forms/LoginForm.tsx:22
 #: src/components/forms/RegisterForm.tsx:28
 msgid "Username is required"
 msgstr "Nome de usuário é obrigatório"
+
+#: src/components/forms/RegisterForm.tsx:48
+msgid "Username must be at least 4 characters"
+msgstr "Nome de usuário precisa ter pelo menos 4 caracteres"
+
+#: src/components/forms/RegisterForm.tsx:49
+msgid "Username must be at most 20 characters"
+msgstr "Nome de usuário precisa ter no máximo 20 caracteres"
 
 #: src/components/forms/RegisterForm.tsx:50
 msgid "Username must consist only of alphanumeric characters and underscores"
@@ -636,6 +732,10 @@ msgstr "Ver"
 #: src/components/pages/NotFoundPage.tsx:8
 msgid "We couldn't find the page you requested"
 msgstr "Não conseguimos encontrar a página requisitada"
+
+#: src/components/pages/ForgotPasswordPage.tsx:92
+msgid "We have sent you an email with instructions to help you reset your password. Remember to also check the spam folder."
+msgstr "Mandamos um email para você com instruções que vão te ajudar a resetar sua senha. Lembre-se de também checar a pasta de spam."
 
 #: src/components/pages/AddNotePage.tsx:100
 msgid "You haven't created any models yet."
@@ -653,7 +753,7 @@ msgstr "Você ainda não criou nenhum template neste modelo."
 msgid "You've finished studying your decks for now."
 msgstr "Você terminou os estudos desse deck por enquanto."
 
-#: src/components/forms/LoginForm.tsx:70
+#: src/components/forms/LoginForm.tsx:74
 msgid "login.button"
 msgstr "Entrar"
 
@@ -677,10 +777,6 @@ msgstr "{0, plural, one {Ele contém um flashcard} other {Ele contém # flashcar
 #: src/components/DeleteModelButton.tsx:81
 msgid "{0, plural, one {There's # note} other {There're # notes}}"
 msgstr "{0, plural, one {Existe # nota} other {Existem # notas}}"
-
-#: src/components/pages/NotePage.tsx:136
-msgid "{0} field"
-msgstr "Campo {0}"
 
 #: src/components/pages/ModelPage.tsx:179
 msgid "{totalFlashCards, plural, one {# flashcard} other {# flashcards}}"

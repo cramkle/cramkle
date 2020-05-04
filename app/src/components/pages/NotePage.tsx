@@ -163,7 +163,7 @@ const FieldValueDetail: React.FC<FieldValueDetailProps> = ({
   return (
     <>
       <t.Body1 className="h-8 flex items-center">
-        <Trans>{fieldValue.field.name} field</Trans>{' '}
+        {fieldValue.field.name}{' '}
         {loading && <CircularProgress className="ml-2" size={16} />}
       </t.Body1>
       <FieldValueEditor
