@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Implementation for study section with all Decks with pending flashcards.
 - Study page.
 - Text alignment controls in editor.
+- Forgot and reset password pages.
 
 ### Changed
 - Update logo icon for when the user is offline.
@@ -26,6 +27,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Top bar position on mobile view.
 - Editor losing focus when clicking on any style button.
 - Add deck form creating duplicate decks.
+- Translated some error messages and fix some translations.
 
 ### Removed
 - Search bar from top bar.

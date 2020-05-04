@@ -19,7 +19,7 @@
     "download-schema": "apollo service:download --endpoint=http://localhost:5000/graphql -k",
     "gen-types": "apollo client:codegen __generated__ --target=typescript --localSchemaFile=schema.json --globalTypesFile=src/globalTypes.ts",
     "add-locale": "lingui add-locale",
-    "extract": "lingui extract",
+    "extract": "lingui extract --clean",
     "compile": "lingui compile --typescript"
   },
   "dependencies": {

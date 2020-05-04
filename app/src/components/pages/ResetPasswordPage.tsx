@@ -142,8 +142,8 @@ const ResetPasswordPage: React.FC = () => {
 
           <Label
             text={
-              <Trans>
-                New password
+              <>
+                <Trans>New password</Trans>
                 <span
                   className={classnames({
                     'text-error': showPasswordError && !passwordValid,
@@ -151,7 +151,7 @@ const ResetPasswordPage: React.FC = () => {
                 >
                   *
                 </span>
-              </Trans>
+              </>
             }
           >
             <Input
@@ -164,7 +164,7 @@ const ResetPasswordPage: React.FC = () => {
             />
             {showPasswordError && !passwordValid && (
               <HelperText variation="error">
-                <Trans>Your password must have a minimum length of 6</Trans>
+                <Trans>Password must be at least 6 characters</Trans>
               </HelperText>
             )}
           </Label>
@@ -181,7 +181,7 @@ const ResetPasswordPage: React.FC = () => {
             {showConfirmPasswordError && confirmPassword !== newPassword && (
               <HelperText variation="error">
                 <Trans>
-                  The confirm password must be equal to the new password
+                  Confirm password must be equal to the new password
                 </Trans>
               </HelperText>
             )}

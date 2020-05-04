@@ -35,7 +35,7 @@ const LoginForm: React.FunctionComponent = () => {
       }}
       validationSchema={object().shape({
         username: string()
-          .matches(/^[a-zA-Z0-9_]+$/, i18n._(t`Invalid username`))
+          .matches(/^[\w\d_]+$/, i18n._(t`Invalid username`))
           .required(i18n._(usernameRequired)),
         password: string().required(i18n._(passwordRequired)),
       })}
@@ -92,7 +92,7 @@ const LoginForm: React.FunctionComponent = () => {
                 className="text-on-surface hover:underline"
                 to="/forgot-password"
               >
-                Forgot your password?
+                <Trans>Forgot your password?</Trans>
               </Link>
               <CardActionButtons className="w-full mt-3">
                 <Button

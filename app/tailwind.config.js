@@ -23,6 +23,8 @@ module.exports = {
       disabled: 'var(--color-text-disabled)',
       hint: 'var(--color-text-hint)',
       icon: 'var(--color-text-icon)',
+      'action-primary': 'var(--color-primary)',
+      'action-secondary': 'var(--color-secondary)',
       error: 'var(--color-error)',
       emphasis: 'var(--color-emphasis)',
       success: 'var(--color-success)',

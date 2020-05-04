@@ -34,7 +34,7 @@ const REGISTER_MUTATION = gql`
 `
 
 const usernameRequired = t`Username is required`
-const emailRequired = t`E-mail is required`
+const emailRequired = t`Email is required`
 const passwordRequired = t`Password is required`
 const agreementRequired = t`Agreement is required`
 
@@ -61,17 +61,23 @@ const RegisterForm: React.FunctionComponent<Props> = ({
       validationSchema={yup.object().shape({
         username: yup
           .string()
-          .min(4)
-          .max(20)
+          .min(4, i18n._(t`Username must be at least 4 characters`))
+          .max(20, i18n._(t`Username must be at most 20 characters`))
           .matches(
-            /^[\w_]+$/,
+            /^[\w\d_]+$/,
             i18n._(
               t`Username must consist only of alphanumeric characters and underscores`
             )
           )
           .required(i18n._(usernameRequired)),
-        email: yup.string().email().required(i18n._(emailRequired)),
-        password: yup.string().min(6).required(i18n._(passwordRequired)),
+        email: yup
+          .string()
+          .email(i18n._(t`Email must be a valid email`))
+          .required(i18n._(emailRequired)),
+        password: yup
+          .string()
+          .min(6, i18n._(t`Password must be at least 6 characters`))
+          .required(i18n._(passwordRequired)),
         consent: yup
           .bool()
           .test('consent', i18n._(agreementRequired), (value) => value === true)
@@ -111,7 +117,7 @@ const RegisterForm: React.FunctionComponent<Props> = ({
               className="my-2"
               id="email"
               name="email"
-              label={i18n._(t`E-mail`)}
+              label={i18n._(t`Email`)}
             />
             <TextInputField
               className="my-2"
