@@ -3,6 +3,7 @@ import {
   Editor,
   EditorProps,
   EditorState,
+  RichUtils,
   getDefaultKeyBinding,
 } from 'draft-js'
 import * as KeyCode from 'keycode-js'
@@ -213,7 +214,10 @@ const TagEditor: React.FunctionComponent<Props> = ({
     return getDefaultKeyBinding(e)
   }
 
-  const handleKeyCommand = (command: string): DraftHandleValue => {
+  const handleKeyCommand = (
+    command: string,
+    editorState: EditorState
+  ): DraftHandleValue => {
     switch (command) {
       case 'handle-autocomplete':
         if (highlightedTag) {
@@ -232,8 +236,16 @@ const TagEditor: React.FunctionComponent<Props> = ({
       case 'move-selection-down':
         moveSelectionDown()
         return 'handled'
-      default:
+      default: {
+        const updatedState = RichUtils.handleKeyCommand(editorState, command)
+
+        if (updatedState) {
+          onChange(updatedState)
+          return 'handled'
+        }
+
         return 'not-handled'
+      }
     }
   }
 
