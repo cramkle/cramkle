@@ -1,5 +1,4 @@
 import { ApolloError } from 'apollo-server'
-import { startOfToday } from 'date-fns'
 import { IResolverObject } from 'graphql-tools'
 
 import { DeckModel, NoteModel, RevisionLogModel } from '../mongo'
@@ -74,8 +73,6 @@ export const mutations: IResolverObject = {
       { $set: { 'flashCards.$': flashCard } }
     )
 
-    const date = startOfToday()
-
     await RevisionLogModel.create({
       interval: flashCard.interval,
       lastInterval,
@@ -83,10 +80,11 @@ export const mutations: IResolverObject = {
       answerQuality: answerToQualityValue(args.answer),
       easeFactor: flashCard.easeFactor,
       timespan,
-      date,
+      date: new Date(),
       ownerId: ctx.user!._id,
       noteId: note._id,
       flashCardId: flashCard._id,
+      deckId: note.deckId,
     })
 
     return flashCard
