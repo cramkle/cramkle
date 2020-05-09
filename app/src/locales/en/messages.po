@@ -126,6 +126,11 @@ msgstr "Bold"
 msgid "Cancel"
 msgstr "Cancel"
 
+#: src/components/pages/ModelPage.tsx:153
+#: src/components/pages/NotePage.tsx:170
+msgid "Changes saved successfully"
+msgstr "Changes saved successfully"
+
 #: src/components/pages/ForgotPasswordPage.tsx:87
 msgid "Check your inbox!"
 msgstr "Check your inbox!"
@@ -192,7 +197,7 @@ msgstr "Deck deleted successfully"
 msgid "Deck details"
 msgstr "Deck details"
 
-#: src/components/pages/NotePage.tsx:176
+#: src/components/pages/NotePage.tsx:210
 msgid "Deck {0}"
 msgstr "Deck {0}"
 
@@ -302,12 +307,12 @@ msgstr "Field value..."
 
 #: src/components/pages/AddModelPage.tsx:115
 #: src/components/pages/AddNotePage.tsx:125
-#: src/components/pages/ModelPage.tsx:204
+#: src/components/pages/ModelPage.tsx:222
 msgid "Fields"
 msgstr "Fields"
 
 #: src/components/NotesTable.tsx:39
-#: src/components/pages/NotePage.tsx:185
+#: src/components/pages/NotePage.tsx:219
 msgid "Flashcards"
 msgstr "Flashcards"
 
@@ -439,7 +444,7 @@ msgstr "Model created successfully"
 msgid "Model deleted successfully"
 msgstr "Model deleted successfully"
 
-#: src/components/pages/ModelPage.tsx:166
+#: src/components/pages/ModelPage.tsx:184
 msgid "Model details"
 msgstr "Model details"
 
@@ -488,7 +493,7 @@ msgstr "Note"
 msgid "Note created successfully"
 msgstr "Note created successfully"
 
-#: src/components/pages/NotePage.tsx:172
+#: src/components/pages/NotePage.tsx:206
 msgid "Note details"
 msgstr "Note details"
 
@@ -531,7 +536,7 @@ msgstr "Please, try reloading the page"
 msgid "Portuguese"
 msgstr "Portuguese"
 
-#: src/components/pages/NotePage.tsx:213
+#: src/components/pages/NotePage.tsx:247
 msgid "Preview"
 msgstr "Preview"
 
@@ -637,11 +642,11 @@ msgstr "Study"
 msgid "Study deck"
 msgstr "Study deck"
 
-#: src/components/pages/ModelPage.tsx:141
+#: src/components/pages/ModelPage.tsx:162
 msgid "Template back side"
 msgstr "Template back side"
 
-#: src/components/pages/ModelPage.tsx:135
+#: src/components/pages/ModelPage.tsx:161
 msgid "Template front side"
 msgstr "Template front side"
 
@@ -654,7 +659,7 @@ msgid "Template name is required"
 msgstr "Template name is required"
 
 #: src/components/pages/AddModelPage.tsx:90
-#: src/components/pages/ModelPage.tsx:187
+#: src/components/pages/ModelPage.tsx:205
 msgid "Templates"
 msgstr "Templates"
 
@@ -682,7 +687,7 @@ msgstr "The title is required"
 msgid "This link may be broken or the typed URL is incorrect."
 msgstr "This link may be broken or the typed URL is incorrect."
 
-#: src/components/pages/ModelPage.tsx:211
+#: src/components/pages/ModelPage.tsx:229
 msgid "This model doesn't have any fields yet."
 msgstr "This model doesn't have any fields yet."
 
@@ -745,7 +750,7 @@ msgstr "You haven't created any models yet."
 msgid "You haven't created any notes on this deck yet"
 msgstr "You haven't created any notes on this deck yet"
 
-#: src/components/pages/ModelPage.tsx:200
+#: src/components/pages/ModelPage.tsx:218
 msgid "You haven't created any templates on this model yet."
 msgstr "You haven't created any templates on this model yet."
 
@@ -761,7 +766,7 @@ msgstr "Login"
 msgid "{0, plural, one {# field} other {# fields}}"
 msgstr "{0, plural, one {# field} other {# fields}}"
 
-#: src/components/pages/ModelPage.tsx:174
+#: src/components/pages/ModelPage.tsx:192
 msgid "{0, plural, one {# note} other {# notes}}"
 msgstr "{0, plural, one {# note} other {# notes}}"
 
@@ -778,6 +783,6 @@ msgstr "{0, plural, one {It contains one flashcard} other {It contains # flashca
 msgid "{0, plural, one {There's # note} other {There're # notes}}"
 msgstr "{0, plural, one {There's # note} other {There're # notes}}"
 
-#: src/components/pages/ModelPage.tsx:179
+#: src/components/pages/ModelPage.tsx:197
 msgid "{totalFlashCards, plural, one {# flashcard} other {# flashcards}}"
 msgstr "{totalFlashCards, plural, one {# flashcard} other {# flashcards}}"

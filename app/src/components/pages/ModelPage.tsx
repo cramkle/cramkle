@@ -2,9 +2,17 @@ import { useMutation, useQuery } from '@apollo/react-hooks'
 import { Trans, plural } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import List, { ListItem, ListItemText } from '@material/react-list'
+import classnames from 'classnames'
 import { ContentState, convertToRaw } from 'draft-js'
+import { DocumentNode } from 'graphql'
 import gql from 'graphql-tag'
-import React, { useCallback, useRef } from 'react'
+import React, {
+  ReactNode,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import { Helmet } from 'react-helmet'
 import { useParams } from 'react-router'
 
@@ -14,6 +22,7 @@ import DeleteModelButton from '../DeleteModelButton'
 import TemplateEditor from '../TemplateEditor'
 import CircularProgress from '../views/CircularProgress'
 import Container from '../views/Container'
+import Icon from '../views/Icon'
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from '../views/Tabs'
 import {
   Body1,
@@ -22,16 +31,14 @@ import {
   Headline4,
   Headline5,
 } from '../views/Typography'
+import styles from './ModelPage.css'
+import { DraftContent } from './__generated__/DraftContent'
 import {
   ModelQuery,
   ModelQueryVariables,
   ModelQuery_model_fields,
   ModelQuery_model_templates,
 } from './__generated__/ModelQuery'
-import {
-  UpdateTemplateBackContentMutation,
-  UpdateTemplateBackContentMutationVariables,
-} from './__generated__/UpdateTemplateBackContentMutation'
 import {
   UpdateTemplateFrontContentMutation,
   UpdateTemplateFrontContentMutationVariables,
@@ -127,90 +134,129 @@ const UPDATE_BACK_TEMPLATE_MUTATION = gql`
 const TEMPLATE_CONTENT_UPDATE_DEBOUNCE = 2000
 
 interface TemplateDetailsProps {
-  template: ModelQuery_model_templates
+  label: ReactNode
+  templateId: string
+  mutation: DocumentNode
+  draftContent: DraftContent
   fields: ModelQuery_model_fields[]
 }
 
 const TemplateDetails: React.FC<TemplateDetailsProps> = ({
-  template,
+  label,
+  templateId,
+  mutation,
+  draftContent,
   fields,
 }) => {
-  const [
-    updateTemplateFrontContent,
-    { loading: frontUpdateLoading },
-  ] = useMutation<
+  const [updateTemplateContent, { loading }] = useMutation<
     UpdateTemplateFrontContentMutation,
     UpdateTemplateFrontContentMutationVariables
-  >(UPDATE_FRONT_TEMPLATE_MUTATION)
-  const [
-    updateTemplateBackContent,
-    { loading: backUpdateLoading },
-  ] = useMutation<
-    UpdateTemplateBackContentMutation,
-    UpdateTemplateBackContentMutationVariables
-  >(UPDATE_BACK_TEMPLATE_MUTATION)
+  >(mutation)
 
-  const frontDebounceIdRef = useRef<NodeJS.Timeout | null>(null)
-  const backDebounceIdRef = useRef<NodeJS.Timeout | null>(null)
+  const debounceIdRef = useRef<NodeJS.Timeout | null>(null)
 
-  const handleFrontSideChange = useCallback(
+  const handleChange = useCallback(
     (contentState: ContentState) => {
-      if (frontDebounceIdRef.current) {
-        clearTimeout(frontDebounceIdRef.current)
+      if (debounceIdRef.current) {
+        clearTimeout(debounceIdRef.current)
       }
 
-      frontDebounceIdRef.current = setTimeout(() => {
-        updateTemplateFrontContent({
+      debounceIdRef.current = setTimeout(() => {
+        updateTemplateContent({
           variables: {
-            id: template.id,
+            id: templateId,
             content: convertToRaw(contentState),
           },
         })
       }, TEMPLATE_CONTENT_UPDATE_DEBOUNCE)
     },
-    [template.id, updateTemplateFrontContent]
+    [templateId, updateTemplateContent]
   )
 
-  const handleBackSideChange = useCallback(
-    (contentState: ContentState) => {
-      if (backDebounceIdRef.current) {
-        clearTimeout(backDebounceIdRef.current)
-      }
+  const [saved, setSaved] = useState(false)
+  const prevLoadingRef = useRef(loading)
 
-      backDebounceIdRef.current = setTimeout(() => {
-        updateTemplateBackContent({
-          variables: {
-            id: template.id,
-            content: convertToRaw(contentState),
-          },
-        })
-      }, TEMPLATE_CONTENT_UPDATE_DEBOUNCE)
-    },
-    [template.id, updateTemplateBackContent]
-  )
+  useEffect(() => {
+    if (prevLoadingRef.current === loading || loading) {
+      return
+    }
+
+    setSaved(true)
+  }, [loading])
+
+  useEffect(() => {
+    prevLoadingRef.current = loading
+  }, [loading])
+
+  useEffect(() => {
+    if (!saved) {
+      return
+    }
+
+    const id = setTimeout(() => {
+      setSaved(false)
+    }, 2000)
+
+    return () => clearTimeout(id)
+  })
+
+  const prevSavedRef = useRef(saved)
+
+  useEffect(() => {
+    prevSavedRef.current = saved
+  }, [saved])
 
   return (
     <>
-      <Caption className="h-8 flex items-center mt-4">
-        <Trans>Template front side</Trans>{' '}
-        {frontUpdateLoading && <CircularProgress className="ml-2" size={16} />}
-      </Caption>
+      <Body1 className="h-8 flex items-end mt-4">
+        {label} {loading && <CircularProgress className="ml-2" size={16} />}
+        <Caption
+          className={classnames(
+            'inline-flex items-center ml-2 invisible opacity-0',
+            {
+              [styles.fadeIn]: saved,
+              [styles.fadeOut]: prevSavedRef.current && !saved,
+            }
+          )}
+        >
+          <Icon className="text-success mr-2 text-base" icon="check" />
+          <Trans>Changes saved successfully</Trans>
+        </Caption>
+      </Body1>
       <TemplateEditor
-        id={template.id}
-        initialContentState={template.frontSide}
+        id={templateId}
+        initialContentState={draftContent}
         fields={fields}
-        onChange={handleFrontSideChange}
+        onChange={handleChange}
       />
+    </>
+  )
+}
 
-      <Caption className="h-8 flex items-center mt-4">
-        <Trans>Template back side</Trans>{' '}
-        {backUpdateLoading && <CircularProgress className="ml-2" size={16} />}
-      </Caption>
-      <TemplateEditor
-        id={template.id}
-        initialContentState={template.backSide}
+interface ModelTemplateDetailsProps {
+  template: ModelQuery_model_templates
+  fields: ModelQuery_model_fields[]
+}
+
+const ModelTemplateDetails: React.FC<ModelTemplateDetailsProps> = ({
+  template,
+  fields,
+}) => {
+  return (
+    <>
+      <TemplateDetails
+        label={<Trans>Template front side</Trans>}
+        draftContent={template.frontSide}
+        templateId={template.id}
         fields={fields}
-        onChange={handleBackSideChange}
+        mutation={UPDATE_FRONT_TEMPLATE_MUTATION}
+      />
+      <TemplateDetails
+        label={<Trans>Template back side</Trans>}
+        draftContent={template.backSide}
+        templateId={template.id}
+        fields={fields}
+        mutation={UPDATE_BACK_TEMPLATE_MUTATION}
       />
     </>
   )
@@ -285,7 +331,10 @@ const ModelPage: React.FC = () => {
             <TabPanels>
               {model.templates.map((template) => (
                 <TabPanel key={template.id}>
-                  <TemplateDetails template={template} fields={model.fields} />
+                  <ModelTemplateDetails
+                    template={template}
+                    fields={model.fields}
+                  />
                 </TabPanel>
               ))}
             </TabPanels>

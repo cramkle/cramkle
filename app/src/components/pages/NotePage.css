@@ -1,0 +1,29 @@
+.fadeIn {
+  animation: fade-in 200ms ease-in-out forwards;
+}
+
+.fadeOut {
+  animation: fade-out 200ms ease-in-out forwards;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

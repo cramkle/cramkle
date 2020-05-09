@@ -126,6 +126,11 @@ msgstr "Negrito"
 msgid "Cancel"
 msgstr "Cancelar"
 
+#: src/components/pages/ModelPage.tsx:153
+#: src/components/pages/NotePage.tsx:170
+msgid "Changes saved successfully"
+msgstr "Alterações salvas com sucesso"
+
 #: src/components/pages/ForgotPasswordPage.tsx:87
 msgid "Check your inbox!"
 msgstr "Verifique sua caixa de entrada!"
@@ -192,7 +197,7 @@ msgstr "Deck apagado com sucesso"
 msgid "Deck details"
 msgstr "Detalhes do deck"
 
-#: src/components/pages/NotePage.tsx:176
+#: src/components/pages/NotePage.tsx:210
 msgid "Deck {0}"
 msgstr "Deck {0}"
 
@@ -302,12 +307,12 @@ msgstr "Valor do campo..."
 
 #: src/components/pages/AddModelPage.tsx:115
 #: src/components/pages/AddNotePage.tsx:125
-#: src/components/pages/ModelPage.tsx:204
+#: src/components/pages/ModelPage.tsx:222
 msgid "Fields"
 msgstr "Campos"
 
 #: src/components/NotesTable.tsx:39
-#: src/components/pages/NotePage.tsx:185
+#: src/components/pages/NotePage.tsx:219
 msgid "Flashcards"
 msgstr "Flashcards"
 
@@ -439,7 +444,7 @@ msgstr "Modelo criado com sucesso"
 msgid "Model deleted successfully"
 msgstr "Modelo apagado com sucesso"
 
-#: src/components/pages/ModelPage.tsx:166
+#: src/components/pages/ModelPage.tsx:184
 msgid "Model details"
 msgstr "Detalhes do modelo"
 
@@ -488,7 +493,7 @@ msgstr "Nota"
 msgid "Note created successfully"
 msgstr "Nota criada com sucesso"
 
-#: src/components/pages/NotePage.tsx:172
+#: src/components/pages/NotePage.tsx:206
 msgid "Note details"
 msgstr "Detalhes da nota"
 
@@ -531,7 +536,7 @@ msgstr "Por favor, tente recarregar a página"
 msgid "Portuguese"
 msgstr "Português"
 
-#: src/components/pages/NotePage.tsx:213
+#: src/components/pages/NotePage.tsx:247
 msgid "Preview"
 msgstr "Pré-visualizar"
 
@@ -637,11 +642,11 @@ msgstr "Estudar"
 msgid "Study deck"
 msgstr "Estudar deck"
 
-#: src/components/pages/ModelPage.tsx:141
+#: src/components/pages/ModelPage.tsx:162
 msgid "Template back side"
 msgstr "Verso do template"
 
-#: src/components/pages/ModelPage.tsx:135
+#: src/components/pages/ModelPage.tsx:161
 msgid "Template front side"
 msgstr "Frente do template"
 
@@ -654,7 +659,7 @@ msgid "Template name is required"
 msgstr "Nome do template é obrigatório"
 
 #: src/components/pages/AddModelPage.tsx:90
-#: src/components/pages/ModelPage.tsx:187
+#: src/components/pages/ModelPage.tsx:205
 msgid "Templates"
 msgstr "Templates"
 
@@ -682,7 +687,7 @@ msgstr "O título é obrigatório"
 msgid "This link may be broken or the typed URL is incorrect."
 msgstr "Este link pode estar quebrado ou a URL digitada está incorreta."
 
-#: src/components/pages/ModelPage.tsx:211
+#: src/components/pages/ModelPage.tsx:229
 msgid "This model doesn't have any fields yet."
 msgstr "Este modelo ainda não possui nenhum campo."
 
@@ -745,7 +750,7 @@ msgstr "Você ainda não criou nenhum modelo."
 msgid "You haven't created any notes on this deck yet"
 msgstr "Você ainda não criou nenhuma nota neste deck"
 
-#: src/components/pages/ModelPage.tsx:200
+#: src/components/pages/ModelPage.tsx:218
 msgid "You haven't created any templates on this model yet."
 msgstr "Você ainda não criou nenhum template neste modelo."
 
@@ -761,7 +766,7 @@ msgstr "Entrar"
 msgid "{0, plural, one {# field} other {# fields}}"
 msgstr "{0, plural, one {# campo} other {# campos}}"
 
-#: src/components/pages/ModelPage.tsx:174
+#: src/components/pages/ModelPage.tsx:192
 msgid "{0, plural, one {# note} other {# notes}}"
 msgstr "{0, plural, one {# nota} other {# notas}}"
 
@@ -778,6 +783,6 @@ msgstr "{0, plural, one {Ele contém um flashcard} other {Ele contém # flashcar
 msgid "{0, plural, one {There's # note} other {There're # notes}}"
 msgstr "{0, plural, one {Existe # nota} other {Existem # notas}}"
 
-#: src/components/pages/ModelPage.tsx:179
+#: src/components/pages/ModelPage.tsx:197
 msgid "{totalFlashCards, plural, one {# flashcard} other {# flashcards}}"
 msgstr "{totalFlashCards, plural, one {# flashcard} other {# flashcards}}"

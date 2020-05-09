@@ -1,9 +1,10 @@
 import { useMutation, useQuery } from '@apollo/react-hooks'
 import { Trans } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
+import classnames from 'classnames'
 import { ContentState, RawDraftContentState, convertToRaw } from 'draft-js'
 import gql from 'graphql-tag'
-import React, { useCallback, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { useParams } from 'react-router'
 
@@ -19,6 +20,7 @@ import CircularProgress from '../views/CircularProgress'
 import Container from '../views/Container'
 import { Dialog } from '../views/Dialog'
 import Divider from '../views/Divider'
+import Icon from '../views/Icon'
 import {
   Table,
   TableBody,
@@ -27,6 +29,7 @@ import {
   TableRow,
 } from '../views/Table'
 import * as t from '../views/Typography'
+import styles from './NotePage.css'
 import {
   NoteQuery,
   NoteQueryVariables,
@@ -160,11 +163,56 @@ const FieldValueDetail: React.FC<FieldValueDetailProps> = ({
     [noteId, updateFieldValueMutation]
   )
 
+  const [saved, setSaved] = useState(false)
+  const prevLoadingRef = useRef(loading)
+
+  useEffect(() => {
+    if (prevLoadingRef.current === loading || loading) {
+      return
+    }
+
+    setSaved(true)
+  }, [loading])
+
+  useEffect(() => {
+    prevLoadingRef.current = loading
+  }, [loading])
+
+  useEffect(() => {
+    if (!saved) {
+      return
+    }
+
+    const id = setTimeout(() => {
+      setSaved(false)
+    }, 2000)
+
+    return () => clearTimeout(id)
+  })
+
+  const prevSavedRef = useRef(saved)
+
+  useEffect(() => {
+    prevSavedRef.current = saved
+  }, [saved])
+
   return (
     <>
       <t.Body1 className="h-8 flex items-center">
         {fieldValue.field.name}{' '}
         {loading && <CircularProgress className="ml-2" size={16} />}
+        <t.Caption
+          className={classnames(
+            'inline-flex items-center ml-2 invisible opacity-0',
+            {
+              [styles.fadeIn]: saved,
+              [styles.fadeOut]: prevSavedRef.current && !saved,
+            }
+          )}
+        >
+          <Icon className="text-success mr-2 text-base" icon="check" />
+          <Trans>Changes saved successfully</Trans>
+        </t.Caption>
       </t.Body1>
       <FieldValueEditor
         className="mb-4 mt-1"
