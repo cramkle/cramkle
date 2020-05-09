@@ -51,7 +51,21 @@ export const studyFlashCardsByDeck = async (deckId: string) => {
           flashCardId.equals(flashCard._id)
         )
     )
-    .sort((a, b) => compareAsc(a.due, b.due))
+    .sort((a, b) => {
+      if (!a.due && !b.due) {
+        return 0
+      }
+
+      if (!a.due) {
+        return -1
+      }
+
+      if (!b.due) {
+        return 1
+      }
+
+      return compareAsc(a.due, b.due)
+    })
     .filter((flashCard) => {
       if (flashCard.status === FlashCardStatus.NEW) {
         return numOfNew < MAX_NEW_FLASHCARDS_PER_DAY

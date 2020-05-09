@@ -1,4 +1,4 @@
-import { addDays, startOfToday } from 'date-fns'
+import { addDays } from 'date-fns'
 
 import { FlashCard, FlashCardStatus } from '../mongo/Note'
 
@@ -85,7 +85,7 @@ export const scheduleFlashCard = (
     flashCard.easeFactor
   )
 
-  flashCard.due = addDays(startOfToday(), flashCard.interval)
+  flashCard.due = addDays(new Date(), flashCard.interval)
 
   if (flashCard.reviews === 0) {
     flashCard.status = FlashCardStatus.NEW
