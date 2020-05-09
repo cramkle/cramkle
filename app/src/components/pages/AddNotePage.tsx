@@ -4,7 +4,7 @@ import { useLingui } from '@lingui/react'
 import { Listbox, ListboxOption } from '@reach/listbox'
 import { ContentState, convertToRaw } from 'draft-js'
 import gql from 'graphql-tag'
-import React, { useCallback, useMemo, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { useHistory, useParams } from 'react-router'
 
 import { FieldInput, FieldValueInput } from '../../globalTypes'
@@ -68,6 +68,7 @@ const AddNotePage: React.FC = () => {
 
   const { models, deck } = data || {}
 
+  const [formKey, setFormKey] = useState(0)
   const [fieldValueMap, setFieldValueMap] = useState<{
     [fieldId: string]: FieldValueInput
   }>({})
@@ -80,6 +81,14 @@ const AddNotePage: React.FC = () => {
   const { i18n } = useLingui()
   const [selectedModelId, setSelectedModelId] = useState(DEFAULT_OPTION)
 
+  useEffect(() => {
+    if (loading || data.models.length === 0) {
+      return
+    }
+
+    setSelectedModelId(data.models[0].id)
+  }, [loading, data])
+
   const selectedModel = useMemo(() => {
     if (!models) {
       return null
@@ -91,7 +100,11 @@ const AddNotePage: React.FC = () => {
   useTopBarLoading(loading)
 
   const handleSubmit = useCallback(async () => {
-    await createNote({
+    const {
+      data: {
+        createNote: { id },
+      },
+    } = await createNote({
       variables: {
         modelId: selectedModelId,
         deckId: deck.id,
@@ -101,9 +114,14 @@ const AddNotePage: React.FC = () => {
 
     notificationState.addNotification({
       message: t`Note created successfully`,
+      actionText: t`View`,
+      onAction: () => {
+        history.push(`/d/${slug}/note/${id}`)
+      },
     })
 
-    history.push(`/d/${slug}`)
+    setFieldValueMap({})
+    setFormKey((prevKey) => prevKey + 1)
   }, [createNote, deck, selectedModelId, fieldValueMap, history, slug])
 
   const handleFieldValueChange = useCallback(
@@ -129,6 +147,8 @@ const AddNotePage: React.FC = () => {
   if (!models.length) {
     return (
       <Container>
+        <BackButton to={`/d/${slug}`} />
+
         <Headline5>
           <Trans>You haven't created any models yet.</Trans>
         </Headline5>
@@ -163,7 +183,7 @@ const AddNotePage: React.FC = () => {
         </label>
 
         {selectedModel != null && (
-          <>
+          <React.Fragment key={formKey}>
             <Subtitle1 className="mt-2">
               <Trans>Fields</Trans>
             </Subtitle1>
@@ -205,7 +225,7 @@ const AddNotePage: React.FC = () => {
                 </Trans>
               </Body2>
             )}
-          </>
+          </React.Fragment>
         )}
       </div>
     </Container>

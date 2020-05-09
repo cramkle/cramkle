@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [BREAKING CHANGE] Rename model queries names from `cardModel` to `model`,
   and `cardModels` to `models`.
 - [BREAKING CHANGE] Rename Flashcard field in `Model` from `cards` to `flashCards`.
+- Reset note page form after creation instead of redirecting to deck details.
 
 ### Fixed
 - Back arrow not working in home for initial page.
@@ -29,6 +30,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Editor losing focus when clicking on any style button.
 - Add deck form creating duplicate decks.
 - Translated some error messages and fix some translations.
+- Select a model by default in add note page.
 
 ### Removed
 - Search bar from top bar.
