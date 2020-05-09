@@ -13,6 +13,7 @@ export interface RevisionLog {
   ownerId: Types.ObjectId
   noteId: Types.ObjectId
   flashCardId: Types.ObjectId
+  deckId: Types.ObjectId
 }
 
 export interface RevisionLogDocument extends Document, RevisionLog {}
@@ -29,6 +30,7 @@ const RevisionLogSchema = new Schema<RevisionLogDocument>(
     ownerId: { type: Types.ObjectId, ref: 'User' },
     noteId: { type: Types.ObjectId, ref: 'Note' },
     flashCardId: { type: Types.ObjectId, ref: 'Card' },
+    deckId: { type: Types.ObjectId, ref: 'Deck' },
   },
   {
     timestamps: { createdAt: true },
