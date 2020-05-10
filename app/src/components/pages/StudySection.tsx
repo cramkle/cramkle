@@ -1,6 +1,7 @@
 import { useQuery } from '@apollo/react-hooks'
 import { Trans } from '@lingui/macro'
 import { Cell, Grid, Row } from '@material/react-layout-grid'
+import { NetworkStatus } from 'apollo-client'
 import gql from 'graphql-tag'
 import React, { useRef, useState } from 'react'
 import { useHistory } from 'react-router'
@@ -13,7 +14,9 @@ import {
   AlertDialogLabel,
 } from '../views/AlertDialog'
 import Button from '../views/Button'
-import { Headline3 } from '../views/Typography'
+import CircularProgress from '../views/CircularProgress'
+import Container from '../views/Container'
+import { Body1, Body2 } from '../views/Typography'
 import { DecksToStudy } from './__generated__/DecksToStudy'
 
 const DECKS_TO_STUDY_QUERY = gql`
@@ -29,7 +32,12 @@ const DECKS_TO_STUDY_QUERY = gql`
 
 const StudySection: React.FunctionComponent = () => {
   const history = useHistory()
-  const { data, loading } = useQuery<DecksToStudy>(DECKS_TO_STUDY_QUERY)
+  const { data, loading, error, refetch, networkStatus } = useQuery<
+    DecksToStudy
+  >(DECKS_TO_STUDY_QUERY, {
+    fetchPolicy: 'network-only',
+    notifyOnNetworkStatusChange: true,
+  })
   const [selectedDeck, setSelectedDeck] = useState(null)
   const cancelRef = useRef<HTMLButtonElement>(null)
 
@@ -43,8 +51,36 @@ const StudySection: React.FunctionComponent = () => {
     history.push(`/study/${selectedDeck.slug}`)
   }
 
-  if (loading) {
+  if (loading && networkStatus !== NetworkStatus.refetch) {
     return null
+  }
+
+  if (error || networkStatus === NetworkStatus.refetch) {
+    return (
+      <Container className="mt-0 md:mt-8 flex flex-col justify-center items-center text-center">
+        <Body1 className="text-primary">
+          <Trans>
+            An error has ocurred when trying to get your decks to study.
+          </Trans>
+        </Body1>
+        <Body2 className="text-secondary mt-2">
+          <Trans>Check your internet connection and try again.</Trans>
+        </Body2>
+
+        <Button
+          raised
+          className="mt-4"
+          disabled={loading}
+          onClick={() => refetch()}
+        >
+          {loading ? (
+            <CircularProgress className="align-middle" size={16} />
+          ) : (
+            <Trans>Try again</Trans>
+          )}
+        </Button>
+      </Container>
+    )
   }
 
   const { decks } = data
@@ -88,9 +124,9 @@ const StudySection: React.FunctionComponent = () => {
         </Grid>
       ) : (
         <div className="mt-8 flex justify-center">
-          <Headline3 className="text-base">
+          <Body1 className="text-base">
             <Trans>You've finished studying your decks for now.</Trans>
-          </Headline3>
+          </Body1>
         </div>
       )}
     </>

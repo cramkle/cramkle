@@ -49,7 +49,7 @@ const ModelList: React.FunctionComponent = () => {
 
   return (
     <Grid className="w-full">
-      <div className="flex flex-col na2">
+      <div className="flex flex-col -m-2">
         {models.map((model) => (
           <div key={model.id} className="p-2">
             <ModelCard {...model} />
