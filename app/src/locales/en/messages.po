@@ -35,7 +35,7 @@ msgstr "Actions"
 msgid "Add Deck"
 msgstr "Add Deck"
 
-#: src/components/pages/AddNotePage.tsx:138
+#: src/components/pages/AddNotePage.tsx:152
 #: src/components/pages/DeckPage.tsx:119
 #: src/components/pages/DeckPage.tsx:119
 msgid "Add Note"
@@ -74,6 +74,10 @@ msgstr "Align right"
 #: src/components/pages/RegisterPage.tsx:20
 msgid "Already have an account? <0>Log In</0>"
 msgstr "Already have an account? <0>Log In</0>"
+
+#: src/components/pages/StudySection.tsx:46
+msgid "An error has ocurred when trying to get your decks to study."
+msgstr "An error has ocurred when trying to get your decks to study."
 
 #: src/components/forms/AddDeckForm.tsx:73
 msgid "An error ocurred when creating the deck"
@@ -122,7 +126,7 @@ msgstr "Bold"
 #: src/components/DeleteDeckButton.tsx:75
 #: src/components/DeleteNoteDialog.tsx:52
 #: src/components/pages/StudyPage.tsx:123
-#: src/components/pages/StudySection.tsx:51
+#: src/components/pages/StudySection.tsx:73
 msgid "Cancel"
 msgstr "Cancel"
 
@@ -134,6 +138,10 @@ msgstr "Changes saved successfully"
 #: src/components/pages/ForgotPasswordPage.tsx:87
 msgid "Check your inbox!"
 msgstr "Check your inbox!"
+
+#: src/components/pages/StudySection.tsx:51
+msgid "Check your internet connection and try again."
+msgstr "Check your internet connection and try again."
 
 #: src/components/pages/ResetPasswordPage.tsx:113
 msgid "Choose a new password for your account."
@@ -177,7 +185,7 @@ msgstr "Create"
 msgid "Create Model"
 msgstr "Create Model"
 
-#: src/components/pages/AddNotePage.tsx:108
+#: src/components/pages/AddNotePage.tsx:122
 msgid "Create Note for deck \"{0}\""
 msgstr "Create Note for deck \"{0}\""
 
@@ -237,7 +245,7 @@ msgstr "Description"
 msgid "Dismiss"
 msgstr "Dismiss"
 
-#: src/components/pages/StudySection.tsx:44
+#: src/components/pages/StudySection.tsx:66
 msgid "Do you want to start a study session of the deck {0}?"
 msgstr "Do you want to start a study session of the deck {0}?"
 
@@ -306,7 +314,7 @@ msgid "Field value..."
 msgstr "Field value..."
 
 #: src/components/pages/AddModelPage.tsx:115
-#: src/components/pages/AddNotePage.tsx:125
+#: src/components/pages/AddNotePage.tsx:139
 #: src/components/pages/ModelPage.tsx:222
 msgid "Fields"
 msgstr "Fields"
@@ -489,7 +497,7 @@ msgstr "No templates added"
 msgid "Note"
 msgstr "Note"
 
-#: src/components/pages/AddNotePage.tsx:81
+#: src/components/pages/AddNotePage.tsx:88
 msgid "Note created successfully"
 msgstr "Note created successfully"
 
@@ -601,7 +609,7 @@ msgstr "Save"
 msgid "Search"
 msgstr "Search"
 
-#: src/components/pages/AddNotePage.tsx:115
+#: src/components/pages/AddNotePage.tsx:129
 msgid "Select a model"
 msgstr "Select a model"
 
@@ -626,7 +634,7 @@ msgstr "Sign up now!"
 msgid "Something went wrong"
 msgstr "Something went wrong"
 
-#: src/components/pages/StudySection.tsx:54
+#: src/components/pages/StudySection.tsx:76
 msgid "Start Session"
 msgstr "Start Session"
 
@@ -638,7 +646,7 @@ msgstr "Statistics"
 msgid "Study"
 msgstr "Study"
 
-#: src/components/pages/StudySection.tsx:41
+#: src/components/pages/StudySection.tsx:63
 msgid "Study deck"
 msgstr "Study deck"
 
@@ -675,7 +683,7 @@ msgstr "The decks you create will appear here."
 msgid "The models you create will appear here."
 msgstr "The models you create will appear here."
 
-#: src/components/pages/AddNotePage.tsx:141
+#: src/components/pages/AddNotePage.tsx:155
 msgid "The selected model doesn't have any fields. Please, select another one"
 msgstr "The selected model doesn't have any fields. Please, select another one"
 
@@ -694,6 +702,10 @@ msgstr "This model doesn't have any fields yet."
 #: src/components/forms/AddDeckForm.tsx:85
 msgid "Title"
 msgstr "Title"
+
+#: src/components/pages/StudySection.tsx:55
+msgid "Try again"
+msgstr "Try again"
 
 #: src/components/editor/BlockStyleControls.tsx:15
 msgid "UL"
@@ -731,6 +743,7 @@ msgstr "Username must consist only of alphanumeric characters and underscores"
 
 #: src/components/forms/AddDeckForm.tsx:62
 #: src/components/pages/AddModelPage.tsx:75
+#: src/components/pages/AddNotePage.tsx:89
 msgid "View"
 msgstr "View"
 
@@ -742,7 +755,7 @@ msgstr "We couldn't find the page you requested"
 msgid "We have sent you an email with instructions to help you reset your password. Remember to also check the spam folder."
 msgstr "We have sent you an email with instructions to help you reset your password. Remember to also check the spam folder."
 
-#: src/components/pages/AddNotePage.tsx:100
+#: src/components/pages/AddNotePage.tsx:114
 msgid "You haven't created any models yet."
 msgstr "You haven't created any models yet."
 
@@ -754,7 +767,7 @@ msgstr "You haven't created any notes on this deck yet"
 msgid "You haven't created any templates on this model yet."
 msgstr "You haven't created any templates on this model yet."
 
-#: src/components/pages/StudySection.tsx:66
+#: src/components/pages/StudySection.tsx:88
 msgid "You've finished studying your decks for now."
 msgstr "You've finished studying your decks for now."
 

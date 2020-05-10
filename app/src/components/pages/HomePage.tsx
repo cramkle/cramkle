@@ -78,7 +78,7 @@ const HomePage: React.FunctionComponent = () => {
 
       <div className="h-full flex flex-col">
         <Tabs index={index} onChange={handleTabChange}>
-          <TabList>
+          <TabList className="overflow-y-auto">
             <Tab className="w-full">
               <Icon
                 className="mdc-tab__icon mr-4"
