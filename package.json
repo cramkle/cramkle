@@ -4,7 +4,8 @@
   "license": "UNLICENSED",
   "repository": "https://github.com/cramkle/cramkle",
   "scripts": {
-    "lint": "eslint --ext ts,tsx ."
+    "lint": "eslint --ext ts,tsx .",
+    "lint-css": "stylelint '**/*.{scss,css}'"
   },
   "husky": {
     "hooks": {
@@ -18,6 +19,9 @@
     ],
     "*.{json,graphql,gql}": [
       "prettier --write"
+    ],
+    "*.{scss,css}": [
+      "stylelint"
     ]
   },
   "devDependencies": {
@@ -26,6 +30,9 @@
     "husky": "^4.2.5",
     "lint-staged": "^10.1.6",
     "prettier": "^2.0.4",
+    "stylelint": "^13.3.2",
+    "stylelint-config-recommended-scss": "^4.2.0",
+    "stylelint-scss": "^3.17.0",
     "typescript": "^3.8.3"
   }
 }
