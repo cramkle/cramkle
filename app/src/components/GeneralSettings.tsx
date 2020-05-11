@@ -1,10 +1,10 @@
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import { Listbox, ListboxOption } from '@reach/listbox'
 import React, { useCallback, useState } from 'react'
 import Cookies from 'universal-cookie'
 
 import Button from './views/Button'
+import { Listbox, ListboxOption } from './views/Listbox'
 
 const OPTIONS = [
   {

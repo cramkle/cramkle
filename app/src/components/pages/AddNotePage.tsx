@@ -1,7 +1,6 @@
 import { useMutation, useQuery } from '@apollo/react-hooks'
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import { Listbox, ListboxOption } from '@reach/listbox'
 import { ContentState, convertToRaw } from 'draft-js'
 import gql from 'graphql-tag'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
@@ -15,6 +14,7 @@ import FieldValueEditor from '../FieldValueEditor'
 import Button from '../views/Button'
 import CircularProgress from '../views/CircularProgress'
 import Container from '../views/Container'
+import { Listbox, ListboxOption } from '../views/Listbox'
 import { Body2, Caption, Headline5, Subtitle1 } from '../views/Typography'
 import {
   CreateNoteMutation,

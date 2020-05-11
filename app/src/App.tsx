@@ -46,7 +46,7 @@ const App: React.FunctionComponent<{}> = () => {
         htmlAttributes={{
           lang: i18n.locale,
           // @ts-ignore this works but typescript complains
-          style: 'font-size: 15px;',
+          style: 'font-size: 16px;',
         }}
         bodyAttributes={{ class: 'mdc-typography' }}
         meta={[
