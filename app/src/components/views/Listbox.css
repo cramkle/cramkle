@@ -11,6 +11,14 @@
   background-color: transparent;
 }
 
+.option:not([data-current=""]) {
+  padding-left: 2rem;
+}
+
+.optionBackdrop {
+  opacity: .12;
+}
+
 .option[aria-selected="true"] .optionBackdrop {
   position: absolute;
   opacity: .12;
@@ -18,14 +26,6 @@
 
 .option[data-current=""] .optionIcon {
   display: block;
-}
-
-.option:not([data-current=""]) {
-  padding-left: 2rem;
-}
-
-.optionBackdrop {
-  opacity: .12;
 }
 
 .popover {
