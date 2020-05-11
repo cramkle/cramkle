@@ -22,14 +22,14 @@ jobs:
         yarn
         yarn --cwd api
         yarn --cwd app
+    - name: Messages compilation
+      run: yarn --cwd app compile
     - name: Lint
-      run: |
-        yarn --cwd app compile
-        yarn lint
+      run: yarn lint
       env:
         CI: true
     - name: Lint CSS
-      run: yarn --cwd app lint-css
+      run: yarn lint-css
       env:
         CI: true
 
