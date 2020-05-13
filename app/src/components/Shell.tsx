@@ -1,28 +1,23 @@
 import { useQuery } from '@apollo/react-hooks'
-import { t } from '@lingui/macro'
-import { useLingui } from '@lingui/react'
+import { Trans } from '@lingui/macro'
 import LinearProgress from '@material/react-linear-progress'
 import gql from 'graphql-tag'
-import React, { Suspense, useCallback, useEffect, useRef } from 'react'
-import { useHistory, useLocation } from 'react-router'
+import React, { Suspense, useCallback } from 'react'
+import { Link, useHistory } from 'react-router-dom'
 
 import { ReactComponent as LogoGray } from '../assets/logo-gray.svg'
 import { ReactComponent as Logo } from '../assets/logo.svg'
-import useLocalStorage from '../hooks/useLocalStorage'
 import useOffline from '../hooks/useOffline'
-import AppDrawer from './AppDrawer'
-import { useHints } from './HintsContext'
+import AppName from './AppName'
 import NoSSR from './NoSSR'
 import { TopBarLoadingQuery } from './__generated__/TopBarLoadingQuery'
-import Icon from './views/Icon'
-import IconButton from './views/IconButton'
-import TopAppBar, {
-  TopAppBarFixedAdjust,
-  TopAppBarIcon,
-  TopAppBarRow,
-  TopAppBarSection,
-  TopAppBarTitle,
-} from './views/TopAppBar'
+import { UserQuery } from './__generated__/UserQuery'
+import LogoutIcon from './icons/LogoutIcon'
+import OverflowMenuIcon from './icons/OverflowMenuIcon'
+import SettingsIcon from './icons/SettingsIcon'
+import USER_QUERY from './userQuery.gql'
+import { Header, HeaderContent, HeaderSection } from './views/Header'
+import { Menu, MenuButton, MenuItem, MenuList } from './views/MenuButton'
 
 const TOP_BAR_LOADING_QUERY = gql`
   query TopBarLoadingQuery {
@@ -33,56 +28,29 @@ const TOP_BAR_LOADING_QUERY = gql`
 `
 
 const Shell: React.FunctionComponent = ({ children }) => {
-  const history = useHistory()
-  const { pathname } = useLocation()
   const { data } = useQuery<TopBarLoadingQuery>(TOP_BAR_LOADING_QUERY)
 
   const topBar = data?.topBar
   const loading = topBar?.loading
 
-  const { i18n } = useLingui()
-  const { isMobile } = useHints()
   const isOffline = useOffline()
-  const [drawerOpen, setDrawerOpen] = useLocalStorage(
-    'ck:drawerOpen',
-    !isMobile,
-    isMobile
-  )
 
-  const prevPathname = useRef(pathname)
+  const { data: userData } = useQuery<UserQuery>(USER_QUERY)
 
-  useEffect(() => {
-    if (isMobile && drawerOpen && prevPathname.current !== pathname) {
-      setDrawerOpen(false)
-    }
+  const me = userData?.me
 
-    prevPathname.current = pathname
-  }, [drawerOpen, isMobile, pathname, setDrawerOpen])
+  const history = useHistory()
 
-  const handleLogoClick = useCallback(
-    (e) => {
-      e.preventDefault()
-      history.push('/home')
-    },
-    [history]
-  )
+  const handleSettingsClick = useCallback(() => {
+    history.push('/settings')
+  }, [history])
 
-  const handleNavigationIconClick = useCallback(() => {
-    setDrawerOpen((isOpen) => !isOpen)
-  }, [setDrawerOpen])
-
-  const handleNavigationIconKeyDown = useCallback(
-    (e: React.KeyboardEvent) => {
-      if (e.key === ' ' || e.key === 'Enter') {
-        setDrawerOpen((isOpen) => !isOpen)
-      }
-    },
-    [setDrawerOpen]
-  )
-
-  const handleDrawerClose = useCallback(() => {
-    setDrawerOpen(false)
-  }, [setDrawerOpen])
+  const handleLogout = useCallback(() => {
+    fetch('/_c/auth/logout', {
+      method: 'POST',
+      credentials: 'include',
+    }).then(() => window.location.assign('/login'))
+  }, [])
 
   if (React.Children.count(children) === 0) {
     return null
@@ -95,59 +63,54 @@ const Shell: React.FunctionComponent = ({ children }) => {
     />
   )
 
-  const content = (
-    <main className="h-full overflow-auto w-full relative">
-      <NoSSR fallback={loader}>
-        <Suspense fallback={loader}>
-          {loading && loader}
-          {children}
-          <div id="portal-anchor" />
-        </Suspense>
-      </NoSSR>
-    </main>
-  )
-
   return (
-    <div className="h-screen flex">
-      <AppDrawer
-        open={drawerOpen}
-        onClose={handleDrawerClose}
-        content={content}
-        render={(children) => (
-          <>
-            <TopAppBar fixed>
-              <TopAppBarRow>
-                <TopAppBarSection align="start">
-                  <TopAppBarIcon navIcon>
-                    <IconButton
-                      tabIndex={0}
-                      role="button"
-                      aria-label={i18n._(t`Main menu`)}
-                      aria-expanded={drawerOpen}
-                      onClick={handleNavigationIconClick}
-                      onKeyDown={handleNavigationIconKeyDown}
-                    >
-                      <Icon icon="menu" />
-                    </IconButton>
-                  </TopAppBarIcon>
-                  <TopAppBarTitle
-                    className="flex items-center pl-1 link color-inherit"
-                    tag="a"
-                    href="/home"
-                    onClick={handleLogoClick}
-                  >
-                    {!isOffline ? <Logo width="32" /> : <LogoGray width="32" />}
-                    <span className="ml-2">Cramkle</span>
-                  </TopAppBarTitle>
-                </TopAppBarSection>
-              </TopAppBarRow>
-            </TopAppBar>
-            <TopAppBarFixedAdjust className="w-full flex relative">
-              {children}
-            </TopAppBarFixedAdjust>
-          </>
-        )}
-      />
+    <div className="w-full h-full flex flex-col relative">
+      <Header>
+        <HeaderContent>
+          <HeaderSection>
+            <Link className="flex items-center pl-1 link" to="/home">
+              {!isOffline ? <Logo width="32" /> : <LogoGray width="32" />}
+              <AppName className="ml-2 hidden md:inline-block" />
+            </Link>
+          </HeaderSection>
+          <div id="header-portal-anchor" className="flex-auto" />
+          <HeaderSection align="end">
+            <span className="hidden md:inline-block mr-3">{me?.username}</span>
+            <Menu>
+              <MenuButton icon>
+                <OverflowMenuIcon />
+              </MenuButton>
+              <MenuList>
+                <div className="flex flex-col px-5 mb-3 md:hidden">
+                  <span className="text-primary text-lg">{me?.username}</span>
+                  <span className="text-secondary">{me?.email}</span>
+                </div>
+                <MenuItem
+                  onSelect={handleSettingsClick}
+                  icon={<SettingsIcon className="text-secondary" />}
+                >
+                  <Trans>Settings</Trans>
+                </MenuItem>
+                <MenuItem
+                  onSelect={handleLogout}
+                  icon={<LogoutIcon className="text-secondary" />}
+                >
+                  <Trans>Log out</Trans>
+                </MenuItem>
+              </MenuList>
+            </Menu>
+          </HeaderSection>
+        </HeaderContent>
+      </Header>
+      <main className="flex-1 overflow-auto w-full relative bg-muted">
+        <NoSSR fallback={loader}>
+          <Suspense fallback={loader}>
+            {loading && loader}
+            {children}
+            <div id="portal-anchor" />
+          </Suspense>
+        </NoSSR>
+      </main>
     </div>
   )
 }
