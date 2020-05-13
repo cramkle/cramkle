@@ -1,6 +1,4 @@
 .tab {
-  padding-left: 1.75rem;
-  padding-right: 1.75rem;
   height: 3.2rem;
 }
 
@@ -8,32 +6,19 @@
   border: none;
 }
 
-.tab i {
+.tab svg {
   color: var(--color-text-secondary);
 }
 
-.tab[data-selected=""] i {
+.tab[data-selected=""] svg {
   color: var(--color-primary);
 }
 
-.tab:hover::before {
-  position: absolute;
-  content: '';
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: var(--color-primary);
+.tab:hover .backdrop {
   opacity: 0.08;
+  display: block;
 }
 
-.tab[data-selected=""]::after {
-  position: absolute;
-  content: '';
-  left: calc(1.75rem / 2);
-  right: calc(1.75rem / 2);
-  bottom: 0;
-  border-radius: 5px 5px 0 0;
-  border-top-width: 3px;
-  border-color: var(--color-primary);
+.tab[data-selected=""] .border {
+  display: block;
 }
