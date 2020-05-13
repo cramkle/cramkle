@@ -30,7 +30,6 @@
     "@material/dom": "^3.1.0",
     "@material/fab": "^3.1.0",
     "@material/icon-button": "^3.1.0",
-    "@material/react-layout-grid": "^0.14.1",
     "@material/react-linear-progress": "^0.14.1",
     "@material/ripple": "^3.1.0",
     "@material/snackbar": "^3.1.0",

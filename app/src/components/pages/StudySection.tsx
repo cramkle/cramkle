@@ -1,6 +1,5 @@
 import { useQuery } from '@apollo/react-hooks'
 import { Trans } from '@lingui/macro'
-import { Cell, Grid, Row } from '@material/react-layout-grid'
 import { NetworkStatus } from 'apollo-client'
 import gql from 'graphql-tag'
 import React, { useRef, useState } from 'react'
@@ -113,15 +112,15 @@ const StudySection: React.FunctionComponent = () => {
         </AlertDialog>
       )}
       {decks.length > 0 ? (
-        <Grid className="w-full">
-          <Row>
+        <div className="p-4">
+          <div className="grid grid-cols-12 gap-6">
             {decks.map((deck) => (
-              <Cell key={deck.id}>
+              <div key={deck.id} className="col-span-4">
                 <DeckCard deck={deck} onClick={handleDeckSelect} />
-              </Cell>
+              </div>
             ))}
-          </Row>
-        </Grid>
+          </div>
+        </div>
       ) : (
         <div className="mt-8 flex justify-center">
           <Body1 className="text-base">
