@@ -34,7 +34,7 @@ export const ListboxButton: React.FC<
       className={classnames(
         styles.button,
         className,
-        'inline-flex items-center justify-between select-none cursor-default rounded border border-outline px-3 py-2 focus:border-primary'
+        'inline-flex items-center justify-between select-none cursor-default bg-surface text-on-surface rounded border border-outline px-3 py-2 focus:border-primary'
       )}
     />
   )

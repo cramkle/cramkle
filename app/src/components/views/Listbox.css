@@ -19,7 +19,7 @@
   opacity: .12;
 }
 
-.option[aria-selected="true"] .optionBackdrop {
+.option[aria-selected="true"]:not([aria-disabled="true"]) .optionBackdrop {
   position: absolute;
   opacity: .12;
 }
