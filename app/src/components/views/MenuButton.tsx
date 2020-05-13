@@ -10,8 +10,8 @@ import {
   MenuList as ReachMenuList,
 } from '@reach/menu-button'
 import classnames from 'classnames'
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { ReactNode } from 'react'
+import { Link, LinkProps } from 'react-router-dom'
 
 import styles from './MenuButton.css'
 
@@ -56,15 +56,26 @@ export const MenuList: React.FC<MenuListProps> = ({
   )
 }
 
-export const MenuItem: React.FC<MenuItemProps> = ({ children, ...props }) => {
+export const MenuItem: React.FC<MenuItemProps & { icon?: ReactNode }> = ({
+  children,
+  icon,
+  ...props
+}) => {
   return (
-    <ReachMenuItem {...props} className={classnames(styles.menuItem)}>
-      {children}
+    <ReachMenuItem
+      {...props}
+      className={classnames(styles.menuItem, 'flex items-center')}
+    >
+      {icon}
+      <div className={classnames({ 'ml-3': icon })}>{children}</div>
     </ReachMenuItem>
   )
 }
 
-export const MenuLink: React.FC<MenuLinkProps> = ({ children, ...props }) => {
+export const MenuLink: React.FC<MenuLinkProps & LinkProps> = ({
+  children,
+  ...props
+}) => {
   return (
     <ReachMenuLink {...props} className={classnames(styles.menuItem)} as={Link}>
       {children}
