@@ -16,9 +16,9 @@ const messages = {
 }
 
 const chipTypeByStatus = {
-  [FlashCardStatus.REVIEW]: 'emphasis',
+  [FlashCardStatus.REVIEW]: undefined as undefined,
   [FlashCardStatus.NEW]: 'success',
-  [FlashCardStatus.LEARNING]: undefined as undefined,
+  [FlashCardStatus.LEARNING]: 'emphasis',
 } as const
 
 const FlashCardStatusChip: React.FC<Props> = ({ status }) => {
