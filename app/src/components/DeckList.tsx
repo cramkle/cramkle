@@ -1,6 +1,5 @@
 import { useQuery } from '@apollo/react-hooks'
 import { Trans } from '@lingui/macro'
-import { Cell, Grid, Row } from '@material/react-layout-grid'
 import gql from 'graphql-tag'
 import React from 'react'
 
@@ -42,15 +41,15 @@ const DeckList: React.FunctionComponent = () => {
   }
 
   return (
-    <Grid className="w-full">
-      <Row>
+    <div className="p-4">
+      <div className="grid grid-cols-12 gap-6">
         {decks.map((deck) => (
-          <Cell key={deck.id}>
+          <div key={deck.id} className="col-span-4">
             <DeckCard deck={deck} />
-          </Cell>
+          </div>
         ))}
-      </Row>
-    </Grid>
+      </div>
+    </div>
   )
 }
 

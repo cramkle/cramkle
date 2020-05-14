@@ -1,6 +1,5 @@
 import { useQuery } from '@apollo/react-hooks'
 import { Trans } from '@lingui/macro'
-import { Grid } from '@material/react-layout-grid'
 import gql from 'graphql-tag'
 import React from 'react'
 
@@ -48,15 +47,13 @@ const ModelList: React.FunctionComponent = () => {
   }
 
   return (
-    <Grid className="w-full">
-      <div className="flex flex-col -m-2">
-        {models.map((model) => (
-          <div key={model.id} className="p-2">
-            <ModelCard {...model} />
-          </div>
-        ))}
-      </div>
-    </Grid>
+    <div className="flex flex-col p-4">
+      {models.map((model) => (
+        <div key={model.id} className="mb-2">
+          <ModelCard {...model} />
+        </div>
+      ))}
+    </div>
   )
 }
 

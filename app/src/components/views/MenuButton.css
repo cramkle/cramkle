@@ -24,7 +24,7 @@
   padding: .5rem 1rem;
 }
 
-.menuItem[data-selected=""], .menuItem:hover, .menuItem:focus {
+.menuItem[data-reach-menu-item][data-selected=""], .menuItem:hover, .menuItem:focus {
   background: transparent;
   color: var(--color-primary);
 }

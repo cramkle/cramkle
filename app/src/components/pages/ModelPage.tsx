@@ -1,7 +1,6 @@
 import { useMutation, useQuery } from '@apollo/react-hooks'
 import { Trans, plural } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import List, { ListItem, ListItemText } from '@material/react-list'
 import classnames from 'classnames'
 import { ContentState, convertToRaw } from 'draft-js'
 import { DocumentNode } from 'graphql'
@@ -23,6 +22,7 @@ import TemplateEditor from '../TemplateEditor'
 import CircularProgress from '../views/CircularProgress'
 import Container from '../views/Container'
 import Icon from '../views/Icon'
+import { List, ListItem } from '../views/List'
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from '../views/Tabs'
 import {
   Body1,
@@ -349,11 +349,9 @@ const ModelPage: React.FC = () => {
           <Trans>Fields</Trans>
         </Body1>
         {model.fields.length ? (
-          <List dense>
+          <List>
             {model.fields.map((field) => (
-              <ListItem key={field.id}>
-                <ListItemText primaryText={field.name} />
-              </ListItem>
+              <ListItem key={field.id}>{field.name}</ListItem>
             ))}
           </List>
         ) : (
