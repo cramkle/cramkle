@@ -1,15 +1,20 @@
+const commonColors = {
+  success: 'var(--color-success)',
+  error: 'var(--color-error)',
+  emphasis: 'var(--color-emphasis)',
+  outline: 'var(--color-outline)',
+  muted: 'var(--color-muted)',
+  'muted-2': 'var(--color-muted-2)',
+}
+
 module.exports = {
   theme: {
     colors: {
       primary: 'var(--color-primary)',
       secondary: 'var(--color-secondary)',
-      success: 'var(--color-success)',
-      error: 'var(--color-error)',
-      emphasis: 'var(--color-emphasis)',
       surface: 'var(--color-surface)',
-      outline: 'var(--color-outline)',
-      muted: 'var(--color-muted)',
       disabled: 'var(--color-disabled)',
+      ...commonColors,
     },
     textColor: {
       'on-primary': 'var(--color-on-primary)',
@@ -25,11 +30,27 @@ module.exports = {
       icon: 'var(--color-text-icon)',
       'action-primary': 'var(--color-primary)',
       'action-secondary': 'var(--color-secondary)',
-      error: 'var(--color-error)',
-      emphasis: 'var(--color-emphasis)',
-      success: 'var(--color-success)',
-      outline: 'var(--color-outline)',
-      muted: 'var(--color-muted)',
+      ...commonColors,
+    },
+    opacity: {
+      '0': '0',
+      '08': '.08',
+      '12': '.12',
+      '25': '.25',
+      '50': '.5',
+      '75': '.75',
+      '100': '1',
+    },
+    zIndex: {
+      '-10': '-10',
+      '-1': '-1',
+      '0': '0',
+      '10': '10',
+      '20': '20',
+      '30': '30',
+      '40': '40',
+      '50': '50',
+      auto: 'auto',
     },
   },
   variants: {},
