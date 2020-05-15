@@ -24,3 +24,37 @@ yarn --cwd api dev
 # run the app
 yarn --cwd app dev
 ```
+
+## Adding and updating translations
+
+This project uses [`lingui-js`](https://github.com/lingui/js-lingui) for i18n. In order
+to translate something that isn't yet translated, you need to first figure out whether or not
+it's best to use the `Trans` macro or the `t` macro with `useLingui` (if you don't know which
+one to use, go with the `Trans` macro).
+
+To translate some text, just wrap it up with one of the two macros above:
+
+```tsx
+import { Trans, t } from '@lingui/macro'
+import { useLingui } from '@lingui/react'
+import React from 'react'
+
+const ComponentWithTrans = () => {
+  return (
+    <span><Trans>My translated text</Trans></span>
+  )
+}
+
+const ComponentWithUseLingui = () => {
+  const { i18n } = useLingui()
+
+  return (
+    <span>{i18n._(t`My translated text`)}</span>
+  )
+}
+```
+
+After adding the macro to the component like in the example above, you need to run `yarn extract`
+in the app folder, so lingui can extract those texts into the PO files (under `app/src/locales/`).
+Then, edit the translation in the corresponding files and run `yarn compile` (again, in the app folder),
+and that's it.
