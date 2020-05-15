@@ -105,7 +105,7 @@ msgstr "Você tem certeza que deseja apagar este modelo? {0} e {1} associados a 
 
 #: src/components/DeleteNoteDialog.tsx:43
 msgid "Are you sure you want to delete this note? {0}"
-msgstr "Você tem certeza que quer deleter essa nota? {0}"
+msgstr "Você tem certeza que quer deletar essa nota? {0}"
 
 #: src/components/FlashCardRenderer.tsx:67
 msgid "Back side"
@@ -790,7 +790,7 @@ msgstr "{0, plural, one {# template} other {# templates}}"
 
 #: src/components/DeleteNoteDialog.tsx:45
 msgid "{0, plural, one {It contains one flashcard} other {It contains # flashcards}}"
-msgstr "{0, plural, one {Ele contém um flashcard} other {Ele contém # flashcards}}"
+msgstr "{0, plural, one {Ela contém um flashcard} other {Ela contém # flashcards}}"
 
 #: src/components/DeleteModelButton.tsx:81
 msgid "{0, plural, one {There's # note} other {There're # notes}}"
