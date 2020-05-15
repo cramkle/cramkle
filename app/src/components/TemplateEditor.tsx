@@ -1,22 +1,15 @@
 import {
   CompositeDecorator,
   ContentState,
-  EditorState,
   RawDraftContentState,
-  RichUtils,
-  convertFromRaw,
 } from 'draft-js'
 import 'draft-js/dist/Draft.css'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { TabController } from 'react-tab-controller'
+import React, { useCallback } from 'react'
 
-import { useHints } from './HintsContext'
-import BlockStyleControls from './editor/BlockStyleControls'
-import InlineStyleControls from './editor/InlineStyleControls'
+import BaseEditorControls from './editor/BaseEditorControls'
 import TagEditor from './editor/TagEditor'
 import { decorators as tagsDecorators } from './editor/TagsPopup'
 import { ModelQuery_model_templates_frontSide as TemplateContent } from './pages/__generated__/ModelQuery'
-import Card, { CardActionButtons, CardActions } from './views/Card'
 
 const decorators = new CompositeDecorator(tagsDecorators)
 
@@ -33,79 +26,22 @@ const TemplateEditor: React.FunctionComponent<Props> = ({
   fields,
   onChange,
 }) => {
-  const { isMobile } = useHints()
-
-  const [editor, setEditor] = useState(() => {
-    if (!initialContentState || initialContentState.blocks.length === 0) {
-      return EditorState.createEmpty(decorators)
-    }
-
-    const contentState = convertFromRaw(
-      initialContentState as RawDraftContentState
-    )
-
-    return EditorState.createWithContent(contentState, decorators)
-  })
-
-  const contentState = editor.getCurrentContent()
-  const prevContentState = useRef(contentState)
-
-  useEffect(() => {
-    if (contentState === prevContentState.current) {
-      return
-    }
-
-    prevContentState.current = contentState
-    onChange?.(contentState, id)
-  }, [contentState, onChange, id])
-
-  const handleStyleToggle = useCallback(
-    (style: string) => {
-      setEditor(RichUtils.toggleInlineStyle(editor, style))
+  const handleChange = useCallback(
+    (contentState: ContentState) => {
+      onChange?.(contentState, id)
     },
-    [editor]
-  )
-
-  const handleBlockStyleToggle = useCallback(
-    (style: string | ContentState) => {
-      if (typeof style === 'string') {
-        setEditor(RichUtils.toggleBlockType(editor, style))
-      } else {
-        setEditor(EditorState.push(editor, style, 'change-block-data'))
-      }
-    },
-    [editor]
+    [onChange, id]
   )
 
   return (
-    <Card outlined className="mt-2">
-      {!isMobile && (
-        <CardActions className="border-b border-outline">
-          <CardActionButtons className="flex-col items-start">
-            <TabController>
-              <BlockStyleControls
-                editor={editor}
-                onToggle={handleBlockStyleToggle}
-              />
-            </TabController>
-            <TabController>
-              <InlineStyleControls
-                editor={editor}
-                onToggle={handleStyleToggle}
-              />
-            </TabController>
-          </CardActionButtons>
-        </CardActions>
-      )}
-      <div className="p-4">
-        <TagEditor
-          tagSource={fields}
-          editorState={editor}
-          onChange={setEditor}
-          readOnly={isMobile}
-        />
-      </div>
-    </Card>
+    <BaseEditorControls
+      className="mt-2"
+      onChange={handleChange}
+      initialContentState={initialContentState as RawDraftContentState}
+      decorators={decorators}
+    >
+      <TagEditor tagSource={fields} />
+    </BaseEditorControls>
   )
 }
 

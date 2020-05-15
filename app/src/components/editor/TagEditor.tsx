@@ -8,13 +8,22 @@ import {
 import * as KeyCode from 'keycode-js'
 import React, { useCallback, useEffect, useReducer, useRef } from 'react'
 
+import { useBaseEditorControls } from './BaseEditorControls'
 import { blockStyleFn } from './BlockStyleControls'
 import { TaggableEntry } from './TaggableEntry'
 import TagsPopup from './TagsPopup'
 import replaceTagInEditorState from './replaceTagInEditorState'
 import searchTags from './searchTags'
 
-interface Props extends Omit<EditorProps, 'keyBindingFn' | 'handleKeyCommand'> {
+interface Props
+  extends Omit<
+    EditorProps,
+    | 'onChange'
+    | 'editorState'
+    | 'blockStyleFn'
+    | 'keyBindingFn'
+    | 'handleKeyCommand'
+  > {
   tagSource: TaggableEntry[]
   autoHighlight?: boolean
   autoUpdateHighlight?: boolean
@@ -56,15 +65,21 @@ const reducer = (state: State, action: Action): State => {
 
 const TagEditor: React.FunctionComponent<Props> = ({
   tagSource,
-  editorState,
   autoHighlight = true,
   autoUpdateHighlight = true,
-  onChange,
   onBlur,
   handleReturn: handleContentReturn,
   ariaAutoComplete = 'list',
   ...props
 }) => {
+  const baseContext = useBaseEditorControls()
+
+  const {
+    editorState,
+    onChange,
+    handleKeyCommand: baseHandleKeyCommand,
+  } = baseContext
+
   const [
     { highlightedTag, visibleTagEntries, characterOffset },
     dispatch,
@@ -213,7 +228,11 @@ const TagEditor: React.FunctionComponent<Props> = ({
     return getDefaultKeyBinding(e)
   }
 
-  const handleKeyCommand = (command: string): DraftHandleValue => {
+  const handleKeyCommand = (
+    command: string,
+    editorState: EditorState,
+    timestamp: number
+  ): DraftHandleValue => {
     switch (command) {
       case 'handle-autocomplete':
         if (highlightedTag) {
@@ -232,8 +251,12 @@ const TagEditor: React.FunctionComponent<Props> = ({
       case 'move-selection-down':
         moveSelectionDown()
         return 'handled'
-      default:
-        return 'not-handled'
+      default: {
+        return (
+          baseHandleKeyCommand?.(command, editorState, timestamp) ??
+          'not-handled'
+        )
+      }
     }
   }
 
