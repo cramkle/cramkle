@@ -1,19 +1,12 @@
-import { Trans, t } from '@lingui/macro'
-import { useLingui } from '@lingui/react'
+import { Trans } from '@lingui/macro'
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 import { getNoteIdentifier } from '../utils/noteIdentifier'
 import DeleteNoteDialog from './DeleteNoteDialog'
 import { DeckQuery_deck_notes } from './pages/__generated__/DeckQuery'
+import Button from './views/Button'
 import Card from './views/Card'
-import Icon from './views/Icon'
-import {
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuLink,
-  MenuList,
-} from './views/MenuButton'
 import { Table, TableBody, TableCell, TableHead, TableRow } from './views/Table'
 import { Body2 } from './views/Typography'
 
@@ -23,7 +16,6 @@ interface Props {
 }
 
 const NotesTable: React.FC<Props> = ({ notes, deckSlug }) => {
-  const { i18n } = useLingui()
   const [deletingNote, setDeletingNote] = useState<DeckQuery_deck_notes | null>(
     null
   )
@@ -65,6 +57,7 @@ const NotesTable: React.FC<Props> = ({ notes, deckSlug }) => {
             <TableCell>
               <Trans>Flashcards</Trans>
             </TableCell>
+            <TableCell />
           </TableRow>
         </TableHead>
         <TableBody>
@@ -77,20 +70,24 @@ const NotesTable: React.FC<Props> = ({ notes, deckSlug }) => {
                 <TableCell>{note.deck.title}</TableCell>
                 <TableCell>{note.model.name}</TableCell>
                 <TableCell>{note.flashCards.length}</TableCell>
-                <TableCell>
-                  <Menu>
-                    <MenuButton icon className="flex items-center">
-                      <Icon aria-label={i18n._(t`Actions`)} icon="more_vert" />
-                    </MenuButton>
-                    <MenuList>
-                      <MenuLink to={`/d/${deckSlug}/note/${note.id}`}>
-                        <Trans>Edit</Trans>
-                      </MenuLink>
-                      <MenuItem onSelect={() => setDeletingNote(note)}>
-                        <Trans>Delete</Trans>
-                      </MenuItem>
-                    </MenuList>
-                  </Menu>
+                <TableCell
+                  align="right"
+                  className="flex items-center justify-end"
+                >
+                  <Link
+                    className="text-action-primary"
+                    to={`/d/${deckSlug}/note/${note.id}`}
+                  >
+                    <Trans>Edit</Trans>
+                  </Link>
+                  <Button
+                    className="ml-3 normal-case tracking-normal"
+                    onClick={() => setDeletingNote(note)}
+                  >
+                    <span className="text-base font-normal">
+                      <Trans>Delete</Trans>
+                    </span>
+                  </Button>
                 </TableCell>
               </TableRow>
             )

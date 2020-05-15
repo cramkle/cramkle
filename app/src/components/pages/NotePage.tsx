@@ -310,11 +310,12 @@ const NotePage: React.FC = () => {
         <Table className="my-8 w-full">
           <TableHead>
             <TableRow>
-              <TableCell />
+              <TableCell className="w-0" />
               <TableCell>Template</TableCell>
               <TableCell>Status</TableCell>
               <TableCell>Lapses</TableCell>
               <TableCell>Due Date</TableCell>
+              <TableCell />
             </TableRow>
           </TableHead>
           <TableBody>
@@ -331,9 +332,14 @@ const NotePage: React.FC = () => {
                 <TableCell>
                   {flashCard.due && i18n.date(new Date(flashCard.due), {})}
                 </TableCell>
-                <TableCell>
-                  <Button onClick={() => handleShowFlashCardPreview(flashCard)}>
-                    <Trans>Preview</Trans>
+                <TableCell align="right">
+                  <Button
+                    className="normal-case tracking-normal"
+                    onClick={() => handleShowFlashCardPreview(flashCard)}
+                  >
+                    <span className="text-base font-normal">
+                      <Trans>Preview</Trans>
+                    </span>
                   </Button>
                 </TableCell>
               </TableRow>

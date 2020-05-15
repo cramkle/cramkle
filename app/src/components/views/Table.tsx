@@ -12,7 +12,7 @@ export const Table: React.FC<TableProps> = ({
     <div
       className={classnames(
         className,
-        'border border-solid rounded border-outline inline-block overflow-auto bg-surface'
+        'border rounded border-outline inline-block overflow-auto bg-surface shadow'
       )}
     >
       <table {...props} className="collapse w-full">
@@ -91,13 +91,17 @@ export const TableCell: React.FC<TableCellProps> = ({
   return (
     <Tag
       {...props}
-      className={classnames(className, 'h-16 px-4', {
-        'leading-normal font-medium': isHead,
+      className={classnames(className, 'px-6', {
+        'h-16 whitespace-no-wrap': !isHead,
+        'leading-4 text-xs font-medium uppercase tracking-wider py-3 relative': isHead,
         'text-left': align === 'left',
         'text-right': align === 'right',
       })}
     >
       {children}
+      {isHead && (
+        <div className="absolute top-0 left-0 bottom-0 right-0 bg-muted-2 opacity-12" />
+      )}
     </Tag>
   )
 }
