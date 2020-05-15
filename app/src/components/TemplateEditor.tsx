@@ -6,7 +6,6 @@ import {
 import 'draft-js/dist/Draft.css'
 import React, { useCallback } from 'react'
 
-import { useHints } from './HintsContext'
 import BaseEditorControls from './editor/BaseEditorControls'
 import TagEditor from './editor/TagEditor'
 import { decorators as tagsDecorators } from './editor/TagsPopup'
@@ -27,8 +26,6 @@ const TemplateEditor: React.FunctionComponent<Props> = ({
   fields,
   onChange,
 }) => {
-  const { isMobile } = useHints()
-
   const handleChange = useCallback(
     (contentState: ContentState) => {
       onChange?.(contentState, id)
@@ -43,7 +40,7 @@ const TemplateEditor: React.FunctionComponent<Props> = ({
       initialContentState={initialContentState as RawDraftContentState}
       decorators={decorators}
     >
-      <TagEditor tagSource={fields} readOnly={isMobile} />
+      <TagEditor tagSource={fields} />
     </BaseEditorControls>
   )
 }
