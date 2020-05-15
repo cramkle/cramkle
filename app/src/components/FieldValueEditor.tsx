@@ -4,6 +4,7 @@ import { ContentState } from 'draft-js'
 import React, { useCallback } from 'react'
 
 import BaseEditor from './editor/BaseEditor'
+import BaseEditorControls from './editor/BaseEditorControls'
 
 interface Props {
   className?: string
@@ -31,12 +32,13 @@ const FieldValueEditor: React.FC<Props> = ({
   )
 
   return (
-    <BaseEditor
+    <BaseEditorControls
       className={className}
       initialContentState={initialContentState}
       onChange={handleChange}
-      placeholder={i18n._(t`Field value...`)}
-    />
+    >
+      <BaseEditor placeholder={i18n._(t`Field value...`)} />
+    </BaseEditorControls>
   )
 }
 
