@@ -315,6 +315,10 @@ msgstr "Field value..."
 msgid "Fields"
 msgstr "Fields"
 
+#: src/components/Pagination.tsx:39
+msgid "First page"
+msgstr "First page"
+
 #: src/components/NotesTable.tsx:38
 #: src/components/pages/NotePage.tsx:219
 msgid "Flashcards"
@@ -413,6 +417,10 @@ msgstr "Italic"
 msgid "Language"
 msgstr "Language"
 
+#: src/components/Pagination.tsx:48
+msgid "Last page"
+msgstr "Last page"
+
 #: src/components/FlashCardStatus.tsx:19
 msgid "Learning"
 msgstr "Learning"
@@ -476,7 +484,7 @@ msgstr "New"
 msgid "New password"
 msgstr "New password"
 
-#: src/components/Pagination.tsx:34
+#: src/components/Pagination.tsx:45
 msgid "Next page"
 msgstr "Next page"
 
@@ -543,7 +551,7 @@ msgstr "Portuguese"
 msgid "Preview"
 msgstr "Preview"
 
-#: src/components/Pagination.tsx:31
+#: src/components/Pagination.tsx:42
 msgid "Previous page"
 msgstr "Previous page"
 
@@ -599,7 +607,7 @@ msgstr "Reset password token is expired"
 msgid "Review"
 msgstr "Review"
 
-#: src/components/Pagination.tsx:22
+#: src/components/Pagination.tsx:30
 msgid "Rows per page"
 msgstr "Rows per page"
 

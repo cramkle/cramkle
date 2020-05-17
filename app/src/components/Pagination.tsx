@@ -4,6 +4,8 @@ import React from 'react'
 
 import CaretLeftIcon from './icons/CaretLeftIcon'
 import CaretRightIcon from './icons/CaretRightIcon'
+import FirstPageIcon from './icons/FirstPageIcon'
+import LastPageIcon from './icons/LastPageIcon'
 import IconButton from './views/IconButton'
 import { Listbox, ListboxOption } from './views/Listbox'
 
@@ -37,6 +39,14 @@ const Pagination: React.FC<Props> = ({
     onPageQuantityChange?.(parseInt(value, 10))
   }
 
+  const handleFirstPageClick = () => {
+    onPageChange?.({ after: null, first: pageQuantity })
+  }
+
+  const handleLastPageClick = () => {
+    onPageChange?.({ before: null, last: pageQuantity })
+  }
+
   const handlePrevPageClick = () => {
     onPageChange?.({ before: pageInfo.startCursor, last: pageQuantity })
   }
@@ -64,6 +74,13 @@ const Pagination: React.FC<Props> = ({
       <div className="flex items-center">
         <IconButton
           disabled={!pageInfo.hasPreviousPage}
+          onClick={handleFirstPageClick}
+          aria-label={i18n._(t`First page`)}
+        >
+          <FirstPageIcon />
+        </IconButton>
+        <IconButton
+          disabled={!pageInfo.hasPreviousPage}
           onClick={handlePrevPageClick}
           aria-label={i18n._(t`Previous page`)}
         >
@@ -76,6 +93,13 @@ const Pagination: React.FC<Props> = ({
           aria-label={i18n._(t`Next page`)}
         >
           <CaretRightIcon />
+        </IconButton>
+        <IconButton
+          disabled={!pageInfo.hasNextPage}
+          onClick={handleLastPageClick}
+          aria-label={i18n._(t`Last page`)}
+        >
+          <LastPageIcon />
         </IconButton>
       </div>
     </div>

@@ -315,6 +315,10 @@ msgstr "Valor do campo..."
 msgid "Fields"
 msgstr "Campos"
 
+#: src/components/Pagination.tsx:39
+msgid "First page"
+msgstr "Primeira página"
+
 #: src/components/NotesTable.tsx:38
 #: src/components/pages/NotePage.tsx:219
 msgid "Flashcards"
@@ -413,6 +417,10 @@ msgstr "Itálico"
 msgid "Language"
 msgstr "Idioma"
 
+#: src/components/Pagination.tsx:48
+msgid "Last page"
+msgstr "Última página"
+
 #: src/components/FlashCardStatus.tsx:19
 msgid "Learning"
 msgstr "Aprendendo"
@@ -476,7 +484,7 @@ msgstr "Novo"
 msgid "New password"
 msgstr "Nova senha"
 
-#: src/components/Pagination.tsx:34
+#: src/components/Pagination.tsx:45
 msgid "Next page"
 msgstr "Próxima página"
 
@@ -543,7 +551,7 @@ msgstr "Português"
 msgid "Preview"
 msgstr "Pré-visualizar"
 
-#: src/components/Pagination.tsx:31
+#: src/components/Pagination.tsx:42
 msgid "Previous page"
 msgstr "Página anterior"
 
@@ -599,7 +607,7 @@ msgstr "O token para resetar a senha expirou"
 msgid "Review"
 msgstr "Revisão"
 
-#: src/components/Pagination.tsx:22
+#: src/components/Pagination.tsx:30
 msgid "Rows per page"
 msgstr "Linhas por página"
 
