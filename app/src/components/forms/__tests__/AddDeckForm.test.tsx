@@ -1,62 +1,47 @@
-import { MockedProvider, MockedResponse } from '@apollo/react-testing'
-import { setupI18n } from '@lingui/core'
-import { I18nProvider } from '@lingui/react'
-import { fireEvent, render as rtlRender, waitFor } from '@testing-library/react'
+import { MockedResponse } from '@apollo/react-testing'
+import { fireEvent, waitFor } from '@testing-library/react'
 import React from 'react'
-import { MemoryRouter } from 'react-router'
 
+import { render } from '../../../testUtils'
 import AddDeckForm, { CREATE_DECK_MUTATION } from '../AddDeckForm'
 
-const render = (ui: React.ReactElement) => {
-  const deckMock = {
-    id: 'id',
-    slug: 'id',
-    title: 'my title',
-    description: '',
-  }
+const deckMock = {
+  __typename: 'Deck',
+  id: 'id',
+  slug: 'id',
+  title: 'my title',
+  description: '',
+  studySessionDetails: {
+    __typename: 'StudySessionDetails',
+    newCount: 0,
+    learningCount: 0,
+    reviewCount: 0,
+  },
+}
 
-  const mocks: MockedResponse[] = [
-    {
-      request: {
-        query: CREATE_DECK_MUTATION,
-        variables: {
-          title: deckMock.title,
-          description: '',
-        },
-      },
-      result: {
-        data: {
-          createDeck: deckMock,
-        },
+const mocks: MockedResponse[] = [
+  {
+    request: {
+      query: CREATE_DECK_MUTATION,
+      variables: {
+        title: deckMock.title,
+        description: '',
       },
     },
-  ]
-
-  const i18n = setupI18n()
-
-  i18n.activate('en')
-
-  const utils = rtlRender(
-    <MemoryRouter>
-      <I18nProvider i18n={i18n}>
-        <MockedProvider mocks={mocks} addTypename={false}>
-          {ui}
-        </MockedProvider>
-      </I18nProvider>
-    </MemoryRouter>
-  )
-
-  return {
-    ...utils,
-    deckMock,
-  }
-}
+    result: {
+      data: {
+        createDeck: deckMock,
+      },
+    },
+  },
+]
 
 describe('<AddDeckForm />', () => {
   it('should add deck on submit click', async () => {
     const closeCallback = jest.fn()
-    const { getByLabelText, getByText, deckMock } = render(
-      <AddDeckForm open onClose={closeCallback} />
+    const { getByLabelText, getByText } = render(
+      <AddDeckForm open onClose={closeCallback} />,
+      { mocks }
     )
 
     const titleInput = getByLabelText(/title/i)
@@ -73,8 +58,9 @@ describe('<AddDeckForm />', () => {
 
   it('should add one deck on input enter', async () => {
     const closeCallback = jest.fn()
-    const { getByLabelText, getByText, deckMock } = render(
-      <AddDeckForm open onClose={closeCallback} />
+    const { getByLabelText, getByText } = render(
+      <AddDeckForm open onClose={closeCallback} />,
+      { mocks }
     )
 
     const titleInput = getByLabelText(/title/i)

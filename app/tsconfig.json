@@ -15,7 +15,7 @@
     "target": "es5",
     "lib": ["es6", "dom"],
     "jsx": "react",
-    "types": ["graphql"]
+    "types": ["graphql", "jest"]
   },
   "exclude": ["jest/**/*"]
 }
