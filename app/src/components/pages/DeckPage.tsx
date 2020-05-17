@@ -136,6 +136,10 @@ const DeckPage: React.FunctionComponent = () => {
         slug,
       },
       updateQuery: (previousResult, { fetchMoreResult }) => {
+        if (!previousResult) {
+          return previousResult
+        }
+
         const newEdges = fetchMoreResult?.deck.notes.edges
         const pageInfo = fetchMoreResult?.deck.notes.pageInfo
 
@@ -153,7 +157,7 @@ const DeckPage: React.FunctionComponent = () => {
     })
   }, [paginationParams, fetchMore, slug])
 
-  if (loading) {
+  if (loading || !data) {
     return null
   }
 
