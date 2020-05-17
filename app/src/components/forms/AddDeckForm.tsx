@@ -8,6 +8,7 @@ import { useHistory } from 'react-router'
 import * as yup from 'yup'
 
 import { notificationState } from '../../notification/index'
+import { deckCardFragment } from '../DeckCard'
 import { DECKS_QUERY } from '../DeckList'
 import { DecksQuery } from '../__generated__/DecksQuery'
 import Button from '../views/Button'
@@ -28,10 +29,11 @@ export const CREATE_DECK_MUTATION = gql`
     createDeck(title: $title, description: $description) {
       id
       slug
-      title
-      description
+      ...DeckCard_deck
     }
   }
+
+  ${deckCardFragment}
 `
 
 const titleRequired = t`The title is required`

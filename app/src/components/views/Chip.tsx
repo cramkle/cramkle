@@ -1,7 +1,7 @@
 import classnames from 'classnames'
 import React from 'react'
 
-interface ChipProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface ChipProps extends React.HTMLAttributes<HTMLDivElement> {
   type?: 'success' | 'error' | 'emphasis'
   inverted?: boolean
 }

@@ -3,7 +3,7 @@ import { useLingui } from '@lingui/react'
 import React from 'react'
 
 import { FlashCardStatus } from '../globalTypes'
-import { Chip } from './views/Chip'
+import { Chip, ChipProps } from './views/Chip'
 
 interface Props {
   status: FlashCardStatus
@@ -21,12 +21,16 @@ const chipTypeByStatus = {
   [FlashCardStatus.LEARNING]: 'emphasis',
 } as const
 
-const FlashCardStatusChip: React.FC<Props> = ({ status }) => {
+const FlashCardStatusChip: React.FC<
+  Props & Omit<ChipProps, 'type' | 'inverted'>
+> = ({ status, children, ...props }) => {
   const { i18n } = useLingui()
 
   let message = null
 
-  if (status === FlashCardStatus.NEW) {
+  if (children) {
+    message = children
+  } else if (status === FlashCardStatus.NEW) {
     message = i18n._(messages.new)
   } else if (status === FlashCardStatus.LEARNING) {
     message = i18n._(messages.learning)
@@ -39,7 +43,7 @@ const FlashCardStatusChip: React.FC<Props> = ({ status }) => {
   }
 
   return (
-    <Chip type={chipTypeByStatus[status]} inverted>
+    <Chip {...props} type={chipTypeByStatus[status]} inverted>
       {message}
     </Chip>
   )

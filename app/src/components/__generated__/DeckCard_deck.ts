@@ -4,17 +4,17 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: DecksQuery
+// GraphQL fragment: DeckCard_deck
 // ====================================================
 
-export interface DecksQuery_decks_studySessionDetails {
+export interface DeckCard_deck_studySessionDetails {
   __typename: 'StudySessionDetails'
   newCount: number
   learningCount: number
   reviewCount: number
 }
 
-export interface DecksQuery_decks {
+export interface DeckCard_deck {
   __typename: 'Deck'
   /**
    * Deck id
@@ -35,12 +35,5 @@ export interface DecksQuery_decks {
   /**
    * Details of current study session
    */
-  studySessionDetails: DecksQuery_decks_studySessionDetails
-}
-
-export interface DecksQuery {
-  /**
-   * Retrieve all decks for the logged user
-   */
-  decks: DecksQuery_decks[]
+  studySessionDetails: DeckCard_deck_studySessionDetails
 }

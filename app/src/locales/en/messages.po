@@ -13,7 +13,7 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/components/pages/HomePage.tsx:34
+#: src/components/pages/HomePage.tsx:41
 msgid "A new update is available!"
 msgstr "A new update is available!"
 
@@ -25,11 +25,7 @@ msgstr "About"
 msgid "Account created successfully"
 msgstr "Account created successfully"
 
-#: src/components/NotesTable.tsx:54
-msgid "Actions"
-msgstr "Actions"
-
-#: src/components/forms/AddDeckForm.tsx:82
+#: src/components/forms/AddDeckForm.tsx:84
 #: src/components/pages/DecksSection.tsx:27
 #: src/components/pages/DecksSection.tsx:27
 msgid "Add Deck"
@@ -70,7 +66,7 @@ msgstr "Align left"
 msgid "Align right"
 msgstr "Align right"
 
-#: src/components/pages/LandingPage.tsx:51
+#: src/components/pages/LandingPage.tsx:49
 #: src/components/pages/RegisterPage.tsx:20
 msgid "Already have an account? <0>Log In</0>"
 msgstr "Already have an account? <0>Log In</0>"
@@ -79,7 +75,7 @@ msgstr "Already have an account? <0>Log In</0>"
 msgid "An error has ocurred when trying to get your decks to study."
 msgstr "An error has ocurred when trying to get your decks to study."
 
-#: src/components/forms/AddDeckForm.tsx:73
+#: src/components/forms/AddDeckForm.tsx:75
 msgid "An error ocurred when creating the deck"
 msgstr "An error ocurred when creating the deck"
 
@@ -176,7 +172,7 @@ msgstr "Congratulations, you have finished studying this deck for now."
 msgid "Continue Studying"
 msgstr "Continue Studying"
 
-#: src/components/forms/AddDeckForm.tsx:88
+#: src/components/forms/AddDeckForm.tsx:90
 #: src/components/pages/AddModelPage.tsx:139
 msgid "Create"
 msgstr "Create"
@@ -189,11 +185,11 @@ msgstr "Create Model"
 msgid "Create Note for deck \"{0}\""
 msgstr "Create Note for deck \"{0}\""
 
-#: src/components/NotesTable.tsx:33
+#: src/components/NotesTable.tsx:31
 msgid "Deck"
 msgstr "Deck"
 
-#: src/components/forms/AddDeckForm.tsx:61
+#: src/components/forms/AddDeckForm.tsx:63
 msgid "Deck created successfully!"
 msgstr "Deck created successfully!"
 
@@ -209,7 +205,7 @@ msgstr "Deck details"
 msgid "Deck {0}"
 msgstr "Deck {0}"
 
-#: src/components/pages/HomePage.tsx:73
+#: src/components/pages/HomePage.tsx:100
 msgid "Decks"
 msgstr "Decks"
 
@@ -218,7 +214,7 @@ msgstr "Decks"
 #: src/components/DeleteModelButton.tsx:72
 #: src/components/DeleteModelButton.tsx:97
 #: src/components/DeleteNoteDialog.tsx:55
-#: src/components/NotesTable.tsx:61
+#: src/components/NotesTable.tsx:56
 msgid "Delete"
 msgstr "Delete"
 
@@ -234,13 +230,13 @@ msgstr "Delete model"
 msgid "Delete note {noteIdentifier}"
 msgstr "Delete note {noteIdentifier}"
 
-#: src/components/forms/AddDeckForm.tsx:86
+#: src/components/forms/AddDeckForm.tsx:88
 msgid "Description"
 msgstr "Description"
 
 #: src/components/DeleteDeckButton.tsx:52
 #: src/components/DeleteModelButton.tsx:56
-#: src/components/forms/AddDeckForm.tsx:74
+#: src/components/forms/AddDeckForm.tsx:76
 #: src/components/forms/RegisterForm.tsx:67
 msgid "Dismiss"
 msgstr "Dismiss"
@@ -257,7 +253,7 @@ msgstr "Don't have an account? <0>Sign Up</0>"
 msgid "Easy"
 msgstr "Easy"
 
-#: src/components/NotesTable.tsx:58
+#: src/components/NotesTable.tsx:52
 msgid "Edit"
 msgstr "Edit"
 
@@ -309,7 +305,7 @@ msgstr "Field name"
 msgid "Field name is required"
 msgstr "Field name is required"
 
-#: src/components/FieldValueEditor.tsx:51
+#: src/components/FieldValueEditor.tsx:12
 msgid "Field value..."
 msgstr "Field value..."
 
@@ -319,7 +315,7 @@ msgstr "Field value..."
 msgid "Fields"
 msgstr "Fields"
 
-#: src/components/NotesTable.tsx:39
+#: src/components/NotesTable.tsx:37
 #: src/components/pages/NotePage.tsx:219
 msgid "Flashcards"
 msgstr "Flashcards"
@@ -389,8 +385,7 @@ msgstr "H6"
 msgid "Hard"
 msgstr "Hard"
 
-#: src/components/AppDrawer.tsx:61
-#: src/components/pages/HomePage.tsx:61
+#: src/components/pages/HomePage.tsx:74
 msgid "Home"
 msgstr "Home"
 
@@ -418,29 +413,25 @@ msgstr "Italic"
 msgid "Language"
 msgstr "Language"
 
-#: src/components/FlashCardStatus.tsx:8
+#: src/components/FlashCardStatus.tsx:19
 msgid "Learning"
 msgstr "Learning"
 
+#: src/components/Shell.tsx:71
+msgid "Log out"
+msgstr "Log out"
+
 #: src/components/forms/LoginForm.tsx:62
-#: src/components/pages/LandingPage.tsx:28
+#: src/components/pages/LandingPage.tsx:27
 #: src/components/pages/LoginPage.tsx:12
 msgid "Login"
 msgstr "Login"
 
-#: src/components/AppDrawer.tsx:77
-msgid "Logout"
-msgstr "Logout"
-
-#: src/components/Shell.tsx:76
-msgid "Main menu"
-msgstr "Main menu"
-
-#: src/components/pages/LandingPage.tsx:38
+#: src/components/pages/LandingPage.tsx:36
 msgid "Make sure your knowledge will last"
 msgstr "Make sure your knowledge will last"
 
-#: src/components/AppDrawer.tsx:65
+#: src/components/pages/HomePage.tsx:80
 msgid "Marketplace"
 msgstr "Marketplace"
 
@@ -456,11 +447,11 @@ msgstr "Model deleted successfully"
 msgid "Model details"
 msgstr "Model details"
 
-#: src/components/NotesTable.tsx:36
+#: src/components/NotesTable.tsx:34
 msgid "Model type"
 msgstr "Model type"
 
-#: src/components/pages/HomePage.tsx:77
+#: src/components/pages/HomePage.tsx:106
 msgid "Models"
 msgstr "Models"
 
@@ -476,7 +467,7 @@ msgstr "Name"
 msgid "Name is required"
 msgstr "Name is required"
 
-#: src/components/FlashCardStatus.tsx:7
+#: src/components/FlashCardStatus.tsx:18
 msgid "New"
 msgstr "New"
 
@@ -493,7 +484,7 @@ msgstr "No fields added"
 msgid "No templates added"
 msgstr "No templates added"
 
-#: src/components/NotesTable.tsx:30
+#: src/components/NotesTable.tsx:28
 msgid "Note"
 msgstr "Note"
 
@@ -513,7 +504,7 @@ msgstr "Notes"
 msgid "OL"
 msgstr "OL"
 
-#: src/components/pages/LandingPage.tsx:41
+#: src/components/pages/LandingPage.tsx:39
 msgid "Optimize your knowledge retention with this effective study method."
 msgstr "Optimize your knowledge retention with this effective study method."
 
@@ -544,7 +535,7 @@ msgstr "Please, try reloading the page"
 msgid "Portuguese"
 msgstr "Portuguese"
 
-#: src/components/pages/NotePage.tsx:247
+#: src/components/pages/NotePage.tsx:249
 msgid "Preview"
 msgstr "Preview"
 
@@ -552,12 +543,12 @@ msgstr "Preview"
 msgid "Privacy Policy"
 msgstr "Privacy Policy"
 
-#: src/components/pages/HomePage.tsx:43
+#: src/components/pages/HomePage.tsx:50
 msgid "Ready to work offline"
 msgstr "Ready to work offline"
 
 #: src/components/ErrorFallback.tsx:14
-#: src/components/pages/HomePage.tsx:35
+#: src/components/pages/HomePage.tsx:42
 msgid "Refresh"
 msgstr "Refresh"
 
@@ -596,7 +587,7 @@ msgstr "Reset password"
 msgid "Reset password token is expired"
 msgstr "Reset password token is expired"
 
-#: src/components/FlashCardStatus.tsx:9
+#: src/components/FlashCardStatus.tsx:20
 msgid "Review"
 msgstr "Review"
 
@@ -613,7 +604,7 @@ msgstr "Search"
 msgid "Select a model"
 msgstr "Select a model"
 
-#: src/components/AppDrawer.tsx:73
+#: src/components/Shell.tsx:68
 #: src/components/pages/SettingsPage.tsx:9
 msgid "Settings"
 msgstr "Settings"
@@ -622,11 +613,11 @@ msgstr "Settings"
 msgid "Show"
 msgstr "Show"
 
-#: src/components/pages/LandingPage.tsx:25
+#: src/components/pages/LandingPage.tsx:24
 msgid "Sign Up"
 msgstr "Sign Up"
 
-#: src/components/pages/LandingPage.tsx:48
+#: src/components/pages/LandingPage.tsx:46
 msgid "Sign up now!"
 msgstr "Sign up now!"
 
@@ -638,11 +629,11 @@ msgstr "Something went wrong"
 msgid "Start Session"
 msgstr "Start Session"
 
-#: src/components/AppDrawer.tsx:69
+#: src/components/pages/HomePage.tsx:83
 msgid "Statistics"
 msgstr "Statistics"
 
-#: src/components/pages/HomePage.tsx:69
+#: src/components/pages/HomePage.tsx:94
 msgid "Study"
 msgstr "Study"
 
@@ -675,11 +666,11 @@ msgstr "Templates"
 msgid "Terms and Conditions"
 msgstr "Terms and Conditions"
 
-#: src/components/DeckList.tsx:29
+#: src/components/DeckList.tsx:28
 msgid "The decks you create will appear here."
 msgstr "The decks you create will appear here."
 
-#: src/components/ModelList.tsx:34
+#: src/components/ModelList.tsx:33
 msgid "The models you create will appear here."
 msgstr "The models you create will appear here."
 
@@ -687,7 +678,7 @@ msgstr "The models you create will appear here."
 msgid "The selected model doesn't have any fields. Please, select another one"
 msgstr "The selected model doesn't have any fields. Please, select another one"
 
-#: src/components/forms/AddDeckForm.tsx:33
+#: src/components/forms/AddDeckForm.tsx:35
 msgid "The title is required"
 msgstr "The title is required"
 
@@ -695,11 +686,11 @@ msgstr "The title is required"
 msgid "This link may be broken or the typed URL is incorrect."
 msgstr "This link may be broken or the typed URL is incorrect."
 
-#: src/components/pages/ModelPage.tsx:229
+#: src/components/pages/ModelPage.tsx:227
 msgid "This model doesn't have any fields yet."
 msgstr "This model doesn't have any fields yet."
 
-#: src/components/forms/AddDeckForm.tsx:85
+#: src/components/forms/AddDeckForm.tsx:87
 msgid "Title"
 msgstr "Title"
 
@@ -741,7 +732,7 @@ msgstr "Username must be at most 20 characters"
 msgid "Username must consist only of alphanumeric characters and underscores"
 msgstr "Username must consist only of alphanumeric characters and underscores"
 
-#: src/components/forms/AddDeckForm.tsx:62
+#: src/components/forms/AddDeckForm.tsx:64
 #: src/components/pages/AddModelPage.tsx:75
 #: src/components/pages/AddNotePage.tsx:89
 msgid "View"
@@ -759,7 +750,7 @@ msgstr "We have sent you an email with instructions to help you reset your passw
 msgid "You haven't created any models yet."
 msgstr "You haven't created any models yet."
 
-#: src/components/NotesTable.tsx:20
+#: src/components/NotesTable.tsx:18
 msgid "You haven't created any notes on this deck yet"
 msgstr "You haven't created any notes on this deck yet"
 
@@ -795,6 +786,18 @@ msgstr "{0, plural, one {It contains one flashcard} other {It contains # flashca
 #: src/components/DeleteModelButton.tsx:81
 msgid "{0, plural, one {There's # note} other {There're # notes}}"
 msgstr "{0, plural, one {There's # note} other {There're # notes}}"
+
+#: src/components/DeckCard.tsx:44
+msgid "{learningCount, plural, one {# learning} other {# learning}}"
+msgstr "{learningCount, plural, one {# learning} other {# learning}}"
+
+#: src/components/DeckCard.tsx:41
+msgid "{newCount, plural, one {# new} other {# new}}"
+msgstr "{newCount, plural, one {# new} other {# new}}"
+
+#: src/components/DeckCard.tsx:50
+msgid "{reviewCount, plural, one {# review} other {# review}}"
+msgstr "{reviewCount, plural, one {# review} other {# review}}"
 
 #: src/components/pages/ModelPage.tsx:197
 msgid "{totalFlashCards, plural, one {# flashcard} other {# flashcards}}"

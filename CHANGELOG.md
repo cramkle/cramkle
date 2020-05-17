@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Text alignment controls in editor.
 - Forgot and reset password pages.
 - Message when templates were saved in notes and models.
+- Study session details in deck card inside study section.
 
 ### Changed
 - Update logo icon for when the user is offline.

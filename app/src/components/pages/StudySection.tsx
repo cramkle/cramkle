@@ -6,7 +6,7 @@ import React, { useRef, useState } from 'react'
 import { useHistory } from 'react-router'
 
 import useTopBarLoading from '../../hooks/useTopBarLoading'
-import DeckCard from '../DeckCard'
+import DeckCard, { deckCardFragment } from '../DeckCard'
 import {
   AlertDialog,
   AlertDialogDescription,
@@ -22,11 +22,12 @@ const DECKS_TO_STUDY_QUERY = gql`
   query DecksToStudy {
     decks(studyOnly: true) {
       id
-      title
       slug
-      description
+      ...DeckCard_deck
     }
   }
+
+  ${deckCardFragment}
 `
 
 const StudySection: React.FunctionComponent = () => {
@@ -116,7 +117,11 @@ const StudySection: React.FunctionComponent = () => {
           <div className="grid grid-cols-12 gap-6">
             {decks.map((deck) => (
               <div key={deck.id} className="col-span-4">
-                <DeckCard deck={deck} onClick={handleDeckSelect} />
+                <DeckCard
+                  deck={deck}
+                  onClick={handleDeckSelect}
+                  showStudySessionDetails
+                />
               </div>
             ))}
           </div>
