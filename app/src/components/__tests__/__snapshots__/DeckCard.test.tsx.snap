@@ -15,6 +15,7 @@ exports[`<DeckCard /> should match snapshot 1`] = `
       >
         日本語げんき
       </h6>
+      
     </div>
   </div>
 </div>

@@ -1,16 +1,42 @@
+import { plural } from '@lingui/macro'
+import { useLingui } from '@lingui/react'
+import gql from 'graphql-tag'
 import React from 'react'
 import { useHistory } from 'react-router'
 
+import { FlashCardStatus } from '../globalTypes'
+import FlashCardStatusChip from './FlashCardStatus'
+import { DeckCard_deck } from './__generated__/DeckCard_deck'
 import Card, { CardPrimaryContent } from './views/Card'
 import { Body2, Headline6 } from './views/Typography'
 
 interface Props {
-  deck: { id: string; title: string; description?: string | null; slug: string }
-  onClick?: (deck: { id: string; title: string; description?: string }) => void
+  deck: DeckCard_deck
+  onClick?: (deck: DeckCard_deck) => void
+  showStudySessionDetails?: boolean
 }
 
-const DeckCard: React.FunctionComponent<Props> = ({ onClick, deck }) => {
+export const deckCardFragment = gql`
+  fragment DeckCard_deck on Deck {
+    id
+    slug
+    title
+    description
+    studySessionDetails {
+      newCount
+      learningCount
+      reviewCount
+    }
+  }
+`
+
+const DeckCard: React.FunctionComponent<Props> = ({
+  onClick,
+  deck,
+  showStudySessionDetails = false,
+}) => {
   const history = useHistory()
+  const { i18n } = useLingui()
 
   const handleClick = () => {
     if (onClick) {
@@ -19,6 +45,10 @@ const DeckCard: React.FunctionComponent<Props> = ({ onClick, deck }) => {
       history.push(`/d/${deck.slug}`)
     }
   }
+
+  const {
+    studySessionDetails: { newCount, learningCount, reviewCount },
+  } = deck
 
   return (
     <Card outlined className="h-full">
@@ -33,6 +63,38 @@ const DeckCard: React.FunctionComponent<Props> = ({ onClick, deck }) => {
       >
         <Headline6>{deck.title}</Headline6>
         {deck.description && <Body2>{deck.description}</Body2>}
+        {showStudySessionDetails && (
+          <div className="mt-1">
+            {newCount > 0 && (
+              <FlashCardStatusChip
+                status={FlashCardStatus.NEW}
+                className="mr-2"
+              >
+                {i18n._(plural(newCount, { one: '# new', other: '# new' }))}
+              </FlashCardStatusChip>
+            )}
+            {learningCount > 0 && (
+              <FlashCardStatusChip
+                status={FlashCardStatus.LEARNING}
+                className="mr-2"
+              >
+                {i18n._(
+                  plural(learningCount, {
+                    one: '# learning',
+                    other: '# learning',
+                  })
+                )}
+              </FlashCardStatusChip>
+            )}
+            {reviewCount > 0 && (
+              <FlashCardStatusChip status={FlashCardStatus.REVIEW}>
+                {i18n._(
+                  plural(reviewCount, { one: '# review', other: '# review' })
+                )}
+              </FlashCardStatusChip>
+            )}
+          </div>
+        )}
       </CardPrimaryContent>
     </Card>
   )

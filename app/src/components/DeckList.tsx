@@ -4,7 +4,7 @@ import gql from 'graphql-tag'
 import React from 'react'
 
 import useTopBarLoading from '../hooks/useTopBarLoading'
-import DeckCard from './DeckCard'
+import DeckCard, { deckCardFragment } from './DeckCard'
 import { DecksQuery } from './__generated__/DecksQuery'
 import { Body1 } from './views/Typography'
 
@@ -12,11 +12,11 @@ export const DECKS_QUERY = gql`
   query DecksQuery {
     decks {
       id
-      slug
-      title
-      description
+      ...DeckCard_deck
     }
   }
+
+  ${deckCardFragment}
 `
 
 const DeckList: React.FunctionComponent = () => {

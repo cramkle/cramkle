@@ -1,17 +1,26 @@
-import { render } from '@testing-library/react'
 import React from 'react'
-import { MemoryRouter } from 'react-router'
 
+import { render } from '../../testUtils'
 import DeckCard from '../DeckCard'
 
 describe('<DeckCard />', () => {
   it('should match snapshot', () => {
     const comp = render(
-      <MemoryRouter>
-        <DeckCard
-          deck={{ id: '123', title: '日本語げんき', slug: 'nihongo-genki' }}
-        />
-      </MemoryRouter>
+      <DeckCard
+        deck={{
+          __typename: 'Deck',
+          id: '123',
+          title: '日本語げんき',
+          description: '',
+          slug: 'nihongo-genki',
+          studySessionDetails: {
+            __typename: 'StudySessionDetails',
+            newCount: 0,
+            learningCount: 0,
+            reviewCount: 0,
+          },
+        }}
+      />
     )
 
     expect(comp.container).toMatchSnapshot()

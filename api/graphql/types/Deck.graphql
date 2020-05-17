@@ -1,6 +1,12 @@
 # import Note from "Note.graphql"
 # import User from "User.graphql"
 
+type StudySessionDetails {
+  newCount: Int!
+  learningCount: Int!
+  reviewCount: Int!
+}
+
 """
 Collection of notes
 """
@@ -33,4 +39,8 @@ type Deck implements Node {
   Whether this deck is published to the marketplace
   """
   published: Boolean
+  """
+  Details of current study session
+  """
+  studySessionDetails: StudySessionDetails!
 }

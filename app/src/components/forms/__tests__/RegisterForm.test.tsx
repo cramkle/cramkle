@@ -1,27 +1,8 @@
-import { MockedProvider } from '@apollo/react-testing'
-import { setupI18n } from '@lingui/core'
-import { I18nProvider } from '@lingui/react'
-import { fireEvent, render as rtlRender, waitFor } from '@testing-library/react'
+import { fireEvent, waitFor } from '@testing-library/react'
 import React from 'react'
-import { MemoryRouter } from 'react-router'
 
+import { render } from '../../../testUtils'
 import RegisterForm from '../RegisterForm'
-
-const render = (ui: React.ReactElement<any>) => {
-  const i18n = setupI18n()
-
-  i18n.activate('en')
-
-  const utils = rtlRender(
-    <MemoryRouter>
-      <I18nProvider i18n={i18n}>
-        <MockedProvider>{ui}</MockedProvider>
-      </I18nProvider>
-    </MemoryRouter>
-  )
-
-  return utils
-}
 
 describe('<RegisterForm />', () => {
   it('should be initially disabled', async () => {

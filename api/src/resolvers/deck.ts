@@ -2,13 +2,36 @@ import { IResolverObject, IResolvers } from 'graphql-tools'
 
 import { DeckModel, NoteModel, UserModel } from '../mongo'
 import { DeckDocument } from '../mongo/Deck'
+import { FlashCardStatus } from '../mongo/Note'
 import { globalIdField } from '../utils/graphqlID'
 import { studyFlashCardsByDeck } from '../utils/study'
 
+type StudySessionDetailsObject = { [status in FlashCardStatus]: number }
+
 export const root: IResolvers = {
+  StudySessionDetails: {
+    newCount: (root: StudySessionDetailsObject) => root.NEW,
+    learningCount: (root: StudySessionDetailsObject) => root.LEARNING,
+    reviewCount: (root: StudySessionDetailsObject) => root.REVIEW,
+  },
   Deck: {
     id: globalIdField(),
     owner: (root: DeckDocument) => UserModel.findById(root.ownerId),
+    studySessionDetails: async (root: DeckDocument) => {
+      const studyFlashCards = await studyFlashCardsByDeck(root._id)
+
+      return studyFlashCards.reduce<StudySessionDetailsObject>(
+        (detailsObject, flashCard) => ({
+          ...detailsObject,
+          [flashCard.status]: detailsObject[flashCard.status] + 1,
+        }),
+        {
+          NEW: 0,
+          LEARNING: 0,
+          REVIEW: 0,
+        }
+      )
+    },
     notes: (root: DeckDocument) => NoteModel.find({ deckId: root._id }),
   },
 }
