@@ -2,10 +2,11 @@ import { useQuery } from '@apollo/react-hooks'
 import { Trans, plural, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import gql from 'graphql-tag'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Helmet } from 'react-helmet'
 import { useHistory, useParams } from 'react-router'
 
+import usePaginationParams from '../../hooks/usePaginationParams'
 import useTopBarLoading from '../../hooks/useTopBarLoading'
 import BackButton from '../BackButton'
 import DeleteDeckButton from '../DeleteDeckButton'
@@ -24,7 +25,13 @@ import {
 import { DeckQuery, DeckQueryVariables } from './__generated__/DeckQuery'
 
 const DECK_QUERY = gql`
-  query DeckQuery($slug: String!) {
+  query DeckQuery(
+    $slug: String!
+    $after: String
+    $first: Int
+    $before: String
+    $last: Int
+  ) {
     deck(slug: $slug) {
       id
       slug
@@ -32,35 +39,47 @@ const DECK_QUERY = gql`
       description
       totalNotes
       totalFlashcards
-      notes {
-        id
-        values {
-          id
-          data {
-            ...DraftContent
-          }
-          field {
+      notes(first: $first, after: $after, before: $before, last: $last)
+        @connection(key: "Deck_notes") {
+        edges {
+          node {
             id
-            name
+            values {
+              id
+              data {
+                ...DraftContent
+              }
+              field {
+                id
+                name
+              }
+            }
+            model {
+              name
+              primaryField {
+                id
+              }
+            }
+            flashCards {
+              id
+              active
+              state
+              due
+              template {
+                name
+              }
+            }
+            deck {
+              title
+            }
           }
+          cursor
         }
-        model {
-          name
-          primaryField {
-            id
-          }
-        }
-        flashCards {
-          id
-          active
-          state
-          due
-          template {
-            name
-          }
-        }
-        deck {
-          title
+        pageInfo {
+          hasNextPage
+          hasPreviousPage
+          endCursor
+          startCursor
         }
       }
     }
@@ -94,7 +113,14 @@ const DeckPage: React.FunctionComponent = () => {
   const { i18n } = useLingui()
   const { slug } = useParams<{ slug: string }>()
   const history = useHistory()
-  const { data, loading } = useQuery<DeckQuery, DeckQueryVariables>(
+  const {
+    paginationParams,
+    setPaginationParams,
+    pageQuantity,
+    onPageQuantityChange,
+  } = usePaginationParams()
+
+  const { data, loading, fetchMore } = useQuery<DeckQuery, DeckQueryVariables>(
     DECK_QUERY,
     {
       variables: { slug },
@@ -102,6 +128,30 @@ const DeckPage: React.FunctionComponent = () => {
   )
 
   useTopBarLoading(loading)
+
+  useEffect(() => {
+    fetchMore({
+      variables: {
+        ...paginationParams,
+        slug,
+      },
+      updateQuery: (previousResult, { fetchMoreResult }) => {
+        const newEdges = fetchMoreResult?.deck.notes.edges
+        const pageInfo = fetchMoreResult?.deck.notes.pageInfo
+
+        return {
+          deck: {
+            ...previousResult.deck,
+            notes: {
+              ...previousResult.deck.notes,
+              edges: newEdges,
+              pageInfo,
+            },
+          },
+        }
+      },
+    })
+  }, [paginationParams, fetchMore, slug])
 
   if (loading) {
     return null
@@ -146,7 +196,13 @@ const DeckPage: React.FunctionComponent = () => {
         </Headline3>
 
         <div className="mt-4 mb-8">
-          <NotesTable notes={deck.notes} deckSlug={deck.slug} />
+          <NotesTable
+            notes={deck.notes}
+            deckSlug={deck.slug}
+            pageQuantity={pageQuantity}
+            onPageQuantityChange={onPageQuantityChange}
+            onPageChange={setPaginationParams}
+          />
         </div>
 
         {!isMobile && (

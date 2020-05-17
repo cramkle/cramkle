@@ -1,6 +1,8 @@
 import { IFieldResolver } from 'graphql-tools'
 import { Types } from 'mongoose'
 
+import { base64, unbase64 } from './base64'
+
 type Version = '01'
 
 const supportedVersions: Version[] = ['01']
@@ -21,11 +23,11 @@ const decoders: {
 }
 
 export const encodeGlobalId = (name: string, id: Types.ObjectId) => {
-  return Buffer.from(`${currentVersion}@${name}:${id}`).toString('base64')
+  return base64(`${currentVersion}@${name}:${id}`)
 }
 
 export const decodeGlobalId = (id: string) => {
-  const [version, modelId] = Buffer.from(id, 'base64').toString().split('@')
+  const [version, modelId] = unbase64(id).split('@')
 
   if (!isSupportedVersion(version)) {
     throw new Error(`Unsupported model ID version: "${version}"`)

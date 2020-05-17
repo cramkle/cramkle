@@ -1,4 +1,3 @@
-// @ts-ignore typings are outdated
 import JSON, { GraphQLJSONObject as JSONObject } from 'graphql-type-json'
 
 import { root as contentStateRoot } from './contentState'

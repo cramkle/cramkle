@@ -9,7 +9,7 @@ import {
   DeleteNoteMutation,
   DeleteNoteMutationVariables,
 } from './__generated__/DeleteNoteMutation'
-import { DeckQuery_deck_notes } from './pages/__generated__/DeckQuery'
+import { DeckQuery_deck_notes_edges_node } from './pages/__generated__/DeckQuery'
 import {
   AlertDialog,
   AlertDialogDescription,
@@ -26,7 +26,7 @@ const DELETE_NOTE_MUTATION = gql`
 `
 
 interface Props {
-  note: DeckQuery_deck_notes
+  note: DeckQuery_deck_notes_edges_node
   onClose?: () => void
 }
 

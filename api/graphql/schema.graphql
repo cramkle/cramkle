@@ -14,6 +14,13 @@ scalar JSONObject
 
 directive @authenticate(roles: [String] = ["REGULAR"]) on FIELD_DEFINITION
 
+type PageInfo {
+  startCursor: String
+  endCursor: String
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+}
+
 # An object with a Globally Unique ID
 interface Node {
   # The ID of the object.

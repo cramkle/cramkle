@@ -22,7 +22,7 @@ export const Table: React.FC<TableProps> = ({
   )
 }
 
-type TableHeadProps = React.HTMLAttributes<HTMLElement>
+type TableHeadProps = React.HTMLAttributes<HTMLTableSectionElement>
 
 const TableHeadContext = React.createContext<undefined | {}>(undefined)
 
@@ -55,6 +55,19 @@ export const TableBody: React.FC<TableBodyProps> = ({
   )
 }
 
+type TableFooterProps = React.HTMLAttributes<HTMLTableSectionElement>
+
+export const TableFooter: React.FC<TableFooterProps> = ({
+  className,
+  children,
+}) => {
+  return (
+    <tfoot className={classnames(className, 'border-t border-outline')}>
+      {children}
+    </tfoot>
+  )
+}
+
 type TableRowProps = React.HTMLAttributes<HTMLTableRowElement>
 
 export const TableRow: React.FC<TableRowProps> = ({
@@ -74,7 +87,7 @@ export const TableRow: React.FC<TableRowProps> = ({
   )
 }
 
-type TableCellProps = React.HTMLAttributes<HTMLTableCellElement> & {
+type TableCellProps = React.TdHTMLAttributes<HTMLTableCellElement> & {
   align?: 'right' | 'left'
 }
 

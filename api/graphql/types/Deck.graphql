@@ -7,6 +7,16 @@ type StudySessionDetails {
   reviewCount: Int!
 }
 
+type NoteEdge {
+  node: Note!
+  cursor: String!
+}
+
+type NoteConnection {
+  edges: [NoteEdge!]!
+  pageInfo: PageInfo!
+}
+
 """
 Collection of notes
 """
@@ -30,7 +40,7 @@ type Deck implements Node {
   """
   Notes contained in this deck
   """
-  notes: [Note]
+  notes(after: String, first: Int, before: String, last: Int): NoteConnection
   """
   Number of notes in this deck
   """

@@ -3,6 +3,10 @@ import { IResolverObject, IResolvers } from 'graphql-tools'
 import { DeckModel, NoteModel, UserModel } from '../mongo'
 import { DeckDocument } from '../mongo/Deck'
 import { FlashCardStatus } from '../mongo/Note'
+import {
+  ConnectionArgs,
+  connectionFromPromisedArray,
+} from '../utils/connection'
 import { decodeGlobalId, globalIdField } from '../utils/graphqlID'
 import { studyFlashCardsByDeck } from '../utils/study'
 
@@ -32,7 +36,12 @@ export const root: IResolvers = {
         }
       )
     },
-    notes: (root: DeckDocument) => NoteModel.find({ deckId: root._id }),
+    notes: async (root: DeckDocument, args: ConnectionArgs) => {
+      return connectionFromPromisedArray(
+        NoteModel.find({ deckId: root._id }).exec(),
+        args
+      )
+    },
     totalNotes: (root: DeckDocument) =>
       NoteModel.find({ deckId: root._id }).count(),
     totalFlashcards: (root: DeckDocument) =>
