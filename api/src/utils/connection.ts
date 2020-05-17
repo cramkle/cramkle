@@ -146,8 +146,6 @@ export function connectionFromArraySlice<T>(
   const lowerBound = after ? afterOffset + 1 : 0
   const upperBound = before ? beforeOffset : arrayLength
 
-  console.log(startOffset, endOffset, arrayLength)
-
   return {
     edges,
     pageInfo: {
