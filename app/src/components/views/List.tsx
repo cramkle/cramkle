@@ -14,7 +14,7 @@ export const List: React.FC<React.HTMLAttributes<HTMLUListElement>> = ({
     <TabController>
       <ul
         {...props}
-        className={classnames(className, 'w-64 flex flex-col px-4 py-2')}
+        className={classnames(className, 'flex flex-col px-4 py-2')}
       >
         {children}
       </ul>

@@ -91,8 +91,8 @@ const HomePage: React.FunctionComponent = () => {
         <title>{i18n._(t`Home`)}</title>
       </Helmet>
 
-      <div className="h-full flex">
-        <List className="hidden md:block">
+      <div className="h-full grid grid-cols-1 md:grid-cols-4 md:gap-8">
+        <List className="hidden md:block w-100">
           <ListItem onClick={handleMarketplaceClick} icon={<MarketplaceIcon />}>
             {i18n._(t`Marketplace`)}
           </ListItem>
@@ -101,7 +101,7 @@ const HomePage: React.FunctionComponent = () => {
           </ListItem>
         </List>
 
-        <Container lean className="mr-auto md:mr-0 ml-auto md:ml-16 lg:ml-24">
+        <Container lean className="mx-0 col-span-2">
           <Tabs index={index} onChange={handleTabChange}>
             <HeaderPortal>
               <TabList className="overflow-y-auto h-full justify-center">
