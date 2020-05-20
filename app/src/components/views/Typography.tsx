@@ -1,34 +1,22 @@
 import classNames from 'classnames'
 import React from 'react'
 
-export interface TypographyProps extends React.HTMLAttributes<HTMLElement> {
+export interface TypographyProps<TElement extends HTMLElement>
+  extends React.HTMLAttributes<TElement> {
   children?: React.ReactNode
   className?: string
-  tag?: keyof React.ReactHTML
 }
 
-interface EnhancedProps {
-  tag: keyof React.ReactHTML
-  classSuffix: string
-}
-
-const typography = (options: EnhancedProps) => {
-  const { tag: defaultTag, classSuffix } = options
-
-  const Typography: React.FC<TypographyProps> = ({
+function typography(Tag: keyof React.ReactHTML, baseClasses: string) {
+  const Typography: React.FC<React.HTMLAttributes<HTMLElement>> = ({
     children,
     className = '',
-    tag: Tag = defaultTag,
     ...otherProps
   }) => {
-    const classes = classNames(
-      'mdc-typography',
-      `mdc-typography--${classSuffix}`,
-      className
-    )
+    const classes = classNames(className, baseClasses)
 
     return (
-      <Tag className={classes} {...otherProps}>
+      <Tag {...otherProps} className={classes}>
         {children}
       </Tag>
     )
@@ -37,67 +25,32 @@ const typography = (options: EnhancedProps) => {
   return Typography
 }
 
-export const Body1 = typography({
-  classSuffix: 'body1',
-  tag: 'p',
-})
+export const Headline1 = typography('h1', 'text-3xl leading-normal font-medium')
 
-export const Body2 = typography({
-  classSuffix: 'body2',
-  tag: 'p',
-})
+export const Headline2 = typography('h2', 'text-2xl leading-normal font-medium')
 
-export const Button = typography({
-  classSuffix: 'button',
-  tag: 'span',
-})
+export const Headline3 = typography('h3', 'text-xl leading-normal font-medium')
 
-export const Caption = typography({
-  classSuffix: 'caption',
-  tag: 'span',
-})
+export const Headline4 = typography('h4', 'text-lg leading-normal font-medium')
 
-export const Headline1 = typography({
-  classSuffix: 'headline1',
-  tag: 'h1',
-})
+export const Headline5 = typography(
+  'h5',
+  'text-base leading-normal font-medium'
+)
 
-export const Headline2 = typography({
-  classSuffix: 'headline2',
-  tag: 'h2',
-})
+export const Headline6 = typography('h6', 'text-sm leading-normal font-medium')
 
-export const Headline3 = typography({
-  classSuffix: 'headline3',
-  tag: 'h3',
-})
+export const Body1 = typography('p', 'text-base')
 
-export const Headline4 = typography({
-  classSuffix: 'headline4',
-  tag: 'h4',
-})
+export const Body2 = typography('p', 'text-secondary text-sm')
 
-export const Headline5 = typography({
-  classSuffix: 'headline5',
-  tag: 'h5',
-})
+export const Caption = typography('span', 'text-secondary text-xs')
 
-export const Headline6 = typography({
-  classSuffix: 'headline6',
-  tag: 'h6',
-})
+export const Overline = typography(
+  'span',
+  'text-xs uppercase tracking-widest font-medium'
+)
 
-export const Overline = typography({
-  classSuffix: 'overline',
-  tag: 'span',
-})
+export const Subtitle1 = typography('h6', 'font-normal')
 
-export const Subtitle1 = typography({
-  classSuffix: 'subtitle1',
-  tag: 'h6',
-})
-
-export const Subtitle2 = typography({
-  classSuffix: 'subtitle2',
-  tag: 'h6',
-})
+export const Subtitle2 = typography('h6', 'text-sm font-medium')

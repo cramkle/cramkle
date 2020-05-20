@@ -48,7 +48,6 @@ const App: React.FunctionComponent<{}> = () => {
           // @ts-ignore this works but typescript complains
           style: 'font-size: 16px;',
         }}
-        bodyAttributes={{ class: 'mdc-typography' }}
         meta={[
           {
             name: 'application-name',

@@ -15,7 +15,7 @@ import {
 } from '../views/AlertDialog'
 import Button from '../views/Button'
 import CircularProgress from '../views/CircularProgress'
-import { Headline1 } from '../views/Typography'
+import { Headline2 } from '../views/Typography'
 import {
   AnswerFlashCard,
   AnswerFlashCardVariables,
@@ -216,11 +216,11 @@ const StudyPage: React.FC = () => {
   if (data.studyFlashCard === null) {
     return (
       <section className="h-full flex flex-col items-center justify-center">
-        <Headline1 className="text-xl leading-none">
+        <Headline2 className="text-xl leading-none">
           <Trans>
             Congratulations, you have finished studying this deck for now.
           </Trans>
-        </Headline1>
+        </Headline2>
         <Button className="mt-4" onClick={handleGoHomeClick}>
           <Trans>Go to Home</Trans>
         </Button>

@@ -24,13 +24,7 @@ import Container from '../views/Container'
 import Icon from '../views/Icon'
 import { List, ListItem } from '../views/List'
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from '../views/Tabs'
-import {
-  Body1,
-  Body2,
-  Caption,
-  Headline4,
-  Headline5,
-} from '../views/Typography'
+import { Body1, Body2, Headline1, Headline2 } from '../views/Typography'
 import styles from './ModelPage.css'
 import { DraftContent } from './__generated__/DraftContent'
 import {
@@ -210,7 +204,7 @@ const TemplateDetails: React.FC<TemplateDetailsProps> = ({
     <>
       <Body1 className="h-8 flex items-end mt-4">
         {label} {loading && <CircularProgress className="ml-2" size={16} />}
-        <Caption
+        <Body2
           className={classnames(
             'inline-flex items-center ml-2 invisible opacity-0',
             {
@@ -221,7 +215,7 @@ const TemplateDetails: React.FC<TemplateDetailsProps> = ({
         >
           <Icon className="text-success mr-2 text-base" icon="check" />
           <Trans>Changes saved successfully</Trans>
-        </Caption>
+        </Body2>
       </Body1>
       <TemplateEditor
         id={templateId}
@@ -292,15 +286,15 @@ const ModelPage: React.FC = () => {
         <BackButton />
         <div className="flex flex-col mb-8">
           <div className="flex justify-between">
-            <Headline4>
+            <Headline1>
               <Trans>Model details</Trans>
-            </Headline4>
+            </Headline1>
 
             <DeleteModelButton model={model} />
           </div>
 
-          <Headline5 className="mt-4">{model.name}</Headline5>
-          <Caption className="mt-1 text-secondary text-sm">
+          <Headline2 className="mt-4">{model.name}</Headline2>
+          <Body2 className="mt-1">
             {i18n._(
               plural(model.notes.length, {
                 one: '# note',
@@ -314,7 +308,7 @@ const ModelPage: React.FC = () => {
                 other: '# flashcards',
               })
             )}
-          </Caption>
+          </Body2>
         </div>
 
         <Body1 className="inline-block mb-4">

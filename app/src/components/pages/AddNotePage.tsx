@@ -15,7 +15,7 @@ import Button from '../views/Button'
 import CircularProgress from '../views/CircularProgress'
 import Container from '../views/Container'
 import { Listbox, ListboxOption } from '../views/Listbox'
-import { Body2, Caption, Headline5, Subtitle1 } from '../views/Typography'
+import { Body1, Body2, Headline1, Headline5 } from '../views/Typography'
 import {
   CreateNoteMutation,
   CreateNoteMutationVariables,
@@ -160,14 +160,16 @@ const AddNotePage: React.FC = () => {
     <Container>
       <BackButton to={`/d/${slug}`} />
 
-      <Headline5>
-        <Trans>Create Note for deck "{deck.title}"</Trans>
-      </Headline5>
+      <Headline1>
+        <Trans>
+          Create Note for deck{' '}
+          <span className="font-semibold">{deck.title}</span>
+        </Trans>
+      </Headline1>
 
-      <div className="flex flex-col mt-4">
+      <div className="flex flex-col mt-3">
         <label className="flex flex-col">
           <Listbox
-            className="mt-4"
             value={selectedModelId}
             onChange={(value) => setSelectedModelId(value)}
           >
@@ -184,17 +186,17 @@ const AddNotePage: React.FC = () => {
 
         {selectedModel != null && (
           <React.Fragment key={formKey}>
-            <Subtitle1 className="mt-2">
+            <Body1 className="mt-2">
               <Trans>Fields</Trans>
-            </Subtitle1>
+            </Body1>
 
             {selectedModel.fields.length > 0 ? (
               <>
                 {selectedModel.fields.map((field) => (
                   <React.Fragment key={field.id}>
-                    <Caption className="mt-4" key={field.id}>
+                    <Body1 className="mt-4" key={field.id}>
                       {field.name}
-                    </Caption>
+                    </Body1>
 
                     <FieldValueEditor
                       className="mt-1"

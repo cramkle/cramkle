@@ -14,7 +14,7 @@ import NotesTable from '../NotesTable'
 import Container from '../views/Container'
 import Fab from '../views/Fab'
 import Icon from '../views/Icon'
-import { Body1, Headline4, Headline5, Headline6 } from '../views/Typography'
+import { Body1, Headline1, Headline2, Headline3 } from '../views/Typography'
 import { DeckQuery, DeckQueryVariables } from './__generated__/DeckQuery'
 
 const DECK_QUERY = gql`
@@ -109,23 +109,23 @@ const DeckPage: React.FunctionComponent = () => {
 
         <div className="flex flex-col mb-8">
           <div className="flex justify-between items-center">
-            <Headline4>
+            <Headline1>
               <Trans>Deck details</Trans>
-            </Headline4>
+            </Headline1>
 
             <DeleteDeckButton deckId={deck.id} />
           </div>
-          <Headline5 className="mt-4">{deck.title}</Headline5>
+          <Headline2 className="mt-4">{deck.title}</Headline2>
           {deck.description && (
             <Body1 className="mt-1">{deck.description}</Body1>
           )}
         </div>
 
-        <Headline6 className="font-medium">
+        <Headline3>
           <Trans>Notes</Trans>
-        </Headline6>
+        </Headline3>
 
-        <div className="my-8">
+        <div className="mt-4 mb-8">
           <NotesTable notes={deck.notes} deckSlug={deck.slug} />
         </div>
 

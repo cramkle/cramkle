@@ -15,7 +15,7 @@ import styles from './FlashCardRenderer.css'
 import { blockStyleFn } from './editor/BlockStyleControls'
 import { findTagEntities } from './editor/strategies'
 import Divider from './views/Divider'
-import * as t from './views/Typography'
+import { Body2, Caption } from './views/Typography'
 
 interface NoteValue {
   data: RawDraftContentState
@@ -102,11 +102,9 @@ const FlashCardPanel: React.FC<PanelProps> = ({
 
   return (
     <>
-      {!hideLabel && (
-        <t.Caption className="mb-2 text-secondary">{label}</t.Caption>
-      )}
+      {!hideLabel && <Caption className="mb-2 text-secondary">{label}</Caption>}
       {templateContent == null ? (
-        <t.Body2 className="block my-2">{emptyMessage}</t.Body2>
+        <Body2 className="block my-2">{emptyMessage}</Body2>
       ) : (
         <ValuesContext.Provider value={values}>
           <Editor
