@@ -28,7 +28,13 @@ import {
   TableHead,
   TableRow,
 } from '../views/Table'
-import * as t from '../views/Typography'
+import {
+  Body1,
+  Caption,
+  Headline1,
+  Headline2,
+  Headline3,
+} from '../views/Typography'
 import styles from './NotePage.css'
 import {
   NoteQuery,
@@ -198,10 +204,10 @@ const FieldValueDetail: React.FC<FieldValueDetailProps> = ({
 
   return (
     <>
-      <t.Body1 className="h-8 flex items-center">
+      <Body1 className="h-8 flex items-center">
         {fieldValue.field.name}{' '}
         {loading && <CircularProgress className="ml-2" size={16} />}
-        <t.Caption
+        <Caption
           className={classnames(
             'inline-flex items-center ml-2 invisible opacity-0',
             {
@@ -212,8 +218,8 @@ const FieldValueDetail: React.FC<FieldValueDetailProps> = ({
         >
           <Icon className="text-success mr-2 text-base" icon="check" />
           <Trans>Changes saved successfully</Trans>
-        </t.Caption>
-      </t.Body1>
+        </Caption>
+      </Body1>
       <FieldValueEditor
         className="mb-4 mt-1"
         initialContentState={fieldValue.data}
@@ -284,13 +290,13 @@ const NotePage: React.FC = () => {
         <BackButton to={`/d/${deckSlug}`} />
 
         <div className="flex flex-col mb-8">
-          <t.Headline4>
-            <Trans>Note details</Trans>
-          </t.Headline4>
-          <t.Headline6 className="mt-4">{noteIdentifier}</t.Headline6>
-          <t.Caption className="mt-1 text-secondary">
+          <Caption className="mt-1 text-secondary">
             <Trans>Deck {deck.title}</Trans>
-          </t.Caption>
+          </Caption>
+          <Headline1>
+            <Trans>Note details</Trans>
+          </Headline1>
+          <Headline2 className="mt-4">{noteIdentifier}</Headline2>
         </div>
 
         {values.map((value) => (
@@ -303,11 +309,11 @@ const NotePage: React.FC = () => {
 
         <Divider className="my-8" />
 
-        <t.Headline6 className="font-medium">
+        <Headline3 className="font-medium">
           <Trans>Flashcards</Trans>
-        </t.Headline6>
+        </Headline3>
 
-        <Table className="my-8 w-full">
+        <Table className="mt-4 mb-8 w-full">
           <TableHead>
             <TableRow>
               <TableCell className="w-0" />

@@ -13,7 +13,7 @@ import * as yup from 'yup'
 import { notificationState } from '../../notification/index'
 import Button from '../views/Button'
 import Card, { CardActionButtons, CardActions } from '../views/Card'
-import { Headline5 } from '../views/Typography'
+import { Headline2 } from '../views/Typography'
 import { CheckboxField, TextInputField } from './Fields'
 import styles from './RegisterForm.scss'
 
@@ -106,7 +106,7 @@ const RegisterForm: React.FunctionComponent<Props> = ({
             )}
             outlined
           >
-            <Headline5 className="text-center">{i18n._(title)}</Headline5>
+            <Headline2 className="text-center">{i18n._(title)}</Headline2>
             <TextInputField
               className="my-2"
               id="username"

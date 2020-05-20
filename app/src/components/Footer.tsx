@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 import { ReactComponent as GithubLogo } from '../assets/github-logo.svg'
 import { ReactComponent as TwitterLogo } from '../assets/twitter-logo.svg'
-import * as T from './views/Typography'
+import { Body2, Overline, Subtitle2 } from './views/Typography'
 
 const links = [
   {
@@ -28,9 +28,9 @@ const Footer: React.FC = () => {
   return (
     <footer className="w-full py-8 px-4 lg:px-8 xl:px-32 flex flex-col-reverse sm:flex-row">
       <div className="flex flex-col mt-4 sm:mt-0">
-        <T.Overline className="sm:leading-tight">
+        <Overline className="sm:leading-tight">
           &copy; {new Date().getFullYear()} Cramkle, Inc.
-        </T.Overline>
+        </Overline>
         <ul className="list-reset mt-4 flex">
           <li>
             <a
@@ -53,14 +53,14 @@ const Footer: React.FC = () => {
         </ul>
       </div>
       <div className="sm:ml-16">
-        <T.Subtitle2 className="leading-tight">
+        <Subtitle2 className="leading-tight">
           <Trans>Company</Trans>
-        </T.Subtitle2>
+        </Subtitle2>
         <ul className="list-reset mt-4 flex flex-col">
           {links.map((link, i) => (
             <li className="leading-normal mb-2" key={i}>
               <Link to={link.url} className="link text-secondary">
-                <T.Body2>{i18n._(link.text)}</T.Body2>
+                <Body2>{i18n._(link.text)}</Body2>
               </Link>
             </li>
           ))}

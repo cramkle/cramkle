@@ -6,7 +6,7 @@ import { useHistory } from 'react-router'
 import { ModelsQuery_models } from './__generated__/ModelsQuery'
 import Card, { CardPrimaryContent } from './views/Card'
 import { Chip } from './views/Chip'
-import { Headline6 } from './views/Typography'
+import { Headline3 } from './views/Typography'
 
 interface Props {
   className?: string
@@ -36,7 +36,7 @@ const ModelCard: React.FunctionComponent<Props & ModelsQuery_models> = ({
         onClick={handleClick}
         onKeyDown={handleKeyDown}
       >
-        <Headline6>{name}</Headline6>
+        <Headline3>{name}</Headline3>
         {!!(templates.length || fields.length) && (
           <div className="flex">
             {!!templates.length && (

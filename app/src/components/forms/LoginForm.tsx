@@ -8,7 +8,7 @@ import { object, string } from 'yup'
 
 import Button from '../views/Button'
 import Card, { CardActionButtons, CardActions } from '../views/Card'
-import { Headline5 } from '../views/Typography'
+import { Headline2 } from '../views/Typography'
 import { TextInputField } from './Fields'
 import styles from './LoginForm.scss'
 
@@ -69,9 +69,9 @@ const LoginForm: React.FunctionComponent = () => {
         >
           <Card outlined>
             <div className="p-4 pb-0 text-on-surface">
-              <Headline5 className="text-center">
+              <Headline2 className="text-center">
                 <Trans>Login</Trans>
-              </Headline5>
+              </Headline2>
 
               <TextInputField
                 className="w-full my-2"

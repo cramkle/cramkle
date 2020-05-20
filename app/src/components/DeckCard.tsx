@@ -8,7 +8,7 @@ import { FlashCardStatus } from '../globalTypes'
 import FlashCardStatusChip from './FlashCardStatus'
 import { DeckCard_deck } from './__generated__/DeckCard_deck'
 import Card, { CardPrimaryContent } from './views/Card'
-import { Body2, Headline6 } from './views/Typography'
+import { Body2, Headline3 } from './views/Typography'
 
 interface Props {
   deck: DeckCard_deck
@@ -61,7 +61,7 @@ const DeckCard: React.FunctionComponent<Props> = ({
           e.key === 'Enter' && handleClick()
         }
       >
-        <Headline6>{deck.title}</Headline6>
+        <Headline3>{deck.title}</Headline3>
         {deck.description && <Body2>{deck.description}</Body2>}
         {showStudySessionDetails && (
           <div className="mt-1">
