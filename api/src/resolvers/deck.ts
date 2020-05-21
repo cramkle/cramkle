@@ -33,6 +33,14 @@ export const root: IResolvers = {
       )
     },
     notes: (root: DeckDocument) => NoteModel.find({ deckId: root._id }),
+    totalNotes: (root: DeckDocument) =>
+      NoteModel.find({ deckId: root._id }).count(),
+    totalFlashcards: (root: DeckDocument) =>
+      NoteModel.find({ deckId: root._id })
+        .exec()
+        .then((notes) =>
+          notes.reduce((total, note) => total + note.flashCards.length, 0)
+        ),
   },
 }
 

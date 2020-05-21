@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/react-hooks'
-import { Trans, t } from '@lingui/macro'
+import { Trans, plural, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import gql from 'graphql-tag'
 import React from 'react'
@@ -14,7 +14,13 @@ import NotesTable from '../NotesTable'
 import Container from '../views/Container'
 import Fab from '../views/Fab'
 import Icon from '../views/Icon'
-import { Body1, Headline1, Headline2, Headline3 } from '../views/Typography'
+import {
+  Body1,
+  Body2,
+  Headline1,
+  Headline2,
+  Headline3,
+} from '../views/Typography'
 import { DeckQuery, DeckQueryVariables } from './__generated__/DeckQuery'
 
 const DECK_QUERY = gql`
@@ -24,6 +30,8 @@ const DECK_QUERY = gql`
       slug
       title
       description
+      totalNotes
+      totalFlashcards
       notes {
         id
         values {
@@ -119,6 +127,18 @@ const DeckPage: React.FunctionComponent = () => {
           {deck.description && (
             <Body1 className="mt-1">{deck.description}</Body1>
           )}
+          <Body2 className="mt-1">
+            {i18n._(
+              plural(deck.totalNotes, { one: '# note', other: '# notes' })
+            )}
+            <span className="inline-block mx-1">&middot;</span>
+            {i18n._(
+              plural(deck.totalFlashcards, {
+                one: '# flashcard',
+                other: '# flashcards',
+              })
+            )}
+          </Body2>
         </div>
 
         <Headline3>
