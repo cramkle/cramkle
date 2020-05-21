@@ -31,9 +31,9 @@ msgstr "Account created successfully"
 msgid "Add Deck"
 msgstr "Add Deck"
 
-#: src/components/pages/AddNotePage.tsx:152
-#: src/components/pages/DeckPage.tsx:119
-#: src/components/pages/DeckPage.tsx:119
+#: src/components/pages/AddNotePage.tsx:155
+#: src/components/pages/DeckPage.tsx:129
+#: src/components/pages/DeckPage.tsx:129
 msgid "Add Note"
 msgstr "Add Note"
 
@@ -182,8 +182,8 @@ msgid "Create Model"
 msgstr "Create Model"
 
 #: src/components/pages/AddNotePage.tsx:122
-msgid "Create Note for deck \"{0}\""
-msgstr "Create Note for deck \"{0}\""
+msgid "Create Note for deck <0>{0}</0>"
+msgstr "Create Note for deck <0>{0}</0>"
 
 #: src/components/NotesTable.tsx:31
 msgid "Deck"
@@ -197,11 +197,11 @@ msgstr "Deck created successfully!"
 msgid "Deck deleted successfully"
 msgstr "Deck deleted successfully"
 
-#: src/components/pages/DeckPage.tsx:101
+#: src/components/pages/DeckPage.tsx:103
 msgid "Deck details"
 msgstr "Deck details"
 
-#: src/components/pages/NotePage.tsx:210
+#: src/components/pages/NotePage.tsx:206
 msgid "Deck {0}"
 msgstr "Deck {0}"
 
@@ -310,7 +310,7 @@ msgid "Field value..."
 msgstr "Field value..."
 
 #: src/components/pages/AddModelPage.tsx:115
-#: src/components/pages/AddNotePage.tsx:139
+#: src/components/pages/AddNotePage.tsx:142
 #: src/components/pages/ModelPage.tsx:222
 msgid "Fields"
 msgstr "Fields"
@@ -492,11 +492,11 @@ msgstr "Note"
 msgid "Note created successfully"
 msgstr "Note created successfully"
 
-#: src/components/pages/NotePage.tsx:206
+#: src/components/pages/NotePage.tsx:209
 msgid "Note details"
 msgstr "Note details"
 
-#: src/components/pages/DeckPage.tsx:111
+#: src/components/pages/DeckPage.tsx:121
 msgid "Notes"
 msgstr "Notes"
 
@@ -600,7 +600,7 @@ msgstr "Save"
 msgid "Search"
 msgstr "Search"
 
-#: src/components/pages/AddNotePage.tsx:129
+#: src/components/pages/AddNotePage.tsx:132
 msgid "Select a model"
 msgstr "Select a model"
 
@@ -674,7 +674,7 @@ msgstr "The decks you create will appear here."
 msgid "The models you create will appear here."
 msgstr "The models you create will appear here."
 
-#: src/components/pages/AddNotePage.tsx:155
+#: src/components/pages/AddNotePage.tsx:158
 msgid "The selected model doesn't have any fields. Please, select another one"
 msgstr "The selected model doesn't have any fields. Please, select another one"
 
@@ -770,6 +770,11 @@ msgstr "Login"
 msgid "{0, plural, one {# field} other {# fields}}"
 msgstr "{0, plural, one {# field} other {# fields}}"
 
+#: src/components/pages/DeckPage.tsx:113
+msgid "{0, plural, one {# flashcard} other {# flashcards}}"
+msgstr "{0, plural, one {# flashcard} other {# flashcards}}"
+
+#: src/components/pages/DeckPage.tsx:111
 #: src/components/pages/ModelPage.tsx:192
 msgid "{0, plural, one {# note} other {# notes}}"
 msgstr "{0, plural, one {# note} other {# notes}}"

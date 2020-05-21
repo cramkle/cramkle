@@ -32,6 +32,14 @@ type Deck implements Node {
   """
   notes: [Note]
   """
+  Number of notes in this deck
+  """
+  totalNotes: Int!
+  """
+  Number of flashCards in this deck
+  """
+  totalFlashcards: Int!
+  """
   Owner of the deck
   """
   owner: User

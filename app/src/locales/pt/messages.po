@@ -31,9 +31,9 @@ msgstr "Conta criada com sucesso"
 msgid "Add Deck"
 msgstr "Adicionar deck"
 
-#: src/components/pages/AddNotePage.tsx:152
-#: src/components/pages/DeckPage.tsx:119
-#: src/components/pages/DeckPage.tsx:119
+#: src/components/pages/AddNotePage.tsx:155
+#: src/components/pages/DeckPage.tsx:129
+#: src/components/pages/DeckPage.tsx:129
 msgid "Add Note"
 msgstr "Adicionar Nota"
 
@@ -182,8 +182,8 @@ msgid "Create Model"
 msgstr "Criar Modelo"
 
 #: src/components/pages/AddNotePage.tsx:122
-msgid "Create Note for deck \"{0}\""
-msgstr "Criar Nota para o deck \"{0}\""
+msgid "Create Note for deck <0>{0}</0>"
+msgstr "Criar Nota para o deck <0>{0}</0>"
 
 #: src/components/NotesTable.tsx:31
 msgid "Deck"
@@ -197,11 +197,11 @@ msgstr "Deck criado com sucesso"
 msgid "Deck deleted successfully"
 msgstr "Deck apagado com sucesso"
 
-#: src/components/pages/DeckPage.tsx:101
+#: src/components/pages/DeckPage.tsx:103
 msgid "Deck details"
 msgstr "Detalhes do deck"
 
-#: src/components/pages/NotePage.tsx:210
+#: src/components/pages/NotePage.tsx:206
 msgid "Deck {0}"
 msgstr "Deck {0}"
 
@@ -310,7 +310,7 @@ msgid "Field value..."
 msgstr "Valor do campo..."
 
 #: src/components/pages/AddModelPage.tsx:115
-#: src/components/pages/AddNotePage.tsx:139
+#: src/components/pages/AddNotePage.tsx:142
 #: src/components/pages/ModelPage.tsx:222
 msgid "Fields"
 msgstr "Campos"
@@ -492,11 +492,11 @@ msgstr "Nota"
 msgid "Note created successfully"
 msgstr "Nota criada com sucesso"
 
-#: src/components/pages/NotePage.tsx:206
+#: src/components/pages/NotePage.tsx:209
 msgid "Note details"
 msgstr "Detalhes da nota"
 
-#: src/components/pages/DeckPage.tsx:111
+#: src/components/pages/DeckPage.tsx:121
 msgid "Notes"
 msgstr "Notas"
 
@@ -600,7 +600,7 @@ msgstr "Salvar"
 msgid "Search"
 msgstr "Pesquisar"
 
-#: src/components/pages/AddNotePage.tsx:129
+#: src/components/pages/AddNotePage.tsx:132
 msgid "Select a model"
 msgstr "Selecione um modelo"
 
@@ -674,7 +674,7 @@ msgstr "Os decks que você criar irão aparecer aqui."
 msgid "The models you create will appear here."
 msgstr "Os modelos que você criar irão aparecer aqui."
 
-#: src/components/pages/AddNotePage.tsx:155
+#: src/components/pages/AddNotePage.tsx:158
 msgid "The selected model doesn't have any fields. Please, select another one"
 msgstr "O modelo selecionado não possui nenhum campo. Por favor, selecione outro"
 
@@ -770,6 +770,11 @@ msgstr "Entrar"
 msgid "{0, plural, one {# field} other {# fields}}"
 msgstr "{0, plural, one {# campo} other {# campos}}"
 
+#: src/components/pages/DeckPage.tsx:113
+msgid "{0, plural, one {# flashcard} other {# flashcards}}"
+msgstr "{0, plural, one {# flashcard} other {# flashcards}}"
+
+#: src/components/pages/DeckPage.tsx:111
 #: src/components/pages/ModelPage.tsx:192
 msgid "{0, plural, one {# note} other {# notes}}"
 msgstr "{0, plural, one {# nota} other {# notas}}"

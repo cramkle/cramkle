@@ -179,6 +179,14 @@ export interface DeckQuery_deck {
    */
   description: string | null
   /**
+   * Number of notes in this deck
+   */
+  totalNotes: number
+  /**
+   * Number of flashCards in this deck
+   */
+  totalFlashcards: number
+  /**
    * Notes contained in this deck
    */
   notes: (DeckQuery_deck_notes | null)[] | null
