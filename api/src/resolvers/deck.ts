@@ -3,7 +3,7 @@ import { IResolverObject, IResolvers } from 'graphql-tools'
 import { DeckModel, NoteModel, UserModel } from '../mongo'
 import { DeckDocument } from '../mongo/Deck'
 import { FlashCardStatus } from '../mongo/Note'
-import { globalIdField } from '../utils/graphqlID'
+import { decodeGlobalId, globalIdField } from '../utils/graphqlID'
 import { studyFlashCardsByDeck } from '../utils/study'
 
 type StudySessionDetailsObject = { [status in FlashCardStatus]: number }
@@ -80,26 +80,37 @@ export const mutations: IResolverObject = {
 
     return deck
   },
-  updateDeck: (_, { id: _id, title, description }, { user }: Context) => {
+  updateDeck: (_, { id, title, description }, { user }: Context) => {
+    const { objectId: deckId } = decodeGlobalId(id)
+
     return DeckModel.findOneAndUpdate(
-      { _id, ownerId: user?._id },
+      { _id: deckId, ownerId: user?._id },
       { title, description },
       { new: true }
     )
   },
-  deleteDeck: async (_, { id: _id }, { user }: Context) => {
-    return await DeckModel.findOneAndDelete({ _id, ownerId: user?._id }).exec()
+  deleteDeck: async (_, { id }, { user }: Context) => {
+    const { objectId: deckId } = decodeGlobalId(id)
+
+    return await DeckModel.findOneAndDelete({
+      _id: deckId,
+      ownerId: user?._id,
+    }).exec()
   },
-  publishDeck: (_, { id: _id }, { user }: Context) => {
+  publishDeck: (_, { id }, { user }: Context) => {
+    const { objectId: deckId } = decodeGlobalId(id)
+
     return DeckModel.findOneAndUpdate(
-      { _id, ownerId: user?._id },
+      { _id: deckId, ownerId: user?._id },
       { published: true },
       { new: true }
     )
   },
-  unpublishDeck: (_, { id: _id }, { user }: Context) => {
+  unpublishDeck: (_, { id }, { user }: Context) => {
+    const { objectId: deckId } = decodeGlobalId(id)
+
     return DeckModel.findOneAndUpdate(
-      { _id, ownerId: user?._id },
+      { _id: deckId, ownerId: user?._id },
       { published: false },
       {
         new: true,
