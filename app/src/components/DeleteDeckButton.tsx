@@ -11,13 +11,13 @@ import {
   DeleteDeckMutation,
   DeleteDeckMutationVariables,
 } from './__generated__/DeleteDeckMutation'
+import DeleteIcon from './icons/DeleteIcon'
 import {
   AlertDialog,
   AlertDialogDescription,
   AlertDialogLabel,
 } from './views/AlertDialog'
 import Button from './views/Button'
-import Icon from './views/Icon'
 
 interface Props {
   deckId: string
@@ -92,10 +92,10 @@ const DeleteDeckButton: React.FunctionComponent<Props> = ({ deckId }) => {
     <>
       <Button
         className="my-2"
-        icon={<Icon icon="delete" aria-hidden="true" />}
-        outlined
+        variation="outline"
         onClick={() => setDialogOpen(true)}
       >
+        <DeleteIcon className="mr-2" />
         <Trans>Delete</Trans>
       </Button>
       <AlertDialog
@@ -109,16 +109,18 @@ const DeleteDeckButton: React.FunctionComponent<Props> = ({ deckId }) => {
         <AlertDialogDescription>
           <Trans>Are you sure you want to delete this deck?</Trans>
         </AlertDialogDescription>
-        <Button
-          onClick={() => setDialogOpen(false)}
-          disabled={deleting}
-          ref={cancelRef}
-        >
-          <Trans>Cancel</Trans>
-        </Button>
-        <Button onClick={handleDelete} disabled={deleting}>
-          <Trans>Delete</Trans>
-        </Button>
+        <div className="flex justify-end items-center">
+          <Button
+            onClick={() => setDialogOpen(false)}
+            disabled={deleting}
+            ref={cancelRef}
+          >
+            <Trans>Cancel</Trans>
+          </Button>
+          <Button className="ml-3" onClick={handleDelete} disabled={deleting}>
+            <Trans>Delete</Trans>
+          </Button>
+        </div>
       </AlertDialog>
     </>
   )

@@ -68,8 +68,8 @@ const StudySection: React.FunctionComponent = () => {
         </Body2>
 
         <Button
-          raised
           className="mt-4"
+          variation="primary"
           disabled={loading}
           onClick={() => refetch()}
         >

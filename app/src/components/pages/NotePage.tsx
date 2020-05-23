@@ -339,13 +339,8 @@ const NotePage: React.FC = () => {
                   {flashCard.due && i18n.date(new Date(flashCard.due), {})}
                 </TableCell>
                 <TableCell align="right">
-                  <Button
-                    className="normal-case tracking-normal"
-                    onClick={() => handleShowFlashCardPreview(flashCard)}
-                  >
-                    <span className="text-base font-normal">
-                      <Trans>Preview</Trans>
-                    </span>
+                  <Button onClick={() => handleShowFlashCardPreview(flashCard)}>
+                    <Trans>Preview</Trans>
                   </Button>
                 </TableCell>
               </TableRow>

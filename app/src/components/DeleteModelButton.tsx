@@ -12,13 +12,13 @@ import {
   DeleteModelMutationVariables,
 } from './__generated__/DeleteModelMutation'
 import { ModelsQuery } from './__generated__/ModelsQuery'
+import DeleteIcon from './icons/DeleteIcon'
 import {
   AlertDialog,
   AlertDialogDescription,
   AlertDialogLabel,
 } from './views/AlertDialog'
 import Button from './views/Button'
-import Icon from './views/Icon'
 
 interface Props {
   model: { id: string; templates: {}[]; notes: {}[] }
@@ -103,11 +103,8 @@ const DeleteModelButton: React.FunctionComponent<Props> = ({ model }) => {
 
   return (
     <>
-      <Button
-        outlined
-        icon={<Icon icon="delete" aria-hidden="true" />}
-        onClick={handleClick}
-      >
+      <Button variation="outline" onClick={handleClick}>
+        <DeleteIcon className="mr-2" />
         <Trans>Delete</Trans>
       </Button>
       <AlertDialog
@@ -137,12 +134,14 @@ const DeleteModelButton: React.FunctionComponent<Props> = ({ model }) => {
             associated with it.
           </Trans>
         </AlertDialogDescription>
-        <Button onClick={handleClose} disabled={deleting} ref={cancelRef}>
-          Cancel
-        </Button>
-        <Button onClick={handleDelete} disabled={deleting}>
-          <Trans>Delete</Trans>
-        </Button>
+        <div className="flex justify-end items-center">
+          <Button onClick={handleClose} disabled={deleting} ref={cancelRef}>
+            Cancel
+          </Button>
+          <Button className="ml-3" onClick={handleDelete} disabled={deleting}>
+            <Trans>Delete</Trans>
+          </Button>
+        </div>
       </AlertDialog>
     </>
   )

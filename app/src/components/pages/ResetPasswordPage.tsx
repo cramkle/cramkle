@@ -10,9 +10,10 @@ import * as yup from 'yup'
 
 import { ReactComponent as Logo } from '../../assets/logo-white.svg'
 import { notificationState } from '../../notification'
+import Button from '../views/Button'
 import CircularProgress from '../views/CircularProgress'
 import { HelperText, Input, Label } from '../views/Input'
-import { Body1, Headline1 } from '../views/Typography'
+import { Body1, Headline2 } from '../views/Typography'
 import {
   ResetPassword,
   ResetPasswordVariables,
@@ -132,9 +133,9 @@ const ResetPasswordPage: React.FC = () => {
 
       <div className="max-w-lg w-full bg-surface text-on-surface rounded px-4 py-6 border border-outline">
         <form onSubmit={handleSubmit}>
-          <Headline1 className="text-2xl leading-normal ma-0 font-normal text-center">
+          <Headline2 className="ma-0 text-center">
             <Trans>Reset password</Trans>
-          </Headline1>
+          </Headline2>
 
           <Body1 className="my-4">
             <Trans>Choose a new password for your account.</Trans>
@@ -187,19 +188,14 @@ const ResetPasswordPage: React.FC = () => {
             )}
           </Label>
 
-          <button
-            className={classnames(
-              'mt-6 border-0 rounded w-full h-10 py-1 px-2 text-center text-sm uppercase tracking-wide font-medium focus:shadow-outline',
-              {
-                'bg-primary text-on-primary': !loading,
-                'bg-disabled text-disabled': loading,
-              }
-            )}
+          <Button
+            variation="primary"
+            className="mt-6 w-full"
             type="submit"
             disabled={loading}
           >
             {loading ? <CircularProgress /> : <Trans>Reset Password</Trans>}
-          </button>
+          </Button>
         </form>
       </div>
     </div>
