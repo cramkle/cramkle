@@ -10,9 +10,10 @@ import * as yup from 'yup'
 
 import { ReactComponent as Logo } from '../../assets/logo-white.svg'
 import { notificationState } from '../../notification'
+import Button from '../views/Button'
 import CircularProgress from '../views/CircularProgress'
 import { HelperText, Input, Label } from '../views/Input'
-import { Body1, Headline1 } from '../views/Typography'
+import { Body1, Headline2 } from '../views/Typography'
 import {
   RequestPasswordReset,
   RequestPasswordResetVariables,
@@ -114,9 +115,9 @@ const ForgotPasswordPage: React.FC = () => {
               stroke="currentColor"
             />
           </svg>
-          <Headline1 className="ml-3 text-2xl leading-normal ma-0 font-normal">
+          <Headline2 className="ml-3 ma-0">
             <Trans>Check your inbox!</Trans>
-          </Headline1>
+          </Headline2>
         </div>
 
         <Body1 className="mt-4">
@@ -126,22 +127,21 @@ const ForgotPasswordPage: React.FC = () => {
           </Trans>
         </Body1>
 
-        <button
-          className={classnames(
-            'mt-6 border-2 border-primary bg-surface text-action-primary rounded w-full h-10 py-1 px-2 text-center text-sm uppercase tracking-wide font-medium focus:shadow-outline'
-          )}
+        <Button
+          className="mt-6 w-full"
+          variation="outline"
           onClick={handleGoToLogin}
         >
           <Trans>Go to login</Trans>
-        </button>
+        </Button>
       </>
     )
   } else {
     content = (
       <form onSubmit={handleSubmit}>
-        <Headline1 className="text-2xl leading-normal ma-0 font-normal text-center">
+        <Headline2 className="ma-0 text-center">
           <Trans>Forgot password?</Trans>
-        </Headline1>
+        </Headline2>
 
         <Body1 className="my-4">
           <Trans>
@@ -179,14 +179,9 @@ const ForgotPasswordPage: React.FC = () => {
           )}
         </Label>
 
-        <button
-          className={classnames(
-            'mt-6 border-0 rounded w-full h-10 py-1 px-2 text-center text-sm uppercase tracking-wide font-medium focus:shadow-outline',
-            {
-              'bg-primary text-on-primary': !loading,
-              'bg-disabled text-disabled': loading,
-            }
-          )}
+        <Button
+          variation="primary"
+          className="mt-6 w-full"
           type="submit"
           disabled={loading}
         >
@@ -195,7 +190,7 @@ const ForgotPasswordPage: React.FC = () => {
           ) : (
             <Trans>Request Password Reset</Trans>
           )}
-        </button>
+        </Button>
       </form>
     )
   }

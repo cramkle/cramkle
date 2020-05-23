@@ -144,9 +144,9 @@ const RegisterForm: React.FunctionComponent<Props> = ({
               <CardActionButtons className="w-full">
                 <Button
                   className="w-full"
-                  raised
                   disabled={!isValid || isSubmitting}
                   data-testid="register-submit-btn"
+                  variation="primary"
                 >
                   <Trans>Register</Trans>
                 </Button>

@@ -207,8 +207,8 @@ const AddNotePage: React.FC = () => {
                 ))}
 
                 <Button
-                  raised
                   className="mt-4 self-start"
+                  variation="primary"
                   onClick={handleSubmit}
                   disabled={submitLoading}
                 >

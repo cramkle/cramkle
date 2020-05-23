@@ -38,7 +38,11 @@ const GeneralSettings: React.FunctionComponent = () => {
           </ListboxOption>
         ))}
       </Listbox>
-      <Button className="mt-4 self-end" unelevated onClick={handleSave}>
+      <Button
+        variation="primary"
+        className="mt-4 self-end"
+        onClick={handleSave}
+      >
         <Trans>Save</Trans>
       </Button>
     </div>

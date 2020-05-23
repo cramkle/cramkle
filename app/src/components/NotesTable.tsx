@@ -81,12 +81,10 @@ const NotesTable: React.FC<Props> = ({ notes, deckSlug }) => {
                     <Trans>Edit</Trans>
                   </Link>
                   <Button
-                    className="ml-3 normal-case tracking-normal"
+                    className="ml-3"
                     onClick={() => setDeletingNote(note)}
                   >
-                    <span className="text-base font-normal">
-                      <Trans>Delete</Trans>
-                    </span>
+                    <Trans>Delete</Trans>
                   </Button>
                 </TableCell>
               </TableRow>

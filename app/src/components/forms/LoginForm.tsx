@@ -96,8 +96,8 @@ const LoginForm: React.FunctionComponent = () => {
               </Link>
               <CardActionButtons className="w-full mt-3">
                 <Button
+                  variation="primary"
                   className="w-full"
-                  raised
                   disabled={!isValid || isSubmitting}
                   type="submit"
                   data-testid="submit-btn"

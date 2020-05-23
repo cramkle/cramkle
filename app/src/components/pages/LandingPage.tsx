@@ -24,10 +24,14 @@ const LandingPage: React.FunctionComponent = () => {
             <AppName className="ml-2" />
           </HeaderSection>
           <HeaderSection align="end">
-            <Button unelevated onClick={() => history.push('/register')}>
+            <Button onClick={() => history.push('/register')}>
               <Trans>Sign Up</Trans>
             </Button>
-            <Button onClick={() => history.push('/login')} className="ml-2">
+            <Button
+              variation="primary"
+              onClick={() => history.push('/login')}
+              className="ml-2"
+            >
               <Trans>Login</Trans>
             </Button>
           </HeaderSection>
@@ -58,7 +62,7 @@ const LandingPage: React.FunctionComponent = () => {
           >
             <RegisterForm title={t`Sign up now!`} />
 
-            <span className="landing__login-text mt-4">
+            <span className="mt-4">
               <Trans>
                 Already have an account?{' '}
                 <Link to="/login" className="font-bold text-on-primary">

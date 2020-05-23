@@ -16,7 +16,7 @@ import Button from '../views/Button'
 import Container from '../views/Container'
 import Icon from '../views/Icon'
 import IconButton from '../views/IconButton'
-import { Body1, Body2, Headline5 } from '../views/Typography'
+import { Body1, Body2, Headline1 } from '../views/Typography'
 import styles from './AddModelPage.css'
 import {
   CreateModelMutation,
@@ -57,9 +57,9 @@ const AddModelPage: React.FunctionComponent = () => {
     <Container>
       <BackButton />
 
-      <Headline5>
+      <Headline1>
         <Trans>Create Model</Trans>
-      </Headline5>
+      </Headline1>
 
       <Formik
         initialValues={{ name: '', fields: [], templates: [] }}
@@ -196,8 +196,8 @@ const AddModelPage: React.FunctionComponent = () => {
 
             <Button
               className="self-start mt-4"
+              variation="primary"
               type="submit"
-              raised
               disabled={!isValid || isSubmitting}
             >
               <Trans>Create</Trans>
