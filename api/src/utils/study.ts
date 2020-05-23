@@ -20,6 +20,12 @@ const MAX_NEW_FLASHCARDS_PER_DAY = 20
 const MAX_LEARNING_FLASHCARDS_PER_DAY = 100
 const MAX_REVIEW_FLASHCARDS_PER_DAY = 50
 
+const STUDY_LIMIT_BY_STATUS = {
+  [FlashCardStatus.NEW]: MAX_NEW_FLASHCARDS_PER_DAY,
+  [FlashCardStatus.LEARNING]: MAX_LEARNING_FLASHCARDS_PER_DAY,
+  [FlashCardStatus.REVIEW]: MAX_REVIEW_FLASHCARDS_PER_DAY,
+}
+
 export const studyFlashCardsByDeck = async (deckId: string) => {
   const todayLogs = await RevisionLogModel.find({
     deckId,
@@ -40,6 +46,12 @@ export const studyFlashCardsByDeck = async (deckId: string) => {
   const numOfNew = sumByStatus(todayLogs, FlashCardStatus.NEW)
   const numOfLearning = sumByStatus(todayLogs, FlashCardStatus.LEARNING)
   const numOfReview = sumByStatus(todayLogs, FlashCardStatus.REVIEW)
+
+  const cardCounts = {
+    [FlashCardStatus.NEW]: numOfNew,
+    [FlashCardStatus.LEARNING]: numOfLearning,
+    [FlashCardStatus.REVIEW]: numOfReview,
+  }
 
   const flashCards = (await NoteModel.find({ deckId }))
     .flatMap<FlashCardDocument>((note) => note.flashCards)
@@ -67,13 +79,19 @@ export const studyFlashCardsByDeck = async (deckId: string) => {
       return compareAsc(a.due, b.due)
     })
     .filter((flashCard) => {
-      if (flashCard.status === FlashCardStatus.NEW) {
-        return numOfNew < MAX_NEW_FLASHCARDS_PER_DAY
-      } else if (flashCard.status === FlashCardStatus.LEARNING) {
-        return numOfLearning < MAX_LEARNING_FLASHCARDS_PER_DAY
-      } else if (flashCard.status === FlashCardStatus.REVIEW) {
-        return numOfReview < MAX_REVIEW_FLASHCARDS_PER_DAY
+      const totalOfStudiedUntilNow = cardCounts[flashCard.status]
+
+      if (totalOfStudiedUntilNow == undefined) {
+        return false
       }
+
+      const maxPerDay = STUDY_LIMIT_BY_STATUS[flashCard.status]
+
+      if (totalOfStudiedUntilNow < maxPerDay) {
+        cardCounts[flashCard.status]++
+        return true
+      }
+
       return false
     })
 
