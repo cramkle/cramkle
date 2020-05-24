@@ -3,7 +3,7 @@ const commonColors = {
   'red-1': 'var(--red-1)',
   'violet-1': 'var(--violet-1)',
   'violet-2': 'var(--violet-2)',
-  yellow: 'var(--yellow)',
+  'yellow-1': 'var(--yellow-1)',
   'gray-1': 'var(--gray-1)',
   'gray-2': 'var(--gray-2)',
 }

@@ -47,7 +47,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
         <div
           className={classnames(
             styles.focusRing,
-            'z-0 hidden bg-yellow opacity-12 rounded-full w-full h-full absolute top-0 left-0 right-0'
+            'z-0 hidden bg-yellow-1 opacity-12 rounded-full w-full h-full absolute top-0 left-0 right-0'
           )}
         />
         <CustomCheckboxInput
@@ -61,7 +61,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
             'w-5 h-5 border-2 rounded-sm z-10 pointer-events-none',
             'transition-colors ease-in-out duration-200',
             {
-              'bg-yellow border-yellow': checked,
+              'bg-yellow-1 border-yellow-1': checked,
               'bg-transparent border-gray-2': !checked,
             }
           )}
