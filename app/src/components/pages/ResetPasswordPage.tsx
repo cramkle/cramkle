@@ -131,7 +131,7 @@ const ResetPasswordPage: React.FC = () => {
 
       <Logo className="w-16 mb-8" />
 
-      <div className="max-w-lg w-full bg-surface text-on-surface rounded px-4 py-6 border border-outline">
+      <div className="max-w-lg w-full bg-surface text-on-surface rounded px-4 py-6 border border-gray-1">
         <form onSubmit={handleSubmit}>
           <Headline2 className="ma-0 text-center">
             <Trans>Reset password</Trans>
@@ -147,7 +147,7 @@ const ResetPasswordPage: React.FC = () => {
                 <Trans>New password</Trans>
                 <span
                   className={classnames({
-                    'text-error': showPasswordError && !passwordValid,
+                    'text-red-1': showPasswordError && !passwordValid,
                   })}
                 >
                   *

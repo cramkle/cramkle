@@ -12,7 +12,7 @@ export const Table: React.FC<TableProps> = ({
     <div
       className={classnames(
         className,
-        'border rounded border-outline inline-block overflow-auto bg-surface shadow'
+        'border rounded border-gray-1 inline-block overflow-auto bg-surface shadow'
       )}
     >
       <table {...props} className="collapse w-full">
@@ -67,7 +67,7 @@ export const TableRow: React.FC<TableRowProps> = ({
   return (
     <tr
       {...props}
-      className={classnames(className, { 'border-t border-outline': !isHead })}
+      className={classnames(className, { 'border-t border-gray-1': !isHead })}
     >
       {children}
     </tr>
@@ -100,7 +100,7 @@ export const TableCell: React.FC<TableCellProps> = ({
     >
       {children}
       {isHead && (
-        <div className="absolute top-0 left-0 bottom-0 right-0 bg-muted-2 opacity-12" />
+        <div className="absolute top-0 left-0 bottom-0 right-0 bg-violet-2 opacity-12" />
       )}
     </Tag>
   )

@@ -1,10 +1,12 @@
-import cx from 'classnames'
 import React from 'react'
 
-import styles from './TagSpan.css'
-
 const TagSpan: React.FunctionComponent = ({ children }) => {
-  return <span className={cx(styles.tag, 'relative')}>{children}</span>
+  return (
+    <span className="relative">
+      {children}
+      <div className="absolute top-0 left-0 right-0 bottom-0 bg-yellow-1 opacity-25" />
+    </span>
+  )
 }
 
 export default TagSpan

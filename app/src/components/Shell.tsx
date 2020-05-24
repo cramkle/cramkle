@@ -102,7 +102,7 @@ const Shell: React.FunctionComponent = ({ children }) => {
           </HeaderSection>
         </HeaderContent>
       </Header>
-      <main className="flex-1 overflow-auto w-full relative bg-muted">
+      <main className="flex-1 overflow-auto w-full relative bg-background">
         <NoSSR fallback={loader}>
           <Suspense fallback={loader}>
             {loading && loader}

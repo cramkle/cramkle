@@ -34,25 +34,23 @@ body,
 }
 
 :root {
-  --color-primary: #2962ff;
-  --color-on-primary: #fff;
-  --color-secondary: #ffc353;
-  --color-on-secondary: #000;
-  --color-surface: #fff;
-  --color-on-surface: #000;
-  --color-error: #b00020;
-  --color-on-error: #fff;
-  --color-success: hsl(122.4, 39.4%, 36.2%);
-  --color-on-success: #fff;
-  --color-emphasis: #5e2ca5;
-  --color-on-emphasis: #fff;
-  --color-muted: #f0f0f0;
-  --color-muted-2: #8f8cb8;
-  --color-outline: #e0e0e0;
-  --color-disabled: rgba(0, 0, 0, 0.12);
-  --color-text-primary: rgba(0, 0, 0, .87);
-  --color-text-secondary: rgba(0, 0, 0, .54);
-  --color-text-hint: rgba(0, 0, 0, .38);
-  --color-text-disabled: rgba(0, 0, 0, .38);
-  --color-text-icon: rgba(0, 0, 0, .38);
+  --background: hsla(224, 30%, 20%, 0.08);
+  --primary: hsl(224, 100%, 58%);
+  --on-primary: hsl(0, 0%, 100%);
+  --secondary: hsl(224, 15%, 90.8%);
+  --surface: hsl(0, 0%, 100%);
+  --on-surface: hsl(0, 0%, 0%);
+  --yellow-1: hsl(39.1, 100%, 66.3%);
+  --red-1: hsl(349.1, 100%, 34.5%);
+  --green-1: hsl(122.4, 39.4%, 36.2%);
+  --violet-1: hsl(264.8, 57.9%, 41%);
+  --violet-2: hsl(264.8, 23.7%, 63.5%);
+  --gray-1: hsl(224, 0%, 87.8%);
+  --gray-2: hsl(224, 5%, 58.7%);
+  --disabled: rgba(0, 0, 0, 0.12);
+  --text-primary: rgba(0, 0, 0, .87);
+  --text-secondary: rgba(0, 0, 0, .54);
+  --text-hint: rgba(0, 0, 0, .38);
+  --text-disabled: rgba(0, 0, 0, .38);
+  --text-icon: rgba(0, 0, 0, .38);
 }

@@ -17,8 +17,8 @@ const messages = {
 
 const chipTypeByStatus = {
   [FlashCardStatus.REVIEW]: undefined as undefined,
-  [FlashCardStatus.NEW]: 'success',
-  [FlashCardStatus.LEARNING]: 'emphasis',
+  [FlashCardStatus.NEW]: 'green',
+  [FlashCardStatus.LEARNING]: 'violet',
 } as const
 
 const FlashCardStatusChip: React.FC<
@@ -43,7 +43,7 @@ const FlashCardStatusChip: React.FC<
   }
 
   return (
-    <Chip {...props} type={chipTypeByStatus[status]} inverted>
+    <Chip {...props} color={chipTypeByStatus[status]} inverted>
       {message}
     </Chip>
   )

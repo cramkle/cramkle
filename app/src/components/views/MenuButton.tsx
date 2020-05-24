@@ -26,8 +26,7 @@ export const MenuButton: React.FC<MenuButtonProps & { icon?: boolean }> = ({
       {...props}
       className={classnames(
         className,
-        styles.menuButton,
-        'relative bg-surface border-0 border-none rounded py-2 px-1 cursor-pointer overflow-hidden',
+        'relative bg-surface border-0 border-none rounded py-2 px-1 cursor-pointer overflow-hidden hover:bg-secondary',
         {
           'px-2 rounded-full': icon,
         }
@@ -64,10 +63,19 @@ export const MenuItem: React.FC<MenuItemProps & { icon?: ReactNode }> = ({
   return (
     <ReachMenuItem
       {...props}
-      className={classnames(styles.menuItem, 'flex items-center')}
+      className={classnames(
+        styles.menuItem,
+        'relative flex items-center px-3 py-2 bg-surface text-on-surface'
+      )}
     >
       {icon}
       <div className={classnames({ 'ml-3': icon })}>{children}</div>
+      <div
+        className={classnames(
+          styles.menuItemBackdrop,
+          'absolute bg-primary opacity-0 top-0 left-0 right-0 bottom-0'
+        )}
+      />
     </ReachMenuItem>
   )
 }

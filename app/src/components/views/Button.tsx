@@ -35,7 +35,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(function Button(
       </div>
       <div
         className={classnames(
-          'absolute top-0 left-0 right-0 bottom-0 transition transition-opacity ease-in-out duration-200 opacity-0',
+          'absolute top-0 left-0 right-0 bottom-0 transition-opacity ease-in-out duration-200 opacity-0',
           {
             hidden: variation !== 'plain' && variation !== 'outline',
             'bg-primary hover:opacity-12':

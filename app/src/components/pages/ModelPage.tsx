@@ -213,7 +213,7 @@ const TemplateDetails: React.FC<TemplateDetailsProps> = ({
             }
           )}
         >
-          <Icon className="text-success mr-2 text-base" icon="check" />
+          <Icon className="text-green-1 mr-2 text-base" icon="check" />
           <Trans>Changes saved successfully</Trans>
         </Body2>
       </Body1>

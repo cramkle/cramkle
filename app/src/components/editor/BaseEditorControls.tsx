@@ -121,7 +121,7 @@ const BaseEditorControls: React.FC<Props> = ({
   return (
     <ctx.Provider value={contextValue}>
       <Card outlined className={className}>
-        <CardActions className="border-b border-outline">
+        <CardActions className="border-b border-gray-1">
           <CardActionButtons className="flex-col items-start">
             <TabController>
               <BlockStyleControls

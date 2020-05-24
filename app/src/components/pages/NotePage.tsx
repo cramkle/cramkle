@@ -216,7 +216,7 @@ const FieldValueDetail: React.FC<FieldValueDetailProps> = ({
             }
           )}
         >
-          <Icon className="text-success mr-2 text-base" icon="check" />
+          <Icon className="text-green-1 mr-2 text-base" icon="check" />
           <Trans>Changes saved successfully</Trans>
         </Caption>
       </Body1>

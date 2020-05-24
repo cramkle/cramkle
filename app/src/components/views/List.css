@@ -1,5 +1,0 @@
-.item:hover .backdrop, .item:focus .backdrop {
-  display: block;
-  z-index: -1;
-  opacity: .12;
-}

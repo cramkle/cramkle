@@ -1,44 +1,12 @@
-.menuButton::after {
-  content: ' ';
-  position: absolute;
-  background-color: #000;
-  opacity: 0;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-
-.menuButton:hover::after {
-  opacity: .04;
-}
-
-.menuButton:focus::after {
-  opacity: .12;
-}
-
-.menuItem {
-  position: relative;
-  color: var(--color-on-surface);
-  background-color: var(--color-surface);
-  padding: .5rem 1rem;
-}
-
-.menuItem[data-reach-menu-item][data-selected=""], .menuItem:hover, .menuItem:focus {
+.menuItem[data-reach-menu-item][data-selected=""],
+.menuItem:hover,
+.menuItem:focus {
   background: transparent;
-  color: var(--color-primary);
+  color: var(--primary);
 }
 
-.menuItem::after {
-  content: ' ';
-  background-color: var(--color-primary);
+.menuItem[data-selected=""] .menuItemBackdrop,
+.menuItem:hover .menuItemBackdrop,
+.menuItem:focus .menuItemBackdrop {
   opacity: .12;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-
-.menuItem[data-selected=""]::after, .menuItem:hover::after, .menuItem:focus::after {
-  position: absolute;
 }
