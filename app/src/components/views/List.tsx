@@ -55,11 +55,7 @@ export const ListItem: React.FC<ListItemProps> = ({
       >
         {children}
       </span>
-      <div
-        className={classnames(
-          'absolute -z-1 top-0 left-0 right-0 bottom-0 bg-primary opacity-0 group-hover:opacity-12 group-focus:opacity-12 transition-opacity ease-in-out duration-200'
-        )}
-      />
+      <div className="absolute -z-1 top-0 left-0 right-0 bottom-0 bg-primary opacity-0 group-hover:opacity-12 group-focus:opacity-12 transition-opacity ease-in-out duration-200" />
     </li>
   )
 }
