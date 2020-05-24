@@ -6,19 +6,6 @@
   border: none;
 }
 
-.tab svg {
-  color: var(--color-text-secondary);
-}
-
-.tab[data-selected=""] svg {
-  color: var(--color-primary);
-}
-
-.tab:hover .backdrop {
-  opacity: 0.08;
-  display: block;
-}
-
 .tab[data-selected=""] .border {
   display: block;
 }

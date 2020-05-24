@@ -1,8 +1,7 @@
-import classNames from 'classnames'
+import classnames from 'classnames'
 import React from 'react'
 
 import { TaggableEntry } from '../editor/TaggableEntry'
-import styles from './TypeaheadViewItem.css'
 
 interface Props {
   highlighted: boolean
@@ -19,11 +18,10 @@ const TypeaheadViewItem: React.FunctionComponent<Props> = ({
 }) => {
   return (
     <div
-      className={classNames(
-        styles.item,
-        'text-on-surface cursor-pointer text-sm',
+      className={classnames(
+        'px-2 py-3 text-on-surface cursor-pointer text-sm',
         {
-          [styles.itemSelected]: highlighted,
+          'text-action-primary': highlighted,
           'relative bg-transparent': highlighted,
         }
       )}
@@ -34,6 +32,11 @@ const TypeaheadViewItem: React.FunctionComponent<Props> = ({
       aria-selected={highlighted}
     >
       {entry.name}
+      <div
+        className={classnames(
+          'absolute top-0 left-0 right-0 bottom-0 opacity-12 bg-primary pointer-events-none'
+        )}
+      />
     </div>
   )
 }

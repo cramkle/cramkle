@@ -106,19 +106,19 @@ const HomePage: React.FunctionComponent = () => {
             <HeaderPortal>
               <TabList className="overflow-y-auto h-full justify-center">
                 <Tab className="md:w-full min-h-full">
-                  <StudyIcon />
+                  <StudyIcon className="text-secondary" />
                   <span className="hidden md:inline-block ml-4">
                     <Trans>Study</Trans>
                   </span>
                 </Tab>
                 <Tab className="md:w-full min-h-full">
-                  <DecksIcon />
+                  <DecksIcon className="text-secondary" />
                   <span className="hidden md:inline-block ml-4">
                     <Trans>Decks</Trans>
                   </span>
                 </Tab>
                 <Tab className="md:w-full min-h-full">
-                  <ModelsIcon />
+                  <ModelsIcon className="text-secondary" />
                   <span className="hidden md:inline-block ml-4">
                     <Trans>Models</Trans>
                   </span>

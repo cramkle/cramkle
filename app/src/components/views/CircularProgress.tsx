@@ -16,7 +16,7 @@ const CircularProgress: React.FC<Props> = ({
   return (
     <div
       {...props}
-      className={classnames(className, styles.spinner)}
+      className={classnames(className, styles.spinner, 'border-primary')}
       style={{ '--size': `${size}px`, ...style } as CSSProperties}
     >
       <div className={styles.spinnerContainer}>

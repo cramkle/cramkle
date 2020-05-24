@@ -13,7 +13,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
       ref={ref}
       className={classnames(
         className,
-        'mt-2 rounded border border-outline py-2 px-4 focus:border-primary'
+        'mt-2 rounded border border-gray-1 py-2 px-4 focus:border-primary'
       )}
     />
   )
@@ -29,7 +29,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         ref={ref}
         className={classnames(
           className,
-          'mt-2 rounded border border-outline py-2 px-4 focus:border-primary'
+          'mt-2 rounded border border-gray-1 py-2 px-4 focus:border-primary'
         )}
       />
     )
@@ -73,8 +73,8 @@ export const HelperText = forwardRef<HTMLDivElement, HelperTextProps>(
         ref={ref}
         className={classnames('dib mt-1 text-sm', {
           'text-secondary': variation === 'normal',
-          'text-error': variation === 'error',
-          'text-success': variation === 'success',
+          'text-red-1': variation === 'error',
+          'text-green-1': variation === 'success',
         })}
       />
     )

@@ -3,11 +3,11 @@
 }
 
 .button[aria-expanded="true"] {
-  border-color: var(--color-primary);
+  border-color: var(--primary);
 }
 
 .option[aria-selected="true"]:not([aria-disabled="true"]) {
-  color: var(--color-primary);
+  color: var(--primary);
   background-color: transparent;
 }
 

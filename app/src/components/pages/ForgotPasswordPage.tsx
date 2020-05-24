@@ -103,7 +103,7 @@ const ForgotPasswordPage: React.FC = () => {
       <>
         <div className="flex justify-center items-center">
           <svg
-            className="text-success rounded-full border-2 border-success p-1"
+            className="text-green-1 rounded-full border-2 border-green-1 p-1"
             height="48"
             aria-hidden
             viewBox="0 0 24 24"
@@ -156,7 +156,7 @@ const ForgotPasswordPage: React.FC = () => {
               <Trans>Email address</Trans>
               <span
                 className={classnames({
-                  'text-error': showEmailError && !emailValid,
+                  'text-red-1': showEmailError && !emailValid,
                 })}
               >
                 *
@@ -203,7 +203,7 @@ const ForgotPasswordPage: React.FC = () => {
 
       <Logo className="w-16 mb-8" />
 
-      <div className="max-w-lg bg-surface text-on-surface rounded px-4 py-6 border border-outline">
+      <div className="max-w-lg bg-surface text-on-surface rounded px-4 py-6 border border-gray-1">
         {content}
       </div>
     </div>

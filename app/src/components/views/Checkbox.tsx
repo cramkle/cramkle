@@ -47,7 +47,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
         <div
           className={classnames(
             styles.focusRing,
-            'z-0 hidden bg-secondary rounded-full w-full h-full absolute top-0 left-0 right-0'
+            'z-0 hidden bg-yellow opacity-12 rounded-full w-full h-full absolute top-0 left-0 right-0'
           )}
         />
         <CustomCheckboxInput
@@ -59,14 +59,21 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
         <div
           className={classnames(
             'w-5 h-5 border-2 rounded-sm z-10 pointer-events-none',
+            'transition-colors ease-in-out duration-200',
             {
-              'bg-secondary text-on-primary border-secondary': checked,
-              'bg-transparent text-on-surface border-outline': !checked,
+              'bg-yellow border-yellow': checked,
+              'bg-transparent border-gray-2': !checked,
             }
           )}
           aria-hidden
         >
-          <svg viewBox="0 0 24 24">
+          <svg
+            className={classnames('transition-none', {
+              'text-on-primary': checked,
+              'text-on-surface': !checked,
+            })}
+            viewBox="0 0 24 24"
+          >
             {checked === true && (
               <path
                 d="M1.73,12.91 8.1,19.28 22.79,4.59"

@@ -73,9 +73,9 @@ const getBlockTypeStyle = (blockType: string) => {
     case 'ordered-list-item':
       return 'list-decimal'
     case 'blockquote':
-      return 'border-l-4 border-muted pl-2 text-secondary'
+      return 'border-l-4 border-secondary pl-2 text-secondary'
     case 'code-block':
-      return 'font-mono p-2 bg-muted'
+      return 'font-mono p-2 bg-secondary'
   }
 }
 
