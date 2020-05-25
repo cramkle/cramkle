@@ -40,7 +40,7 @@ const usePaginationParams = () => {
     updatedQueryParams.set('page', latestParams.page.toString())
     updatedQueryParams.set('size', latestParams.size.toString())
 
-    history.replace(location.pathname + '?' + updatedQueryParams.toString())
+    history.push(location.pathname + '?' + updatedQueryParams.toString())
   })
 
   const updatePaginationParams = useCallback(
