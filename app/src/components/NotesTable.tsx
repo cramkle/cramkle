@@ -54,35 +54,19 @@ const NotesTable: React.FC<Props> = ({
     onSearchSubmit()
   }
 
-  let tableContent = null
-
-  if (!totalDeckNotes) {
-    tableContent = (
-      <>
-        <TableBody>
-          <TableRow>
-            <TableCell className="text-center text-secondary">
-              <Trans>You haven't created any notes on this deck yet</Trans>
-            </TableCell>
-          </TableRow>
-        </TableBody>
-      </>
-    )
-  } else if (!notes.totalCount) {
-    tableContent = (
-      <>
-        <TableBody>
-          <TableRow>
-            <TableCell className="text-center">
-              <Trans>No notes were found</Trans>
-            </TableCell>
-          </TableRow>
-        </TableBody>
-      </>
-    )
-  } else {
-    tableContent = (
-      <>
+  return (
+    <>
+      {deletingNote && (
+        <DeleteNoteDialog note={deletingNote} onClose={handleDeleteNoteClose} />
+      )}
+      <form className="flex" onSubmit={handleSearchSubmit}>
+        <Input
+          placeholder={t`Search notes...`}
+          onChange={onSearchChange}
+          value={searchQuery}
+        />
+      </form>
+      <Table className="w-full mt-3">
         <TableHead>
           <TableRow>
             <TableCell>
@@ -101,33 +85,47 @@ const NotesTable: React.FC<Props> = ({
           </TableRow>
         </TableHead>
         <TableBody>
-          {notes.edges.map(({ node: note }) => {
-            return (
-              <TableRow key={note.id}>
-                <TableCell>{note.text}</TableCell>
-                <TableCell>{note.deck.title}</TableCell>
-                <TableCell>{note.model.name}</TableCell>
-                <TableCell>{note.flashCards.length}</TableCell>
-                <TableCell
-                  align="right"
-                  className="flex items-center justify-end"
-                >
-                  <Link
-                    className="text-action-primary"
-                    to={`/d/${deckSlug}/note/${note.id}`}
+          {totalDeckNotes === 0 ? (
+            <TableRow>
+              <TableCell colSpan={5} className="text-center text-secondary">
+                <Trans>You haven't created any notes on this deck yet</Trans>
+              </TableCell>
+            </TableRow>
+          ) : notes.edges.length === 0 ? (
+            <TableRow>
+              <TableCell colSpan={5} className="text-center">
+                <Trans>No notes were found</Trans>
+              </TableCell>
+            </TableRow>
+          ) : (
+            notes.edges.map(({ node: note }) => {
+              return (
+                <TableRow key={note.id}>
+                  <TableCell>{note.text}</TableCell>
+                  <TableCell>{note.deck.title}</TableCell>
+                  <TableCell>{note.model.name}</TableCell>
+                  <TableCell>{note.flashCards.length}</TableCell>
+                  <TableCell
+                    align="right"
+                    className="flex items-center justify-end"
                   >
-                    <Trans>Edit</Trans>
-                  </Link>
-                  <Button
-                    className="ml-3"
-                    onClick={() => setDeletingNote(note)}
-                  >
-                    <Trans>Delete</Trans>
-                  </Button>
-                </TableCell>
-              </TableRow>
-            )
-          })}
+                    <Link
+                      className="text-action-primary"
+                      to={`/d/${deckSlug}/note/${note.id}`}
+                    >
+                      <Trans>Edit</Trans>
+                    </Link>
+                    <Button
+                      className="ml-3"
+                      onClick={() => setDeletingNote(note)}
+                    >
+                      <Trans>Delete</Trans>
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              )
+            })
+          )}
         </TableBody>
         <TableFooter>
           <TableRow>
@@ -141,23 +139,7 @@ const NotesTable: React.FC<Props> = ({
             </TableCell>
           </TableRow>
         </TableFooter>
-      </>
-    )
-  }
-
-  return (
-    <>
-      {deletingNote && (
-        <DeleteNoteDialog note={deletingNote} onClose={handleDeleteNoteClose} />
-      )}
-      <form className="flex" onSubmit={handleSearchSubmit}>
-        <Input
-          placeholder={t`Search notes...`}
-          onChange={onSearchChange}
-          value={searchQuery}
-        />
-      </form>
-      <Table className="w-full mt-3">{tableContent}</Table>
+      </Table>
     </>
   )
 }
