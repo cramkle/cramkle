@@ -9,70 +9,6 @@ import { FlashCardStatus } from './../../../globalTypes'
 // GraphQL query operation: DeckQuery
 // ====================================================
 
-export interface DeckQuery_deck_notes_edges_node_values_data_blocks_inlineStyleRanges {
-  __typename: 'InlineStyleRange'
-  style: string | null
-  offset: number | null
-  length: number | null
-}
-
-export interface DeckQuery_deck_notes_edges_node_values_data_blocks_entityRanges {
-  __typename: 'EntityRange'
-  key: number
-  length: number
-  offset: number
-}
-
-export interface DeckQuery_deck_notes_edges_node_values_data_blocks {
-  __typename: 'Block'
-  key: string
-  type: string
-  text: string
-  depth: number
-  inlineStyleRanges:
-    | (DeckQuery_deck_notes_edges_node_values_data_blocks_inlineStyleRanges | null)[]
-    | null
-  entityRanges:
-    | (DeckQuery_deck_notes_edges_node_values_data_blocks_entityRanges | null)[]
-    | null
-  data: any | null
-}
-
-export interface DeckQuery_deck_notes_edges_node_values_data {
-  __typename: 'ContentState'
-  id: string
-  blocks: DeckQuery_deck_notes_edges_node_values_data_blocks[]
-  entityMap: any
-}
-
-export interface DeckQuery_deck_notes_edges_node_values_field {
-  __typename: 'Field'
-  /**
-   * Field id
-   */
-  id: string
-  /**
-   * Name of the field
-   */
-  name: string
-}
-
-export interface DeckQuery_deck_notes_edges_node_values {
-  __typename: 'FieldValue'
-  /**
-   * Field value id
-   */
-  id: string
-  /**
-   * Field data
-   */
-  data: DeckQuery_deck_notes_edges_node_values_data | null
-  /**
-   * Associated field
-   */
-  field: DeckQuery_deck_notes_edges_node_values_field | null
-}
-
 export interface DeckQuery_deck_notes_edges_node_model_primaryField {
   __typename: 'Field'
   /**
@@ -143,9 +79,9 @@ export interface DeckQuery_deck_notes_edges_node {
    */
   id: string
   /**
-   * Values of this note
+   * Note text representation
    */
-  values: DeckQuery_deck_notes_edges_node_values[]
+  text: string
   /**
    * Model of this note
    */
@@ -174,10 +110,47 @@ export interface DeckQuery_deck_notes_pageInfo {
   startCursor: string | null
 }
 
+export interface DeckQuery_deck_notes_pageCursors_first {
+  __typename: 'PageCursor'
+  cursor: string
+  page: number
+  isCurrent: boolean
+}
+
+export interface DeckQuery_deck_notes_pageCursors_around {
+  __typename: 'PageCursor'
+  cursor: string
+  page: number
+  isCurrent: boolean
+}
+
+export interface DeckQuery_deck_notes_pageCursors_last {
+  __typename: 'PageCursor'
+  cursor: string
+  page: number
+  isCurrent: boolean
+}
+
+export interface DeckQuery_deck_notes_pageCursors_previous {
+  __typename: 'PageCursor'
+  cursor: string
+  page: number
+  isCurrent: boolean
+}
+
+export interface DeckQuery_deck_notes_pageCursors {
+  __typename: 'PageCursors'
+  first: DeckQuery_deck_notes_pageCursors_first | null
+  around: DeckQuery_deck_notes_pageCursors_around[]
+  last: DeckQuery_deck_notes_pageCursors_last | null
+  previous: DeckQuery_deck_notes_pageCursors_previous | null
+}
+
 export interface DeckQuery_deck_notes {
   __typename: 'NoteConnection'
   edges: DeckQuery_deck_notes_edges[]
   pageInfo: DeckQuery_deck_notes_pageInfo
+  pageCursors: DeckQuery_deck_notes_pageCursors
 }
 
 export interface DeckQuery_deck {
@@ -221,8 +194,6 @@ export interface DeckQuery {
 
 export interface DeckQueryVariables {
   slug: string
-  after?: string | null
-  first?: number | null
-  before?: string | null
-  last?: number | null
+  page: number
+  size: number
 }

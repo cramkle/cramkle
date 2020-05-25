@@ -4,7 +4,6 @@ import { useLingui } from '@lingui/react'
 import gql from 'graphql-tag'
 import React, { useRef } from 'react'
 
-import { getNoteIdentifier } from '../utils/noteIdentifier'
 import {
   DeleteNoteMutation,
   DeleteNoteMutationVariables,
@@ -32,7 +31,6 @@ interface Props {
 
 const DeleteNoteDialog: React.FC<Props> = ({ note, onClose }) => {
   const { i18n } = useLingui()
-  const noteIdentifier = getNoteIdentifier(note)
   const [deleteNote, { loading }] = useMutation<
     DeleteNoteMutation,
     DeleteNoteMutationVariables
@@ -53,7 +51,7 @@ const DeleteNoteDialog: React.FC<Props> = ({ note, onClose }) => {
   return (
     <AlertDialog isOpen onDismiss={onClose} leastDestructiveRef={cancelRef}>
       <AlertDialogLabel>
-        <Trans>Delete note {noteIdentifier}</Trans>
+        <Trans>Delete note {note.text}</Trans>
       </AlertDialogLabel>
       <AlertDialogDescription>
         <Trans>

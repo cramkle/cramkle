@@ -15,6 +15,7 @@ type NoteEdge {
 type NoteConnection {
   edges: [NoteEdge!]!
   pageInfo: PageInfo!
+  pageCursors: PageCursors!
 }
 
 """
@@ -40,7 +41,7 @@ type Deck implements Node {
   """
   Notes contained in this deck
   """
-  notes(after: String, first: Int, before: String, last: Int): NoteConnection
+  notes(page: Int!, size: Int!): NoteConnection
   """
   Number of notes in this deck
   """

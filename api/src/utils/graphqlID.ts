@@ -22,7 +22,7 @@ const decoders: {
   },
 }
 
-export const encodeGlobalId = (name: string, id: Types.ObjectId) => {
+export const encodeGlobalId = (name: string, id: Types.ObjectId | string) => {
   return base64(`${currentVersion}@${name}:${id}`)
 }
 

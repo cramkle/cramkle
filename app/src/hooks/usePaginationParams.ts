@@ -1,78 +1,59 @@
-import { useCallback, useMemo } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 
 import { PageArgs } from '../components/Pagination'
+import useLatestRefEffect from './useLatestRef'
+
+type PaginationState = PageArgs
 
 const usePaginationParams = () => {
-  const location = useLocation()
-  const paginationState = useMemo<PageArgs>(() => {
-    const searchParams = new URLSearchParams(location.search)
-
-    if (searchParams.has('after') || searchParams.has('first')) {
-      return {
-        after: searchParams.get('after') || null,
-        first: parseInt(searchParams.get('first'), 10),
-      }
-    }
-
-    if (searchParams.has('before') || searchParams.has('last')) {
-      return {
-        before: searchParams.get('before') || null,
-        last: parseInt(searchParams.get('last'), 10),
-      }
-    }
-
-    return {
-      after: null,
-      first: 10,
-    }
-  }, [location.search])
-
   const history = useHistory()
+  const location = useLocation<PaginationState>()
 
-  const updateStateAndSyncHistory = useCallback(
-    (nextState: PageArgs) => {
-      const searchParams = new URLSearchParams(location.search)
+  const queryParams = useMemo(() => new URLSearchParams(location.search), [
+    location.search,
+  ])
 
-      ;['after', 'before', 'last', 'first'].forEach((key) => {
-        searchParams.delete(key)
-      })
+  const [paginationParams, setPaginationParams] = useState<PaginationState>(
+    () => {
+      let page = 1
+      let size = 10
 
-      Object.entries(nextState).forEach(([key, value]) => {
-        if (value == null) {
-          return
-        }
+      if (queryParams.get('page')) {
+        page = parseInt(queryParams.get('page'), 10)
+      }
 
-        searchParams.set(key, value.toString())
-      })
+      if (queryParams.get('size')) {
+        size = parseInt(queryParams.get('size'), 10)
+      }
 
-      history.push(location.pathname + '?' + searchParams.toString())
-    },
-    [history, location.search, location.pathname]
+      return {
+        page,
+        size,
+      }
+    }
   )
 
-  const setPaginationParams = useCallback(
-    (pageArgs: PageArgs) => {
-      updateStateAndSyncHistory(pageArgs)
-    },
-    [updateStateAndSyncHistory]
-  )
+  useLatestRefEffect(paginationParams, (latestParams) => {
+    const updatedQueryParams = new URLSearchParams(queryParams)
 
-  const pageQuantity =
-    'first' in paginationState ? paginationState.first : paginationState.last
+    updatedQueryParams.set('page', latestParams.page.toString())
+    updatedQueryParams.set('size', latestParams.size.toString())
 
-  const onPageQuantityChange = useCallback(
-    (value: number) => {
-      updateStateAndSyncHistory({ after: null, first: value })
+    history.replace(location.pathname + '?' + updatedQueryParams.toString())
+  })
+
+  const updatePaginationParams = useCallback(
+    (newParams: Partial<PaginationState>) => {
+      setPaginationParams((prevParams) => ({ ...prevParams, ...newParams }))
     },
-    [updateStateAndSyncHistory]
+    []
   )
 
   return {
-    paginationParams: paginationState,
-    setPaginationParams,
-    pageQuantity,
-    onPageQuantityChange,
+    paginationParams,
+    pageSize: paginationParams.size,
+    onPaginationChange: updatePaginationParams,
   }
 }
 

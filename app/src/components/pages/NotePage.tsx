@@ -9,7 +9,6 @@ import { Helmet } from 'react-helmet'
 import { useParams } from 'react-router'
 
 import useTopBarLoading from '../../hooks/useTopBarLoading'
-import { getNoteIdentifier } from '../../utils/noteIdentifier'
 import BackButton from '../BackButton'
 import FieldValueEditor from '../FieldValueEditor'
 import FlashCardRenderer from '../FlashCardRenderer'
@@ -77,6 +76,7 @@ const NOTE_QUERY = gql`
   query NoteQuery($noteId: ID!) {
     note(id: $noteId) {
       id
+      text
       deck {
         title
       }
@@ -260,11 +260,8 @@ const NotePage: React.FC = () => {
   }
 
   const {
-    note: { values, deck, flashCards },
-    note,
+    note: { values, deck, flashCards, text },
   } = data
-
-  const noteIdentifier = getNoteIdentifier(note)
 
   return (
     <>
@@ -285,7 +282,7 @@ const NotePage: React.FC = () => {
           />
         </Dialog>
       )}
-      <Helmet title={noteIdentifier} />
+      <Helmet title={text} />
       <Container>
         <BackButton to={`/d/${deckSlug}`} />
 
@@ -296,7 +293,7 @@ const NotePage: React.FC = () => {
           <Headline1>
             <Trans>Note details</Trans>
           </Headline1>
-          <Headline2 className="mt-4">{noteIdentifier}</Headline2>
+          <Headline2 className="mt-4">{text}</Headline2>
         </div>
 
         {values.map((value) => (

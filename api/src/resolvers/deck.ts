@@ -3,11 +3,13 @@ import { IResolverObject, IResolvers } from 'graphql-tools'
 import { DeckModel, NoteModel, UserModel } from '../mongo'
 import { DeckDocument } from '../mongo/Deck'
 import { FlashCardStatus } from '../mongo/Note'
-import {
-  ConnectionArgs,
-  connectionFromPromisedArray,
-} from '../utils/connection'
 import { decodeGlobalId, globalIdField } from '../utils/graphqlID'
+import {
+  PageConnectionArgs,
+  connectionFromArray,
+  createPageCursors,
+  pageToCursor,
+} from '../utils/pagination'
 import { studyFlashCardsByDeck } from '../utils/study'
 
 type StudySessionDetailsObject = { [status in FlashCardStatus]: number }
@@ -36,10 +38,26 @@ export const root: IResolvers = {
         }
       )
     },
-    notes: async (root: DeckDocument, args: ConnectionArgs) => {
-      return connectionFromPromisedArray(
-        NoteModel.find({ deckId: root._id }).exec(),
-        args
+    notes: async (root: DeckDocument, args: PageConnectionArgs) => {
+      const notes = await NoteModel.find({ deckId: root._id })
+
+      const totalCount = notes.length
+
+      const cursor = pageToCursor(args.page, args.size)
+      const connection = connectionFromArray(notes, {
+        after: cursor,
+        first: args.size,
+      })
+
+      return Object.assign(
+        {},
+        {
+          pageCursors: createPageCursors(
+            { page: args.page, size: args.size },
+            totalCount
+          ),
+        },
+        connection
       )
     },
     totalNotes: (root: DeckDocument) =>

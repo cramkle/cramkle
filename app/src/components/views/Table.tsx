@@ -62,7 +62,7 @@ export const TableFooter: React.FC<TableFooterProps> = ({
   children,
 }) => {
   return (
-    <tfoot className={classnames(className, 'border-t border-outline')}>
+    <tfoot className={classnames(className, 'border-t border-gray-1')}>
       {children}
     </tfoot>
   )

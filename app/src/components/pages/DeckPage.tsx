@@ -2,10 +2,11 @@ import { useQuery } from '@apollo/react-hooks'
 import { Trans, plural, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import gql from 'graphql-tag'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Helmet } from 'react-helmet'
 import { useHistory, useParams } from 'react-router'
 
+import useLatestRefEffect from '../../hooks/useLatestRef'
 import usePaginationParams from '../../hooks/usePaginationParams'
 import useTopBarLoading from '../../hooks/useTopBarLoading'
 import BackButton from '../BackButton'
@@ -25,13 +26,7 @@ import {
 import { DeckQuery, DeckQueryVariables } from './__generated__/DeckQuery'
 
 const DECK_QUERY = gql`
-  query DeckQuery(
-    $slug: String!
-    $after: String
-    $first: Int
-    $before: String
-    $last: Int
-  ) {
+  query DeckQuery($slug: String!, $page: Int!, $size: Int!) {
     deck(slug: $slug) {
       id
       slug
@@ -39,21 +34,11 @@ const DECK_QUERY = gql`
       description
       totalNotes
       totalFlashcards
-      notes(first: $first, after: $after, before: $before, last: $last)
-        @connection(key: "Deck_notes") {
+      notes(page: $page, size: $size) @connection(key: "Deck_notes") {
         edges {
           node {
             id
-            values {
-              id
-              data {
-                ...DraftContent
-              }
-              field {
-                id
-                name
-              }
-            }
+            text
             model {
               name
               primaryField {
@@ -81,30 +66,30 @@ const DECK_QUERY = gql`
           endCursor
           startCursor
         }
+        pageCursors {
+          first {
+            cursor
+            page
+            isCurrent
+          }
+          around {
+            cursor
+            page
+            isCurrent
+          }
+          last {
+            cursor
+            page
+            isCurrent
+          }
+          previous {
+            cursor
+            page
+            isCurrent
+          }
+        }
       }
     }
-  }
-
-  fragment DraftContent on ContentState {
-    id
-    blocks {
-      key
-      type
-      text
-      depth
-      inlineStyleRanges {
-        style
-        offset
-        length
-      }
-      entityRanges {
-        key
-        length
-        offset
-      }
-      data
-    }
-    entityMap
   }
 `
 
@@ -115,47 +100,25 @@ const DeckPage: React.FunctionComponent = () => {
   const history = useHistory()
   const {
     paginationParams,
-    setPaginationParams,
-    pageQuantity,
-    onPageQuantityChange,
+    pageSize,
+    onPaginationChange,
   } = usePaginationParams()
 
-  const { data, loading, fetchMore } = useQuery<DeckQuery, DeckQueryVariables>(
+  const { data, loading, refetch } = useQuery<DeckQuery, DeckQueryVariables>(
     DECK_QUERY,
     {
-      variables: { slug },
+      variables: { slug, ...paginationParams },
     }
   )
 
   useTopBarLoading(loading)
 
-  useEffect(() => {
-    fetchMore({
-      variables: {
-        ...paginationParams,
-        slug,
-      },
-      updateQuery: (previousResult, { fetchMoreResult }) => {
-        if (!previousResult) {
-          return previousResult
-        }
-
-        const newEdges = fetchMoreResult?.deck.notes.edges
-        const pageInfo = fetchMoreResult?.deck.notes.pageInfo
-
-        return {
-          deck: {
-            ...previousResult.deck,
-            notes: {
-              ...previousResult.deck.notes,
-              edges: newEdges,
-              pageInfo,
-            },
-          },
-        }
-      },
+  useLatestRefEffect(paginationParams, (updatedPaginationParams) => {
+    refetch({
+      ...updatedPaginationParams,
+      slug,
     })
-  }, [paginationParams, fetchMore, slug])
+  })
 
   if (loading || !data) {
     return null
@@ -203,9 +166,8 @@ const DeckPage: React.FunctionComponent = () => {
           <NotesTable
             notes={deck.notes}
             deckSlug={deck.slug}
-            pageQuantity={pageQuantity}
-            onPageQuantityChange={onPageQuantityChange}
-            onPageChange={setPaginationParams}
+            onPaginationChange={onPaginationChange}
+            pageSize={pageSize}
           />
         </div>
 

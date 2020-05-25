@@ -2,9 +2,8 @@ import { Trans } from '@lingui/macro'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import { getNoteIdentifier } from '../utils/noteIdentifier'
 import DeleteNoteDialog from './DeleteNoteDialog'
-import Pagination, { PageArgs } from './Pagination'
+import { PageArgs, Pagination } from './Pagination'
 import {
   DeckQuery_deck_notes,
   DeckQuery_deck_notes_edges_node,
@@ -24,17 +23,15 @@ import { Body2 } from './views/Typography'
 interface Props {
   notes: DeckQuery_deck_notes
   deckSlug: string
-  onPageChange: (page: PageArgs) => void
-  pageQuantity: number
-  onPageQuantityChange: (value: number) => void
+  onPaginationChange: (pageArgs: Partial<PageArgs>) => void
+  pageSize: number
 }
 
 const NotesTable: React.FC<Props> = ({
   notes,
   deckSlug,
-  onPageChange,
-  pageQuantity,
-  onPageQuantityChange,
+  onPaginationChange,
+  pageSize,
 }) => {
   const [
     deletingNote,
@@ -83,11 +80,9 @@ const NotesTable: React.FC<Props> = ({
         </TableHead>
         <TableBody>
           {notes.edges.map(({ node: note }) => {
-            const noteIdentifier = getNoteIdentifier(note)
-
             return (
               <TableRow key={note.id}>
-                <TableCell>{noteIdentifier}</TableCell>
+                <TableCell>{note.text}</TableCell>
                 <TableCell>{note.deck.title}</TableCell>
                 <TableCell>{note.model.name}</TableCell>
                 <TableCell>{note.flashCards.length}</TableCell>
@@ -117,9 +112,9 @@ const NotesTable: React.FC<Props> = ({
             <TableCell colSpan={5}>
               <Pagination
                 pageInfo={notes.pageInfo}
-                pageQuantity={pageQuantity}
-                onPageQuantityChange={onPageQuantityChange}
-                onPageChange={onPageChange}
+                pageCursors={notes.pageCursors}
+                onChange={onPaginationChange}
+                pageSize={pageSize}
               />
             </TableCell>
           </TableRow>
