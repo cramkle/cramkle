@@ -105,9 +105,7 @@ export interface DeckQuery_deck_notes_edges {
 export interface DeckQuery_deck_notes_pageInfo {
   __typename: 'PageInfo'
   hasNextPage: boolean
-  hasPreviousPage: boolean
   endCursor: string | null
-  startCursor: string | null
 }
 
 export interface DeckQuery_deck_notes_pageCursors_first {
@@ -148,6 +146,7 @@ export interface DeckQuery_deck_notes_pageCursors {
 
 export interface DeckQuery_deck_notes {
   __typename: 'NoteConnection'
+  totalCount: number
   edges: DeckQuery_deck_notes_edges[]
   pageInfo: DeckQuery_deck_notes_pageInfo
   pageCursors: DeckQuery_deck_notes_pageCursors
@@ -196,4 +195,5 @@ export interface DeckQueryVariables {
   slug: string
   page: number
   size: number
+  search?: string | null
 }

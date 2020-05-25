@@ -92,4 +92,6 @@ const NoteSchema = new Schema<NoteDocument>({
   flashCards: [FlashCardSchema],
 })
 
+NoteSchema.index({ 'values.data.blocks.text': 'text' })
+
 export default model<NoteDocument>('Note', NoteSchema)

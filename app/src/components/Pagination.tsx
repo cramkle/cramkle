@@ -26,9 +26,7 @@ interface PageCursors {
 
 interface PageInfo {
   hasNextPage: boolean
-  hasPreviousPage: boolean
   endCursor?: string
-  startCursor?: string
 }
 
 export type PageArgs = { page: number; size: number }
