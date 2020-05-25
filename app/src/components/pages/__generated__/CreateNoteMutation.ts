@@ -3,29 +3,29 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { FieldValueInput } from './../../../globalTypes'
+import { FieldValueInput } from "./../../../globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: CreateNoteMutation
 // ====================================================
 
 export interface CreateNoteMutation_createNote {
-  __typename: 'Note'
+  __typename: "Note";
   /**
    * Note id
    */
-  id: string
+  id: string;
 }
 
 export interface CreateNoteMutation {
   /**
    * Create new note in deck
    */
-  createNote: CreateNoteMutation_createNote | null
+  createNote: CreateNoteMutation_createNote | null;
 }
 
 export interface CreateNoteMutationVariables {
-  deckId: string
-  modelId: string
-  values: FieldValueInput[]
+  deckId: string;
+  modelId: string;
+  values: FieldValueInput[];
 }

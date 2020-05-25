@@ -8,56 +8,56 @@
 // ====================================================
 
 export interface NoteFormQuery_deck {
-  __typename: 'Deck'
+  __typename: "Deck";
   /**
    * Deck id
    */
-  id: string
+  id: string;
   /**
    * Title of the deck
    */
-  title: string
+  title: string;
 }
 
 export interface NoteFormQuery_models_fields {
-  __typename: 'Field'
+  __typename: "Field";
   /**
    * Field id
    */
-  id: string
+  id: string;
   /**
    * Name of the field
    */
-  name: string
+  name: string;
 }
 
 export interface NoteFormQuery_models {
-  __typename: 'Model'
+  __typename: "Model";
   /**
    * Card model id
    */
-  id: string
+  id: string;
   /**
    * Name of this card model (e.g. "Basic", "Basic with Reversed")
    */
-  name: string | null
+  name: string | null;
   /**
    * Fields associated with this model
    */
-  fields: NoteFormQuery_models_fields[]
+  fields: NoteFormQuery_models_fields[];
 }
 
 export interface NoteFormQuery {
   /**
    * Get single deck
    */
-  deck: NoteFormQuery_deck | null
+  deck: NoteFormQuery_deck | null;
   /**
    * Retrieve all models for the logged user
    */
-  models: NoteFormQuery_models[]
+  models: NoteFormQuery_models[];
 }
 
 export interface NoteFormQueryVariables {
-  slug: string
+  slug: string;
 }
