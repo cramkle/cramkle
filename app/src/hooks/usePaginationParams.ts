@@ -2,7 +2,7 @@ import { useCallback, useMemo, useState } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 
 import { PageArgs } from '../components/Pagination'
-import useLatestRefEffect from './useLatestRef'
+import useLatestRefEffect from './useLatestRefEffect'
 
 type PaginationState = PageArgs
 

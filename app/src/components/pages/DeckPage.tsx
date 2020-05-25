@@ -6,7 +6,7 @@ import React from 'react'
 import { Helmet } from 'react-helmet'
 import { useHistory, useParams } from 'react-router'
 
-import useLatestRefEffect from '../../hooks/useLatestRef'
+import useLatestRefEffect from '../../hooks/useLatestRefEffect'
 import usePaginationParams from '../../hooks/usePaginationParams'
 import useTopBarLoading from '../../hooks/useTopBarLoading'
 import BackButton from '../BackButton'
