@@ -1,4 +1,4 @@
-import { Trans } from '@lingui/macro'
+import { Trans, t } from '@lingui/macro'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -9,7 +9,7 @@ import {
   DeckQuery_deck_notes_edges_node,
 } from './pages/__generated__/DeckQuery'
 import Button from './views/Button'
-import Card from './views/Card'
+import { Input } from './views/Input'
 import {
   Table,
   TableBody,
@@ -18,13 +18,16 @@ import {
   TableHead,
   TableRow,
 } from './views/Table'
-import { Body2 } from './views/Typography'
 
 interface Props {
   notes: DeckQuery_deck_notes
   deckSlug: string
   onPaginationChange: (pageArgs: Partial<PageArgs>) => void
   pageSize: number
+  onSearchChange: React.ChangeEventHandler<HTMLInputElement>
+  onSearchSubmit: () => void
+  searchQuery: string
+  totalDeckNotes: number
 }
 
 const NotesTable: React.FC<Props> = ({
@@ -32,6 +35,10 @@ const NotesTable: React.FC<Props> = ({
   deckSlug,
   onPaginationChange,
   pageSize,
+  onSearchChange,
+  onSearchSubmit,
+  searchQuery,
+  totalDeckNotes,
 }) => {
   const [
     deletingNote,
@@ -42,25 +49,40 @@ const NotesTable: React.FC<Props> = ({
     setDeletingNote(null)
   }
 
-  if (!notes.edges.length) {
-    return (
-      <Card
-        className="w-full mt-2 py-4 px-2 flex flex-row justify-center"
-        outlined
-      >
-        <Body2>
-          <Trans>You haven't created any notes on this deck yet</Trans>
-        </Body2>
-      </Card>
-    )
+  const handleSearchSubmit: React.FormEventHandler = (evt) => {
+    evt.preventDefault()
+    onSearchSubmit()
   }
 
-  return (
-    <>
-      {deletingNote && (
-        <DeleteNoteDialog note={deletingNote} onClose={handleDeleteNoteClose} />
-      )}
-      <Table className="w-full">
+  let tableContent = null
+
+  if (!totalDeckNotes) {
+    tableContent = (
+      <>
+        <TableBody>
+          <TableRow>
+            <TableCell className="text-center text-secondary">
+              <Trans>You haven't created any notes on this deck yet</Trans>
+            </TableCell>
+          </TableRow>
+        </TableBody>
+      </>
+    )
+  } else if (!notes.totalCount) {
+    tableContent = (
+      <>
+        <TableBody>
+          <TableRow>
+            <TableCell className="text-center">
+              <Trans>No notes were found</Trans>
+            </TableCell>
+          </TableRow>
+        </TableBody>
+      </>
+    )
+  } else {
+    tableContent = (
+      <>
         <TableHead>
           <TableRow>
             <TableCell>
@@ -119,7 +141,23 @@ const NotesTable: React.FC<Props> = ({
             </TableCell>
           </TableRow>
         </TableFooter>
-      </Table>
+      </>
+    )
+  }
+
+  return (
+    <>
+      {deletingNote && (
+        <DeleteNoteDialog note={deletingNote} onClose={handleDeleteNoteClose} />
+      )}
+      <form className="flex" onSubmit={handleSearchSubmit}>
+        <Input
+          placeholder={t`Search notes...`}
+          onChange={onSearchChange}
+          value={searchQuery}
+        />
+      </form>
+      <Table className="w-full mt-3">{tableContent}</Table>
     </>
   )
 }

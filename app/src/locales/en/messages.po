@@ -13,6 +13,10 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#: src/components/pages/DeckPage.tsx:160
+msgid "({0} notes)"
+msgstr "({0} notes)"
+
 #: src/components/pages/HomePage.tsx:41
 msgid "A new update is available!"
 msgstr "A new update is available!"
@@ -32,8 +36,8 @@ msgid "Add Deck"
 msgstr "Add Deck"
 
 #: src/components/pages/AddNotePage.tsx:155
-#: src/components/pages/DeckPage.tsx:137
-#: src/components/pages/DeckPage.tsx:137
+#: src/components/pages/DeckPage.tsx:169
+#: src/components/pages/DeckPage.tsx:169
 msgid "Add Note"
 msgstr "Add Note"
 
@@ -185,7 +189,7 @@ msgstr "Create Model"
 msgid "Create Note for deck <0>{0}</0>"
 msgstr "Create Note for deck <0>{0}</0>"
 
-#: src/components/NotesTable.tsx:31
+#: src/components/NotesTable.tsx:49
 msgid "Deck"
 msgstr "Deck"
 
@@ -197,7 +201,7 @@ msgstr "Deck created successfully!"
 msgid "Deck deleted successfully"
 msgstr "Deck deleted successfully"
 
-#: src/components/pages/DeckPage.tsx:111
+#: src/components/pages/DeckPage.tsx:140
 msgid "Deck details"
 msgstr "Deck details"
 
@@ -214,7 +218,7 @@ msgstr "Decks"
 #: src/components/DeleteModelButton.tsx:73
 #: src/components/DeleteModelButton.tsx:99
 #: src/components/DeleteNoteDialog.tsx:54
-#: src/components/NotesTable.tsx:54
+#: src/components/NotesTable.tsx:72
 msgid "Delete"
 msgstr "Delete"
 
@@ -253,7 +257,7 @@ msgstr "Don't have an account? <0>Sign Up</0>"
 msgid "Easy"
 msgstr "Easy"
 
-#: src/components/NotesTable.tsx:51
+#: src/components/NotesTable.tsx:69
 msgid "Edit"
 msgstr "Edit"
 
@@ -319,7 +323,7 @@ msgstr "Fields"
 msgid "First page"
 msgstr "First page"
 
-#: src/components/NotesTable.tsx:37
+#: src/components/NotesTable.tsx:55
 #: src/components/pages/NotePage.tsx:218
 msgid "Flashcards"
 msgstr "Flashcards"
@@ -459,7 +463,7 @@ msgstr "Model deleted successfully"
 msgid "Model details"
 msgstr "Model details"
 
-#: src/components/NotesTable.tsx:34
+#: src/components/NotesTable.tsx:52
 msgid "Model type"
 msgstr "Model type"
 
@@ -496,11 +500,15 @@ msgstr "Next page"
 msgid "No fields added"
 msgstr "No fields added"
 
+#: src/components/NotesTable.tsx:35
+msgid "No notes were found"
+msgstr "No notes were found"
+
 #: src/components/pages/AddModelPage.tsx:102
 msgid "No templates added"
 msgstr "No templates added"
 
-#: src/components/NotesTable.tsx:28
+#: src/components/NotesTable.tsx:46
 msgid "Note"
 msgstr "Note"
 
@@ -512,7 +520,7 @@ msgstr "Note created successfully"
 msgid "Note details"
 msgstr "Note details"
 
-#: src/components/pages/DeckPage.tsx:129
+#: src/components/pages/DeckPage.tsx:158
 msgid "Notes"
 msgstr "Notes"
 
@@ -619,6 +627,10 @@ msgstr "Save"
 #: src/components/SearchBar.tsx:38
 msgid "Search"
 msgstr "Search"
+
+#: src/components/NotesTable.tsx:90
+msgid "Search notes..."
+msgstr "Search notes..."
 
 #: src/components/pages/AddNotePage.tsx:132
 msgid "Select a model"
@@ -770,7 +782,7 @@ msgstr "We have sent you an email with instructions to help you reset your passw
 msgid "You haven't created any models yet."
 msgstr "You haven't created any models yet."
 
-#: src/components/NotesTable.tsx:18
+#: src/components/NotesTable.tsx:24
 msgid "You haven't created any notes on this deck yet"
 msgstr "You haven't created any notes on this deck yet"
 
@@ -790,11 +802,11 @@ msgstr "Login"
 msgid "{0, plural, one {# field} other {# fields}}"
 msgstr "{0, plural, one {# field} other {# fields}}"
 
-#: src/components/pages/DeckPage.tsx:121
+#: src/components/pages/DeckPage.tsx:150
 msgid "{0, plural, one {# flashcard} other {# flashcards}}"
 msgstr "{0, plural, one {# flashcard} other {# flashcards}}"
 
-#: src/components/pages/DeckPage.tsx:119
+#: src/components/pages/DeckPage.tsx:148
 #: src/components/pages/ModelPage.tsx:192
 msgid "{0, plural, one {# note} other {# notes}}"
 msgstr "{0, plural, one {# note} other {# notes}}"

@@ -2,9 +2,9 @@ import { useQuery } from '@apollo/react-hooks'
 import { Trans, plural, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import gql from 'graphql-tag'
-import React from 'react'
+import React, { useCallback, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet'
-import { useHistory, useParams } from 'react-router'
+import { useHistory, useLocation, useParams } from 'react-router'
 
 import useLatestRefEffect from '../../hooks/useLatestRefEffect'
 import usePaginationParams from '../../hooks/usePaginationParams'
@@ -19,6 +19,7 @@ import Icon from '../views/Icon'
 import {
   Body1,
   Body2,
+  Caption,
   Headline1,
   Headline2,
   Headline3,
@@ -26,7 +27,7 @@ import {
 import { DeckQuery, DeckQueryVariables } from './__generated__/DeckQuery'
 
 const DECK_QUERY = gql`
-  query DeckQuery($slug: String!, $page: Int!, $size: Int!) {
+  query DeckQuery($slug: String!, $page: Int!, $size: Int!, $search: String) {
     deck(slug: $slug) {
       id
       slug
@@ -34,7 +35,9 @@ const DECK_QUERY = gql`
       description
       totalNotes
       totalFlashcards
-      notes(page: $page, size: $size) @connection(key: "Deck_notes") {
+      notes(page: $page, size: $size, search: $search)
+        @connection(key: "Deck_notes") {
+        totalCount
         edges {
           node {
             id
@@ -62,9 +65,7 @@ const DECK_QUERY = gql`
         }
         pageInfo {
           hasNextPage
-          hasPreviousPage
           endCursor
-          startCursor
         }
         pageCursors {
           first {
@@ -97,12 +98,23 @@ const DeckPage: React.FunctionComponent = () => {
   const { isMobile } = useHints()
   const { i18n } = useLingui()
   const { slug } = useParams<{ slug: string }>()
+  const location = useLocation()
   const history = useHistory()
   const {
     paginationParams,
     pageSize,
     onPaginationChange,
   } = usePaginationParams()
+
+  const [searchQuery, setSearchQuery] = useState(() => {
+    const searchParams = new URLSearchParams(location.search)
+
+    if (searchParams.has('search')) {
+      return searchParams.get('search')
+    }
+
+    return ''
+  })
 
   const { data, loading, refetch } = useQuery<DeckQuery, DeckQueryVariables>(
     DECK_QUERY,
@@ -111,16 +123,54 @@ const DeckPage: React.FunctionComponent = () => {
     }
   )
 
+  const searchDebounceRef = useRef<NodeJS.Timeout | undefined>(undefined)
+
+  const handleSearchSubmit = (search = searchQuery) => {
+    if (searchDebounceRef.current) {
+      clearTimeout(searchDebounceRef.current)
+    }
+
+    const searchParams = new URLSearchParams(location.search)
+
+    searchParams.set('search', search)
+
+    history.push(location.pathname + '?' + searchParams.toString())
+
+    refetch({
+      slug,
+      ...paginationParams,
+      search,
+    })
+  }
+
+  useLatestRefEffect(searchQuery, (latestSearchQuery) => {
+    if (searchDebounceRef.current) {
+      clearTimeout(searchDebounceRef.current)
+    }
+
+    searchDebounceRef.current = setTimeout(() => {
+      handleSearchSubmit(latestSearchQuery)
+    }, 500)
+  })
+
+  const handleSearchChange: React.ChangeEventHandler<HTMLInputElement> = useCallback(
+    (evt) => {
+      setSearchQuery(evt.target.value)
+    },
+    []
+  )
+
   useTopBarLoading(loading)
 
   useLatestRefEffect(paginationParams, (updatedPaginationParams) => {
     refetch({
       ...updatedPaginationParams,
       slug,
+      search: searchQuery,
     })
   })
 
-  if (loading || !data) {
+  if (loading && !data) {
     return null
   }
 
@@ -159,15 +209,22 @@ const DeckPage: React.FunctionComponent = () => {
         </div>
 
         <Headline3>
-          <Trans>Notes</Trans>
+          <Trans>Notes</Trans>{' '}
+          <Caption className="ml-1">
+            <Trans>({deck.notes.totalCount} notes)</Trans>
+          </Caption>
         </Headline3>
 
         <div className="mt-4 mb-8">
           <NotesTable
+            totalDeckNotes={deck.totalNotes}
             notes={deck.notes}
             deckSlug={deck.slug}
             onPaginationChange={onPaginationChange}
             pageSize={pageSize}
+            searchQuery={searchQuery}
+            onSearchChange={handleSearchChange}
+            onSearchSubmit={handleSearchSubmit}
           />
         </div>
 

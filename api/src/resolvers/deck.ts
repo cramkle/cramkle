@@ -38,8 +38,20 @@ export const root: IResolvers = {
         }
       )
     },
-    notes: async (root: DeckDocument, args: PageConnectionArgs) => {
-      const notes = await NoteModel.find({ deckId: root._id })
+    notes: async (
+      root: DeckDocument,
+      args: PageConnectionArgs & { search?: string }
+    ) => {
+      const notesQuery = NoteModel.find({ deckId: root._id })
+
+      if (args.search) {
+        notesQuery
+          .find({ $text: { $search: args.search } })
+          .select({ score: { $meta: 'textScore' } })
+          .sort({ score: { $meta: 'textScore' } })
+      }
+
+      const notes = await notesQuery.exec()
 
       const totalCount = notes.length
 
@@ -52,6 +64,7 @@ export const root: IResolvers = {
       return Object.assign(
         {},
         {
+          totalCount,
           pageCursors: createPageCursors(
             { page: args.page, size: args.size },
             totalCount
