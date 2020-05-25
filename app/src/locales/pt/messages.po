@@ -32,8 +32,8 @@ msgid "Add Deck"
 msgstr "Adicionar deck"
 
 #: src/components/pages/AddNotePage.tsx:155
-#: src/components/pages/DeckPage.tsx:129
-#: src/components/pages/DeckPage.tsx:129
+#: src/components/pages/DeckPage.tsx:137
+#: src/components/pages/DeckPage.tsx:137
 msgid "Add Note"
 msgstr "Adicionar Nota"
 
@@ -91,15 +91,15 @@ msgstr "Ocorreu um erro ao apagar o modelo"
 msgid "Are you sure you want to cancel the current study session?"
 msgstr "Você tem certeza que quer encerrar a sessão de estudo atual?"
 
-#: src/components/DeleteDeckButton.tsx:72
+#: src/components/DeleteDeckButton.tsx:73
 msgid "Are you sure you want to delete this deck?"
 msgstr "Você tem certeza que deseja apagar esse deck?"
 
-#: src/components/DeleteModelButton.tsx:79
+#: src/components/DeleteModelButton.tsx:80
 msgid "Are you sure you want to delete this model? {0} and {1} associated with it."
 msgstr "Você tem certeza que deseja apagar este modelo? {0} e {1} associados a ele."
 
-#: src/components/DeleteNoteDialog.tsx:43
+#: src/components/DeleteNoteDialog.tsx:41
 msgid "Are you sure you want to delete this note? {0}"
 msgstr "Você tem certeza que quer deletar essa nota? {0}"
 
@@ -119,8 +119,8 @@ msgstr "Citação"
 msgid "Bold"
 msgstr "Negrito"
 
-#: src/components/DeleteDeckButton.tsx:75
-#: src/components/DeleteNoteDialog.tsx:52
+#: src/components/DeleteDeckButton.tsx:77
+#: src/components/DeleteNoteDialog.tsx:51
 #: src/components/pages/StudyPage.tsx:123
 #: src/components/pages/StudySection.tsx:73
 msgid "Cancel"
@@ -131,7 +131,7 @@ msgstr "Cancelar"
 msgid "Changes saved successfully"
 msgstr "Alterações salvas com sucesso"
 
-#: src/components/pages/ForgotPasswordPage.tsx:87
+#: src/components/pages/ForgotPasswordPage.tsx:88
 msgid "Check your inbox!"
 msgstr "Verifique sua caixa de entrada!"
 
@@ -139,7 +139,7 @@ msgstr "Verifique sua caixa de entrada!"
 msgid "Check your internet connection and try again."
 msgstr "Verifique sua conexão com a internet e tente novamente."
 
-#: src/components/pages/ResetPasswordPage.tsx:113
+#: src/components/pages/ResetPasswordPage.tsx:114
 msgid "Choose a new password for your account."
 msgstr "Escolha uma nova senha para sua conta."
 
@@ -155,12 +155,12 @@ msgstr "Bloco de código"
 msgid "Company"
 msgstr "Empresa"
 
-#: src/components/pages/ResetPasswordPage.tsx:130
 #: src/components/pages/ResetPasswordPage.tsx:131
+#: src/components/pages/ResetPasswordPage.tsx:132
 msgid "Confirm password"
 msgstr "Confirmação de senha"
 
-#: src/components/pages/ResetPasswordPage.tsx:133
+#: src/components/pages/ResetPasswordPage.tsx:134
 msgid "Confirm password must be equal to the new password"
 msgstr "Confirmação de senha precisa ser igual à nova senha"
 
@@ -197,11 +197,11 @@ msgstr "Deck criado com sucesso"
 msgid "Deck deleted successfully"
 msgstr "Deck apagado com sucesso"
 
-#: src/components/pages/DeckPage.tsx:103
+#: src/components/pages/DeckPage.tsx:111
 msgid "Deck details"
 msgstr "Detalhes do deck"
 
-#: src/components/pages/NotePage.tsx:206
+#: src/components/pages/NotePage.tsx:205
 msgid "Deck {0}"
 msgstr "Deck {0}"
 
@@ -209,26 +209,26 @@ msgstr "Deck {0}"
 msgid "Decks"
 msgstr "Decks"
 
-#: src/components/DeleteDeckButton.tsx:65
-#: src/components/DeleteDeckButton.tsx:78
-#: src/components/DeleteModelButton.tsx:72
-#: src/components/DeleteModelButton.tsx:97
-#: src/components/DeleteNoteDialog.tsx:55
-#: src/components/NotesTable.tsx:56
+#: src/components/DeleteDeckButton.tsx:66
+#: src/components/DeleteDeckButton.tsx:80
+#: src/components/DeleteModelButton.tsx:73
+#: src/components/DeleteModelButton.tsx:99
+#: src/components/DeleteNoteDialog.tsx:54
+#: src/components/NotesTable.tsx:54
 msgid "Delete"
 msgstr "Apagar"
 
-#: src/components/DeleteDeckButton.tsx:69
+#: src/components/DeleteDeckButton.tsx:70
 msgid "Delete deck"
 msgstr "Apagar deck"
 
-#: src/components/DeleteModelButton.tsx:76
+#: src/components/DeleteModelButton.tsx:77
 msgid "Delete model"
 msgstr "Apagar modelo"
 
-#: src/components/DeleteNoteDialog.tsx:40
-msgid "Delete note {noteIdentifier}"
-msgstr "Apagar a nota {noteIdentifier}"
+#: src/components/DeleteNoteDialog.tsx:38
+msgid "Delete note {0}"
+msgstr "Deletar nota {0}"
 
 #: src/components/forms/AddDeckForm.tsx:88
 msgid "Description"
@@ -253,7 +253,7 @@ msgstr "Não possui uma conta? <0>Cadastre-se</0>"
 msgid "Easy"
 msgstr "Fácil"
 
-#: src/components/NotesTable.tsx:52
+#: src/components/NotesTable.tsx:51
 msgid "Edit"
 msgstr "Editar"
 
@@ -261,7 +261,7 @@ msgstr "Editar"
 msgid "Email"
 msgstr "Email"
 
-#: src/components/pages/ForgotPasswordPage.tsx:117
+#: src/components/pages/ForgotPasswordPage.tsx:118
 msgid "Email address"
 msgstr "Endereço de email"
 
@@ -273,7 +273,7 @@ msgstr "Email é obrigatório"
 msgid "Email must be a valid email"
 msgstr "Email precisa ser um email válido"
 
-#: src/components/pages/ForgotPasswordPage.tsx:54
+#: src/components/pages/ForgotPasswordPage.tsx:55
 msgid "Email sent!"
 msgstr "Email enviado!"
 
@@ -289,11 +289,11 @@ msgstr "Encerrar sessão de estudos"
 msgid "English"
 msgstr "Inglês"
 
-#: src/components/pages/ForgotPasswordPage.tsx:110
+#: src/components/pages/ForgotPasswordPage.tsx:111
 msgid "Enter the email associated with your account and we will send a link to reset your password"
 msgstr "Insira o email associado com a sua conta que iremos enviar um link para resetar sua senha"
 
-#: src/components/pages/ForgotPasswordPage.tsx:124
+#: src/components/pages/ForgotPasswordPage.tsx:125
 msgid "Enter your email address"
 msgstr "Insira o seu endereço de email"
 
@@ -315,16 +315,20 @@ msgstr "Valor do campo..."
 msgid "Fields"
 msgstr "Campos"
 
+#: src/components/Pagination.tsx:45
+msgid "First page"
+msgstr "Primeira página"
+
 #: src/components/NotesTable.tsx:37
-#: src/components/pages/NotePage.tsx:219
+#: src/components/pages/NotePage.tsx:218
 msgid "Flashcards"
 msgstr "Flashcards"
 
-#: src/components/pages/ForgotPasswordPage.tsx:140
+#: src/components/pages/ForgotPasswordPage.tsx:138
 msgid "Forgot password"
 msgstr "Esqueceu a senha"
 
-#: src/components/pages/ForgotPasswordPage.tsx:106
+#: src/components/pages/ForgotPasswordPage.tsx:107
 msgid "Forgot password?"
 msgstr "Esqueceu a senha?"
 
@@ -340,7 +344,7 @@ msgstr "Frente"
 msgid "Front side template is empty"
 msgstr "Frente do template está vazio"
 
-#: src/components/BackButton.tsx:17
+#: src/components/BackButton.tsx:18
 msgid "Go back"
 msgstr "Voltar"
 
@@ -349,7 +353,7 @@ msgstr "Voltar"
 msgid "Go to Home"
 msgstr "Voltar para a Página Inicial"
 
-#: src/components/pages/ForgotPasswordPage.tsx:99
+#: src/components/pages/ForgotPasswordPage.tsx:100
 msgid "Go to login"
 msgstr "Voltar para login"
 
@@ -393,7 +397,7 @@ msgstr "Página Inicial"
 msgid "I agree to the <0>Terms & Conditions</0>"
 msgstr "Eu concordo com os <0>Termos e Condições</0>"
 
-#: src/components/pages/ForgotPasswordPage.tsx:126
+#: src/components/pages/ForgotPasswordPage.tsx:127
 msgid "Invalid email"
 msgstr "Email inválido"
 
@@ -409,9 +413,17 @@ msgstr "Nome de usuário e/ou senha inválidos"
 msgid "Italic"
 msgstr "Itálico"
 
+#: src/components/Pagination.tsx:36
+msgid "Items per page"
+msgstr "Itens por página"
+
 #: src/components/GeneralSettings.tsx:26
 msgid "Language"
 msgstr "Idioma"
+
+#: src/components/Pagination.tsx:59
+msgid "Last page"
+msgstr "Última página"
 
 #: src/components/FlashCardStatus.tsx:19
 msgid "Learning"
@@ -471,10 +483,14 @@ msgstr "Nome é obrigatório"
 msgid "New"
 msgstr "Novo"
 
-#: src/components/pages/ResetPasswordPage.tsx:117
-#: src/components/pages/ResetPasswordPage.tsx:124
+#: src/components/pages/ResetPasswordPage.tsx:118
+#: src/components/pages/ResetPasswordPage.tsx:125
 msgid "New password"
 msgstr "Nova senha"
+
+#: src/components/Pagination.tsx:56
+msgid "Next page"
+msgstr "Próxima página"
 
 #: src/components/pages/AddModelPage.tsx:127
 msgid "No fields added"
@@ -492,11 +508,11 @@ msgstr "Nota"
 msgid "Note created successfully"
 msgstr "Nota criada com sucesso"
 
-#: src/components/pages/NotePage.tsx:209
+#: src/components/pages/NotePage.tsx:208
 msgid "Note details"
 msgstr "Detalhes da nota"
 
-#: src/components/pages/DeckPage.tsx:121
+#: src/components/pages/DeckPage.tsx:129
 msgid "Notes"
 msgstr "Notas"
 
@@ -513,7 +529,7 @@ msgstr "Otimize a sua retenção de conhecimento com esse método efetivo de est
 msgid "Password"
 msgstr "Senha"
 
-#: src/components/pages/ResetPasswordPage.tsx:73
+#: src/components/pages/ResetPasswordPage.tsx:74
 msgid "Password changed successfully"
 msgstr "Senha alterada com sucesso"
 
@@ -523,7 +539,7 @@ msgid "Password is required"
 msgstr "Senha é obrigatória"
 
 #: src/components/forms/RegisterForm.tsx:58
-#: src/components/pages/ResetPasswordPage.tsx:126
+#: src/components/pages/ResetPasswordPage.tsx:127
 msgid "Password must be at least 6 characters"
 msgstr "Senha precisa ter pelo menos 6 caracteres"
 
@@ -535,9 +551,13 @@ msgstr "Por favor, tente recarregar a página"
 msgid "Portuguese"
 msgstr "Português"
 
-#: src/components/pages/NotePage.tsx:249
+#: src/components/pages/NotePage.tsx:247
 msgid "Preview"
 msgstr "Pré-visualizar"
+
+#: src/components/Pagination.tsx:48
+msgid "Previous page"
+msgstr "Página anterior"
 
 #: src/components/Footer.tsx:18
 msgid "Privacy Policy"
@@ -570,20 +590,20 @@ msgstr "Remover template"
 msgid "Repeat"
 msgstr "Repetir"
 
-#: src/components/pages/ForgotPasswordPage.tsx:134
+#: src/components/pages/ForgotPasswordPage.tsx:132
 msgid "Request Password Reset"
 msgstr "Solicitar Alteração de Senha"
 
-#: src/components/pages/ResetPasswordPage.tsx:143
+#: src/components/pages/ResetPasswordPage.tsx:141
 msgid "Reset Password"
 msgstr "Resetar Senha"
 
-#: src/components/pages/ResetPasswordPage.tsx:101
-#: src/components/pages/ResetPasswordPage.tsx:109
+#: src/components/pages/ResetPasswordPage.tsx:102
+#: src/components/pages/ResetPasswordPage.tsx:110
 msgid "Reset password"
 msgstr "Resetar Senha"
 
-#: src/components/pages/ResetPasswordPage.tsx:79
+#: src/components/pages/ResetPasswordPage.tsx:80
 msgid "Reset password token is expired"
 msgstr "O token para resetar a senha expirou"
 
@@ -706,7 +726,7 @@ msgstr "Lista de marcadores"
 msgid "Underline"
 msgstr "Sublinha"
 
-#: src/components/pages/ForgotPasswordPage.tsx:59
+#: src/components/pages/ForgotPasswordPage.tsx:60
 msgid "User not found"
 msgstr "Usuário não encontrado"
 
@@ -742,7 +762,7 @@ msgstr "Ver"
 msgid "We couldn't find the page you requested"
 msgstr "Não conseguimos encontrar a página requisitada"
 
-#: src/components/pages/ForgotPasswordPage.tsx:92
+#: src/components/pages/ForgotPasswordPage.tsx:93
 msgid "We have sent you an email with instructions to help you reset your password. Remember to also check the spam folder."
 msgstr "Mandamos um email para você com instruções que vão te ajudar a resetar sua senha. Lembre-se de também checar a pasta de spam."
 
@@ -770,25 +790,25 @@ msgstr "Entrar"
 msgid "{0, plural, one {# field} other {# fields}}"
 msgstr "{0, plural, one {# campo} other {# campos}}"
 
-#: src/components/pages/DeckPage.tsx:113
+#: src/components/pages/DeckPage.tsx:121
 msgid "{0, plural, one {# flashcard} other {# flashcards}}"
 msgstr "{0, plural, one {# flashcard} other {# flashcards}}"
 
-#: src/components/pages/DeckPage.tsx:111
+#: src/components/pages/DeckPage.tsx:119
 #: src/components/pages/ModelPage.tsx:192
 msgid "{0, plural, one {# note} other {# notes}}"
 msgstr "{0, plural, one {# nota} other {# notas}}"
 
-#: src/components/DeleteModelButton.tsx:86
+#: src/components/DeleteModelButton.tsx:87
 #: src/components/ModelCard.tsx:18
 msgid "{0, plural, one {# template} other {# templates}}"
 msgstr "{0, plural, one {# template} other {# templates}}"
 
-#: src/components/DeleteNoteDialog.tsx:45
+#: src/components/DeleteNoteDialog.tsx:43
 msgid "{0, plural, one {It contains one flashcard} other {It contains # flashcards}}"
 msgstr "{0, plural, one {Ela contém um flashcard} other {Ela contém # flashcards}}"
 
-#: src/components/DeleteModelButton.tsx:81
+#: src/components/DeleteModelButton.tsx:82
 msgid "{0, plural, one {There's # note} other {There're # notes}}"
 msgstr "{0, plural, one {Existe # nota} other {Existem # notas}}"
 

@@ -6,7 +6,6 @@ import classNames from 'classnames'
 import React, { useEffect, useRef, useState } from 'react'
 
 import useClassList from '../../hooks/useClassList'
-import { useRipple } from './Ripple'
 
 interface ToggleProps {
   on?: boolean
@@ -42,11 +41,6 @@ const IconButton: React.FC<Props> = ({
   const ref = useRef(null)
   const classListRef = useRef(classList)
 
-  const { rippleStyle, rippleClasses } = useRipple({
-    surfaceRef: ref,
-    unbounded: true,
-  })
-
   useEffect(() => {
     classListRef.current = classList
   }, [classList])
@@ -75,32 +69,19 @@ const IconButton: React.FC<Props> = ({
   const classes = classNames(
     'mdc-icon-button flex items-center',
     classList,
-    className,
-    rippleClasses
+    className
   )
 
   if ('href' in props) {
     return (
-      <a
-        {...props}
-        {...attrs}
-        className={classes}
-        style={{ ...style, ...rippleStyle }}
-        ref={ref}
-      >
+      <a {...props} {...attrs} className={classes} ref={ref}>
         {children}
       </a>
     )
   }
 
   return (
-    <button
-      {...props}
-      {...attrs}
-      className={classes}
-      style={{ ...style, ...rippleStyle }}
-      ref={ref}
-    >
+    <button {...props} {...attrs} className={classes} ref={ref}>
       {children}
     </button>
   )

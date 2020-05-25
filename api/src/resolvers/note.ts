@@ -4,12 +4,14 @@ import { IResolverObject, IResolvers } from 'graphql-tools'
 import { DeckModel, ModelModel, NoteModel, TemplateModel } from '../mongo'
 import { NoteDocument } from '../mongo/Note'
 import { decodeGlobalId, globalIdField } from '../utils/graphqlID'
+import { getNoteIdentifier } from '../utils/noteIdentifier'
 
 export const root: IResolvers = {
   Note: {
     id: globalIdField(),
     deck: (root: NoteDocument) => DeckModel.findById(root.deckId),
     model: (root: NoteDocument) => ModelModel.findById(root.modelId),
+    text: (root: NoteDocument) => getNoteIdentifier(root),
   },
 }
 

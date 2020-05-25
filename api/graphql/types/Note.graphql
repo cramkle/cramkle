@@ -30,4 +30,8 @@ type Note implements Node {
   Generated flashcards
   """
   flashCards: [FlashCard!]!
+  """
+  Note text representation
+  """
+  text: String!
 }

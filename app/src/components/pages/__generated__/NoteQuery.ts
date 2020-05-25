@@ -222,6 +222,10 @@ export interface NoteQuery_note {
    */
   id: string
   /**
+   * Note text representation
+   */
+  text: string
+  /**
    * Deck containing this note
    */
   deck: NoteQuery_note_deck | null

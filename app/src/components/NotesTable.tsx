@@ -2,29 +2,47 @@ import { Trans } from '@lingui/macro'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import { getNoteIdentifier } from '../utils/noteIdentifier'
 import DeleteNoteDialog from './DeleteNoteDialog'
-import { DeckQuery_deck_notes } from './pages/__generated__/DeckQuery'
+import { PageArgs, Pagination } from './Pagination'
+import {
+  DeckQuery_deck_notes,
+  DeckQuery_deck_notes_edges_node,
+} from './pages/__generated__/DeckQuery'
 import Button from './views/Button'
 import Card from './views/Card'
-import { Table, TableBody, TableCell, TableHead, TableRow } from './views/Table'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableFooter,
+  TableHead,
+  TableRow,
+} from './views/Table'
 import { Body2 } from './views/Typography'
 
 interface Props {
-  notes: DeckQuery_deck_notes[]
+  notes: DeckQuery_deck_notes
   deckSlug: string
+  onPaginationChange: (pageArgs: Partial<PageArgs>) => void
+  pageSize: number
 }
 
-const NotesTable: React.FC<Props> = ({ notes, deckSlug }) => {
-  const [deletingNote, setDeletingNote] = useState<DeckQuery_deck_notes | null>(
-    null
-  )
+const NotesTable: React.FC<Props> = ({
+  notes,
+  deckSlug,
+  onPaginationChange,
+  pageSize,
+}) => {
+  const [
+    deletingNote,
+    setDeletingNote,
+  ] = useState<DeckQuery_deck_notes_edges_node | null>(null)
 
   const handleDeleteNoteClose = () => {
     setDeletingNote(null)
   }
 
-  if (!notes.length) {
+  if (!notes.edges.length) {
     return (
       <Card
         className="w-full mt-2 py-4 px-2 flex flex-row justify-center"
@@ -61,12 +79,10 @@ const NotesTable: React.FC<Props> = ({ notes, deckSlug }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {notes.map((note) => {
-            const noteIdentifier = getNoteIdentifier(note)
-
+          {notes.edges.map(({ node: note }) => {
             return (
               <TableRow key={note.id}>
-                <TableCell>{noteIdentifier}</TableCell>
+                <TableCell>{note.text}</TableCell>
                 <TableCell>{note.deck.title}</TableCell>
                 <TableCell>{note.model.name}</TableCell>
                 <TableCell>{note.flashCards.length}</TableCell>
@@ -91,6 +107,18 @@ const NotesTable: React.FC<Props> = ({ notes, deckSlug }) => {
             )
           })}
         </TableBody>
+        <TableFooter>
+          <TableRow>
+            <TableCell colSpan={5}>
+              <Pagination
+                pageInfo={notes.pageInfo}
+                pageCursors={notes.pageCursors}
+                onChange={onPaginationChange}
+                pageSize={pageSize}
+              />
+            </TableCell>
+          </TableRow>
+        </TableFooter>
       </Table>
     </>
   )

@@ -12,26 +12,13 @@ import { Field as FieldType } from '../mongo/Field'
 import { ModelDocument } from '../mongo/Model'
 import { Template as TemplateType } from '../mongo/Template'
 import { decodeGlobalId, globalIdField } from '../utils/graphqlID'
+import { getModelPrimaryField } from '../utils/modelPrimaryField'
 
 export const root: IResolvers = {
   Model: {
     id: globalIdField(),
     owner: (root: ModelDocument) => UserModel.findById(root.ownerId),
-    primaryField: async (root: ModelDocument) => {
-      const modelFields = await FieldModel.find({ modelId: root._id })
-
-      if (!root.primaryFieldId && !modelFields.length) {
-        return null
-      }
-
-      if (root.primaryFieldId) {
-        return modelFields.find(
-          ({ _id }) => root.primaryFieldId === _id.toString()
-        )
-      }
-
-      return modelFields[0]
-    },
+    primaryField: (root: ModelDocument) => getModelPrimaryField(root),
     templates: (root: ModelDocument) =>
       TemplateModel.find({ modelId: root._id }),
     fields: (root: ModelDocument) => FieldModel.find({ modelId: root._id }),

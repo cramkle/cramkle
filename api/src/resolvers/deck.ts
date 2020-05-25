@@ -4,6 +4,12 @@ import { DeckModel, NoteModel, UserModel } from '../mongo'
 import { DeckDocument } from '../mongo/Deck'
 import { FlashCardStatus } from '../mongo/Note'
 import { decodeGlobalId, globalIdField } from '../utils/graphqlID'
+import {
+  PageConnectionArgs,
+  connectionFromArray,
+  createPageCursors,
+  pageToCursor,
+} from '../utils/pagination'
 import { studyFlashCardsByDeck } from '../utils/study'
 
 type StudySessionDetailsObject = { [status in FlashCardStatus]: number }
@@ -32,7 +38,28 @@ export const root: IResolvers = {
         }
       )
     },
-    notes: (root: DeckDocument) => NoteModel.find({ deckId: root._id }),
+    notes: async (root: DeckDocument, args: PageConnectionArgs) => {
+      const notes = await NoteModel.find({ deckId: root._id })
+
+      const totalCount = notes.length
+
+      const cursor = pageToCursor(args.page, args.size)
+      const connection = connectionFromArray(notes, {
+        after: cursor,
+        first: args.size,
+      })
+
+      return Object.assign(
+        {},
+        {
+          pageCursors: createPageCursors(
+            { page: args.page, size: args.size },
+            totalCount
+          ),
+        },
+        connection
+      )
+    },
     totalNotes: (root: DeckDocument) =>
       NoteModel.find({ deckId: root._id }).count(),
     totalFlashcards: (root: DeckDocument) =>

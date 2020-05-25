@@ -6,6 +6,8 @@ import React from 'react'
 import { Helmet } from 'react-helmet'
 import { useHistory, useParams } from 'react-router'
 
+import useLatestRefEffect from '../../hooks/useLatestRefEffect'
+import usePaginationParams from '../../hooks/usePaginationParams'
 import useTopBarLoading from '../../hooks/useTopBarLoading'
 import BackButton from '../BackButton'
 import DeleteDeckButton from '../DeleteDeckButton'
@@ -24,7 +26,7 @@ import {
 import { DeckQuery, DeckQueryVariables } from './__generated__/DeckQuery'
 
 const DECK_QUERY = gql`
-  query DeckQuery($slug: String!) {
+  query DeckQuery($slug: String!, $page: Int!, $size: Int!) {
     deck(slug: $slug) {
       id
       slug
@@ -32,60 +34,62 @@ const DECK_QUERY = gql`
       description
       totalNotes
       totalFlashcards
-      notes {
-        id
-        values {
-          id
-          data {
-            ...DraftContent
-          }
-          field {
+      notes(page: $page, size: $size) @connection(key: "Deck_notes") {
+        edges {
+          node {
             id
-            name
+            text
+            model {
+              name
+              primaryField {
+                id
+              }
+            }
+            flashCards {
+              id
+              active
+              state
+              due
+              template {
+                name
+              }
+            }
+            deck {
+              title
+            }
           }
+          cursor
         }
-        model {
-          name
-          primaryField {
-            id
+        pageInfo {
+          hasNextPage
+          hasPreviousPage
+          endCursor
+          startCursor
+        }
+        pageCursors {
+          first {
+            cursor
+            page
+            isCurrent
           }
-        }
-        flashCards {
-          id
-          active
-          state
-          due
-          template {
-            name
+          around {
+            cursor
+            page
+            isCurrent
           }
-        }
-        deck {
-          title
+          last {
+            cursor
+            page
+            isCurrent
+          }
+          previous {
+            cursor
+            page
+            isCurrent
+          }
         }
       }
     }
-  }
-
-  fragment DraftContent on ContentState {
-    id
-    blocks {
-      key
-      type
-      text
-      depth
-      inlineStyleRanges {
-        style
-        offset
-        length
-      }
-      entityRanges {
-        key
-        length
-        offset
-      }
-      data
-    }
-    entityMap
   }
 `
 
@@ -94,16 +98,29 @@ const DeckPage: React.FunctionComponent = () => {
   const { i18n } = useLingui()
   const { slug } = useParams<{ slug: string }>()
   const history = useHistory()
-  const { data, loading } = useQuery<DeckQuery, DeckQueryVariables>(
+  const {
+    paginationParams,
+    pageSize,
+    onPaginationChange,
+  } = usePaginationParams()
+
+  const { data, loading, refetch } = useQuery<DeckQuery, DeckQueryVariables>(
     DECK_QUERY,
     {
-      variables: { slug },
+      variables: { slug, ...paginationParams },
     }
   )
 
   useTopBarLoading(loading)
 
-  if (loading) {
+  useLatestRefEffect(paginationParams, (updatedPaginationParams) => {
+    refetch({
+      ...updatedPaginationParams,
+      slug,
+    })
+  })
+
+  if (loading || !data) {
     return null
   }
 
@@ -146,7 +163,12 @@ const DeckPage: React.FunctionComponent = () => {
         </Headline3>
 
         <div className="mt-4 mb-8">
-          <NotesTable notes={deck.notes} deckSlug={deck.slug} />
+          <NotesTable
+            notes={deck.notes}
+            deckSlug={deck.slug}
+            onPaginationChange={onPaginationChange}
+            pageSize={pageSize}
+          />
         </div>
 
         {!isMobile && (
