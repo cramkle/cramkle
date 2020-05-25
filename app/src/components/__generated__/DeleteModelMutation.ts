@@ -8,20 +8,20 @@
 // ====================================================
 
 export interface DeleteModelMutation_deleteModel {
-  __typename: 'Model'
+  __typename: "Model";
   /**
    * Card model id
    */
-  id: string
+  id: string;
 }
 
 export interface DeleteModelMutation {
   /**
    * Deletes a model and all associated entities
    */
-  deleteModel: DeleteModelMutation_deleteModel | null
+  deleteModel: DeleteModelMutation_deleteModel | null;
 }
 
 export interface DeleteModelMutationVariables {
-  modelId: string
+  modelId: string;
 }

@@ -8,44 +8,44 @@
 // ====================================================
 
 export interface CreateDeckMutation_createDeck_studySessionDetails {
-  __typename: 'StudySessionDetails'
-  newCount: number
-  learningCount: number
-  reviewCount: number
+  __typename: "StudySessionDetails";
+  newCount: number;
+  learningCount: number;
+  reviewCount: number;
 }
 
 export interface CreateDeckMutation_createDeck {
-  __typename: 'Deck'
+  __typename: "Deck";
   /**
    * Deck id
    */
-  id: string
+  id: string;
   /**
    * Unique identifiable slug
    */
-  slug: string
+  slug: string;
   /**
    * Title of the deck
    */
-  title: string
+  title: string;
   /**
    * Description of the deck
    */
-  description: string | null
+  description: string | null;
   /**
    * Details of current study session
    */
-  studySessionDetails: CreateDeckMutation_createDeck_studySessionDetails
+  studySessionDetails: CreateDeckMutation_createDeck_studySessionDetails;
 }
 
 export interface CreateDeckMutation {
   /**
    * Create a deck entity
    */
-  createDeck: CreateDeckMutation_createDeck | null
+  createDeck: CreateDeckMutation_createDeck | null;
 }
 
 export interface CreateDeckMutationVariables {
-  title: string
-  description?: string | null
+  title: string;
+  description?: string | null;
 }

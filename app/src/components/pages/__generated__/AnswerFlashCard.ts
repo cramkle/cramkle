@@ -3,27 +3,27 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { FlashCardAnswer } from './../../../globalTypes'
+import { FlashCardAnswer } from "./../../../globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: AnswerFlashCard
 // ====================================================
 
 export interface AnswerFlashCard_answerFlashCard {
-  __typename: 'FlashCard'
+  __typename: "FlashCard";
   /**
    * FlashCard id.
    */
-  id: string
+  id: string;
 }
 
 export interface AnswerFlashCard {
-  answerFlashCard: AnswerFlashCard_answerFlashCard
+  answerFlashCard: AnswerFlashCard_answerFlashCard;
 }
 
 export interface AnswerFlashCardVariables {
-  noteId: string
-  flashCardId: string
-  answer: FlashCardAnswer
-  timespan: number
+  noteId: string;
+  flashCardId: string;
+  answer: FlashCardAnswer;
+  timespan: number;
 }

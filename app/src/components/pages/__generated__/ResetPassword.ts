@@ -8,20 +8,20 @@
 // ====================================================
 
 export interface ResetPassword_resetPassword {
-  __typename: 'ResetPasswordPayload'
-  success: boolean
+  __typename: "ResetPasswordPayload";
+  success: boolean;
 }
 
 export interface ResetPassword {
   /**
    * Reset the user's password
    */
-  resetPassword: ResetPassword_resetPassword
+  resetPassword: ResetPassword_resetPassword;
 }
 
 export interface ResetPasswordVariables {
-  userId: string
-  token: string
-  timestamp: string
-  newPassword: string
+  userId: string;
+  token: string;
+  timestamp: string;
+  newPassword: string;
 }

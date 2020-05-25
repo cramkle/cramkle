@@ -8,160 +8,152 @@
 // ====================================================
 
 export interface ModelQuery_model_fields {
-  __typename: 'Field'
+  __typename: "Field";
   /**
    * Field id
    */
-  id: string
+  id: string;
   /**
    * Name of the field
    */
-  name: string
+  name: string;
 }
 
 export interface ModelQuery_model_templates_frontSide_blocks_inlineStyleRanges {
-  __typename: 'InlineStyleRange'
-  style: string | null
-  offset: number | null
-  length: number | null
+  __typename: "InlineStyleRange";
+  style: string | null;
+  offset: number | null;
+  length: number | null;
 }
 
 export interface ModelQuery_model_templates_frontSide_blocks_entityRanges {
-  __typename: 'EntityRange'
-  key: number
-  length: number
-  offset: number
+  __typename: "EntityRange";
+  key: number;
+  length: number;
+  offset: number;
 }
 
 export interface ModelQuery_model_templates_frontSide_blocks {
-  __typename: 'Block'
-  key: string
-  type: string
-  text: string
-  depth: number
-  inlineStyleRanges:
-    | (ModelQuery_model_templates_frontSide_blocks_inlineStyleRanges | null)[]
-    | null
-  entityRanges:
-    | (ModelQuery_model_templates_frontSide_blocks_entityRanges | null)[]
-    | null
-  data: any | null
+  __typename: "Block";
+  key: string;
+  type: string;
+  text: string;
+  depth: number;
+  inlineStyleRanges: (ModelQuery_model_templates_frontSide_blocks_inlineStyleRanges | null)[] | null;
+  entityRanges: (ModelQuery_model_templates_frontSide_blocks_entityRanges | null)[] | null;
+  data: any | null;
 }
 
 export interface ModelQuery_model_templates_frontSide {
-  __typename: 'ContentState'
-  id: string
-  blocks: ModelQuery_model_templates_frontSide_blocks[]
-  entityMap: any
+  __typename: "ContentState";
+  id: string;
+  blocks: ModelQuery_model_templates_frontSide_blocks[];
+  entityMap: any;
 }
 
 export interface ModelQuery_model_templates_backSide_blocks_inlineStyleRanges {
-  __typename: 'InlineStyleRange'
-  style: string | null
-  offset: number | null
-  length: number | null
+  __typename: "InlineStyleRange";
+  style: string | null;
+  offset: number | null;
+  length: number | null;
 }
 
 export interface ModelQuery_model_templates_backSide_blocks_entityRanges {
-  __typename: 'EntityRange'
-  key: number
-  length: number
-  offset: number
+  __typename: "EntityRange";
+  key: number;
+  length: number;
+  offset: number;
 }
 
 export interface ModelQuery_model_templates_backSide_blocks {
-  __typename: 'Block'
-  key: string
-  type: string
-  text: string
-  depth: number
-  inlineStyleRanges:
-    | (ModelQuery_model_templates_backSide_blocks_inlineStyleRanges | null)[]
-    | null
-  entityRanges:
-    | (ModelQuery_model_templates_backSide_blocks_entityRanges | null)[]
-    | null
-  data: any | null
+  __typename: "Block";
+  key: string;
+  type: string;
+  text: string;
+  depth: number;
+  inlineStyleRanges: (ModelQuery_model_templates_backSide_blocks_inlineStyleRanges | null)[] | null;
+  entityRanges: (ModelQuery_model_templates_backSide_blocks_entityRanges | null)[] | null;
+  data: any | null;
 }
 
 export interface ModelQuery_model_templates_backSide {
-  __typename: 'ContentState'
-  id: string
-  blocks: ModelQuery_model_templates_backSide_blocks[]
-  entityMap: any
+  __typename: "ContentState";
+  id: string;
+  blocks: ModelQuery_model_templates_backSide_blocks[];
+  entityMap: any;
 }
 
 export interface ModelQuery_model_templates {
-  __typename: 'Template'
+  __typename: "Template";
   /**
    * Template id
    */
-  id: string
+  id: string;
   /**
    * Name of the template
    */
-  name: string | null
+  name: string | null;
   /**
    * Front side template
    */
-  frontSide: ModelQuery_model_templates_frontSide | null
+  frontSide: ModelQuery_model_templates_frontSide | null;
   /**
    * Back side template
    */
-  backSide: ModelQuery_model_templates_backSide | null
+  backSide: ModelQuery_model_templates_backSide | null;
 }
 
 export interface ModelQuery_model_notes_flashCards {
-  __typename: 'FlashCard'
+  __typename: "FlashCard";
   /**
    * FlashCard id.
    */
-  id: string
+  id: string;
 }
 
 export interface ModelQuery_model_notes {
-  __typename: 'Note'
+  __typename: "Note";
   /**
    * Note id
    */
-  id: string
+  id: string;
   /**
    * Generated flashcards
    */
-  flashCards: ModelQuery_model_notes_flashCards[]
+  flashCards: ModelQuery_model_notes_flashCards[];
 }
 
 export interface ModelQuery_model {
-  __typename: 'Model'
+  __typename: "Model";
   /**
    * Card model id
    */
-  id: string
+  id: string;
   /**
    * Name of this card model (e.g. "Basic", "Basic with Reversed")
    */
-  name: string | null
+  name: string | null;
   /**
    * Fields associated with this model
    */
-  fields: ModelQuery_model_fields[]
+  fields: ModelQuery_model_fields[];
   /**
    * Templates associated with this model
    */
-  templates: ModelQuery_model_templates[]
+  templates: ModelQuery_model_templates[];
   /**
    * Notes associated with this model
    */
-  notes: ModelQuery_model_notes[] | null
+  notes: ModelQuery_model_notes[] | null;
 }
 
 export interface ModelQuery {
   /**
    * Get single model
    */
-  model: ModelQuery_model | null
+  model: ModelQuery_model | null;
 }
 
 export interface ModelQueryVariables {
-  id: string
+  id: string;
 }

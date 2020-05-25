@@ -8,17 +8,17 @@
 // ====================================================
 
 export interface RequestPasswordReset_requestPasswordReset {
-  __typename: 'RequestPasswordResetPayload'
-  success: boolean
+  __typename: "RequestPasswordResetPayload";
+  success: boolean;
 }
 
 export interface RequestPasswordReset {
   /**
    * Request a user password reset given an email
    */
-  requestPasswordReset: RequestPasswordReset_requestPasswordReset
+  requestPasswordReset: RequestPasswordReset_requestPasswordReset;
 }
 
 export interface RequestPasswordResetVariables {
-  email: string
+  email: string;
 }

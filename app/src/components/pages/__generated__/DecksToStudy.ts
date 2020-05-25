@@ -8,39 +8,39 @@
 // ====================================================
 
 export interface DecksToStudy_decks_studySessionDetails {
-  __typename: 'StudySessionDetails'
-  newCount: number
-  learningCount: number
-  reviewCount: number
+  __typename: "StudySessionDetails";
+  newCount: number;
+  learningCount: number;
+  reviewCount: number;
 }
 
 export interface DecksToStudy_decks {
-  __typename: 'Deck'
+  __typename: "Deck";
   /**
    * Deck id
    */
-  id: string
+  id: string;
   /**
    * Unique identifiable slug
    */
-  slug: string
+  slug: string;
   /**
    * Title of the deck
    */
-  title: string
+  title: string;
   /**
    * Description of the deck
    */
-  description: string | null
+  description: string | null;
   /**
    * Details of current study session
    */
-  studySessionDetails: DecksToStudy_decks_studySessionDetails
+  studySessionDetails: DecksToStudy_decks_studySessionDetails;
 }
 
 export interface DecksToStudy {
   /**
    * Retrieve all decks for the logged user
    */
-  decks: DecksToStudy_decks[]
+  decks: DecksToStudy_decks[];
 }
