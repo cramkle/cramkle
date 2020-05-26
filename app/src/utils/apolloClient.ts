@@ -3,7 +3,6 @@ import { ApolloClient } from 'apollo-client'
 import { ApolloLink } from 'apollo-link'
 import { onError } from 'apollo-link-error'
 import { createHttpLink } from 'apollo-link-http'
-import { createPersistedQueryLink } from 'apollo-link-persisted-queries'
 
 import { defaults, resolvers } from '../resolvers/index'
 import fetch from './fetch'
@@ -24,10 +23,6 @@ export const createApolloClient = (uri: string, cookie?: string) => {
     }
   })
 
-  const persistedQueriesLink = createPersistedQueryLink({
-    useGETForHashedQueries: true,
-  })
-
   const httpLink = createHttpLink({
     uri,
     credentials: 'include',
@@ -39,7 +34,7 @@ export const createApolloClient = (uri: string, cookie?: string) => {
 
   const client = new ApolloClient({
     ssrMode: !process.browser,
-    link: ApolloLink.from([errorLink, persistedQueriesLink, httpLink]),
+    link: ApolloLink.from([errorLink, httpLink]),
     resolvers,
     cache:
       typeof window !== 'undefined'
