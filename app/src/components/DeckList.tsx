@@ -44,7 +44,10 @@ const DeckList: React.FunctionComponent = () => {
     <div className="p-4">
       <div className="grid grid-cols-12 gap-6">
         {decks.map((deck) => (
-          <div key={deck.id} className="col-span-4">
+          <div
+            key={deck.id}
+            className="col-span-12 md:col-span-6 xl:col-span-4"
+          >
             <DeckCard deck={deck} />
           </div>
         ))}

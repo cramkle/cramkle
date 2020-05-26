@@ -64,11 +64,12 @@ const DeckCard: React.FunctionComponent<Props> = ({
         <Headline3>{deck.title}</Headline3>
         {deck.description && <Body2>{deck.description}</Body2>}
         {showStudySessionDetails && (
-          <div className="mt-1">
+          <div className="mt-1 flex">
             {newCount > 0 && (
               <FlashCardStatusChip
                 status={FlashCardStatus.NEW}
                 className="mr-2"
+                truncated
               >
                 {i18n._(plural(newCount, { one: '# new', other: '# new' }))}
               </FlashCardStatusChip>
@@ -77,6 +78,7 @@ const DeckCard: React.FunctionComponent<Props> = ({
               <FlashCardStatusChip
                 status={FlashCardStatus.LEARNING}
                 className="mr-2"
+                truncated
               >
                 {i18n._(
                   plural(learningCount, {
@@ -87,7 +89,7 @@ const DeckCard: React.FunctionComponent<Props> = ({
               </FlashCardStatusChip>
             )}
             {reviewCount > 0 && (
-              <FlashCardStatusChip status={FlashCardStatus.REVIEW}>
+              <FlashCardStatusChip status={FlashCardStatus.REVIEW} truncated>
                 {i18n._(
                   plural(reviewCount, { one: '# review', other: '# review' })
                 )}

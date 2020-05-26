@@ -4,11 +4,13 @@ import React from 'react'
 export interface ChipProps extends React.HTMLAttributes<HTMLDivElement> {
   color?: 'green' | 'red' | 'violet'
   inverted?: boolean
+  truncated?: boolean
 }
 
 export const Chip: React.FC<ChipProps> = ({
   color = undefined,
   inverted = false,
+  truncated = false,
   className = '',
   children,
 }) => {
@@ -21,8 +23,10 @@ export const Chip: React.FC<ChipProps> = ({
       role="row"
     >
       <span
+        style={{ textOverflow: truncated ? 'ellipsis' : 'initial' }}
         className={classnames('inline-block mx-1 text-primary', {
           [`text-${color}-1`]: inverted && color !== undefined,
+          'overflow-hidden whitespace-no-wrap': truncated,
         })}
       >
         {children}

@@ -93,10 +93,16 @@ const HomePage: React.FunctionComponent = () => {
 
       <div className="h-full grid grid-cols-1 md:grid-cols-4 md:gap-8">
         <List className="hidden md:block w-100">
-          <ListItem onClick={handleMarketplaceClick} icon={<MarketplaceIcon />}>
+          <ListItem
+            onClick={handleMarketplaceClick}
+            icon={<MarketplaceIcon className="flex-shrink-0" />}
+          >
             {i18n._(t`Marketplace`)}
           </ListItem>
-          <ListItem onClick={handleStatisticsClick} icon={<StatisticsIcon />}>
+          <ListItem
+            onClick={handleStatisticsClick}
+            icon={<StatisticsIcon className="flex-shrink-0" />}
+          >
             {i18n._(t`Statistics`)}
           </ListItem>
         </List>
