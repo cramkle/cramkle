@@ -119,7 +119,7 @@ const DeckPage: React.FunctionComponent = () => {
   const { data, loading, refetch } = useQuery<DeckQuery, DeckQueryVariables>(
     DECK_QUERY,
     {
-      variables: { slug, ...paginationParams },
+      variables: { slug, search: searchQuery, ...paginationParams },
     }
   )
 
