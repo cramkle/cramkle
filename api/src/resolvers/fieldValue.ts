@@ -1,4 +1,3 @@
-import { ApolloError } from 'apollo-server'
 import { IResolverObject, IResolvers } from 'graphql-tools'
 
 import { FieldModel, NoteModel } from '../mongo'
@@ -30,7 +29,7 @@ export const mutations: IResolverObject = {
     )
 
     if (!fieldValue) {
-      throw new ApolloError('Note or field value not found')
+      throw new Error('Note or field value not found')
     }
 
     fieldValue.set('data', data)

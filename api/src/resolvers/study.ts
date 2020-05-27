@@ -1,4 +1,3 @@
-import { ApolloError } from 'apollo-server'
 import { IResolverObject } from 'graphql-tools'
 
 import { DeckModel, NoteModel, RevisionLogModel } from '../mongo'
@@ -22,7 +21,7 @@ export const queries: IResolverObject = {
     })
 
     if (!deck) {
-      throw new ApolloError('Deck not found')
+      throw new Error('Deck not found')
     }
 
     const flashCards = await studyFlashCardsByDeck(deck._id)
@@ -55,7 +54,7 @@ export const mutations: IResolverObject = {
     const flashCard = note?.flashCards.id(flashCardId)
 
     if (!note || !flashCard) {
-      throw new ApolloError('FlashCard not found')
+      throw new Error('FlashCard not found')
     }
 
     // limits the answer timespan to 60 seconds to avoid

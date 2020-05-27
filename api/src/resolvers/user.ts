@@ -1,6 +1,5 @@
 import { createHmac } from 'crypto'
 
-import { AuthenticationError } from 'apollo-server'
 import { differenceInHours } from 'date-fns'
 import { IResolverObject, IResolvers } from 'graphql-tools'
 import { Types } from 'mongoose'
@@ -93,7 +92,7 @@ export const mutations: IResolverObject = {
     { user }: Context
   ) => {
     if (!(await user?.comparePassword(confirmPassword))) {
-      throw new AuthenticationError('User not authenticated')
+      throw new Error('User not authenticated')
     }
 
     const updateProps: Partial<Omit<UpdateProfileInput, 'confirmPassword'>> = {}

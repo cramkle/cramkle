@@ -1,4 +1,3 @@
-import { ApolloError } from 'apollo-server'
 import { IResolverObject, IResolvers } from 'graphql-tools'
 
 import {
@@ -105,7 +104,7 @@ export const mutations: IResolverObject = {
     const model = await ModelModel.findOne({ _id: modelId, ownerId: user?._id })
 
     if (!model) {
-      throw new ApolloError('Model not found', '404')
+      throw new Error('Model not found')
     }
 
     await FieldModel.deleteMany({ modelId: model._id })

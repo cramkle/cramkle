@@ -1,4 +1,3 @@
-import { ApolloError } from 'apollo-server'
 import { IResolverObject, IResolvers } from 'graphql-tools'
 
 import { DeckModel, ModelModel, NoteModel, TemplateModel } from '../mongo'
@@ -28,7 +27,7 @@ export const queries: IResolverObject = {
     })
 
     if (!note) {
-      throw new ApolloError('Note not found')
+      throw new Error('Note not found')
     }
 
     return note
@@ -59,7 +58,7 @@ export const mutations: IResolverObject = {
     })
 
     if (!deck || !model) {
-      throw new ApolloError('Model or deck not found')
+      throw new Error('Model or deck not found')
     }
 
     const note = await NoteModel.create({
@@ -99,7 +98,7 @@ export const mutations: IResolverObject = {
     })
 
     if (!note) {
-      throw new ApolloError('Note not found')
+      throw new Error('Note not found')
     }
 
     await note.remove()
