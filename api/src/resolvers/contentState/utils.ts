@@ -5,8 +5,6 @@ import { ContentState } from '../../mongo/ContentState'
 export const parseContentStateWithGlobalId = (
   content: ContentState
 ): ContentState => {
-  console.log(content.entityMap['0'].data)
-
   return {
     ...content,
     entityMap: {
