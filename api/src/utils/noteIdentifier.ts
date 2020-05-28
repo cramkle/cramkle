@@ -1,4 +1,4 @@
-import { RawDraftContentState, convertFromRaw } from 'draft-js'
+import { convertFromRaw } from 'draft-js'
 
 import { ModelModel } from '../mongo'
 import { NoteDocument } from '../mongo/Note'
@@ -21,7 +21,7 @@ export const getNoteIdentifier = async (
 
   const contentState = convertFromRaw({
     entityMap: {},
-    ...(primaryFieldValue.data.toJSON() as RawDraftContentState),
+    ...primaryFieldValue.data.toJSON(),
   })
 
   return contentState.getPlainText()
