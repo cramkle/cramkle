@@ -10,7 +10,7 @@
 export interface NoteFormQuery_deck {
   __typename: "Deck";
   /**
-   * Deck id
+   * The ID of an object
    */
   id: string;
   /**
@@ -22,7 +22,7 @@ export interface NoteFormQuery_deck {
 export interface NoteFormQuery_models_fields {
   __typename: "Field";
   /**
-   * Field id
+   * The ID of an object
    */
   id: string;
   /**
@@ -34,7 +34,7 @@ export interface NoteFormQuery_models_fields {
 export interface NoteFormQuery_models {
   __typename: "Model";
   /**
-   * Card model id
+   * The ID of an object
    */
   id: string;
   /**
@@ -49,7 +49,7 @@ export interface NoteFormQuery_models {
 
 export interface NoteFormQuery {
   /**
-   * Get single deck
+   * Get single deck by it's slug
    */
   deck: NoteFormQuery_deck | null;
   /**

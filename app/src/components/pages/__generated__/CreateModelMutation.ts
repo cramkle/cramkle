@@ -9,22 +9,22 @@ import { FieldInput, TemplateInput } from "./../../../globalTypes";
 // GraphQL mutation operation: CreateModelMutation
 // ====================================================
 
-export interface CreateModelMutation_createModel_templates {
+export interface CreateModelMutation_createModel_model_templates {
   __typename: "Template";
   /**
-   * Template id
+   * The ID of an object
    */
   id: string;
   /**
    * Name of the template
    */
-  name: string | null;
+  name: string;
 }
 
-export interface CreateModelMutation_createModel_fields {
+export interface CreateModelMutation_createModel_model_fields {
   __typename: "Field";
   /**
-   * Field id
+   * The ID of an object
    */
   id: string;
   /**
@@ -33,10 +33,10 @@ export interface CreateModelMutation_createModel_fields {
   name: string;
 }
 
-export interface CreateModelMutation_createModel {
+export interface CreateModelMutation_createModel_model {
   __typename: "Model";
   /**
-   * Card model id
+   * The ID of an object
    */
   id: string;
   /**
@@ -46,11 +46,19 @@ export interface CreateModelMutation_createModel {
   /**
    * Templates associated with this model
    */
-  templates: CreateModelMutation_createModel_templates[];
+  templates: CreateModelMutation_createModel_model_templates[];
   /**
    * Fields associated with this model
    */
-  fields: CreateModelMutation_createModel_fields[];
+  fields: CreateModelMutation_createModel_model_fields[];
+}
+
+export interface CreateModelMutation_createModel {
+  __typename: "CreateModelPayload";
+  /**
+   * Created model
+   */
+  model: CreateModelMutation_createModel_model | null;
 }
 
 export interface CreateModelMutation {

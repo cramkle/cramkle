@@ -9,48 +9,56 @@ import { ContentStateInput } from "./../../../globalTypes";
 // GraphQL mutation operation: UpdateTemplateBackContentMutation
 // ====================================================
 
-export interface UpdateTemplateBackContentMutation_updateTemplate_backSide_blocks_inlineStyleRanges {
+export interface UpdateTemplateBackContentMutation_updateTemplate_template_backSide_blocks_inlineStyleRanges {
   __typename: "InlineStyleRange";
-  style: string | null;
-  offset: number | null;
-  length: number | null;
+  style: string;
+  offset: number;
+  length: number;
 }
 
-export interface UpdateTemplateBackContentMutation_updateTemplate_backSide_blocks_entityRanges {
+export interface UpdateTemplateBackContentMutation_updateTemplate_template_backSide_blocks_entityRanges {
   __typename: "EntityRange";
   key: number;
   length: number;
   offset: number;
 }
 
-export interface UpdateTemplateBackContentMutation_updateTemplate_backSide_blocks {
+export interface UpdateTemplateBackContentMutation_updateTemplate_template_backSide_blocks {
   __typename: "Block";
   key: string;
   type: string;
   text: string;
   depth: number;
-  inlineStyleRanges: (UpdateTemplateBackContentMutation_updateTemplate_backSide_blocks_inlineStyleRanges | null)[] | null;
-  entityRanges: (UpdateTemplateBackContentMutation_updateTemplate_backSide_blocks_entityRanges | null)[] | null;
+  inlineStyleRanges: UpdateTemplateBackContentMutation_updateTemplate_template_backSide_blocks_inlineStyleRanges[];
+  entityRanges: UpdateTemplateBackContentMutation_updateTemplate_template_backSide_blocks_entityRanges[];
   data: any | null;
 }
 
-export interface UpdateTemplateBackContentMutation_updateTemplate_backSide {
+export interface UpdateTemplateBackContentMutation_updateTemplate_template_backSide {
   __typename: "ContentState";
+  /**
+   * The ID of an object
+   */
   id: string;
-  blocks: UpdateTemplateBackContentMutation_updateTemplate_backSide_blocks[];
+  blocks: UpdateTemplateBackContentMutation_updateTemplate_template_backSide_blocks[];
   entityMap: any;
 }
 
-export interface UpdateTemplateBackContentMutation_updateTemplate {
+export interface UpdateTemplateBackContentMutation_updateTemplate_template {
   __typename: "Template";
   /**
-   * Template id
+   * The ID of an object
    */
   id: string;
   /**
    * Back side template
    */
-  backSide: UpdateTemplateBackContentMutation_updateTemplate_backSide | null;
+  backSide: UpdateTemplateBackContentMutation_updateTemplate_template_backSide | null;
+}
+
+export interface UpdateTemplateBackContentMutation_updateTemplate {
+  __typename: "UpdateTemplatePayload";
+  template: UpdateTemplateBackContentMutation_updateTemplate_template | null;
 }
 
 export interface UpdateTemplateBackContentMutation {

@@ -100,7 +100,7 @@ const NOTE_QUERY = gql`
         active
         lapses
         due
-        state
+        status
         template {
           name
           frontSide {
@@ -123,10 +123,14 @@ const UPDATE_FIELD_VALUE_MUTATION = gql`
     $fieldId: ID!
     $data: ContentStateInput!
   ) {
-    updateFieldValue(noteId: $noteId, fieldId: $fieldId, data: $data) {
-      id
-      data {
-        ...DraftContent
+    updateFieldValue(
+      input: { noteId: $noteId, fieldId: $fieldId, data: $data }
+    ) {
+      fieldValue {
+        id
+        data {
+          ...DraftContent
+        }
       }
     }
   }
@@ -329,7 +333,7 @@ const NotePage: React.FC = () => {
                 </TableCell>
                 <TableCell>{flashCard.template.name}</TableCell>
                 <TableCell>
-                  <FlashCardStatus status={flashCard.state} />
+                  <FlashCardStatus status={flashCard.status} />
                 </TableCell>
                 <TableCell>{flashCard.lapses}</TableCell>
                 <TableCell>

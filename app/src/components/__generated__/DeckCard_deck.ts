@@ -17,7 +17,7 @@ export interface DeckCard_deck_studySessionDetails {
 export interface DeckCard_deck {
   __typename: "Deck";
   /**
-   * Deck id
+   * The ID of an object
    */
   id: string;
   /**

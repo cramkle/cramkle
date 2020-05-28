@@ -9,48 +9,56 @@ import { ContentStateInput } from "./../../../globalTypes";
 // GraphQL mutation operation: UpdateTemplateFrontContentMutation
 // ====================================================
 
-export interface UpdateTemplateFrontContentMutation_updateTemplate_frontSide_blocks_inlineStyleRanges {
+export interface UpdateTemplateFrontContentMutation_updateTemplate_template_frontSide_blocks_inlineStyleRanges {
   __typename: "InlineStyleRange";
-  style: string | null;
-  offset: number | null;
-  length: number | null;
+  style: string;
+  offset: number;
+  length: number;
 }
 
-export interface UpdateTemplateFrontContentMutation_updateTemplate_frontSide_blocks_entityRanges {
+export interface UpdateTemplateFrontContentMutation_updateTemplate_template_frontSide_blocks_entityRanges {
   __typename: "EntityRange";
   key: number;
   length: number;
   offset: number;
 }
 
-export interface UpdateTemplateFrontContentMutation_updateTemplate_frontSide_blocks {
+export interface UpdateTemplateFrontContentMutation_updateTemplate_template_frontSide_blocks {
   __typename: "Block";
   key: string;
   type: string;
   text: string;
   depth: number;
-  inlineStyleRanges: (UpdateTemplateFrontContentMutation_updateTemplate_frontSide_blocks_inlineStyleRanges | null)[] | null;
-  entityRanges: (UpdateTemplateFrontContentMutation_updateTemplate_frontSide_blocks_entityRanges | null)[] | null;
+  inlineStyleRanges: UpdateTemplateFrontContentMutation_updateTemplate_template_frontSide_blocks_inlineStyleRanges[];
+  entityRanges: UpdateTemplateFrontContentMutation_updateTemplate_template_frontSide_blocks_entityRanges[];
   data: any | null;
 }
 
-export interface UpdateTemplateFrontContentMutation_updateTemplate_frontSide {
+export interface UpdateTemplateFrontContentMutation_updateTemplate_template_frontSide {
   __typename: "ContentState";
+  /**
+   * The ID of an object
+   */
   id: string;
-  blocks: UpdateTemplateFrontContentMutation_updateTemplate_frontSide_blocks[];
+  blocks: UpdateTemplateFrontContentMutation_updateTemplate_template_frontSide_blocks[];
   entityMap: any;
 }
 
-export interface UpdateTemplateFrontContentMutation_updateTemplate {
+export interface UpdateTemplateFrontContentMutation_updateTemplate_template {
   __typename: "Template";
   /**
-   * Template id
+   * The ID of an object
    */
   id: string;
   /**
    * Front side template
    */
-  frontSide: UpdateTemplateFrontContentMutation_updateTemplate_frontSide | null;
+  frontSide: UpdateTemplateFrontContentMutation_updateTemplate_template_frontSide | null;
+}
+
+export interface UpdateTemplateFrontContentMutation_updateTemplate {
+  __typename: "UpdateTemplatePayload";
+  template: UpdateTemplateFrontContentMutation_updateTemplate_template | null;
 }
 
 export interface UpdateTemplateFrontContentMutation {

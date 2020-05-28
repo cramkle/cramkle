@@ -29,16 +29,20 @@ const CREATE_MODEL_MUTATION = gql`
     $fields: [FieldInput!]!
     $templates: [TemplateInput!]!
   ) {
-    createModel(name: $name, fields: $fields, templates: $templates) {
-      id
-      name
-      templates {
+    createModel(
+      input: { name: $name, fields: $fields, templates: $templates }
+    ) {
+      model {
         id
         name
-      }
-      fields {
-        id
-        name
+        templates {
+          id
+          name
+        }
+        fields {
+          id
+          name
+        }
       }
     }
   }
@@ -84,7 +88,7 @@ const AddModelPage: React.FunctionComponent = () => {
                 query: MODELS_QUERY,
               })
 
-              data.models.push(createModel)
+              data.models.push(createModel.model)
 
               proxy.writeQuery({ query: MODELS_QUERY, data })
             },
@@ -98,7 +102,7 @@ const AddModelPage: React.FunctionComponent = () => {
               message: t`Model created successfully`,
               actionText: t`View`,
               onAction: () => {
-                history.push(`/m/${query.data.createModel.id}`)
+                history.push(`/m/${query.data.createModel.model.id}`)
               },
             })
 

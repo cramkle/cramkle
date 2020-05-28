@@ -9,17 +9,22 @@ import { FieldValueInput } from "./../../../globalTypes";
 // GraphQL mutation operation: CreateNoteMutation
 // ====================================================
 
-export interface CreateNoteMutation_createNote {
+export interface CreateNoteMutation_createNote_note {
   __typename: "Note";
   /**
-   * Note id
+   * The ID of an object
    */
   id: string;
 }
 
+export interface CreateNoteMutation_createNote {
+  __typename: "CreateNotePayload";
+  note: CreateNoteMutation_createNote_note | null;
+}
+
 export interface CreateNoteMutation {
   /**
-   * Create new note in deck
+   * Creates a new note in a deck
    */
   createNote: CreateNoteMutation_createNote | null;
 }

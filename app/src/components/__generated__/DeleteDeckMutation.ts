@@ -7,12 +7,20 @@
 // GraphQL mutation operation: DeleteDeckMutation
 // ====================================================
 
-export interface DeleteDeckMutation_deleteDeck {
+export interface DeleteDeckMutation_deleteDeck_deck {
   __typename: "Deck";
   /**
-   * Deck id
+   * The ID of an object
    */
   id: string;
+}
+
+export interface DeleteDeckMutation_deleteDeck {
+  __typename: "DeleteDeckPayload";
+  /**
+   * Deleted deck
+   */
+  deck: DeleteDeckMutation_deleteDeck_deck | null;
 }
 
 export interface DeleteDeckMutation {

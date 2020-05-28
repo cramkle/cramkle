@@ -7,17 +7,22 @@
 // GraphQL mutation operation: DeleteModelMutation
 // ====================================================
 
-export interface DeleteModelMutation_deleteModel {
+export interface DeleteModelMutation_deleteModel_model {
   __typename: "Model";
   /**
-   * Card model id
+   * The ID of an object
    */
   id: string;
 }
 
+export interface DeleteModelMutation_deleteModel {
+  __typename: "DeleteModelPayload";
+  model: DeleteModelMutation_deleteModel_model | null;
+}
+
 export interface DeleteModelMutation {
   /**
-   * Deletes a model and all associated entities
+   * Deletes a model and all associated entities (such as flashcards and templates).
    */
   deleteModel: DeleteModelMutation_deleteModel | null;
 }

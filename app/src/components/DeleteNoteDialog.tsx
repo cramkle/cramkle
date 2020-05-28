@@ -18,8 +18,10 @@ import Button from './views/Button'
 
 const DELETE_NOTE_MUTATION = gql`
   mutation DeleteNoteMutation($noteId: ID!) {
-    deleteNote(noteId: $noteId) {
-      id
+    deleteNote(input: { noteId: $noteId }) {
+      note {
+        id
+      }
     }
   }
 `

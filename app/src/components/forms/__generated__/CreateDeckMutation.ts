@@ -7,17 +7,17 @@
 // GraphQL mutation operation: CreateDeckMutation
 // ====================================================
 
-export interface CreateDeckMutation_createDeck_studySessionDetails {
+export interface CreateDeckMutation_createDeck_deck_studySessionDetails {
   __typename: "StudySessionDetails";
   newCount: number;
   learningCount: number;
   reviewCount: number;
 }
 
-export interface CreateDeckMutation_createDeck {
+export interface CreateDeckMutation_createDeck_deck {
   __typename: "Deck";
   /**
-   * Deck id
+   * The ID of an object
    */
   id: string;
   /**
@@ -35,7 +35,15 @@ export interface CreateDeckMutation_createDeck {
   /**
    * Details of current study session
    */
-  studySessionDetails: CreateDeckMutation_createDeck_studySessionDetails;
+  studySessionDetails: CreateDeckMutation_createDeck_deck_studySessionDetails;
+}
+
+export interface CreateDeckMutation_createDeck {
+  __typename: "CreateDeckPayload";
+  /**
+   * Created deck
+   */
+  deck: CreateDeckMutation_createDeck_deck | null;
 }
 
 export interface CreateDeckMutation {

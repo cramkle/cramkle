@@ -20,7 +20,7 @@ export interface NoteQuery_note_deck {
 export interface NoteQuery_note_model_primaryField {
   __typename: "Field";
   /**
-   * Field id
+   * The ID of an object
    */
   id: string;
 }
@@ -28,17 +28,16 @@ export interface NoteQuery_note_model_primaryField {
 export interface NoteQuery_note_model {
   __typename: "Model";
   /**
-   * Primary field that should represent each individual note
-   * of this model.
+   * Primary field that should represent each individual note of this model.
    */
   primaryField: NoteQuery_note_model_primaryField | null;
 }
 
 export interface NoteQuery_note_values_data_blocks_inlineStyleRanges {
   __typename: "InlineStyleRange";
-  style: string | null;
-  offset: number | null;
-  length: number | null;
+  style: string;
+  offset: number;
+  length: number;
 }
 
 export interface NoteQuery_note_values_data_blocks_entityRanges {
@@ -54,13 +53,16 @@ export interface NoteQuery_note_values_data_blocks {
   type: string;
   text: string;
   depth: number;
-  inlineStyleRanges: (NoteQuery_note_values_data_blocks_inlineStyleRanges | null)[] | null;
-  entityRanges: (NoteQuery_note_values_data_blocks_entityRanges | null)[] | null;
+  inlineStyleRanges: NoteQuery_note_values_data_blocks_inlineStyleRanges[];
+  entityRanges: NoteQuery_note_values_data_blocks_entityRanges[];
   data: any | null;
 }
 
 export interface NoteQuery_note_values_data {
   __typename: "ContentState";
+  /**
+   * The ID of an object
+   */
   id: string;
   blocks: NoteQuery_note_values_data_blocks[];
   entityMap: any;
@@ -69,7 +71,7 @@ export interface NoteQuery_note_values_data {
 export interface NoteQuery_note_values_field {
   __typename: "Field";
   /**
-   * Field id
+   * The ID of an object
    */
   id: string;
   /**
@@ -81,7 +83,7 @@ export interface NoteQuery_note_values_field {
 export interface NoteQuery_note_values {
   __typename: "FieldValue";
   /**
-   * Field value id
+   * The ID of an object
    */
   id: string;
   /**
@@ -96,9 +98,9 @@ export interface NoteQuery_note_values {
 
 export interface NoteQuery_note_flashCards_template_frontSide_blocks_inlineStyleRanges {
   __typename: "InlineStyleRange";
-  style: string | null;
-  offset: number | null;
-  length: number | null;
+  style: string;
+  offset: number;
+  length: number;
 }
 
 export interface NoteQuery_note_flashCards_template_frontSide_blocks_entityRanges {
@@ -114,13 +116,16 @@ export interface NoteQuery_note_flashCards_template_frontSide_blocks {
   type: string;
   text: string;
   depth: number;
-  inlineStyleRanges: (NoteQuery_note_flashCards_template_frontSide_blocks_inlineStyleRanges | null)[] | null;
-  entityRanges: (NoteQuery_note_flashCards_template_frontSide_blocks_entityRanges | null)[] | null;
+  inlineStyleRanges: NoteQuery_note_flashCards_template_frontSide_blocks_inlineStyleRanges[];
+  entityRanges: NoteQuery_note_flashCards_template_frontSide_blocks_entityRanges[];
   data: any | null;
 }
 
 export interface NoteQuery_note_flashCards_template_frontSide {
   __typename: "ContentState";
+  /**
+   * The ID of an object
+   */
   id: string;
   blocks: NoteQuery_note_flashCards_template_frontSide_blocks[];
   entityMap: any;
@@ -128,9 +133,9 @@ export interface NoteQuery_note_flashCards_template_frontSide {
 
 export interface NoteQuery_note_flashCards_template_backSide_blocks_inlineStyleRanges {
   __typename: "InlineStyleRange";
-  style: string | null;
-  offset: number | null;
-  length: number | null;
+  style: string;
+  offset: number;
+  length: number;
 }
 
 export interface NoteQuery_note_flashCards_template_backSide_blocks_entityRanges {
@@ -146,13 +151,16 @@ export interface NoteQuery_note_flashCards_template_backSide_blocks {
   type: string;
   text: string;
   depth: number;
-  inlineStyleRanges: (NoteQuery_note_flashCards_template_backSide_blocks_inlineStyleRanges | null)[] | null;
-  entityRanges: (NoteQuery_note_flashCards_template_backSide_blocks_entityRanges | null)[] | null;
+  inlineStyleRanges: NoteQuery_note_flashCards_template_backSide_blocks_inlineStyleRanges[];
+  entityRanges: NoteQuery_note_flashCards_template_backSide_blocks_entityRanges[];
   data: any | null;
 }
 
 export interface NoteQuery_note_flashCards_template_backSide {
   __typename: "ContentState";
+  /**
+   * The ID of an object
+   */
   id: string;
   blocks: NoteQuery_note_flashCards_template_backSide_blocks[];
   entityMap: any;
@@ -163,7 +171,7 @@ export interface NoteQuery_note_flashCards_template {
   /**
    * Name of the template
    */
-  name: string | null;
+  name: string;
   /**
    * Front side template
    */
@@ -177,7 +185,7 @@ export interface NoteQuery_note_flashCards_template {
 export interface NoteQuery_note_flashCards {
   __typename: "FlashCard";
   /**
-   * FlashCard id.
+   * The ID of an object
    */
   id: string;
   /**
@@ -185,20 +193,19 @@ export interface NoteQuery_note_flashCards {
    * 
    * Acts like a logical deletion it when comes to the review.
    */
-  active: boolean | null;
+  active: boolean;
   /**
-   * Number of times the user has forgotten the answer
-   * to this flashcard.
+   * Number of times the user has forgotten the answer to this flashcard.
    */
-  lapses: number | null;
+  lapses: number;
   /**
    * Due date of this flashcard, in a timestamp format.
    */
   due: number | null;
   /**
-   * Deprecated
+   * Current status of this flashcard.
    */
-  state: FlashCardStatus | null;
+  status: FlashCardStatus | null;
   /**
    * Template associated with this flashcard.
    */
@@ -208,13 +215,13 @@ export interface NoteQuery_note_flashCards {
 export interface NoteQuery_note {
   __typename: "Note";
   /**
-   * Note id
+   * The ID of an object
    */
   id: string;
   /**
    * Note text representation
    */
-  text: string;
+  text: string | null;
   /**
    * Deck containing this note
    */
@@ -235,7 +242,7 @@ export interface NoteQuery_note {
 
 export interface NoteQuery {
   /**
-   * Get single note
+   * Get single note by it's id
    */
   note: NoteQuery_note | null;
 }

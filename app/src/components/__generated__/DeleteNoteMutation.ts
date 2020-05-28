@@ -7,17 +7,22 @@
 // GraphQL mutation operation: DeleteNoteMutation
 // ====================================================
 
-export interface DeleteNoteMutation_deleteNote {
+export interface DeleteNoteMutation_deleteNote_note {
   __typename: "Note";
   /**
-   * Note id
+   * The ID of an object
    */
   id: string;
 }
 
+export interface DeleteNoteMutation_deleteNote {
+  __typename: "DeleteNotePayload";
+  note: DeleteNoteMutation_deleteNote_note | null;
+}
+
 export interface DeleteNoteMutation {
   /**
-   * Delete a give note
+   * Deletes a given note
    */
   deleteNote: DeleteNoteMutation_deleteNote | null;
 }

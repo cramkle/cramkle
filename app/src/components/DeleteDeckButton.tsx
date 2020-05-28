@@ -25,8 +25,10 @@ interface Props {
 
 const DELETE_DECK_MUTATION = gql`
   mutation DeleteDeckMutation($deckId: ID!) {
-    deleteDeck(id: $deckId) {
-      id
+    deleteDeck(input: { id: $deckId }) {
+      deck {
+        id
+      }
     }
   }
 `
@@ -45,7 +47,7 @@ const DeleteDeckButton: React.FunctionComponent<Props> = ({ deckId }) => {
     mutate({
       variables: { deckId },
       update: (cache, { data }) => {
-        const deletedDeckId = data?.deleteDeck?.id
+        const deletedDeckId = data?.deleteDeck?.deck.id
 
         const cachedDecksQuery = cache.readQuery<DecksQuery>({
           query: DECKS_QUERY,

@@ -7,12 +7,20 @@
 // GraphQL mutation operation: RegisterUserMutation
 // ====================================================
 
-export interface RegisterUserMutation_createUser {
+export interface RegisterUserMutation_createUser_user {
   __typename: "User";
   /**
-   * User id
+   * The ID of an object
    */
   id: string;
+}
+
+export interface RegisterUserMutation_createUser {
+  __typename: "CreateUserPayload";
+  /**
+   * Created user
+   */
+  user: RegisterUserMutation_createUser_user | null;
 }
 
 export interface RegisterUserMutation {
