@@ -4,6 +4,7 @@ import { fromGlobalId, mutationWithClientMutationId } from 'graphql-relay'
 import { TemplateModel } from '../../mongo'
 import { ContentStateDocument } from '../../mongo/ContentState'
 import { ContentStateInputType } from '../contentState/types'
+import { parseContentStateWithGlobalId } from '../contentState/utils'
 import { TemplateType } from './types'
 
 interface UpdateTemplateInput {
@@ -18,7 +19,7 @@ export const updateTemplate = mutationWithClientMutationId({
   description: 'Updates an existing template',
   inputFields: {
     id: { type: GraphQLID, description: 'Template id' },
-    name: { type: GraphQLString, description: 'teamplte name' },
+    name: { type: GraphQLString, description: 'template name' },
     frontSide: {
       type: ContentStateInputType,
       description: 'Front side template',
@@ -32,23 +33,21 @@ export const updateTemplate = mutationWithClientMutationId({
     template: { type: TemplateType },
   },
   mutateAndGetPayload: (
-    { id, name, frontSide, backSide }: UpdateTemplateInput,
+    { id, ...updatedFields }: UpdateTemplateInput,
     { user }: Context
   ) => {
     const { id: templateId } = fromGlobalId(id)
 
-    const updatedFields: Omit<UpdateTemplateInput, 'id'> = {}
-
-    if (name) {
-      updatedFields.name = name
+    if (updatedFields.frontSide) {
+      updatedFields.frontSide = parseContentStateWithGlobalId(
+        updatedFields.frontSide
+      ) as ContentStateDocument
     }
 
-    if (frontSide) {
-      updatedFields.frontSide = frontSide
-    }
-
-    if (backSide) {
-      updatedFields.backSide = backSide
+    if (updatedFields.backSide) {
+      updatedFields.backSide = parseContentStateWithGlobalId(
+        updatedFields.backSide
+      ) as ContentStateDocument
     }
 
     return {

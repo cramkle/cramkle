@@ -5,7 +5,7 @@ interface CharacterBlock {
   entity: string
 }
 
-interface ContentState {
+export interface ContentState {
   blocks: {
     key: string
     type: string

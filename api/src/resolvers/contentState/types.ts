@@ -11,6 +11,7 @@ import { GraphQLJSONObject } from 'graphql-type-json'
 import { ContentStateDocument } from '../../mongo/ContentState'
 import { graphQLGlobalIdField } from '../../utils/graphqlID'
 import { nodeInterface } from '../node/types'
+import { encodeEntityMapWithGlobalId } from './utils'
 
 export const EntityRangeType = new GraphQLObjectType({
   name: 'EntityRange',
@@ -94,7 +95,11 @@ export const ContentStateType = new GraphQLObjectType<
     id: graphQLGlobalIdField(),
     entityMap: {
       type: GraphQLNonNull(GraphQLJSONObject),
-      resolve: (root) => root.entityMap || {},
+      resolve: (root) => {
+        const entityMap = root.entityMap || {}
+
+        return encodeEntityMapWithGlobalId(entityMap)
+      },
     },
     blocks: {
       type: GraphQLNonNull(GraphQLList(GraphQLNonNull(BlockType))),
