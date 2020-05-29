@@ -80,12 +80,16 @@ const ANSWER_FLASH_CARD_MUTATION = gql`
     $timespan: Int!
   ) {
     answerFlashCard(
-      noteId: $noteId
-      flashCardId: $flashCardId
-      answer: $answer
-      timespan: $timespan
+      input: {
+        noteId: $noteId
+        flashCardId: $flashCardId
+        answer: $answer
+        timespan: $timespan
+      }
     ) {
-      id
+      flashCard {
+        id
+      }
     }
   }
 `

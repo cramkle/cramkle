@@ -26,10 +26,12 @@ interface Props {
 
 export const CREATE_DECK_MUTATION = gql`
   mutation CreateDeckMutation($title: String!, $description: String) {
-    createDeck(title: $title, description: $description) {
-      id
-      slug
-      ...DeckCard_deck
+    createDeck(input: { title: $title, description: $description }) {
+      deck {
+        id
+        slug
+        ...DeckCard_deck
+      }
     }
   }
 
@@ -66,7 +68,7 @@ const AddDeckForm: React.FunctionComponent<Props> = ({ open, onClose }) => {
             update: (proxy, { data: { createDeck } }) => {
               const data = proxy.readQuery<DecksQuery>({ query: DECKS_QUERY })
 
-              data.decks.push(createDeck)
+              data.decks.push(createDeck.deck)
 
               proxy.writeQuery({ query: DECKS_QUERY, data })
             },
@@ -76,7 +78,7 @@ const AddDeckForm: React.FunctionComponent<Props> = ({ open, onClose }) => {
             return
           }
 
-          const slug = mutationResult.data.createDeck.slug
+          const slug = mutationResult.data.createDeck.deck.slug
 
           notificationState.addNotification({
             message: t`Deck created successfully!`,

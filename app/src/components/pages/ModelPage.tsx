@@ -100,10 +100,12 @@ const UPDATE_FRONT_TEMPLATE_MUTATION = gql`
     $id: ID!
     $content: ContentStateInput
   ) {
-    updateTemplate(id: $id, frontSide: $content) {
-      id
-      frontSide {
-        ...DraftContent
+    updateTemplate(input: { id: $id, frontSide: $content }) {
+      template {
+        id
+        frontSide {
+          ...DraftContent
+        }
       }
     }
   }
@@ -116,10 +118,12 @@ const UPDATE_BACK_TEMPLATE_MUTATION = gql`
     $id: ID!
     $content: ContentStateInput
   ) {
-    updateTemplate(id: $id, backSide: $content) {
-      id
-      backSide {
-        ...DraftContent
+    updateTemplate(input: { id: $id, backSide: $content }) {
+      template {
+        id
+        backSide {
+          ...DraftContent
+        }
       }
     }
   }

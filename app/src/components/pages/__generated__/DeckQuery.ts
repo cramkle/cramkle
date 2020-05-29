@@ -12,7 +12,7 @@ import { FlashCardStatus } from "./../../../globalTypes";
 export interface DeckQuery_deck_notes_edges_node_model_primaryField {
   __typename: "Field";
   /**
-   * Field id
+   * The ID of an object
    */
   id: string;
 }
@@ -24,8 +24,7 @@ export interface DeckQuery_deck_notes_edges_node_model {
    */
   name: string | null;
   /**
-   * Primary field that should represent each individual note
-   * of this model.
+   * Primary field that should represent each individual note of this model.
    */
   primaryField: DeckQuery_deck_notes_edges_node_model_primaryField | null;
 }
@@ -35,13 +34,13 @@ export interface DeckQuery_deck_notes_edges_node_flashCards_template {
   /**
    * Name of the template
    */
-  name: string | null;
+  name: string;
 }
 
 export interface DeckQuery_deck_notes_edges_node_flashCards {
   __typename: "FlashCard";
   /**
-   * FlashCard id.
+   * The ID of an object
    */
   id: string;
   /**
@@ -49,11 +48,11 @@ export interface DeckQuery_deck_notes_edges_node_flashCards {
    * 
    * Acts like a logical deletion it when comes to the review.
    */
-  active: boolean | null;
+  active: boolean;
   /**
-   * Deprecated
+   * Current status of this flashcard.
    */
-  state: FlashCardStatus | null;
+  status: FlashCardStatus | null;
   /**
    * Due date of this flashcard, in a timestamp format.
    */
@@ -75,13 +74,13 @@ export interface DeckQuery_deck_notes_edges_node_deck {
 export interface DeckQuery_deck_notes_edges_node {
   __typename: "Note";
   /**
-   * Note id
+   * The ID of an object
    */
   id: string;
   /**
    * Note text representation
    */
-  text: string;
+  text: string | null;
   /**
    * Model of this note
    */
@@ -98,13 +97,25 @@ export interface DeckQuery_deck_notes_edges_node {
 
 export interface DeckQuery_deck_notes_edges {
   __typename: "NoteEdge";
-  node: DeckQuery_deck_notes_edges_node;
+  /**
+   * The item at the end of the edge
+   */
+  node: DeckQuery_deck_notes_edges_node | null;
+  /**
+   * A cursor for use in pagination
+   */
   cursor: string;
 }
 
 export interface DeckQuery_deck_notes_pageInfo {
   __typename: "PageInfo";
+  /**
+   * When paginating forwards, are there more items?
+   */
   hasNextPage: boolean;
+  /**
+   * When paginating forwards, the cursor to continue.
+   */
   endCursor: string | null;
 }
 
@@ -138,8 +149,17 @@ export interface DeckQuery_deck_notes_pageCursors_previous {
 
 export interface DeckQuery_deck_notes_pageCursors {
   __typename: "PageCursors";
+  /**
+   * Optional, may be included in `around` (if current page is near the beginning).
+   */
   first: DeckQuery_deck_notes_pageCursors_first | null;
+  /**
+   * Always includes current page
+   */
   around: DeckQuery_deck_notes_pageCursors_around[];
+  /**
+   * Optional, may be included in `around` (if current page is near the end).
+   */
   last: DeckQuery_deck_notes_pageCursors_last | null;
   previous: DeckQuery_deck_notes_pageCursors_previous | null;
 }
@@ -147,7 +167,13 @@ export interface DeckQuery_deck_notes_pageCursors {
 export interface DeckQuery_deck_notes {
   __typename: "NoteConnection";
   totalCount: number;
-  edges: DeckQuery_deck_notes_edges[];
+  /**
+   * A list of edges.
+   */
+  edges: (DeckQuery_deck_notes_edges | null)[] | null;
+  /**
+   * Information to aid in pagination.
+   */
   pageInfo: DeckQuery_deck_notes_pageInfo;
   pageCursors: DeckQuery_deck_notes_pageCursors;
 }
@@ -155,7 +181,7 @@ export interface DeckQuery_deck_notes {
 export interface DeckQuery_deck {
   __typename: "Deck";
   /**
-   * Deck id
+   * The ID of an object
    */
   id: string;
   /**
@@ -186,7 +212,7 @@ export interface DeckQuery_deck {
 
 export interface DeckQuery {
   /**
-   * Get single deck
+   * Get single deck by it's slug
    */
   deck: DeckQuery_deck | null;
 }

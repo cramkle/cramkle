@@ -10,19 +10,19 @@
 export interface ModelsQuery_models_templates {
   __typename: "Template";
   /**
-   * Template id
+   * The ID of an object
    */
   id: string;
   /**
    * Name of the template
    */
-  name: string | null;
+  name: string;
 }
 
 export interface ModelsQuery_models_fields {
   __typename: "Field";
   /**
-   * Field id
+   * The ID of an object
    */
   id: string;
   /**
@@ -34,7 +34,7 @@ export interface ModelsQuery_models_fields {
 export interface ModelsQuery_models {
   __typename: "Model";
   /**
-   * Card model id
+   * The ID of an object
    */
   id: string;
   /**

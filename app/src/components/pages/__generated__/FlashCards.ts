@@ -9,9 +9,9 @@
 
 export interface FlashCards_studyFlashCard_template_frontSide_blocks_inlineStyleRanges {
   __typename: "InlineStyleRange";
-  style: string | null;
-  offset: number | null;
-  length: number | null;
+  style: string;
+  offset: number;
+  length: number;
 }
 
 export interface FlashCards_studyFlashCard_template_frontSide_blocks_entityRanges {
@@ -27,13 +27,16 @@ export interface FlashCards_studyFlashCard_template_frontSide_blocks {
   type: string;
   text: string;
   depth: number;
-  inlineStyleRanges: (FlashCards_studyFlashCard_template_frontSide_blocks_inlineStyleRanges | null)[] | null;
-  entityRanges: (FlashCards_studyFlashCard_template_frontSide_blocks_entityRanges | null)[] | null;
+  inlineStyleRanges: FlashCards_studyFlashCard_template_frontSide_blocks_inlineStyleRanges[];
+  entityRanges: FlashCards_studyFlashCard_template_frontSide_blocks_entityRanges[];
   data: any | null;
 }
 
 export interface FlashCards_studyFlashCard_template_frontSide {
   __typename: "ContentState";
+  /**
+   * The ID of an object
+   */
   id: string;
   blocks: FlashCards_studyFlashCard_template_frontSide_blocks[];
   entityMap: any;
@@ -41,9 +44,9 @@ export interface FlashCards_studyFlashCard_template_frontSide {
 
 export interface FlashCards_studyFlashCard_template_backSide_blocks_inlineStyleRanges {
   __typename: "InlineStyleRange";
-  style: string | null;
-  offset: number | null;
-  length: number | null;
+  style: string;
+  offset: number;
+  length: number;
 }
 
 export interface FlashCards_studyFlashCard_template_backSide_blocks_entityRanges {
@@ -59,13 +62,16 @@ export interface FlashCards_studyFlashCard_template_backSide_blocks {
   type: string;
   text: string;
   depth: number;
-  inlineStyleRanges: (FlashCards_studyFlashCard_template_backSide_blocks_inlineStyleRanges | null)[] | null;
-  entityRanges: (FlashCards_studyFlashCard_template_backSide_blocks_entityRanges | null)[] | null;
+  inlineStyleRanges: FlashCards_studyFlashCard_template_backSide_blocks_inlineStyleRanges[];
+  entityRanges: FlashCards_studyFlashCard_template_backSide_blocks_entityRanges[];
   data: any | null;
 }
 
 export interface FlashCards_studyFlashCard_template_backSide {
   __typename: "ContentState";
+  /**
+   * The ID of an object
+   */
   id: string;
   blocks: FlashCards_studyFlashCard_template_backSide_blocks[];
   entityMap: any;
@@ -85,9 +91,9 @@ export interface FlashCards_studyFlashCard_template {
 
 export interface FlashCards_studyFlashCard_note_values_data_blocks_inlineStyleRanges {
   __typename: "InlineStyleRange";
-  style: string | null;
-  offset: number | null;
-  length: number | null;
+  style: string;
+  offset: number;
+  length: number;
 }
 
 export interface FlashCards_studyFlashCard_note_values_data_blocks_entityRanges {
@@ -103,13 +109,16 @@ export interface FlashCards_studyFlashCard_note_values_data_blocks {
   type: string;
   text: string;
   depth: number;
-  inlineStyleRanges: (FlashCards_studyFlashCard_note_values_data_blocks_inlineStyleRanges | null)[] | null;
-  entityRanges: (FlashCards_studyFlashCard_note_values_data_blocks_entityRanges | null)[] | null;
+  inlineStyleRanges: FlashCards_studyFlashCard_note_values_data_blocks_inlineStyleRanges[];
+  entityRanges: FlashCards_studyFlashCard_note_values_data_blocks_entityRanges[];
   data: any | null;
 }
 
 export interface FlashCards_studyFlashCard_note_values_data {
   __typename: "ContentState";
+  /**
+   * The ID of an object
+   */
   id: string;
   blocks: FlashCards_studyFlashCard_note_values_data_blocks[];
   entityMap: any;
@@ -118,7 +127,7 @@ export interface FlashCards_studyFlashCard_note_values_data {
 export interface FlashCards_studyFlashCard_note_values_field {
   __typename: "Field";
   /**
-   * Field id
+   * The ID of an object
    */
   id: string;
   /**
@@ -130,7 +139,7 @@ export interface FlashCards_studyFlashCard_note_values_field {
 export interface FlashCards_studyFlashCard_note_values {
   __typename: "FieldValue";
   /**
-   * Field value id
+   * The ID of an object
    */
   id: string;
   /**
@@ -146,7 +155,7 @@ export interface FlashCards_studyFlashCard_note_values {
 export interface FlashCards_studyFlashCard_note {
   __typename: "Note";
   /**
-   * Note id
+   * The ID of an object
    */
   id: string;
   /**
@@ -158,7 +167,7 @@ export interface FlashCards_studyFlashCard_note {
 export interface FlashCards_studyFlashCard {
   __typename: "FlashCard";
   /**
-   * FlashCard id.
+   * The ID of an object
    */
   id: string;
   /**
@@ -173,8 +182,7 @@ export interface FlashCards_studyFlashCard {
 
 export interface FlashCards {
   /**
-   * Retrieves the next flashcard for a study
-   * session in the given deck
+   * Retrieves the next flashcard for a study session in the given deck
    */
   studyFlashCard: FlashCards_studyFlashCard | null;
 }

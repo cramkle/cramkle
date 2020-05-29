@@ -26,8 +26,10 @@ interface Props {
 
 const DELETE_MODEL_MUTATION = gql`
   mutation DeleteModelMutation($modelId: ID!) {
-    deleteModel(id: $modelId) {
-      id
+    deleteModel(input: { id: $modelId }) {
+      model {
+        id
+      }
     }
   }
 `
@@ -50,7 +52,7 @@ const DeleteModelButton: React.FunctionComponent<Props> = ({ model }) => {
     mutate({
       variables: { modelId: model.id },
       update: (cache, { data }) => {
-        const deletedModelId = data?.deleteModel?.id
+        const deletedModelId = data?.deleteModel?.model.id
 
         const cachedModelsQuery = cache.readQuery<ModelsQuery>({
           query: MODELS_QUERY,

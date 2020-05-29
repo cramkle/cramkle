@@ -30,7 +30,7 @@ const mocks: MockedResponse[] = [
     },
     result: {
       data: {
-        createDeck: deckMock,
+        createDeck: { deck: deckMock },
       },
     },
   },

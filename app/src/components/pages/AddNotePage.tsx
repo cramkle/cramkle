@@ -48,8 +48,12 @@ const CREATE_NOTE_MUTATION = gql`
     $modelId: ID!
     $values: [FieldValueInput!]!
   ) {
-    createNote(deckId: $deckId, modelId: $modelId, fieldValues: $values) {
-      id
+    createNote(
+      input: { deckId: $deckId, modelId: $modelId, fieldValues: $values }
+    ) {
+      note {
+        id
+      }
     }
   }
 `
@@ -102,7 +106,9 @@ const AddNotePage: React.FC = () => {
   const handleSubmit = useCallback(async () => {
     const {
       data: {
-        createNote: { id },
+        createNote: {
+          note: { id },
+        },
       },
     } = await createNote({
       variables: {

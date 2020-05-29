@@ -27,8 +27,12 @@ const REGISTER_MUTATION = gql`
     $email: String!
     $password: String!
   ) {
-    createUser(username: $username, email: $email, password: $password) {
-      id
+    createUser(
+      input: { username: $username, email: $email, password: $password }
+    ) {
+      user {
+        id
+      }
     }
   }
 `

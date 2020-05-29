@@ -9,9 +9,9 @@
 
 export interface DraftContent_blocks_inlineStyleRanges {
   __typename: "InlineStyleRange";
-  style: string | null;
-  offset: number | null;
-  length: number | null;
+  style: string;
+  offset: number;
+  length: number;
 }
 
 export interface DraftContent_blocks_entityRanges {
@@ -27,13 +27,16 @@ export interface DraftContent_blocks {
   type: string;
   text: string;
   depth: number;
-  inlineStyleRanges: (DraftContent_blocks_inlineStyleRanges | null)[] | null;
-  entityRanges: (DraftContent_blocks_entityRanges | null)[] | null;
+  inlineStyleRanges: DraftContent_blocks_inlineStyleRanges[];
+  entityRanges: DraftContent_blocks_entityRanges[];
   data: any | null;
 }
 
 export interface DraftContent {
   __typename: "ContentState";
+  /**
+   * The ID of an object
+   */
   id: string;
   blocks: DraftContent_blocks[];
   entityMap: any;

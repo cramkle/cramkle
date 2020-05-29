@@ -9,14 +9,14 @@
 
 export interface ResetPassword_resetPassword {
   __typename: "ResetPasswordPayload";
-  success: boolean;
+  success: boolean | null;
 }
 
 export interface ResetPassword {
   /**
-   * Reset the user's password
+   * Resets the user's password
    */
-  resetPassword: ResetPassword_resetPassword;
+  resetPassword: ResetPassword_resetPassword | null;
 }
 
 export interface ResetPasswordVariables {

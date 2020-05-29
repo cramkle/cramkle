@@ -51,7 +51,7 @@ const DECK_QUERY = gql`
             flashCards {
               id
               active
-              state
+              status
               due
               template {
                 name

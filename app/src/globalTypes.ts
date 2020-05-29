@@ -25,8 +25,8 @@ export interface BlockInput {
   type: string;
   text: string;
   depth: number;
-  inlineStyleRanges?: (InlineStyleRangeInput | null)[] | null;
-  entityRanges?: (EntityRangeInput | null)[] | null;
+  inlineStyleRanges: InlineStyleRangeInput[];
+  entityRanges: EntityRangeInput[];
   data?: any | null;
 }
 
@@ -52,9 +52,9 @@ export interface FieldValueInput {
 }
 
 export interface InlineStyleRangeInput {
-  style?: string | null;
-  offset?: number | null;
-  length?: number | null;
+  style: string;
+  length: number;
+  offset: number;
 }
 
 export interface TemplateInput {

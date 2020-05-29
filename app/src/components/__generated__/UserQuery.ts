@@ -10,17 +10,17 @@
 export interface UserQuery_me {
   __typename: "User";
   /**
-   * User id
+   * The ID of an object
    */
   id: string;
   /**
    * User's username
    */
-  username: string | null;
+  username: string;
   /**
-   * User's e-mail
+   * User's email
    */
-  email: string | null;
+  email: string;
 }
 
 export interface UserQuery {

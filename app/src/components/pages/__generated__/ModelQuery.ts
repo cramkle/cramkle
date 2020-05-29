@@ -10,7 +10,7 @@
 export interface ModelQuery_model_fields {
   __typename: "Field";
   /**
-   * Field id
+   * The ID of an object
    */
   id: string;
   /**
@@ -21,9 +21,9 @@ export interface ModelQuery_model_fields {
 
 export interface ModelQuery_model_templates_frontSide_blocks_inlineStyleRanges {
   __typename: "InlineStyleRange";
-  style: string | null;
-  offset: number | null;
-  length: number | null;
+  style: string;
+  offset: number;
+  length: number;
 }
 
 export interface ModelQuery_model_templates_frontSide_blocks_entityRanges {
@@ -39,13 +39,16 @@ export interface ModelQuery_model_templates_frontSide_blocks {
   type: string;
   text: string;
   depth: number;
-  inlineStyleRanges: (ModelQuery_model_templates_frontSide_blocks_inlineStyleRanges | null)[] | null;
-  entityRanges: (ModelQuery_model_templates_frontSide_blocks_entityRanges | null)[] | null;
+  inlineStyleRanges: ModelQuery_model_templates_frontSide_blocks_inlineStyleRanges[];
+  entityRanges: ModelQuery_model_templates_frontSide_blocks_entityRanges[];
   data: any | null;
 }
 
 export interface ModelQuery_model_templates_frontSide {
   __typename: "ContentState";
+  /**
+   * The ID of an object
+   */
   id: string;
   blocks: ModelQuery_model_templates_frontSide_blocks[];
   entityMap: any;
@@ -53,9 +56,9 @@ export interface ModelQuery_model_templates_frontSide {
 
 export interface ModelQuery_model_templates_backSide_blocks_inlineStyleRanges {
   __typename: "InlineStyleRange";
-  style: string | null;
-  offset: number | null;
-  length: number | null;
+  style: string;
+  offset: number;
+  length: number;
 }
 
 export interface ModelQuery_model_templates_backSide_blocks_entityRanges {
@@ -71,13 +74,16 @@ export interface ModelQuery_model_templates_backSide_blocks {
   type: string;
   text: string;
   depth: number;
-  inlineStyleRanges: (ModelQuery_model_templates_backSide_blocks_inlineStyleRanges | null)[] | null;
-  entityRanges: (ModelQuery_model_templates_backSide_blocks_entityRanges | null)[] | null;
+  inlineStyleRanges: ModelQuery_model_templates_backSide_blocks_inlineStyleRanges[];
+  entityRanges: ModelQuery_model_templates_backSide_blocks_entityRanges[];
   data: any | null;
 }
 
 export interface ModelQuery_model_templates_backSide {
   __typename: "ContentState";
+  /**
+   * The ID of an object
+   */
   id: string;
   blocks: ModelQuery_model_templates_backSide_blocks[];
   entityMap: any;
@@ -86,13 +92,13 @@ export interface ModelQuery_model_templates_backSide {
 export interface ModelQuery_model_templates {
   __typename: "Template";
   /**
-   * Template id
+   * The ID of an object
    */
   id: string;
   /**
    * Name of the template
    */
-  name: string | null;
+  name: string;
   /**
    * Front side template
    */
@@ -106,7 +112,7 @@ export interface ModelQuery_model_templates {
 export interface ModelQuery_model_notes_flashCards {
   __typename: "FlashCard";
   /**
-   * FlashCard id.
+   * The ID of an object
    */
   id: string;
 }
@@ -114,7 +120,7 @@ export interface ModelQuery_model_notes_flashCards {
 export interface ModelQuery_model_notes {
   __typename: "Note";
   /**
-   * Note id
+   * The ID of an object
    */
   id: string;
   /**
@@ -126,7 +132,7 @@ export interface ModelQuery_model_notes {
 export interface ModelQuery_model {
   __typename: "Model";
   /**
-   * Card model id
+   * The ID of an object
    */
   id: string;
   /**
@@ -144,12 +150,12 @@ export interface ModelQuery_model {
   /**
    * Notes associated with this model
    */
-  notes: ModelQuery_model_notes[] | null;
+  notes: ModelQuery_model_notes[];
 }
 
 export interface ModelQuery {
   /**
-   * Get single model
+   * Get single model by it's id
    */
   model: ModelQuery_model | null;
 }
