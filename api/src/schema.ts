@@ -14,6 +14,7 @@ import { createModel } from './resolvers/model/createModel'
 import { deleteModel } from './resolvers/model/deleteModel'
 import { models } from './resolvers/model/listModels'
 import { model } from './resolvers/model/modelById'
+import { removeTemplateFromModel } from './resolvers/model/removeTemplateFromModel'
 import { updateModel } from './resolvers/model/updateModel'
 import { nodeField, nodeInterface } from './resolvers/node/types'
 import { createNote } from './resolvers/note/createNote'
@@ -58,6 +59,7 @@ const schema = new GraphQLSchema({
       updateModel: updateModel,
       deleteModel: deleteModel,
       addTemplateToModel: addTemplateToModel,
+      removeTemplateFromModel: removeTemplateFromModel,
       updateTemplate: updateTemplate,
       addFieldToModel: addFieldToModel,
       createNote: createNote,
