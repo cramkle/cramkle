@@ -11,6 +11,7 @@ import { graphQLGlobalIdField } from '../../utils/graphqlID'
 import { getModelPrimaryField } from '../../utils/modelPrimaryField'
 import { NoteType } from '../deck/types'
 import { FieldType } from '../field/types'
+import { nodeInterface } from '../node/types'
 import { TemplateType } from '../template/types'
 import { UserType } from '../user/types'
 
@@ -20,6 +21,7 @@ export const ModelType: GraphQLObjectType<
 > = new GraphQLObjectType<ModelDocument, Context>({
   name: 'Model',
   description: 'Represents a model for a collection of notes.',
+  interfaces: [nodeInterface],
   fields: () => ({
     id: graphQLGlobalIdField(),
     name: {

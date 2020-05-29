@@ -23,6 +23,7 @@ import { studyFlashCardsByDeck } from '../../utils/study'
 import { FieldValueType } from '../fieldValue/types'
 import { FlashCardType } from '../flashCard/types'
 import { ModelType } from '../model/types'
+import { nodeInterface } from '../node/types'
 import { UserType } from '../user/types'
 
 export const NoteType: GraphQLObjectType<
@@ -36,6 +37,7 @@ A note is what the user registers on each deck.
 This type auto generates a number of cards, based
 on the number of templates.
   `.trim(),
+  interfaces: [nodeInterface],
   fields: () => ({
     id: graphQLGlobalIdField(),
     deck: {
@@ -94,6 +96,7 @@ const deckNoteConnection = connectionWithCursorInfo({
 export const DeckType = new GraphQLObjectType<DeckDocument, Context>({
   name: 'Deck',
   description: 'Collection of notes',
+  interfaces: [nodeInterface],
   fields: () => ({
     id: graphQLGlobalIdField(),
     title: {

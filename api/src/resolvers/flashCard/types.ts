@@ -11,6 +11,7 @@ import { NoteModel, TemplateModel } from '../../mongo'
 import { FlashCardDocument } from '../../mongo/Note'
 import { graphQLGlobalIdField } from '../../utils/graphqlID'
 import { NoteType } from '../deck/types'
+import { nodeInterface } from '../node/types'
 import { TemplateType } from '../template/types'
 
 export const FlashCardStatusEnumType = new GraphQLEnumType({
@@ -37,6 +38,7 @@ associated with the model.
 The number of flashcards on each note is always equal to the
 number of templates.
   `.trim(),
+  interfaces: [nodeInterface],
   fields: () => ({
     id: graphQLGlobalIdField(),
     note: {

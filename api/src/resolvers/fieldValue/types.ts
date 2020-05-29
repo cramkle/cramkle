@@ -5,6 +5,7 @@ import { FieldValueDocument } from '../../mongo/Note'
 import { graphQLGlobalIdField } from '../../utils/graphqlID'
 import { ContentStateInputType, ContentStateType } from '../contentState/types'
 import { FieldInputType, FieldType } from '../field/types'
+import { nodeInterface } from '../node/types'
 
 export const FieldValueType = new GraphQLObjectType<
   FieldValueDocument,
@@ -16,6 +17,7 @@ Holds the value for a particular field in a card model.
 
 Contained by the note.
   `.trim(),
+  interfaces: [nodeInterface],
   fields: {
     id: graphQLGlobalIdField(),
     field: {

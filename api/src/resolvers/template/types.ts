@@ -10,6 +10,7 @@ import { TemplateDocument } from '../../mongo/Template'
 import { graphQLGlobalIdField } from '../../utils/graphqlID'
 import { ContentStateType } from '../contentState/types'
 import { ModelType } from '../model/types'
+import { nodeInterface } from '../node/types'
 
 export const TemplateType = new GraphQLObjectType<TemplateDocument, Context>({
   name: 'Template',
@@ -17,6 +18,7 @@ export const TemplateType = new GraphQLObjectType<TemplateDocument, Context>({
 Template of the card. This is what structures the content
 of each card with values provided by the note
   `.trim(),
+  interfaces: [nodeInterface],
   fields: () => ({
     id: graphQLGlobalIdField(),
     name: {
