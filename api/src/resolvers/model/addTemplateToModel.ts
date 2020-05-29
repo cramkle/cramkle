@@ -6,7 +6,7 @@ import {
 } from 'graphql'
 import { fromGlobalId, mutationWithClientMutationId } from 'graphql-relay'
 
-import { TemplateModel } from '../../mongo'
+import { NoteModel, TemplateModel } from '../../mongo'
 import { TemplateType } from '../template/types'
 
 interface AddTemplateInput {
@@ -36,6 +36,16 @@ export const addTemplateToModel: GraphQLFieldConfig<
       modelId,
       ownerId: user?._id,
     })
+
+    const modelNotes = await NoteModel.find({ modelId })
+
+    await Promise.all(
+      modelNotes.map((note) => {
+        return note.update({
+          $push: { flashCards: { templateId: template._id, noteId: note._id } },
+        })
+      })
+    )
 
     return { template }
   },
