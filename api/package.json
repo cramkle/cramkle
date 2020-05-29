@@ -52,7 +52,6 @@
     "@types/passport": "^1.0.2",
     "@types/passport-local": "^1.0.33",
     "@types/shortid": "^0.0.29",
-    "auto-changelog": "^1.16.2",
     "tsc-watch": "^4.1.0",
     "typescript": "^3.8.3"
   }
