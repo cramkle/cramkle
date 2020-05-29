@@ -7,11 +7,9 @@
   "repository": "https://github.com/lucasecdb/cramkle.git",
   "scripts": {
     "build": "tsc",
-    "prettier-graphql": "prettier --write 'graphql/**/*.graphql'",
     "lint": "tsc --noEmit --pretty",
     "start": "node dist/index.js",
-    "dev": "tsc-watch --onSuccess \"node ./dist/index.js\"",
-    "release": "release-it"
+    "dev": "tsc-watch --onSuccess \"node ./dist/index.js\""
   },
   "dependencies": {
     "bcrypt": "^3.0.8",
@@ -55,7 +53,6 @@
     "@types/passport-local": "^1.0.33",
     "@types/shortid": "^0.0.29",
     "auto-changelog": "^1.16.2",
-    "release-it": "^13.5.2",
     "tsc-watch": "^4.1.0",
     "typescript": "^3.8.3"
   }
