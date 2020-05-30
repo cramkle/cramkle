@@ -6,7 +6,7 @@ import {
 } from 'graphql'
 import { fromGlobalId, mutationWithClientMutationId } from 'graphql-relay'
 
-import { FieldModel, ModelModel } from '../../mongo'
+import { FieldModel, ModelModel, NoteModel } from '../../mongo'
 import { FieldType } from '../field/types'
 
 interface RemoveFieldInput {
@@ -39,6 +39,16 @@ export const removeFieldFromModel: GraphQLFieldConfig<
     if (!field || !fieldModel) {
       throw new GraphQLError('Field not found')
     }
+
+    const modelNotes = await NoteModel.find({ modelId: fieldModel._id })
+
+    await Promise.all(
+      modelNotes.map(async (note) => {
+        await note.update({
+          $pull: { values: { fieldId: field._id } },
+        })
+      })
+    )
 
     await field.remove()
 

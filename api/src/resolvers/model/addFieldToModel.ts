@@ -7,7 +7,7 @@ import {
 } from 'graphql'
 import { fromGlobalId, mutationWithClientMutationId } from 'graphql-relay'
 
-import { FieldModel, ModelModel } from '../../mongo'
+import { FieldModel, ModelModel, NoteModel } from '../../mongo'
 import { FieldType } from '../field/types'
 
 interface AddFieldInput {
@@ -44,8 +44,19 @@ export const addFieldToModel: GraphQLFieldConfig<
     const field = await FieldModel.create({
       name: args.name,
       modelId: model._id,
-      ownerId: user?._id,
     })
+
+    const modelNotes = await NoteModel.find({
+      modelId: model._id,
+    })
+
+    await Promise.all(
+      modelNotes.map(async (note) => {
+        await note.update({
+          $push: { values: { fieldId: field._id } },
+        })
+      })
+    )
 
     return { field }
   },
