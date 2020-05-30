@@ -370,12 +370,42 @@
           },
           {
             "kind": "OBJECT",
+            "name": "Note",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "Deck",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "Model",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
             "name": "Field",
             "ofType": null
           },
           {
             "kind": "OBJECT",
+            "name": "Template",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
             "name": "ContentState",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "FieldValue",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "FlashCard",
             "ofType": null
           }
         ]
@@ -530,7 +560,13 @@
           }
         ],
         "inputFields": null,
-        "interfaces": [],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Node",
+            "ofType": null
+          }
+        ],
         "enumValues": null,
         "possibleTypes": null
       },
@@ -728,7 +764,13 @@
           }
         ],
         "inputFields": null,
-        "interfaces": [],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Node",
+            "ofType": null
+          }
+        ],
         "enumValues": null,
         "possibleTypes": null
       },
@@ -1253,7 +1295,13 @@
           }
         ],
         "inputFields": null,
-        "interfaces": [],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Node",
+            "ofType": null
+          }
+        ],
         "enumValues": null,
         "possibleTypes": null
       },
@@ -1393,7 +1441,13 @@
           }
         ],
         "inputFields": null,
-        "interfaces": [],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Node",
+            "ofType": null
+          }
+        ],
         "enumValues": null,
         "possibleTypes": null
       },
@@ -1780,7 +1834,13 @@
           }
         ],
         "inputFields": null,
-        "interfaces": [],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Node",
+            "ofType": null
+          }
+        ],
         "enumValues": null,
         "possibleTypes": null
       },
@@ -1935,7 +1995,13 @@
           }
         ],
         "inputFields": null,
-        "interfaces": [],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Node",
+            "ofType": null
+          }
+        ],
         "enumValues": null,
         "possibleTypes": null
       },
@@ -2275,6 +2341,33 @@
             "type": {
               "kind": "OBJECT",
               "name": "AddTemplateToModelPayload",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "removeTemplateFromModel",
+            "description": "Removes a template from it's model and delete associated flashcards",
+            "args": [
+              {
+                "name": "input",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "RemoveTemplateFromModelInput",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "RemoveTemplateFromModelPayload",
               "ofType": null
             },
             "isDeprecated": false,
@@ -3482,6 +3575,76 @@
       },
       {
         "kind": "INPUT_OBJECT",
+        "name": "RemoveTemplateFromModelInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "templateId",
+            "description": "Template id",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "clientMutationId",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "RemoveTemplateFromModelPayload",
+        "description": null,
+        "fields": [
+          {
+            "name": "template",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Template",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "clientMutationId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
         "name": "UpdateTemplateInput",
         "description": null,
         "fields": null,
@@ -3498,7 +3661,7 @@
           },
           {
             "name": "name",
-            "description": "teamplte name",
+            "description": "template name",
             "type": {
               "kind": "SCALAR",
               "name": "String",

@@ -18,7 +18,9 @@ import { useParams } from 'react-router'
 import useTopBarLoading from '../../hooks/useTopBarLoading'
 import BackButton from '../BackButton'
 import DeleteModelButton from '../DeleteModelButton'
+import EditTemplatesDialog from '../EditTemplatesDialog'
 import TemplateEditor from '../TemplateEditor'
+import Button from '../views/Button'
 import CircularProgress from '../views/CircularProgress'
 import Container from '../views/Container'
 import Icon from '../views/Icon'
@@ -26,6 +28,7 @@ import { List, ListItem } from '../views/List'
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from '../views/Tabs'
 import { Body1, Body2, Headline1, Headline2 } from '../views/Typography'
 import styles from './ModelPage.css'
+import { DRAFT_CONTENT_FRAGMENT, MODEL_QUERY } from './ModelQuery'
 import { DraftContent } from './__generated__/DraftContent'
 import {
   ModelQuery,
@@ -37,61 +40,6 @@ import {
   UpdateTemplateFrontContentMutation,
   UpdateTemplateFrontContentMutationVariables,
 } from './__generated__/UpdateTemplateFrontContentMutation'
-
-const DRAFT_CONTENT_FRAGMENT = gql`
-  fragment DraftContent on ContentState {
-    id
-    blocks {
-      key
-      type
-      text
-      depth
-      inlineStyleRanges {
-        style
-        offset
-        length
-      }
-      entityRanges {
-        key
-        length
-        offset
-      }
-      data
-    }
-    entityMap
-  }
-`
-
-const MODEL_QUERY = gql`
-  ${DRAFT_CONTENT_FRAGMENT}
-
-  query ModelQuery($id: ID!) {
-    model(id: $id) {
-      id
-      name
-      fields {
-        id
-        name
-      }
-      templates {
-        id
-        name
-        frontSide {
-          ...DraftContent
-        }
-        backSide {
-          ...DraftContent
-        }
-      }
-      notes {
-        id
-        flashCards {
-          id
-        }
-      }
-    }
-  }
-`
 
 const UPDATE_FRONT_TEMPLATE_MUTATION = gql`
   ${DRAFT_CONTENT_FRAGMENT}
@@ -206,8 +154,9 @@ const TemplateDetails: React.FC<TemplateDetailsProps> = ({
 
   return (
     <>
-      <Body1 className="h-8 flex items-end mt-4">
-        {label} {loading && <CircularProgress className="ml-2" size={16} />}
+      <div className="flex items-end mt-4">
+        <Body2 className="leading-4 tracking-wide font-medium">{label}</Body2>{' '}
+        {loading && <CircularProgress className="ml-2" size={16} />}
         <Body2
           className={classnames(
             'inline-flex items-center ml-2 invisible opacity-0',
@@ -220,7 +169,7 @@ const TemplateDetails: React.FC<TemplateDetailsProps> = ({
           <Icon className="text-green-1 mr-2 text-base" icon="check" />
           <Trans>Changes saved successfully</Trans>
         </Body2>
-      </Body1>
+      </div>
       <TemplateEditor
         id={templateId}
         initialContentState={draftContent}
@@ -270,6 +219,8 @@ const ModelPage: React.FC = () => {
     }
   )
 
+  const [editingTemplates, setEditingTemplates] = useState(false)
+
   useTopBarLoading(loading)
 
   if (loading) {
@@ -315,33 +266,53 @@ const ModelPage: React.FC = () => {
           </Body2>
         </div>
 
-        <Body1 className="inline-block mb-4">
-          <Trans>Templates</Trans>
-        </Body1>
-        {model.templates.length ? (
-          <Tabs>
-            <TabList>
-              {model.templates.map((template) => (
-                <Tab key={template.id}>{template.name}</Tab>
-              ))}
-            </TabList>
+        <div className="flex items-center mb-2">
+          <Body1 className="inline-block">
+            <Trans>Templates</Trans>
+          </Body1>
+          <Button className="ml-2" onClick={() => setEditingTemplates(true)}>
+            <Trans>Edit</Trans>
+          </Button>
+          <EditTemplatesDialog
+            isOpen={editingTemplates}
+            onDismiss={() => setEditingTemplates(false)}
+            templates={model.templates}
+            modelId={model.id}
+          />
+        </div>
+        <div
+          className={classnames(
+            'bg-surface border rounded overflow-hidden border-gray-1',
+            { 'p-4': !model.templates.length }
+          )}
+        >
+          {model.templates.length ? (
+            <Tabs>
+              <TabList className="border-b border-gray-1">
+                {model.templates.map((template) => (
+                  <Tab key={template.id}>{template.name}</Tab>
+                ))}
+              </TabList>
 
-            <TabPanels>
-              {model.templates.map((template) => (
-                <TabPanel key={template.id}>
-                  <ModelTemplateDetails
-                    template={template}
-                    fields={model.fields}
-                  />
-                </TabPanel>
-              ))}
-            </TabPanels>
-          </Tabs>
-        ) : (
-          <Body2>
-            <Trans>You haven't created any templates on this model yet.</Trans>
-          </Body2>
-        )}
+              <TabPanels className="px-4 pb-4">
+                {model.templates.map((template) => (
+                  <TabPanel key={template.id}>
+                    <ModelTemplateDetails
+                      template={template}
+                      fields={model.fields}
+                    />
+                  </TabPanel>
+                ))}
+              </TabPanels>
+            </Tabs>
+          ) : (
+            <Body2 className="text-center">
+              <Trans>
+                You haven't created any templates on this model yet.
+              </Trans>
+            </Body2>
+          )}
+        </div>
 
         <Body1 className="my-4">
           <Trans>Fields</Trans>

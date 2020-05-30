@@ -1,3 +1,4 @@
+import classnames from 'classnames'
 import {
   CompositeDecorator,
   ContentState,
@@ -120,7 +121,7 @@ const BaseEditorControls: React.FC<Props> = ({
 
   return (
     <ctx.Provider value={contextValue}>
-      <Card outlined className={className}>
+      <Card outlined className={classnames(className, 'border-gray-1')}>
         <CardActions className="border-b border-gray-1">
           <CardActionButtons className="flex-col items-start">
             <TabController>
