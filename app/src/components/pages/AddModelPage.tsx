@@ -12,7 +12,7 @@ import BackButton from '../BackButton'
 import { MODELS_QUERY } from '../ModelList'
 import { ModelsQuery } from '../__generated__/ModelsQuery'
 import { TextInputField } from '../forms/Fields'
-import DeleteIcon from '../icons/DeleteIcon'
+import TrashBinIcon from '../icons/TrashBinIcon'
 import Button from '../views/Button'
 import Container from '../views/Container'
 import IconButton from '../views/IconButton'
@@ -138,7 +138,7 @@ const AddModelPage: React.FunctionComponent = () => {
                               onClick={() => remove(index)}
                               aria-label={i18n._(t`Remove template`)}
                             >
-                              <DeleteIcon />
+                              <TrashBinIcon />
                             </IconButton>
                           </div>
                         ))
@@ -179,7 +179,7 @@ const AddModelPage: React.FunctionComponent = () => {
                               onClick={() => remove(index)}
                               aria-label={i18n._(t`Remove field`)}
                             >
-                              <DeleteIcon />
+                              <TrashBinIcon />
                             </IconButton>
                           </div>
                         ))

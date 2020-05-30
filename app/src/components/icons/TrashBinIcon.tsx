@@ -1,6 +1,6 @@
 import React from 'react'
 
-const DeleteIcon: React.FC<React.SVGAttributes<SVGSVGElement>> = (props) => {
+const TrashBinIcon: React.FC<React.SVGAttributes<SVGSVGElement>> = (props) => {
   return (
     <svg
       {...props}
@@ -18,4 +18,4 @@ const DeleteIcon: React.FC<React.SVGAttributes<SVGSVGElement>> = (props) => {
   )
 }
 
-export default DeleteIcon
+export default TrashBinIcon

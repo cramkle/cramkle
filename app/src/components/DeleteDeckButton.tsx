@@ -11,7 +11,7 @@ import {
   DeleteDeckMutation,
   DeleteDeckMutationVariables,
 } from './__generated__/DeleteDeckMutation'
-import DeleteIcon from './icons/DeleteIcon'
+import TrashBinIcon from './icons/TrashBinIcon'
 import {
   AlertDialog,
   AlertDialogDescription,
@@ -97,7 +97,7 @@ const DeleteDeckButton: React.FunctionComponent<Props> = ({ deckId }) => {
         variation="outline"
         onClick={() => setDialogOpen(true)}
       >
-        <DeleteIcon className="mr-2" />
+        <TrashBinIcon className="mr-2" />
         <Trans>Delete</Trans>
       </Button>
       <AlertDialog

@@ -1,39 +1,8 @@
 import classnames from 'classnames'
-import React, { ReactNode, forwardRef } from 'react'
+import React, { ReactNode, forwardRef, useContext } from 'react'
 
-export type InputProps = React.InputHTMLAttributes<HTMLInputElement>
-
-export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
-  { className, ...props },
-  ref
-) {
-  return (
-    <input
-      {...props}
-      ref={ref}
-      className={classnames(
-        className,
-        'mt-2 rounded border border-gray-1 py-2 px-4 focus:border-primary placeholder-gray-2'
-      )}
-    />
-  )
-})
-
-export type TextareaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement>
-
-export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
-  function Textarea({ className, ...props }, ref) {
-    return (
-      <textarea
-        {...props}
-        ref={ref}
-        className={classnames(
-          className,
-          'mt-2 rounded border border-gray-1 py-2 px-4 focus:border-primary placeholder-gray-2'
-        )}
-      />
-    )
-  }
+const LabelContext = React.createContext<{ label: boolean } | undefined>(
+  undefined
 )
 
 export interface LabelProps
@@ -47,19 +16,66 @@ export const Label = forwardRef<HTMLLabelElement, LabelProps>(function Label(
   ref
 ) {
   return (
-    <label
-      {...props}
-      ref={ref}
-      className={classnames(className, 'flex', {
-        'flex-col': !checkbox,
-        'flex-row-reverse items-center': checkbox,
-      })}
-    >
-      <span className="text-primary text-sm">{text}</span>
-      {children}
-    </label>
+    <LabelContext.Provider value={{ label: true }}>
+      <label
+        {...props}
+        ref={ref}
+        className={classnames(className, 'flex', {
+          'flex-col': !checkbox,
+          'flex-row-reverse items-center': checkbox,
+        })}
+      >
+        <span className="text-primary text-sm">{text}</span>
+        {children}
+      </label>
+    </LabelContext.Provider>
   )
 })
+
+export type InputProps = React.InputHTMLAttributes<HTMLInputElement>
+
+export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
+  { className, ...props },
+  ref
+) {
+  const isLabelled = useContext(LabelContext)?.label
+
+  return (
+    <input
+      {...props}
+      ref={ref}
+      className={classnames(
+        className,
+        'rounded border border-gray-1 py-2 px-4 focus:border-primary placeholder-gray-2',
+        {
+          'mt-2': isLabelled,
+        }
+      )}
+    />
+  )
+})
+
+export type TextareaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement>
+
+export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
+  function Textarea({ className, ...props }, ref) {
+    const isLabelled = useContext(LabelContext)?.label
+
+    return (
+      <textarea
+        {...props}
+        ref={ref}
+        className={classnames(
+          className,
+          'rounded border border-gray-1 py-2 px-4 focus:border-primary placeholder-gray-2',
+          {
+            'mt-2': isLabelled,
+          }
+        )}
+      />
+    )
+  }
+)
 
 export interface HelperTextProps extends React.HTMLAttributes<HTMLDivElement> {
   variation?: 'error' | 'success' | 'normal'

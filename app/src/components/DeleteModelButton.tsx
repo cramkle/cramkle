@@ -12,7 +12,7 @@ import {
   DeleteModelMutationVariables,
 } from './__generated__/DeleteModelMutation'
 import { ModelsQuery } from './__generated__/ModelsQuery'
-import DeleteIcon from './icons/DeleteIcon'
+import TrashBinIcon from './icons/TrashBinIcon'
 import {
   AlertDialog,
   AlertDialogDescription,
@@ -106,7 +106,7 @@ const DeleteModelButton: React.FunctionComponent<Props> = ({ model }) => {
   return (
     <>
       <Button variation="outline" onClick={handleClick}>
-        <DeleteIcon className="mr-2" />
+        <TrashBinIcon className="mr-2" />
         <Trans>Delete</Trans>
       </Button>
       <AlertDialog
