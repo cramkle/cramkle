@@ -1,4 +1,4 @@
-import { GraphQLID, GraphQLString } from 'graphql'
+import { GraphQLID, GraphQLNonNull, GraphQLString } from 'graphql'
 import { fromGlobalId, mutationWithClientMutationId } from 'graphql-relay'
 
 import { TemplateModel } from '../../mongo'
@@ -18,7 +18,7 @@ export const updateTemplate = mutationWithClientMutationId({
   name: 'UpdateTemplate',
   description: 'Updates an existing template',
   inputFields: {
-    id: { type: GraphQLID, description: 'Template id' },
+    id: { type: GraphQLNonNull(GraphQLID), description: 'Template id' },
     name: { type: GraphQLString, description: 'template name' },
     frontSide: {
       type: ContentStateInputType,

@@ -7,6 +7,7 @@ import { deleteDeck } from './resolvers/deck/deleteDeck'
 import { decks } from './resolvers/deck/listDecks'
 import { publishDeck, unpublishDeck } from './resolvers/deck/publish'
 import { updateDeck } from './resolvers/deck/updateDeck'
+import { updateField } from './resolvers/field/updateField'
 import { updateFieldValue } from './resolvers/fieldValue/updateFieldValue'
 import { addFieldToModel } from './resolvers/model/addFieldToModel'
 import { addTemplateToModel } from './resolvers/model/addTemplateToModel'
@@ -14,6 +15,7 @@ import { createModel } from './resolvers/model/createModel'
 import { deleteModel } from './resolvers/model/deleteModel'
 import { models } from './resolvers/model/listModels'
 import { model } from './resolvers/model/modelById'
+import { removeFieldFromModel } from './resolvers/model/removeFieldFromModel'
 import { removeTemplateFromModel } from './resolvers/model/removeTemplateFromModel'
 import { updateModel } from './resolvers/model/updateModel'
 import { nodeField, nodeInterface } from './resolvers/node/types'
@@ -62,6 +64,8 @@ const schema = new GraphQLSchema({
       removeTemplateFromModel: removeTemplateFromModel,
       updateTemplate: updateTemplate,
       addFieldToModel: addFieldToModel,
+      removeFieldFromModel: removeFieldFromModel,
+      updateField: updateField,
       createNote: createNote,
       deleteNote: deleteNote,
       updateFieldValue: updateFieldValue,

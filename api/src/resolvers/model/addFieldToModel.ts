@@ -1,4 +1,5 @@
 import {
+  GraphQLError,
   GraphQLFieldConfig,
   GraphQLID,
   GraphQLNonNull,
@@ -6,7 +7,7 @@ import {
 } from 'graphql'
 import { fromGlobalId, mutationWithClientMutationId } from 'graphql-relay'
 
-import { FieldModel } from '../../mongo'
+import { FieldModel, ModelModel } from '../../mongo'
 import { FieldType } from '../field/types'
 
 interface AddFieldInput {
@@ -31,9 +32,18 @@ export const addFieldToModel: GraphQLFieldConfig<
   mutateAndGetPayload: async (args: AddFieldInput, { user }: Context) => {
     const { id: modelId } = fromGlobalId(args.modelId)
 
+    const model = await ModelModel.findOne({
+      _id: modelId,
+      ownerId: user?._id,
+    })
+
+    if (!model) {
+      throw new GraphQLError('Model not found')
+    }
+
     const field = await FieldModel.create({
       name: args.name,
-      modelId,
+      modelId: model._id,
       ownerId: user?._id,
     })
 
