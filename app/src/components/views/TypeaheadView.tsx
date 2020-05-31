@@ -20,7 +20,7 @@ const TypeaheadView: React.FunctionComponent<Props> = ({
 }) => {
   return (
     <div style={style} className="absolute z-20 bg-surface rounded shadow-lg">
-      <ul className="py2 rounded shadow-xs overflow-hidden" role="listbox">
+      <ul className="py-2 rounded shadow-xs overflow-hidden" role="listbox">
         {entries.map((entry) => {
           const highlighted = highlightedEntry === entry
 

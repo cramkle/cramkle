@@ -92,7 +92,7 @@ const HomePage: React.FunctionComponent = () => {
       </Helmet>
 
       <div className="h-full grid grid-cols-1 md:grid-cols-4 md:gap-8">
-        <List className="hidden md:block w-100">
+        <List className="hidden md:block w-100 px-4 py-2">
           <ListItem
             onClick={handleMarketplaceClick}
             icon={<MarketplaceIcon className="flex-shrink-0" />}

@@ -34,7 +34,8 @@ const TypeaheadViewItem: React.FunctionComponent<Props> = ({
       {entry.name}
       <div
         className={classnames(
-          'absolute top-0 left-0 right-0 bottom-0 opacity-12 bg-primary pointer-events-none'
+          'absolute top-0 left-0 right-0 bottom-0 opacity-12 bg-primary pointer-events-none',
+          { hidden: !highlighted }
         )}
       />
     </div>
