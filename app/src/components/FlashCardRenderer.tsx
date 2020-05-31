@@ -52,7 +52,7 @@ const FlashCardValue: React.FC<FlashCardValueProps> = ({
   )
 
   const editorState = useMemo(() => {
-    if (!value) {
+    if (!value || !value.data) {
       return null
     }
 
