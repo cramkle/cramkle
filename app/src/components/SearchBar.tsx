@@ -4,7 +4,8 @@ import cx from 'classnames'
 import React, { useRef, useState } from 'react'
 
 import styles from './SearchBar.css'
-import Icon from './views/Icon'
+import ClearIcon from './icons/ClearIcon'
+import SearchIcon from './icons/SearchIcon'
 import IconButton from './views/IconButton'
 
 const SearchBar: React.FunctionComponent = () => {
@@ -65,7 +66,7 @@ const SearchBar: React.FunctionComponent = () => {
           onClick={handleClearSearch}
           aria-label={i18n._(t`Clear search`)}
         >
-          <Icon icon="close" aria-hidden="true" />
+          <ClearIcon />
         </IconButton>
       )}
       <IconButton
@@ -74,7 +75,7 @@ const SearchBar: React.FunctionComponent = () => {
         type="submit"
         aria-label={i18n._(t`Search`)}
       >
-        <Icon icon="search" aria-hidden="true" />
+        <SearchIcon />
       </IconButton>
     </form>
   )

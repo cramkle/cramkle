@@ -6,8 +6,8 @@ import { useHistory } from 'react-router'
 
 import { useHints } from '../HintsContext'
 import ModelList from '../ModelList'
+import GenericAddIcon from '../icons/GenericAddIcon'
 import Fab from '../views/Fab'
-import Icon from '../views/Icon'
 import styles from './ModelsSection.css'
 
 const ModelsSection: React.FunctionComponent = () => {
@@ -25,7 +25,7 @@ const ModelsSection: React.FunctionComponent = () => {
 
       <div className={classNames(styles.fab, 'fixed z-10')}>
         <Fab
-          icon={<Icon icon="add" aria-hidden="true" />}
+          icon={<GenericAddIcon />}
           aria-label={i18n._(t`Add model`)}
           textLabel={!isMobile && i18n._(t`Add model`)}
           onClick={handleAddClick}
