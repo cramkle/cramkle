@@ -262,7 +262,7 @@ const EditTemplatesDialog: React.FC<{
                   <Body1>
                     <Trans>
                       Are you sure you want to delete the template{' '}
-                      {template.name}?
+                      <span className="font-medium">{template.name}</span>?
                     </Trans>
                   </Body1>
                   <Caption>

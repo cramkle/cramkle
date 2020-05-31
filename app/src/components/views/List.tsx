@@ -11,10 +11,7 @@ export const List: React.FC<React.HTMLAttributes<HTMLUListElement>> = ({
 }) => {
   return (
     <TabController>
-      <ul
-        {...props}
-        className={classnames(className, 'flex flex-col px-4 py-2')}
-      >
+      <ul {...props} className={classnames(className, 'flex flex-col p-0')}>
         {children}
       </ul>
     </TabController>

@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import React, { forwardRef } from 'react'
+import React, { forwardRef, useState } from 'react'
 
 type Props = {
   variation?: 'outline' | 'primary' | 'secondary' | 'plain'
@@ -28,8 +28,42 @@ const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     }
   )
 
+  const [focused, setFocused] = useState(false)
+  const [hovered, setHovered] = useState(false)
+
+  const handleFocus: React.FocusEventHandler<HTMLButtonElement> = (evt) => {
+    setFocused(true)
+    props.onFocus?.(evt)
+  }
+  const handleBlur: React.FocusEventHandler<HTMLButtonElement> = (evt) => {
+    setFocused(false)
+    props.onBlur?.(evt)
+  }
+
+  const handleMouseEnter: React.MouseEventHandler<HTMLButtonElement> = (
+    evt
+  ) => {
+    setHovered(true)
+    props.onMouseEnter?.(evt)
+  }
+  const handleMouseLeave: React.MouseEventHandler<HTMLButtonElement> = (
+    evt
+  ) => {
+    setHovered(false)
+    props.onMouseLeave?.(evt)
+  }
+
   return (
-    <button {...props} className={classes} ref={inputRef} disabled={disabled}>
+    <button
+      {...props}
+      onFocus={handleFocus}
+      onBlur={handleBlur}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      className={classes}
+      ref={inputRef}
+      disabled={disabled}
+    >
       <div className="relative z-0 flex items-center justify-center text-base">
         {children}
       </div>
@@ -37,9 +71,17 @@ const Button = forwardRef<HTMLButtonElement, Props>(function Button(
         className={classnames(
           'absolute top-0 left-0 right-0 bottom-0 transition-opacity ease-in-out duration-200 opacity-0',
           {
-            hidden: variation !== 'plain' && variation !== 'outline',
-            'bg-primary hover:opacity-12':
+            'opacity-0': !hovered || !focused,
+            'opacity-12': (hovered || focused) && variation !== 'secondary',
+            'opacity-100': (hovered || focused) && variation === 'secondary',
+            hidden:
+              (!hovered || !focused) &&
+              variation !== 'plain' &&
+              variation !== 'outline' &&
+              variation !== 'secondary',
+            'bg-primary':
               (variation === 'plain' || variation === 'outline') && !disabled,
+            'bg-hover-overlay': variation === 'secondary',
           }
         )}
       />

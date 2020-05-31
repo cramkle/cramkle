@@ -18,13 +18,13 @@ import { useParams } from 'react-router'
 import useTopBarLoading from '../../hooks/useTopBarLoading'
 import BackButton from '../BackButton'
 import DeleteModelButton from '../DeleteModelButton'
+import EditFieldsDialog from '../EditFieldsDialog'
 import EditTemplatesDialog from '../EditTemplatesDialog'
 import TemplateEditor from '../TemplateEditor'
 import Button from '../views/Button'
 import CircularProgress from '../views/CircularProgress'
 import Container from '../views/Container'
 import Icon from '../views/Icon'
-import { List, ListItem } from '../views/List'
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from '../views/Tabs'
 import { Body1, Body2, Headline1, Headline2 } from '../views/Typography'
 import styles from './ModelPage.css'
@@ -220,6 +220,7 @@ const ModelPage: React.FC = () => {
   )
 
   const [editingTemplates, setEditingTemplates] = useState(false)
+  const [editingFields, setEditingFields] = useState(false)
 
   useTopBarLoading(loading)
 
@@ -266,35 +267,50 @@ const ModelPage: React.FC = () => {
           </Body2>
         </div>
 
-        <div className="flex items-center mb-2">
-          <Body1 className="inline-block">
-            <Trans>Templates</Trans>
-          </Body1>
-          <Button className="ml-2" onClick={() => setEditingTemplates(true)}>
-            <Trans>Edit</Trans>
-          </Button>
-          <EditTemplatesDialog
-            isOpen={editingTemplates}
-            onDismiss={() => setEditingTemplates(false)}
-            templates={model.templates}
-            modelId={model.id}
-          />
-        </div>
-        <div
-          className={classnames(
-            'bg-surface border rounded overflow-hidden border-gray-1',
-            { 'p-4': !model.templates.length }
-          )}
-        >
+        <div className="bg-surface border rounded overflow-hidden border-gray-1 pt-2 px-4 pb-4">
+          <div className="flex items-center justify-between mb-3">
+            <Body1 className="inline-block">
+              <Trans>Templates</Trans>
+            </Body1>
+
+            <div className="flex items-center">
+              <Button
+                className="ml-2"
+                onClick={() => setEditingTemplates(true)}
+              >
+                <Trans>Edit templates</Trans>
+              </Button>
+              <EditTemplatesDialog
+                isOpen={editingTemplates}
+                onDismiss={() => setEditingTemplates(false)}
+                templates={model.templates}
+                modelId={model.id}
+              />
+
+              <Button
+                variation="secondary"
+                className="ml-2"
+                onClick={() => setEditingFields(true)}
+              >
+                <Trans>Edit fields</Trans>
+              </Button>
+              <EditFieldsDialog
+                isOpen={editingFields}
+                onDismiss={() => setEditingFields(false)}
+                fields={model.fields}
+                modelId={model.id}
+              />
+            </div>
+          </div>
           {model.templates.length ? (
             <Tabs>
-              <TabList className="border-b border-gray-1">
+              <TabList className="border-t border-b border-gray-1 -mx-4">
                 {model.templates.map((template) => (
                   <Tab key={template.id}>{template.name}</Tab>
                 ))}
               </TabList>
 
-              <TabPanels className="px-4 pb-4">
+              <TabPanels>
                 {model.templates.map((template) => (
                   <TabPanel key={template.id}>
                     <ModelTemplateDetails
@@ -313,21 +329,6 @@ const ModelPage: React.FC = () => {
             </Body2>
           )}
         </div>
-
-        <Body1 className="my-4">
-          <Trans>Fields</Trans>
-        </Body1>
-        {model.fields.length ? (
-          <List>
-            {model.fields.map((field) => (
-              <ListItem key={field.id}>{field.name}</ListItem>
-            ))}
-          </List>
-        ) : (
-          <Body2 className="my-4">
-            <Trans>This model doesn't have any fields yet.</Trans>
-          </Body2>
-        )}
       </Container>
     </>
   )

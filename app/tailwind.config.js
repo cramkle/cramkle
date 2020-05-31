@@ -16,6 +16,7 @@ module.exports = {
       surface: 'var(--surface)',
       disabled: 'var(--disabled)',
       background: 'var(--background)',
+      'hover-overlay': 'var(--hover-overlay)',
       ...commonColors,
     },
     textColor: {

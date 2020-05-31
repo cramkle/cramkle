@@ -2,17 +2,17 @@ import { ContentState, SelectionState } from 'draft-js'
 
 import { TaggableEntry } from './TaggableEntry'
 
-const PUNCTUATION_REGEX =
+const SYMBOL_REGEX =
   '\\.,\\+\\*\\?\\$\\@\\|#{}\\(\\)\\^\\-\\[\\]\\\\/!%\'"~=<>_:;'
 const AT_SIGN = ['@', '\\uff20'].join('')
-const AT_OR_PUNCTUATION = '[^' + AT_SIGN + PUNCTUATION_REGEX + '\\s]'
-const END = '(?:\\.[ |$]| |[' + PUNCTUATION_REGEX + ']|)'
+const NOT_AT_OR_SYMBOL = '[^' + AT_SIGN + SYMBOL_REGEX + '\\s]'
+const END = '(?:\\.[ |$]| |[' + SYMBOL_REGEX + ']|)'
 
 const TAG_REGEX = new RegExp(
   '(?:^|\\s|[(\\/])([' +
     AT_SIGN +
     ']((?:' +
-    AT_OR_PUNCTUATION +
+    NOT_AT_OR_SYMBOL +
     END +
     '){0,20}))$'
 )
