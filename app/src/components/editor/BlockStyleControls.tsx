@@ -3,6 +3,12 @@ import classnames from 'classnames'
 import { ContentBlock, ContentState, EditorState, Modifier } from 'draft-js'
 import React, { memo, useCallback } from 'react'
 
+import AlignCenterIcon from '../icons/AlignCenterIcon'
+import AlignLeftIcon from '../icons/AlignLeftIcon'
+import AlignRightIcon from '../icons/AlignRightIcon'
+import ListBulletedIcon from '../icons/ListBulletedIcon'
+import ListNumberedIcon from '../icons/ListNumberedIcon'
+import QuoteIcon from '../icons/QuoteIcon'
 import styles from './BlockStyleControls.css'
 import StyleButton, { Style } from './StyleButton'
 
@@ -13,9 +19,9 @@ export const BLOCK_TYPES: Style[] = [
   { label: t`H4`, style: 'header-four' },
   { label: t`H5`, style: 'header-five' },
   { label: t`H6`, style: 'header-six' },
-  { label: t`Blockquote`, style: 'blockquote', icon: 'format_quote' },
-  { label: t`UL`, style: 'unordered-list-item', icon: 'format_list_bulleted' },
-  { label: t`OL`, style: 'ordered-list-item', icon: 'format_list_numbered' },
+  { label: t`Blockquote`, style: 'blockquote', icon: <QuoteIcon /> },
+  { label: t`UL`, style: 'unordered-list-item', icon: <ListBulletedIcon /> },
+  { label: t`OL`, style: 'ordered-list-item', icon: <ListNumberedIcon /> },
   { label: t`Code Block`, style: 'code-block' },
 ]
 
@@ -27,17 +33,17 @@ export const ALIGNMENT_STYLES: Style[] = [
   {
     label: t`Align left`,
     style: ALIGN_LEFT,
-    icon: 'format_align_left',
+    icon: <AlignLeftIcon />,
   },
   {
     label: t`Align center`,
     style: ALIGN_CENTER,
-    icon: 'format_align_center',
+    icon: <AlignCenterIcon />,
   },
   {
     label: t`Align right`,
     style: ALIGN_RIGHT,
-    icon: 'format_align_right',
+    icon: <AlignRightIcon />,
   },
 ]
 

@@ -13,13 +13,13 @@ import BackButton from '../BackButton'
 import FieldValueEditor from '../FieldValueEditor'
 import FlashCardRenderer from '../FlashCardRenderer'
 import FlashCardStatus from '../FlashCardStatus'
+import DoneIcon from '../icons/DoneIcon'
 import Button from '../views/Button'
 import { Checkbox } from '../views/Checkbox'
 import CircularProgress from '../views/CircularProgress'
 import Container from '../views/Container'
 import { Dialog } from '../views/Dialog'
 import Divider from '../views/Divider'
-import Icon from '../views/Icon'
 import {
   Table,
   TableBody,
@@ -220,7 +220,7 @@ const FieldValueDetail: React.FC<FieldValueDetailProps> = ({
             }
           )}
         >
-          <Icon className="text-green-1 mr-2 text-base" icon="check" />
+          <DoneIcon className="text-green-1 mr-2 text-base" />
           <Trans>Changes saved successfully</Trans>
         </Caption>
       </Body1>

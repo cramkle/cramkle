@@ -13,9 +13,9 @@ import BackButton from '../BackButton'
 import DeleteDeckButton from '../DeleteDeckButton'
 import { useHints } from '../HintsContext'
 import NotesTable from '../NotesTable'
+import GenericAddIcon from '../icons/GenericAddIcon'
 import Container from '../views/Container'
 import Fab from '../views/Fab'
-import Icon from '../views/Icon'
 import {
   Body1,
   Body2,
@@ -231,7 +231,7 @@ const DeckPage: React.FunctionComponent = () => {
         {!isMobile && (
           <div className="fixed" style={{ bottom: 20, right: 20 }}>
             <Fab
-              icon={<Icon icon="add" aria-hidden="true" />}
+              icon={<GenericAddIcon />}
               aria-label={i18n._(t`Add Note`)}
               textLabel={i18n._(t`Add Note`)}
               onClick={() => history.push(`${location.pathname}/new-note`)}

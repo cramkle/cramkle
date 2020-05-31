@@ -79,7 +79,7 @@ const App: React.FunctionComponent<{}> = () => {
           {
             rel: 'stylesheet',
             href:
-              'https://fonts.googleapis.com/css?family=Libre+Franklin:300,400,500,600|Material+Icons',
+              'https://fonts.googleapis.com/css?family=Libre+Franklin:300,400,500,600&display=swap',
           },
           {
             rel: 'manifest',

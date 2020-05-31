@@ -21,10 +21,10 @@ import DeleteModelButton from '../DeleteModelButton'
 import EditFieldsDialog from '../EditFieldsDialog'
 import EditTemplatesDialog from '../EditTemplatesDialog'
 import TemplateEditor from '../TemplateEditor'
+import DoneIcon from '../icons/DoneIcon'
 import Button from '../views/Button'
 import CircularProgress from '../views/CircularProgress'
 import Container from '../views/Container'
-import Icon from '../views/Icon'
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from '../views/Tabs'
 import { Body1, Body2, Headline1, Headline2 } from '../views/Typography'
 import styles from './ModelPage.css'
@@ -166,7 +166,7 @@ const TemplateDetails: React.FC<TemplateDetailsProps> = ({
             }
           )}
         >
-          <Icon className="text-green-1 mr-2 text-base" icon="check" />
+          <DoneIcon className="text-green-1 mr-2 text-base" />
           <Trans>Changes saved successfully</Trans>
         </Body2>
       </div>

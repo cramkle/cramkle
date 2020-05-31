@@ -6,8 +6,8 @@ import React, { useCallback, useState } from 'react'
 import DeckList from '../DeckList'
 import { useHints } from '../HintsContext'
 import AddDeckForm from '../forms/AddDeckForm'
+import GenericAddIcon from '../icons/GenericAddIcon'
 import Fab from '../views/Fab'
-import Icon from '../views/Icon'
 import styles from './DecksSection.css'
 
 const DecksSection: React.FunctionComponent = () => {
@@ -32,7 +32,7 @@ const DecksSection: React.FunctionComponent = () => {
 
       <div className={classNames(styles.fab, 'fixed z-10')}>
         <Fab
-          icon={<Icon icon="add" aria-hidden="true" />}
+          icon={<GenericAddIcon />}
           aria-label={i18n._(t`Add Deck`)}
           textLabel={!isMobile && i18n._(t`Add Deck`)}
           onClick={handleDialogOpen}

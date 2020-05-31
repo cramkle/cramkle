@@ -4,13 +4,10 @@ import classNames from 'classnames'
 import React, { memo, useRef } from 'react'
 import { useControlledTabIndex } from 'react-tab-controller'
 
-import Icon from '../views/Icon'
-import { IconTypes } from '../views/IconTypes'
-
 export interface Style {
   label: MessageDescriptor | string
   style: string
-  icon?: IconTypes
+  icon?: React.ReactElement
 }
 
 interface Props extends Style {
@@ -53,11 +50,7 @@ const StyleButton: React.FunctionComponent<Props> = ({
       onKeyDown={onKeyDown}
       aria-label={translatedLabel}
     >
-      {icon ? (
-        <Icon className="align-middle text-xl" icon={icon} />
-      ) : (
-        translatedLabel
-      )}
+      {icon ? icon : translatedLabel}
     </button>
   )
 }
