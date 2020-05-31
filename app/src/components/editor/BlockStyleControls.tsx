@@ -57,17 +57,17 @@ const getAlignmentStyles = (blockAlignment: string) => {
 const getBlockTypeStyle = (blockType: string) => {
   switch (blockType) {
     case 'header-one':
-      return 'text-4xl'
+      return 'text-4xl leading-normal'
     case 'header-two':
-      return 'text-3xl'
+      return 'text-3xl leading-normal'
     case 'header-three':
-      return 'text-2xl'
+      return 'text-2xl leading-normal'
     case 'header-four':
-      return 'text-xl'
+      return 'text-xl leading-normal'
     case 'header-five':
-      return 'text-lg'
+      return 'text-lg leading-normal'
     case 'header-six':
-      return 'text-base'
+      return 'text-base leading-normal'
     case 'unordered-list-item':
       return 'list-disc'
     case 'ordered-list-item':
