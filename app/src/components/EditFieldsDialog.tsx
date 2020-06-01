@@ -172,7 +172,10 @@ const EditFieldsDialog: React.FC<{
         <Trans>Fields</Trans>
       </DialogTitle>
       <Body2>
-        <Trans>Fields that you can use in your templates and notes</Trans>
+        <Trans>
+          Fields that you can use in your templates and notes. You can add a
+          field to a template by typing the @ symbol and the field name
+        </Trans>
       </Body2>
 
       <div className="mt-4 flex flex-col border-t border-gray-1">
