@@ -9,7 +9,6 @@ const createTagEntity = (
 ) => {
   return contentState.createEntity(TAG_TYPE, 'IMMUTABLE', {
     id: taggable.id,
-    name: taggable,
   })
 }
 

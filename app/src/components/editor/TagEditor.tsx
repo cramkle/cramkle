@@ -10,7 +10,6 @@ import React, { useCallback, useEffect, useReducer, useRef } from 'react'
 
 import { useBaseEditorControls } from './BaseEditorControls'
 import { blockStyleFn } from './BlockStyleControls'
-import { TagEntriesProvider } from './TagEntriesContext'
 import { TaggableEntry } from './TaggableEntry'
 import TagsPopup from './TagsPopup'
 import replaceTagInEditorState from './replaceTagInEditorState'
@@ -263,22 +262,20 @@ const TagEditor: React.FunctionComponent<Props> = ({
 
   return (
     <>
-      <TagEntriesProvider tagEntries={tagSource}>
-        <Editor
-          {...props}
-          ariaAutoComplete={ariaAutoComplete}
-          ariaExpanded={showingTags}
-          role="combobox"
-          spellCheck
-          editorState={editorState}
-          onChange={onChange}
-          onBlur={handleBlur}
-          handleReturn={handleReturn}
-          handleKeyCommand={handleKeyCommand}
-          keyBindingFn={keyBinder}
-          blockStyleFn={blockStyleFn}
-        />
-      </TagEntriesProvider>
+      <Editor
+        {...props}
+        ariaAutoComplete={ariaAutoComplete}
+        ariaExpanded={showingTags}
+        role="combobox"
+        spellCheck
+        editorState={editorState}
+        onChange={onChange}
+        onBlur={handleBlur}
+        handleReturn={handleReturn}
+        handleKeyCommand={handleKeyCommand}
+        keyBindingFn={keyBinder}
+        blockStyleFn={blockStyleFn}
+      />
       <TagsPopup
         tagEntries={visibleTagEntries}
         selection={editorState.getSelection()}
