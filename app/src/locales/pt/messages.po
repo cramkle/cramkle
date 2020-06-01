@@ -50,7 +50,7 @@ msgstr "Adicionar campo"
 msgid "Add model"
 msgstr "Adicionar modelo"
 
-#: src/components/EditFieldsDialog.tsx:209
+#: src/components/EditFieldsDialog.tsx:212
 #: src/components/EditTemplatesDialog.tsx:227
 msgid "Add new"
 msgstr "Adicionar novo"
@@ -63,15 +63,15 @@ msgstr "Adicionar template"
 msgid "Agreement is required"
 msgstr "Concordância é obrigatória"
 
-#: src/components/editor/BlockStyleControls.tsx:29
+#: src/components/editor/BlockStyleControls.tsx:35
 msgid "Align center"
 msgstr "Alinhar ao centro"
 
-#: src/components/editor/BlockStyleControls.tsx:24
+#: src/components/editor/BlockStyleControls.tsx:30
 msgid "Align left"
 msgstr "Alinhar à esquerda"
 
-#: src/components/editor/BlockStyleControls.tsx:34
+#: src/components/editor/BlockStyleControls.tsx:40
 msgid "Align right"
 msgstr "Alinhar à direita"
 
@@ -100,7 +100,7 @@ msgstr "Ocorreu um erro ao apagar o modelo"
 msgid "Are you sure you want to cancel the current study session?"
 msgstr "Você tem certeza que quer encerrar a sessão de estudo atual?"
 
-#: src/components/EditFieldsDialog.tsx:160
+#: src/components/EditFieldsDialog.tsx:163
 msgid "Are you sure you want to delete the <0>{0}</0> field?"
 msgstr "Você tem certeza que quer apagar o campo <0>{0}</0>?"
 
@@ -128,11 +128,11 @@ msgstr "Verso"
 msgid "Back side template is empty"
 msgstr "Verso do template está vazio"
 
-#: src/components/editor/BlockStyleControls.tsx:14
+#: src/components/editor/BlockStyleControls.tsx:20
 msgid "Blockquote"
 msgstr "Citação"
 
-#: src/components/editor/InlineStyleControls.tsx:5
+#: src/components/editor/InlineStyleControls.tsx:8
 msgid "Bold"
 msgstr "Negrito"
 
@@ -163,11 +163,11 @@ msgstr "Verifique sua conexão com a internet e tente novamente."
 msgid "Choose a new password for your account."
 msgstr "Escolha uma nova senha para sua conta."
 
-#: src/components/SearchBar.tsx:35
+#: src/components/SearchBar.tsx:36
 msgid "Clear search"
 msgstr "Limpar busca"
 
-#: src/components/editor/BlockStyleControls.tsx:17
+#: src/components/editor/BlockStyleControls.tsx:23
 msgid "Code Block"
 msgstr "Bloco de código"
 
@@ -258,7 +258,7 @@ msgstr "Deletar nota {0}"
 msgid "Delete template"
 msgstr "Apagar template"
 
-#: src/components/EditFieldsDialog.tsx:187
+#: src/components/EditFieldsDialog.tsx:190
 msgid "Delete {0} field"
 msgstr "Apagar campo {0}"
 
@@ -341,7 +341,7 @@ msgstr "Insira o email associado com a sua conta que iremos enviar um link para 
 msgid "Enter your email address"
 msgstr "Insira o seu endereço de email"
 
-#: src/components/EditFieldsDialog.tsx:142
+#: src/components/EditFieldsDialog.tsx:145
 #: src/components/pages/AddModelPage.tsx:124
 msgid "Field name"
 msgstr "Nome do campo"
@@ -361,8 +361,8 @@ msgid "Fields"
 msgstr "Campos"
 
 #: src/components/EditFieldsDialog.tsx:134
-msgid "Fields that you can use in your templates and notes"
-msgstr "Campos que você pode utilizar em seus templates e notas"
+msgid "Fields that you can use in your templates and notes. You can add a field to a template by typing the @ symbol and the field name"
+msgstr "Campos que você pode utilizar em seus templates e notas. Você pode adicionar um campo a um template digitando o símbolo @ e o nome do campo"
 
 #: src/components/Pagination.tsx:45
 msgid "First page"
@@ -410,27 +410,27 @@ msgstr "Voltar para login"
 msgid "Good"
 msgstr "Bom"
 
-#: src/components/editor/BlockStyleControls.tsx:8
+#: src/components/editor/BlockStyleControls.tsx:14
 msgid "H1"
 msgstr "H1"
 
-#: src/components/editor/BlockStyleControls.tsx:9
+#: src/components/editor/BlockStyleControls.tsx:15
 msgid "H2"
 msgstr "H2"
 
-#: src/components/editor/BlockStyleControls.tsx:10
+#: src/components/editor/BlockStyleControls.tsx:16
 msgid "H3"
 msgstr "H3"
 
-#: src/components/editor/BlockStyleControls.tsx:11
+#: src/components/editor/BlockStyleControls.tsx:17
 msgid "H4"
 msgstr "H4"
 
-#: src/components/editor/BlockStyleControls.tsx:12
+#: src/components/editor/BlockStyleControls.tsx:18
 msgid "H5"
 msgstr "H5"
 
-#: src/components/editor/BlockStyleControls.tsx:13
+#: src/components/editor/BlockStyleControls.tsx:19
 msgid "H6"
 msgstr "H6"
 
@@ -458,7 +458,7 @@ msgstr "Nome de usuário inválido"
 msgid "Invalid username and/or password"
 msgstr "Nome de usuário e/ou senha inválidos"
 
-#: src/components/editor/InlineStyleControls.tsx:6
+#: src/components/editor/InlineStyleControls.tsx:9
 msgid "Italic"
 msgstr "Itálico"
 
@@ -516,7 +516,7 @@ msgstr "Tipo do modelo"
 msgid "Models"
 msgstr "Modelos"
 
-#: src/components/editor/InlineStyleControls.tsx:8
+#: src/components/editor/InlineStyleControls.tsx:11
 msgid "Monospace"
 msgstr "Monoespaçada"
 
@@ -532,7 +532,7 @@ msgstr "Nome é obrigatório"
 msgid "New"
 msgstr "Novo"
 
-#: src/components/EditFieldsDialog.tsx:196
+#: src/components/EditFieldsDialog.tsx:199
 msgid "New field name"
 msgstr "Nome do novo campo"
 
@@ -577,7 +577,7 @@ msgstr "Detalhes da nota"
 msgid "Notes"
 msgstr "Notas"
 
-#: src/components/editor/BlockStyleControls.tsx:16
+#: src/components/editor/BlockStyleControls.tsx:22
 msgid "OL"
 msgstr "Lista numerada"
 
@@ -651,7 +651,7 @@ msgstr "Remover template"
 msgid "Rename template"
 msgstr "Renomear template"
 
-#: src/components/EditFieldsDialog.tsx:184
+#: src/components/EditFieldsDialog.tsx:187
 msgid "Rename {0} field"
 msgstr "Renomear campo {0}"
 
@@ -688,8 +688,8 @@ msgstr "Revisão"
 msgid "Save"
 msgstr "Salvar"
 
-#: src/components/SearchBar.tsx:34
-#: src/components/SearchBar.tsx:38
+#: src/components/SearchBar.tsx:35
+#: src/components/SearchBar.tsx:39
 msgid "Search"
 msgstr "Pesquisar"
 
@@ -789,7 +789,7 @@ msgstr "O título é obrigatório"
 msgid "This action will delete all flashcards associated with this template"
 msgstr "Essa ação irá apagar todos os flashcards associados à este template"
 
-#: src/components/EditFieldsDialog.tsx:166
+#: src/components/EditFieldsDialog.tsx:169
 msgid "This action will delete all values from the notes associated with this model and field"
 msgstr "Essa ação irá apagar todos os valores das notas associadas com esse campo e modelo"
 
@@ -805,11 +805,11 @@ msgstr "Título"
 msgid "Try again"
 msgstr "Tentar novamente"
 
-#: src/components/editor/BlockStyleControls.tsx:15
+#: src/components/editor/BlockStyleControls.tsx:21
 msgid "UL"
 msgstr "Lista de marcadores"
 
-#: src/components/editor/InlineStyleControls.tsx:7
+#: src/components/editor/InlineStyleControls.tsx:10
 msgid "Underline"
 msgstr "Sublinha"
 
@@ -845,7 +845,7 @@ msgstr "O nome de usuário precisa conter apenas caracteres alfanuméricos e sub
 msgid "View"
 msgstr "Ver"
 
-#: src/components/EditFieldsDialog.tsx:154
+#: src/components/EditFieldsDialog.tsx:157
 #: src/components/EditTemplatesDialog.tsx:175
 msgid "Warning"
 msgstr "Atenção"
