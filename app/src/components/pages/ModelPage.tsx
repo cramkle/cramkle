@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from '@apollo/react-hooks'
-import { Trans, plural } from '@lingui/macro'
+import { Trans, plural, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import classnames from 'classnames'
 import { ContentState, convertToRaw } from 'draft-js'
@@ -15,7 +15,9 @@ import React, {
 import { Helmet } from 'react-helmet'
 import { useParams } from 'react-router'
 
+import useLatestRefEffect from '../../hooks/useLatestRefEffect'
 import useTopBarLoading from '../../hooks/useTopBarLoading'
+import { notificationState } from '../../notification'
 import BackButton from '../BackButton'
 import DeleteModelButton from '../DeleteModelButton'
 import EditFieldsDialog from '../EditFieldsDialog'
@@ -94,7 +96,7 @@ const TemplateDetails: React.FC<TemplateDetailsProps> = ({
   draftContent,
   fields,
 }) => {
-  const [updateTemplateContent, { loading }] = useMutation<
+  const [updateTemplateContent, { loading, error }] = useMutation<
     UpdateTemplateFrontContentMutation,
     UpdateTemplateFrontContentMutationVariables
   >(mutation)
@@ -120,19 +122,20 @@ const TemplateDetails: React.FC<TemplateDetailsProps> = ({
   )
 
   const [saved, setSaved] = useState(false)
-  const prevLoadingRef = useRef(loading)
 
-  useEffect(() => {
-    if (prevLoadingRef.current === loading || loading) {
+  useLatestRefEffect(loading, () => {
+    if (loading) {
       return
     }
 
-    setSaved(true)
-  }, [loading])
-
-  useEffect(() => {
-    prevLoadingRef.current = loading
-  }, [loading])
+    if (error) {
+      notificationState.addNotification({
+        message: t`An error has ocurred when saving the template`,
+      })
+    } else {
+      setSaved(true)
+    }
+  })
 
   useEffect(() => {
     if (!saved) {
@@ -166,7 +169,7 @@ const TemplateDetails: React.FC<TemplateDetailsProps> = ({
             }
           )}
         >
-          <DoneIcon className="text-green-1 mr-2 text-base" />
+          <DoneIcon className="text-green-1 mr-2 w-4 h-4" />
           <Trans>Changes saved successfully</Trans>
         </Body2>
       </div>
