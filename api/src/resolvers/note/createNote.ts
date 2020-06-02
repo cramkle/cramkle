@@ -1,7 +1,13 @@
 import { GraphQLID, GraphQLList, GraphQLNonNull } from 'graphql'
 import { fromGlobalId, mutationWithClientMutationId } from 'graphql-relay'
 
-import { DeckModel, ModelModel, NoteModel, TemplateModel } from '../../mongo'
+import {
+  DeckModel,
+  FieldModel,
+  ModelModel,
+  NoteModel,
+  TemplateModel,
+} from '../../mongo'
 import { NoteType } from '../deck/types'
 import { FieldValueInput } from '../fieldValue/types'
 
@@ -43,18 +49,28 @@ export const createNote = mutationWithClientMutationId({
       throw new Error('Model or deck not found')
     }
 
+    const modelFields = await FieldModel.find({ modelId: model._id })
+
     const note = await NoteModel.create({
       modelId,
       deckId,
       ownerId: user!._id,
-      values: fieldValues.map((fieldValue) => {
-        const { id: fieldId } = fromGlobalId(fieldValue.field.id)
+      values: fieldValues
+        .map((fieldValue) => {
+          const { id: fieldId } = fromGlobalId(fieldValue.field.id)
 
-        return {
-          data: fieldValue.data,
-          fieldId,
-        }
-      }),
+          return {
+            data: fieldValue.data,
+            fieldId,
+          }
+        })
+        .filter((fieldValue) => {
+          return (
+            modelFields.find(
+              (field) => field._id.toString() === fieldValue.fieldId
+            ) !== undefined
+          )
+        }),
     })
 
     const modelTemplates = await TemplateModel.find({ modelId: model._id })
