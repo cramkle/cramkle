@@ -51,8 +51,10 @@ jobs:
         run: |
           yarn --cwd app compile
           yarn --cwd app test
+        env:
+          CI: true
       - name: Test API
-          yarn --cwd api test
+        run: yarn --cwd api test
         env:
           CI: true
 
