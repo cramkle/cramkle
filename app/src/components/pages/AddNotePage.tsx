@@ -101,6 +101,10 @@ const AddNotePage: React.FC = () => {
     return models.find((model) => model.id === selectedModelId)
   }, [models, selectedModelId])
 
+  useEffect(() => {
+    setFieldValueMap({})
+  }, [selectedModel])
+
   useTopBarLoading(loading)
 
   const handleSubmit = useCallback(async () => {
