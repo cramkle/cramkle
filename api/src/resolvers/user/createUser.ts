@@ -41,6 +41,6 @@ export const createUser = mutationWithClientMutationId({
 
     await user?.hashifyAndSave()
 
-    return user
+    return { user }
   },
 })

@@ -9,7 +9,8 @@
     "build": "tsc",
     "lint": "tsc --noEmit --pretty",
     "start": "node dist/index.js",
-    "dev": "tsc-watch --onSuccess \"node ./dist/index.js\""
+    "dev": "tsc-watch --onSuccess \"node ./dist/index.js\"",
+    "test": "jest"
   },
   "dependencies": {
     "bcrypt": "^3.0.8",
@@ -35,6 +36,10 @@
     "shortid": "^2.2.13"
   },
   "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
+    "@babel/preset-typescript": "^7.10.1",
+    "@shelf/jest-mongodb": "^1.1.5",
     "@types/bcrypt": "^3.0.0",
     "@types/body-parser": "^1.19.0",
     "@types/connect-redis": "^0.0.13",
@@ -45,6 +50,7 @@
     "@types/graphql-relay": "^0.6.0",
     "@types/graphql-type-json": "^0.3.0",
     "@types/helmet": "^0.0.45",
+    "@types/jest": "^25.2.3",
     "@types/mongodb": "^3.3.16",
     "@types/mongoose": "^5.7.1",
     "@types/morgan": "^1.7.36",
@@ -52,6 +58,8 @@
     "@types/passport": "^1.0.2",
     "@types/passport-local": "^1.0.33",
     "@types/shortid": "^0.0.29",
+    "babel-jest": "^26.0.1",
+    "jest": "^26.0.1",
     "tsc-watch": "^4.1.0",
     "typescript": "^3.8.3"
   }
