@@ -18,11 +18,7 @@ export const parseContentStateWithGlobalId = (
                 ...value,
                 data: {
                   ...data,
-                  id: fromGlobalId(data.name.id).id,
-                  name: {
-                    ...data.name,
-                    id: fromGlobalId(data.name.id).id,
-                  },
+                  id: fromGlobalId(data.id).id,
                 },
               },
             ]
@@ -49,11 +45,7 @@ export const encodeEntityMapWithGlobalId = (
               ...value,
               data: {
                 ...data,
-                id: toGlobalId('Field', data.name.id),
-                name: {
-                  ...data.name,
-                  id: toGlobalId('Field', data.name.id),
-                },
+                id: toGlobalId('Field', data.id),
               },
             },
           ]
