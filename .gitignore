@@ -123,6 +123,7 @@ tags
 # End of https://www.gitignore.io/api/vim,node,macos
 
 build
-dist
 .dist
-app/src/_tailwind.global.css
+src/_tailwind.global.css
+src/locales/_build/
+src/locales/**/*.js

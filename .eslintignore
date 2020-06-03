@@ -1,4 +1,3 @@
 node_modules
-api/dist
-app/.dist
-app/src/locales
+.dist
+src/locales
