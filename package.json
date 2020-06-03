@@ -1,7 +1,7 @@
 {
-  "name": "@cramkle/app",
+  "name": "@cramkle/cramkle",
   "version": "0.4.9",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "release": "release-it",
