@@ -15,14 +15,8 @@ start the development server, run the following commands
 > You need to have yarn installed to run this project
 
 ```sh
-yarn --cwd api
-yarn --cwd app
-
-# run the API
-yarn --cwd api dev
-
-# run the app
-yarn --cwd app dev
+yarn
+yarn dev
 ```
 
 ## Adding and updating translations

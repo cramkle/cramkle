@@ -18,18 +18,14 @@ jobs:
       with:
         node-version: 12.x
     - name: Install dependencies
-      run: |
-        yarn
-        yarn --cwd api
-        yarn --cwd app
+      run: yarn
     - name: Messages compilation
-      run: yarn --cwd app compile
+      run: yarn compile
     - name: Lint
-      run: yarn lint
-      env:
-        CI: true
-    - name: Lint CSS
-      run: yarn lint-css
+      run: |
+        yarn lint
+        yarn lint:ts
+        yarn lint:css
       env:
         CI: true
 
@@ -43,18 +39,11 @@ jobs:
         with:
           node-version: 12.x
       - name: Install dependencies
-        run: |
-          yarn
-          yarn --cwd api
-          yarn --cwd app
+        run: yarn
       - name: Test App
         run: |
-          yarn --cwd app compile
-          yarn --cwd app test
-        env:
-          CI: true
-      - name: Test API
-        run: yarn --cwd api test
+          yarn compile
+          yarn test
         env:
           CI: true
 
@@ -68,12 +57,8 @@ jobs:
       with:
         node-version: 12.x
     - name: Install dependencies
-      run: |
-        yarn --cwd api
-        yarn --cwd app
+      run: yarn
     - name: Build
-      run: |
-        yarn --cwd api build
-        yarn --cwd app build
+      run: yarn build
       env:
         CI: true
