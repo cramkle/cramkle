@@ -53,13 +53,12 @@ const ComponentWithUseLingui = () => {
 }
 ```
 
-After adding the macro to the component like in the example above, you need to run `yarn extract`
-in the app folder, so lingui can extract those texts into the PO files (under `app/src/locales/`).
-Then, edit the translation in the corresponding files and run `yarn compile` (again, in the app folder),
-and that's it. You can see more info and other examples on the [Lingui docs](https://lingui.js.org/).
+After adding the macro to the component like in the example above, you need to run `yarn extract` so lingui
+can extract those texts into the PO files (under `./src/locales/`). Then, edit the translation in the corresponding
+files and run `yarn compile` and that's it. You can see more info and other examples on the [Lingui docs](https://lingui.js.org/).
 
 ## CSS and Tailwind
 
 We use [Tailwind](https://tailwindcss.com) to style our components. So, everytime you need to add
 something in the tailwind configuration file, you will need to re-build the tailwind CSS, and you
-can do so with the `yarn build-tailwind` command inside the app folder.
+can do so with the `yarn build-tailwind` command.
