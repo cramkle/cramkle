@@ -1,8 +1,7 @@
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useMemo } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 
 import { PageArgs } from '../components/Pagination'
-import useLatestRefEffect from './useLatestRefEffect'
 
 type PaginationState = PageArgs
 
@@ -14,40 +13,36 @@ const usePaginationParams = () => {
     location.search,
   ])
 
-  const [paginationParams, setPaginationParams] = useState<PaginationState>(
-    () => {
-      let page = 1
-      let size = 10
+  const paginationParams = useMemo<PaginationState>(() => {
+    let page = 1
+    let size = 10
 
-      if (queryParams.get('page')) {
-        page = parseInt(queryParams.get('page'), 10)
-      }
-
-      if (queryParams.get('size')) {
-        size = parseInt(queryParams.get('size'), 10)
-      }
-
-      return {
-        page,
-        size,
-      }
+    if (queryParams.get('page')) {
+      page = parseInt(queryParams.get('page'), 10)
     }
-  )
 
-  useLatestRefEffect(paginationParams, (latestParams) => {
-    const updatedQueryParams = new URLSearchParams(queryParams)
+    if (queryParams.get('size')) {
+      size = parseInt(queryParams.get('size'), 10)
+    }
 
-    updatedQueryParams.set('page', latestParams.page.toString())
-    updatedQueryParams.set('size', latestParams.size.toString())
-
-    history.push(location.pathname + '?' + updatedQueryParams.toString())
-  })
+    return {
+      page,
+      size,
+    }
+  }, [queryParams])
 
   const updatePaginationParams = useCallback(
     (newParams: Partial<PaginationState>) => {
-      setPaginationParams((prevParams) => ({ ...prevParams, ...newParams }))
+      const updatedParams = { ...paginationParams, ...newParams }
+
+      const updatedQueryParams = new URLSearchParams(queryParams)
+
+      updatedQueryParams.set('page', updatedParams.page.toString())
+      updatedQueryParams.set('size', updatedParams.size.toString())
+
+      history.push(location.pathname + '?' + updatedQueryParams.toString())
     },
-    []
+    [queryParams, paginationParams, history, location.pathname]
   )
 
   return {
