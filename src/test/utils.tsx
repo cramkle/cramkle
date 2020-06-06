@@ -1,7 +1,7 @@
 import { MockedProvider, MockedResponse } from '@apollo/react-testing'
 import { setupI18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
-import { render as rtlRender } from '@testing-library/react'
+import { act, fireEvent, render as rtlRender } from '@testing-library/react'
 import { MemoryHistory, createMemoryHistory } from 'history'
 import { en as enPlural } from 'make-plural/plurals'
 import React, { ReactElement } from 'react'
@@ -35,4 +35,23 @@ export function render(ui: ReactElement, options?: RenderOptions) {
   )
 
   return { ...utils, history }
+}
+
+export function fireCheckboxClick(element: Document | Node | Element | Window) {
+  let resolveRaf = () => {}
+
+  const rafPromise = new Promise((resolve) => {
+    resolveRaf = resolve
+  })
+
+  const raf = jest.fn().mockImplementation((cb) => rafPromise.then(() => cb()))
+
+  jest.spyOn(window, 'requestAnimationFrame').mockImplementation(raf)
+
+  fireEvent.click(element)
+
+  act(() => {
+    resolveRaf()
+  })
+  ;(window.requestAnimationFrame as any).mockRestore()
 }
