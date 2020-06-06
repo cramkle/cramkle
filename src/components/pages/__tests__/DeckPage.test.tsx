@@ -145,5 +145,9 @@ describe('DeckPage', () => {
     await waitFor(() => expect(queryByText('note 1')).toBeNull())
 
     await waitFor(() => expect(queryByText('note 2')).toBeNull())
+
+    history.push('/d/deck-1?page=2&size=1')
+
+    await waitFor(() => expect(getByText('note 2')).toBeInTheDocument())
   })
 })
