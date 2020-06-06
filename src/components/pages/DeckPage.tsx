@@ -26,7 +26,7 @@ import {
 } from '../views/Typography'
 import { DeckQuery, DeckQueryVariables } from './__generated__/DeckQuery'
 
-const DECK_QUERY = gql`
+export const DECK_QUERY = gql`
   query DeckQuery($slug: String!, $page: Int!, $size: Int!, $search: String) {
     deck(slug: $slug) {
       id
@@ -106,7 +106,7 @@ const DeckPage: React.FunctionComponent = () => {
     onPaginationChange,
   } = usePaginationParams()
 
-  const [searchQuery, setSearchQuery] = useState(() => {
+  const [searchInputValue, setSearchInputValue] = useState(() => {
     const searchParams = new URLSearchParams(location.search)
 
     if (searchParams.has('search')) {
@@ -116,61 +116,67 @@ const DeckPage: React.FunctionComponent = () => {
     return ''
   })
 
-  const { data, loading, refetch } = useQuery<DeckQuery, DeckQueryVariables>(
+  const [searchVariable, setSearchVariable] = useState(searchInputValue)
+
+  const { data, loading } = useQuery<DeckQuery, DeckQueryVariables>(
     DECK_QUERY,
     {
-      variables: { slug, search: searchQuery, ...paginationParams },
+      variables: { slug, search: searchVariable, ...paginationParams },
     }
   )
 
   const searchDebounceRef = useRef<NodeJS.Timeout | undefined>(undefined)
 
-  const handleSearchSubmit = (search = searchQuery) => {
-    if (searchDebounceRef.current) {
-      clearTimeout(searchDebounceRef.current)
+  const handleSearchSubmit = useCallback(
+    (search = searchInputValue, skipHistoryPush = false) => {
+      if (searchDebounceRef.current) {
+        clearTimeout(searchDebounceRef.current)
+      }
+
+      const searchParams = new URLSearchParams(location.search)
+
+      searchParams.set('search', search)
+
+      if (!skipHistoryPush) {
+        history.push(location.pathname + '?' + searchParams.toString())
+      }
+
+      setSearchVariable(search)
+    },
+    [history, location.pathname, location.search, searchInputValue]
+  )
+
+  useLatestRefEffect(location.search, (latestLocationSearch) => {
+    const searchParams = new URLSearchParams(latestLocationSearch)
+
+    if (!searchParams.has('search')) {
+      return
     }
 
-    const searchParams = new URLSearchParams(location.search)
+    const search = searchParams.get('search')
 
-    searchParams.set('search', search)
-
-    history.push(location.pathname + '?' + searchParams.toString())
-
-    refetch({
-      slug,
-      ...paginationParams,
-      search,
-    })
-  }
-
-  useLatestRefEffect(searchQuery, (latestSearchQuery) => {
-    if (searchDebounceRef.current) {
-      clearTimeout(searchDebounceRef.current)
-    }
-
-    searchDebounceRef.current = setTimeout(() => {
-      handleSearchSubmit(latestSearchQuery)
-    }, 500)
+    setSearchInputValue(search)
+    handleSearchSubmit(search, true)
   })
 
   const handleSearchChange: React.ChangeEventHandler<HTMLInputElement> = useCallback(
     (evt) => {
-      setSearchQuery(evt.target.value)
+      const search = evt.target.value
+      setSearchInputValue(search)
+      if (searchDebounceRef.current) {
+        clearTimeout(searchDebounceRef.current)
+      }
+
+      searchDebounceRef.current = setTimeout(() => {
+        handleSearchSubmit(search)
+      }, 500)
     },
-    []
+    [handleSearchSubmit]
   )
 
   useTopBarLoading(loading)
 
-  useLatestRefEffect(paginationParams, (updatedPaginationParams) => {
-    refetch({
-      ...updatedPaginationParams,
-      slug,
-      search: searchQuery,
-    })
-  })
-
-  if (loading && !data) {
+  if (!data) {
     return null
   }
 
@@ -222,7 +228,7 @@ const DeckPage: React.FunctionComponent = () => {
             deckSlug={deck.slug}
             onPaginationChange={onPaginationChange}
             pageSize={pageSize}
-            searchQuery={searchQuery}
+            searchQuery={searchInputValue}
             onSearchChange={handleSearchChange}
             onSearchSubmit={handleSearchSubmit}
           />
