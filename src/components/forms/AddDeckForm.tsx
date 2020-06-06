@@ -66,7 +66,13 @@ const AddDeckForm: React.FunctionComponent<Props> = ({ open, onClose }) => {
           const mutationResult = await mutate({
             variables: values,
             update: (proxy, { data: { createDeck } }) => {
-              const data = proxy.readQuery<DecksQuery>({ query: DECKS_QUERY })
+              let data = null
+
+              try {
+                data = proxy.readQuery<DecksQuery>({ query: DECKS_QUERY })
+              } catch {
+                data = { decks: [] }
+              }
 
               data.decks.push(createDeck.deck)
 
