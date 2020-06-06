@@ -1,7 +1,7 @@
 import { fireEvent, waitFor } from '@testing-library/react'
 import React from 'react'
 
-import { render } from '../../../testUtils'
+import { render } from '../../../test/utils'
 import LoginForm from '../LoginForm'
 
 describe('<LoginForm />', () => {

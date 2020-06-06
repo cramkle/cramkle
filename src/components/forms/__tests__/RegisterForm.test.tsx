@@ -1,7 +1,7 @@
 import { fireEvent, waitFor } from '@testing-library/react'
 import React from 'react'
 
-import { render } from '../../../testUtils'
+import { render } from '../../../test/utils'
 import RegisterForm from '../RegisterForm'
 
 describe('<RegisterForm />', () => {
@@ -26,6 +26,7 @@ describe('<RegisterForm />', () => {
     fireEvent.change(usernameInput, { target: { value: 'user' } })
     fireEvent.change(emailInput, { target: { value: 'user@email.com' } })
     fireEvent.change(passwordInput, { target: { value: 'hunter2' } })
+
     fireEvent.click(agreementCheckbox)
 
     await waitFor(() => expect(submitButton).toBeEnabled())

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { render } from '../../testUtils'
+import { render } from '../../test/utils'
 import DeckCard from '../DeckCard'
 
 describe('<DeckCard />', () => {

@@ -2,7 +2,7 @@ import { MockedResponse } from '@apollo/react-testing'
 import { fireEvent, waitFor } from '@testing-library/react'
 import React from 'react'
 
-import { render } from '../../../testUtils'
+import { render } from '../../../test/utils'
 import AddDeckForm, { CREATE_DECK_MUTATION } from '../AddDeckForm'
 
 const deckMock = {
@@ -74,8 +74,6 @@ describe('<AddDeckForm />', () => {
 
     fireEvent.submit(titleInput)
 
-    await waitFor(() => {
-      expect(closeCallback).toHaveBeenCalledTimes(1)
-    })
+    await waitFor(() => expect(closeCallback).toHaveBeenCalledTimes(1))
   })
 })
