@@ -73,8 +73,6 @@ registerRoute(
   })
 )
 
-if (process.env.NODE_ENV === 'development') {
-  registerRoute(/(__webpack_hmr|hot-update)/, new NetworkOnly())
-} else {
+if (process.env.NODE_ENV !== 'development') {
   registerRoute(/^https:\/\/(www\.)?cramkle\.com/, new NetworkFirst())
 }
