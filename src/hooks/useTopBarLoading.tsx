@@ -7,7 +7,7 @@ import {
   SetLoadingMutationVariables,
 } from './__generated__/SetLoadingMutation'
 
-const LOADING_MUTATION = gql`
+export const LOADING_MUTATION = gql`
   mutation SetLoadingMutation($loading: Boolean) {
     setTopBarLoading(loading: $loading) @client
   }
@@ -19,6 +19,10 @@ const useTopBarLoading = (loading: boolean) => {
   )
 
   useEffect(() => {
+    if (process.env.NODE_ENV === 'test') {
+      return
+    }
+
     mutate({ variables: { loading } })
   }, [loading, mutate])
 }
