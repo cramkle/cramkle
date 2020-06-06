@@ -149,11 +149,7 @@ const DeckPage: React.FunctionComponent = () => {
   useLatestRefEffect(location.search, (latestLocationSearch) => {
     const searchParams = new URLSearchParams(latestLocationSearch)
 
-    if (!searchParams.has('search')) {
-      return
-    }
-
-    const search = searchParams.get('search')
+    const search = searchParams.has('search') ? searchParams.get('search') : ''
 
     setSearchInputValue(search)
     handleSearchSubmit(search, true)

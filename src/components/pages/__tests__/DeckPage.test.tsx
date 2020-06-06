@@ -146,4 +146,51 @@ describe('DeckPage', () => {
 
     await waitFor(() => expect(queryByText('note 2')).toBeNull())
   })
+
+  it('should empty search when navigating to page without search query', async () => {
+    const history = createMemoryHistory()
+
+    history.push('/d/deck-1?page=1&size=1&search=my search')
+
+    const { getByText, queryByText } = render(
+      <Route path="/d/:slug">
+        <DeckPage />
+      </Route>,
+      {
+        history,
+        mocks: [
+          {
+            request: {
+              query: DECK_QUERY,
+              variables: {
+                slug: 'deck-1',
+                page: 1,
+                size: 1,
+                search: 'my search',
+              },
+            },
+            result: { data: deckQueryResultForPage({ page: 1, empty: true }) },
+          },
+          {
+            request: {
+              query: DECK_QUERY,
+              variables: {
+                slug: 'deck-1',
+                page: 1,
+                size: 1,
+                search: '',
+              },
+            },
+            result: { data: deckQueryResultForPage({ page: 1 }) },
+          },
+        ],
+      }
+    )
+
+    await waitFor(() => expect(queryByText('note 1')).not.toBeInTheDocument())
+
+    history.push('/d/deck-1?page=1&size=1')
+
+    await waitFor(() => expect(getByText('note 1')).toBeInTheDocument())
+  })
 })
