@@ -58,7 +58,7 @@ const Shell: React.FunctionComponent = ({ children }) => {
 
   const loader = (
     <LinearProgress
-      className="absolute top-0 left-0 right-0 z-20"
+      className="absolute top-100 left-0 right-0 z-20"
       indeterminate
     />
   )
@@ -101,11 +101,11 @@ const Shell: React.FunctionComponent = ({ children }) => {
             </Menu>
           </HeaderSection>
         </HeaderContent>
+        {loading && loader}
       </Header>
       <main className="flex-1 overflow-auto w-full relative bg-background">
         <NoSSR fallback={loader}>
           <Suspense fallback={loader}>
-            {loading && loader}
             {children}
             <div id="portal-anchor" />
           </Suspense>
