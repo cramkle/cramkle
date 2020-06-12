@@ -62,3 +62,24 @@ jobs:
       run: yarn build
       env:
         CI: true
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [test, build]
+
+    if: startsWith(github.ref, 'refs/tags/v')
+
+    steps:
+    - uses: azure/docker-login@v1
+      with:
+        login-server: ${{ secrets.ACR_REGISTRY_SERVER }}
+        username: ${{ secrets.ACR_REGISTRY_USERNAME }}
+        password: ${{ secrets.ACR_REGISTRY_PASSWORD }}
+    - uses: actions/checkout@v2
+    - name: Get the version
+      id: get_version
+      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\/v/}
+    - name: Deploy image
+      run: |
+        docker build -t ${{ secrets.ACR_REGISTRY_SERVER }}/cramkle/cramkle:${{ steps.get_version.outputs.VERSION }} .
+        docker push ${{ secrets.ACR_REGISTRY_SERVER }}/cramkle/cramkle:${{ steps.get_version.outputs.VERSION }}
