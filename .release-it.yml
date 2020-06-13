@@ -1,11 +1,10 @@
-hooks:
-  after:bump: yarn update-changelog
-  after:release:
-    - 'docker build -t gcr.io/cramkle/cramkle-app:${version} .'
-    - 'docker push gcr.io/cramkle/cramkle-app:${version}'
 git:
   tagName: 'v${version}'
   tagAnnotation: 'Release v${version}'
   commitMessage: 'Release v${version}'
+  pushArgs: ['--follow-tags', '--force']
 npm:
   publish: false
+plugins:
+  @release-it/keep-a-changelog:
+    filename: 'CHANGELOG.md'
