@@ -5,7 +5,6 @@
   "private": true,
   "scripts": {
     "release": "release-it",
-    "update-changelog": "node ./scripts/update-changelog.js",
     "dev": "rs dev",
     "start": "rs start",
     "build": "rs build",
