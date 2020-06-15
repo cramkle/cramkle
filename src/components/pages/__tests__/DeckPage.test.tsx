@@ -38,7 +38,6 @@ const deckQueryResultForPage = ({
                   model: {
                     __typename: 'Model',
                     name: 'Model',
-                    primaryField: null,
                   },
                   flashCards: [],
                   deck: {
