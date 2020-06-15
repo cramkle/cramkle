@@ -9,24 +9,12 @@ import { FlashCardStatus } from "./../../../globalTypes";
 // GraphQL query operation: DeckQuery
 // ====================================================
 
-export interface DeckQuery_deck_notes_edges_node_model_primaryField {
-  __typename: "Field";
-  /**
-   * The ID of an object
-   */
-  id: string;
-}
-
 export interface DeckQuery_deck_notes_edges_node_model {
   __typename: "Model";
   /**
    * Name of this card model (e.g. "Basic", "Basic with Reversed")
    */
   name: string | null;
-  /**
-   * Primary field that should represent each individual note of this model.
-   */
-  primaryField: DeckQuery_deck_notes_edges_node_model_primaryField | null;
 }
 
 export interface DeckQuery_deck_notes_edges_node_flashCards_template {

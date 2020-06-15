@@ -44,9 +44,6 @@ export const DECK_QUERY = gql`
             text
             model {
               name
-              primaryField {
-                id
-              }
             }
             flashCards {
               id
