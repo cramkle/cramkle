@@ -189,7 +189,7 @@ export interface DeckQuery_deck {
    */
   totalNotes: number;
   /**
-   * Number of flashCards in this deck
+   * Number of flashcards in this deck
    */
   totalFlashcards: number;
   /**

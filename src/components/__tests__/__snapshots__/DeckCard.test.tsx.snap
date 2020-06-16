@@ -16,6 +16,17 @@ exports[`<DeckCard /> should match snapshot 1`] = `
         日本語げんき
       </h3>
       
+      <p
+        class="flex items-center text-secondary text-sm"
+      >
+        2,000 notes
+        <span
+          class="inline-block mx-1"
+        >
+          ·
+        </span>
+        3,200 flashcards
+      </p>
     </div>
   </div>
 </div>

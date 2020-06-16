@@ -10,9 +10,11 @@ describe('<DeckCard />', () => {
         deck={{
           __typename: 'Deck',
           id: '123',
+          slug: 'nihongo-genki',
           title: '日本語げんき',
           description: '',
-          slug: 'nihongo-genki',
+          totalNotes: 2000,
+          totalFlashcards: 3200,
           studySessionDetails: {
             __typename: 'StudySessionDetails',
             newCount: 0,

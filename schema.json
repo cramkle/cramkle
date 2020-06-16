@@ -748,7 +748,7 @@
           },
           {
             "name": "totalFlashcards",
-            "description": "Number of flashCards in this deck",
+            "description": "Number of flashcards in this deck",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1292,6 +1292,38 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "totalNotes",
+            "description": "Total number of notes associated with this model",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "totalFlashcards",
+            "description": "Total number of flashcards associated with this model",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -1432,9 +1464,13 @@
             "description": "Associated model",
             "args": [],
             "type": {
-              "kind": "OBJECT",
-              "name": "Model",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Model",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null

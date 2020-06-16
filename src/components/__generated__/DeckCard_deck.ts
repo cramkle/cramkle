@@ -33,6 +33,14 @@ export interface DeckCard_deck {
    */
   description: string | null;
   /**
+   * Number of notes in this deck
+   */
+  totalNotes: number;
+  /**
+   * Number of flashcards in this deck
+   */
+  totalFlashcards: number;
+  /**
    * Details of current study session
    */
   studySessionDetails: DeckCard_deck_studySessionDetails;

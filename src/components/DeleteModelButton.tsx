@@ -21,7 +21,7 @@ import {
 import Button from './views/Button'
 
 interface Props {
-  model: { id: string; templates: {}[]; notes: {}[] }
+  model: { id: string; templates: {}[]; totalNotes: number }
 }
 
 const DELETE_MODEL_MUTATION = gql`
@@ -121,7 +121,7 @@ const DeleteModelButton: React.FunctionComponent<Props> = ({ model }) => {
           <Trans>
             Are you sure you want to delete this model?{' '}
             {i18n._(
-              plural(model.notes.length, {
+              plural(model.totalNotes, {
                 one: "There's # note",
                 other: "There're # notes",
               })
