@@ -1,6 +1,6 @@
 # Cramkle
 
-![CI](https://github.com/cramkle/cramkle/workflows/CI/badge.svg?branch=master)
+![CI](https://github.com/cramkle/cramkle/workflows/CI/badge.svg?branch=main)
 
 Cramkle is a *web-based* flashcard studying app that helps you
 organize your study using a [spaced repetition](https://en.wikipedia.org/wiki/Spaced_repetition)
