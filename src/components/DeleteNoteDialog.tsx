@@ -1,6 +1,5 @@
 import { useMutation } from '@apollo/react-hooks'
-import { Trans, plural } from '@lingui/macro'
-import { useLingui } from '@lingui/react'
+import { Plural, Trans } from '@lingui/macro'
 import gql from 'graphql-tag'
 import React, { useRef } from 'react'
 
@@ -32,7 +31,6 @@ interface Props {
 }
 
 const DeleteNoteDialog: React.FC<Props> = ({ note, onClose }) => {
-  const { i18n } = useLingui()
   const [deleteNote, { loading }] = useMutation<
     DeleteNoteMutation,
     DeleteNoteMutationVariables
@@ -58,12 +56,11 @@ const DeleteNoteDialog: React.FC<Props> = ({ note, onClose }) => {
       <AlertDialogDescription>
         <Trans>
           Are you sure you want to delete this note?{' '}
-          {i18n._(
-            plural(note.flashCards.length, {
-              one: 'It contains one flashcard',
-              other: 'It contains # flashcards',
-            })
-          )}
+          <Plural
+            value={note.flashCards.length}
+            one="It contains one flashcard"
+            other="It contains # flashcards"
+          />
         </Trans>
       </AlertDialogDescription>
       <div className="flex justify-end items-center">

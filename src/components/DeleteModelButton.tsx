@@ -1,6 +1,5 @@
 import { useMutation } from '@apollo/react-hooks'
-import { Trans, plural, t } from '@lingui/macro'
-import { useLingui } from '@lingui/react'
+import { Plural, Trans, t } from '@lingui/macro'
 import gql from 'graphql-tag'
 import React, { useRef, useState } from 'react'
 import { useHistory } from 'react-router'
@@ -40,8 +39,6 @@ const DeleteModelButton: React.FunctionComponent<Props> = ({ model }) => {
     DeleteModelMutation,
     DeleteModelMutationVariables
   >(DELETE_MODEL_MUTATION)
-
-  const { i18n } = useLingui()
 
   const [dialogOpen, setDialogOpen] = useState(false)
   const [deleting, setDeleting] = useState(false)
@@ -120,19 +117,17 @@ const DeleteModelButton: React.FunctionComponent<Props> = ({ model }) => {
         <AlertDialogDescription>
           <Trans>
             Are you sure you want to delete this model?{' '}
-            {i18n._(
-              plural(model.totalNotes, {
-                one: "There's # note",
-                other: "There're # notes",
-              })
-            )}{' '}
+            <Plural
+              value={model.totalNotes}
+              one="There's # note"
+              other="There're # notes"
+            />{' '}
             and{' '}
-            {i18n._(
-              plural(model.templates.length, {
-                one: '# template',
-                other: '# templates',
-              })
-            )}{' '}
+            <Plural
+              value={model.templates.length}
+              one="# template"
+              other="# templates"
+            />{' '}
             associated with it.
           </Trans>
         </AlertDialogDescription>
