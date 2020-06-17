@@ -45,12 +45,8 @@ export const MODEL_QUERY = gql`
           ...DraftContent
         }
       }
-      notes {
-        id
-        flashCards {
-          id
-        }
-      }
+      totalNotes
+      totalFlashcards
     }
   }
 `

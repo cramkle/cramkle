@@ -22,7 +22,6 @@ const DECKS_TO_STUDY_QUERY = gql`
   query DecksToStudy {
     decks(studyOnly: true) {
       id
-      slug
       ...DeckCard_deck
     }
   }

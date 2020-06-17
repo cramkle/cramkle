@@ -11,6 +11,8 @@ const deckMock = {
   slug: 'id',
   title: 'my title',
   description: '',
+  totalNotes: 0,
+  totalFlashcards: 0,
   studySessionDetails: {
     __typename: 'StudySessionDetails',
     newCount: 0,

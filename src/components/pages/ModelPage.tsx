@@ -233,11 +233,6 @@ const ModelPage: React.FC = () => {
 
   const { model } = data
 
-  const totalFlashCards = model.notes.reduce(
-    (total, note) => total + note.flashCards.length,
-    0
-  )
-
   return (
     <>
       <Helmet title={model.name} />
@@ -255,14 +250,14 @@ const ModelPage: React.FC = () => {
           <Headline2 className="mt-4">{model.name}</Headline2>
           <Body2 className="mt-1">
             {i18n._(
-              plural(model.notes.length, {
+              plural(model.totalNotes, {
                 one: '# note',
                 other: '# notes',
               })
             )}{' '}
             <span className="inline-block mx-1">&middot;</span>{' '}
             {i18n._(
-              plural(totalFlashCards, {
+              plural(model.totalFlashcards, {
                 one: '# flashcard',
                 other: '# flashcards',
               })

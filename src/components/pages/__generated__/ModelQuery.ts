@@ -109,26 +109,6 @@ export interface ModelQuery_model_templates {
   backSide: ModelQuery_model_templates_backSide | null;
 }
 
-export interface ModelQuery_model_notes_flashCards {
-  __typename: "FlashCard";
-  /**
-   * The ID of an object
-   */
-  id: string;
-}
-
-export interface ModelQuery_model_notes {
-  __typename: "Note";
-  /**
-   * The ID of an object
-   */
-  id: string;
-  /**
-   * Generated flashcards
-   */
-  flashCards: ModelQuery_model_notes_flashCards[];
-}
-
 export interface ModelQuery_model {
   __typename: "Model";
   /**
@@ -148,9 +128,13 @@ export interface ModelQuery_model {
    */
   templates: ModelQuery_model_templates[];
   /**
-   * Notes associated with this model
+   * Total number of notes associated with this model
    */
-  notes: ModelQuery_model_notes[];
+  totalNotes: number;
+  /**
+   * Total number of flashcards associated with this model
+   */
+  totalFlashcards: number;
 }
 
 export interface ModelQuery {

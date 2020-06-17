@@ -33,6 +33,14 @@ export interface CreateDeckMutation_createDeck_deck {
    */
   description: string | null;
   /**
+   * Number of notes in this deck
+   */
+  totalNotes: number;
+  /**
+   * Number of flashcards in this deck
+   */
+  totalFlashcards: number;
+  /**
    * Details of current study session
    */
   studySessionDetails: CreateDeckMutation_createDeck_deck_studySessionDetails;
