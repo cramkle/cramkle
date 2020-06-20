@@ -6,8 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [0.5.0] - 2020-06-12
+### Fixed
+- Model listbox in create notes page behind field value editor placeholder
+  if the user created at least 4 models.
+- Cursor style for homepage's sidebar list.
+- Performance issues in deck and models pages that had a lot of notes and
+  flashcards.
 
+## [0.5.0] - 2020-06-12
 ### Added
 - Generic error page.
 - Chips with quantity of fields and templates on model card.
