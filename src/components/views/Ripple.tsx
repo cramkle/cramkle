@@ -262,7 +262,7 @@ export const RippleComponent: React.RefForwardingComponent<
       focus: () => foundation?.handleFocus(),
       blur: () => foundation?.handleBlur(),
     }),
-    [foundation]
+    [foundation?.handleFocus, foundation?.handleBlur]
   )
 
   return (

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-const useLocalStorage = <T extends {}>(
+const useLocalStorage = <T>(
   key: string,
   value: T,
   forceInitial = false

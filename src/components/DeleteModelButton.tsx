@@ -20,7 +20,7 @@ import {
 import Button from './views/Button'
 
 interface Props {
-  model: { id: string; templates: {}[]; totalNotes: number }
+  model: { id: string; templates: unknown[]; totalNotes: number }
 }
 
 const DELETE_MODEL_MUTATION = gql`
