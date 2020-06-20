@@ -39,7 +39,7 @@ export const ListItem: React.FC<ListItemProps> = ({
       ref={ref}
       className={classnames(
         className,
-        'relative group z-10 flex items-center px-3 py-2 my-2 rounded overflow-hidden focus:text-action-primary hover:text-action-primary transition-colors ease-in-out duration-200'
+        'relative group z-10 flex items-center px-3 py-2 my-2 rounded overflow-hidden focus:text-action-primary hover:text-action-primary transition-colors ease-in-out duration-200 cursor-pointer'
       )}
       tabIndex={tabIndex}
       onKeyDown={onKeyDown}
