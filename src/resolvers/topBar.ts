@@ -1,11 +1,11 @@
 import { Resolvers } from 'apollo-client'
 
-const __NAME__ = 'TopBar'
+const topBarTypename = 'TopBar'
 
 export const initialState = {
   topBar: {
     loading: false,
-    __typename: __NAME__,
+    __typename: topBarTypename,
   },
 }
 
@@ -16,7 +16,7 @@ export const mutations: Resolvers['Mutation'] = {
     const data = {
       topBar: {
         loading,
-        __typename: __NAME__,
+        __typename: topBarTypename,
       },
     }
 

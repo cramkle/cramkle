@@ -43,7 +43,7 @@ const findRelativeParentElement = (
 const getStyleForSelectionRect = (
   selectionRect: ClientRect | null,
   offset: number
-): object => {
+) => {
   const parent = findRelativeParentElement(
     document.getElementById('portal-anchor')
   )

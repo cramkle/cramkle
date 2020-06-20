@@ -8,3 +8,4 @@ npm:
 plugins:
   @release-it/keep-a-changelog:
     filename: 'CHANGELOG.md'
+    keepUnreleased: true

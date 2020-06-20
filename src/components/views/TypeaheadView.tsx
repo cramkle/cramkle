@@ -3,8 +3,7 @@ import React from 'react'
 import { TaggableEntry } from '../editor/TaggableEntry'
 import TypeaheadViewItem from './TypeaheadViewItem'
 
-interface Props {
-  style?: object
+interface Props extends Pick<React.HTMLAttributes<HTMLDivElement>, 'style'> {
   highlightedEntry: TaggableEntry | null
   entries: TaggableEntry[]
   onSelect: (entry: TaggableEntry) => void

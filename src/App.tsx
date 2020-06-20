@@ -34,7 +34,7 @@ const SettingsPage = lazy(() => import('./components/pages/SettingsPage'))
 const StatisticsPage = lazy(() => import('./components/pages/StatisticsPage'))
 const StudyPage = lazy(() => import('./components/pages/StudyPage'))
 
-const App: React.FunctionComponent<{}> = () => {
+const App: React.FunctionComponent = () => {
   const { i18n } = useLingui()
   const { isMobile } = useHints()
 

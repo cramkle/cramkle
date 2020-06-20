@@ -24,7 +24,9 @@ export const Table: React.FC<TableProps> = ({
 
 type TableHeadProps = React.HTMLAttributes<HTMLTableSectionElement>
 
-const TableHeadContext = React.createContext<undefined | {}>(undefined)
+const TableHeadContext = React.createContext<
+  undefined | Record<string, unknown>
+>(undefined)
 
 export const TableHead: React.FC<TableHeadProps> = ({
   className = '',
