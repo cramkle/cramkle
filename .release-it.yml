@@ -6,6 +6,6 @@ git:
 npm:
   publish: false
 plugins:
-  @release-it/keep-a-changelog:
+  '@release-it/keep-a-changelog':
     filename: 'CHANGELOG.md'
     keepUnreleased: true
