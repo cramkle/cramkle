@@ -4,7 +4,7 @@ import React, { useCallback } from 'react'
 import { useHistory } from 'react-router'
 
 import { ModelsQuery_models } from './__generated__/ModelsQuery'
-import Card, { CardPrimaryContent } from './views/Card'
+import { Card, CardPressable } from './views/Card'
 import { Chip } from './views/Chip'
 import { Headline3 } from './views/Typography'
 
@@ -27,16 +27,18 @@ const ModelCard: React.FunctionComponent<Props & ModelsQuery_models> = ({
     [handleClick]
   )
 
+  const uniqueId = `model-${id}`
+
   return (
-    <Card outlined className={className}>
-      <CardPrimaryContent
+    <Card lean className={className}>
+      <CardPressable
         className="p-2"
-        tabIndex={0}
         role="article"
         onClick={handleClick}
         onKeyDown={handleKeyDown}
+        aria-describedby={`${uniqueId}-title`}
       >
-        <Headline3>{name}</Headline3>
+        <Headline3 id={`${uniqueId}-title`}>{name}</Headline3>
         {!!(templates.length || fields.length) && (
           <div className="flex">
             {!!templates.length && (
@@ -61,7 +63,7 @@ const ModelCard: React.FunctionComponent<Props & ModelsQuery_models> = ({
             )}
           </div>
         )}
-      </CardPrimaryContent>
+      </CardPressable>
     </Card>
   )
 }

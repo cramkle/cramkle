@@ -3,15 +3,17 @@
 exports[`<DeckCard /> should match snapshot 1`] = `
 <div>
   <div
-    class="mdc-card h-full mdc-card--outlined"
+    class="bg-surface text-on-surface rounded border border-gray-1 h-full"
   >
     <div
-      class="mdc-card__primary-action p-2 h-full"
+      aria-describedby="deck-123-title"
+      class="flex flex-col relative outline-none cursor-pointer p-2 h-full"
       role="article"
       tabindex="0"
     >
       <h3
         class="text-xl leading-normal font-medium"
+        id="deck-123-title"
       >
         日本語げんき
       </h3>
@@ -27,6 +29,9 @@ exports[`<DeckCard /> should match snapshot 1`] = `
         </span>
         3,200 flashcards
       </p>
+      <div
+        class="absolute z-1 top-0 left-0 right-0 bottom-0 bg-hover-overlay transition-opacity ease-in-out duration-200 opacity-0"
+      />
     </div>
   </div>
 </div>

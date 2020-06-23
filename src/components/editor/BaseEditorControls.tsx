@@ -20,7 +20,7 @@ import React, {
 } from 'react'
 import { TabController } from 'react-tab-controller'
 
-import Card, { CardActionButtons, CardActions } from '../views/Card'
+import { Card } from '../views/Card'
 import BlockStyleControls from './BlockStyleControls'
 import InlineStyleControls from './InlineStyleControls'
 
@@ -121,9 +121,9 @@ const BaseEditorControls: React.FC<Props> = ({
 
   return (
     <ctx.Provider value={contextValue}>
-      <Card outlined className={classnames(className, 'border-gray-1')}>
-        <CardActions className="border-b border-gray-1">
-          <CardActionButtons className="flex-col items-start">
+      <Card lean className={classnames(className, 'border-gray-1 p-0')}>
+        <div className="flex items-center p-2 border-b border-gray-1">
+          <div className="flex flex-col items-start">
             <TabController>
               <BlockStyleControls
                 editor={editor}
@@ -136,9 +136,9 @@ const BaseEditorControls: React.FC<Props> = ({
                 onToggle={handleStyleToggle}
               />
             </TabController>
-          </CardActionButtons>
-        </CardActions>
-        <div className="p-4">{children}</div>
+          </div>
+        </div>
+        <div>{children}</div>
       </Card>
     </ctx.Provider>
   )

@@ -11,6 +11,7 @@ import * as yup from 'yup'
 import { ReactComponent as Logo } from '../../assets/logo-white.svg'
 import { notificationState } from '../../notification'
 import Button from '../views/Button'
+import { Card } from '../views/Card'
 import CircularProgress from '../views/CircularProgress'
 import { HelperText, Input, Label } from '../views/Input'
 import { Body1, Headline2 } from '../views/Typography'
@@ -131,7 +132,7 @@ const ResetPasswordPage: React.FC = () => {
 
       <Logo className="w-16 mb-8" />
 
-      <div className="max-w-lg w-full bg-surface text-on-surface rounded px-4 py-6 border border-gray-1">
+      <Card className="max-w-lg w-full">
         <form onSubmit={handleSubmit}>
           <Headline2 className="ma-0 text-center">
             <Trans>Reset password</Trans>
@@ -197,7 +198,7 @@ const ResetPasswordPage: React.FC = () => {
             {loading ? <CircularProgress /> : <Trans>Reset Password</Trans>}
           </Button>
         </form>
-      </div>
+      </Card>
     </div>
   )
 }

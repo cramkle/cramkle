@@ -1,16 +1,14 @@
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import classNames from 'classnames'
 import { Formik } from 'formik'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { object, string } from 'yup'
 
 import Button from '../views/Button'
-import Card, { CardActionButtons, CardActions } from '../views/Card'
+import { Card } from '../views/Card'
 import { Headline2 } from '../views/Typography'
 import { TextInputField } from './Fields'
-import styles from './LoginForm.scss'
 
 interface LoginFormValues {
   username: string
@@ -63,49 +61,41 @@ const LoginForm: React.FunctionComponent = () => {
       }}
     >
       {({ isSubmitting, isValid, handleSubmit }) => (
-        <form
-          className={classNames(styles.loginForm, 'w-full')}
-          onSubmit={handleSubmit}
-        >
-          <Card outlined>
-            <div className="p-4 pb-0 text-on-surface">
-              <Headline2 className="text-center">
-                <Trans>Login</Trans>
-              </Headline2>
+        <form className="w-full max-w-md" onSubmit={handleSubmit}>
+          <Card>
+            <Headline2 className="text-center">
+              <Trans>Login</Trans>
+            </Headline2>
 
-              <TextInputField
-                className="w-full my-2"
-                id="username"
-                name="username"
-                label={i18n._(t`Username`)}
-              />
-              <TextInputField
-                className="w-full my-2"
-                id="password"
-                name="password"
-                type="password"
-                label={i18n._(t`Password`)}
-              />
-            </div>
-            <CardActions className="px-4 flex flex-col items-start">
-              <Link
-                className="text-action-primary hover:underline"
-                to="/forgot-password"
-              >
-                <Trans>Forgot your password?</Trans>
-              </Link>
-              <CardActionButtons className="w-full mt-3">
-                <Button
-                  variation="primary"
-                  className="w-full"
-                  disabled={!isValid || isSubmitting}
-                  type="submit"
-                  data-testid="submit-btn"
-                >
-                  <Trans id="login.button">Login</Trans>
-                </Button>
-              </CardActionButtons>
-            </CardActions>
+            <TextInputField
+              className="w-full my-2"
+              id="username"
+              name="username"
+              label={i18n._(t`Username`)}
+            />
+            <TextInputField
+              className="w-full my-2"
+              id="password"
+              name="password"
+              type="password"
+              label={i18n._(t`Password`)}
+            />
+            <Link
+              className="text-action-primary hover:underline"
+              to="/forgot-password"
+            >
+              <Trans>Forgot your password?</Trans>
+            </Link>
+
+            <Button
+              variation="primary"
+              className="w-full mt-3"
+              disabled={!isValid || isSubmitting}
+              type="submit"
+              data-testid="submit-btn"
+            >
+              <Trans id="login.button">Login</Trans>
+            </Button>
           </Card>
         </form>
       )}
