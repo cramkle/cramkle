@@ -28,9 +28,10 @@ const DELETE_NOTE_MUTATION = gql`
 interface Props {
   note: DeckQuery_deck_notes_edges_node
   onClose?: () => void
+  onDeleted?: () => void
 }
 
-const DeleteNoteDialog: React.FC<Props> = ({ note, onClose }) => {
+const DeleteNoteDialog: React.FC<Props> = ({ note, onClose, onDeleted }) => {
   const [deleteNote, { loading }] = useMutation<
     DeleteNoteMutation,
     DeleteNoteMutationVariables
@@ -43,6 +44,7 @@ const DeleteNoteDialog: React.FC<Props> = ({ note, onClose }) => {
       },
     })
 
+    onDeleted?.()
     onClose?.()
   }
 

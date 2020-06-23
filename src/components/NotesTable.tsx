@@ -28,6 +28,7 @@ interface Props {
   onSearchSubmit: () => void
   searchQuery: string
   totalDeckNotes: number
+  onRefetchNotes?: () => void
 }
 
 const NotesTable: React.FC<Props> = ({
@@ -39,6 +40,7 @@ const NotesTable: React.FC<Props> = ({
   onSearchSubmit,
   searchQuery,
   totalDeckNotes,
+  onRefetchNotes,
 }) => {
   const [
     deletingNote,
@@ -57,7 +59,11 @@ const NotesTable: React.FC<Props> = ({
   return (
     <>
       {deletingNote && (
-        <DeleteNoteDialog note={deletingNote} onClose={handleDeleteNoteClose} />
+        <DeleteNoteDialog
+          note={deletingNote}
+          onClose={handleDeleteNoteClose}
+          onDeleted={onRefetchNotes}
+        />
       )}
       <form className="flex" onSubmit={handleSearchSubmit}>
         <Input
