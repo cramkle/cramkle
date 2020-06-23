@@ -115,10 +115,11 @@ const DeckPage: React.FunctionComponent = () => {
 
   const [searchVariable, setSearchVariable] = useState(searchInputValue)
 
-  const { data, loading } = useQuery<DeckQuery, DeckQueryVariables>(
+  const { data, loading, refetch } = useQuery<DeckQuery, DeckQueryVariables>(
     DECK_QUERY,
     {
       variables: { slug, search: searchVariable, ...paginationParams },
+      fetchPolicy: 'cache-and-network',
     }
   )
 
@@ -151,6 +152,10 @@ const DeckPage: React.FunctionComponent = () => {
     setSearchInputValue(search)
     handleSearchSubmit(search, true)
   })
+
+  const handleRefetchNotes = () => {
+    refetch()
+  }
 
   const handleSearchChange: React.ChangeEventHandler<HTMLInputElement> = useCallback(
     (evt) => {
@@ -224,6 +229,7 @@ const DeckPage: React.FunctionComponent = () => {
             searchQuery={searchInputValue}
             onSearchChange={handleSearchChange}
             onSearchSubmit={handleSearchSubmit}
+            onRefetchNotes={handleRefetchNotes}
           />
         </div>
 
