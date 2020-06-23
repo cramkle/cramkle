@@ -2,7 +2,6 @@ import { useMutation } from '@apollo/react-hooks'
 import { MessageDescriptor } from '@lingui/core'
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import classNames from 'classnames'
 import { Formik } from 'formik'
 import gql from 'graphql-tag'
 import React from 'react'
@@ -12,10 +11,9 @@ import * as yup from 'yup'
 
 import { notificationState } from '../../notification/index'
 import Button from '../views/Button'
-import Card, { CardActionButtons, CardActions } from '../views/Card'
+import { Card } from '../views/Card'
 import { Headline2 } from '../views/Typography'
 import { CheckboxField, TextInputField } from './Fields'
-import styles from './RegisterForm.scss'
 
 interface Props {
   title?: MessageDescriptor | string
@@ -99,17 +97,8 @@ const RegisterForm: React.FunctionComponent<Props> = ({
       }
     >
       {({ handleSubmit, isValid, isSubmitting }) => (
-        <form
-          className={classNames(styles.form, 'w-full')}
-          onSubmit={handleSubmit}
-        >
-          <Card
-            className={classNames(
-              styles.formContent,
-              'p-4 pb-0 text-on-surface'
-            )}
-            outlined
-          >
+        <form className="w-full max-w-md" onSubmit={handleSubmit}>
+          <Card className="pb-2">
             <Headline2 className="text-center">{i18n._(title)}</Headline2>
             <TextInputField
               className="my-2"
@@ -144,18 +133,14 @@ const RegisterForm: React.FunctionComponent<Props> = ({
                 </Trans>
               </CheckboxField>
             </div>
-            <CardActions className="p-0 justify-end">
-              <CardActionButtons className="w-full">
-                <Button
-                  className="w-full"
-                  disabled={!isValid || isSubmitting}
-                  data-testid="register-submit-btn"
-                  variation="primary"
-                >
-                  <Trans>Register</Trans>
-                </Button>
-              </CardActionButtons>
-            </CardActions>
+            <Button
+              className="w-full mt-3"
+              disabled={!isValid || isSubmitting}
+              data-testid="register-submit-btn"
+              variation="primary"
+            >
+              <Trans>Register</Trans>
+            </Button>
           </Card>
         </form>
       )}

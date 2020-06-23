@@ -10,6 +10,7 @@ import React, { useCallback, useEffect, useReducer, useRef } from 'react'
 
 import { useBaseEditorControls } from './BaseEditorControls'
 import { blockStyleFn } from './BlockStyleControls'
+import styles from './TagEditor.css'
 import { TaggableEntry } from './TaggableEntry'
 import TagsPopup from './TagsPopup'
 import replaceTagInEditorState from './replaceTagInEditorState'
@@ -261,7 +262,7 @@ const TagEditor: React.FunctionComponent<Props> = ({
   }
 
   return (
-    <>
+    <div className={styles.editor}>
       <Editor
         {...props}
         ariaAutoComplete={ariaAutoComplete}
@@ -284,7 +285,7 @@ const TagEditor: React.FunctionComponent<Props> = ({
         characterOffset={characterOffset}
         highlightedTag={highlightedTag}
       />
-    </>
+    </div>
   )
 }
 

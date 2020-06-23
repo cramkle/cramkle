@@ -7,7 +7,7 @@ import { useHistory } from 'react-router'
 import { FlashCardStatus } from '../globalTypes'
 import FlashCardStatusChip from './FlashCardStatus'
 import { DeckCard_deck } from './__generated__/DeckCard_deck'
-import Card, { CardPrimaryContent } from './views/Card'
+import { Card, CardPressable } from './views/Card'
 import { Body2, Headline3 } from './views/Typography'
 
 interface Props {
@@ -52,9 +52,11 @@ const DeckCard: React.FunctionComponent<Props> = ({
     studySessionDetails: { newCount, learningCount, reviewCount },
   } = deck
 
+  const uniqueId = `deck-${deck.id}`
+
   return (
-    <Card outlined className="h-full">
-      <CardPrimaryContent
+    <Card lean className="h-full">
+      <CardPressable
         className="p-2 h-full"
         tabIndex={0}
         role="article"
@@ -62,8 +64,9 @@ const DeckCard: React.FunctionComponent<Props> = ({
         onKeyDown={(e: React.KeyboardEvent) =>
           e.key === 'Enter' && handleClick()
         }
+        aria-describedby={`${uniqueId}-title`}
       >
-        <Headline3>{deck.title}</Headline3>
+        <Headline3 id={`${uniqueId}-title`}>{deck.title}</Headline3>
         {deck.description && <Body2>{deck.description}</Body2>}
         {showStudySessionDetails ? (
           <div className="mt-1 flex">
@@ -115,7 +118,7 @@ const DeckCard: React.FunctionComponent<Props> = ({
             )}
           </Body2>
         )}
-      </CardPrimaryContent>
+      </CardPressable>
     </Card>
   )
 }
