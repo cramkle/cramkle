@@ -1,3 +1,4 @@
-.editor :global(.public-DraftEditor-content) {
+.editor :global(.public-DraftEditor-content),
+.editor :global(.public-DraftEditorPlaceholder-root) {
   padding: 1rem;
 }
