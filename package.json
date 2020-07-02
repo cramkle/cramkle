@@ -51,7 +51,7 @@
     "@reach/alert-dialog": "^0.10.4",
     "@reach/checkbox": "^0.10.4",
     "@reach/dialog": "^0.10.4",
-    "@reach/listbox": "^0.10.4",
+    "@reach/listbox": "^0.10.5",
     "@reach/menu-button": "^0.10.4",
     "@reach/tabs": "^0.10.4",
     "apollo-cache-inmemory": "^1.6.5",
