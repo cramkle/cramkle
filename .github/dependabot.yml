@@ -1,0 +1,14 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: "@material/fab"
+    versions:
+    - "> 3.2.0"
+  - dependency-name: "@material/snackbar"
+    versions:
+    - "> 3.2.0"
