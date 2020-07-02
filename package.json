@@ -48,7 +48,7 @@
     "@material/react-linear-progress": "^0.14.1",
     "@material/ripple": "^3.1.0",
     "@material/snackbar": "^3.1.0",
-    "@reach/alert-dialog": "^0.10.4",
+    "@reach/alert-dialog": "^0.10.5",
     "@reach/checkbox": "^0.10.4",
     "@reach/dialog": "^0.10.4",
     "@reach/listbox": "^0.10.5",
