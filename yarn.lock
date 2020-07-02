@@ -2367,11 +2367,12 @@
     tslib "^2.0.0"
     warning "^4.0.3"
 
-"@release-it/keep-a-changelog@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@release-it/keep-a-changelog/-/keep-a-changelog-1.1.0.tgz#64f567f3e739ffd5f00b27909fd5a654772e6c02"
-  integrity sha512-vWen9AOflHhCU/LO6gWUTGgeUCVpJ0cOhtmx/bErCwOQxOtLtVjy/VzkqapgVb7nti1u8op/SF1XMT6m2OXMiw==
+"@release-it/keep-a-changelog@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@release-it/keep-a-changelog/-/keep-a-changelog-1.1.1.tgz#ea3dcc8d063d9f644eb84f82e06955fa2fa8a02c"
+  integrity sha512-qV8tsFenGeQDK8FkEufuNmwuCNjHmRC6JwXH/5PRtf+3oUYR3pxypMT3xuEff5jMA6Qtchy5ARWJFRxZvNoLrA==
   dependencies:
+    detect-newline "^3.1.0"
     release-it "^13.6.3"
 
 "@rollup/plugin-node-resolve@^7.1.1":
@@ -5835,7 +5836,7 @@ destroy@~1.0.4:
   resolved "https://registry.yarnpkg.com/destroy/-/destroy-1.0.4.tgz#978857442c44749e4206613e37946205826abd80"
   integrity sha1-l4hXRCxEdJ5CBmE+N5RiBYJqvYA=
 
-detect-newline@^3.0.0:
+detect-newline@^3.0.0, detect-newline@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/detect-newline/-/detect-newline-3.1.0.tgz#576f5dfc63ae1a192ff192d8ad3af6308991b651"
   integrity sha512-TLz+x/vEXm/Y7P7wn1EJFNLxYpUD4TgMosxY6fAVJUnJMbupHBOncxyWUG9OpTaH9EBD7uFI5LfEgmMOc54DsA==
