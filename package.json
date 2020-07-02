@@ -52,7 +52,7 @@
     "@reach/checkbox": "^0.10.5",
     "@reach/dialog": "^0.10.4",
     "@reach/listbox": "^0.10.5",
-    "@reach/menu-button": "^0.10.4",
+    "@reach/menu-button": "^0.10.5",
     "@reach/tabs": "^0.10.5",
     "apollo-cache-inmemory": "^1.6.5",
     "apollo-client": "^2.6.10",
