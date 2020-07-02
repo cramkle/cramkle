@@ -20,7 +20,7 @@ updates:
     - "> 3.2.0"
   - dependency-name: "@material/react-linear-progress"
     versions:
-    - "> 0.15.0"
+    - "> 0.14.1"
   - dependency-name: "@material/ripple"
     versions:
     - "> 3.2.0"
