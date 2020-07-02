@@ -2215,14 +2215,14 @@
     "@reach/utils" "0.10.5"
     tslib "^2.0.0"
 
-"@reach/checkbox@^0.10.4":
-  version "0.10.4"
-  resolved "https://registry.yarnpkg.com/@reach/checkbox/-/checkbox-0.10.4.tgz#80b6000135dbed7081e725fdeb5423e624c8b25d"
-  integrity sha512-oHyb5+xTUo6TtJO+Ee/Bkb/Ygju80ZGML15GuaJbivK2UvKWbX/5v/dA5O6WxupljvY0q8f59ohX03v1dD3cYQ==
+"@reach/checkbox@^0.10.5":
+  version "0.10.5"
+  resolved "https://registry.yarnpkg.com/@reach/checkbox/-/checkbox-0.10.5.tgz#ae61201ba77260dc5712486394e501dbd2d9583f"
+  integrity sha512-Yhzwb1lDFxSJy5JKV9X9v8456uixh6dUcyLQ6geP++YMfQSIGsBMos6CIYqRLob9i1BFFNyyqWNbRF1HVHXUJQ==
   dependencies:
-    "@reach/auto-id" "0.10.4"
-    "@reach/machine" "0.10.4"
-    "@reach/utils" "0.10.4"
+    "@reach/auto-id" "0.10.5"
+    "@reach/machine" "0.10.5"
+    "@reach/utils" "0.10.5"
     tslib "^2.0.0"
 
 "@reach/descendants@0.10.4":
@@ -2264,15 +2264,6 @@
     "@reach/popover" "0.10.5"
     "@reach/utils" "0.10.5"
     prop-types "^15.7.2"
-
-"@reach/machine@0.10.4":
-  version "0.10.4"
-  resolved "https://registry.yarnpkg.com/@reach/machine/-/machine-0.10.4.tgz#fa0ef08c736ab9f895521c2a8583eaf80f83053d"
-  integrity sha512-q1sbkoYcDqrOWab4p/ztP29FojPGCgThPcQSX9+9x8LTTOc1/8wwg9e8j3C9mE3P7Cx/CIGCDH+bSfyGYiuJsA==
-  dependencies:
-    "@reach/utils" "0.10.4"
-    "@xstate/fsm" "1.4.0"
-    tslib "^2.0.0"
 
 "@reach/machine@0.10.5":
   version "0.10.5"
