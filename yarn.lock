@@ -2355,14 +2355,14 @@
     prop-types "^15.7.2"
     tslib "^2.0.0"
 
-"@reach/tabs@^0.10.4":
-  version "0.10.4"
-  resolved "https://registry.yarnpkg.com/@reach/tabs/-/tabs-0.10.4.tgz#2b5d6d087de3ee80f2d6c042bc18503b2f013d76"
-  integrity sha512-YIyonH9tEL7nL/KvE1k2cROiMCad9dHpZL31aE2O/DC+nZ8H0FoHef5FI1eP0t96xibI7qN/t7w8Lsr72NILVA==
+"@reach/tabs@^0.10.5":
+  version "0.10.5"
+  resolved "https://registry.yarnpkg.com/@reach/tabs/-/tabs-0.10.5.tgz#b7b03605e8a74124f095740e85407ae38ec31f38"
+  integrity sha512-oQJxQ9FwFsXo2HxEzJxFU/wP31bPVh4VU54NlhHW9f49uofyYkIKBbAhdF0Zb3TnaFp4cGKPHX39pXBYGPDkAQ==
   dependencies:
-    "@reach/auto-id" "0.10.4"
-    "@reach/descendants" "0.10.4"
-    "@reach/utils" "0.10.4"
+    "@reach/auto-id" "0.10.5"
+    "@reach/descendants" "0.10.5"
+    "@reach/utils" "0.10.5"
     prop-types "^15.7.2"
     tslib "^2.0.0"
 
