@@ -128,7 +128,7 @@
     "lint-staged": "^10.2.11",
     "prettier": "^2.0.4",
     "react-app-polyfill": "^1.0.2",
-    "release-it": "^13.6.3",
+    "release-it": "^13.6.4",
     "stylelint": "^13.6.0",
     "stylelint-config-recommended-scss": "^4.2.0",
     "stylelint-scss": "^3.17.0",
