@@ -131,7 +131,7 @@
     "release-it": "^13.6.3",
     "stylelint": "^13.6.0",
     "stylelint-config-recommended-scss": "^4.2.0",
-    "stylelint-scss": "^3.17.0",
+    "stylelint-scss": "^3.18.0",
     "typescript": "^3.9.6"
   },
   "browserslist": [
