@@ -96,7 +96,7 @@
     "@babel/preset-typescript": "^7.10.1",
     "@hot-loader/react-dom": "^16.11.0",
     "@lingui/cli": "3.0.0-13",
-    "@lingui/macro": "3.0.0-11",
+    "@lingui/macro": "3.0.0-13",
     "@lucasecdb/eslint-config": "^0.10.2",
     "@release-it/keep-a-changelog": "^1.1.0",
     "@testing-library/jest-dom": "^5.10.1",
