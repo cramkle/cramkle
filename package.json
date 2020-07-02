@@ -121,7 +121,7 @@
     "eslint": "^7.3.1",
     "husky": "^4.2.5",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^26.0.1",
+    "jest": "^26.1.0",
     "jest-fetch-mock": "^3.0.1",
     "jest-resolve": "^26.1.0",
     "jest-transform-graphql": "^2.1.0",
