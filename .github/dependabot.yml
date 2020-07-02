@@ -12,3 +12,15 @@ updates:
   - dependency-name: "@material/snackbar"
     versions:
     - "> 3.2.0"
+  - dependency-name: "@material/dom"
+    versions:
+    - "> 3.2.0"
+  - dependency-name: "@material/icon-button"
+    versions:
+    - "> 3.2.0"
+  - dependency-name: "@material/react-linear-progress"
+    versions:
+    - "> 0.15.0"
+  - dependency-name: "@material/ripple"
+    versions:
+    - "> 3.2.0"
