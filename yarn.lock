@@ -1828,10 +1828,10 @@
     "@material/theme" "^1.1.0"
     tslib "^1.9.3"
 
-"@material/react-linear-progress@^0.14.1":
-  version "0.14.1"
-  resolved "https://registry.yarnpkg.com/@material/react-linear-progress/-/react-linear-progress-0.14.1.tgz#1c318f8d205f93d358a5e5694d8116949521fd46"
-  integrity sha512-ZVGh+LmoLdDpUutduRBlEDF9yI41xdzlcFe5bPa5tGqjbEnv0j1F2OO2Bo6V4g4jmZmjG6PI1Wbz5x8Cdz4SiQ==
+"@material/react-linear-progress@^0.15.0":
+  version "0.15.0"
+  resolved "https://registry.yarnpkg.com/@material/react-linear-progress/-/react-linear-progress-0.15.0.tgz#2c758bbdcb2757428699a94bd15dfb2261c6a21f"
+  integrity sha512-RrNp+87P4nv17VHx9E0Te4DakY7O+oXE4P+dupJlb5/yxXadIVZoXVt4r4laUfUcEmanf0sHr2gPIvSeu9fjog==
   dependencies:
     "@material/linear-progress" "^1.1.0"
     classnames "^2.2.6"
