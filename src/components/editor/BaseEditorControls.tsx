@@ -121,7 +121,7 @@ const BaseEditorControls: React.FC<Props> = ({
 
   return (
     <ctx.Provider value={contextValue}>
-      <Card lean className={classnames(className, 'border-gray-1 p-0')}>
+      <Card className={classnames(className, 'border-gray-1 p-0')}>
         <div className="flex items-center p-2 border-b border-gray-1">
           <div className="flex flex-col items-start">
             <TabController>

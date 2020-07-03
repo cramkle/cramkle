@@ -30,7 +30,7 @@ const ModelCard: React.FunctionComponent<Props & ModelsQuery_models> = ({
   const uniqueId = `model-${id}`
 
   return (
-    <Card lean className={className}>
+    <Card className={className}>
       <CardPressable
         className="p-2"
         role="article"

@@ -11,7 +11,7 @@ import * as yup from 'yup'
 import { ReactComponent as Logo } from '../../assets/logo-white.svg'
 import { notificationState } from '../../notification'
 import Button from '../views/Button'
-import { Card } from '../views/Card'
+import { Card, CardContent } from '../views/Card'
 import CircularProgress from '../views/CircularProgress'
 import { HelperText, Input, Label } from '../views/Input'
 import { Body1, Headline2 } from '../views/Typography'
@@ -204,7 +204,9 @@ const ForgotPasswordPage: React.FC = () => {
 
       <Logo className="w-16 mb-8" />
 
-      <Card className="max-w-lg">{content}</Card>
+      <Card className="max-w-lg">
+        <CardContent>{content}</CardContent>
+      </Card>
     </div>
   )
 }

@@ -74,28 +74,32 @@ export const CardPressable: React.FunctionComponent<CardPressableProps> = ({
   )
 }
 
-export interface CardProps extends React.HTMLProps<HTMLDivElement> {
-  lean?: boolean
-}
+export type CardProps = React.HTMLProps<HTMLDivElement>
 
 export const Card: React.FunctionComponent<CardProps> = ({
   children,
   className = '',
-  lean = false,
   ...otherProps
 }) => {
   return (
     <div
       className={classnames(
         'bg-surface text-on-surface rounded border border-gray-1',
-        {
-          'px-4 py-6': !lean,
-        },
         className
       )}
       {...otherProps}
     >
       {children}
+    </div>
+  )
+}
+
+export const CardContent: React.FC<React.HTMLProps<HTMLDivElement>> = (
+  props
+) => {
+  return (
+    <div {...props} className={classnames(props.className, 'px-4 py-6')}>
+      {props.children}
     </div>
   )
 }
