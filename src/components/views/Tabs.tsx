@@ -45,7 +45,7 @@ export const Tab: React.FC<TabProps & HTMLAttributes<HTMLDivElement>> = ({
       <div
         className={classnames(
           styles.border,
-          'hidden absolute left-0 right-0 bottom-0 rounded-t border-primary border-t-2 border-b mx-4 md:mx-6'
+          'hidden absolute left-0 right-0 bottom-0 rounded-t border-primary border-t-2 border-b mx-2 md:mx-6'
         )}
       />
     </ReachTab>
