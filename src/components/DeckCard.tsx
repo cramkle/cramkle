@@ -55,7 +55,7 @@ const DeckCard: React.FunctionComponent<Props> = ({
   const uniqueId = `deck-${deck.id}`
 
   return (
-    <Card lean className="h-full">
+    <Card className="h-full">
       <CardPressable
         className="p-2 h-full"
         tabIndex={0}

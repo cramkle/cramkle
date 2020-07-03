@@ -11,7 +11,7 @@ import * as yup from 'yup'
 import { ReactComponent as Logo } from '../../assets/logo-white.svg'
 import { notificationState } from '../../notification'
 import Button from '../views/Button'
-import { Card } from '../views/Card'
+import { Card, CardContent } from '../views/Card'
 import CircularProgress from '../views/CircularProgress'
 import { HelperText, Input, Label } from '../views/Input'
 import { Body1, Headline2 } from '../views/Typography'
@@ -133,71 +133,73 @@ const ResetPasswordPage: React.FC = () => {
       <Logo className="w-16 mb-8" />
 
       <Card className="max-w-lg w-full">
-        <form onSubmit={handleSubmit}>
-          <Headline2 className="ma-0 text-center">
-            <Trans>Reset password</Trans>
-          </Headline2>
+        <CardContent>
+          <form onSubmit={handleSubmit}>
+            <Headline2 className="ma-0 text-center">
+              <Trans>Reset password</Trans>
+            </Headline2>
 
-          <Body1 className="my-4">
-            <Trans>Choose a new password for your account.</Trans>
-          </Body1>
+            <Body1 className="my-4">
+              <Trans>Choose a new password for your account.</Trans>
+            </Body1>
 
-          <Label
-            text={
-              <>
-                <Trans>New password</Trans>
-                <span
-                  className={classnames({
-                    'text-red-1': showPasswordError && !passwordValid,
-                  })}
-                >
-                  *
-                </span>
-              </>
-            }
-          >
-            <Input
-              placeholder={i18n._(t`New password`)}
-              type="password"
-              value={newPassword}
-              onChange={handlePasswordChange}
-              onBlur={handlePasswordValidate}
-              onFocus={handlePasswordFocus}
-            />
-            {showPasswordError && !passwordValid && (
-              <HelperText variation="error">
-                <Trans>Password must be at least 6 characters</Trans>
-              </HelperText>
-            )}
-          </Label>
+            <Label
+              text={
+                <>
+                  <Trans>New password</Trans>
+                  <span
+                    className={classnames({
+                      'text-red-1': showPasswordError && !passwordValid,
+                    })}
+                  >
+                    *
+                  </span>
+                </>
+              }
+            >
+              <Input
+                placeholder={i18n._(t`New password`)}
+                type="password"
+                value={newPassword}
+                onChange={handlePasswordChange}
+                onBlur={handlePasswordValidate}
+                onFocus={handlePasswordFocus}
+              />
+              {showPasswordError && !passwordValid && (
+                <HelperText variation="error">
+                  <Trans>Password must be at least 6 characters</Trans>
+                </HelperText>
+              )}
+            </Label>
 
-          <Label text={<Trans>Confirm password</Trans>}>
-            <Input
-              placeholder={i18n._(t`Confirm password`)}
-              type="password"
-              value={confirmPassword}
-              onChange={handleConfirmPasswordChange}
-              onBlur={() => setShowConfirmPasswordError(true)}
-              onFocus={() => setShowConfirmPasswordError(false)}
-            />
-            {showConfirmPasswordError && confirmPassword !== newPassword && (
-              <HelperText variation="error">
-                <Trans>
-                  Confirm password must be equal to the new password
-                </Trans>
-              </HelperText>
-            )}
-          </Label>
+            <Label text={<Trans>Confirm password</Trans>}>
+              <Input
+                placeholder={i18n._(t`Confirm password`)}
+                type="password"
+                value={confirmPassword}
+                onChange={handleConfirmPasswordChange}
+                onBlur={() => setShowConfirmPasswordError(true)}
+                onFocus={() => setShowConfirmPasswordError(false)}
+              />
+              {showConfirmPasswordError && confirmPassword !== newPassword && (
+                <HelperText variation="error">
+                  <Trans>
+                    Confirm password must be equal to the new password
+                  </Trans>
+                </HelperText>
+              )}
+            </Label>
 
-          <Button
-            variation="primary"
-            className="mt-6 w-full"
-            type="submit"
-            disabled={loading}
-          >
-            {loading ? <CircularProgress /> : <Trans>Reset Password</Trans>}
-          </Button>
-        </form>
+            <Button
+              variation="primary"
+              className="mt-6 w-full"
+              type="submit"
+              disabled={loading}
+            >
+              {loading ? <CircularProgress /> : <Trans>Reset Password</Trans>}
+            </Button>
+          </form>
+        </CardContent>
       </Card>
     </div>
   )

@@ -11,7 +11,7 @@ import * as yup from 'yup'
 
 import { notificationState } from '../../notification/index'
 import Button from '../views/Button'
-import { Card } from '../views/Card'
+import { Card, CardContent } from '../views/Card'
 import { Headline2 } from '../views/Typography'
 import { CheckboxField, TextInputField } from './Fields'
 
@@ -99,48 +99,50 @@ const RegisterForm: React.FunctionComponent<Props> = ({
       {({ handleSubmit, isValid, isSubmitting }) => (
         <form className="w-full max-w-md" onSubmit={handleSubmit}>
           <Card className="pb-2">
-            <Headline2 className="text-center">{i18n._(title)}</Headline2>
-            <TextInputField
-              className="my-2"
-              id="username"
-              name="username"
-              label={i18n._(t`Username`)}
-            />
-            <TextInputField
-              className="my-2"
-              id="email"
-              name="email"
-              label={i18n._(t`Email`)}
-            />
-            <TextInputField
-              className="my-2"
-              id="password"
-              name="password"
-              type="password"
-              label={i18n._(t`Password`)}
-            />
-            <div className="flex">
-              <CheckboxField name="consent">
-                <Trans>
-                  I agree to the{' '}
-                  <Link
-                    className="text-action-primary hover:underline"
-                    to="/terms"
-                    target="_blank"
-                  >
-                    Terms & Conditions
-                  </Link>
-                </Trans>
-              </CheckboxField>
-            </div>
-            <Button
-              className="w-full mt-3"
-              disabled={!isValid || isSubmitting}
-              data-testid="register-submit-btn"
-              variation="primary"
-            >
-              <Trans>Register</Trans>
-            </Button>
+            <CardContent>
+              <Headline2 className="text-center">{i18n._(title)}</Headline2>
+              <TextInputField
+                className="my-2"
+                id="username"
+                name="username"
+                label={i18n._(t`Username`)}
+              />
+              <TextInputField
+                className="my-2"
+                id="email"
+                name="email"
+                label={i18n._(t`Email`)}
+              />
+              <TextInputField
+                className="my-2"
+                id="password"
+                name="password"
+                type="password"
+                label={i18n._(t`Password`)}
+              />
+              <div className="flex">
+                <CheckboxField name="consent">
+                  <Trans>
+                    I agree to the{' '}
+                    <Link
+                      className="text-action-primary hover:underline"
+                      to="/terms"
+                      target="_blank"
+                    >
+                      Terms & Conditions
+                    </Link>
+                  </Trans>
+                </CheckboxField>
+              </div>
+              <Button
+                className="w-full mt-3"
+                disabled={!isValid || isSubmitting}
+                data-testid="register-submit-btn"
+                variation="primary"
+              >
+                <Trans>Register</Trans>
+              </Button>
+            </CardContent>
           </Card>
         </form>
       )}
