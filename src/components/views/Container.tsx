@@ -14,7 +14,9 @@ const Container: React.FunctionComponent<ContainerProps> = ({
   return (
     <section
       {...props}
-      className={classnames(className, 'mx-auto container', { 'py-4': !lean })}
+      className={classnames(className, 'px-3 mx-auto container', {
+        'py-4': !lean,
+      })}
     >
       {children}
     </section>
