@@ -305,7 +305,7 @@ const StatisticsPage: React.FC = () => {
                 orientation="bottom"
                 offset={height - margin.bottom}
                 scaler={frequencyX}
-                ticks={width / 99}
+                ticks={interval === '7' ? 7 : width / 80}
                 tickKeyFn={(tick) => tick.getTime()}
                 tickLabel={(tick) =>
                   i18n.date(tick, {
