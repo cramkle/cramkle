@@ -26,7 +26,10 @@ const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
     return (
       <ReachDialogContent
         {...props}
-        className={classnames(props.className, 'rounded shadow p-6')}
+        className={classnames(
+          props.className,
+          'rounded shadow p-6 w-full max-w-xl md:max-w-3xl'
+        )}
         ref={ref}
       />
     )
@@ -37,7 +40,7 @@ const DialogOverlay: React.FC<DialogProps> = (props) => {
   return (
     <ReachDialogOverlay
       {...props}
-      className={classnames(props.className, 'z-50')}
+      className={classnames(props.className, 'z-50 px-2')}
     />
   )
 }
