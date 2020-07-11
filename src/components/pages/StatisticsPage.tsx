@@ -169,7 +169,6 @@ const StatisticsPage: React.FC = () => {
     .range([margin.left, width - margin.right])
 
   const frequencyY = scaleLinear()
-    .nice()
     .domain([
       0,
       Math.max(
@@ -177,6 +176,7 @@ const StatisticsPage: React.FC = () => {
         max(studyFrequency, (d) => d.new)
       ),
     ])
+    .nice()
     .range([height - margin.bottom, margin.top])
 
   const learningLineShape = line<DeckStatistics_deckStatistics_studyFrequency>()
@@ -338,24 +338,24 @@ const StatisticsPage: React.FC = () => {
                 inlineStart={margin.left}
                 inlineEnd={width - margin.right}
               />
-              <path
-                className="text-violet-1"
+              <g
                 fill="none"
-                d={learningLine}
                 stroke="currentColor"
-                strokeWidth="3"
+                strokeWidth="1.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-              />
-              <path
-                className="text-green-1"
-                fill="none"
-                d={newLine}
-                stroke="currentColor"
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
+              >
+                <path
+                  className="text-violet-1"
+                  d={learningLine}
+                  style={{ mixBlendMode: 'multiply' }}
+                />
+                <path
+                  className="text-green-1"
+                  d={newLine}
+                  style={{ mixBlendMode: 'multiply' }}
+                />
+              </g>
             </svg>
           ) : (
             <div className="py-6 px-2 text-center flex flex-col items-center justify-center">
