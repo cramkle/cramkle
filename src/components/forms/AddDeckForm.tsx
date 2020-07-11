@@ -110,7 +110,7 @@ const AddDeckForm: React.FunctionComponent<Props> = ({ open, onClose }) => {
           <Dialog
             isOpen={open}
             onDismiss={onClose}
-            style={{ width: '320px' }}
+            style={{ maxWidth: '320px' }}
             aria-labelledby="add-deck-dialog-title"
           >
             <form onSubmit={handleSubmit}>
