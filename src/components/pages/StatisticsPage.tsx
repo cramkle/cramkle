@@ -122,15 +122,15 @@ const StatisticsPage: React.FC = () => {
       time /= 1000
       unit = 'second'
     }
-    if (time > 60) {
+    if (time > 60 && unit === 'second') {
       time /= 60
       unit = 'minute'
     }
-    if (time > 60) {
+    if (time > 60 && unit === 'minute') {
       time /= 60
       unit = 'hour'
     }
-    if (time > 24) {
+    if (time > 24 && unit === 'hour') {
       time /= 24
       unit = 'day'
     }
