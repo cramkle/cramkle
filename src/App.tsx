@@ -1,11 +1,10 @@
 import { useLingui } from '@lingui/react'
+import { ErrorBoundary } from '@sentry/react'
 import React, { Suspense, lazy } from 'react'
-import ErrorBoundary from 'react-error-boundary'
 import { Helmet } from 'react-helmet'
 import { hot } from 'react-hot-loader/root'
 import { Redirect, Route, Switch } from 'react-router'
 
-import ErrorFallback from './components/ErrorFallback'
 import { useHints } from './components/HintsContext'
 import NoSSR from './components/NoSSR'
 import NotificationToasts from './components/NotificationToasts'
@@ -18,6 +17,7 @@ import RegisterPage from './components/pages/RegisterPage'
 import ResetPasswordPage from './components/pages/ResetPasswordPage'
 import { GuestRoute, UserRoute } from './components/routes/AuthRoute'
 import ShellRoute from './components/routes/ShellRoute'
+import { errorFallback } from './utils/errorFallback'
 import { icons } from './utils/headLinks'
 
 import './app.global.scss'
@@ -87,7 +87,7 @@ const App: React.FunctionComponent = () => {
           },
         ]}
       />
-      <ErrorBoundary FallbackComponent={ErrorFallback}>
+      <ErrorBoundary fallback={errorFallback}>
         <NotificationToasts />
         <Switch>
           <GuestRoute path="/" exact>

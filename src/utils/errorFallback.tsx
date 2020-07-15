@@ -1,11 +1,16 @@
 import { Trans } from '@lingui/macro'
 import React from 'react'
-import { FallbackProps } from 'react-error-boundary'
 
-import Button from './views/Button'
-import { Body1, Headline4, Overline } from './views/Typography'
+import Button from '../components/views/Button'
+import { Body1, Headline4, Overline } from '../components/views/Typography'
 
-const ErrorFallback: React.FC<FallbackProps> = ({ error, componentStack }) => {
+export const errorFallback = ({
+  error,
+  componentStack,
+}: {
+  error: Error
+  componentStack: string
+}) => {
   return (
     <div className="flex flex-col justify-center items-center py-8 min-h-screen">
       <Headline4>
@@ -26,5 +31,3 @@ const ErrorFallback: React.FC<FallbackProps> = ({ error, componentStack }) => {
     </div>
   )
 }
-
-export default ErrorFallback
