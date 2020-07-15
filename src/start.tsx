@@ -1,6 +1,7 @@
 import { ApolloProvider } from '@apollo/react-hooks'
 import { i18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
+import * as Sentry from '@sentry/react'
 import { NormalizedCacheObject } from 'apollo-cache-inmemory'
 import { en as enPlural, pt as ptPlural } from 'make-plural/plurals'
 import React, { StrictMode } from 'react'
@@ -78,6 +79,12 @@ const render = ({
       !query.has('nossr') || process.env.NODE_ENV === 'production'
 
     const method = shouldHydrate ? 'hydrate' : 'render'
+
+    if (process.env.REACT_APP_SENTRY_DSN) {
+      Sentry.init({
+        dsn: process.env.SENTRY_DSN,
+      })
+    }
 
     ReactDOM[method](<BrowserRouter>{root}</BrowserRouter>, elem)
   } else {
