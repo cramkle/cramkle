@@ -75,12 +75,9 @@ jobs:
         username: ${{ secrets.ACR_REGISTRY_USERNAME }}
         password: ${{ secrets.ACR_REGISTRY_PASSWORD }}
     - uses: actions/checkout@v2
-    - name: Get the version
-      id: get_version
-      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\/v/}
+    - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
     - name: Deploy image
       env:
         REGISTRY_SERVER: ${{ secrets.ACR_REGISTRY_SERVER }}
-        VERSION: ${{ steps.get_version.outputs.VERSION }}
         SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
       run: ./deploy.sh
