@@ -104,7 +104,7 @@
     "@lingui/macro": "3.0.0-13",
     "@lucasecdb/eslint-config": "^0.10.2",
     "@release-it/keep-a-changelog": "^1.1.1",
-    "@testing-library/jest-dom": "^5.11.0",
+    "@testing-library/jest-dom": "^5.11.1",
     "@testing-library/react": "^10.4.7",
     "@types/classnames": "^2.2.9",
     "@types/d3-array": "^2.0.0",
