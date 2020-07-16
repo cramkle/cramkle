@@ -82,8 +82,8 @@ jobs:
       id: get_version
       run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\/v/}
     - name: Deploy image
-      run: |
-        docker build -t ${{ secrets.ACR_REGISTRY_SERVER }}/cramkle/cramkle:${{ steps.get_version.outputs.VERSION }} .
-        docker tag ${{ secrets.ACR_REGISTRY_SERVER }}/cramkle/cramkle:${{ steps.get_version.outputs.VERSION }} ${{ secrets.ACR_REGISTRY_SERVER }}/cramkle/cramkle:latest
-        docker push ${{ secrets.ACR_REGISTRY_SERVER }}/cramkle/cramkle:${{ steps.get_version.outputs.VERSION }}
-        docker push ${{ secrets.ACR_REGISTRY_SERVER }}/cramkle/cramkle:latest
+      env:
+        REGISTRY_SERVER: ${{ secrets.ACR_REGISTRY_SERVER }}
+        VERSION: ${{ steps.get_version.outputs.VERSION }}
+        SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+      run: ./deploy.sh
