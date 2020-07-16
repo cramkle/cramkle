@@ -1,5 +1,12 @@
 #!/bin/bash
 
+git describe --exact-match
+
+if [[ ! $? -eq 0 ]];then
+  echo "Nothing to publish, exiting.."
+  exit 0;
+fi
+
 if [[ ! -z "$SENTRY_DSN" ]]; then
   echo "REACT_APP_SENTRY_DSN=$SENTRY_DSN" >> .env
 fi
