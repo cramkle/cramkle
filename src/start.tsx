@@ -82,7 +82,7 @@ const render = ({
 
     if (process.env.REACT_APP_SENTRY_DSN) {
       Sentry.init({
-        dsn: process.env.SENTRY_DSN,
+        dsn: process.env.REACT_APP_SENTRY_DSN,
       })
     }
 
