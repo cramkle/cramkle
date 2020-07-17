@@ -1,14 +1,18 @@
 #!/bin/bash
 
-version=$(git describe --exact-match)
+unparsed_version=$(git describe --exact-match)
 
 if [[ ! $? -eq 0 ]]; then
   echo "Nothing to publish, exiting.."
   exit 0;
 fi
 
+version=${unparsed_version//v}
+
 if [[ ! -z "$SENTRY_DSN" ]]; then
   echo "REACT_APP_SENTRY_DSN=$SENTRY_DSN" >> .env
+else
+  echo "No SENTRY_DSN, skipping Sentry config.."
 fi
 
 if [[ -z "$REGISTRY_SERVER" ]]; then
