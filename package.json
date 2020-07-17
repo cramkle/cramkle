@@ -140,7 +140,7 @@
     "stylelint": "^13.6.1",
     "stylelint-config-recommended-scss": "^4.2.0",
     "stylelint-scss": "^3.18.0",
-    "typescript": "^3.9.6"
+    "typescript": "^3.9.7"
   },
   "browserslist": [
     ">0.2%",
