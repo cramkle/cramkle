@@ -70,7 +70,7 @@
     "formik": "^2.1.5",
     "graphql": "^14.7.0",
     "graphql-tag": "^2.10.4",
-    "history": "^4.7.2",
+    "history": "^5.0.0",
     "keycode-js": "^3.1.0",
     "make-plural": "^6.2.1",
     "node-fetch": "^2.6.0",
