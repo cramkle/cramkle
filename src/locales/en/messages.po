@@ -37,6 +37,10 @@ msgstr "A new update is available!"
 msgid "About"
 msgstr "About"
 
+#: src/components/pages/SettingsPage.tsx:9
+msgid "Account Settings"
+msgstr "Account Settings"
+
 #: src/components/forms/RegisterForm.tsx:68
 msgid "Account created successfully"
 msgstr "Account created successfully"
@@ -349,7 +353,7 @@ msgstr "End"
 msgid "End study session"
 msgstr "End study session"
 
-#: src/components/GeneralSettings.tsx:10
+#: src/components/GeneralSettings.tsx:31
 msgid "English"
 msgstr "English"
 
@@ -494,7 +498,7 @@ msgstr "Italic"
 msgid "Items per page"
 msgstr "Items per page"
 
-#: src/components/GeneralSettings.tsx:26
+#: src/components/GeneralSettings.tsx:76
 msgid "Language"
 msgstr "Language"
 
@@ -644,13 +648,17 @@ msgstr "Password is required"
 msgid "Password must be at least 6 characters"
 msgstr "Password must be at least 6 characters"
 
-#: src/components/ErrorFallback.tsx:11
+#: src/utils/errorFallback.tsx:11
 msgid "Please, try reloading the page"
 msgstr "Please, try reloading the page"
 
-#: src/components/GeneralSettings.tsx:14
+#: src/components/GeneralSettings.tsx:35
 msgid "Portuguese"
 msgstr "Portuguese"
+
+#: src/components/GeneralSettings.tsx:71
+msgid "Preferences"
+msgstr "Preferences"
 
 #: src/components/pages/NotePage.tsx:251
 msgid "Preview"
@@ -668,8 +676,8 @@ msgstr "Privacy Policy"
 msgid "Ready to work offline"
 msgstr "Ready to work offline"
 
-#: src/components/ErrorFallback.tsx:14
 #: src/components/pages/HomePage.tsx:42
+#: src/utils/errorFallback.tsx:14
 msgid "Refresh"
 msgstr "Refresh"
 
@@ -724,7 +732,7 @@ msgstr "Reset password token is expired"
 msgid "Review"
 msgstr "Review"
 
-#: src/components/GeneralSettings.tsx:33
+#: src/components/GeneralSettings.tsx:121
 msgid "Save"
 msgstr "Save"
 
@@ -742,7 +750,6 @@ msgid "Select a model"
 msgstr "Select a model"
 
 #: src/components/Shell.tsx:68
-#: src/components/pages/SettingsPage.tsx:9
 msgid "Settings"
 msgstr "Settings"
 
@@ -758,7 +765,7 @@ msgstr "Sign Up"
 msgid "Sign up now!"
 msgstr "Sign up now!"
 
-#: src/components/ErrorFallback.tsx:8
+#: src/utils/errorFallback.tsx:8
 msgid "Something went wrong"
 msgstr "Something went wrong"
 
@@ -837,9 +844,17 @@ msgstr "This action will delete all flashcards associated with this template"
 msgid "This action will delete all values from the notes associated with this model and field"
 msgstr "This action will delete all values from the notes associated with this model and field"
 
+#: src/components/GeneralSettings.tsx:80
+msgid "This configuration applies to this browser only, and won't be synchronized across your devices."
+msgstr "This configuration applies to this browser only, and won't be synchronized across your devices."
+
 #: src/components/pages/NotFoundPage.tsx:11
 msgid "This link may be broken or the typed URL is incorrect."
 msgstr "This link may be broken or the typed URL is incorrect."
+
+#: src/components/GeneralSettings.tsx:93
+msgid "Time zone"
+msgstr "Time zone"
 
 #: src/components/forms/AddDeckForm.tsx:95
 msgid "Title"
@@ -853,7 +868,7 @@ msgstr "Total study time"
 msgid "Try again"
 msgstr "Try again"
 
-#: src/components/pages/StatisticsPage.tsx:236
+#: src/components/pages/StatisticsPage.tsx:238
 msgid "Try selecting a broader interval above."
 msgstr "Try selecting a broader interval above."
 
@@ -864,6 +879,10 @@ msgstr "UL"
 #: src/components/editor/InlineStyleControls.tsx:10
 msgid "Underline"
 msgstr "Underline"
+
+#: src/components/GeneralSettings.tsx:96
+msgid "Used to compute the statistics and study schedule in your local time."
+msgstr "Used to compute the statistics and study schedule in your local time."
 
 #: src/components/pages/ForgotPasswordPage.tsx:61
 msgid "User not found"
@@ -906,7 +925,7 @@ msgstr "Warning"
 msgid "We couldn't find the page you requested"
 msgstr "We couldn't find the page you requested"
 
-#: src/components/pages/StatisticsPage.tsx:231
+#: src/components/pages/StatisticsPage.tsx:233
 msgid "We don't have enough data to display in the supplied period."
 msgstr "We don't have enough data to display in the supplied period."
 
