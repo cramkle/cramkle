@@ -1,0 +1,38 @@
+.timezoneLabel {
+  max-width: 8ch;
+}
+
+.timezoneOptionLabel {
+  max-width: 12ch;
+}
+
+.settingItem {
+  grid-template-columns: auto min-content;
+}
+
+.settingDescription {
+  grid-row-start: 2;
+  grid-column-start: span 2;
+}
+
+.settingInput {
+  grid-row-start: span 1;
+}
+
+@media only screen and (min-width: 640px) {
+  .timezoneLabel {
+    max-width: none;
+  }
+
+  .timezoneOptionLabel {
+    max-width: none;
+  }
+
+  .settingDescription {
+    grid-column-start: span 1;
+  }
+
+  .settingInput {
+    grid-row-start: span 2;
+  }
+}

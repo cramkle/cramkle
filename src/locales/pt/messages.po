@@ -37,6 +37,10 @@ msgstr "Uma nova atualização está disponível!"
 msgid "About"
 msgstr "Sobre"
 
+#: src/components/pages/SettingsPage.tsx:9
+msgid "Account Settings"
+msgstr "Configurações da conta"
+
 #: src/components/forms/RegisterForm.tsx:68
 msgid "Account created successfully"
 msgstr "Conta criada com sucesso"
@@ -349,7 +353,7 @@ msgstr "Encerrar"
 msgid "End study session"
 msgstr "Encerrar sessão de estudos"
 
-#: src/components/GeneralSettings.tsx:10
+#: src/components/GeneralSettings.tsx:31
 msgid "English"
 msgstr "Inglês"
 
@@ -494,7 +498,7 @@ msgstr "Itálico"
 msgid "Items per page"
 msgstr "Itens por página"
 
-#: src/components/GeneralSettings.tsx:26
+#: src/components/GeneralSettings.tsx:76
 msgid "Language"
 msgstr "Idioma"
 
@@ -644,13 +648,17 @@ msgstr "Senha é obrigatória"
 msgid "Password must be at least 6 characters"
 msgstr "Senha precisa ter pelo menos 6 caracteres"
 
-#: src/components/ErrorFallback.tsx:11
+#: src/utils/errorFallback.tsx:11
 msgid "Please, try reloading the page"
 msgstr "Por favor, tente recarregar a página"
 
-#: src/components/GeneralSettings.tsx:14
+#: src/components/GeneralSettings.tsx:35
 msgid "Portuguese"
 msgstr "Português"
+
+#: src/components/GeneralSettings.tsx:71
+msgid "Preferences"
+msgstr "Preferências"
 
 #: src/components/pages/NotePage.tsx:251
 msgid "Preview"
@@ -668,8 +676,8 @@ msgstr "Política de Privacidade"
 msgid "Ready to work offline"
 msgstr "Pronto para funcionar offline"
 
-#: src/components/ErrorFallback.tsx:14
 #: src/components/pages/HomePage.tsx:42
+#: src/utils/errorFallback.tsx:14
 msgid "Refresh"
 msgstr "Atualizar"
 
@@ -724,7 +732,7 @@ msgstr "O token para resetar a senha expirou"
 msgid "Review"
 msgstr "Revisão"
 
-#: src/components/GeneralSettings.tsx:33
+#: src/components/GeneralSettings.tsx:121
 msgid "Save"
 msgstr "Salvar"
 
@@ -742,7 +750,6 @@ msgid "Select a model"
 msgstr "Selecione um modelo"
 
 #: src/components/Shell.tsx:68
-#: src/components/pages/SettingsPage.tsx:9
 msgid "Settings"
 msgstr "Configurações"
 
@@ -758,7 +765,7 @@ msgstr "Cadastre-se"
 msgid "Sign up now!"
 msgstr "Cadastre-se agora!"
 
-#: src/components/ErrorFallback.tsx:8
+#: src/utils/errorFallback.tsx:8
 msgid "Something went wrong"
 msgstr "Algo de errado aconteceu"
 
@@ -837,9 +844,17 @@ msgstr "Essa ação irá apagar todos os flashcards associados à este template"
 msgid "This action will delete all values from the notes associated with this model and field"
 msgstr "Essa ação irá apagar todos os valores das notas associadas com esse campo e modelo"
 
+#: src/components/GeneralSettings.tsx:80
+msgid "This configuration applies to this browser only, and won't be synchronized across your devices."
+msgstr "Essa configuração se aplica apenas a este navegador, e não será sincronizada com seus dispositivos."
+
 #: src/components/pages/NotFoundPage.tsx:11
 msgid "This link may be broken or the typed URL is incorrect."
 msgstr "Este link pode estar quebrado ou a URL digitada está incorreta."
+
+#: src/components/GeneralSettings.tsx:93
+msgid "Time zone"
+msgstr "Fuso horário"
 
 #: src/components/forms/AddDeckForm.tsx:95
 msgid "Title"
@@ -853,7 +868,7 @@ msgstr "Tempo total de estudo"
 msgid "Try again"
 msgstr "Tentar novamente"
 
-#: src/components/pages/StatisticsPage.tsx:236
+#: src/components/pages/StatisticsPage.tsx:238
 msgid "Try selecting a broader interval above."
 msgstr "Tente selecionar um intervalo mais amplo acima."
 
@@ -864,6 +879,10 @@ msgstr "Lista de marcadores"
 #: src/components/editor/InlineStyleControls.tsx:10
 msgid "Underline"
 msgstr "Sublinha"
+
+#: src/components/GeneralSettings.tsx:96
+msgid "Used to compute the statistics and study schedule in your local time."
+msgstr "Usado para computar as estatísticas e o cronograma de estudo em seu tempo local."
 
 #: src/components/pages/ForgotPasswordPage.tsx:61
 msgid "User not found"
@@ -906,7 +925,7 @@ msgstr "Atenção"
 msgid "We couldn't find the page you requested"
 msgstr "Não conseguimos encontrar a página requisitada"
 
-#: src/components/pages/StatisticsPage.tsx:231
+#: src/components/pages/StatisticsPage.tsx:233
 msgid "We don't have enough data to display in the supplied period."
 msgstr "Não temos dados suficientes para mostrar no período fornecido."
 

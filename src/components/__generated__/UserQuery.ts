@@ -7,6 +7,14 @@
 // GraphQL query operation: UserQuery
 // ====================================================
 
+export interface UserQuery_me_preferences {
+  __typename: "UserPreferences";
+  /**
+   * User prefered timezone
+   */
+  zoneInfo: string;
+}
+
 export interface UserQuery_me {
   __typename: "User";
   /**
@@ -21,6 +29,7 @@ export interface UserQuery_me {
    * User's email
    */
   email: string;
+  preferences: UserQuery_me_preferences;
 }
 
 export interface UserQuery {

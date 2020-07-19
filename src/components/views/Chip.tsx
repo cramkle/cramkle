@@ -1,8 +1,9 @@
-import classnames from 'classnames'
+import classNames from 'classnames'
 import React from 'react'
 
 export interface ChipProps extends React.HTMLAttributes<HTMLDivElement> {
-  color?: 'green' | 'red' | 'violet'
+  color?: 'primary' | 'green' | 'red' | 'violet'
+  size?: 'normal' | 'small'
   inverted?: boolean
   truncated?: boolean
 }
@@ -12,29 +13,42 @@ export const Chip: React.FC<ChipProps> = ({
   inverted = false,
   truncated = false,
   className = '',
+  size = 'normal',
   children,
 }) => {
+  let colorName = color as string
+
+  if (colorName !== 'primary' && colorName !== undefined) {
+    colorName = `${colorName}-1`
+  }
+
   return (
     <div
-      className={classnames(
+      className={classNames(
         className,
-        'relative z-0 inline-flex items-center h-8 text-sm rounded-full px-2 overflow-hidden'
+        'relative z-0 inline-flex items-center rounded-full overflow-hidden',
+        {
+          'px-2 h-8 text-sm': size === 'normal',
+          'px-1 h-6 text-xs': size === 'small',
+        }
       )}
       role="row"
     >
       <span
         style={{ textOverflow: truncated ? 'ellipsis' : 'initial' }}
-        className={classnames('inline-block mx-1 text-primary', {
-          [`text-${color}-1`]: inverted && color !== undefined,
+        className={classNames('inline-block mx-1', {
+          'text-primary': !inverted && color !== 'primary',
+          'text-on-primary': !inverted && color === 'primary',
+          [`text-${colorName}`]: inverted && color !== undefined,
           'overflow-hidden whitespace-no-wrap': truncated,
         })}
       >
         {children}
       </span>
       <div
-        className={classnames('absolute top-0 left-0 right-0 bottom-0 -z-1', {
+        className={classNames('absolute top-0 left-0 right-0 bottom-0 -z-1', {
           'opacity-08': inverted && color !== undefined,
-          [`bg-${color}-1`]: color !== undefined,
+          [`bg-${colorName}`]: color !== undefined,
           'bg-secondary': color === undefined,
         })}
       />

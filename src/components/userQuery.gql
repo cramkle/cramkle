@@ -3,5 +3,8 @@ query UserQuery {
     id
     username
     email
+    preferences {
+      zoneInfo
+    }
   }
 }

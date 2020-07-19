@@ -79,7 +79,7 @@ export const ListboxOption: React.FC<
       )}
     >
       <DoneIcon className={classnames(styles.optionIcon, 'hidden h-4 pr-2')} />
-      <span className="font-normal">{children}</span>
+      <span className="font-normal flex-1 max-w-full">{children}</span>
       <div
         className={classnames(
           styles.optionBackdrop,

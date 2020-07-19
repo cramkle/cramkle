@@ -24,9 +24,15 @@ const REGISTER_MUTATION = gql`
     $username: String!
     $email: String!
     $password: String!
+    $zoneInfo: String
   ) {
     createUser(
-      input: { username: $username, email: $email, password: $password }
+      input: {
+        username: $username
+        email: $email
+        password: $password
+        zoneInfo: $zoneInfo
+      }
     ) {
       user {
         id
@@ -53,6 +59,7 @@ const RegisterForm: React.FunctionComponent<Props> = ({
         username: '',
         email: '',
         password: '',
+        zoneInfo: Intl.DateTimeFormat().resolvedOptions().timeZone,
         consent: false,
       }}
       initialErrors={{
