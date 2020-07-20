@@ -2,7 +2,7 @@ import { useQuery } from '@apollo/react-hooks'
 import { Trans } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { extent, max } from 'd3-array'
-import { scaleLinear, scaleTime } from 'd3-scale'
+import { scaleLinear, scaleUtc } from 'd3-scale'
 import { curveMonotoneX, line } from 'd3-shape'
 import { differenceInDays, endOfToday, subDays } from 'date-fns'
 import gql from 'graphql-tag'
@@ -164,7 +164,7 @@ const StatisticsPage: React.FC = () => {
 
   const studyFrequency = data?.deckStatistics?.studyFrequency ?? []
 
-  const frequencyX = scaleTime()
+  const frequencyX = scaleUtc()
     .domain(extent(studyFrequency, (data) => new Date(data.date)))
     .range([margin.left, width - margin.right])
 
