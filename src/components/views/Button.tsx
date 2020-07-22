@@ -11,7 +11,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(function Button(
 ) {
   const classes = classnames(
     className,
-    'relative rounded h-10 py-1 px-2 outline-none overflow-hidden',
+    'relative rounded h-10 py-1 px-2 outline-reset overflow-hidden',
     {
       'font-medium': variation !== 'plain',
       'font-normal': variation === 'plain',
