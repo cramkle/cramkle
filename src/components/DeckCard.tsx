@@ -67,7 +67,9 @@ const DeckCard: React.FunctionComponent<Props> = ({
         aria-describedby={`${uniqueId}-title`}
       >
         <Headline3 id={`${uniqueId}-title`}>{deck.title}</Headline3>
-        {deck.description && <Body2>{deck.description}</Body2>}
+        {deck.description && (
+          <Body2 className="truncate">{deck.description}</Body2>
+        )}
         {showStudySessionDetails ? (
           <div className="mt-1 flex">
             {newCount > 0 && (
