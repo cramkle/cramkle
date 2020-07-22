@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Fixed
 - Browser default outline in components.
+- Locale popover position overflowing on mobile.
 - Remove usage of `style: 'unit'` in `NumberFormat`.
 
 ## [0.7.1] - 2020-07-20

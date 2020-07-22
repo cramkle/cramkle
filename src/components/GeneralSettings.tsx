@@ -21,7 +21,6 @@ import { Card, CardContent } from './views/Card'
 import { Chip } from './views/Chip'
 import CircularProgress from './views/CircularProgress'
 import {
-  Listbox,
   ListboxButton,
   ListboxInput,
   ListboxList,
@@ -139,18 +138,23 @@ const GeneralSettings: React.FC = () => {
               synchronized across your devices.
             </Trans>
           </Subtitle2>
-          <Listbox
+          <ListboxInput
             id="user-language"
             className={classNames(styles.settingInput, 'ml-2')}
             value={currentLanguage}
             onChange={handleChangeLanguage}
           >
-            {OPTIONS.map((option) => (
-              <ListboxOption key={option.locale} value={option.locale}>
-                {i18n._(option.label)}
-              </ListboxOption>
-            ))}
-          </Listbox>
+            <ListboxButton />
+            <ListboxPopover position={positionRight}>
+              <ListboxList>
+                {OPTIONS.map((option) => (
+                  <ListboxOption key={option.locale} value={option.locale}>
+                    {i18n._(option.label)}
+                  </ListboxOption>
+                ))}
+              </ListboxList>
+            </ListboxPopover>
+          </ListboxInput>
         </div>
         <div
           className={classNames(
