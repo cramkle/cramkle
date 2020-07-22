@@ -13,19 +13,19 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/components/pages/DeckPage.tsx:166
+#: src/components/pages/DeckPage.tsx:164
 msgid "({0} notes)"
 msgstr "({0} notas)"
 
-#: src/components/pages/StatisticsPage.tsx:192
+#: src/components/pages/StatisticsPage.tsx:216
 msgid "1 month"
 msgstr "1 mês"
 
-#: src/components/pages/StatisticsPage.tsx:195
+#: src/components/pages/StatisticsPage.tsx:219
 msgid "1 year"
 msgstr "1 ano"
 
-#: src/components/pages/StatisticsPage.tsx:189
+#: src/components/pages/StatisticsPage.tsx:213
 msgid "7 days"
 msgstr "7 dias"
 
@@ -41,7 +41,7 @@ msgstr "Sobre"
 msgid "Account Settings"
 msgstr "Configurações da conta"
 
-#: src/components/forms/RegisterForm.tsx:68
+#: src/components/forms/RegisterForm.tsx:75
 msgid "Account created successfully"
 msgstr "Conta criada com sucesso"
 
@@ -52,8 +52,8 @@ msgid "Add Deck"
 msgstr "Adicionar deck"
 
 #: src/components/pages/AddNotePage.tsx:162
-#: src/components/pages/DeckPage.tsx:175
-#: src/components/pages/DeckPage.tsx:175
+#: src/components/pages/DeckPage.tsx:173
+#: src/components/pages/DeckPage.tsx:173
 msgid "Add Note"
 msgstr "Adicionar Nota"
 
@@ -75,7 +75,7 @@ msgstr "Adicionar novo"
 msgid "Add template"
 msgstr "Adicionar template"
 
-#: src/components/forms/RegisterForm.tsx:33
+#: src/components/forms/RegisterForm.tsx:39
 msgid "Agreement is required"
 msgstr "Concordância é obrigatória"
 
@@ -233,7 +233,7 @@ msgstr "Criar template"
 msgid "Deck"
 msgstr "Deck"
 
-#: src/components/pages/StatisticsPage.tsx:155
+#: src/components/pages/StatisticsPage.tsx:163
 msgid "Deck Statistics"
 msgstr "Estatísticas do deck"
 
@@ -245,7 +245,7 @@ msgstr "Deck criado com sucesso"
 msgid "Deck deleted successfully"
 msgstr "Deck apagado com sucesso"
 
-#: src/components/pages/DeckPage.tsx:146
+#: src/components/pages/DeckPage.tsx:144
 msgid "Deck details"
 msgstr "Detalhes do deck"
 
@@ -297,7 +297,7 @@ msgstr "Descrição"
 #: src/components/DeleteDeckButton.tsx:54
 #: src/components/DeleteModelButton.tsx:56
 #: src/components/forms/AddDeckForm.tsx:84
-#: src/components/forms/RegisterForm.tsx:69
+#: src/components/forms/RegisterForm.tsx:76
 msgid "Dismiss"
 msgstr "Dispensar"
 
@@ -325,7 +325,7 @@ msgstr "Editar campos"
 msgid "Edit templates"
 msgstr "Editar templates"
 
-#: src/components/forms/RegisterForm.tsx:78
+#: src/components/forms/RegisterForm.tsx:85
 msgid "Email"
 msgstr "Email"
 
@@ -333,11 +333,11 @@ msgstr "Email"
 msgid "Email address"
 msgstr "Endereço de email"
 
-#: src/components/forms/RegisterForm.tsx:31
+#: src/components/forms/RegisterForm.tsx:37
 msgid "Email is required"
 msgstr "Email é obrigatório"
 
-#: src/components/forms/RegisterForm.tsx:56
+#: src/components/forms/RegisterForm.tsx:63
 msgid "Email must be a valid email"
 msgstr "Email precisa ser um email válido"
 
@@ -353,7 +353,7 @@ msgstr "Encerrar"
 msgid "End study session"
 msgstr "Encerrar sessão de estudos"
 
-#: src/components/GeneralSettings.tsx:31
+#: src/components/GeneralSettings.tsx:33
 msgid "English"
 msgstr "Inglês"
 
@@ -397,7 +397,7 @@ msgstr "Primeira página"
 msgid "Flashcards"
 msgstr "Flashcards"
 
-#: src/components/pages/StatisticsPage.tsx:209
+#: src/components/pages/StatisticsPage.tsx:233
 msgid "Flashcards studied"
 msgstr "Flashcards estudados"
 
@@ -470,11 +470,11 @@ msgstr "Difícil"
 msgid "Home"
 msgstr "Página Inicial"
 
-#: src/components/forms/RegisterForm.tsx:82
+#: src/components/forms/RegisterForm.tsx:89
 msgid "I agree to the <0>Terms & Conditions</0>"
 msgstr "Eu concordo com os <0>Termos e Condições</0>"
 
-#: src/components/pages/StatisticsPage.tsx:186
+#: src/components/pages/StatisticsPage.tsx:210
 msgid "Interval"
 msgstr "Intervalo"
 
@@ -498,7 +498,7 @@ msgstr "Itálico"
 msgid "Items per page"
 msgstr "Itens por página"
 
-#: src/components/GeneralSettings.tsx:76
+#: src/components/GeneralSettings.tsx:93
 msgid "Language"
 msgstr "Idioma"
 
@@ -605,15 +605,15 @@ msgstr "Nota criada com sucesso"
 msgid "Note details"
 msgstr "Detalhes da nota"
 
-#: src/components/pages/DeckPage.tsx:164
+#: src/components/pages/DeckPage.tsx:162
 msgid "Notes"
 msgstr "Notas"
 
-#: src/components/pages/StatisticsPage.tsx:176
+#: src/components/pages/StatisticsPage.tsx:200
 msgid "Number of flashcards studied"
 msgstr "Número de flashcards estudados"
 
-#: src/components/pages/StatisticsPage.tsx:175
+#: src/components/pages/StatisticsPage.tsx:199
 msgid "Number of times studied"
 msgstr "Número de vezes estudado"
 
@@ -625,12 +625,12 @@ msgstr "Lista numerada"
 msgid "Optimize your knowledge retention with this effective study method."
 msgstr "Otimize a sua retenção de conhecimento com esse método efetivo de estudo."
 
-#: src/components/pages/StatisticsPage.tsx:165
+#: src/components/pages/StatisticsPage.tsx:173
 msgid "Overview"
 msgstr "Visão geral"
 
 #: src/components/forms/LoginForm.tsx:64
-#: src/components/forms/RegisterForm.tsx:79
+#: src/components/forms/RegisterForm.tsx:86
 msgid "Password"
 msgstr "Senha"
 
@@ -639,11 +639,11 @@ msgid "Password changed successfully"
 msgstr "Senha alterada com sucesso"
 
 #: src/components/forms/LoginForm.tsx:21
-#: src/components/forms/RegisterForm.tsx:32
+#: src/components/forms/RegisterForm.tsx:38
 msgid "Password is required"
 msgstr "Senha é obrigatória"
 
-#: src/components/forms/RegisterForm.tsx:60
+#: src/components/forms/RegisterForm.tsx:67
 #: src/components/pages/ResetPasswordPage.tsx:129
 msgid "Password must be at least 6 characters"
 msgstr "Senha precisa ter pelo menos 6 caracteres"
@@ -652,11 +652,11 @@ msgstr "Senha precisa ter pelo menos 6 caracteres"
 msgid "Please, try reloading the page"
 msgstr "Por favor, tente recarregar a página"
 
-#: src/components/GeneralSettings.tsx:35
+#: src/components/GeneralSettings.tsx:37
 msgid "Portuguese"
 msgstr "Português"
 
-#: src/components/GeneralSettings.tsx:71
+#: src/components/GeneralSettings.tsx:88
 msgid "Preferences"
 msgstr "Preferências"
 
@@ -681,8 +681,8 @@ msgstr "Pronto para funcionar offline"
 msgid "Refresh"
 msgstr "Atualizar"
 
-#: src/components/forms/RegisterForm.tsx:34
-#: src/components/forms/RegisterForm.tsx:91
+#: src/components/forms/RegisterForm.tsx:40
+#: src/components/forms/RegisterForm.tsx:98
 #: src/components/pages/RegisterPage.tsx:12
 msgid "Register"
 msgstr "Cadastrar"
@@ -732,7 +732,7 @@ msgstr "O token para resetar a senha expirou"
 msgid "Review"
 msgstr "Revisão"
 
-#: src/components/GeneralSettings.tsx:121
+#: src/components/GeneralSettings.tsx:138
 msgid "Save"
 msgstr "Salvar"
 
@@ -785,7 +785,7 @@ msgstr "Estudar"
 msgid "Study deck"
 msgstr "Estudar deck"
 
-#: src/components/pages/StatisticsPage.tsx:182
+#: src/components/pages/StatisticsPage.tsx:206
 msgid "Study frequency"
 msgstr "Frequência do estudo"
 
@@ -844,7 +844,7 @@ msgstr "Essa ação irá apagar todos os flashcards associados à este template"
 msgid "This action will delete all values from the notes associated with this model and field"
 msgstr "Essa ação irá apagar todos os valores das notas associadas com esse campo e modelo"
 
-#: src/components/GeneralSettings.tsx:80
+#: src/components/GeneralSettings.tsx:97
 msgid "This configuration applies to this browser only, and won't be synchronized across your devices."
 msgstr "Essa configuração se aplica apenas a este navegador, e não será sincronizada com seus dispositivos."
 
@@ -852,7 +852,7 @@ msgstr "Essa configuração se aplica apenas a este navegador, e não será sinc
 msgid "This link may be broken or the typed URL is incorrect."
 msgstr "Este link pode estar quebrado ou a URL digitada está incorreta."
 
-#: src/components/GeneralSettings.tsx:93
+#: src/components/GeneralSettings.tsx:110
 msgid "Time zone"
 msgstr "Fuso horário"
 
@@ -860,7 +860,7 @@ msgstr "Fuso horário"
 msgid "Title"
 msgstr "Título"
 
-#: src/components/pages/StatisticsPage.tsx:169
+#: src/components/pages/StatisticsPage.tsx:177
 msgid "Total study time"
 msgstr "Tempo total de estudo"
 
@@ -868,7 +868,7 @@ msgstr "Tempo total de estudo"
 msgid "Try again"
 msgstr "Tentar novamente"
 
-#: src/components/pages/StatisticsPage.tsx:238
+#: src/components/pages/StatisticsPage.tsx:262
 msgid "Try selecting a broader interval above."
 msgstr "Tente selecionar um intervalo mais amplo acima."
 
@@ -880,7 +880,7 @@ msgstr "Lista de marcadores"
 msgid "Underline"
 msgstr "Sublinha"
 
-#: src/components/GeneralSettings.tsx:96
+#: src/components/GeneralSettings.tsx:113
 msgid "Used to compute the statistics and study schedule in your local time."
 msgstr "Usado para computar as estatísticas e o cronograma de estudo em seu tempo local."
 
@@ -889,24 +889,24 @@ msgid "User not found"
 msgstr "Usuário não encontrado"
 
 #: src/components/forms/LoginForm.tsx:63
-#: src/components/forms/RegisterForm.tsx:77
+#: src/components/forms/RegisterForm.tsx:84
 msgid "Username"
 msgstr "Nome de usuário"
 
 #: src/components/forms/LoginForm.tsx:20
-#: src/components/forms/RegisterForm.tsx:30
+#: src/components/forms/RegisterForm.tsx:36
 msgid "Username is required"
 msgstr "Nome de usuário é obrigatório"
 
-#: src/components/forms/RegisterForm.tsx:50
+#: src/components/forms/RegisterForm.tsx:57
 msgid "Username must be at least 4 characters"
 msgstr "Nome de usuário precisa ter pelo menos 4 caracteres"
 
-#: src/components/forms/RegisterForm.tsx:51
+#: src/components/forms/RegisterForm.tsx:58
 msgid "Username must be at most 20 characters"
 msgstr "Nome de usuário precisa ter no máximo 20 caracteres"
 
-#: src/components/forms/RegisterForm.tsx:52
+#: src/components/forms/RegisterForm.tsx:59
 msgid "Username must consist only of alphanumeric characters and underscores"
 msgstr "O nome de usuário precisa conter apenas caracteres alfanuméricos e sublinhas"
 
@@ -925,7 +925,7 @@ msgstr "Atenção"
 msgid "We couldn't find the page you requested"
 msgstr "Não conseguimos encontrar a página requisitada"
 
-#: src/components/pages/StatisticsPage.tsx:233
+#: src/components/pages/StatisticsPage.tsx:257
 msgid "We don't have enough data to display in the supplied period."
 msgstr "Não temos dados suficientes para mostrar no período fornecido."
 
@@ -958,13 +958,13 @@ msgid "{0, plural, one {# field} other {# fields}}"
 msgstr "{0, plural, one {# campo} other {# campos}}"
 
 #: src/components/DeckCard.tsx:61
-#: src/components/pages/DeckPage.tsx:156
+#: src/components/pages/DeckPage.tsx:154
 #: src/components/pages/ModelPage.tsx:158
 msgid "{0, plural, one {# flashcard} other {# flashcards}}"
 msgstr "{0, plural, one {# flashcard} other {# flashcards}}"
 
 #: src/components/DeckCard.tsx:56
-#: src/components/pages/DeckPage.tsx:154
+#: src/components/pages/DeckPage.tsx:152
 #: src/components/pages/ModelPage.tsx:153
 msgid "{0, plural, one {# note} other {# notes}}"
 msgstr "{0, plural, one {# nota} other {# notas}}"
@@ -972,6 +972,10 @@ msgstr "{0, plural, one {# nota} other {# notas}}"
 #: src/components/ModelCard.tsx:19
 msgid "{0, plural, one {# template} other {# templates}}"
 msgstr "{0, plural, one {# template} other {# templates}}"
+
+#: src/components/pages/StatisticsPage.tsx:177
+msgid "{0, select, millisecond {{1, plural, one {{formattedStudyTime} millisecond} other {{formattedStudyTime} milliseconds}}} second {{2, plural, one {{formattedStudyTime} second} other {{formattedStudyTime} seconds}}} minute {{3, plural, one {{formattedStudyTime} minute} other {{formattedStudyTime} minutes}}} hour {{4, plural, one {{formattedStudyTime} hour} other {{formattedStudyTime} hours}}} day {{5, plural, one {{formattedStudyTime} day} other {{formattedStudyTime} days}}}}"
+msgstr "{0, select, millisecond {{1, plural, one {{formattedStudyTime} millisegundo} other {{formattedStudyTime} millisegundos}}} second {{2, plural, one {{formattedStudyTime} segundo} other {{formattedStudyTime} segundos}}} minute {{3, plural, one {{formattedStudyTime} minuto} other {{formattedStudyTime} minutos}}} hour {{4, plural, one {{formattedStudyTime} hora} other {{formattedStudyTime} horas}}} day {{5, plural, one {{formattedStudyTime} dia} other {{formattedStudyTime} dias}}}}"
 
 #: src/components/DeckCard.tsx:47
 msgid "{learningCount, plural, one {# learning} other {# learning}}"
