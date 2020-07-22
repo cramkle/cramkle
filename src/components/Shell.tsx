@@ -13,8 +13,10 @@ import NoSSR from './NoSSR'
 import { TopBarLoadingQuery } from './__generated__/TopBarLoadingQuery'
 import { UserQuery } from './__generated__/UserQuery'
 import LogoutIcon from './icons/LogoutIcon'
+import MarketplaceIcon from './icons/MarketplaceIcon'
 import OverflowMenuIcon from './icons/OverflowMenuIcon'
 import SettingsIcon from './icons/SettingsIcon'
+import StatisticsIcon from './icons/StatisticsIcon'
 import USER_QUERY from './userQuery.gql'
 import { Header, HeaderContent, HeaderSection } from './views/Header'
 import { Menu, MenuButton, MenuItem, MenuList } from './views/MenuButton'
@@ -44,6 +46,10 @@ const Shell: React.FunctionComponent = ({ children }) => {
   const handleSettingsClick = useCallback(() => {
     history.push('/settings')
   }, [history])
+
+  const handleStatisticsClick = () => history.push('/statistics')
+
+  const handleMarketplaceClick = () => history.push('/marketplace')
 
   const handleLogout = useCallback(() => {
     fetch('/_c/auth/logout', {
@@ -85,6 +91,21 @@ const Shell: React.FunctionComponent = ({ children }) => {
                   <span className="text-primary text-lg">{me?.username}</span>
                   <span className="text-secondary">{me?.email}</span>
                 </div>
+                <MenuItem
+                  className="md:hidden"
+                  onSelect={handleMarketplaceClick}
+                  icon={<MarketplaceIcon className="text-secondary" />}
+                >
+                  <Trans>Marketplace</Trans>
+                </MenuItem>
+                <MenuItem
+                  className="md:hidden"
+                  onSelect={handleStatisticsClick}
+                  icon={<StatisticsIcon className="text-secondary" />}
+                >
+                  <Trans>Statistics</Trans>
+                </MenuItem>
+                <div className="my-3 h-px md:hidden bg-gray-1" />
                 <MenuItem
                   onSelect={handleSettingsClick}
                   icon={<SettingsIcon className="text-secondary" />}
