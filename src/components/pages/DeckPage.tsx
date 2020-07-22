@@ -187,7 +187,7 @@ const DeckPage: React.FunctionComponent = () => {
         <BackButton to="/decks" />
 
         <div className="flex flex-col mb-8">
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-baseline">
             <Headline1>
               <Trans>Deck details</Trans>
             </Headline1>
@@ -233,16 +233,14 @@ const DeckPage: React.FunctionComponent = () => {
           />
         </div>
 
-        {!isMobile && (
-          <div className="fixed" style={{ bottom: 20, right: 20 }}>
-            <Fab
-              icon={<GenericAddIcon />}
-              aria-label={i18n._(t`Add Note`)}
-              textLabel={i18n._(t`Add Note`)}
-              onClick={() => history.push(`${location.pathname}/new-note`)}
-            />
-          </div>
-        )}
+        <div className="fixed" style={{ bottom: 20, right: 20 }}>
+          <Fab
+            icon={<GenericAddIcon />}
+            aria-label={i18n._(t`Add Note`)}
+            textLabel={!isMobile && i18n._(t`Add Note`)}
+            onClick={() => history.push(`${location.pathname}/new-note`)}
+          />
+        </div>
       </Container>
     </>
   )
