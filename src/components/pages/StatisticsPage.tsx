@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/react-hooks'
-import { Trans } from '@lingui/macro'
+import { Trans, plural, select } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { extent, max } from 'd3-array'
 import { scaleLinear, scaleUtc } from 'd3-scale'
@@ -115,7 +115,7 @@ const StatisticsPage: React.FC = () => {
   useTopBarLoading(loading)
 
   const studyTime = useMemo(() => {
-    let time = data?.deckStatistics?.totalStudyTime
+    let time = data?.deckStatistics?.totalStudyTime ?? 0
     let unit = 'millisecond'
 
     if (time > 1000) {
@@ -135,7 +135,10 @@ const StatisticsPage: React.FC = () => {
       unit = 'day'
     }
 
-    return { time, unit }
+    return {
+      time,
+      unit,
+    }
   }, [data?.deckStatistics?.totalStudyTime])
 
   const chartContainerRef = useRef<HTMLDivElement>(null)
@@ -193,6 +196,11 @@ const StatisticsPage: React.FC = () => {
 
   const daysInterval = differenceInDays(today, startDate)
 
+  const formattedStudyTime = i18n.number(studyTime.time, {
+    style: 'decimal',
+    maximumFractionDigits: 2,
+  })
+
   if (!data) {
     return null
   }
@@ -224,11 +232,27 @@ const StatisticsPage: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-6 mt-6">
         <StatisticsCard
           label={<Trans>Total study time</Trans>}
-          value={i18n.number(studyTime.time, {
-            maximumFractionDigits: 2,
-            style: 'unit',
-            // @ts-ignore
-            unit: studyTime.unit,
+          value={select(studyTime.unit, {
+            millisecond: plural(studyTime.time, {
+              one: `${formattedStudyTime} millisecond`,
+              other: `${formattedStudyTime} milliseconds`,
+            }),
+            second: plural(studyTime.time, {
+              one: `${formattedStudyTime} second`,
+              other: `${formattedStudyTime} seconds`,
+            }),
+            minute: plural(studyTime.time, {
+              one: `${formattedStudyTime} minute`,
+              other: `${formattedStudyTime} minutes`,
+            }),
+            hour: plural(studyTime.time, {
+              one: `${formattedStudyTime} hour`,
+              other: `${formattedStudyTime} hours`,
+            }),
+            day: plural(studyTime.time, {
+              one: `${formattedStudyTime} day`,
+              other: `${formattedStudyTime} days`,
+            }),
           })}
         />
         <StatisticsCard
