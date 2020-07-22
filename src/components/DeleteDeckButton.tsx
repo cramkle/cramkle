@@ -93,11 +93,11 @@ const DeleteDeckButton: React.FunctionComponent<Props> = ({ deckId }) => {
   return (
     <>
       <Button
-        className="my-2"
+        className="my-2 flex-shrink-0"
         variation="outline"
         onClick={() => setDialogOpen(true)}
       >
-        <TrashBinIcon className="mr-2" />
+        <TrashBinIcon className="mr-2 flex-shrink-0" />
         <Trans>Delete</Trans>
       </Button>
       <AlertDialog
