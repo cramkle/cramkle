@@ -1,10 +1,12 @@
 import { useQuery } from '@apollo/react-hooks'
 import { Trans } from '@lingui/macro'
+import classNames from 'classnames'
 import gql from 'graphql-tag'
 import React from 'react'
 
 import useTopBarLoading from '../hooks/useTopBarLoading'
 import DeckCard, { deckCardFragment } from './DeckCard'
+import styles from './DeckList.css'
 import { DecksQuery } from './__generated__/DecksQuery'
 import { Body1 } from './views/Typography'
 
@@ -41,15 +43,10 @@ const DeckList: React.FunctionComponent = () => {
   }
 
   return (
-    <div className="p-4">
-      <div className="grid grid-cols-12 gap-6">
+    <div className="py-4">
+      <div className={classNames(styles.grid, 'grid gap-4')}>
         {decks.map((deck) => (
-          <div
-            key={deck.id}
-            className="col-span-12 md:col-span-6 xl:col-span-4"
-          >
-            <DeckCard deck={deck} />
-          </div>
+          <DeckCard key={deck.id} deck={deck} />
         ))}
       </div>
     </div>

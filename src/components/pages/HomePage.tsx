@@ -1,5 +1,6 @@
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
+import classNames from 'classnames'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { useHistory, useLocation } from 'react-router'
@@ -16,6 +17,7 @@ import Container from '../views/Container'
 import { List, ListItem } from '../views/List'
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from '../views/Tabs'
 import DecksSection from './DecksSection'
+import styles from './HomePage.css'
 import ModelsSection from './ModelsSection'
 import StudySection from './StudySection'
 
@@ -91,23 +93,36 @@ const HomePage: React.FunctionComponent = () => {
         <title>{i18n._(t`Home`)}</title>
       </Helmet>
 
-      <div className="h-full grid grid-cols-1 md:grid-cols-4 md:gap-8">
-        <List className="hidden md:block w-100 px-4 py-2">
+      <div
+        className={classNames(
+          styles.grid,
+          'h-full grid gap-4 md:gap-6 xl:gap-8'
+        )}
+      >
+        <List
+          className={classNames(
+            styles.sidenav,
+            'hidden md:block w-100 px-4 py-2'
+          )}
+        >
           <ListItem
             onClick={handleMarketplaceClick}
-            icon={<MarketplaceIcon className="flex-shrink-0" />}
+            icon={<MarketplaceIcon className="flex-shrink-0 text-secondary" />}
           >
             {i18n._(t`Marketplace`)}
           </ListItem>
           <ListItem
             onClick={handleStatisticsClick}
-            icon={<StatisticsIcon className="flex-shrink-0" />}
+            icon={<StatisticsIcon className="flex-shrink-0 text-secondary" />}
           >
             {i18n._(t`Statistics`)}
           </ListItem>
         </List>
 
-        <Container lean className="mx-0 col-span-2">
+        <Container
+          lean
+          className={classNames(styles.content, 'mx-0 col-span-2')}
+        >
           <Tabs index={index} onChange={handleTabChange}>
             <HeaderPortal>
               <TabList className="overflow-y-auto h-full justify-center">

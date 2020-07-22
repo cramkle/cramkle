@@ -112,8 +112,8 @@ const StudySection: React.FunctionComponent = () => {
         </AlertDialog>
       )}
       {decks.length > 0 ? (
-        <div className="p-4">
-          <div className="grid grid-cols-12 gap-6">
+        <div className="py-4">
+          <div className="grid grid-cols-12 gap-4">
             {decks.map((deck) => (
               <div
                 key={deck.id}

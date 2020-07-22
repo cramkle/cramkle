@@ -1,0 +1,30 @@
+.grid {
+  grid-template-columns: 1fr;
+  grid-template-areas: "content";
+}
+
+.sidenav {
+  grid-area: sidenav;
+}
+
+.content {
+  grid-area: content;
+}
+
+.extra {
+  grid-area: extra;
+}
+
+@media only screen and (min-width: 768px) {
+  .grid {
+    grid-template-columns: 220px 1fr;
+    grid-template-areas: "sidenav content";
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .grid {
+    grid-template-columns: 320px 1fr 320px;
+    grid-template-areas: "sidenav content extra";
+  }
+}
