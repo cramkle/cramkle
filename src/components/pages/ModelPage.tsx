@@ -24,9 +24,11 @@ import EditFieldsDialog from '../EditFieldsDialog'
 import EditTemplatesDialog from '../EditTemplatesDialog'
 import TemplateEditor from '../TemplateEditor'
 import DoneIcon from '../icons/DoneIcon'
+import OverflowMenuIcon from '../icons/OverflowMenuIcon'
 import Button from '../views/Button'
 import CircularProgress from '../views/CircularProgress'
 import Container from '../views/Container'
+import { Menu, MenuButton, MenuItem, MenuList } from '../views/MenuButton'
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from '../views/Tabs'
 import { Body1, Body2, Headline1, Headline2 } from '../views/Typography'
 import styles from './ModelPage.css'
@@ -239,7 +241,7 @@ const ModelPage: React.FC = () => {
       <Container>
         <BackButton />
         <div className="flex flex-col mb-8">
-          <div className="flex justify-between">
+          <div className="flex justify-between items-baseline">
             <Headline1>
               <Trans>Model details</Trans>
             </Headline1>
@@ -271,19 +273,42 @@ const ModelPage: React.FC = () => {
               <Trans>Templates</Trans>
             </Body1>
 
-            <div className="flex items-center">
+            <EditTemplatesDialog
+              isOpen={editingTemplates}
+              onDismiss={() => setEditingTemplates(false)}
+              templates={model.templates}
+              modelId={model.id}
+            />
+            <EditFieldsDialog
+              isOpen={editingFields}
+              onDismiss={() => setEditingFields(false)}
+              fields={model.fields}
+              modelId={model.id}
+            />
+
+            <div className="sm:hidden">
+              <Menu>
+                <MenuButton icon>
+                  <OverflowMenuIcon />
+                </MenuButton>
+                <MenuList>
+                  <MenuItem onSelect={() => setEditingTemplates(true)}>
+                    <Trans>Edit templates</Trans>
+                  </MenuItem>
+                  <MenuItem onSelect={() => setEditingFields(true)}>
+                    <Trans>Edit fields</Trans>
+                  </MenuItem>
+                </MenuList>
+              </Menu>
+            </div>
+
+            <div className="flex items-center hidden sm:block">
               <Button
                 className="ml-2"
                 onClick={() => setEditingTemplates(true)}
               >
                 <Trans>Edit templates</Trans>
               </Button>
-              <EditTemplatesDialog
-                isOpen={editingTemplates}
-                onDismiss={() => setEditingTemplates(false)}
-                templates={model.templates}
-                modelId={model.id}
-              />
 
               <Button
                 variation="secondary"
@@ -292,12 +317,6 @@ const ModelPage: React.FC = () => {
               >
                 <Trans>Edit fields</Trans>
               </Button>
-              <EditFieldsDialog
-                isOpen={editingFields}
-                onDismiss={() => setEditingFields(false)}
-                fields={model.fields}
-                modelId={model.id}
-              />
             </div>
           </div>
           {model.templates.length ? (

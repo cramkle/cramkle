@@ -192,7 +192,7 @@ const EditFieldsDialog: React.FC<{
             {editingFieldId === field.id && !isDelete ? (
               <>
                 <Input
-                  className="w-full"
+                  className="w-full min-w-0"
                   ref={inputRef}
                   placeholder={i18n._(t`Field name`)}
                   value={fieldName}
@@ -278,7 +278,7 @@ const EditFieldsDialog: React.FC<{
       {editingFieldId === '' ? (
         <div className="flex items-center justify-between pt-3 pr-2">
           <Input
-            className="w-full"
+            className="w-full min-w-0"
             ref={inputRef}
             placeholder={i18n._(t`New field name`)}
             value={fieldName}

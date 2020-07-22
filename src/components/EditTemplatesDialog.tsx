@@ -224,7 +224,7 @@ const EditTemplatesDialog: React.FC<{
             {editingTemplateId === template.id && !isDelete ? (
               <>
                 <Input
-                  className="w-full"
+                  className="w-full min-w-0"
                   placeholder={i18n._(t`Template name`)}
                   ref={inputRef}
                   value={templateName}
@@ -317,7 +317,7 @@ const EditTemplatesDialog: React.FC<{
       {editingTemplateId === '' ? (
         <div className="flex items-center justify-between pt-3 pr-2">
           <Input
-            className="w-full"
+            className="w-full min-w-0"
             ref={inputRef}
             placeholder={i18n._(t`New template name`)}
             value={templateName}

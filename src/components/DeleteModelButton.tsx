@@ -102,8 +102,12 @@ const DeleteModelButton: React.FunctionComponent<Props> = ({ model }) => {
 
   return (
     <>
-      <Button variation="outline" onClick={handleClick}>
-        <TrashBinIcon className="mr-2" />
+      <Button
+        className="flex-shrink-0"
+        variation="outline"
+        onClick={handleClick}
+      >
+        <TrashBinIcon className="mr-2 flex-shrink-0" />
         <Trans>Delete</Trans>
       </Button>
       <AlertDialog
