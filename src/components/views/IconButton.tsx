@@ -7,23 +7,6 @@ import React, { useEffect, useRef, useState } from 'react'
 
 import useClassList from '../../hooks/useClassList'
 
-interface ToggleProps {
-  on?: boolean
-  className?: string
-}
-
-export const IconButtonToggle: React.FC<ToggleProps> = ({
-  on = false,
-  className = '',
-  children,
-}) => {
-  const classes = classNames('mdc-icon-button__icon', className, {
-    'mdc-icon-button__icon--on': on,
-  })
-
-  return <div className={classes}>{children}</div>
-}
-
 type Props =
   | React.ButtonHTMLAttributes<HTMLButtonElement>
   | ({ href: string } & React.AnchorHTMLAttributes<HTMLAnchorElement>)
@@ -67,7 +50,7 @@ const IconButton: React.FC<Props> = ({
   }, [addClass, removeClass])
 
   const classes = classNames(
-    'mdc-icon-button flex items-center',
+    'mdc-icon-button flex items-center outline-reset',
     classList,
     className
   )

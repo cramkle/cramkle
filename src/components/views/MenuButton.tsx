@@ -9,8 +9,9 @@ import {
   MenuLink as ReachMenuLink,
   MenuList as ReachMenuList,
 } from '@reach/menu-button'
+import { ForwardRefExoticComponentWithAs } from '@reach/utils'
 import classnames from 'classnames'
-import React, { ReactNode } from 'react'
+import React, { ReactNode, forwardRef } from 'react'
 import { Link, LinkProps } from 'react-router-dom'
 
 import styles from './MenuButton.css'
@@ -26,7 +27,7 @@ export const MenuButton: React.FC<MenuButtonProps & { icon?: boolean }> = ({
       {...props}
       className={classnames(
         className,
-        'relative bg-surface border-0 border-none rounded py-2 px-1 cursor-pointer overflow-hidden hover:bg-secondary',
+        'relative outline-reset bg-surface border-0 border-none rounded py-2 px-1 cursor-pointer overflow-hidden hover:bg-secondary focus:bg-secondary',
         {
           'px-2 rounded-full': icon,
         }
@@ -55,15 +56,16 @@ export const MenuList: React.FC<MenuListProps> = ({
   )
 }
 
-export const MenuItem: React.FC<MenuItemProps & { icon?: ReactNode }> = ({
-  children,
-  icon,
-  ...props
-}) => {
+export const MenuItem: ForwardRefExoticComponentWithAs<
+  'div',
+  MenuItemProps & { icon?: ReactNode }
+> = forwardRef(function MenuItem({ children, icon, ...props }, ref) {
   return (
     <ReachMenuItem
       {...props}
+      ref={ref}
       className={classnames(
+        props.className,
         styles.menuItem,
         'relative flex items-center px-3 py-2 bg-surface text-on-surface'
       )}
@@ -78,7 +80,7 @@ export const MenuItem: React.FC<MenuItemProps & { icon?: ReactNode }> = ({
       />
     </ReachMenuItem>
   )
-}
+})
 
 export const MenuLink: React.FC<MenuLinkProps & LinkProps> = ({
   children,

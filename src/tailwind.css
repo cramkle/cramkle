@@ -3,3 +3,7 @@
 @tailwind components;
 
 @tailwind utilities;
+
+.outline-reset, .outline-reset:focus, .outline-reset:focus-within {
+  outline: 0;
+}

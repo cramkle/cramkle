@@ -46,7 +46,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
       ref={ref}
       className={classnames(
         className,
-        'rounded border border-gray-1 py-2 px-4 focus:border-primary placeholder-gray-2',
+        'rounded border border-gray-1 outline-none py-2 px-4 focus:border-primary placeholder-gray-2',
         {
           'mt-2': isLabelled,
         }
