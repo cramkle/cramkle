@@ -137,7 +137,7 @@ const BlockStyleControls: React.FunctionComponent<{
   )
 
   return (
-    <div className="mb-2 text-sm flex flex-wrap">
+    <div className="w-full mb-2 text-sm flex overflow-x-auto">
       {BLOCK_TYPES.map((type) => (
         <StyleButton
           key={type.style}

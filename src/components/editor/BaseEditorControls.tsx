@@ -123,7 +123,7 @@ const BaseEditorControls: React.FC<Props> = ({
     <ctx.Provider value={contextValue}>
       <Card className={classnames(className, 'border-gray-1 p-0')}>
         <div className="flex items-center p-2 border-b border-gray-1">
-          <div className="flex flex-col items-start">
+          <div className="w-full flex flex-col items-start">
             <TabController>
               <BlockStyleControls
                 editor={editor}
