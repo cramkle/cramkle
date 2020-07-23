@@ -1,6 +1,7 @@
 import { useQuery } from '@apollo/react-hooks'
 import { Trans } from '@lingui/macro'
 import { NetworkStatus } from 'apollo-client'
+import classNames from 'classnames'
 import gql from 'graphql-tag'
 import React, { useRef, useState } from 'react'
 import { useHistory } from 'react-router'
@@ -16,6 +17,7 @@ import Button from '../views/Button'
 import CircularProgress from '../views/CircularProgress'
 import Container from '../views/Container'
 import { Body1, Body2 } from '../views/Typography'
+import styles from './StudySection.css'
 import { DecksToStudy } from './__generated__/DecksToStudy'
 
 const DECKS_TO_STUDY_QUERY = gql`
@@ -113,18 +115,14 @@ const StudySection: React.FunctionComponent = () => {
       )}
       {decks.length > 0 ? (
         <div className="py-4">
-          <div className="grid grid-cols-12 gap-4">
+          <div className={classNames(styles.grid, 'grid gap-4')}>
             {decks.map((deck) => (
-              <div
+              <DeckCard
                 key={deck.id}
-                className="col-span-12 sm:col-span-6 xl:col-span-4"
-              >
-                <DeckCard
-                  deck={deck}
-                  onClick={handleDeckSelect}
-                  showStudySessionDetails
-                />
-              </div>
+                deck={deck}
+                onClick={handleDeckSelect}
+                showStudySessionDetails
+              />
             ))}
           </div>
         </div>
