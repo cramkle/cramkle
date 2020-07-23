@@ -2,9 +2,9 @@ import { useQuery } from '@apollo/react-hooks'
 import { Trans, plural, select } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { extent, max } from 'd3-array'
-import { scaleLinear, scaleUtc } from 'd3-scale'
+import { scaleLinear, scaleTime } from 'd3-scale'
 import { curveMonotoneX, line } from 'd3-shape'
-import { differenceInDays, endOfToday, subDays } from 'date-fns'
+import { addMinutes, differenceInDays, startOfToday, subDays } from 'date-fns'
 import gql from 'graphql-tag'
 import React, { ReactNode, useEffect, useMemo, useRef, useState } from 'react'
 import ResizeObserver from 'resize-observer-polyfill'
@@ -28,6 +28,13 @@ import {
   DeckStatisticsVariables,
   DeckStatistics_deckStatistics_studyFrequency,
 } from './__generated__/DeckStatistics'
+
+type TransformedStudyFrequency = Omit<
+  DeckStatistics_deckStatistics_studyFrequency,
+  'date'
+> & {
+  date: Date
+}
 
 const STATISTICS_QUERY = gql`
   query DeckStatistics($deckId: ID, $startDate: String!, $endDate: String!) {
@@ -94,7 +101,7 @@ const StatisticsPage: React.FC = () => {
   const [interval, setIntervalValue] = useState('7')
   const [selectedDeck, setSelectedDeck] = useState<string | null>(null)
 
-  const { current: today } = useRef(endOfToday())
+  const { current: today } = useRef(startOfToday())
   const startDate = subDays(today, parseInt(interval, 10))
 
   const { loading, data } = useQuery<DeckStatistics, DeckStatisticsVariables>(
@@ -165,10 +172,20 @@ const StatisticsPage: React.FC = () => {
     return () => observer.unobserve(chartContainerNode)
   }, [chartContainerRef.current])
 
-  const studyFrequency = data?.deckStatistics?.studyFrequency ?? []
+  const studyFrequency = useMemo(
+    () =>
+      (data?.deckStatistics?.studyFrequency ?? []).map((frequency) => ({
+        ...frequency,
+        date: addMinutes(
+          frequency.date,
+          new Date(frequency.date).getTimezoneOffset()
+        ),
+      })),
+    [data?.deckStatistics?.studyFrequency]
+  )
 
-  const frequencyX = scaleUtc()
-    .domain(extent(studyFrequency, (data) => new Date(data.date)))
+  const frequencyX = scaleTime()
+    .domain(extent(studyFrequency, (data) => data.date))
     .range([margin.left, width - margin.right])
 
   const frequencyY = scaleLinear()
@@ -182,11 +199,11 @@ const StatisticsPage: React.FC = () => {
     .nice()
     .range([height - margin.bottom, margin.top])
 
-  const learningLineShape = line<DeckStatistics_deckStatistics_studyFrequency>()
+  const learningLineShape = line<TransformedStudyFrequency>()
     .x((d) => frequencyX(d.date))
     .curve(curveMonotoneX)
     .y((d) => frequencyY(d.learning))
-  const newLineShape = line<DeckStatistics_deckStatistics_studyFrequency>()
+  const newLineShape = line<TransformedStudyFrequency>()
     .x((d) => frequencyX(d.date))
     .curve(curveMonotoneX)
     .y((d) => frequencyY(d.new))
