@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Fixed
 - Incorrect date in study frequency chart of statistics page.
+- Outline style in listbox component.
+- Study section grid not aligned with decks section.
+- Margin of deck description.
 
 ## [0.7.2] - 2020-07-22
 ### Added

@@ -196,9 +196,11 @@ const DeckPage: React.FunctionComponent = () => {
           </div>
           <Headline2 className="mt-4">{deck.title}</Headline2>
           {deck.description && (
-            <Body1 className="mt-1">{deck.description}</Body1>
+            <Body1 className="mt-2 whitespace-pre-line">
+              {deck.description}
+            </Body1>
           )}
-          <Body2 className="mt-1">
+          <Body2 className="mt-4">
             {i18n._(
               plural(deck.totalNotes, { one: '# note', other: '# notes' })
             )}
