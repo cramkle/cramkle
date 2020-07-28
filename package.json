@@ -92,7 +92,7 @@
     "workbox-precaching": "^5.1.2",
     "workbox-routing": "^5.1.2",
     "workbox-strategies": "^5.1.2",
-    "yup": "^0.29.1"
+    "yup": "^0.29.2"
   },
   "devDependencies": {
     "@apollo/react-testing": "3.1.4",
