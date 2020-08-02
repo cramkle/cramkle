@@ -7,15 +7,31 @@ organize your study using a [spaced repetition](https://en.wikipedia.org/wiki/Sp
 algorithm, used in many flashcard apps and learning websites, such as
 [Anki](https://apps.ankiweb.net/) and [SuperMemo](https://www.supermemo.com/).
 
-## Installation and startup
+## Getting started
 
-In order to install the required dependencies and
-start the development server, run the following commands
-
-> You need to have yarn installed to run this project
+If you want to access the Cloud version of Cramkle, go to [www.cramkle.com](https://www.cramkle.com/),
+else you can follow the instructions below.
 
 ```sh
+git clone https://github.com/cramkle/cramkle
+cd cramkle
+
+# Install dependencies
 yarn
+
+# Compile messages translations from PO files to JSON
+yarn compile
+```
+
+If you want to run this project locally, you will also need to setup and run [Hipocampo](https://github.com/cramkle/hipocampo),
+which is our GraphQL API.
+
+## Development
+
+Now that you've setup all the dependencies for both this project and Hipocampo,
+you can run the local server with the command below.
+
+```sh
 yarn dev
 ```
 
@@ -24,8 +40,8 @@ yarn dev
 This project uses [`lingui-js`](https://github.com/lingui/js-lingui) for i18n. In case you need
 to translate something that isn't yet translated, or you are adding some new texts, you'll need
 to use one of the macros from the lingui package. Lingui comes with several macros to handle all
-sorts of cases of language translation, but the more common one is a plain text. For simple texts,
-you can use either the `Trans` macro or the `t` macro in conjunction with the `useLingui` hook.
+sorts of cases of language translation, but the most common one is just plain text. For simple texts,
+you can use either the `Trans` macro or the `t` macro (in conjunction with the `useLingui` hook).
 
 Now, to translate something you can just wrap it up with one of lingui macros, like one of the two above:
 
@@ -53,9 +69,9 @@ const ComponentWithUseLingui = () => {
 }
 ```
 
-After adding the macro to the component like in the example above, you need to run `yarn extract` so lingui
-can extract those texts into the PO files (under `./src/locales/`). Then, edit the translation in the corresponding
-files and run `yarn compile` and that's it. You can see more info and other examples on the [Lingui docs](https://lingui.js.org/).
+After adding the macro to the component like in the example above, you'll need to run `yarn extract` so lingui
+can extract those texts into PO files (under `./src/locales/`). Then, edit the translation in the corresponding
+files and run `yarn compile`. You can see more info and other examples on the [Lingui docs](https://lingui.js.org/).
 
 ## CSS and Tailwind
 
