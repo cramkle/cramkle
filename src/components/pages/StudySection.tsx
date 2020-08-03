@@ -128,7 +128,7 @@ const StudySection: React.FunctionComponent = () => {
         </div>
       ) : (
         <div className="mt-8 flex justify-center">
-          <Body1 className="text-base">
+          <Body1 className="text-base text-center">
             <Trans>You've finished studying your decks for now.</Trans>
           </Body1>
         </div>
