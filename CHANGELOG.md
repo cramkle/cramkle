@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Add tooltip to homepage toolbar and update styling.
 
+### Fixed
+- Menu button shadow border.
+
 ## [0.7.3] - 2020-07-23
 ### Fixed
 - Incorrect date in study frequency chart of statistics page.

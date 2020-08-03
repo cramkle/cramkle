@@ -51,7 +51,7 @@ export const MenuList: React.FC<MenuListProps> = ({
         'mt-1 py-0 border-0 border-none rounded shadow-lg bg-surface'
       )}
     >
-      <div className="py-2 h-full shadow-xs">{children}</div>
+      <div className="py-2 h-full shadow-xs rounded">{children}</div>
     </ReachMenuList>
   )
 }
