@@ -29,6 +29,92 @@ const TOP_BAR_LOADING_QUERY = gql`
   }
 `
 
+const DefaultMenuItems: React.FC = () => {
+  const history = useHistory()
+
+  const handleSettingsClick = useCallback(() => {
+    history.push('/settings')
+  }, [history])
+
+  const handleLogout = useCallback(() => {
+    fetch('/_c/auth/logout', {
+      method: 'POST',
+      credentials: 'include',
+    }).then(() => window.location.assign('/login'))
+  }, [])
+
+  return (
+    <>
+      <MenuItem
+        onSelect={handleSettingsClick}
+        icon={<SettingsIcon className="text-secondary" />}
+      >
+        <Trans>Settings</Trans>
+      </MenuItem>
+      <MenuItem
+        onSelect={handleLogout}
+        icon={<LogoutIcon className="text-secondary" />}
+      >
+        <Trans>Log out</Trans>
+      </MenuItem>
+    </>
+  )
+}
+
+const MobileMenu: React.FC<{ username: string; email: string }> = ({
+  username,
+  email,
+}) => {
+  const history = useHistory()
+
+  const handleStatisticsClick = () => history.push('/statistics')
+
+  const handleMarketplaceClick = () => history.push('/marketplace')
+
+  return (
+    <Menu>
+      <MenuButton icon className="md:hidden">
+        <OverflowMenuIcon />
+      </MenuButton>
+      <MenuList>
+        <div className="flex flex-col px-5 mb-3 md:hidden">
+          <span className="text-primary text-lg">{username}</span>
+          <span className="text-secondary">{email}</span>
+        </div>
+        <MenuItem
+          className="md:hidden"
+          onSelect={handleMarketplaceClick}
+          icon={<MarketplaceIcon className="text-secondary" />}
+        >
+          <Trans>Marketplace</Trans>
+        </MenuItem>
+        <MenuItem
+          className="md:hidden"
+          onSelect={handleStatisticsClick}
+          icon={<StatisticsIcon className="text-secondary" />}
+        >
+          <Trans>Statistics</Trans>
+        </MenuItem>
+        <div className="my-3 h-px md:hidden bg-gray-1" />
+        <DefaultMenuItems />
+      </MenuList>
+    </Menu>
+  )
+}
+
+const DefaultMenu: React.FC = () => {
+  return (
+    <Menu>
+      <MenuButton icon className="hidden md:inline-block">
+        <OverflowMenuIcon />
+      </MenuButton>
+      <MenuList>
+        <DefaultMenuItems />
+      </MenuList>
+    </Menu>
+  )
+}
+
 const Shell: React.FunctionComponent = ({ children }) => {
   const { data } = useQuery<TopBarLoadingQuery>(TOP_BAR_LOADING_QUERY)
 
@@ -41,30 +127,13 @@ const Shell: React.FunctionComponent = ({ children }) => {
 
   const me = userData?.me
 
-  const history = useHistory()
-
-  const handleSettingsClick = useCallback(() => {
-    history.push('/settings')
-  }, [history])
-
-  const handleStatisticsClick = () => history.push('/statistics')
-
-  const handleMarketplaceClick = () => history.push('/marketplace')
-
-  const handleLogout = useCallback(() => {
-    fetch('/_c/auth/logout', {
-      method: 'POST',
-      credentials: 'include',
-    }).then(() => window.location.assign('/login'))
-  }, [])
-
   if (React.Children.count(children) === 0) {
     return null
   }
 
   const loader = (
     <LinearProgress
-      className="absolute top-100 left-0 right-0 z-20"
+      className="absolute top-100 left-0 right-0 z-1"
       indeterminate
     />
   )
@@ -76,52 +145,20 @@ const Shell: React.FunctionComponent = ({ children }) => {
           <HeaderSection>
             <Link className="flex items-center pl-1 link" to="/home">
               {!isOffline ? <Logo width="32" /> : <LogoGray width="32" />}
-              <AppName className="ml-2 hidden md:inline-block" />
+              <AppName className="ml-2" />
             </Link>
           </HeaderSection>
-          <div id="header-portal-anchor" className="flex-auto" />
+          <div
+            id="header-portal-anchor"
+            className="flex-auto hidden md:inline-block"
+          />
           <HeaderSection align="end">
             <span className="hidden md:inline-block mr-3">{me?.username}</span>
-            <Menu>
-              <MenuButton icon>
-                <OverflowMenuIcon />
-              </MenuButton>
-              <MenuList>
-                <div className="flex flex-col px-5 mb-3 md:hidden">
-                  <span className="text-primary text-lg">{me?.username}</span>
-                  <span className="text-secondary">{me?.email}</span>
-                </div>
-                <MenuItem
-                  className="md:hidden"
-                  onSelect={handleMarketplaceClick}
-                  icon={<MarketplaceIcon className="text-secondary" />}
-                >
-                  <Trans>Marketplace</Trans>
-                </MenuItem>
-                <MenuItem
-                  className="md:hidden"
-                  onSelect={handleStatisticsClick}
-                  icon={<StatisticsIcon className="text-secondary" />}
-                >
-                  <Trans>Statistics</Trans>
-                </MenuItem>
-                <div className="my-3 h-px md:hidden bg-gray-1" />
-                <MenuItem
-                  onSelect={handleSettingsClick}
-                  icon={<SettingsIcon className="text-secondary" />}
-                >
-                  <Trans>Settings</Trans>
-                </MenuItem>
-                <MenuItem
-                  onSelect={handleLogout}
-                  icon={<LogoutIcon className="text-secondary" />}
-                >
-                  <Trans>Log out</Trans>
-                </MenuItem>
-              </MenuList>
-            </Menu>
+            <MobileMenu username={me?.username} email={me?.email} />
+            <DefaultMenu />
           </HeaderSection>
         </HeaderContent>
+        <div id="header-mobile-portal-anchor" />
         {loading && loader}
       </Header>
       <main className="flex-1 overflow-auto w-full relative bg-background">

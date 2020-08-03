@@ -2325,6 +2325,19 @@
     prop-types "^15.7.2"
     tslib "^2.0.0"
 
+"@reach/tooltip@^0.10.5":
+  version "0.10.5"
+  resolved "https://registry.yarnpkg.com/@reach/tooltip/-/tooltip-0.10.5.tgz#7090dbcdcdcc1353bb3a0ec7c1e856a4a12ebb31"
+  integrity sha512-H5Z46Cng5zZhvqf/yH2+uBppL92LOkzqZ3HKSNPb0iONKpDEKRld338Hf30UMhMiE4TJzaFTbrDqvvud/+H6Aw==
+  dependencies:
+    "@reach/auto-id" "0.10.5"
+    "@reach/portal" "0.10.5"
+    "@reach/rect" "0.10.5"
+    "@reach/utils" "0.10.5"
+    "@reach/visually-hidden" "0.10.4"
+    prop-types "^15.7.2"
+    tslib "^2.0.0"
+
 "@reach/utils@0.10.5":
   version "0.10.5"
   resolved "https://registry.yarnpkg.com/@reach/utils/-/utils-0.10.5.tgz#fbac944d29565f6dd7abd0e1b13950e99b1e470b"
@@ -2333,6 +2346,13 @@
     "@types/warning" "^3.0.0"
     tslib "^2.0.0"
     warning "^4.0.3"
+
+"@reach/visually-hidden@0.10.4":
+  version "0.10.4"
+  resolved "https://registry.yarnpkg.com/@reach/visually-hidden/-/visually-hidden-0.10.4.tgz#ab390db0adf759393af4d856f84375468b1df676"
+  integrity sha512-GnuPuTRCf+Ih47BoKvGyB+jP8EVWLb04GfbGa5neOrjdp90qrb4zr7pMSL4ZvTsrxt9MRooJA2BhSxs5DbyqCQ==
+  dependencies:
+    tslib "^2.0.0"
 
 "@release-it/keep-a-changelog@^1.1.1":
   version "1.1.1"

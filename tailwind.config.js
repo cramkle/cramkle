@@ -6,6 +6,8 @@ const commonColors = {
   'yellow-1': 'var(--yellow-1)',
   'gray-1': 'var(--gray-1)',
   'gray-2': 'var(--gray-2)',
+  'gray-3': 'var(--gray-3)',
+  'gray-4': 'var(--gray-4)',
 }
 
 module.exports = {
@@ -27,6 +29,7 @@ module.exports = {
       disabled: 'var(--text-disabled)',
       hint: 'var(--text-hint)',
       icon: 'var(--text-icon)',
+      tooltip: 'var(--text-tooltip)',
       'action-primary': 'var(--primary)',
       'action-secondary': 'var(--secondary)',
       ...commonColors,
