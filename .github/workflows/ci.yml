@@ -9,28 +9,7 @@ on:
     - main
 
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v1
-    - name: NodeJS 12.x
-      uses: actions/setup-node@v1
-      with:
-        node-version: 12.x
-    - name: Install dependencies
-      run: yarn
-    - name: Messages compilation
-      run: yarn compile
-    - name: Lint
-      run: |
-        yarn lint
-        yarn lint:ts
-        yarn lint:css
-      env:
-        CI: true
-
-  test:
+  install:
     runs-on: ubuntu-latest
 
     steps:
@@ -39,30 +18,77 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
-      - name: Install dependencies
-        run: yarn
-      - name: Test App
-        run: |
-          yarn compile
-          yarn test
-        env:
-          CI: true
+      - run: yarn install --frozen-lockfile --check-files
+      - uses: actions/cache@v2
+        id: cache-build
+        with:
+          path: ./*
+          key: ${{ github.sha }}
+
+  messages:
+    runs-on: ubuntu-latest
+    needs: install
+
+    steps:
+    - name: Restore cache
+      uses: actions/cache@v2
+      id: restore-build
+      with:
+        path: ./*
+        key: ${{ github.sha }}
+    - name: Check messages
+      run: |
+        yarn extract
+        yarn compile --strict
+
+  lint:
+    runs-on: ubuntu-latest
+    needs: install
+
+    steps:
+    - name: Restore cache
+      uses: actions/cache@v2
+      id: restore-build
+      with:
+        path: ./*
+        key: ${{ github.sha }}
+    - name: Messages compilation
+      run: yarn compile
+    - name: Lint
+      run: |
+        yarn lint
+        yarn lint:ts
+        yarn lint:css
+
+  test:
+    runs-on: ubuntu-latest
+    needs: install
+
+    steps:
+    - name: Restore cache
+      uses: actions/cache@v2
+      id: restore-build
+      with:
+        path: ./*
+        key: ${{ github.sha }}
+    - name: Test App
+      run: |
+        yarn compile
+        yarn test
 
   build:
     runs-on: ubuntu-latest
+    needs: install
 
     steps:
-    - uses: actions/checkout@v1
-    - name: NodeJS 12.x
-      uses: actions/setup-node@v1
+    - name: Restore cache
+      uses: actions/cache@v2
+      id: restore-build
       with:
-        node-version: 12.x
-    - name: Install dependencies
-      run: yarn
+        path: ./*
+        key: ${{ github.sha }}
     - name: Build
       run: yarn build
-      env:
-        CI: true
 
   deploy:
     runs-on: ubuntu-latest
