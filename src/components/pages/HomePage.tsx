@@ -1,6 +1,5 @@
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import { positionMatchWidth } from '@reach/popover'
 import classNames from 'classnames'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet'
@@ -8,6 +7,7 @@ import { useHistory, useLocation } from 'react-router'
 
 import { notificationState } from '../../notification/index'
 import registerSW from '../../registerSW'
+import { positionMatchMinWidth } from '../../utils/popover'
 import HeaderPortal from '../HeaderPortal'
 import DecksIcon from '../icons/DecksIcon'
 import MarketplaceIcon from '../icons/MarketplaceIcon'
@@ -31,7 +31,7 @@ const HomeTab: React.FC<{
     <Tooltip
       label={label}
       className="mt-2 text-center"
-      position={positionMatchWidth}
+      position={positionMatchMinWidth}
     >
       <Tab className="min-h-full justify-center flex-1 md:flex-initial md:w-32">
         <Icon className="text-secondary h-6 w-6 md:h-8 md:w-8" />
