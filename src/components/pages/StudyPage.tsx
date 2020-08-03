@@ -220,7 +220,7 @@ const StudyPage: React.FC = () => {
   if (data.studyFlashCard === null) {
     return (
       <section className="h-full flex flex-col items-center justify-center">
-        <Headline2 className="text-xl leading-none">
+        <Headline2 className="text-xl text-center leading-none">
           <Trans>
             Congratulations, you have finished studying this deck for now.
           </Trans>
