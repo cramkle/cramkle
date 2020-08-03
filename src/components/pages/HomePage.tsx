@@ -1,5 +1,6 @@
-import { Trans, t } from '@lingui/macro'
+import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
+import { positionMatchWidth } from '@reach/popover'
 import classNames from 'classnames'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet'
@@ -16,10 +17,28 @@ import StudyIcon from '../icons/StudyIcon'
 import Container from '../views/Container'
 import { List, ListItem } from '../views/List'
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from '../views/Tabs'
+import { Tooltip } from '../views/Tooltip'
 import DecksSection from './DecksSection'
 import styles from './HomePage.css'
 import ModelsSection from './ModelsSection'
 import StudySection from './StudySection'
+
+const HomeTab: React.FC<{
+  Icon: React.ComponentType<React.SVGAttributes<SVGSVGElement>>
+  label: string
+}> = ({ Icon, label }) => {
+  return (
+    <Tooltip
+      label={label}
+      className="mt-2 text-center"
+      position={positionMatchWidth}
+    >
+      <Tab className="min-h-full justify-center flex-1 md:flex-initial md:w-32">
+        <Icon className="text-secondary h-6 w-6 md:h-8 md:w-8" />
+      </Tab>
+    </Tooltip>
+  )
+}
 
 const HomePage: React.FunctionComponent = () => {
   const history = useHistory()
@@ -125,25 +144,10 @@ const HomePage: React.FunctionComponent = () => {
         >
           <Tabs index={index} onChange={handleTabChange}>
             <HeaderPortal>
-              <TabList className="overflow-y-auto h-full justify-center">
-                <Tab className="md:w-full min-h-full">
-                  <StudyIcon className="text-secondary" />
-                  <span className="hidden md:inline-block ml-4">
-                    <Trans>Study</Trans>
-                  </span>
-                </Tab>
-                <Tab className="md:w-full min-h-full">
-                  <DecksIcon className="text-secondary" />
-                  <span className="hidden md:inline-block ml-4">
-                    <Trans>Decks</Trans>
-                  </span>
-                </Tab>
-                <Tab className="md:w-full min-h-full">
-                  <ModelsIcon className="text-secondary" />
-                  <span className="hidden md:inline-block ml-4">
-                    <Trans>Models</Trans>
-                  </span>
-                </Tab>
+              <TabList className="overflow-y-auto w-full md:w-auto h-full justify-around md:justify-center">
+                <HomeTab Icon={StudyIcon} label={i18n._(t`Study`)} />
+                <HomeTab Icon={DecksIcon} label={i18n._(t`Decks`)} />
+                <HomeTab Icon={ModelsIcon} label={i18n._(t`Models`)} />
               </TabList>
             </HeaderPortal>
             <TabPanels>

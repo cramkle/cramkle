@@ -8,9 +8,9 @@ import {
   TabProps,
   Tabs,
 } from '@reach/tabs'
-import { ForwardRefExoticComponentWithAs } from '@reach/utils'
+import { ForwardRefExoticComponentWithAs, forwardRefWithAs } from '@reach/utils'
 import classNames from 'classnames'
-import React, { HTMLAttributes, forwardRef } from 'react'
+import React, { HTMLAttributes, forwardRef, useState } from 'react'
 
 import styles from './Tabs.css'
 
@@ -24,14 +24,33 @@ export const TabList: React.FC<
   )
 }
 
-export const Tab: React.FC<TabProps & HTMLAttributes<HTMLDivElement>> = ({
-  children,
-  className = '',
-  ...props
-}) => {
+export const Tab = forwardRefWithAs<TabProps, 'button'>(function Tab(
+  { children, className = '', ...props },
+  ref
+) {
+  const [focused, setFocused] = useState(false)
+
+  const handleBlur: React.FocusEventHandler<HTMLButtonElement> = (evt) => {
+    setFocused(false)
+    props.onBlur?.(evt)
+  }
+
+  const handleFocus: React.FocusEventHandler<HTMLButtonElement> = (evt) => {
+    // TODO: remove after fix lands in reach-ui
+    if (evt.type === 'blur') {
+      handleBlur(evt)
+      return
+    }
+    setFocused(true)
+    props.onFocus?.(evt)
+  }
+
   return (
     <ReachTab
       {...props}
+      onFocus={handleFocus}
+      onBlur={handleBlur}
+      ref={ref}
       className={classNames(
         className,
         styles.tab,
@@ -41,7 +60,10 @@ export const Tab: React.FC<TabProps & HTMLAttributes<HTMLDivElement>> = ({
       {children}
       <div
         className={classNames(
-          'absolute top-0 left-0 right-0 bottom-0 bg-primary opacity-0 hover:opacity-08'
+          'absolute top-0 left-0 right-0 bottom-0 bg-primary opacity-0 hover:opacity-08',
+          {
+            'opacity-08': focused,
+          }
         )}
       />
       <div
@@ -52,7 +74,7 @@ export const Tab: React.FC<TabProps & HTMLAttributes<HTMLDivElement>> = ({
       />
     </ReachTab>
   )
-}
+})
 
 export const TabPanel: ForwardRefExoticComponentWithAs<
   'div',

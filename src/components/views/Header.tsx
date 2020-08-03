@@ -9,7 +9,7 @@ export const Header: React.FC<React.HTMLAttributes<HTMLElement>> = (props) => {
         'bg-surface border-b border-gray-1'
       )}
     >
-      {props.children}
+      <div className="shadow-xs">{props.children}</div>
     </header>
   )
 }
@@ -18,7 +18,7 @@ export const HeaderContent: React.FC<React.HTMLAttributes<HTMLDivElement>> = (
   props
 ) => {
   return (
-    <div className={classnames(props.className, 'h-16 flex shadow-xs')}>
+    <div className={classnames(props.className, 'h-16 flex')}>
       {props.children}
     </div>
   )
