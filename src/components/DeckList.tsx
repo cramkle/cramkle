@@ -8,7 +8,7 @@ import useTopBarLoading from '../hooks/useTopBarLoading'
 import DeckCard, { deckCardFragment } from './DeckCard'
 import styles from './DeckList.css'
 import { DecksQuery } from './__generated__/DecksQuery'
-import { Body1 } from './views/Typography'
+import { Body1, Headline1 } from './views/Typography'
 
 export const DECKS_QUERY = gql`
   query DecksQuery {
@@ -43,13 +43,18 @@ const DeckList: React.FunctionComponent = () => {
   }
 
   return (
-    <div className="py-4">
-      <div className={classNames(styles.grid, 'grid gap-4')}>
-        {decks.map((deck) => (
-          <DeckCard key={deck.id} deck={deck} />
-        ))}
+    <>
+      <Headline1 className="mt-4">
+        <Trans>Your decks</Trans>
+      </Headline1>
+      <div className="py-4">
+        <div className={classNames(styles.grid, 'grid gap-4')}>
+          {decks.map((deck) => (
+            <DeckCard key={deck.id} deck={deck} />
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 

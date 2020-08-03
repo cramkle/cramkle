@@ -6,7 +6,7 @@ import React from 'react'
 import useTopBarLoading from '../hooks/useTopBarLoading'
 import ModelCard from './ModelCard'
 import { ModelsQuery } from './__generated__/ModelsQuery'
-import { Body1 } from './views/Typography'
+import { Body1, Headline1 } from './views/Typography'
 
 export const MODELS_QUERY = gql`
   query ModelsQuery {
@@ -47,13 +47,18 @@ const ModelList: React.FunctionComponent = () => {
   }
 
   return (
-    <div className="flex flex-col py-4">
-      {models.map((model) => (
-        <div key={model.id} className="mb-2">
-          <ModelCard {...model} />
-        </div>
-      ))}
-    </div>
+    <>
+      <Headline1 className="mt-4">
+        <Trans>Your models</Trans>
+      </Headline1>
+      <div className="flex flex-col py-4">
+        {models.map((model) => (
+          <div key={model.id} className="mb-2">
+            <ModelCard {...model} />
+          </div>
+        ))}
+      </div>
+    </>
   )
 }
 
