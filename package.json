@@ -134,7 +134,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.2.2",
     "jest-fetch-mock": "^3.0.1",
-    "jest-resolve": "^26.2.2",
+    "jest-resolve": "^26.3.0",
     "jest-transform-graphql": "^2.1.0",
     "lint-staged": "^10.2.11",
     "prettier": "^2.0.4",
