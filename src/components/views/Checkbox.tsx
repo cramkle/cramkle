@@ -36,7 +36,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
         className={classnames(
           className,
           styles.checkboxContainer,
-          'group w-auto h-auto flex items-center relative bg-surface p-3',
+          'group w-auto h-auto flex items-center relative bg-surface p-3 outline-reset',
           { 'mr-3': !!children, 'mr-0': !children }
         )}
         checked={checked}
