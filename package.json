@@ -112,7 +112,7 @@
     "@types/d3-array": "^2.0.0",
     "@types/d3-scale": "^2.2.0",
     "@types/d3-shape": "^1.3.2",
-    "@types/draft-js": "^0.10.41",
+    "@types/draft-js": "^0.10.43",
     "@types/exenv": "^1.2.0",
     "@types/graphql": "^14.5.0",
     "@types/jest": "^26.0.10",
