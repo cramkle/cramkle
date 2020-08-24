@@ -36,11 +36,6 @@ export const Tab = forwardRefWithAs<TabProps, 'button'>(function Tab(
   }
 
   const handleFocus: React.FocusEventHandler<HTMLButtonElement> = (evt) => {
-    // TODO: remove after fix lands in reach-ui
-    if (evt.type === 'blur') {
-      handleBlur(evt)
-      return
-    }
     setFocused(true)
     props.onFocus?.(evt)
   }
