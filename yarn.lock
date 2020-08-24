@@ -2216,14 +2216,22 @@
     "@reach/utils" "0.10.5"
     tslib "^2.0.0"
 
-"@reach/checkbox@^0.10.5":
-  version "0.10.5"
-  resolved "https://registry.yarnpkg.com/@reach/checkbox/-/checkbox-0.10.5.tgz#ae61201ba77260dc5712486394e501dbd2d9583f"
-  integrity sha512-Yhzwb1lDFxSJy5JKV9X9v8456uixh6dUcyLQ6geP++YMfQSIGsBMos6CIYqRLob9i1BFFNyyqWNbRF1HVHXUJQ==
+"@reach/auto-id@0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@reach/auto-id/-/auto-id-0.11.0.tgz#274251c1fbf9cd58d874cfc75fba289d1829368c"
+  integrity sha512-KwwnsnYTbTsYvRbSNqtaA1znaXP9G1I0z+bE0eFMNICvR+bHApaTu0aEEZNXfevq2LBrIMP6hZY9BokgTRcB3g==
   dependencies:
-    "@reach/auto-id" "0.10.5"
-    "@reach/machine" "0.10.5"
-    "@reach/utils" "0.10.5"
+    "@reach/utils" "0.11.0"
+    tslib "^2.0.0"
+
+"@reach/checkbox@^0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@reach/checkbox/-/checkbox-0.11.0.tgz#18f9e6c94484f1999efb69ef94a5328fb0219edc"
+  integrity sha512-nVPHHbxk+skkObcapxAUNRd0Jl5ZteySNCYBIAoAgQfBYNa0AgDftS6jIWgfkrodwpP6pEGdlk+EcY6hbWt86w==
+  dependencies:
+    "@reach/auto-id" "0.11.0"
+    "@reach/machine" "0.11.0"
+    "@reach/utils" "0.11.0"
     tslib "^2.0.0"
 
 "@reach/descendants@0.10.5":
@@ -2264,6 +2272,15 @@
   integrity sha512-YDjOzwom7WF3bPHx8hLSbtitPiz5m5T/cY6Gggd7dEoRE8U74OjAoVHvWIFbnJ8GCSLa0Bm547R29ITmWzr7pQ==
   dependencies:
     "@reach/utils" "0.10.5"
+    "@xstate/fsm" "1.4.0"
+    tslib "^2.0.0"
+
+"@reach/machine@0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@reach/machine/-/machine-0.11.0.tgz#62232a5e33949cdbd48b3baffb04199f8baa8ada"
+  integrity sha512-ih2kTqtguWB0/dWiTYDPRhXcxe6XvggGOfygvccT15P99AUj8Wdz4jEqiywxPP/tcNaB/XDHeVqyOJkZBsGiTg==
+  dependencies:
+    "@reach/utils" "0.11.0"
     "@xstate/fsm" "1.4.0"
     tslib "^2.0.0"
 
@@ -2341,6 +2358,15 @@
   version "0.10.5"
   resolved "https://registry.yarnpkg.com/@reach/utils/-/utils-0.10.5.tgz#fbac944d29565f6dd7abd0e1b13950e99b1e470b"
   integrity sha512-5E/xxQnUbmpI/LrufBAOXjunl96DnqX6B4zC2MO2KH/dRzLug5gM5VuOwV26egsp0jvsSPxojwciOhS43px3qw==
+  dependencies:
+    "@types/warning" "^3.0.0"
+    tslib "^2.0.0"
+    warning "^4.0.3"
+
+"@reach/utils@0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@reach/utils/-/utils-0.11.0.tgz#09ad5e1f42b498253df8a6a4c99ccd0ab2d85464"
+  integrity sha512-A7Ofr1Biq4vUeTBYhbZ/YiLq1B/lEObbEoR2UiuQqCO1r093N95hZNcKqfFwpkRScjD87uob3wSYYGxvq9y/+w==
   dependencies:
     "@types/warning" "^3.0.0"
     tslib "^2.0.0"
