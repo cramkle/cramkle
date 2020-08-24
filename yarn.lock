@@ -1720,10 +1720,10 @@
     "@babel/runtime" "^7.9.6"
     "@lingui/core" "3.0.0-13"
 
-"@lucasecdb/eslint-config@^0.10.2":
-  version "0.10.2"
-  resolved "https://registry.yarnpkg.com/@lucasecdb/eslint-config/-/eslint-config-0.10.2.tgz#fa36ba1dffac0b193cdec96226e621419ad4abcd"
-  integrity sha512-B8qL/QEnXo2UqtloCK5MOSmQF66WV+eANQpOVPWDYUb2iXQX9q62o4eWjNNDH+VBh6cJ7OTN60JDaam/dGgfLg==
+"@lucasecdb/eslint-config@^0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@lucasecdb/eslint-config/-/eslint-config-0.11.0.tgz#18d64eb4a825fbca905a9a7c7fedc4ae337efbcf"
+  integrity sha512-NOJGo68nsYHiy0uJjkDNe7EGPxOOZ9mWDbjlLbBKE4CVk9hlvFi0JHwKlaQgX6H0eTjfC3N6djKPZ/BPjNBv8A==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^3.3.0"
     "@typescript-eslint/parser" "^3.3.0"
