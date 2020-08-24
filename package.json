@@ -50,7 +50,7 @@
     "@material/snackbar": "^3.1.0",
     "@reach/alert-dialog": "^0.10.5",
     "@reach/checkbox": "^0.11.0",
-    "@reach/dialog": "^0.10.4",
+    "@reach/dialog": "^0.11.0",
     "@reach/listbox": "^0.10.5",
     "@reach/menu-button": "^0.10.5",
     "@reach/tabs": "^0.10.5",
