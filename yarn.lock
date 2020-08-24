@@ -2196,14 +2196,14 @@
   dependencies:
     "@types/node" ">= 8"
 
-"@reach/alert-dialog@^0.10.5":
-  version "0.10.5"
-  resolved "https://registry.yarnpkg.com/@reach/alert-dialog/-/alert-dialog-0.10.5.tgz#d5b4341c7b4b2373ba6c368f09ae992c689cc5c9"
-  integrity sha512-mN9DE4dWFe5deWmOBmcwp8prISSV1yR9hhPkowkeBZTvRsMitfDOS+YNcaXFwVjJD0JoVozQkMfW84sEVGIuQg==
+"@reach/alert-dialog@^0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@reach/alert-dialog/-/alert-dialog-0.11.0.tgz#c98a16ce80f29142100e6ee8f6d7ed4c3a5168e3"
+  integrity sha512-xL/9sfFbbmO7oQmDcZ0okGwssDScGlnXHMI5odGDOix9wf4LHm78TxBQKvQzvoKpmyFlPo/zu1Wb0lC7BoSYYg==
   dependencies:
-    "@reach/auto-id" "0.10.5"
-    "@reach/dialog" "0.10.5"
-    "@reach/utils" "0.10.5"
+    "@reach/auto-id" "0.11.0"
+    "@reach/dialog" "0.11.0"
+    "@reach/utils" "0.11.0"
     invariant "^2.2.4"
     prop-types "^15.7.2"
     tslib "^2.0.0"
@@ -2242,19 +2242,7 @@
     "@reach/utils" "0.10.5"
     tslib "^2.0.0"
 
-"@reach/dialog@0.10.5":
-  version "0.10.5"
-  resolved "https://registry.yarnpkg.com/@reach/dialog/-/dialog-0.10.5.tgz#70bd832616fc2b0f31ed65aff81ae9e218c4dbc4"
-  integrity sha512-j2+VaHCen/M5zh+q6L/xMXETMeD5yVywdhjjs0kn2uQ3AolYSj32P8Go1xSpxQNAjS1/zChd02Y/4g02eL3afg==
-  dependencies:
-    "@reach/portal" "0.10.5"
-    "@reach/utils" "0.10.5"
-    prop-types "^15.7.2"
-    react-focus-lock "^2.3.1"
-    react-remove-scroll "^2.3.0"
-    tslib "^2.0.0"
-
-"@reach/dialog@^0.11.0":
+"@reach/dialog@0.11.0", "@reach/dialog@^0.11.0":
   version "0.11.0"
   resolved "https://registry.yarnpkg.com/@reach/dialog/-/dialog-0.11.0.tgz#052d90b47d07a3f4c21d1b6c2d6aeefc3d5bd6a6"
   integrity sha512-KOl12NPEwtFMUPWgLq2uoxiirORJ+XdmzrQNNNcwoDqe+oOK8oEqS1E5mUb3+fGQJV37gSrCl1VhD1oGBmlSTQ==
