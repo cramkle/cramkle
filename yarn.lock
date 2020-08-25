@@ -2346,6 +2346,16 @@
     prop-types "^15.7.2"
     tslib "^2.0.0"
 
+"@reach/rect@0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@reach/rect/-/rect-0.11.0.tgz#8550378785c0dbc1d35313de4188d11718598d5b"
+  integrity sha512-67QJffkYZByMBs4BFiB5Ep++MG76Xt1/NfmE55Hjfh62rrxcYTIGTRwGnpwCHVMR0fYvmzNIC3+vSh4hJ3ocxg==
+  dependencies:
+    "@reach/observe-rect" "1.2.0"
+    "@reach/utils" "0.11.0"
+    prop-types "^15.7.2"
+    tslib "^2.0.0"
+
 "@reach/tabs@^0.11.0":
   version "0.11.0"
   resolved "https://registry.yarnpkg.com/@reach/tabs/-/tabs-0.11.0.tgz#8e08b4ee8c4b8fdb14e4a35358c3269be14f2aa8"
@@ -2357,16 +2367,16 @@
     prop-types "^15.7.2"
     tslib "^2.0.0"
 
-"@reach/tooltip@^0.10.5":
-  version "0.10.5"
-  resolved "https://registry.yarnpkg.com/@reach/tooltip/-/tooltip-0.10.5.tgz#7090dbcdcdcc1353bb3a0ec7c1e856a4a12ebb31"
-  integrity sha512-H5Z46Cng5zZhvqf/yH2+uBppL92LOkzqZ3HKSNPb0iONKpDEKRld338Hf30UMhMiE4TJzaFTbrDqvvud/+H6Aw==
+"@reach/tooltip@^0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@reach/tooltip/-/tooltip-0.11.0.tgz#5f8e673b356a8e8429b78050a92f9d33242c0939"
+  integrity sha512-zwDzcR3HRs4jGUUAtFb7xJVKCW3lz6mhOCNj1VwTtNpHDq9oVRXi15q/NUP489UtZeSPfsDdjNB5vJ04qy7c4w==
   dependencies:
-    "@reach/auto-id" "0.10.5"
-    "@reach/portal" "0.10.5"
-    "@reach/rect" "0.10.5"
-    "@reach/utils" "0.10.5"
-    "@reach/visually-hidden" "0.10.4"
+    "@reach/auto-id" "0.11.0"
+    "@reach/portal" "0.11.0"
+    "@reach/rect" "0.11.0"
+    "@reach/utils" "0.11.0"
+    "@reach/visually-hidden" "0.11.0"
     prop-types "^15.7.2"
     tslib "^2.0.0"
 
@@ -2388,10 +2398,10 @@
     tslib "^2.0.0"
     warning "^4.0.3"
 
-"@reach/visually-hidden@0.10.4":
-  version "0.10.4"
-  resolved "https://registry.yarnpkg.com/@reach/visually-hidden/-/visually-hidden-0.10.4.tgz#ab390db0adf759393af4d856f84375468b1df676"
-  integrity sha512-GnuPuTRCf+Ih47BoKvGyB+jP8EVWLb04GfbGa5neOrjdp90qrb4zr7pMSL4ZvTsrxt9MRooJA2BhSxs5DbyqCQ==
+"@reach/visually-hidden@0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@reach/visually-hidden/-/visually-hidden-0.11.0.tgz#a7cd68ea2a197238dfcffbef8723db9117d31ebb"
+  integrity sha512-O67fK7jz01TYu/V57RiDsxKY29ReHdQkpq+OV0ijmXsv7g5r3Nys51Ry+IqPrJst4Ve5xxFbiJsTt/bGwxorrQ==
   dependencies:
     tslib "^2.0.0"
 
