@@ -36,7 +36,7 @@ export const DECK_QUERY = gql`
       totalNotes
       totalFlashcards
       notes(page: $page, size: $size, search: $search)
-        @connection(key: "Deck_notes", filter: ["page", "size", "search"]) {
+      @connection(key: "Deck_notes", filter: ["page", "size", "search"]) {
         totalCount
         edges {
           node {
