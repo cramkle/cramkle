@@ -51,7 +51,7 @@
     "@reach/alert-dialog": "^0.11.0",
     "@reach/checkbox": "^0.11.0",
     "@reach/dialog": "^0.11.0",
-    "@reach/listbox": "^0.10.5",
+    "@reach/listbox": "^0.11.0",
     "@reach/menu-button": "^0.10.5",
     "@reach/tabs": "^0.11.0",
     "@reach/tooltip": "^0.11.0",

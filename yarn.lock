@@ -2262,26 +2262,17 @@
     react-remove-scroll "^2.3.0"
     tslib "^2.0.0"
 
-"@reach/listbox@^0.10.5":
-  version "0.10.5"
-  resolved "https://registry.yarnpkg.com/@reach/listbox/-/listbox-0.10.5.tgz#ae89b7c6e983ec183a00e7a669c476c3d9463f28"
-  integrity sha512-yQr/qJzottO8eUCDPSFYzpcinr9PrXzHNFgVmuRy7B8Fxwj0nDuo2UzZY+uoEAWymju4EiUj4n5+1pPBq7pQXA==
+"@reach/listbox@^0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@reach/listbox/-/listbox-0.11.0.tgz#6c68b763b848a0488860e20d1ac65edfe5be0934"
+  integrity sha512-9G+ML3DyxWg/fYwMB19+38R83Uj7UOmRHxJThKkv+DL0lS40z5kkit/OxArHqR0poJJ7O4jQlNiYy9x9xAgMVA==
   dependencies:
-    "@reach/auto-id" "0.10.5"
-    "@reach/descendants" "0.10.5"
-    "@reach/machine" "0.10.5"
-    "@reach/popover" "0.10.5"
-    "@reach/utils" "0.10.5"
+    "@reach/auto-id" "0.11.0"
+    "@reach/descendants" "0.11.0"
+    "@reach/machine" "0.11.0"
+    "@reach/popover" "0.11.0"
+    "@reach/utils" "0.11.0"
     prop-types "^15.7.2"
-
-"@reach/machine@0.10.5":
-  version "0.10.5"
-  resolved "https://registry.yarnpkg.com/@reach/machine/-/machine-0.10.5.tgz#2a61ebb2fa33ed637f1fa3c574b0ed6b8cb7c68c"
-  integrity sha512-YDjOzwom7WF3bPHx8hLSbtitPiz5m5T/cY6Gggd7dEoRE8U74OjAoVHvWIFbnJ8GCSLa0Bm547R29ITmWzr7pQ==
-  dependencies:
-    "@reach/utils" "0.10.5"
-    "@xstate/fsm" "1.4.0"
-    tslib "^2.0.0"
 
 "@reach/machine@0.11.0":
   version "0.11.0"
@@ -2317,6 +2308,17 @@
     "@reach/portal" "0.10.5"
     "@reach/rect" "0.10.5"
     "@reach/utils" "0.10.5"
+    tabbable "^4.0.0"
+    tslib "^2.0.0"
+
+"@reach/popover@0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@reach/popover/-/popover-0.11.0.tgz#c5777547ac43a88d89019869ed3694f96d30ed39"
+  integrity sha512-WOIMdktWuOIGs4NY91ynWyFsxFfDDzObhnMV3490dWBnfuW50ysn6KUSQkoVd7QsxkV6EnifyFvth7YJqirN/w==
+  dependencies:
+    "@reach/portal" "0.11.0"
+    "@reach/rect" "0.11.0"
+    "@reach/utils" "0.11.0"
     tabbable "^4.0.0"
     tslib "^2.0.0"
 
