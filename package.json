@@ -52,7 +52,7 @@
     "@reach/checkbox": "^0.11.0",
     "@reach/dialog": "^0.11.0",
     "@reach/listbox": "^0.11.0",
-    "@reach/menu-button": "^0.10.5",
+    "@reach/menu-button": "^0.11.0",
     "@reach/tabs": "^0.11.0",
     "@reach/tooltip": "^0.11.0",
     "@sentry/react": "^5.21.1",
