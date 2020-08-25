@@ -54,7 +54,7 @@
     "@reach/listbox": "^0.10.5",
     "@reach/menu-button": "^0.10.5",
     "@reach/tabs": "^0.11.0",
-    "@reach/tooltip": "^0.10.5",
+    "@reach/tooltip": "^0.11.0",
     "@sentry/react": "^5.21.1",
     "apollo-cache-inmemory": "^1.6.5",
     "apollo-client": "^2.6.10",
