@@ -137,7 +137,7 @@
     "jest-resolve": "^26.4.0",
     "jest-transform-graphql": "^2.1.0",
     "lint-staged": "^10.2.11",
-    "prettier": "^2.0.4",
+    "prettier": "^2.1.0",
     "react-app-polyfill": "^1.0.2",
     "release-it": "^13.6.9",
     "stylelint": "^13.6.1",
