@@ -139,7 +139,7 @@
     "lint-staged": "^10.2.11",
     "prettier": "^2.1.0",
     "react-app-polyfill": "^1.0.2",
-    "release-it": "^13.6.9",
+    "release-it": "^13.7.0",
     "stylelint": "^13.6.1",
     "stylelint-config-recommended-scss": "^4.2.0",
     "stylelint-scss": "^3.18.0",
