@@ -1,5 +1,6 @@
 {
   "__schema": {
+    "description": null,
     "queryType": {
       "name": "Query"
     },
@@ -8,6 +9,109 @@
     },
     "subscriptionType": null,
     "types": [
+      {
+        "kind": "SCALAR",
+        "name": "JSON",
+        "description": "The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "SCALAR",
+        "name": "JSONObject",
+        "description": "The `JSONObject` scalar type represents JSON objects as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INTERFACE",
+        "name": "Node",
+        "description": "An object with an ID",
+        "fields": [
+          {
+            "name": "id",
+            "description": "The id of the object.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": [
+          {
+            "kind": "OBJECT",
+            "name": "Deck",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "User",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "Note",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "Model",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "Field",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "Template",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ContentState",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "FieldValue",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "FlashCard",
+            "ofType": null
+          }
+        ]
+      },
+      {
+        "kind": "SCALAR",
+        "name": "ID",
+        "description": "The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `\"4\"`) or integer (such as `4`) input value will be accepted as an ID.",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
       {
         "kind": "OBJECT",
         "name": "Query",
@@ -243,6 +347,29 @@
             "deprecationReason": null
           },
           {
+            "name": "studyFlashcard",
+            "description": "Retrieves the next flashcard for a study session in the given deck",
+            "args": [
+              {
+                "name": "deckSlug",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "FlashCard",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "template",
             "description": "Get single template by it's id",
             "args": [
@@ -268,16 +395,6 @@
         ],
         "inputFields": null,
         "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "SCALAR",
-        "name": "String",
-        "description": "The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.",
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
         "enumValues": null,
         "possibleTypes": null
       },
@@ -486,82 +603,9 @@
         "possibleTypes": null
       },
       {
-        "kind": "INTERFACE",
-        "name": "Node",
-        "description": "An object with an ID",
-        "fields": [
-          {
-            "name": "id",
-            "description": "The id of the object.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": [
-          {
-            "kind": "OBJECT",
-            "name": "Deck",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "User",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "Note",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "Model",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "Field",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "Template",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "ContentState",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "FieldValue",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "FlashCard",
-            "ofType": null
-          }
-        ]
-      },
-      {
         "kind": "SCALAR",
-        "name": "ID",
-        "description": "The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `\"4\"`) or integer (such as `4`) input value will be accepted as an ID.",
+        "name": "String",
+        "description": "The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -1497,16 +1541,6 @@
         "possibleTypes": null
       },
       {
-        "kind": "SCALAR",
-        "name": "JSONObject",
-        "description": "The `JSONObject` scalar type represents JSON objects as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).",
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
         "kind": "OBJECT",
         "name": "Block",
         "description": null,
@@ -2246,6 +2280,20 @@
                   }
                 },
                 "defaultValue": null
+              },
+              {
+                "name": "zoneInfo",
+                "description": "Timezone",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
               }
             ],
             "type": {
@@ -2288,7 +2336,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Float",
+                "name": "String",
                 "ofType": null
               }
             },
@@ -2313,6 +2361,22 @@
           },
           {
             "name": "new",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "review",
             "description": null,
             "args": [],
             "type": {
@@ -2966,6 +3030,41 @@
         "possibleTypes": null
       },
       {
+        "kind": "OBJECT",
+        "name": "AddFieldToModelPayload",
+        "description": null,
+        "fields": [
+          {
+            "name": "field",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Field",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "clientMutationId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "INPUT_OBJECT",
         "name": "AddFieldToModelInput",
         "description": null,
@@ -3016,16 +3115,16 @@
       },
       {
         "kind": "OBJECT",
-        "name": "AddFieldToModelPayload",
+        "name": "AddTemplateToModelPayload",
         "description": null,
         "fields": [
           {
-            "name": "field",
+            "name": "template",
             "description": null,
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "Field",
+              "name": "Template",
               "ofType": null
             },
             "isDeprecated": false,
@@ -3100,17 +3199,37 @@
       },
       {
         "kind": "OBJECT",
-        "name": "AddTemplateToModelPayload",
+        "name": "AnswerFlashCardPayload",
         "description": null,
         "fields": [
           {
-            "name": "template",
+            "name": "flashCard",
             "description": null,
             "args": [],
             "type": {
-              "kind": "OBJECT",
-              "name": "Template",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "FlashCard",
+                "ofType": null
+              }
+            },
+            "isDeprecated": true,
+            "deprecationReason": "Use field 'flashcard' instead."
+          },
+          {
+            "name": "flashcard",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "FlashCard",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -3151,6 +3270,16 @@
           },
           {
             "name": "flashCardId",
+            "description": "(Deprecated) ID of the flashcard",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "flashcardId",
             "description": "Id of the flashcard",
             "type": {
               "kind": "SCALAR",
@@ -3231,16 +3360,16 @@
       },
       {
         "kind": "OBJECT",
-        "name": "AnswerFlashCardPayload",
+        "name": "CreateDeckPayload",
         "description": null,
         "fields": [
           {
-            "name": "flashCard",
-            "description": null,
+            "name": "deck",
+            "description": "Created deck",
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "FlashCard",
+              "name": "Deck",
               "ofType": null
             },
             "isDeprecated": false,
@@ -3311,16 +3440,16 @@
       },
       {
         "kind": "OBJECT",
-        "name": "CreateDeckPayload",
+        "name": "CreateModelPayload",
         "description": null,
         "fields": [
           {
-            "name": "deck",
-            "description": "Created deck",
+            "name": "model",
+            "description": "Created model",
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "Deck",
+              "name": "Model",
               "ofType": null
             },
             "isDeprecated": false,
@@ -3481,16 +3610,16 @@
       },
       {
         "kind": "OBJECT",
-        "name": "CreateModelPayload",
+        "name": "CreateNotePayload",
         "description": null,
         "fields": [
           {
-            "name": "model",
-            "description": "Created model",
+            "name": "note",
+            "description": null,
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "Model",
+              "name": "Note",
               "ofType": null
             },
             "isDeprecated": false,
@@ -3880,16 +4009,16 @@
       },
       {
         "kind": "OBJECT",
-        "name": "CreateNotePayload",
+        "name": "CreateUserPayload",
         "description": null,
         "fields": [
           {
-            "name": "note",
-            "description": null,
+            "name": "user",
+            "description": "Created user",
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "Note",
+              "name": "User",
               "ofType": null
             },
             "isDeprecated": false,
@@ -3962,74 +4091,14 @@
             "defaultValue": null
           },
           {
-            "name": "clientMutationId",
-            "description": null,
+            "name": "zoneInfo",
+            "description": "User timezone",
             "type": {
               "kind": "SCALAR",
               "name": "String",
               "ofType": null
             },
-            "defaultValue": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "CreateUserPayload",
-        "description": null,
-        "fields": [
-          {
-            "name": "user",
-            "description": "Created user",
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "User",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "clientMutationId",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "DeleteDeckInput",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "id",
-            "description": "Deck id",
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "defaultValue": null
+            "defaultValue": "\"UTC\""
           },
           {
             "name": "clientMutationId",
@@ -4083,13 +4152,13 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "DeleteModelInput",
+        "name": "DeleteDeckInput",
         "description": null,
         "fields": null,
         "inputFields": [
           {
             "name": "id",
-            "description": null,
+            "description": "Deck id",
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -4153,13 +4222,13 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "DeleteNoteInput",
+        "name": "DeleteModelInput",
         "description": null,
         "fields": null,
         "inputFields": [
           {
-            "name": "noteId",
-            "description": "Note id",
+            "name": "id",
+            "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -4223,13 +4292,13 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "PublishDeckInput",
+        "name": "DeleteNoteInput",
         "description": null,
         "fields": null,
         "inputFields": [
           {
-            "name": "id",
-            "description": "Id of the deck to publish",
+            "name": "noteId",
+            "description": "Note id",
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -4293,13 +4362,13 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "RemoveFieldFromModelInput",
+        "name": "PublishDeckInput",
         "description": null,
         "fields": null,
         "inputFields": [
           {
-            "name": "fieldId",
-            "description": "Field id",
+            "name": "id",
+            "description": "Id of the deck to publish",
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -4363,13 +4432,13 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "RemoveTemplateFromModelInput",
+        "name": "RemoveFieldFromModelInput",
         "description": null,
         "fields": null,
         "inputFields": [
           {
-            "name": "templateId",
-            "description": "Template id",
+            "name": "fieldId",
+            "description": "Field id",
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -4433,6 +4502,76 @@
       },
       {
         "kind": "INPUT_OBJECT",
+        "name": "RemoveTemplateFromModelInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "templateId",
+            "description": "Template id",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "clientMutationId",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "RequestPasswordResetPayload",
+        "description": null,
+        "fields": [
+          {
+            "name": "success",
+            "description": "Whether we could successfully send the email or not",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "clientMutationId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
         "name": "RequestPasswordResetInput",
         "description": null,
         "fields": null,
@@ -4464,12 +4603,12 @@
       },
       {
         "kind": "OBJECT",
-        "name": "RequestPasswordResetPayload",
+        "name": "ResetPasswordPayload",
         "description": null,
         "fields": [
           {
             "name": "success",
-            "description": "Whether we could successfully send the email or not",
+            "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -4576,16 +4715,16 @@
       },
       {
         "kind": "OBJECT",
-        "name": "ResetPasswordPayload",
+        "name": "UnpublishDeckPayload",
         "description": null,
         "fields": [
           {
-            "name": "success",
+            "name": "deck",
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
+              "kind": "OBJECT",
+              "name": "Deck",
               "ofType": null
             },
             "isDeprecated": false,
@@ -4646,12 +4785,12 @@
       },
       {
         "kind": "OBJECT",
-        "name": "UnpublishDeckPayload",
+        "name": "UpdateDeckPayload",
         "description": null,
         "fields": [
           {
             "name": "deck",
-            "description": null,
+            "description": "Updated deck",
             "args": [],
             "type": {
               "kind": "OBJECT",
@@ -4736,16 +4875,16 @@
       },
       {
         "kind": "OBJECT",
-        "name": "UpdateDeckPayload",
+        "name": "UpdateFieldPayload",
         "description": null,
         "fields": [
           {
-            "name": "deck",
-            "description": "Updated deck",
+            "name": "field",
+            "description": null,
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "Deck",
+              "name": "Field",
               "ofType": null
             },
             "isDeprecated": false,
@@ -4820,16 +4959,16 @@
       },
       {
         "kind": "OBJECT",
-        "name": "UpdateFieldPayload",
+        "name": "UpdateFieldValuePayload",
         "description": null,
         "fields": [
           {
-            "name": "field",
+            "name": "fieldValue",
             "description": null,
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "Field",
+              "name": "FieldValue",
               "ofType": null
             },
             "isDeprecated": false,
@@ -4918,16 +5057,16 @@
       },
       {
         "kind": "OBJECT",
-        "name": "UpdateFieldValuePayload",
+        "name": "UpdateModelPayload",
         "description": null,
         "fields": [
           {
-            "name": "fieldValue",
+            "name": "model",
             "description": null,
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "FieldValue",
+              "name": "Model",
               "ofType": null
             },
             "isDeprecated": false,
@@ -4998,16 +5137,16 @@
       },
       {
         "kind": "OBJECT",
-        "name": "UpdateModelPayload",
+        "name": "UpdatePreferencesPayload",
         "description": null,
         "fields": [
           {
-            "name": "model",
+            "name": "user",
             "description": null,
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "Model",
+              "name": "User",
               "ofType": null
             },
             "isDeprecated": false,
@@ -5045,7 +5184,7 @@
               "name": "String",
               "ofType": null
             },
-            "defaultValue": "\"UTC\""
+            "defaultValue": null
           },
           {
             "name": "clientMutationId",
@@ -5064,7 +5203,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "UpdatePreferencesPayload",
+        "name": "UpdateProfilePayload",
         "description": null,
         "fields": [
           {
@@ -5160,16 +5299,16 @@
       },
       {
         "kind": "OBJECT",
-        "name": "UpdateProfilePayload",
+        "name": "UpdateTemplatePayload",
         "description": null,
         "fields": [
           {
-            "name": "user",
+            "name": "template",
             "description": null,
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "User",
+              "name": "Template",
               "ofType": null
             },
             "isDeprecated": false,
@@ -5260,23 +5399,11 @@
       },
       {
         "kind": "OBJECT",
-        "name": "UpdateTemplatePayload",
-        "description": null,
+        "name": "__Schema",
+        "description": "A GraphQL Schema defines the capabilities of a GraphQL server. It exposes all available types and directives on the server, as well as the entry points for query, mutation, and subscription operations.",
         "fields": [
           {
-            "name": "template",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "Template",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "clientMutationId",
+            "name": "description",
             "description": null,
             "args": [],
             "type": {
@@ -5286,18 +5413,7 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "__Schema",
-        "description": "A GraphQL Schema defines the capabilities of a GraphQL server. It exposes all available types and directives on the server, as well as the entry points for query, mutation, and subscription operations.",
-        "fields": [
+          },
           {
             "name": "types",
             "description": "A list of all types supported by this server.",
@@ -5395,7 +5511,7 @@
       {
         "kind": "OBJECT",
         "name": "__Type",
-        "description": "The fundamental unit of any GraphQL Schema is the type. There are many kinds of types in GraphQL as represented by the `__TypeKind` enum.\n\nDepending on the kind of a type, certain fields describe information about that type. Scalar types provide no information beyond a name and description, while Enum types provide their values. Object and Interface types provide the fields they describe. Abstract types, Union and Interface, provide the Object types possible at runtime. List and NonNull types compose other types.",
+        "description": "The fundamental unit of any GraphQL Schema is the type. There are many kinds of types in GraphQL as represented by the `__TypeKind` enum.\n\nDepending on the kind of a type, certain fields describe information about that type. Scalar types provide no information beyond a name, description and optional `specifiedByUrl`, while Enum types provide their values. Object and Interface types provide the fields they describe. Abstract types, Union and Interface, provide the Object types possible at runtime. List and NonNull types compose other types.",
         "fields": [
           {
             "name": "kind",
@@ -5427,6 +5543,18 @@
           },
           {
             "name": "description",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "specifiedByUrl",
             "description": null,
             "args": [],
             "type": {
@@ -5599,7 +5727,7 @@
           },
           {
             "name": "INTERFACE",
-            "description": "Indicates this type is an interface. `fields` and `possibleTypes` are valid fields.",
+            "description": "Indicates this type is an interface. `fields`, `interfaces`, and `possibleTypes` are valid fields.",
             "isDeprecated": false,
             "deprecationReason": null
           },
@@ -5911,6 +6039,22 @@
             "deprecationReason": null
           },
           {
+            "name": "isRepeatable",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "locations",
             "description": null,
             "args": [],
@@ -6088,22 +6232,13 @@
           }
         ],
         "possibleTypes": null
-      },
-      {
-        "kind": "SCALAR",
-        "name": "JSON",
-        "description": "The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).",
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
       }
     ],
     "directives": [
       {
         "name": "include",
         "description": "Directs the executor to include this field or fragment only when the `if` argument is true.",
+        "isRepeatable": false,
         "locations": ["FIELD", "FRAGMENT_SPREAD", "INLINE_FRAGMENT"],
         "args": [
           {
@@ -6125,6 +6260,7 @@
       {
         "name": "skip",
         "description": "Directs the executor to skip this field or fragment when the `if` argument is true.",
+        "isRepeatable": false,
         "locations": ["FIELD", "FRAGMENT_SPREAD", "INLINE_FRAGMENT"],
         "args": [
           {
@@ -6146,6 +6282,7 @@
       {
         "name": "deprecated",
         "description": "Marks an element of a GraphQL schema as no longer supported.",
+        "isRepeatable": false,
         "locations": ["FIELD_DEFINITION", "ENUM_VALUE"],
         "args": [
           {
@@ -6163,6 +6300,7 @@
       {
         "name": "specifiedBy",
         "description": "Exposes a URL that specifies the behaviour of this scalar.",
+        "isRepeatable": false,
         "locations": ["SCALAR"],
         "args": [
           {

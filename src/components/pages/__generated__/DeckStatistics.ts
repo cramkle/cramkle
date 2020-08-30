@@ -21,9 +21,10 @@ export interface DeckStatistics_deckStatistics_deck {
 
 export interface DeckStatistics_deckStatistics_studyFrequency {
   __typename: "StudyFrequencyPoint";
-  date: number;
+  date: string;
   learning: number;
   new: number;
+  review: number;
 }
 
 export interface DeckStatistics_deckStatistics {
@@ -71,4 +72,5 @@ export interface DeckStatisticsVariables {
   deckId?: string | null;
   startDate: string;
   endDate: string;
+  zoneInfo: string;
 }

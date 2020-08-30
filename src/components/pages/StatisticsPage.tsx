@@ -3,12 +3,19 @@ import { Trans, plural, select } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { extent, max } from 'd3-array'
 import { scaleLinear, scaleTime } from 'd3-scale'
-import { curveMonotoneX, line } from 'd3-shape'
-import { addMinutes, differenceInDays, startOfToday, subDays } from 'date-fns'
+import { line } from 'd3-shape'
+import {
+  addMinutes,
+  differenceInDays,
+  endOfToday,
+  startOfDay,
+  subDays,
+} from 'date-fns'
 import gql from 'graphql-tag'
 import React, { ReactNode, useEffect, useMemo, useRef, useState } from 'react'
 import ResizeObserver from 'resize-observer-polyfill'
 
+import useSearchParamsState from '../../hooks/useSearchParamsState'
 import useTopBarLoading from '../../hooks/useTopBarLoading'
 import Axis from '../Axis'
 import BackButton from '../BackButton'
@@ -37,7 +44,12 @@ type TransformedStudyFrequency = Omit<
 }
 
 const STATISTICS_QUERY = gql`
-  query DeckStatistics($deckId: ID, $startDate: String!, $endDate: String!) {
+  query DeckStatistics(
+    $deckId: ID
+    $startDate: String!
+    $endDate: String!
+    $zoneInfo: String!
+  ) {
     deckStatistics(deckId: $deckId) {
       deck {
         id
@@ -46,10 +58,15 @@ const STATISTICS_QUERY = gql`
       totalStudyTime
       totalTimesStudied
       totalFlashcardsStudied
-      studyFrequency(startDate: $startDate, endDate: $endDate) {
+      studyFrequency(
+        startDate: $startDate
+        endDate: $endDate
+        zoneInfo: $zoneInfo
+      ) {
         date
         learning
         new
+        review
       }
     }
     decks {
@@ -98,11 +115,11 @@ const StatisticsCard: React.FC<{ label: ReactNode; value: ReactNode }> = ({
 }
 
 const StatisticsPage: React.FC = () => {
-  const [interval, setIntervalValue] = useState('7')
-  const [selectedDeck, setSelectedDeck] = useState<string | null>(null)
+  const [interval, setIntervalValue] = useSearchParamsState('interval', '7')
+  const [selectedDeck, setSelectedDeck] = useSearchParamsState('deck')
 
-  const { current: today } = useRef(startOfToday())
-  const startDate = subDays(today, parseInt(interval, 10))
+  const { current: today } = useRef(endOfToday())
+  const startDate = startOfDay(subDays(today, parseInt(interval, 10)))
 
   const { loading, data } = useQuery<DeckStatistics, DeckStatisticsVariables>(
     STATISTICS_QUERY,
@@ -111,6 +128,7 @@ const StatisticsPage: React.FC = () => {
         deckId: selectedDeck,
         startDate: startDate.toISOString(),
         endDate: today.toISOString(),
+        zoneInfo: Intl.DateTimeFormat().resolvedOptions().timeZone,
       },
       fetchPolicy: 'cache-and-network',
       partialRefetch: true,
@@ -174,13 +192,13 @@ const StatisticsPage: React.FC = () => {
 
   const studyFrequency = useMemo(
     () =>
-      (data?.deckStatistics?.studyFrequency ?? []).map((frequency) => ({
-        ...frequency,
-        date: addMinutes(
-          frequency.date,
-          new Date(frequency.date).getTimezoneOffset()
-        ),
-      })),
+      (data?.deckStatistics?.studyFrequency ?? []).map((frequency) => {
+        const date = new Date(frequency.date)
+        return {
+          ...frequency,
+          date: addMinutes(date, date.getTimezoneOffset()),
+        }
+      }),
     [data?.deckStatistics?.studyFrequency]
   )
 
@@ -199,15 +217,17 @@ const StatisticsPage: React.FC = () => {
     .nice()
     .range([height - margin.bottom, margin.top])
 
+  const reviewLineShape = line<TransformedStudyFrequency>()
+    .x((d) => frequencyX(d.date))
+    .y((d) => frequencyY(d.review))
   const learningLineShape = line<TransformedStudyFrequency>()
     .x((d) => frequencyX(d.date))
-    .curve(curveMonotoneX)
     .y((d) => frequencyY(d.learning))
   const newLineShape = line<TransformedStudyFrequency>()
     .x((d) => frequencyX(d.date))
-    .curve(curveMonotoneX)
     .y((d) => frequencyY(d.new))
 
+  const reviewLine = reviewLineShape(studyFrequency)
   const learningLine = learningLineShape(studyFrequency)
   const newLine = newLineShape(studyFrequency)
 
@@ -394,6 +414,11 @@ const StatisticsPage: React.FC = () => {
                 <path
                   className="text-green-1"
                   d={newLine}
+                  style={{ mixBlendMode: 'multiply' }}
+                />
+                <path
+                  className="text-primary"
+                  d={reviewLine}
                   style={{ mixBlendMode: 'multiply' }}
                 />
               </g>
