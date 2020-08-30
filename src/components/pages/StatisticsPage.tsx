@@ -211,7 +211,8 @@ const StatisticsPage: React.FC = () => {
       0,
       Math.max(
         max(studyFrequency, (d) => d.learning),
-        max(studyFrequency, (d) => d.new)
+        max(studyFrequency, (d) => d.new),
+        max(studyFrequency, (d) => d.review)
       ),
     ])
     .nice()
