@@ -34,4 +34,5 @@ export interface RegisterUserMutationVariables {
   username: string;
   email: string;
   password: string;
+  zoneInfo?: string | null;
 }
