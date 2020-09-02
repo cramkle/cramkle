@@ -2234,14 +2234,6 @@
     "@reach/utils" "0.11.2"
     tslib "^2.0.0"
 
-"@reach/descendants@0.11.0":
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@reach/descendants/-/descendants-0.11.0.tgz#815b094c8a43e21e462b870498d0abf87d1aee0f"
-  integrity sha512-YkkXdAwYuYXlsWEh/mvMqx+ekbOH1tqoBivLe0RxEExvdAmWnVqdT2rVNJ5FvIqWdaVZyrmjWrX2E4OSXIQEFg==
-  dependencies:
-    "@reach/utils" "0.11.0"
-    tslib "^2.0.0"
-
 "@reach/descendants@0.11.2":
   version "0.11.2"
   resolved "https://registry.yarnpkg.com/@reach/descendants/-/descendants-0.11.2.tgz#49ea1b5eb91aba8ae6dce57f6575c38aff1f9756"
@@ -2283,15 +2275,15 @@
     "@xstate/fsm" "1.4.0"
     tslib "^2.0.0"
 
-"@reach/menu-button@^0.11.0":
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@reach/menu-button/-/menu-button-0.11.0.tgz#b0bf8fe58cde7e602c817ce709b926c35a38d770"
-  integrity sha512-0DKmN/Ze/TLdyGj9h8NdTWIDVGkPjRLYsBEib0dsZWAUoryvRZk+7Wq/W9q0vBvAvd+NP11zmlYROx8oaph6GQ==
+"@reach/menu-button@^0.11.2":
+  version "0.11.2"
+  resolved "https://registry.yarnpkg.com/@reach/menu-button/-/menu-button-0.11.2.tgz#7c1a955431b6b5c25e77eeaceac347bfc728bee9"
+  integrity sha512-8fU8Gp7wBBhMBFSGxuF62HSdjgaib+NXEM+MhOIYcAacDnP8cxkpvag/Nm/7cMdV/O5JRuuZBralG854AxaO2g==
   dependencies:
-    "@reach/auto-id" "0.11.0"
-    "@reach/descendants" "0.11.0"
-    "@reach/popover" "0.11.0"
-    "@reach/utils" "0.11.0"
+    "@reach/auto-id" "0.11.2"
+    "@reach/descendants" "0.11.2"
+    "@reach/popover" "0.11.2"
+    "@reach/utils" "0.11.2"
     prop-types "^15.7.2"
     tslib "^2.0.0"
 
@@ -2299,17 +2291,6 @@
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@reach/observe-rect/-/observe-rect-1.2.0.tgz#d7a6013b8aafcc64c778a0ccb83355a11204d3b2"
   integrity sha512-Ba7HmkFgfQxZqqaeIWWkNK0rEhpxVQHIoVyW1YDSkGsGIXzcaW4deC8B0pZrNSSyLTdIk7y+5olKt5+g0GmFIQ==
-
-"@reach/popover@0.11.0":
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@reach/popover/-/popover-0.11.0.tgz#c5777547ac43a88d89019869ed3694f96d30ed39"
-  integrity sha512-WOIMdktWuOIGs4NY91ynWyFsxFfDDzObhnMV3490dWBnfuW50ysn6KUSQkoVd7QsxkV6EnifyFvth7YJqirN/w==
-  dependencies:
-    "@reach/portal" "0.11.0"
-    "@reach/rect" "0.11.0"
-    "@reach/utils" "0.11.0"
-    tabbable "^4.0.0"
-    tslib "^2.0.0"
 
 "@reach/popover@0.11.2":
   version "0.11.2"
