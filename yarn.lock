@@ -2224,14 +2224,14 @@
     "@reach/utils" "0.11.2"
     tslib "^2.0.0"
 
-"@reach/checkbox@^0.11.0":
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@reach/checkbox/-/checkbox-0.11.0.tgz#18f9e6c94484f1999efb69ef94a5328fb0219edc"
-  integrity sha512-nVPHHbxk+skkObcapxAUNRd0Jl5ZteySNCYBIAoAgQfBYNa0AgDftS6jIWgfkrodwpP6pEGdlk+EcY6hbWt86w==
+"@reach/checkbox@^0.11.2":
+  version "0.11.2"
+  resolved "https://registry.yarnpkg.com/@reach/checkbox/-/checkbox-0.11.2.tgz#ea1c03c6ec8adb833b4fcbe1870437725f8d3b7e"
+  integrity sha512-dQ8Ajt76gCTpGethVmLpcrNT9mAMOofKmao6ErzDpWgULnXKnPGTk4kySIWF+Vu6YP0fx5d+jnQr2bUOrP6sVA==
   dependencies:
-    "@reach/auto-id" "0.11.0"
-    "@reach/machine" "0.11.0"
-    "@reach/utils" "0.11.0"
+    "@reach/auto-id" "0.11.2"
+    "@reach/machine" "0.11.2"
+    "@reach/utils" "0.11.2"
     tslib "^2.0.0"
 
 "@reach/descendants@0.11.0":
@@ -2292,6 +2292,15 @@
   integrity sha512-ih2kTqtguWB0/dWiTYDPRhXcxe6XvggGOfygvccT15P99AUj8Wdz4jEqiywxPP/tcNaB/XDHeVqyOJkZBsGiTg==
   dependencies:
     "@reach/utils" "0.11.0"
+    "@xstate/fsm" "1.4.0"
+    tslib "^2.0.0"
+
+"@reach/machine@0.11.2":
+  version "0.11.2"
+  resolved "https://registry.yarnpkg.com/@reach/machine/-/machine-0.11.2.tgz#b3bd75196e4d10482698d4d23ea35a2d096a3566"
+  integrity sha512-jWf1M1jPXqMuH+ayse4XlsGn5DeEpOwYvFgNFh59BG0Bt/XXKpona1c80Y/GoW4wGmJQCGjYD5nKFKCxbKvrbg==
+  dependencies:
+    "@reach/utils" "0.11.2"
     "@xstate/fsm" "1.4.0"
     tslib "^2.0.0"
 
