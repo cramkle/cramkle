@@ -49,7 +49,7 @@
     "@material/ripple": "^3.1.0",
     "@material/snackbar": "^3.1.0",
     "@reach/alert-dialog": "^0.11.0",
-    "@reach/checkbox": "^0.11.0",
+    "@reach/checkbox": "^0.11.2",
     "@reach/dialog": "^0.11.1",
     "@reach/listbox": "^0.11.0",
     "@reach/menu-button": "^0.11.0",
