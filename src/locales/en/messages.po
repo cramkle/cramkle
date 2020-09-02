@@ -17,15 +17,15 @@ msgstr ""
 msgid "({0} notes)"
 msgstr "({0} notes)"
 
-#: src/components/pages/StatisticsPage.tsx:218
+#: src/components/pages/StatisticsPage.tsx:235
 msgid "1 month"
 msgstr "1 month"
 
-#: src/components/pages/StatisticsPage.tsx:221
+#: src/components/pages/StatisticsPage.tsx:238
 msgid "1 year"
 msgstr "1 year"
 
-#: src/components/pages/StatisticsPage.tsx:215
+#: src/components/pages/StatisticsPage.tsx:232
 msgid "7 days"
 msgstr "7 days"
 
@@ -233,7 +233,7 @@ msgstr "Create template"
 msgid "Deck"
 msgstr "Deck"
 
-#: src/components/pages/StatisticsPage.tsx:165
+#: src/components/pages/StatisticsPage.tsx:182
 msgid "Deck Statistics"
 msgstr "Deck Statistics"
 
@@ -399,7 +399,7 @@ msgstr "First page"
 msgid "Flashcards"
 msgstr "Flashcards"
 
-#: src/components/pages/StatisticsPage.tsx:235
+#: src/components/pages/StatisticsPage.tsx:252
 msgid "Flashcards studied"
 msgstr "Flashcards studied"
 
@@ -476,7 +476,7 @@ msgstr "Home"
 msgid "I agree to the <0>Terms & Conditions</0>"
 msgstr "I agree to the <0>Terms & Conditions</0>"
 
-#: src/components/pages/StatisticsPage.tsx:212
+#: src/components/pages/StatisticsPage.tsx:229
 msgid "Interval"
 msgstr "Interval"
 
@@ -612,11 +612,11 @@ msgstr "Note details"
 msgid "Notes"
 msgstr "Notes"
 
-#: src/components/pages/StatisticsPage.tsx:202
+#: src/components/pages/StatisticsPage.tsx:219
 msgid "Number of flashcards studied"
 msgstr "Number of flashcards studied"
 
-#: src/components/pages/StatisticsPage.tsx:201
+#: src/components/pages/StatisticsPage.tsx:218
 msgid "Number of times studied"
 msgstr "Number of times studied"
 
@@ -628,7 +628,7 @@ msgstr "OL"
 msgid "Optimize your knowledge retention with this effective study method."
 msgstr "Optimize your knowledge retention with this effective study method."
 
-#: src/components/pages/StatisticsPage.tsx:175
+#: src/components/pages/StatisticsPage.tsx:192
 msgid "Overview"
 msgstr "Overview"
 
@@ -789,9 +789,13 @@ msgstr "Study"
 msgid "Study deck"
 msgstr "Study deck"
 
-#: src/components/pages/StatisticsPage.tsx:208
+#: src/components/pages/StatisticsPage.tsx:225
 msgid "Study frequency"
 msgstr "Study frequency"
+
+#: src/components/pages/StudySection.tsx:83
+msgid "Study today"
+msgstr "Study today"
 
 #: src/components/pages/ModelPage.tsx:124
 msgid "Template back side"
@@ -864,7 +868,7 @@ msgstr "Time zone"
 msgid "Title"
 msgstr "Title"
 
-#: src/components/pages/StatisticsPage.tsx:179
+#: src/components/pages/StatisticsPage.tsx:196
 msgid "Total study time"
 msgstr "Total study time"
 
@@ -872,7 +876,7 @@ msgstr "Total study time"
 msgid "Try again"
 msgstr "Try again"
 
-#: src/components/pages/StatisticsPage.tsx:264
+#: src/components/pages/StatisticsPage.tsx:282
 msgid "Try selecting a broader interval above."
 msgstr "Try selecting a broader interval above."
 
@@ -929,7 +933,7 @@ msgstr "Warning"
 msgid "We couldn't find the page you requested"
 msgstr "We couldn't find the page you requested"
 
-#: src/components/pages/StatisticsPage.tsx:259
+#: src/components/pages/StatisticsPage.tsx:277
 msgid "We don't have enough data to display in the supplied period."
 msgstr "We don't have enough data to display in the supplied period."
 
@@ -949,7 +953,7 @@ msgstr "You haven't created any notes on this deck yet"
 msgid "You haven't created any templates on this model yet."
 msgstr "You haven't created any templates on this model yet."
 
-#: src/components/pages/StudySection.tsx:87
+#: src/components/pages/StudySection.tsx:92
 msgid "You've finished studying your decks for now."
 msgstr "You've finished studying your decks for now."
 
@@ -985,7 +989,7 @@ msgstr "{0, plural, one {# note} other {# notes}}"
 msgid "{0, plural, one {# template} other {# templates}}"
 msgstr "{0, plural, one {# template} other {# templates}}"
 
-#: src/components/pages/StatisticsPage.tsx:179
+#: src/components/pages/StatisticsPage.tsx:196
 msgid "{0, select, millisecond {{1, plural, one {{formattedStudyTime} millisecond} other {{formattedStudyTime} milliseconds}}} second {{2, plural, one {{formattedStudyTime} second} other {{formattedStudyTime} seconds}}} minute {{3, plural, one {{formattedStudyTime} minute} other {{formattedStudyTime} minutes}}} hour {{4, plural, one {{formattedStudyTime} hour} other {{formattedStudyTime} hours}}} day {{5, plural, one {{formattedStudyTime} day} other {{formattedStudyTime} days}}}}"
 msgstr "{0, select, millisecond {{1, plural, one {{formattedStudyTime} millisecond} other {{formattedStudyTime} milliseconds}}} second {{2, plural, one {{formattedStudyTime} second} other {{formattedStudyTime} seconds}}} minute {{3, plural, one {{formattedStudyTime} minute} other {{formattedStudyTime} minutes}}} hour {{4, plural, one {{formattedStudyTime} hour} other {{formattedStudyTime} hours}}} day {{5, plural, one {{formattedStudyTime} day} other {{formattedStudyTime} days}}}}"
 

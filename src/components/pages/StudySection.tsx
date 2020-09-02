@@ -16,7 +16,7 @@ import {
 import Button from '../views/Button'
 import CircularProgress from '../views/CircularProgress'
 import Container from '../views/Container'
-import { Body1, Body2 } from '../views/Typography'
+import { Body1, Body2, Headline1 } from '../views/Typography'
 import styles from './StudySection.css'
 import { DecksToStudy } from './__generated__/DecksToStudy'
 
@@ -114,18 +114,23 @@ const StudySection: React.FunctionComponent = () => {
         </AlertDialog>
       )}
       {decks.length > 0 ? (
-        <div className="py-4">
-          <div className={classNames(styles.grid, 'grid gap-4')}>
-            {decks.map((deck) => (
-              <DeckCard
-                key={deck.id}
-                deck={deck}
-                onClick={handleDeckSelect}
-                showStudySessionDetails
-              />
-            ))}
+        <>
+          <Headline1 className="mt-4">
+            <Trans>Study today</Trans>
+          </Headline1>
+          <div className="py-4">
+            <div className={classNames(styles.grid, 'grid gap-4')}>
+              {decks.map((deck) => (
+                <DeckCard
+                  key={deck.id}
+                  deck={deck}
+                  onClick={handleDeckSelect}
+                  showStudySessionDetails
+                />
+              ))}
+            </div>
           </div>
-        </div>
+        </>
       ) : (
         <div className="mt-8 flex justify-center">
           <Body1 className="text-base text-center">

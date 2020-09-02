@@ -57,7 +57,7 @@ const DeckCard: React.FunctionComponent<Props> = ({
   return (
     <Card className="h-full">
       <CardPressable
-        className="p-2 h-full"
+        className="p-4 h-full"
         tabIndex={0}
         role="article"
         onClick={handleClick}
@@ -71,11 +71,11 @@ const DeckCard: React.FunctionComponent<Props> = ({
           <Body2 className="truncate">{deck.description}</Body2>
         )}
         {showStudySessionDetails ? (
-          <div className="mt-1 flex">
+          <div className="mt-4 flex">
             {newCount > 0 && (
               <FlashCardStatusChip
                 status={FlashCardStatus.NEW}
-                className="mr-2"
+                className="mr-4"
                 truncated
               >
                 {i18n._(plural(newCount, { one: '# new', other: '# new' }))}
@@ -84,7 +84,7 @@ const DeckCard: React.FunctionComponent<Props> = ({
             {learningCount > 0 && (
               <FlashCardStatusChip
                 status={FlashCardStatus.LEARNING}
-                className="mr-2"
+                className="mr-4"
                 truncated
               >
                 {i18n._(
