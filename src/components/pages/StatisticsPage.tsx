@@ -114,6 +114,9 @@ const StatisticsPage: React.FC = () => {
 
   const { current: today } = useRef(endOfToday())
   const startDate = startOfDay(subDays(today, parseInt(interval, 10) - 1))
+  const [zoneInfo] = useState(
+    () => Intl.DateTimeFormat().resolvedOptions().timeZone
+  )
 
   const { loading, data } = useQuery<DeckStatistics, DeckStatisticsVariables>(
     STATISTICS_QUERY,
@@ -122,7 +125,7 @@ const StatisticsPage: React.FC = () => {
         deckId: selectedDeck,
         startDate: startDate.toISOString(),
         endDate: today.toISOString(),
-        zoneInfo: Intl.DateTimeFormat().resolvedOptions().timeZone,
+        zoneInfo,
       },
       fetchPolicy: 'cache-and-network',
       partialRefetch: true,
