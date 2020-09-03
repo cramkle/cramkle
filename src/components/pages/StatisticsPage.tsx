@@ -4,13 +4,7 @@ import { useLingui } from '@lingui/react'
 import { extent, max } from 'd3-array'
 import { scaleLinear, scaleTime } from 'd3-scale'
 import { line } from 'd3-shape'
-import {
-  addMinutes,
-  differenceInDays,
-  endOfToday,
-  startOfDay,
-  subDays,
-} from 'date-fns'
+import { differenceInDays, endOfToday, startOfDay, subDays } from 'date-fns'
 import gql from 'graphql-tag'
 import React, { ReactNode, useEffect, useMemo, useRef, useState } from 'react'
 import ResizeObserver from 'resize-observer-polyfill'
@@ -119,7 +113,7 @@ const StatisticsPage: React.FC = () => {
   const [selectedDeck, setSelectedDeck] = useSearchParamsState('deck')
 
   const { current: today } = useRef(endOfToday())
-  const startDate = startOfDay(subDays(today, parseInt(interval, 10)))
+  const startDate = startOfDay(subDays(today, parseInt(interval, 10) - 1))
 
   const { loading, data } = useQuery<DeckStatistics, DeckStatisticsVariables>(
     STATISTICS_QUERY,
@@ -193,10 +187,9 @@ const StatisticsPage: React.FC = () => {
   const studyFrequency = useMemo(
     () =>
       (data?.deckStatistics?.studyFrequency ?? []).map((frequency) => {
-        const date = new Date(frequency.date)
         return {
           ...frequency,
-          date: addMinutes(date, date.getTimezoneOffset()),
+          date: new Date(frequency.date),
         }
       }),
     [data?.deckStatistics?.studyFrequency]
