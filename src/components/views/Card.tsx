@@ -98,7 +98,7 @@ export const CardContent: React.FC<React.HTMLProps<HTMLDivElement>> = (
   props
 ) => {
   return (
-    <div {...props} className={classnames(props.className, 'px-4 py-6')}>
+    <div {...props} className={classnames(props.className, 'px-4 py-4')}>
       {props.children}
     </div>
   )
