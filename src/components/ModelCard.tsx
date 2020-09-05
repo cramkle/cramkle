@@ -4,7 +4,7 @@ import React, { useCallback } from 'react'
 import { useHistory } from 'react-router'
 
 import { ModelsQuery_models } from './__generated__/ModelsQuery'
-import { Card, CardPressable } from './views/Card'
+import { Card, CardContent, CardPressable } from './views/Card'
 import { Chip } from './views/Chip'
 import { Headline3 } from './views/Typography'
 
@@ -32,37 +32,38 @@ const ModelCard: React.FunctionComponent<Props & ModelsQuery_models> = ({
   return (
     <Card className={className}>
       <CardPressable
-        className="p-2"
         role="article"
         onClick={handleClick}
         onKeyDown={handleKeyDown}
         aria-describedby={`${uniqueId}-title`}
       >
-        <Headline3 id={`${uniqueId}-title`}>{name}</Headline3>
-        {!!(templates.length || fields.length) && (
-          <div className="flex">
-            {!!templates.length && (
-              <Chip>
-                {i18n._(
-                  plural(templates.length, {
-                    one: '# template',
-                    other: '# templates',
-                  })
-                )}
-              </Chip>
-            )}
-            {!!fields.length && (
-              <Chip className="ml-2">
-                {i18n._(
-                  plural(fields.length, {
-                    one: '# field',
-                    other: '# fields',
-                  })
-                )}
-              </Chip>
-            )}
-          </div>
-        )}
+        <CardContent>
+          <Headline3 id={`${uniqueId}-title`}>{name}</Headline3>
+          {!!(templates.length || fields.length) && (
+            <div className="flex mt-4">
+              {!!templates.length && (
+                <Chip className="mr-4">
+                  {i18n._(
+                    plural(templates.length, {
+                      one: '# template',
+                      other: '# templates',
+                    })
+                  )}
+                </Chip>
+              )}
+              {!!fields.length && (
+                <Chip>
+                  {i18n._(
+                    plural(fields.length, {
+                      one: '# field',
+                      other: '# fields',
+                    })
+                  )}
+                </Chip>
+              )}
+            </div>
+          )}
+        </CardContent>
       </CardPressable>
     </Card>
   )

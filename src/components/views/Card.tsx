@@ -63,7 +63,7 @@ export const CardPressable: React.FunctionComponent<CardPressableProps> = ({
       {children}
       <div
         className={classnames(
-          'absolute z-1 top-0 left-0 right-0 bottom-0 bg-hover-overlay transition-opacity ease-in-out duration-200',
+          'absolute z-1 top-0 left-0 right-0 bottom-0 bg-hover-overlay transition-opacity ease-in-out duration-200 rounded-xl',
           {
             'opacity-0': !hovered && !focused,
             'opacity-100': hovered || focused,
@@ -84,7 +84,7 @@ export const Card: React.FunctionComponent<CardProps> = ({
   return (
     <div
       className={classnames(
-        'bg-surface text-on-surface rounded border border-gray-1',
+        'bg-surface text-on-surface rounded-xl shadow',
         className
       )}
       {...otherProps}
@@ -98,7 +98,7 @@ export const CardContent: React.FC<React.HTMLProps<HTMLDivElement>> = (
   props
 ) => {
   return (
-    <div {...props} className={classnames(props.className, 'px-4 py-6')}>
+    <div {...props} className={classnames(props.className, 'px-4 py-4')}>
       {props.children}
     </div>
   )

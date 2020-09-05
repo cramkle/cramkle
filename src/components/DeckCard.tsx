@@ -7,7 +7,7 @@ import { useHistory } from 'react-router'
 import { FlashCardStatus } from '../globalTypes'
 import FlashCardStatusChip from './FlashCardStatus'
 import { DeckCard_deck } from './__generated__/DeckCard_deck'
-import { Card, CardPressable } from './views/Card'
+import { Card, CardContent, CardPressable } from './views/Card'
 import { Body2, Headline3 } from './views/Typography'
 
 interface Props {
@@ -57,7 +57,7 @@ const DeckCard: React.FunctionComponent<Props> = ({
   return (
     <Card className="h-full">
       <CardPressable
-        className="p-2 h-full"
+        className="h-full"
         tabIndex={0}
         role="article"
         onClick={handleClick}
@@ -66,60 +66,64 @@ const DeckCard: React.FunctionComponent<Props> = ({
         }
         aria-describedby={`${uniqueId}-title`}
       >
-        <Headline3 id={`${uniqueId}-title`}>{deck.title}</Headline3>
-        {deck.description && (
-          <Body2 className="truncate">{deck.description}</Body2>
-        )}
-        {showStudySessionDetails ? (
-          <div className="mt-1 flex">
-            {newCount > 0 && (
-              <FlashCardStatusChip
-                status={FlashCardStatus.NEW}
-                className="mr-2"
-                truncated
-              >
-                {i18n._(plural(newCount, { one: '# new', other: '# new' }))}
-              </FlashCardStatusChip>
-            )}
-            {learningCount > 0 && (
-              <FlashCardStatusChip
-                status={FlashCardStatus.LEARNING}
-                className="mr-2"
-                truncated
-              >
-                {i18n._(
-                  plural(learningCount, {
-                    one: '# learning',
-                    other: '# learning',
-                  })
-                )}
-              </FlashCardStatusChip>
-            )}
-            {reviewCount > 0 && (
-              <FlashCardStatusChip status={FlashCardStatus.REVIEW} truncated>
-                {i18n._(
-                  plural(reviewCount, { one: '# review', other: '# review' })
-                )}
-              </FlashCardStatusChip>
-            )}
-          </div>
-        ) : (
-          <Body2 className="flex items-center">
-            {i18n._(
-              plural(deck.totalNotes, {
-                one: '# note',
-                other: '# notes',
-              })
-            )}
-            <span className="inline-block mx-1">&middot;</span>
-            {i18n._(
-              plural(deck.totalFlashcards, {
-                one: '# flashcard',
-                other: '# flashcards',
-              })
-            )}
-          </Body2>
-        )}
+        <CardContent className="h-full flex flex-col">
+          <Headline3 id={`${uniqueId}-title`} className="mb-3">
+            {deck.title}
+          </Headline3>
+          {deck.description && (
+            <Body2 className="truncate mb-3">{deck.description}</Body2>
+          )}
+          {showStudySessionDetails ? (
+            <div className="flex">
+              {newCount > 0 && (
+                <FlashCardStatusChip
+                  status={FlashCardStatus.NEW}
+                  className="mr-4"
+                  truncated
+                >
+                  {i18n._(plural(newCount, { one: '# new', other: '# new' }))}
+                </FlashCardStatusChip>
+              )}
+              {learningCount > 0 && (
+                <FlashCardStatusChip
+                  status={FlashCardStatus.LEARNING}
+                  className="mr-4"
+                  truncated
+                >
+                  {i18n._(
+                    plural(learningCount, {
+                      one: '# learning',
+                      other: '# learning',
+                    })
+                  )}
+                </FlashCardStatusChip>
+              )}
+              {reviewCount > 0 && (
+                <FlashCardStatusChip status={FlashCardStatus.REVIEW} truncated>
+                  {i18n._(
+                    plural(reviewCount, { one: '# review', other: '# review' })
+                  )}
+                </FlashCardStatusChip>
+              )}
+            </div>
+          ) : (
+            <Body2 className="flex items-center mt-auto">
+              {i18n._(
+                plural(deck.totalNotes, {
+                  one: '# note',
+                  other: '# notes',
+                })
+              )}
+              <span className="inline-block mx-1">&middot;</span>
+              {i18n._(
+                plural(deck.totalFlashcards, {
+                  one: '# flashcard',
+                  other: '# flashcards',
+                })
+              )}
+            </Body2>
+          )}
+        </CardContent>
       </CardPressable>
     </Card>
   )

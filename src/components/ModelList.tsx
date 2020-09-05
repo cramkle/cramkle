@@ -53,7 +53,7 @@ const ModelList: React.FunctionComponent = () => {
       </Headline1>
       <div className="flex flex-col py-4">
         {models.map((model) => (
-          <div key={model.id} className="mb-2">
+          <div key={model.id} className="mb-4">
             <ModelCard {...model} />
           </div>
         ))}
