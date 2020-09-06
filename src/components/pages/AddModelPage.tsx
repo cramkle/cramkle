@@ -4,24 +4,29 @@ import { useLingui } from '@lingui/react'
 import { FieldArray, Formik } from 'formik'
 import gql from 'graphql-tag'
 import React from 'react'
-import { useHistory } from 'react-router'
+import { useHistory, useLocation } from 'react-router'
 import * as yup from 'yup'
 
 import { notificationState } from '../../notification/index'
 import BackButton from '../BackButton'
-import { MODELS_QUERY } from '../ModelList'
-import { ModelsQuery } from '../__generated__/ModelsQuery'
 import { TextInputField } from '../forms/Fields'
 import TrashBinIcon from '../icons/TrashBinIcon'
 import Button from '../views/Button'
 import Container from '../views/Container'
-import IconButton from '../views/IconButton'
-import { Body1, Body2, Headline1 } from '../views/Typography'
+import {
+  Body1,
+  Body2,
+  Headline1,
+  Headline2,
+  Headline3,
+} from '../views/Typography'
 import styles from './AddModelPage.css'
+import { MODELS_QUERY } from './ModelsSection'
 import {
   CreateModelMutation,
   CreateModelMutationVariables,
 } from './__generated__/CreateModelMutation'
+import { ModelsQuery } from './__generated__/ModelsQuery'
 
 const CREATE_MODEL_MUTATION = gql`
   mutation CreateModelMutation(
@@ -50,6 +55,7 @@ const CREATE_MODEL_MUTATION = gql`
 
 const AddModelPage: React.FunctionComponent = () => {
   const history = useHistory()
+  const location = useLocation<{ referrer?: string }>()
   const { i18n } = useLingui()
 
   const [mutate] = useMutation<
@@ -59,14 +65,33 @@ const AddModelPage: React.FunctionComponent = () => {
 
   return (
     <Container>
-      <BackButton />
+      <BackButton to={location.state?.referrer ?? '/'} />
 
-      <Headline1>
-        <Trans>Create Model</Trans>
+      <Headline1 className="border-b border-gray-1">
+        <Trans>Create model</Trans>
       </Headline1>
+
+      <Body1 className="mt-6">
+        <Trans>
+          A model consist of both fields and templates. A field is used in a
+          note to fill values that are used inside the template, and the
+          template is used to define the frontside and backside of each
+          flashcard, using the fields defined in the model. You'll be able to
+          edit the templates content after creating the model.
+        </Trans>
+      </Body1>
+
+      <Body1 className="mt-3">
+        <Trans>
+          When you create a note, we will create the corresponding number of
+          flashcards based on how much templates the note's model has, and will
+          use the note's values to fill in the template.
+        </Trans>
+      </Body1>
 
       <Formik
         initialValues={{ name: '', fields: [], templates: [] }}
+        validateOnBlur
         validationSchema={yup.object().shape({
           name: yup.string().required(i18n._(t`Name is required`)),
           fields: yup.array(
@@ -93,11 +118,6 @@ const AddModelPage: React.FunctionComponent = () => {
               proxy.writeQuery({ query: MODELS_QUERY, data })
             },
           }).then((query) => {
-            // make typescript happy
-            if (!query) {
-              return
-            }
-
             notificationState.addNotification({
               message: t`Model created successfully`,
               actionText: t`View`,
@@ -106,52 +126,68 @@ const AddModelPage: React.FunctionComponent = () => {
               },
             })
 
-            history.push('/models')
+            history.push(location.state?.referrer ?? '/models')
           })
         }}
       >
-        {({ handleSubmit, values, isValid, isSubmitting }) => (
-          <form className="flex flex-col w-full py-4" onSubmit={handleSubmit}>
-            <TextInputField name="name" label={i18n._(t`Name`)} />
+        {({ handleSubmit, values, isSubmitting }) => (
+          <form
+            className="flex flex-col w-full mt-8 mb-4"
+            onSubmit={handleSubmit}
+          >
+            <TextInputField name="name" label={i18n._(t`Model name`)} />
 
             <div className="flex flex-col sm:flex-row">
               <FieldArray name="templates" validateOnChange={false}>
                 {({ push, remove }) => (
                   <div className={`${styles.evenColumn} mt-4 sm:pr-4`}>
-                    <Body1>
+                    <Headline2>
                       <Trans>Templates</Trans>
-                    </Body1>
-                    <div className="py-2">
+                    </Headline2>
+                    <div className="my-6 flex flex-col">
                       {values.templates?.length ? (
                         values.templates.map((_, index) => (
-                          <div className="mb-2 flex items-center" key={index}>
-                            <div className="w-full">
-                              <TextInputField
-                                className="w-full"
-                                name={`templates.${index}.name`}
-                                label={i18n._(t`Template name`)}
-                              />
-                            </div>
+                          <>
+                            <Headline3>
+                              <Trans>Template #{index}</Trans>
+                            </Headline3>
 
-                            <IconButton
-                              className="ml-1 text-primary"
-                              onClick={() => remove(index)}
-                              aria-label={i18n._(t`Remove template`)}
-                            >
-                              <TrashBinIcon />
-                            </IconButton>
-                          </div>
+                            <div className="my-3 flex" key={index}>
+                              <div className="w-full">
+                                <TextInputField
+                                  className="w-full"
+                                  name={`templates.${index}.name`}
+                                  label={i18n._(t`Template name`)}
+                                />
+                              </div>
+
+                              <Button
+                                variation="outline"
+                                className="ml-3 text-primary"
+                                onClick={() => remove(index)}
+                                aria-label={i18n._(t`Remove template`)}
+                                style={{
+                                  marginTop: 'calc(1.5rem + 0.0625rem)',
+                                }}
+                              >
+                                <TrashBinIcon />
+                              </Button>
+                            </div>
+                          </>
                         ))
                       ) : (
-                        <Body2>
+                        <Body2 className="mx-auto mb-3">
                           <Trans>No templates added</Trans>
                         </Body2>
                       )}
-                    </div>
 
-                    <Button onClick={() => push({ name: '' })}>
-                      <Trans>Add template</Trans>
-                    </Button>
+                      <Button
+                        className="self-start"
+                        onClick={() => push({ name: '' })}
+                      >
+                        <Trans>Add template</Trans>
+                      </Button>
+                    </div>
                   </div>
                 )}
               </FieldArray>
@@ -159,40 +195,53 @@ const AddModelPage: React.FunctionComponent = () => {
               <FieldArray name="fields" validateOnChange={false}>
                 {({ push, remove }) => (
                   <div className={`${styles.evenColumn} mt-4`}>
-                    <Body1>
+                    <Headline2>
                       <Trans>Fields</Trans>
-                    </Body1>
-                    <div className="py-2">
+                    </Headline2>
+                    <div className="my-6 flex flex-col">
                       {values.fields?.length ? (
                         values.fields.map((_, index) => (
-                          <div className="mb-2 flex items-center" key={index}>
-                            <div className="w-full">
-                              <TextInputField
-                                className="w-full"
-                                name={`fields.${index}.name`}
-                                label={i18n._(t`Field name`)}
-                              />
-                            </div>
+                          <>
+                            <Headline3>
+                              <Trans>Field #{index}</Trans>
+                            </Headline3>
 
-                            <IconButton
-                              className="ml-1 text-primary"
-                              onClick={() => remove(index)}
-                              aria-label={i18n._(t`Remove field`)}
-                            >
-                              <TrashBinIcon />
-                            </IconButton>
-                          </div>
+                            <div className="my-3 flex" key={index}>
+                              <div className="w-full">
+                                <TextInputField
+                                  className="w-full"
+                                  name={`fields.${index}.name`}
+                                  label={i18n._(t`Field name`)}
+                                />
+                              </div>
+
+                              <Button
+                                variation="outline"
+                                className="ml-3 text-primary"
+                                onClick={() => remove(index)}
+                                aria-label={i18n._(t`Remove field`)}
+                                style={{
+                                  marginTop: 'calc(1.5rem + 0.0625rem)',
+                                }}
+                              >
+                                <TrashBinIcon />
+                              </Button>
+                            </div>
+                          </>
                         ))
                       ) : (
-                        <Body2>
+                        <Body2 className="mx-auto mb-3">
                           <Trans>No fields added</Trans>
                         </Body2>
                       )}
-                    </div>
 
-                    <Button onClick={() => push({ name: '' })}>
-                      <Trans>Add field</Trans>
-                    </Button>
+                      <Button
+                        className="self-start"
+                        onClick={() => push({ name: '' })}
+                      >
+                        <Trans>Add field</Trans>
+                      </Button>
+                    </div>
                   </div>
                 )}
               </FieldArray>
@@ -202,9 +251,13 @@ const AddModelPage: React.FunctionComponent = () => {
               className="self-start mt-4"
               variation="primary"
               type="submit"
-              disabled={!isValid || isSubmitting}
+              disabled={isSubmitting}
             >
-              <Trans>Create</Trans>
+              {isSubmitting ? (
+                <Trans>Creating model...</Trans>
+              ) : (
+                <Trans>Create model</Trans>
+              )}
             </Button>
           </form>
         )}

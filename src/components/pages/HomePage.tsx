@@ -1,4 +1,4 @@
-import { t } from '@lingui/macro'
+import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import classNames from 'classnames'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
@@ -18,6 +18,7 @@ import Container from '../views/Container'
 import { List, ListItem } from '../views/List'
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from '../views/Tabs'
 import { Tooltip } from '../views/Tooltip'
+import { Body1 } from '../views/Typography'
 import DecksSection from './DecksSection'
 import styles from './HomePage.css'
 import ModelsSection from './ModelsSection'
@@ -118,25 +119,28 @@ const HomePage: React.FunctionComponent = () => {
           'h-full grid gap-4 md:gap-6 xl:gap-8'
         )}
       >
-        <List
+        <aside
           className={classNames(
             styles.sidenav,
-            'hidden md:block w-100 px-4 py-2'
+            'hidden md:block w-100 px-8 py-6 border-r border-gray-1'
           )}
         >
-          <ListItem
-            onClick={handleMarketplaceClick}
-            icon={<MarketplaceIcon className="flex-shrink-0 text-secondary" />}
-          >
-            {i18n._(t`Marketplace`)}
-          </ListItem>
-          <ListItem
-            onClick={handleStatisticsClick}
-            icon={<StatisticsIcon className="flex-shrink-0 text-secondary" />}
-          >
-            {i18n._(t`Statistics`)}
-          </ListItem>
-        </List>
+          <Body1 className="font-medium">
+            <Trans>Sidebar</Trans>
+          </Body1>
+
+          <List className="py-4">
+            <ListItem
+              onClick={handleMarketplaceClick}
+              icon={<MarketplaceIcon />}
+            >
+              {i18n._(t`Marketplace`)}
+            </ListItem>
+            <ListItem onClick={handleStatisticsClick} icon={<StatisticsIcon />}>
+              {i18n._(t`Statistics`)}
+            </ListItem>
+          </List>
+        </aside>
 
         <Container
           lean

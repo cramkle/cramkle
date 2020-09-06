@@ -5,13 +5,13 @@ import React, { useRef, useState } from 'react'
 import { useHistory } from 'react-router'
 
 import { notificationState } from '../notification/index'
-import { MODELS_QUERY } from './ModelList'
 import {
   DeleteModelMutation,
   DeleteModelMutationVariables,
 } from './__generated__/DeleteModelMutation'
-import { ModelsQuery } from './__generated__/ModelsQuery'
 import TrashBinIcon from './icons/TrashBinIcon'
+import { MODELS_QUERY } from './pages/ModelsSection'
+import { ModelsQuery } from './pages/__generated__/ModelsQuery'
 import {
   AlertDialog,
   AlertDialogDescription,

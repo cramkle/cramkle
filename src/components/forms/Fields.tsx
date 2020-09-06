@@ -12,14 +12,14 @@ interface TextInputProps extends LabelProps {
   textarea?: boolean
 }
 
-export const TextInputField = ({
+export const TextInputField = React.memo(function TextInputField({
   type = 'text',
   id,
   label,
   name,
   textarea = false,
   ...props
-}: TextInputProps) => {
+}: TextInputProps) {
   const [field, meta] = useField(name)
 
   return (
@@ -34,7 +34,7 @@ export const TextInputField = ({
       ) : null}
     </Label>
   )
-}
+})
 
 export const CheckboxField = React.forwardRef<HTMLInputElement, CheckboxProps>(
   function CheckboxField(props, ref) {

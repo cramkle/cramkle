@@ -1,6 +1,7 @@
 import { Trans, t } from '@lingui/macro'
+import { useLingui } from '@lingui/react'
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 import DeleteNoteDialog from './DeleteNoteDialog'
 import { PageArgs, Pagination } from './Pagination'
@@ -46,6 +47,8 @@ const NotesTable: React.FC<Props> = ({
     deletingNote,
     setDeletingNote,
   ] = useState<DeckQuery_deck_notes_edges_node | null>(null)
+  const { i18n } = useLingui()
+  const history = useHistory()
 
   const handleDeleteNoteClose = () => {
     setDeletingNote(null)
@@ -65,26 +68,35 @@ const NotesTable: React.FC<Props> = ({
           onDeleted={onRefetchNotes}
         />
       )}
-      <form className="flex" onSubmit={handleSearchSubmit}>
-        <Input
-          placeholder={t`Search notes...`}
-          onChange={onSearchChange}
-          value={searchQuery}
-        />
-      </form>
+      <div className="flex items-center justify-between">
+        <Button
+          className="flex-shrink-0"
+          onClick={() => history.push(`${location.pathname}/new-note`)}
+        >
+          {i18n._(t`Add Note`)}
+        </Button>
+        <form className="flex ml-4 min-w-0" onSubmit={handleSearchSubmit}>
+          <Input
+            className="min-w-0"
+            placeholder={t`Search notes...`}
+            onChange={onSearchChange}
+            value={searchQuery}
+          />
+        </form>
+      </div>
       <Table className="w-full mt-3">
         <TableHead>
           <TableRow>
             <TableCell>
               <Trans>Note</Trans>
             </TableCell>
-            <TableCell>
+            <TableCell className="hidden md:table-cell">
               <Trans>Deck</Trans>
             </TableCell>
-            <TableCell>
+            <TableCell className="hidden md:table-cell">
               <Trans>Model type</Trans>
             </TableCell>
-            <TableCell>
+            <TableCell className="hidden md:table-cell">
               <Trans>Flashcards</Trans>
             </TableCell>
             <TableCell />
@@ -108,9 +120,15 @@ const NotesTable: React.FC<Props> = ({
               return (
                 <TableRow key={note.id}>
                   <TableCell>{note.text}</TableCell>
-                  <TableCell>{note.deck.title}</TableCell>
-                  <TableCell>{note.model.name}</TableCell>
-                  <TableCell>{note.flashCards.length}</TableCell>
+                  <TableCell className="hidden md:table-cell">
+                    {note.deck.title}
+                  </TableCell>
+                  <TableCell className="hidden md:table-cell">
+                    {note.model.name}
+                  </TableCell>
+                  <TableCell className="hidden md:table-cell">
+                    {note.flashCards.length}
+                  </TableCell>
                   <TableCell
                     align="right"
                     className="flex items-center justify-end"

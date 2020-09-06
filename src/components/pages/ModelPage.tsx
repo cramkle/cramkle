@@ -339,11 +339,13 @@ const ModelPage: React.FC = () => {
               </TabPanels>
             </Tabs>
           ) : (
-            <Body2 className="text-center">
-              <Trans>
-                You haven't created any templates on this model yet.
-              </Trans>
-            </Body2>
+            <div className="border-t border-gray-1 -mx-4">
+              <Body2 className="text-center mt-6 mb-4">
+                <Trans>
+                  You haven't created any templates on this model yet.
+                </Trans>
+              </Body2>
+            </div>
           )}
         </div>
       </Container>

@@ -1,6 +1,8 @@
 import classnames from 'classnames'
 import React, { ReactNode, forwardRef, useContext } from 'react'
 
+import styles from './Input.css'
+
 const LabelContext = React.createContext<{ label: boolean } | undefined>(
   undefined
 )
@@ -25,7 +27,9 @@ export const Label = forwardRef<HTMLLabelElement, LabelProps>(function Label(
           'flex-row-reverse items-center': checkbox,
         })}
       >
-        <span className="text-primary text-sm">{text}</span>
+        <span className={classnames(styles.label, 'text-primary text-sm')}>
+          {text}
+        </span>
         {children}
       </label>
     </LabelContext.Provider>

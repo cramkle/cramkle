@@ -1807,20 +1807,6 @@
     "@material/feature-targeting" "^3.1.0"
     "@material/theme" "^3.1.0"
 
-"@material/fab@^3.1.0":
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/@material/fab/-/fab-3.2.0.tgz#193289ddeee6e4ed6ad37809c3fc85bbfd2c462f"
-  integrity sha512-a/uPYDgIFZi2PpAV4Rqqnu9AKK2fA6ydSAVJE64Hs6isJ+UQUzGBvimOHy/DHtFmLxZJKuyakJd1Cq2jDlgXtg==
-  dependencies:
-    "@material/animation" "^3.1.0"
-    "@material/elevation" "^3.1.0"
-    "@material/feature-targeting" "^3.1.0"
-    "@material/ripple" "^3.2.0"
-    "@material/rtl" "^3.2.0"
-    "@material/shape" "^3.1.0"
-    "@material/theme" "^3.1.0"
-    "@material/typography" "^3.1.0"
-
 "@material/feature-targeting@^0.44.1":
   version "0.44.1"
   resolved "https://registry.yarnpkg.com/@material/feature-targeting/-/feature-targeting-0.44.1.tgz#afafc80294e5efab94bee31a187273d43d34979a"
@@ -1860,7 +1846,7 @@
     "@material/linear-progress" "^1.1.0"
     classnames "^2.2.6"
 
-"@material/ripple@^3.1.0", "@material/ripple@^3.2.0":
+"@material/ripple@^3.2.0":
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/@material/ripple/-/ripple-3.2.0.tgz#f4b714834b73b793b280024d4ebcca01018df3bd"
   integrity sha512-GtwkfNakALmfGLs6TpdFIVeAWjRqbyT7WfEw9aU7elUokABfHES+O0KoSKQSMQiSQ8Vjl90MONzNsN1Evi/1YQ==

@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/react-hooks'
-import { Trans, plural, t } from '@lingui/macro'
+import { Trans, plural } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import gql from 'graphql-tag'
 import React, { useCallback, useRef, useState } from 'react'
@@ -11,11 +11,8 @@ import usePaginationParams from '../../hooks/usePaginationParams'
 import useTopBarLoading from '../../hooks/useTopBarLoading'
 import BackButton from '../BackButton'
 import DeleteDeckButton from '../DeleteDeckButton'
-import { useHints } from '../HintsContext'
 import NotesTable from '../NotesTable'
-import GenericAddIcon from '../icons/GenericAddIcon'
 import Container from '../views/Container'
-import Fab from '../views/Fab'
 import {
   Body1,
   Body2,
@@ -92,7 +89,6 @@ export const DECK_QUERY = gql`
 `
 
 const DeckPage: React.FunctionComponent = () => {
-  const { isMobile } = useHints()
   const { i18n } = useLingui()
   const { slug } = useParams<{ slug: string }>()
   const location = useLocation()
@@ -232,15 +228,6 @@ const DeckPage: React.FunctionComponent = () => {
             onSearchChange={handleSearchChange}
             onSearchSubmit={handleSearchSubmit}
             onRefetchNotes={handleRefetchNotes}
-          />
-        </div>
-
-        <div className="fixed" style={{ bottom: 20, right: 20 }}>
-          <Fab
-            icon={<GenericAddIcon />}
-            aria-label={i18n._(t`Add Note`)}
-            textLabel={!isMobile && i18n._(t`Add Note`)}
-            onClick={() => history.push(`${location.pathname}/new-note`)}
           />
         </div>
       </Container>

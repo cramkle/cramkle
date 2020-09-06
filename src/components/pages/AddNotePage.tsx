@@ -4,7 +4,8 @@ import { useLingui } from '@lingui/react'
 import { ContentState, convertToRaw } from 'draft-js'
 import gql from 'graphql-tag'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
-import { useHistory, useParams } from 'react-router'
+import { useHistory, useLocation, useParams } from 'react-router'
+import { Link } from 'react-router-dom'
 
 import { FieldInput, FieldValueInput } from '../../globalTypes'
 import useTopBarLoading from '../../hooks/useTopBarLoading'
@@ -15,7 +16,7 @@ import Button from '../views/Button'
 import CircularProgress from '../views/CircularProgress'
 import Container from '../views/Container'
 import { Listbox, ListboxOption } from '../views/Listbox'
-import { Body1, Body2, Headline1, Headline5 } from '../views/Typography'
+import { Body1, Body2, Headline1, Headline2 } from '../views/Typography'
 import {
   CreateNoteMutation,
   CreateNoteMutationVariables,
@@ -63,6 +64,7 @@ const DEFAULT_OPTION = 'default'
 const AddNotePage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>()
   const history = useHistory()
+  const location = useLocation()
   const { data, loading } = useQuery<NoteFormQuery, NoteFormQueryVariables>(
     MODELS_QUERY,
     {
@@ -154,92 +156,110 @@ const AddNotePage: React.FC = () => {
     return null
   }
 
-  if (!models.length) {
-    return (
-      <Container>
-        <BackButton to={`/d/${slug}`} />
-
-        <Headline5>
-          <Trans>You haven't created any models yet.</Trans>
-        </Headline5>
-      </Container>
-    )
-  }
-
   return (
     <Container>
       <BackButton to={`/d/${slug}`} />
 
-      <Headline1>
+      <Headline1 className="border-b border-gray-1">
         <Trans>
-          Create Note for deck{' '}
+          Create note for deck{' '}
           <span className="font-semibold">{deck.title}</span>
         </Trans>
       </Headline1>
 
-      <div className="flex flex-col mt-3">
-        <label className="flex flex-col">
-          <Listbox
-            value={selectedModelId}
-            onChange={(value) => setSelectedModelId(value)}
-          >
-            <ListboxOption value={DEFAULT_OPTION} disabled>
-              {i18n._(t`Select a model`)}
-            </ListboxOption>
-            {models.map((model) => (
-              <ListboxOption key={model.id} value={model.id}>
-                {model.name}
+      {models.length > 0 ? (
+        <div className="flex flex-col mt-6">
+          <label className="flex items-center">
+            <Trans>Note's model</Trans>
+            <Listbox
+              className="ml-3"
+              value={selectedModelId}
+              onChange={(value) => setSelectedModelId(value)}
+            >
+              <ListboxOption value={DEFAULT_OPTION} disabled>
+                {i18n._(t`Select a model`)}
               </ListboxOption>
-            ))}
-          </Listbox>
-        </label>
+              {models.map((model) => (
+                <ListboxOption key={model.id} value={model.id}>
+                  {model.name}
+                </ListboxOption>
+              ))}
+            </Listbox>
+          </label>
 
-        {selectedModel != null && (
-          <React.Fragment key={formKey}>
-            <Body1 className="mt-2">
-              <Trans>Fields</Trans>
-            </Body1>
+          {selectedModel != null && (
+            <React.Fragment key={formKey}>
+              <Headline2 className="mt-3">
+                <Trans>Fields</Trans>
+              </Headline2>
 
-            {selectedModel.fields.length > 0 ? (
-              <>
-                {selectedModel.fields.map((field) => (
-                  <React.Fragment key={field.id}>
-                    <Body1 className="mt-4" key={field.id}>
-                      {field.name}
-                    </Body1>
+              {selectedModel.fields.length > 0 ? (
+                <>
+                  {selectedModel.fields.map((field) => (
+                    <React.Fragment key={field.id}>
+                      <Body1 className="mt-4" key={field.id}>
+                        {field.name}
+                      </Body1>
 
-                    <FieldValueEditor
-                      className="mt-1"
-                      onChange={handleFieldValueChange}
-                      field={field}
-                    />
-                  </React.Fragment>
-                ))}
+                      <FieldValueEditor
+                        className="mt-2"
+                        onChange={handleFieldValueChange}
+                        field={field}
+                      />
+                    </React.Fragment>
+                  ))}
 
-                <Button
-                  className="mt-4 self-start"
-                  variation="primary"
-                  onClick={handleSubmit}
-                  disabled={submitLoading}
-                >
-                  {!submitLoading ? (
-                    <Trans>Add Note</Trans>
-                  ) : (
-                    <CircularProgress />
-                  )}
-                </Button>
-              </>
-            ) : (
-              <Body2 className="mt-2">
-                <Trans>
-                  The selected model doesn't have any fields. Please, select
-                  another one
-                </Trans>
-              </Body2>
-            )}
-          </React.Fragment>
-        )}
-      </div>
+                  <Button
+                    className="mt-4 self-start"
+                    variation="primary"
+                    onClick={handleSubmit}
+                    disabled={submitLoading}
+                  >
+                    {!submitLoading ? (
+                      <Trans>Add Note</Trans>
+                    ) : (
+                      <CircularProgress />
+                    )}
+                  </Button>
+                </>
+              ) : (
+                <Body1 className="mt-6">
+                  <Trans>
+                    The selected model doesn't have any fields.{' '}
+                    <Link
+                      className="text-action-primary hover:underline"
+                      to={`/m/${selectedModel.id}`}
+                    >
+                      Click here to edit it
+                    </Link>
+                  </Trans>
+                </Body1>
+              )}
+            </React.Fragment>
+          )}
+        </div>
+      ) : (
+        <div className="flex flex-col justify-center items-center mt-6">
+          <Body1>
+            <Trans>You haven't created a model yet.</Trans>
+          </Body1>
+
+          <Body2 className="mt-2">
+            <Trans>
+              To create a note you need to associate it with a model.
+            </Trans>
+          </Body2>
+
+          <Button
+            className="mt-6"
+            onClick={() =>
+              history.push('/models/create', { referrer: location.pathname })
+            }
+          >
+            <Trans>Create a model</Trans>
+          </Button>
+        </div>
+      )}
     </Container>
   )
 }

@@ -3,7 +3,7 @@ import { useLingui } from '@lingui/react'
 import React, { useCallback } from 'react'
 import { useHistory } from 'react-router'
 
-import { ModelsQuery_models } from './__generated__/ModelsQuery'
+import { ModelsQuery_models } from './pages/__generated__/ModelsQuery'
 import { Card, CardContent, CardPressable } from './views/Card'
 import { Chip } from './views/Chip'
 import { Headline3 } from './views/Typography'
