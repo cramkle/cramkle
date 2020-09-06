@@ -47,7 +47,7 @@ describe('<AddDeckForm />', () => {
     )
 
     const titleInput = getByLabelText(/title/i)
-    const submitButton = getByText(/create/i)
+    const submitButton = getByText(/^create$/i)
 
     fireEvent.input(titleInput, { target: { value: deckMock.title } })
 
@@ -66,7 +66,7 @@ describe('<AddDeckForm />', () => {
     )
 
     const titleInput = getByLabelText(/title/i)
-    const submitButton = getByText(/create/i)
+    const submitButton = getByText(/^create$/i)
 
     fireEvent.input(titleInput, { target: { value: deckMock.title } })
 

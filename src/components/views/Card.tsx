@@ -1,8 +1,6 @@
 import classnames from 'classnames'
 import React, { useRef, useState } from 'react'
 
-import { useRipple } from './Ripple'
-
 export interface CardPressableProps extends React.HTMLProps<HTMLDivElement> {
   'aria-describedby': string
 }
@@ -14,10 +12,6 @@ export const CardPressable: React.FunctionComponent<CardPressableProps> = ({
   ...props
 }) => {
   const ref = useRef<HTMLDivElement>(null)
-
-  const { rippleClasses, rippleStyle } = useRipple({
-    surfaceRef: ref,
-  })
 
   const [focused, setFocused] = useState(false)
   const [hovered, setHovered] = useState(false)
@@ -44,15 +38,14 @@ export const CardPressable: React.FunctionComponent<CardPressableProps> = ({
 
   const classes = classnames(
     'flex flex-col relative outline-none cursor-pointer',
-    className,
-    rippleClasses
+    className
   )
 
   return (
     <div
       className={classes}
       ref={ref}
-      style={{ ...style, ...rippleStyle }}
+      style={style}
       tabIndex={0}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}

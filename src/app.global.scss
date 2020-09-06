@@ -1,8 +1,6 @@
 @import './styles/_variables';
 
-@import '@material/fab/mdc-fab.scss';
 @import '@material/icon-button/mdc-icon-button.scss';
-@import '@material/ripple/mdc-ripple.scss';
 @import '@material/snackbar/mdc-snackbar.scss';
 
 @import '@material/react-linear-progress/index.scss';
@@ -53,7 +51,7 @@ body,
   --gray-3: hsl(224, 10%, 32.5%);
   --gray-4: hsl(224, 16%, 12.8%);
   --disabled: rgba(0, 0, 0, 0.12);
-  --hover-overlay: rgba(0, 0, 0, 0.05);
+  --hover-overlay: hsla(224, 70%, 58%, 0.08);
   --text-primary: rgba(0, 0, 0, .87);
   --text-secondary: rgba(0, 0, 0, .54);
   --text-hint: rgba(0, 0, 0, .38);

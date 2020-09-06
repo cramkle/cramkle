@@ -5,13 +5,13 @@ import React, { useCallback, useRef, useState } from 'react'
 import { useHistory } from 'react-router'
 
 import { notificationState } from '../notification/index'
-import { DECKS_QUERY } from './DeckList'
-import { DecksQuery } from './__generated__/DecksQuery'
 import {
   DeleteDeckMutation,
   DeleteDeckMutationVariables,
 } from './__generated__/DeleteDeckMutation'
 import TrashBinIcon from './icons/TrashBinIcon'
+import { DECKS_QUERY } from './pages/DecksSection'
+import { DecksQuery } from './pages/__generated__/DecksQuery'
 import {
   AlertDialog,
   AlertDialogDescription,

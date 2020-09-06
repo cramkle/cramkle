@@ -73,7 +73,7 @@ export const Pagination: React.FC<Props> = ({
   }
 
   return (
-    <div className="flex justify-between">
+    <div className="flex flex-col sm:flex-row py-3 sm:py-0 justify-between">
       <label className="flex items-center text-sm">
         <span>
           <Trans>Items per page</Trans>
@@ -83,13 +83,17 @@ export const Pagination: React.FC<Props> = ({
           value={pageSize.toString()}
           onChange={handlePageSizeChange}
         >
+          <ListboxOption disabled value="0">
+            <Trans>Items per page</Trans>
+          </ListboxOption>
           <ListboxOption value="5">5</ListboxOption>
           <ListboxOption value="10">10</ListboxOption>
           <ListboxOption value="25">25</ListboxOption>
         </Listbox>
       </label>
-      <div className="flex items-center">
+      <div className="flex items-center mt-3 mx-auto sm:mt-0 sm:mx-0">
         <IconButton
+          className="hidden sm:block"
           disabled={!pageCursors.first}
           onClick={handleFirstPageClick}
           aria-label={i18n._(t`First page`)}
@@ -124,6 +128,7 @@ export const Pagination: React.FC<Props> = ({
           <CaretRightIcon />
         </IconButton>
         <IconButton
+          className="hidden sm:block"
           disabled={!pageCursors.last}
           onClick={handleLastPageClick}
           aria-label={i18n._(t`Last page`)}

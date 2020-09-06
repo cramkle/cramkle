@@ -9,8 +9,8 @@ import * as yup from 'yup'
 
 import { notificationState } from '../../notification/index'
 import { deckCardFragment } from '../DeckCard'
-import { DECKS_QUERY } from '../DeckList'
-import { DecksQuery } from '../__generated__/DecksQuery'
+import { DECKS_QUERY } from '../pages/DecksSection'
+import { DecksQuery } from '../pages/__generated__/DecksQuery'
 import Button from '../views/Button'
 import { Dialog, DialogTitle } from '../views/Dialog'
 import { TextInputField } from './Fields'
@@ -105,17 +105,22 @@ const AddDeckForm: React.FunctionComponent<Props> = ({ open, onClose }) => {
         }
       }}
     >
-      {({ isValid, handleSubmit, isSubmitting }) => {
+      {({ isValid, handleSubmit, isSubmitting, resetForm }) => {
+        const handleDismiss = () => {
+          resetForm()
+          onClose()
+        }
+
         return (
           <Dialog
             isOpen={open}
-            onDismiss={onClose}
+            onDismiss={handleDismiss}
             style={{ maxWidth: '320px' }}
             aria-labelledby="add-deck-dialog-title"
           >
             <form onSubmit={handleSubmit}>
               <DialogTitle id="add-deck-dialog-title">
-                <Trans>Add Deck</Trans>
+                <Trans>Create new deck</Trans>
               </DialogTitle>
               <div className="flex flex-col">
                 <TextInputField
