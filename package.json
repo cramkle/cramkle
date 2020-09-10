@@ -82,7 +82,7 @@
     "react-tab-controller": "^0.2.1",
     "react-window": "^1.8.5",
     "resize-observer-polyfill": "^1.5.1",
-    "tailwindcss": "^1.8.5",
+    "tailwindcss": "^1.8.6",
     "universal-cookie": "^4.0.3",
     "uuid": "^8.3.0",
     "workbox-cacheable-response": "^5.1.2",
