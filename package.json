@@ -52,7 +52,7 @@
     "@reach/menu-button": "^0.11.2",
     "@reach/tabs": "^0.11.2",
     "@reach/tooltip": "^0.11.2",
-    "@sentry/react": "^5.22.3",
+    "@sentry/react": "^5.23.0",
     "apollo-cache-inmemory": "^1.6.5",
     "apollo-client": "^2.6.10",
     "apollo-link": "^1.2.13",
