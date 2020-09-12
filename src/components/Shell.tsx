@@ -126,8 +126,7 @@ const DefaultMenu: React.FC = () => {
 const Shell: React.FunctionComponent = ({ children }) => {
   const { data } = useQuery<TopBarLoadingQuery>(TOP_BAR_LOADING_QUERY)
 
-  const topBar = data?.topBar
-  const loading = topBar?.loading
+  const loading = data?.topBar?.loading ?? false
 
   const isOffline = useOffline()
 

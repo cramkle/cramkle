@@ -17,10 +17,7 @@ export const LoadingBar: React.FC<React.HTMLAttributes<HTMLDivElement>> = (
       }}
       role="progressbar"
     >
-      <div
-        className="bg-gray-1 absolute w-full h-full origin-top-left transition-transform duration-200 ease-in-out"
-        style={{ transform: 'scaleX(1)' }}
-      />
+      <div className="bg-gray-1 absolute w-full h-full" />
       <div
         className={classnames(
           styles.indeterminateAnimation,
@@ -28,12 +25,7 @@ export const LoadingBar: React.FC<React.HTMLAttributes<HTMLDivElement>> = (
         )}
         style={{ transform: 'scaleX(1)' }}
       >
-        <span
-          className={classnames(
-            styles.indeterminateScale,
-            'inline-block h-full w-full absolute bg-yellow-1'
-          )}
-        ></span>
+        <span className="inline-block h-full w-full absolute bg-yellow-1" />
       </div>
     </div>
   )

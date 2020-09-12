@@ -1,10 +1,6 @@
 .indeterminateAnimation {
-  left: -145.166611%;
+  left: -100%;
   animation: indeterminate-translate 2s infinite linear;
-}
-
-.indeterminateScale {
-  animation: indeterminate-scale 2s infinite linear;
 }
 
 @keyframes indeterminate-translate {
@@ -17,29 +13,12 @@
     transform: translateX(0);
   }
 
-  59.15% {
+  60% {
     animation-timing-function: cubic-bezier(0.30244, 0.38135, 0.55, 0.95635);
     transform: translateX(83.67142%);
   }
 
   100% {
-    transform: translateX(200.61106%);
+    transform: translateX(200%);
   }
-}
-
-@keyframes indeterminate-scale {
-  0% {
-    transform: scaleX(0.08);
-}
-36.65% {
-    animation-timing-function: cubic-bezier(0.33473, 0.12482, 0.78584, 1);
-    transform: scaleX(0.08);
-}
-69.15% {
-    animation-timing-function: cubic-bezier(0.06, 0.11, 0.6, 1);
-    transform: scaleX(0.66148);
-}
-100% {
-    transform: scaleX(0.08);
-}
 }
