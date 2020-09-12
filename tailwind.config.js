@@ -47,6 +47,7 @@ module.exports = {
       '-10': '-10',
       '-1': '-1',
       0: '0',
+      1: '1',
       10: '10',
       20: '20',
       30: '30',
@@ -89,6 +90,10 @@ module.exports = {
       'group-hover',
       'group-focus',
     ],
+  },
+  future: {
+    removeDeprecatedGapUtilities: true,
+    purgeLayersByDefault: true,
   },
   plugins: [],
 }
