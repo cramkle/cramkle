@@ -101,7 +101,7 @@
     "@hot-loader/react-dom": "^16.11.0",
     "@lingui/cli": "3.0.0-13",
     "@lingui/macro": "3.0.0-13",
-    "@lucasecdb/eslint-config": "^0.12.0",
+    "@lucasecdb/eslint-config": "^0.13.1",
     "@release-it/keep-a-changelog": "^2.0.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.0.2",
