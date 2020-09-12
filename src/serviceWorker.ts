@@ -14,6 +14,8 @@ import {
 const JS_CSS_REGEX = /\.(?:js|css)$/
 const IMAGE_REGEX = /\.(?:png|gif|jpg|jpeg|webp|svg)$/
 
+// typescript-eslint-bug:
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 declare global {
   interface Window {
     __WB_MANIFEST: { url: string; revision: string }[]
