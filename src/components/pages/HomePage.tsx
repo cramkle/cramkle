@@ -129,7 +129,7 @@ const HomePage: React.FunctionComponent = () => {
             <Trans>Sidebar</Trans>
           </Body1>
 
-          <List className="py-4">
+          <List className="py-4 -mx-3">
             <ListItem
               onClick={handleMarketplaceClick}
               icon={<MarketplaceIcon />}
