@@ -104,7 +104,7 @@
     "@lucasecdb/eslint-config": "^0.13.1",
     "@release-it/keep-a-changelog": "^2.0.0",
     "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.0.2",
+    "@testing-library/react": "^11.0.4",
     "@types/classnames": "^2.2.9",
     "@types/d3-array": "^2.0.0",
     "@types/d3-scale": "^2.2.0",
