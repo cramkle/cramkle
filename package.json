@@ -126,7 +126,7 @@
     "babel-jest": "^26.3.0",
     "babel-plugin-macros": "^2.8.0",
     "babel-preset-react-app": "^9.1.1",
-    "eslint": "^7.8.1",
+    "eslint": "^7.9.0",
     "husky": "^4.3.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.4.2",
