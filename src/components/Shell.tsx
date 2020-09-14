@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/react-hooks'
 import { Trans } from '@lingui/macro'
-import LinearProgress from '@material/react-linear-progress'
+import classnames from 'classnames'
 import gql from 'graphql-tag'
 import React, { Suspense, useCallback } from 'react'
 import { Link, useHistory } from 'react-router-dom'
@@ -19,6 +19,7 @@ import SettingsIcon from './icons/SettingsIcon'
 import StatisticsIcon from './icons/StatisticsIcon'
 import USER_QUERY from './userQuery.gql'
 import { Header, HeaderContent, HeaderSection } from './views/Header'
+import { LoadingBar } from './views/LoadingBar'
 import { Menu, MenuButton, MenuItem, MenuList } from './views/MenuButton'
 
 const TOP_BAR_LOADING_QUERY = gql`
@@ -76,7 +77,11 @@ const MobileMenu: React.FC<{ username: string; email: string }> = ({
       <MenuButton icon className="md:hidden">
         <OverflowMenuIcon />
       </MenuButton>
-      <MenuList>
+      <MenuList
+        portal={false}
+        className="absolute z-10 right-0"
+        style={{ top: '1.25rem' }}
+      >
         <div className="flex flex-col px-5 mb-3 md:hidden">
           <span className="text-primary text-lg">{username}</span>
           <span className="text-secondary">{email}</span>
@@ -108,7 +113,11 @@ const DefaultMenu: React.FC = () => {
       <MenuButton icon className="hidden md:inline-block">
         <OverflowMenuIcon />
       </MenuButton>
-      <MenuList>
+      <MenuList
+        portal={false}
+        className="absolute z-10 right-0"
+        style={{ top: '1.25rem' }}
+      >
         <DefaultMenuItems />
       </MenuList>
     </Menu>
@@ -118,8 +127,7 @@ const DefaultMenu: React.FC = () => {
 const Shell: React.FunctionComponent = ({ children }) => {
   const { data } = useQuery<TopBarLoadingQuery>(TOP_BAR_LOADING_QUERY)
 
-  const topBar = data?.topBar
-  const loading = topBar?.loading
+  const loading = data?.topBar?.loading ?? false
 
   const isOffline = useOffline()
 
@@ -131,16 +139,13 @@ const Shell: React.FunctionComponent = ({ children }) => {
     return null
   }
 
-  const loader = (
-    <LinearProgress
-      className="absolute top-100 left-0 right-0 z-1"
-      indeterminate
-    />
+  const fallbackLoader = (
+    <LoadingBar className="absolute left-0 right-0 top-0 z-1" />
   )
 
   return (
     <div className="w-full h-full flex flex-col relative">
-      <Header>
+      <Header className="relative">
         <HeaderContent>
           <HeaderSection>
             <Link className="flex items-center pl-1 link" to="/home">
@@ -159,11 +164,16 @@ const Shell: React.FunctionComponent = ({ children }) => {
           </HeaderSection>
         </HeaderContent>
         <div id="header-mobile-portal-anchor" />
-        {loading && loader}
+        <LoadingBar
+          className={classnames('absolute left-0 right-0 z-1', {
+            hidden: !loading,
+          })}
+          style={{ top: 'calc(100% + 1px)' }}
+        />
       </Header>
       <main className="flex-1 overflow-auto w-full relative bg-background">
-        <NoSSR fallback={loader}>
-          <Suspense fallback={loader}>
+        <NoSSR fallback={fallbackLoader}>
+          <Suspense fallback={fallbackLoader}>
             {children}
             <div id="portal-anchor" />
           </Suspense>

@@ -3,14 +3,11 @@
 @import '@material/icon-button/mdc-icon-button.scss';
 @import '@material/snackbar/mdc-snackbar.scss';
 
-@import '@material/react-linear-progress/index.scss';
-
 @import '~@reach/checkbox/styles.css';
 @import '~@reach/dialog/styles.css';
 @import '~@reach/menu-button/styles.css';
 @import '~@reach/tabs/styles.css';
 
-@import './styles/_overrides.scss';
 @import './styles/_draft.scss';
 
 * {

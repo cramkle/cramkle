@@ -1,0 +1,25 @@
+.indeterminateAnimation {
+  left: -100%;
+  will-change: transform;
+  animation: indeterminate-translate 2s infinite linear;
+}
+
+@keyframes indeterminate-translate {
+  0% {
+    transform: translateX(0);
+  }
+
+  5% {
+    animation-timing-function: cubic-bezier(0.5, 0, 0.70173, 0.49582);
+    transform: translateX(0);
+  }
+
+  60% {
+    animation-timing-function: cubic-bezier(0.30244, 0.38135, 0.55, 0.95635);
+    transform: translateX(83.67142%);
+  }
+
+  100% {
+    transform: translateX(200%);
+  }
+}

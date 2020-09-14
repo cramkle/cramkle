@@ -1742,24 +1742,10 @@
     eslint-plugin-react "~7.20.6"
     eslint-plugin-react-hooks "^4.1.1"
 
-"@material/animation@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@material/animation/-/animation-1.0.0.tgz#dfd8575c8b031203917dc838ac0e3c0fe0f6709b"
-  integrity sha512-Ed5/vggn6ZhSJ87yn3ZS1d826VJNFz73jHF2bSsgRtHDoB8KCuOwQMfdgAgDa4lKDF6CDIPCKBZPKrs2ubehdw==
-  dependencies:
-    tslib "^1.9.3"
-
 "@material/animation@^3.1.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@material/animation/-/animation-3.1.0.tgz#ab04e7c2e92ab370a2b28d12af1b88538d23014f"
   integrity sha512-ZfP95awrPBLhpaCTPNx+xKYPp2D88fzf5p5YNVp6diUAGRpq3g12Aq7qJfIHDXAFo5CtrYhgOKRqIKxUVcFisQ==
-  dependencies:
-    tslib "^1.9.3"
-
-"@material/base@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@material/base/-/base-1.0.0.tgz#e4ef0b22c54aa887af94f5988fb1c0cb3245beba"
-  integrity sha512-5dxFp46x5FA+Epg6YHLzN+5zRt9S2wR84UdvVAEJ1egea94m9UHUg7y9tAnNSN16aexRSywmzyLwPr+i8PGEYA==
   dependencies:
     tslib "^1.9.3"
 
@@ -1799,11 +1785,6 @@
     "@material/feature-targeting" "^3.1.0"
     "@material/theme" "^3.1.0"
 
-"@material/feature-targeting@^0.44.1":
-  version "0.44.1"
-  resolved "https://registry.yarnpkg.com/@material/feature-targeting/-/feature-targeting-0.44.1.tgz#afafc80294e5efab94bee31a187273d43d34979a"
-  integrity sha512-90cc7njn4aHbH9UxY8qgZth1W5JgOgcEdWdubH1t7sFkwqFxS5g3zgxSBt46TygFBVIXNZNq35Xmg80wgqO7Pg==
-
 "@material/feature-targeting@^3.1.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@material/feature-targeting/-/feature-targeting-3.1.0.tgz#a6f6cacd1e0c9b60dc82f2f3bb2de8cfd472252b"
@@ -1819,24 +1800,6 @@
     "@material/ripple" "^3.2.0"
     "@material/theme" "^3.1.0"
     tslib "^1.9.3"
-
-"@material/linear-progress@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@material/linear-progress/-/linear-progress-1.1.0.tgz#559921d4274fce0131fdf146698582d292855d6a"
-  integrity sha512-MIK0cD/o1rTLREtAfTK3v60h7A0/wAu8/3v9dPTMlAPe+Y5gOarAizYWM3r/bp88sGO4gU8nPK0X9/daD28pNw==
-  dependencies:
-    "@material/animation" "^1.0.0"
-    "@material/base" "^1.0.0"
-    "@material/theme" "^1.1.0"
-    tslib "^1.9.3"
-
-"@material/react-linear-progress@^0.14.1":
-  version "0.14.1"
-  resolved "https://registry.yarnpkg.com/@material/react-linear-progress/-/react-linear-progress-0.14.1.tgz#1c318f8d205f93d358a5e5694d8116949521fd46"
-  integrity sha512-ZVGh+LmoLdDpUutduRBlEDF9yI41xdzlcFe5bPa5tGqjbEnv0j1F2OO2Bo6V4g4jmZmjG6PI1Wbz5x8Cdz4SiQ==
-  dependencies:
-    "@material/linear-progress" "^1.1.0"
-    classnames "^2.2.6"
 
 "@material/ripple@^3.2.0":
   version "3.2.0"
@@ -1879,13 +1842,6 @@
     "@material/theme" "^3.1.0"
     "@material/typography" "^3.1.0"
     tslib "^1.9.3"
-
-"@material/theme@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@material/theme/-/theme-1.1.0.tgz#9c95dd804168c23c30589fcf09ecc5af5b3d1adc"
-  integrity sha512-YYUV9Rhbx4r/EMb/zoOYJUWjhXChNaLlH1rqt3vpNVyxRcxGqoVMGp5u1XALBCFiD9dACPKLIkKyRYa928nmPQ==
-  dependencies:
-    "@material/feature-targeting" "^0.44.1"
 
 "@material/theme@^3.1.0":
   version "3.1.0"
