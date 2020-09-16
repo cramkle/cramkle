@@ -67,7 +67,7 @@ export const ListItem: React.FC<ListItemProps> = ({
         'relative group z-10 flex items-center px-3 py-2 my-2 outline-reset rounded overflow-hidden transition-colors ease-in-out duration-200',
         {
           'focus:text-action-primary hover:text-action-primary cursor-pointer': !disabled,
-          'bg-disabled text-disabled': disabled,
+          'text-disabled': disabled,
         }
       )}
       tabIndex={tabIndex}
