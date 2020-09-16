@@ -13,7 +13,6 @@ import NoSSR from './NoSSR'
 import { TopBarLoadingQuery } from './__generated__/TopBarLoadingQuery'
 import { UserQuery } from './__generated__/UserQuery'
 import LogoutIcon from './icons/LogoutIcon'
-import MarketplaceIcon from './icons/MarketplaceIcon'
 import OverflowMenuIcon from './icons/OverflowMenuIcon'
 import SettingsIcon from './icons/SettingsIcon'
 import StatisticsIcon from './icons/StatisticsIcon'
@@ -70,8 +69,6 @@ const MobileMenu: React.FC<{ username: string; email: string }> = ({
 
   const handleStatisticsClick = () => history.push('/statistics')
 
-  const handleMarketplaceClick = () => history.push('/marketplace')
-
   return (
     <Menu>
       <MenuButton icon className="md:hidden">
@@ -86,13 +83,6 @@ const MobileMenu: React.FC<{ username: string; email: string }> = ({
           <span className="text-primary text-lg">{username}</span>
           <span className="text-secondary">{email}</span>
         </div>
-        <MenuItem
-          className="md:hidden"
-          onSelect={handleMarketplaceClick}
-          icon={<MarketplaceIcon className="text-secondary" />}
-        >
-          <Trans>Marketplace</Trans>
-        </MenuItem>
         <MenuItem
           className="md:hidden"
           onSelect={handleStatisticsClick}
