@@ -27,7 +27,6 @@ const AddModelPage = lazy(() => import('./components/pages/AddModelPage'))
 const AddNotePage = lazy(() => import('./components/pages/AddNotePage'))
 const DeckPage = lazy(() => import('./components/pages/DeckPage'))
 const HomePage = lazy(() => import('./components/pages/HomePage'))
-const MarketplacePage = lazy(() => import('./components/pages/MarketplacePage'))
 const ModelPage = lazy(() => import('./components/pages/ModelPage'))
 const NotePage = lazy(() => import('./components/pages/NotePage'))
 const SettingsPage = lazy(() => import('./components/pages/SettingsPage'))
@@ -133,9 +132,6 @@ const App: React.FunctionComponent = () => {
           </ShellRoute>
           <ShellRoute RouteComponent={UserRoute} path="/models/create" exact>
             <AddModelPage />
-          </ShellRoute>
-          <ShellRoute RouteComponent={UserRoute} path="/marketplace" exact>
-            <MarketplacePage />
           </ShellRoute>
           <ShellRoute RouteComponent={UserRoute} path="/statistics" exact>
             <StatisticsPage />

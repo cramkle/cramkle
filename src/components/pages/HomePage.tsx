@@ -4,16 +4,19 @@ import classNames from 'classnames'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { useHistory, useLocation } from 'react-router'
+import { Link } from 'react-router-dom'
 
 import { notificationState } from '../../notification/index'
 import registerSW from '../../registerSW'
 import { positionMatchMinWidth } from '../../utils/popover'
 import HeaderPortal from '../HeaderPortal'
+import CircleIcon from '../icons/CircleIcon'
 import DecksIcon from '../icons/DecksIcon'
 import MarketplaceIcon from '../icons/MarketplaceIcon'
 import ModelsIcon from '../icons/ModelsIcon'
 import StatisticsIcon from '../icons/StatisticsIcon'
 import StudyIcon from '../icons/StudyIcon'
+import { Chip } from '../views/Chip'
 import Container from '../views/Container'
 import { List, ListItem } from '../views/List'
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from '../views/Tabs'
@@ -99,10 +102,6 @@ const HomePage: React.FunctionComponent = () => {
     [history]
   )
 
-  const handleMarketplaceClick = useCallback(() => {
-    history.push('/marketplace')
-  }, [history])
-
   const handleStatisticsClick = useCallback(() => {
     history.push('/statistics')
   }, [history])
@@ -119,7 +118,7 @@ const HomePage: React.FunctionComponent = () => {
           'h-full grid gap-4 md:gap-6 xl:gap-8'
         )}
       >
-        <aside
+        <nav
           className={classNames(
             styles.sidenav,
             'hidden md:block w-100 px-8 py-6 border-r border-gray-1'
@@ -130,17 +129,46 @@ const HomePage: React.FunctionComponent = () => {
           </Body1>
 
           <List className="py-4 -mx-3">
-            <ListItem
-              onClick={handleMarketplaceClick}
-              icon={<MarketplaceIcon />}
-            >
-              {i18n._(t`Marketplace`)}
-            </ListItem>
             <ListItem onClick={handleStatisticsClick} icon={<StatisticsIcon />}>
-              {i18n._(t`Statistics`)}
+              <Trans>Statistics</Trans>
+            </ListItem>
+            <ListItem onClick={() => {}} icon={<MarketplaceIcon />} disabled>
+              <div className="flex items-center">
+                <Trans>Marketplace</Trans>
+
+                <Chip size="small" color="primary" className="ml-auto">
+                  <Trans>soon</Trans>
+                </Chip>
+              </div>
             </ListItem>
           </List>
-        </aside>
+
+          <footer className="mt-4 flex justify-between items-center text-secondary text-xs">
+            <Link to="/about">
+              <Trans>About us</Trans>
+            </Link>
+
+            <CircleIcon />
+
+            <a
+              href="https://www.patreon.com/lucasecdb"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Patreon
+            </a>
+
+            <CircleIcon />
+
+            <a
+              href="https://github.com/cramkle/cramkle"
+              target="_blank"
+              rel="noreferrer"
+            >
+              GitHub
+            </a>
+          </footer>
+        </nav>
 
         <Container
           lean
