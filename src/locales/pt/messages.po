@@ -33,13 +33,17 @@ msgstr "7 dias"
 msgid "A model consist of both fields and templates. A field is used in a note to fill values that are used inside the template, and the template is used to define the frontside and backside of each flashcard, using the fields defined in the model. You'll be able to edit the templates content after creating the model."
 msgstr "Um modelo consiste tanto de campos como templates. Um campo é utilizado em uma nota para preencher os valores que são utilizados no template, e o template é utilizado para definir a frente e o verso de cada flashcard, utilizando os campos definidos no modelo. Você poderá editar o conteúdo dos templates após criar o modelo."
 
-#: src/components/pages/HomePage.tsx:53
+#: src/components/pages/HomePage.tsx:56
 msgid "A new update is available!"
 msgstr "Uma nova atualização está disponível!"
 
 #: src/components/Footer.tsx:10
 msgid "About"
 msgstr "Sobre"
+
+#: src/components/pages/HomePage.tsx:112
+msgid "About us"
+msgstr "Sobre nós"
 
 #: src/components/pages/SettingsPage.tsx:9
 msgid "Account Settings"
@@ -260,7 +264,7 @@ msgstr "Detalhes do deck"
 msgid "Deck {0}"
 msgstr "Deck {0}"
 
-#: src/components/pages/HomePage.tsx:110
+#: src/components/pages/HomePage.tsx:134
 msgid "Decks"
 msgstr "Decks"
 
@@ -538,8 +542,7 @@ msgstr "Login"
 msgid "Make sure your knowledge will last"
 msgstr "Garanta que seu conhecimento irá durar"
 
-#: src/components/Shell.tsx:61
-#: src/components/pages/HomePage.tsx:97
+#: src/components/pages/HomePage.tsx:101
 msgid "Marketplace"
 msgstr "Marketplace"
 
@@ -563,7 +566,7 @@ msgstr "Nome do modelo"
 msgid "Model type"
 msgstr "Tipo do modelo"
 
-#: src/components/pages/HomePage.tsx:111
+#: src/components/pages/HomePage.tsx:135
 msgid "Models"
 msgstr "Modelos"
 
@@ -691,11 +694,11 @@ msgstr "Página anterior"
 msgid "Privacy Policy"
 msgstr "Política de Privacidade"
 
-#: src/components/pages/HomePage.tsx:62
+#: src/components/pages/HomePage.tsx:65
 msgid "Ready to work offline"
 msgstr "Pronto para funcionar offline"
 
-#: src/components/pages/HomePage.tsx:54
+#: src/components/pages/HomePage.tsx:57
 #: src/utils/errorFallback.tsx:14
 msgid "Refresh"
 msgstr "Atualizar"
@@ -791,12 +794,12 @@ msgstr "Algo de errado aconteceu"
 msgid "Start Session"
 msgstr "Começar sessão"
 
-#: src/components/Shell.tsx:64
-#: src/components/pages/HomePage.tsx:100
+#: src/components/Shell.tsx:60
+#: src/components/pages/HomePage.tsx:97
 msgid "Statistics"
 msgstr "Estatísticas"
 
-#: src/components/pages/HomePage.tsx:109
+#: src/components/pages/HomePage.tsx:133
 msgid "Study"
 msgstr "Estudar"
 
@@ -995,6 +998,10 @@ msgstr "Seus modelos"
 #: src/components/forms/LoginForm.tsx:70
 msgid "login.button"
 msgstr "Entrar"
+
+#: src/components/pages/HomePage.tsx:104
+msgid "soon"
+msgstr "em breve"
 
 #: src/components/ModelCard.tsx:26
 msgid "{0, plural, one {# field} other {# fields}}"
