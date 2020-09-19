@@ -14,6 +14,7 @@ import React, {
 } from 'react'
 import { Helmet } from 'react-helmet'
 import { useParams } from 'react-router'
+import { Link } from 'react-router-dom'
 
 import useLatestRefEffect from '../../hooks/useLatestRefEffect'
 import useTopBarLoading from '../../hooks/useTopBarLoading'
@@ -231,6 +232,19 @@ const ModelPage: React.FC = () => {
 
   if (loading) {
     return null
+  }
+
+  if (data?.model == null) {
+    return (
+      <div className="flex flex-col items-center justify-center p-4 sm:px-0">
+        <Headline2 className="text-center sm:text-left">
+          <Trans>Model not found</Trans>
+        </Headline2>
+        <Link className="mt-8 sm:mt-4 text-action-primary" to="/home">
+          <Trans>Go to home</Trans>
+        </Link>
+      </div>
+    )
   }
 
   const { model } = data
