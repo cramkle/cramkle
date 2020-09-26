@@ -1,10 +1,10 @@
 #!/bin/bash
 
-sizes=(36 48 57 60 72 76 96 114 120 144 152 180 192)
+sizes=(36 48 57 60 72 76 96 114 120 144 152 180 192 512)
 
 apple_sizes=(57 60 72 76 114 120 144 152 180)
 favicon_sizes=(16 32 64)
-android_sizes=(36 48 72 96 144 192)
+android_sizes=(36 48 72 96 144 192 512)
 
 if ! which svgexport &> /dev/null; then
   echo "svgexport is not installed. You can install it by running \"yarn global add svgexport\""
