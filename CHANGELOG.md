@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Not found pages for deck and model.
 
+### Changed
+- Updated manifest icons to a squared shape, so it fits iOS and custom Android icons better.
+
 ## [0.11.2] - 2020-09-16
 ### Fixed
 - Removed background color of disabled list items.
