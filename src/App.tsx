@@ -64,7 +64,7 @@ const App: React.FunctionComponent = () => {
           },
           {
             name: 'theme-color',
-            content: '#2962ff',
+            content: '#ffffff',
           },
         ]}
         style={[

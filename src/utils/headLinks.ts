@@ -68,4 +68,9 @@ export const icons = [
     sizes: '64x64',
     href: '/icons/favicon-64x64.png',
   },
+  {
+    rel: 'shortcut icon',
+    type: 'image/x-icon',
+    href: '/icons/favicon.ico',
+  },
 ]
