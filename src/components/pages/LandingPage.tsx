@@ -19,9 +19,11 @@ const LandingPage: React.FunctionComponent = () => {
     <>
       <Header>
         <HeaderContent>
-          <HeaderSection className="flex items-center pl-1">
-            <Logo width={24} />
-            <AppName className="ml-2" />
+          <HeaderSection>
+            <div className="flex items-center pl-1">
+              <Logo width="32" />
+              <AppName className="ml-2" />
+            </div>
           </HeaderSection>
           <HeaderSection align="end">
             <Button onClick={() => history.push('/register')}>
