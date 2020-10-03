@@ -4,7 +4,7 @@ import {
   RawDraftContentState,
 } from 'draft-js'
 import 'draft-js/dist/Draft.css'
-import React, { useCallback } from 'react'
+import React, { useCallback, useEffect, useRef } from 'react'
 
 import BaseEditorControls from './editor/BaseEditorControls'
 import TagEditor from './editor/TagEditor'
@@ -26,11 +26,17 @@ const TemplateEditor: React.FunctionComponent<Props> = ({
   fields,
   onChange,
 }) => {
+  const onChangeRef = useRef(onChange)
+
+  useEffect(() => {
+    onChangeRef.current = onChange
+  }, [onChange])
+
   const handleChange = useCallback(
     (contentState: ContentState) => {
-      onChange?.(contentState, id)
+      onChangeRef.current?.(contentState, id)
     },
-    [onChange, id]
+    [id]
   )
 
   return (
