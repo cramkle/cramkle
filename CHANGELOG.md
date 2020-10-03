@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+### Added
+- Block navigation when trying to exit unsaved note page.
+- Retry button to unsaved notes.
+
+### Changed
+- Add better error handling in note save.
+- Look of circular spinner so it resizes without issue.
+
 ## [0.11.4] - 2020-09-26
 ### Added
 - Icon with size 512x512.

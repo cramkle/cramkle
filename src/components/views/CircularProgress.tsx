@@ -1,7 +1,5 @@
 import classnames from 'classnames'
-import React, { CSSProperties } from 'react'
-
-import styles from './CircularProgress.scss'
+import React from 'react'
 
 interface Props extends React.HTMLProps<HTMLDivElement> {
   size?: number
@@ -10,32 +8,37 @@ interface Props extends React.HTMLProps<HTMLDivElement> {
 const CircularProgress: React.FC<Props> = ({
   size = 28,
   style = {},
-  className = '',
   ...props
 }) => {
   return (
     <div
       {...props}
-      className={classnames(className, styles.spinner, 'border-primary')}
-      style={{ '--size': `${size}px`, ...style } as CSSProperties}
+      className={classnames(props.className, 'text-action-primary')}
+      role="progressbar"
+      aria-valuemin={0}
+      aria-valuemax={1}
+      style={{ ...style, height: size, width: size }}
     >
-      <div className={styles.spinnerContainer}>
-        <div className={styles.spinnerLayer}>
-          <div
-            className={`${styles.spinnerCircleClipper} ${styles.spinnerLeft}`}
-          >
-            <div className={styles.spinnerCircle}></div>
-          </div>
-          <div className={styles.spinnerGapPatch}>
-            <div className={styles.spinnerCircle}></div>
-          </div>
-          <div
-            className={`${styles.spinnerCircleClipper} ${styles.spinnerRight}`}
-          >
-            <div className={styles.spinnerCircle}></div>
-          </div>
-        </div>
-      </div>
+      <svg
+        className="animate-spin"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+      >
+        <circle
+          className="opacity-25"
+          cx="12"
+          cy="12"
+          r="10"
+          stroke="currentColor"
+          strokeWidth="4"
+        />
+        <path
+          className="opacity-75"
+          fill="currentColor"
+          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+        />
+      </svg>
     </div>
   )
 }

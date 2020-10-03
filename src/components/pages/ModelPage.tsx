@@ -23,6 +23,7 @@ import BackButton from '../BackButton'
 import DeleteModelButton from '../DeleteModelButton'
 import EditFieldsDialog from '../EditFieldsDialog'
 import EditTemplatesDialog from '../EditTemplatesDialog'
+import RetryButton from '../RetryButton'
 import TemplateEditor from '../TemplateEditor'
 import DoneIcon from '../icons/DoneIcon'
 import OverflowMenuIcon from '../icons/OverflowMenuIcon'
@@ -31,7 +32,13 @@ import CircularProgress from '../views/CircularProgress'
 import Container from '../views/Container'
 import { Menu, MenuButton, MenuItem, MenuList } from '../views/MenuButton'
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from '../views/Tabs'
-import { Body1, Body2, Headline1, Headline2 } from '../views/Typography'
+import {
+  Body1,
+  Body2,
+  Caption,
+  Headline1,
+  Headline2,
+} from '../views/Typography'
 import styles from './ModelPage.css'
 import { DRAFT_CONTENT_FRAGMENT, MODEL_QUERY } from './ModelQuery'
 import { DraftContent } from './__generated__/DraftContent'
@@ -106,8 +113,12 @@ const TemplateDetails: React.FC<TemplateDetailsProps> = ({
 
   const debounceIdRef = useRef<NodeJS.Timeout | null>(null)
 
+  const lastChangedContentStateRef = useRef<ContentState | null>(null)
+
   const handleChange = useCallback(
     (contentState: ContentState) => {
+      lastChangedContentStateRef.current = contentState
+
       if (debounceIdRef.current) {
         clearTimeout(debounceIdRef.current)
       }
@@ -124,16 +135,34 @@ const TemplateDetails: React.FC<TemplateDetailsProps> = ({
     [templateId, updateTemplateContent]
   )
 
+  const retrySave = useCallback(() => {
+    if (!lastChangedContentStateRef.current) {
+      return
+    }
+
+    const content = lastChangedContentStateRef.current
+
+    updateTemplateContent({
+      variables: {
+        id: templateId,
+        content: convertToRaw(content),
+      },
+    })
+  }, [templateId, updateTemplateContent])
+
   const [saved, setSaved] = useState(false)
 
   useLatestRefEffect(loading, () => {
     if (loading) {
+      setSaved(false)
       return
     }
 
     if (error) {
       notificationState.addNotification({
         message: t`An error has ocurred when saving the template`,
+        actionText: t`Retry`,
+        onAction: retrySave,
       })
     } else {
       setSaved(true)
@@ -160,21 +189,28 @@ const TemplateDetails: React.FC<TemplateDetailsProps> = ({
 
   return (
     <>
-      <div className="flex items-end mt-4">
+      <div className="h-8 flex items-center mt-4">
         <Body2 className="leading-4 tracking-wide font-medium">{label}</Body2>{' '}
-        {loading && <CircularProgress className="ml-2" size={16} />}
-        <Body2
-          className={classnames(
-            'inline-flex items-center ml-2 invisible opacity-0',
-            {
-              [styles.fadeIn]: saved,
-              [styles.fadeOut]: prevSavedRef.current && !saved,
-            }
+        <div className="ml-2 flex items-center">
+          {loading && <CircularProgress size={16} />}
+          {error && (
+            <RetryButton onClick={retrySave}>
+              <Trans>Try again</Trans>
+            </RetryButton>
           )}
-        >
-          <DoneIcon className="text-green-1 mr-2 w-4 h-4" />
-          <Trans>Changes saved successfully</Trans>
-        </Body2>
+          <Caption
+            className={classnames(
+              'inline-flex items-center invisible opacity-0',
+              {
+                [styles.fadeIn]: saved,
+                [styles.fadeOut]: prevSavedRef.current && !saved,
+              }
+            )}
+          >
+            <DoneIcon className="text-green-1 mr-2 text-base" />
+            <Trans>Changes saved successfully</Trans>
+          </Caption>
+        </div>
       </div>
       <TemplateEditor
         id={templateId}
