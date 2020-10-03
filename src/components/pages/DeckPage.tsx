@@ -131,21 +131,15 @@ const DeckPage: React.FunctionComponent = () => {
       const searchParams = new URLSearchParams(location.search)
 
       searchParams.set('search', search)
+      searchParams.set('page', '1')
 
       if (!skipHistoryPush) {
         history.push(location.pathname + '?' + searchParams.toString())
       }
 
       setSearchVariable(search)
-      onPaginationChange({ page: 1 })
     },
-    [
-      history,
-      location.pathname,
-      location.search,
-      searchInputValue,
-      onPaginationChange,
-    ]
+    [history, location.pathname, location.search, searchInputValue]
   )
 
   useLatestRefEffect(location.search, (latestLocationSearch) => {
