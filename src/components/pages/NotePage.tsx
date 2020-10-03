@@ -1,25 +1,20 @@
 import { useMutation, useQuery } from '@apollo/react-hooks'
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import classnames from 'classnames'
 import { ContentState, RawDraftContentState, convertToRaw } from 'draft-js'
 import gql from 'graphql-tag'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { useParams } from 'react-router'
 
-import { useBlock } from '../../hooks/useBlock'
 import useTopBarLoading from '../../hooks/useTopBarLoading'
-import { notificationState } from '../../notification'
 import BackButton from '../BackButton'
 import FieldValueEditor from '../FieldValueEditor'
 import FlashCardRenderer from '../FlashCardRenderer'
 import FlashCardStatus from '../FlashCardStatus'
-import RetryButton from '../RetryButton'
-import DoneIcon from '../icons/DoneIcon'
+import PersistedEditor from '../editor/PersistedEditor'
 import Button from '../views/Button'
 import { Checkbox } from '../views/Checkbox'
-import CircularProgress from '../views/CircularProgress'
 import Container from '../views/Container'
 import { Dialog } from '../views/Dialog'
 import Divider from '../views/Divider'
@@ -30,14 +25,7 @@ import {
   TableHead,
   TableRow,
 } from '../views/Table'
-import {
-  Body1,
-  Caption,
-  Headline1,
-  Headline2,
-  Headline3,
-} from '../views/Typography'
-import styles from './NotePage.css'
+import { Caption, Headline1, Headline2, Headline3 } from '../views/Typography'
 import {
   NoteQuery,
   NoteQueryVariables,
@@ -155,130 +143,38 @@ const FieldValueDetail: React.FC<FieldValueDetailProps> = ({
     UpdateFieldValueVariables
   >(UPDATE_FIELD_VALUE_MUTATION)
 
-  const debounceIdRef = useRef<NodeJS.Timeout | null>(null)
-
-  const lastChangedContentStateRef = useRef<[ContentState, string] | null>(null)
-
-  const handleChange = useCallback(
-    (content: ContentState, field: { id: string }) => {
-      lastChangedContentStateRef.current = [content, field.id]
-      if (debounceIdRef.current) {
-        clearTimeout(debounceIdRef.current)
-      }
-
-      debounceIdRef.current = setTimeout(() => {
-        updateFieldValueMutation({
-          variables: {
-            noteId,
-            fieldId: field.id,
-            data: convertToRaw(content),
-          },
-        })
-      }, FIELD_VALUE_CHANGE_DEBOUNCE)
+  const handleSave = useCallback(
+    (contentState: ContentState, field: { id: string }) => {
+      updateFieldValueMutation({
+        variables: {
+          noteId,
+          fieldId: field.id,
+          data: convertToRaw(contentState),
+        },
+      })
     },
     [noteId, updateFieldValueMutation]
   )
 
-  const retrySave = useCallback(() => {
-    if (!lastChangedContentStateRef.current) {
-      return
-    }
-
-    const [content, fieldId] = lastChangedContentStateRef.current
-
-    updateFieldValueMutation({
-      variables: {
-        noteId,
-        fieldId,
-        data: convertToRaw(content),
-      },
-    })
-  }, [noteId, updateFieldValueMutation])
-
-  const [saved, setSaved] = useState(false)
-  const prevLoadingRef = useRef(loading)
-
-  const { i18n } = useLingui()
-
-  useBlock(
-    loading || !!error,
-    i18n._(t`Your note is not saved, are you sure you want to exit the page?`)
-  )
-
-  useEffect(() => {
-    if (prevLoadingRef.current === loading || loading) {
-      if (loading) {
-        setSaved(false)
-      }
-      return
-    }
-
-    if (error) {
-      notificationState.addNotification({
-        message: i18n._(t`An error occurred when saving your note`),
-        actionText: i18n._(t`Retry`),
-        onAction: retrySave,
-      })
-      return
-    }
-
-    setSaved(true)
-  }, [loading, error, i18n, retrySave])
-
-  useEffect(() => {
-    prevLoadingRef.current = loading
-  }, [loading])
-
-  useEffect(function hideSavedMessageEffect() {
-    if (!saved) {
-      return
-    }
-
-    const id = setTimeout(() => {
-      setSaved(false)
-    }, 2000)
-
-    return () => clearTimeout(id)
-  })
-
-  const prevSavedRef = useRef(saved)
-
-  useEffect(() => {
-    prevSavedRef.current = saved
-  }, [saved])
-
   return (
-    <>
-      <Body1 className="h-8 flex items-center">
-        {fieldValue.field.name}{' '}
-        <div className="ml-2 flex items-center">
-          {loading && <CircularProgress size={16} />}
-          {error && (
-            <RetryButton onClick={retrySave}>
-              <Trans>Try again</Trans>
-            </RetryButton>
-          )}
-          <Caption
-            className={classnames(
-              'inline-flex items-center invisible opacity-0',
-              {
-                [styles.fadeIn]: saved,
-                [styles.fadeOut]: prevSavedRef.current && !saved,
-              }
-            )}
-          >
-            <DoneIcon className="text-green-1 mr-2 text-base" />
-            <Trans>Changes saved successfully</Trans>
-          </Caption>
-        </div>
-      </Body1>
-      <FieldValueEditor
-        className="mb-4 mt-1"
-        initialContentState={fieldValue.data}
-        field={fieldValue.field}
-        onChange={handleChange}
-      />
-    </>
+    <PersistedEditor
+      title={fieldValue.field.name}
+      loading={loading}
+      error={error}
+      saveDebounceMs={FIELD_VALUE_CHANGE_DEBOUNCE}
+      onSave={handleSave}
+      errorMessage={t`An error has occurred when saving your note`}
+      blockMessage={t`Your note is not saved, are you sure you want to exit the page?`}
+    >
+      {({ onChange }) => (
+        <FieldValueEditor
+          className="mb-4 mt-1"
+          initialContentState={fieldValue.data}
+          field={fieldValue.field}
+          onChange={onChange}
+        />
+      )}
+    </PersistedEditor>
   )
 }
 

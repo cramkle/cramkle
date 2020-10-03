@@ -1,7 +1,7 @@
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { ContentState } from 'draft-js'
-import React, { useCallback } from 'react'
+import React, { useCallback, useEffect, useRef } from 'react'
 
 import BaseEditor from './editor/BaseEditor'
 import BaseEditorControls from './editor/BaseEditorControls'
@@ -24,11 +24,17 @@ const FieldValueEditor: React.FC<Props> = ({
 }) => {
   const { i18n } = useLingui()
 
+  const onChangeRef = useRef(onChange)
+
+  useEffect(() => {
+    onChangeRef.current = onChange
+  }, [onChange])
+
   const handleChange = useCallback(
     (contentState: ContentState) => {
-      onChange(contentState, field)
+      onChangeRef.current(contentState, field)
     },
-    [onChange, field]
+    [field]
   )
 
   return (
