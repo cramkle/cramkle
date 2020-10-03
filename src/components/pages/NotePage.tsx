@@ -15,8 +15,8 @@ import BackButton from '../BackButton'
 import FieldValueEditor from '../FieldValueEditor'
 import FlashCardRenderer from '../FlashCardRenderer'
 import FlashCardStatus from '../FlashCardStatus'
+import RetryButton from '../RetryButton'
 import DoneIcon from '../icons/DoneIcon'
-import RetryIcon from '../icons/RetryIcon'
 import Button from '../views/Button'
 import { Checkbox } from '../views/Checkbox'
 import CircularProgress from '../views/CircularProgress'
@@ -254,13 +254,9 @@ const FieldValueDetail: React.FC<FieldValueDetailProps> = ({
         <div className="ml-2 flex items-center">
           {loading && <CircularProgress size={16} />}
           {error && (
-            <button
-              className="flex items-center text-red-1 text-sm rounded hover:bg-hover-overlay border border-red-1 px-2 py-1"
-              onClick={retrySave}
-            >
-              <RetryIcon className="mr-2 h-4 w-4" />
+            <RetryButton onClick={retrySave}>
               <Trans>Try again</Trans>
-            </button>
+            </RetryButton>
           )}
           <Caption
             className={classnames(
