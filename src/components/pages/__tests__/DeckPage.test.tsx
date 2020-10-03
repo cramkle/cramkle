@@ -1,5 +1,5 @@
-import { waitFor } from '@testing-library/react'
-import { createMemoryHistory } from 'history'
+import { fireEvent, screen, waitFor } from '@testing-library/react'
+import { MemoryHistory, createMemoryHistory } from 'history'
 import React from 'react'
 import { Route } from 'react-router'
 
@@ -81,9 +81,13 @@ const deckQueryResultForPage = ({
 }
 
 describe('DeckPage', () => {
-  it('correctly syncs pagination with browser history', async () => {
-    const history = createMemoryHistory()
+  let history: MemoryHistory
 
+  beforeEach(() => {
+    history = createMemoryHistory()
+  })
+
+  it('correctly syncs pagination with browser history', async () => {
     history.push('/d/deck-1?page=1&size=1')
 
     const { getByText, queryByText } = render(
@@ -147,8 +151,6 @@ describe('DeckPage', () => {
   })
 
   it('should empty search when navigating to page without search query', async () => {
-    const history = createMemoryHistory()
-
     history.push('/d/deck-1?page=1&size=1&search=my search')
 
     const { getByText, queryByText } = render(
@@ -191,5 +193,78 @@ describe('DeckPage', () => {
     history.push('/d/deck-1?page=1&size=1')
 
     await waitFor(() => expect(getByText('note 1')).toBeInTheDocument())
+  })
+
+  it('should return to page 1 after searching', async () => {
+    history.push('/d/deck-1')
+
+    const { getByText, queryByText } = render(
+      <Route path="/d/:slug">
+        <DeckPage />
+      </Route>,
+      {
+        history,
+        mocks: [
+          {
+            request: {
+              query: DECK_QUERY,
+              variables: {
+                slug: 'deck-1',
+                page: 1,
+                size: 10,
+                search: '',
+              },
+            },
+            result: { data: deckQueryResultForPage({ page: 1 }) },
+          },
+          {
+            request: {
+              query: DECK_QUERY,
+              variables: {
+                slug: 'deck-1',
+                page: 2,
+                size: 10,
+                search: '',
+              },
+            },
+            result: { data: deckQueryResultForPage({ page: 2 }) },
+          },
+          {
+            request: {
+              query: DECK_QUERY,
+              variables: {
+                slug: 'deck-1',
+                page: 1,
+                size: 10,
+                search: 'test',
+              },
+            },
+            result: { data: deckQueryResultForPage({ page: 1, empty: true }) },
+          },
+        ],
+      }
+    )
+
+    await waitFor(() => expect(queryByText('note 1')).toBeInTheDocument())
+
+    const nextPageButton = screen.getByLabelText(/next page/i)
+
+    fireEvent.click(nextPageButton)
+
+    await waitFor(() => expect(getByText('note 2')).toBeInTheDocument())
+
+    const searchBox = screen.getByRole('textbox')
+
+    fireEvent.change(searchBox, { target: { value: 'test' } })
+
+    await waitFor(() => {
+      expect(screen.queryByText('note 1')).not.toBeInTheDocument()
+      expect(screen.queryByText('note 2')).not.toBeInTheDocument()
+    })
+
+    const searchParams = new URLSearchParams(history.location.search)
+
+    expect(searchParams.get('page')).toBe('1')
+    expect(searchParams.get('search')).toBe('test')
   })
 })

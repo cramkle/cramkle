@@ -131,6 +131,7 @@ const DeckPage: React.FunctionComponent = () => {
       const searchParams = new URLSearchParams(location.search)
 
       searchParams.set('search', search)
+      searchParams.set('page', '1')
 
       if (!skipHistoryPush) {
         history.push(location.pathname + '?' + searchParams.toString())
