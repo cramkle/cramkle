@@ -5,7 +5,6 @@ import { Helmet } from 'react-helmet'
 import { hot } from 'react-hot-loader/root'
 import { Redirect, Route, Switch } from 'react-router'
 
-import { useHints } from './components/HintsContext'
 import NoSSR from './components/NoSSR'
 import NotificationToasts from './components/NotificationToasts'
 import AboutPage from './components/pages/AboutPage'
@@ -35,7 +34,6 @@ const StudyPage = lazy(() => import('./components/pages/StudyPage'))
 
 const App: React.FunctionComponent = () => {
   const { i18n } = useLingui()
-  const { isMobile } = useHints()
 
   return (
     <>
@@ -108,15 +106,9 @@ const App: React.FunctionComponent = () => {
           <ShellRoute RouteComponent={UserRoute} path="/d/:slug" exact>
             <DeckPage />
           </ShellRoute>
-          {!isMobile && (
-            <ShellRoute
-              RouteComponent={UserRoute}
-              path="/d/:slug/new-note"
-              exact
-            >
-              <AddNotePage />
-            </ShellRoute>
-          )}
+          <ShellRoute RouteComponent={UserRoute} path="/d/:slug/new-note" exact>
+            <AddNotePage />
+          </ShellRoute>
           <ShellRoute RouteComponent={UserRoute} path="/d/:slug/note/:noteId">
             <NotePage />
           </ShellRoute>
