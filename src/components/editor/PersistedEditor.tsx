@@ -42,12 +42,14 @@ const PersistedEditor = <T extends readonly unknown[]>({
   blockMessage,
   saveDebounceMs = 2000,
 }: PersistedEditorProps<T>) => {
+  const [debouncing, setDebouncing] = useState(false)
   const debounceIdRef = useRef<NodeJS.Timeout | null>(null)
 
   const lastChangedContentStateRef = useRef<[ContentState, ...T] | null>(null)
 
   const handleChange = useCallback(
     (content: ContentState, ...args: [...T]) => {
+      setDebouncing(true)
       lastChangedContentStateRef.current = [content, ...args]
 
       if (debounceIdRef.current) {
@@ -55,6 +57,7 @@ const PersistedEditor = <T extends readonly unknown[]>({
       }
 
       debounceIdRef.current = setTimeout(() => {
+        setDebouncing(false)
         onSave(content, ...args)
       }, saveDebounceMs)
     },
@@ -76,7 +79,7 @@ const PersistedEditor = <T extends readonly unknown[]>({
 
   const { i18n } = useLingui()
 
-  useBlock(loading || !!error, blockMessage)
+  useBlock(loading || !!error || debouncing, blockMessage)
 
   useEffect(() => {
     if (prevLoadingRef.current === loading || loading) {
