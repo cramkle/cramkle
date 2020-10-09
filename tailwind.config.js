@@ -19,6 +19,9 @@ module.exports = {
       disabled: 'var(--disabled)',
       background: 'var(--background)',
       'hover-overlay': 'var(--hover-overlay)',
+      divider: 'var(--divider)',
+      input: 'var(--input-background)',
+      editor: 'var(--editor-background)',
       ...commonColors,
     },
     textColor: {
@@ -29,7 +32,6 @@ module.exports = {
       disabled: 'var(--text-disabled)',
       hint: 'var(--text-hint)',
       icon: 'var(--text-icon)',
-      tooltip: 'var(--text-tooltip)',
       'action-primary': 'var(--primary)',
       'action-secondary': 'var(--secondary)',
       ...commonColors,
