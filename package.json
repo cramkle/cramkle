@@ -21,7 +21,7 @@
     "add-locale": "lingui add-locale",
     "extract": "lingui extract --clean",
     "compile": "lingui compile --typescript",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -p 6006 --ci",
     "build-storybook": "build-storybook"
   },
   "husky": {
@@ -108,8 +108,10 @@
     "@storybook/addon-actions": "^6.0.26",
     "@storybook/addon-essentials": "^6.0.26",
     "@storybook/addon-links": "^6.0.26",
+    "@storybook/addons": "^6.0.26",
     "@storybook/preset-scss": "^1.0.2",
     "@storybook/react": "^6.0.26",
+    "@storybook/theming": "^6.0.26",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.0.4",
     "@types/classnames": "^2.2.9",

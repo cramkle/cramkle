@@ -37,9 +37,12 @@ export const Chip: React.FC<ChipProps> = ({
       <span
         style={{ textOverflow: truncated ? 'ellipsis' : 'initial' }}
         className={classNames('inline-block mx-1', {
+          '__dark-mode': !inverted && color !== undefined,
           'text-primary': !inverted && color !== 'primary',
           'text-on-primary': !inverted && color === 'primary',
-          [`text-${colorName}`]: inverted && color !== undefined,
+          [`text-${colorName}`]:
+            inverted && (color !== undefined || color !== 'primary'),
+          'text-action-primary': inverted && color === 'primary',
           'overflow-hidden whitespace-no-wrap': truncated,
         })}
       >
