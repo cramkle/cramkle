@@ -16,7 +16,7 @@ import { notificationState } from '../../notification'
 import RetryButton from '../RetryButton'
 import DoneIcon from '../icons/DoneIcon'
 import CircularProgress from '../views/CircularProgress'
-import { Body1, Caption } from '../views/Typography'
+import { Caption } from '../views/Typography'
 import styles from './PersistedEditor.css'
 
 interface PersistedEditorProps<T extends readonly unknown[]> {
@@ -125,7 +125,7 @@ const PersistedEditor = <T extends readonly unknown[]>({
 
   return (
     <>
-      <Body1 className="h-8 flex items-center">
+      <div className="text-base h-8 flex items-center">
         {title}{' '}
         <div className="ml-2 flex items-center">
           {loading && <CircularProgress size={16} />}
@@ -147,7 +147,7 @@ const PersistedEditor = <T extends readonly unknown[]>({
             <Trans>Changes saved successfully</Trans>
           </Caption>
         </div>
-      </Body1>
+      </div>
       {children({ onChange: handleChange })}
     </>
   )
