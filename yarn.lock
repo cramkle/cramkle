@@ -2983,7 +2983,7 @@
     prop-types "^15.7.2"
     regenerator-runtime "^0.13.3"
 
-"@storybook/addons@6.0.26":
+"@storybook/addons@6.0.26", "@storybook/addons@^6.0.26":
   version "6.0.26"
   resolved "https://registry.yarnpkg.com/@storybook/addons/-/addons-6.0.26.tgz#343cbea3eee2d39413b80bc2d66535a7f61488fc"
   integrity sha512-OhAApFKgsj9an7FLYfHI4cJQuZ4Zm6yoGOpaxhOvKQMw7dXUPsLvbCyw/6dZOLvaFhjJjQiXtbxtZG+UjR8nvA==
@@ -3240,6 +3240,11 @@
   dependencies:
     core-js "^3.0.1"
 
+"@storybook/preset-scss@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@storybook/preset-scss/-/preset-scss-1.0.2.tgz#6c993b972c6f599237082b55e12c875f0f66ab06"
+  integrity sha512-Kq+Y3H7qRBxocLW57V9HtQhrw9ZzmTodFCjf+OelMh1k6SZ7/FvJHb7mtWofafHcqq1tSQlNIgYMtHRDJ64WVg==
+
 "@storybook/react@^6.0.26":
   version "6.0.26"
   resolved "https://registry.yarnpkg.com/@storybook/react/-/react-6.0.26.tgz#5d4b8f2c6d8003912d371298a6e5a945e24680b4"
@@ -3302,7 +3307,7 @@
     prettier "~2.0.5"
     regenerator-runtime "^0.13.3"
 
-"@storybook/theming@6.0.26":
+"@storybook/theming@6.0.26", "@storybook/theming@^6.0.26":
   version "6.0.26"
   resolved "https://registry.yarnpkg.com/@storybook/theming/-/theming-6.0.26.tgz#e5b545fb2653dfd1b043b567197d490b1c3c0da3"
   integrity sha512-9yon2ofb9a+RT1pdvn8Njydy7XRw0qXcIsMqGsJRKoZecmRRozqB6DxH9Gbdf1vRSbM9gYUUDjbiMDFz7+4RiQ==
@@ -9015,6 +9020,11 @@ follow-redirects@^1.0.0:
   integrity sha512-KZm0V+ll8PfBrKwMzdo5D13b1bur9Iq9Zd/RMmAoQQcl2PxxFml8cxXPaaPYVbV0RjNjq1CU7zIzAOqtUPudmA==
   dependencies:
     debug "^3.0.0"
+
+fontsource-libre-franklin@^3.0.9:
+  version "3.0.9"
+  resolved "https://registry.yarnpkg.com/fontsource-libre-franklin/-/fontsource-libre-franklin-3.0.9.tgz#c0a2c8cde7d8072f56f1b98c8f7bf740594f2056"
+  integrity sha512-mhAocnlpJxEvx/AumtQWQBhuS8/il9QQzcFCBj3Tx2NuNKdpXb0pvRI+GxVYX1U8I786C1NNqyMNK0iZiEKSng==
 
 for-in@^0.1.3:
   version "0.1.8"
@@ -17025,6 +17035,14 @@ style-loader@^1.2.1:
   dependencies:
     loader-utils "^2.0.0"
     schema-utils "^2.6.6"
+
+style-loader@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/style-loader/-/style-loader-1.3.0.tgz#828b4a3b3b7e7aa5847ce7bae9e874512114249e"
+  integrity sha512-V7TCORko8rs9rIqkSrlMfkqA63DfoGBBJmK1kKGCcSi+BWb4cqz0SRsnp4l6rU5iwOEd0/2ePv68SV22VXon4Q==
+  dependencies:
+    loader-utils "^2.0.0"
+    schema-utils "^2.7.0"
 
 style-search@^0.1.0:
   version "0.1.0"
