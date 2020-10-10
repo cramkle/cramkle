@@ -197,7 +197,7 @@ const ForgotPasswordPage: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col min-h-screen w-full p-4 items-center justify-center bg-primary text-on-primary">
+    <div className="flex flex-col min-h-screen w-full p-4 items-center justify-center bg-background-primary text-on-primary">
       <Helmet>
         <title>{i18n._(t`Forgot password`)}</title>
       </Helmet>

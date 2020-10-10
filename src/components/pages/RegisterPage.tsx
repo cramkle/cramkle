@@ -11,7 +11,7 @@ const RegisterPage: React.FunctionComponent = () => {
   const { i18n } = useLingui()
 
   return (
-    <div className="flex flex-col min-h-screen p-4 justify-center items-center bg-primary text-on-primary">
+    <div className="flex flex-col min-h-screen p-4 justify-center items-center bg-background-primary text-on-primary">
       <Helmet>
         <title>{i18n._(t`Register`)}</title>
       </Helmet>

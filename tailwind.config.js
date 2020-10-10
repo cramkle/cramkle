@@ -14,6 +14,7 @@ module.exports = {
   theme: {
     colors: {
       primary: 'var(--primary)',
+      'background-primary': 'var(--primary-background)',
       secondary: 'var(--secondary)',
       surface: 'var(--surface)',
       disabled: 'var(--disabled)',

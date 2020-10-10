@@ -46,6 +46,7 @@ body,
   --on-primary: hsl(0, 0%, 100%);
   --on-surface: hsl(0, 0%, 0%);
   --primary: hsl(224, 100%, 58%);
+  --primary-background: hsl(224, 100%, 58%);
   --red-1: hsl(349.1, 100%, 34.5%);
   --secondary: hsl(224, 15%, 90.8%);
   --surface: hsl(0, 0%, 100%);
@@ -69,12 +70,13 @@ body,
   --gray-2: hsl(224, 5%, 58.7%);
   --gray-3: hsl(224, 10%, 32.5%);
   --gray-4: hsl(224, 16%, 12.8%);
-  --green-1: hsl(122.4, 29.4%, 40.2%);
+  --green-1: hsl(122.4, 35.4%, 50.2%);
   --hover-overlay: hsla(215, 39%, 30%, 0.08);
   --input-background: hsl(224, 5%, 15%);
   --on-primary: hsl(0, 0%, 100%);
   --on-surface: #fff;
   --primary: hsl(224, 100%, 58%);
+  --primary-background: hsl(224, 100%, 30%);
   --red-1: hsl(349.1, 100%, 34.5%);
   --secondary: hsla(224, 10%, 25%, 0.87);
   --surface: hsl(224, 5%, 12.4%);
@@ -83,7 +85,7 @@ body,
   --text-icon: rgba(255, 255, 255, .38);
   --text-primary: rgba(255, 255, 255, 1);
   --text-secondary: rgba(255, 255, 255, .87);
-  --violet-1: hsl(264.8, 43.9%, 51%);
-  --violet-2: hsl(264.8, 23.7%, 63.5%);
+  --violet-1: hsl(264.8, 58.9%, 61%);
+  --violet-2: hsl(264.8, 35%, 73.5%);
   --yellow-1: hsl(39.1, 100%, 66.3%);
 }
