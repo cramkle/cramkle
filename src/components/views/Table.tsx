@@ -12,7 +12,7 @@ export const Table: React.FC<TableProps> = ({
     <div
       className={classnames(
         className,
-        'border rounded border-gray-1 inline-block overflow-auto bg-surface shadow'
+        'border rounded border-divider inline-block overflow-auto bg-surface shadow'
       )}
     >
       <table {...props} className="collapse w-full">
@@ -64,7 +64,7 @@ export const TableFooter: React.FC<TableFooterProps> = ({
   children,
 }) => {
   return (
-    <tfoot className={classnames(className, 'border-t border-gray-1')}>
+    <tfoot className={classnames(className, 'border-t border-divider')}>
       {children}
     </tfoot>
   )
@@ -82,7 +82,7 @@ export const TableRow: React.FC<TableRowProps> = ({
   return (
     <tr
       {...props}
-      className={classnames(className, { 'border-t border-gray-1': !isHead })}
+      className={classnames(className, { 'border-t border-divider': !isHead })}
     >
       {children}
     </tr>
@@ -91,11 +91,13 @@ export const TableRow: React.FC<TableRowProps> = ({
 
 type TableCellProps = React.TdHTMLAttributes<HTMLTableCellElement> & {
   align?: 'right' | 'left'
+  secondary?: boolean
 }
 
 export const TableCell: React.FC<TableCellProps> = ({
   className = '',
   align = 'left',
+  secondary = false,
   children,
   ...props
 }) => {
@@ -107,6 +109,8 @@ export const TableCell: React.FC<TableCellProps> = ({
     <Tag
       {...props}
       className={classnames(className, 'px-6', {
+        'text-primary': !secondary,
+        'text-secondary': secondary,
         'h-16 sm:whitespace-no-wrap': !isHead,
         'leading-4 text-xs font-medium uppercase tracking-wider py-3 relative': isHead,
         'text-left': align === 'left',

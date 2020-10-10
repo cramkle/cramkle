@@ -243,7 +243,7 @@ const StatisticsPage: React.FC = () => {
     <Container>
       <BackButton to="/" />
 
-      <Headline1>
+      <Headline1 className="text-primary">
         <Trans>Deck Statistics</Trans>
       </Headline1>
 
@@ -259,7 +259,7 @@ const StatisticsPage: React.FC = () => {
         ))}
       </Listbox>
 
-      <Headline2 className="mt-12">
+      <Headline2 className="text-primary mt-12">
         <Trans>Overview</Trans>
       </Headline2>
 

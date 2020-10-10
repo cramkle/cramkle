@@ -60,7 +60,7 @@ const ModelsSection: React.FunctionComponent = () => {
 
   return (
     <>
-      <Headline1 className="mt-6 leading-none">
+      <Headline1 className="mt-6 leading-none text-primary">
         <Trans>Your models</Trans>
       </Headline1>
 

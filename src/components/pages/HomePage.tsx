@@ -38,7 +38,7 @@ const HomeTab: React.FC<{
       position={positionMatchMinWidth}
     >
       <Tab className="min-h-full justify-center flex-1 md:flex-initial md:w-32">
-        <Icon className="text-secondary h-6 w-6 md:h-8 md:w-8" />
+        <Icon className="text-icon h-6 w-6 md:h-8 md:w-8" />
       </Tab>
     </Tooltip>
   )
@@ -121,10 +121,10 @@ const HomePage: React.FunctionComponent = () => {
         <nav
           className={classNames(
             styles.sidenav,
-            'hidden md:block w-100 px-8 py-6 border-r border-gray-1'
+            'hidden md:block w-100 px-8 py-6 border-r border-divider'
           )}
         >
-          <Body1 className="font-medium">
+          <Body1 className="font-medium text-primary">
             <Trans>Sidebar</Trans>
           </Body1>
 

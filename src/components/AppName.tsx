@@ -7,7 +7,7 @@ const AppName: React.FC<React.HTMLAttributes<HTMLSpanElement>> = (props) => {
       {...props}
       className={classnames(
         props.className,
-        'text-lg font-medium tracking-wide'
+        'text-primary text-lg font-medium tracking-wide'
       )}
     >
       Cramkle

@@ -178,12 +178,12 @@ const EditFieldsDialog: React.FC<{
         </Trans>
       </Body2>
 
-      <div className="mt-4 flex flex-col border-t border-gray-1">
+      <div className="mt-4 flex flex-col border-t border-divider">
         {fields.map((field) => (
           <div
             key={field.id}
             className={classnames(
-              'w-full flex items-center justify-between border-b border-gray-1 py-2 pr-2',
+              'w-full flex items-center justify-between border-b border-divider py-2 pr-2',
               {
                 'pl-2': editingFieldId !== field.id,
               }

@@ -75,7 +75,7 @@ export const Pagination: React.FC<Props> = ({
   return (
     <div className="flex flex-col sm:flex-row py-3 sm:py-0 justify-between">
       <label className="flex items-center text-sm">
-        <span>
+        <span className="text-primary">
           <Trans>Items per page</Trans>
         </span>
         <Listbox
@@ -91,7 +91,7 @@ export const Pagination: React.FC<Props> = ({
           <ListboxOption value="25">25</ListboxOption>
         </Listbox>
       </label>
-      <div className="flex items-center mt-3 mx-auto sm:mt-0 sm:mx-0">
+      <div className="flex items-center mt-3 mx-auto sm:mt-0 sm:mx-0 text-primary">
         <IconButton
           className="hidden sm:block"
           disabled={!pageCursors.first}
@@ -111,7 +111,7 @@ export const Pagination: React.FC<Props> = ({
         {pageCursors.around.map((pageCursor) => (
           <Button
             className={classnames('mr-1', {
-              'bg-gray-1': pageCursor.isCurrent,
+              'bg-surface': pageCursor.isCurrent,
             })}
             variation="plain"
             key={pageCursor.cursor}

@@ -17,6 +17,7 @@ import OverflowMenuIcon from './icons/OverflowMenuIcon'
 import SettingsIcon from './icons/SettingsIcon'
 import StatisticsIcon from './icons/StatisticsIcon'
 import USER_QUERY from './userQuery.gql'
+import Divider from './views/Divider'
 import { Header, HeaderContent, HeaderSection } from './views/Header'
 import { LoadingBar } from './views/LoadingBar'
 import { Menu, MenuButton, MenuItem, MenuList } from './views/MenuButton'
@@ -79,7 +80,7 @@ const MobileMenu: React.FC<{ username: string; email: string }> = ({
         className="absolute z-10 right-0"
         style={{ top: '1.25rem' }}
       >
-        <div className="flex flex-col px-5 mb-3 md:hidden">
+        <div className="flex flex-col px-5 mb-3">
           <span className="text-primary text-lg">{username}</span>
           <span className="text-secondary">{email}</span>
         </div>
@@ -90,17 +91,20 @@ const MobileMenu: React.FC<{ username: string; email: string }> = ({
         >
           <Trans>Statistics</Trans>
         </MenuItem>
-        <div className="my-3 h-px md:hidden bg-gray-1" />
+        <Divider className="my-3 md:hidden" />
         <DefaultMenuItems />
       </MenuList>
     </Menu>
   )
 }
 
-const DefaultMenu: React.FC = () => {
+const DefaultMenu: React.FC<{ username?: string; email?: string }> = ({
+  email,
+  username,
+}) => {
   return (
     <Menu>
-      <MenuButton icon className="hidden md:inline-block">
+      <MenuButton icon className="hidden md:inline-block text-primary">
         <OverflowMenuIcon />
       </MenuButton>
       <MenuList
@@ -108,6 +112,11 @@ const DefaultMenu: React.FC = () => {
         className="absolute z-10 right-0"
         style={{ top: '1.25rem' }}
       >
+        <div className="flex flex-col px-5 mb-3">
+          <span className="text-primary text-lg">{username}</span>
+          <span className="text-secondary">{email}</span>
+        </div>
+        <Divider />
         <DefaultMenuItems />
       </MenuList>
     </Menu>
@@ -148,9 +157,8 @@ const Shell: React.FunctionComponent = ({ children }) => {
             className="flex-auto hidden md:inline-block"
           />
           <HeaderSection align="end">
-            <span className="hidden md:inline-block mr-3">{me?.username}</span>
             <MobileMenu username={me?.username} email={me?.email} />
-            <DefaultMenu />
+            <DefaultMenu username={me?.username} email={me?.email} />
           </HeaderSection>
         </HeaderContent>
         <div id="header-mobile-portal-anchor" />

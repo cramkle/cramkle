@@ -210,12 +210,12 @@ const EditTemplatesDialog: React.FC<{
         <Trans>Templates of the current model</Trans>
       </Body2>
 
-      <div className="mt-4 flex flex-col border-t border-gray-1">
+      <div className="mt-4 flex flex-col border-t border-divider">
         {templates.map((template) => (
           <div
             key={template.id}
             className={classnames(
-              'w-full flex items-center justify-between border-b border-gray-1 py-2 pr-2',
+              'w-full flex items-center justify-between border-b border-divider py-2 pr-2',
               {
                 'pl-2': editingTemplateId !== template.id,
               }

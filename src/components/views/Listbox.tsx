@@ -34,7 +34,7 @@ export const ListboxButton: React.FC<
       className={classnames(
         styles.button,
         className,
-        'outline-reset inline-flex items-center justify-between select-none cursor-default bg-surface text-on-surface rounded border border-gray-1 px-3 py-2 focus:border-primary'
+        'outline-reset inline-flex items-center justify-between select-none cursor-default bg-input text-on-surface rounded border border-divider px-3 py-2 focus:border-primary'
       )}
     />
   )
@@ -48,7 +48,7 @@ export const ListboxPopover = forwardRef<HTMLDivElement, PopoverProps>(
         className={classnames(
           styles.popover,
           className,
-          'absolute z-40 border-0 border-none rounded shadow-lg bg-surface py-0 mt-1 outline-none'
+          'absolute z-40 border-0 border-none rounded shadow-lg bg-input py-0 mt-1 outline-none'
         )}
         ref={ref}
       >
@@ -74,7 +74,7 @@ export const ListboxOption: React.FC<
       className={classnames(
         className,
         styles.option,
-        'flex items-center bg-surface text-on-surface relative pl-2 pr-4 py-2 whitespace-no-wrap',
+        'flex items-center bg-input text-on-surface relative p-2 mx-2 rounded overflow-hidden whitespace-no-wrap',
         { 'text-disabled': disabled }
       )}
     >

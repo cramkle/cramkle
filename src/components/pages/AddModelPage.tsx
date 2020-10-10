@@ -67,11 +67,11 @@ const AddModelPage: React.FunctionComponent = () => {
     <Container>
       <BackButton to={location.state?.referrer ?? '/'} />
 
-      <Headline1 className="border-b border-gray-1">
+      <Headline1 className="border-b border-divider text-primary">
         <Trans>Create model</Trans>
       </Headline1>
 
-      <Body1 className="mt-6">
+      <Body1 className="mt-6 text-primary">
         <Trans>
           A model consist of both fields and templates. A field is used in a
           note to fill values that are used inside the template, and the
@@ -81,7 +81,7 @@ const AddModelPage: React.FunctionComponent = () => {
         </Trans>
       </Body1>
 
-      <Body1 className="mt-3">
+      <Body1 className="mt-3 text-primary">
         <Trans>
           When you create a note, we will create the corresponding number of
           flashcards based on how much templates the note's model has, and will
@@ -141,14 +141,14 @@ const AddModelPage: React.FunctionComponent = () => {
               <FieldArray name="templates" validateOnChange={false}>
                 {({ push, remove }) => (
                   <div className={`${styles.evenColumn} mt-4 sm:pr-4`}>
-                    <Headline2>
+                    <Headline2 className="text-primary">
                       <Trans>Templates</Trans>
                     </Headline2>
                     <div className="my-6 flex flex-col">
                       {values.templates?.length ? (
                         values.templates.map((_, index) => (
                           <>
-                            <Headline3>
+                            <Headline3 className="text-primary">
                               <Trans>Template #{index}</Trans>
                             </Headline3>
 
@@ -195,14 +195,14 @@ const AddModelPage: React.FunctionComponent = () => {
               <FieldArray name="fields" validateOnChange={false}>
                 {({ push, remove }) => (
                   <div className={`${styles.evenColumn} mt-4`}>
-                    <Headline2>
+                    <Headline2 className="text-primary">
                       <Trans>Fields</Trans>
                     </Headline2>
                     <div className="my-6 flex flex-col">
                       {values.fields?.length ? (
                         values.fields.map((_, index) => (
                           <>
-                            <Headline3>
+                            <Headline3 className="text-primary">
                               <Trans>Field #{index}</Trans>
                             </Headline3>
 
