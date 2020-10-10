@@ -8,6 +8,8 @@ import { forwardRefWithAs } from '@reach/utils'
 import classnames from 'classnames'
 import React from 'react'
 
+import { useTheme } from '../Theme'
+
 export const Tooltip = forwardRefWithAs<TooltipProps, 'div'>(function Tooltip(
   props,
   forwardedRef
@@ -45,13 +47,19 @@ export const Tooltip = forwardRefWithAs<TooltipProps, 'div'>(function Tooltip(
 
 export const TooltipPopup = forwardRefWithAs<TooltipPopupProps, 'div'>(
   function TooltipPopup(props, forwardedRef) {
+    const { theme } = useTheme()
+
     return (
       <ReachTooltipPopup
         {...props}
         ref={forwardedRef}
         className={classnames(
           props.className,
-          '__dark-mode z-1 p-2 pointer-events-none absolute whitespace-no-wrap text-primary bg-surface shadow-lg rounded'
+          'z-1 p-2 pointer-events-none absolute whitespace-no-wrap text-primary bg-surface shadow-lg rounded',
+          {
+            '__dark-mode': theme === 'light',
+            '__light-mode': theme === 'dark',
+          }
         )}
       />
     )
