@@ -118,19 +118,19 @@ const StatisticsPage: React.FC = () => {
     () => Intl.DateTimeFormat().resolvedOptions().timeZone
   )
 
-  const { loading, data } = useQuery<DeckStatistics, DeckStatisticsVariables>(
-    STATISTICS_QUERY,
-    {
-      variables: {
-        deckId: selectedDeck,
-        startDate: startDate.toISOString(),
-        endDate: today.toISOString(),
-        zoneInfo,
-      },
-      fetchPolicy: 'cache-and-network',
-      partialRefetch: true,
-    }
-  )
+  const { loading, data, error } = useQuery<
+    DeckStatistics,
+    DeckStatisticsVariables
+  >(STATISTICS_QUERY, {
+    variables: {
+      deckId: selectedDeck,
+      startDate: startDate.toISOString(),
+      endDate: today.toISOString(),
+      zoneInfo,
+    },
+    fetchPolicy: 'cache-and-network',
+    partialRefetch: true,
+  })
 
   const { i18n } = useLingui()
 
@@ -198,6 +198,47 @@ const StatisticsPage: React.FC = () => {
     [data?.deckStatistics?.studyFrequency]
   )
 
+  if (error) {
+    return (
+      <Container>
+        <BackButton to="/" />
+
+        <Headline1 className="text-primary">
+          <Trans>Deck Statistics</Trans>
+        </Headline1>
+
+        <Body1 className="mt-3 text-primary">
+          <Trans>
+            An error has occurred, try refreshing the page or wait a few minutes
+            before trying again
+          </Trans>
+        </Body1>
+      </Container>
+    )
+  }
+
+  if (!data?.deckStatistics && !loading) {
+    return (
+      <Container>
+        <BackButton to="/" />
+
+        <Headline1 className="text-primary">
+          <Trans>Deck Statistics</Trans>
+        </Headline1>
+
+        <Body1 className="mt-6 text-primary text-center">
+          <Trans>We don't have anything to show to you right now.</Trans>
+        </Body1>
+        <Body2 className="mt-2 text-center">
+          <Trans>
+            Try creating a deck first and study it in order to see your study
+            statistics here.
+          </Trans>
+        </Body2>
+      </Container>
+    )
+  }
+
   const frequencyX = scaleTime()
     .domain(extent(studyFrequency, (data) => data.date))
     .range([margin.left, width - margin.right])
@@ -235,7 +276,7 @@ const StatisticsPage: React.FC = () => {
     maximumFractionDigits: 2,
   })
 
-  if (!data) {
+  if (!data?.deckStatistics) {
     return null
   }
 
