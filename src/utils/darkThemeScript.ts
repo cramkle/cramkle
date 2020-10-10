@@ -4,7 +4,7 @@ declare global {
 
   interface Window {
     __theme: Theme
-    __onThemeChange: () => void
+    __onThemeChange: (newTheme: Theme) => void
     __setPreferredTheme: (theme: Theme) => void
   }
 }
