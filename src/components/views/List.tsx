@@ -76,7 +76,7 @@ export const ListItem: React.FC<ListItemProps> = ({
       <div
         className={classnames('flex-shrink-0', {
           'text-disabled': disabled,
-          'text-secondary': (!hover || !focused) && !disabled,
+          'text-icon': (!hover || !focused) && !disabled,
           'text-action-primary': (hover || focused) && !disabled,
         })}
       >
