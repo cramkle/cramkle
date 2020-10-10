@@ -223,7 +223,7 @@ const AddNotePage: React.FC = () => {
                   </Button>
                 </>
               ) : (
-                <Body1 className="mt-6">
+                <Body1 className="mt-6 text-primary">
                   <Trans>
                     The selected model doesn't have any fields.{' '}
                     <Link
@@ -240,7 +240,7 @@ const AddNotePage: React.FC = () => {
         </div>
       ) : (
         <div className="flex flex-col justify-center items-center mt-6">
-          <Body1>
+          <Body1 className="text-primary">
             <Trans>You haven't created a model yet.</Trans>
           </Body1>
 
