@@ -16,6 +16,7 @@ import RegisterPage from './components/pages/RegisterPage'
 import ResetPasswordPage from './components/pages/ResetPasswordPage'
 import { GuestRoute, UserRoute } from './components/routes/AuthRoute'
 import ShellRoute from './components/routes/ShellRoute'
+import { darkThemeHelmetScript } from './utils/darkThemeScript'
 import { errorFallback } from './utils/errorFallback'
 import { icons } from './utils/headLinks'
 
@@ -83,6 +84,7 @@ const App: React.FunctionComponent = () => {
             href: '/manifest.json',
           },
         ]}
+        script={[darkThemeHelmetScript]}
       />
       <ErrorBoundary fallback={errorFallback}>
         <NotificationToasts />
