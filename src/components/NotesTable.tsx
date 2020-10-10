@@ -105,7 +105,7 @@ const NotesTable: React.FC<Props> = ({
         <TableBody>
           {totalDeckNotes === 0 ? (
             <TableRow>
-              <TableCell colSpan={5} className="text-center text-secondary">
+              <TableCell colSpan={5} className="text-center" secondary>
                 <Trans>You haven't created any notes on this deck yet</Trans>
               </TableCell>
             </TableRow>
@@ -119,7 +119,11 @@ const NotesTable: React.FC<Props> = ({
             notes.edges.map(({ node: note }) => {
               return (
                 <TableRow key={note.id}>
-                  <TableCell>{note.text}</TableCell>
+                  <TableCell>
+                    {note.text || (
+                      <span className="text-secondary italic">empty note</span>
+                    )}
+                  </TableCell>
                   <TableCell className="hidden md:table-cell">
                     {note.deck.title}
                   </TableCell>

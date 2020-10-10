@@ -26,9 +26,9 @@ const Footer: React.FC = () => {
   const { i18n } = useLingui()
 
   return (
-    <footer className="w-full py-8 px-4 lg:px-8 xl:px-32 flex flex-col-reverse sm:flex-row">
+    <footer className="w-full py-8 px-4 lg:px-8 xl:px-32 flex flex-col-reverse sm:flex-row bg-surface">
       <div className="flex flex-col mt-4 sm:mt-0">
-        <Overline className="sm:leading-tight">
+        <Overline className="sm:leading-tight text-primary">
           &copy; {new Date().getFullYear()} Cramkle, Inc.
         </Overline>
         <ul className="list-reset mt-4 flex">
@@ -53,7 +53,7 @@ const Footer: React.FC = () => {
         </ul>
       </div>
       <div className="sm:ml-16">
-        <Subtitle2 className="leading-tight">
+        <Subtitle2 className="leading-tight text-primary">
           <Trans>Company</Trans>
         </Subtitle2>
         <ul className="list-reset mt-4 flex flex-col">

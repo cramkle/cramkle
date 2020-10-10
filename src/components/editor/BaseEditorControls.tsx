@@ -20,7 +20,6 @@ import React, {
 } from 'react'
 import { TabController } from 'react-tab-controller'
 
-import { Card } from '../views/Card'
 import BlockStyleControls from './BlockStyleControls'
 import InlineStyleControls from './InlineStyleControls'
 
@@ -121,8 +120,13 @@ const BaseEditorControls: React.FC<Props> = ({
 
   return (
     <ctx.Provider value={contextValue}>
-      <Card className={classnames(className, 'border-gray-1 p-0')}>
-        <div className="flex items-center p-2 border-b border-gray-1">
+      <div
+        className={classnames(
+          className,
+          'bg-editor text-on-surface rounded-xl shadow border-divider p-0 overflow-hidden'
+        )}
+      >
+        <div className="flex items-center p-2 border-b border-divider">
           <div className="w-full flex flex-col items-start">
             <TabController>
               <BlockStyleControls
@@ -139,7 +143,7 @@ const BaseEditorControls: React.FC<Props> = ({
           </div>
         </div>
         <div>{children}</div>
-      </Card>
+      </div>
     </ctx.Provider>
   )
 }

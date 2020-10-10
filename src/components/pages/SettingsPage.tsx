@@ -8,7 +8,7 @@ import { Headline2 } from '../views/Typography'
 const SettingsPage: React.FunctionComponent = () => {
   return (
     <Container>
-      <Headline2>
+      <Headline2 className="text-primary font-bold">
         <Trans>Account Settings</Trans>
       </Headline2>
       <GeneralSettings />

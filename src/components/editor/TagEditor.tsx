@@ -1,3 +1,4 @@
+import classnames from 'classnames'
 import {
   DraftHandleValue,
   Editor,
@@ -262,7 +263,7 @@ const TagEditor: React.FunctionComponent<Props> = ({
   }
 
   return (
-    <div className={styles.editor}>
+    <div className={classnames(styles.editor, 'bg-editor')}>
       <Editor
         {...props}
         ariaAutoComplete={ariaAutoComplete}

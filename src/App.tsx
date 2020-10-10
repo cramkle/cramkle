@@ -114,7 +114,7 @@ const App: React.FunctionComponent = () => {
           </ShellRoute>
           <UserRoute path="/study/:slug" exact>
             <NoSSR>
-              <Suspense fallback={null}>
+              <Suspense fallback={<div className="h-full bg-background" />}>
                 <StudyPage />
               </Suspense>
             </NoSSR>

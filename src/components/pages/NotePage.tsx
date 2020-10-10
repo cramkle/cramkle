@@ -25,7 +25,7 @@ import {
   TableHead,
   TableRow,
 } from '../views/Table'
-import { Caption, Headline1, Headline2, Headline3 } from '../views/Typography'
+import { Caption, Headline1, Headline2 } from '../views/Typography'
 import {
   NoteQuery,
   NoteQueryVariables,
@@ -158,7 +158,7 @@ const FieldValueDetail: React.FC<FieldValueDetailProps> = ({
 
   return (
     <PersistedEditor
-      title={fieldValue.field.name}
+      title={<span className="text-primary">{fieldValue.field.name}</span>}
       loading={loading}
       error={error}
       saveDebounceMs={FIELD_VALUE_CHANGE_DEBOUNCE}
@@ -238,10 +238,16 @@ const NotePage: React.FC = () => {
           <Caption className="mt-1 text-secondary">
             <Trans>Deck {deck.title}</Trans>
           </Caption>
-          <Headline1>
+          <Headline1 className="text-primary font-bold">
             <Trans>Note details</Trans>
           </Headline1>
-          <Headline2 className="mt-4">{text}</Headline2>
+          <Headline2 className="mt-4 text-primary">
+            {text || (
+              <span className="text-secondary italic">
+                <Trans>empty note</Trans>
+              </span>
+            )}
+          </Headline2>
         </div>
 
         {values.map((value) => (
@@ -254,9 +260,9 @@ const NotePage: React.FC = () => {
 
         <Divider className="my-8" />
 
-        <Headline3 className="font-medium">
+        <Headline2 className="font-bold text-primary">
           <Trans>Flashcards</Trans>
-        </Headline3>
+        </Headline2>
 
         <Table className="mt-4 mb-8 w-full">
           <TableHead>

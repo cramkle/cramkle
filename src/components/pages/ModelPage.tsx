@@ -201,14 +201,14 @@ const ModelPage: React.FC = () => {
         <BackButton />
         <div className="flex flex-col mb-8">
           <div className="flex justify-between items-baseline">
-            <Headline1>
+            <Headline1 className="text-primary">
               <Trans>Model details</Trans>
             </Headline1>
 
             <DeleteModelButton model={model} />
           </div>
 
-          <Headline2 className="mt-4">{model.name}</Headline2>
+          <Headline2 className="text-primary mt-4">{model.name}</Headline2>
           <Body2 className="mt-1">
             {i18n._(
               plural(model.totalNotes, {
@@ -226,9 +226,9 @@ const ModelPage: React.FC = () => {
           </Body2>
         </div>
 
-        <div className="bg-surface border rounded overflow-hidden border-gray-1 pt-2 px-4 pb-4">
+        <div className="bg-surface border rounded overflow-hidden border-divider pt-2 px-4 pb-4">
           <div className="flex items-center justify-between mb-3">
-            <Body1 className="inline-block">
+            <Body1 className="inline-block text-primary">
               <Trans>Templates</Trans>
             </Body1>
 
@@ -280,9 +280,11 @@ const ModelPage: React.FC = () => {
           </div>
           {model.templates.length ? (
             <Tabs>
-              <TabList className="border-t border-b border-gray-1 -mx-4">
+              <TabList className="border-t border-b border-divider -mx-4">
                 {model.templates.map((template) => (
-                  <Tab key={template.id}>{template.name}</Tab>
+                  <Tab key={template.id} className="text-primary">
+                    {template.name}
+                  </Tab>
                 ))}
               </TabList>
 
@@ -298,8 +300,8 @@ const ModelPage: React.FC = () => {
               </TabPanels>
             </Tabs>
           ) : (
-            <div className="border-t border-gray-1 -mx-4">
-              <Body2 className="text-center mt-6 mb-4">
+            <div className="border-t border-divider -mx-4">
+              <Body2 className="text-primary text-center mt-6 mb-4">
                 <Trans>
                   You haven't created any templates on this model yet.
                 </Trans>

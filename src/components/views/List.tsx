@@ -66,7 +66,7 @@ export const ListItem: React.FC<ListItemProps> = ({
         className,
         'relative group z-10 flex items-center px-3 py-2 my-2 outline-reset rounded overflow-hidden transition-colors ease-in-out duration-200',
         {
-          'focus:text-action-primary hover:text-action-primary cursor-pointer': !disabled,
+          'text-primary focus:text-action-primary hover:text-action-primary cursor-pointer': !disabled,
           'text-disabled': disabled,
         }
       )}
@@ -76,7 +76,7 @@ export const ListItem: React.FC<ListItemProps> = ({
       <div
         className={classnames('flex-shrink-0', {
           'text-disabled': disabled,
-          'text-secondary': (!hover || !focused) && !disabled,
+          'text-icon': (!hover || !focused) && !disabled,
           'text-action-primary': (hover || focused) && !disabled,
         })}
       >

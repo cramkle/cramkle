@@ -20,6 +20,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(function Button(
       'text-action-primary':
         (variation === 'plain' || variation === 'outline') && !disabled,
       'text-on-primary': variation === 'primary' && !disabled,
+      'text-primary': variation === 'secondary' && !disabled,
       'text-disabled': disabled,
       'bg-primary': variation === 'primary' && !disabled,
       'bg-secondary': variation === 'secondary' && !disabled,

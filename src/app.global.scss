@@ -27,32 +27,48 @@ body,
   height: 100%;
 }
 
-:root {
+:root, .__light-mode {
   // Reach imports
   --reach-tooltip: 1;
 
   // Theme variables
   --background: hsla(224, 30%, 20%, 0.05);
-  --primary: hsl(224, 100%, 58%);
-  --on-primary: hsl(0, 0%, 100%);
-  --secondary: hsl(224, 15%, 90.8%);
-  --surface: hsl(0, 0%, 100%);
-  --on-surface: hsl(0, 0%, 0%);
-  --yellow-1: hsl(39.1, 100%, 66.3%);
-  --red-1: hsl(349.1, 100%, 34.5%);
-  --green-1: hsl(122.4, 39.4%, 36.2%);
-  --violet-1: hsl(264.8, 57.9%, 41%);
-  --violet-2: hsl(264.8, 23.7%, 63.5%);
+  --disabled: rgba(0, 0, 0, 0.12);
+  --divider: hsl(224, 0%, 87.8%);
+  --editor-background: hsl(0, 0%, 100%);
   --gray-1: hsl(224, 0%, 87.8%);
   --gray-2: hsl(224, 5%, 58.7%);
   --gray-3: hsl(224, 10%, 32.5%);
   --gray-4: hsl(224, 16%, 12.8%);
-  --disabled: rgba(0, 0, 0, 0.12);
+  --green-1: hsl(122.4, 39.4%, 36.2%);
   --hover-overlay: hsla(224, 70%, 58%, 0.08);
+  --input-background: hsl(0, 0%, 100%);
+  --on-primary: hsl(0, 0%, 100%);
+  --on-surface: hsl(0, 0%, 0%);
+  --primary: hsl(224, 100%, 58%);
+  --red-1: hsl(349.1, 100%, 34.5%);
+  --secondary: hsl(224, 15%, 90.8%);
+  --surface: hsl(0, 0%, 100%);
+  --text-disabled: rgba(0, 0, 0, .38);
+  --text-hint: rgba(0, 0, 0, .38);
+  --text-icon: rgba(0, 0, 0, .54);
   --text-primary: rgba(0, 0, 0, .87);
   --text-secondary: rgba(0, 0, 0, .54);
-  --text-hint: rgba(0, 0, 0, .38);
-  --text-disabled: rgba(0, 0, 0, .38);
-  --text-icon: rgba(0, 0, 0, .38);
-  --text-tooltip: rgba(255, 255, 255, .87);
+  --violet-1: hsl(264.8, 57.9%, 41%);
+  --violet-2: hsl(264.8, 23.7%, 63.5%);
+  --yellow-1: hsl(39.1, 100%, 66.3%);
+}
+
+.__dark-mode, :root.__dark-mode {
+  // Theme variables
+  --gray-1: hsl(224, 0%, 87.8%);
+  --gray-2: hsl(224, 5%, 58.7%);
+  --gray-3: hsl(224, 10%, 32.5%);
+  --gray-4: hsl(224, 16%, 12.8%);
+  --on-primary: hsl(0, 0%, 100%);
+  --on-surface: #fff;
+  --secondary: hsla(224, 10%, 25%, 0.87);
+  --surface: hsl(224, 5%, 12.4%);
+  --text-primary: rgba(255, 255, 255, 1);
+  --text-secondary: rgba(255, 255, 255, .87);
 }

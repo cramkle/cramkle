@@ -160,7 +160,7 @@ const AddNotePage: React.FC = () => {
     <Container>
       <BackButton to={`/d/${slug}`} />
 
-      <Headline1 className="border-b border-gray-1">
+      <Headline1 className="border-b border-divider text-primary">
         <Trans>
           Create note for deck{' '}
           <span className="font-semibold">{deck.title}</span>
@@ -169,7 +169,7 @@ const AddNotePage: React.FC = () => {
 
       {models.length > 0 ? (
         <div className="flex flex-col mt-6">
-          <label className="flex items-center">
+          <label className="flex items-center text-primary">
             <Trans>Note's model</Trans>
             <Listbox
               className="ml-3"
@@ -189,7 +189,7 @@ const AddNotePage: React.FC = () => {
 
           {selectedModel != null && (
             <React.Fragment key={formKey}>
-              <Headline2 className="mt-3">
+              <Headline2 className="mt-3 text-primary">
                 <Trans>Fields</Trans>
               </Headline2>
 
@@ -197,7 +197,7 @@ const AddNotePage: React.FC = () => {
                 <>
                   {selectedModel.fields.map((field) => (
                     <React.Fragment key={field.id}>
-                      <Body1 className="mt-4" key={field.id}>
+                      <Body1 className="mt-4 text-primary" key={field.id}>
                         {field.name}
                       </Body1>
 

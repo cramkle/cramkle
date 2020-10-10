@@ -41,7 +41,7 @@ const AlertDialogContent = forwardRef<HTMLDivElement, AlertDialogContentProps>(
         {...props}
         className={classnames(
           props.className,
-          'rounded shadow p-6 w-full max-w-xl md:max-w-3xl'
+          'bg-surface text-primary rounded shadow p-6 w-full max-w-xl md:max-w-3xl'
         )}
         ref={ref}
       />

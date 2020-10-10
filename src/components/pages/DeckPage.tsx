@@ -179,7 +179,7 @@ const DeckPage: React.FunctionComponent = () => {
   if (data?.deck == null) {
     return (
       <div className="flex flex-col items-center justify-center p-4 sm:px-0">
-        <Headline2 className="text-center sm:text-left">
+        <Headline2 className="text-center sm:text-left text-primary">
           <Trans>Deck not found</Trans>
         </Headline2>
         <Link className="mt-8 sm:mt-4 text-action-primary" to="/home">
@@ -199,15 +199,15 @@ const DeckPage: React.FunctionComponent = () => {
 
         <div className="flex flex-col mb-8">
           <div className="flex justify-between items-baseline">
-            <Headline1>
+            <Headline1 className="text-primary">
               <Trans>Deck details</Trans>
             </Headline1>
 
             <DeleteDeckButton deckId={deck.id} />
           </div>
-          <Headline2 className="mt-4">{deck.title}</Headline2>
+          <Headline2 className="mt-4 text-primary">{deck.title}</Headline2>
           {deck.description && (
-            <Body1 className="mt-2 whitespace-pre-line">
+            <Body1 className="mt-2 whitespace-pre-line text-primary">
               {deck.description}
             </Body1>
           )}
@@ -225,7 +225,7 @@ const DeckPage: React.FunctionComponent = () => {
           </Body2>
         </div>
 
-        <Headline3>
+        <Headline3 className="text-primary">
           <Trans>Notes</Trans>{' '}
           <Caption className="ml-1">
             <Trans>({deck.notes.totalCount} notes)</Trans>

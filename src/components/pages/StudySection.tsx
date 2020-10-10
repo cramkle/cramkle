@@ -115,7 +115,7 @@ const StudySection: React.FunctionComponent = () => {
       )}
       {decks.length > 0 ? (
         <>
-          <Headline1 className="mt-6">
+          <Headline1 className="mt-6 text-primary">
             <Trans>Study today</Trans>
           </Headline1>
           <div className="mt-6 mb-4">

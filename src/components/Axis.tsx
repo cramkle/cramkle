@@ -123,6 +123,7 @@ export default function Axis<T>({
         >
           <line stroke="currentColor" {...{ [x + '2']: k * tickSizeInner }} />
           <text
+            fill="currentColor"
             {...{ [x]: k * spacing }}
             dy={
               orientation === 'top'

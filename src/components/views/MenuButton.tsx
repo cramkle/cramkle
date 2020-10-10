@@ -48,10 +48,10 @@ export const MenuList: React.FC<MenuListProps> = ({
       {...props}
       className={classnames(
         className,
-        'mt-1 py-0 border-0 border-none rounded shadow-lg bg-surface'
+        'mt-1 py-0 border-0 border-none rounded-xl shadow-lg bg-surface'
       )}
     >
-      <div className="py-2 h-full shadow-xs rounded">{children}</div>
+      <div className="py-2 h-full shadow-xs rounded-xl">{children}</div>
     </ReachMenuList>
   )
 }
@@ -67,7 +67,7 @@ export const MenuItem: ForwardRefExoticComponentWithAs<
       className={classnames(
         props.className,
         styles.menuItem,
-        'relative flex items-center px-3 py-2 bg-surface text-on-surface'
+        'relative flex items-center px-3 py-2 m-2 bg-surface text-on-surface rounded overflow-hidden'
       )}
     >
       {icon}

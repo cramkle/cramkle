@@ -51,7 +51,7 @@ export const TooltipPopup = forwardRefWithAs<TooltipPopupProps, 'div'>(
         ref={forwardedRef}
         className={classnames(
           props.className,
-          'z-1 p-2 pointer-events-none absolute whitespace-no-wrap text-tooltip bg-gray-3 shadow-lg rounded'
+          '__dark-mode z-1 p-2 pointer-events-none absolute whitespace-no-wrap text-primary bg-surface shadow-lg rounded'
         )}
       />
     )
