@@ -6,6 +6,9 @@ apple_sizes=(57 60 72 76 114 120 144 152 180)
 favicon_sizes=(16 32 64)
 android_sizes=(36 48 72 96 144 192 512)
 
+favicon_base_image=./src/assets/logo.svg
+icons_base_image=./src/assets/logo-square.svg
+
 if ! which svgexport &> /dev/null; then
   echo "svgexport is not installed. You can install it by running \"yarn global add svgexport\""
   exit 1
@@ -17,11 +20,11 @@ if ! which convert &> /dev/null; then
 fi
 
 for size in "${sizes[@]}"; do
-  svgexport ./src/assets/logo-square.svg "./public/icons/icon-${size}x$size.png" $size:$size
+  svgexport $icons_base_image "./public/icons/icon-${size}x$size.png" $size:$size
 done
 
 for size in "${favicon_sizes[@]}"; do
-  svgexport ./src/assets/logo-white.svg "./public/icons/favicon-${size}x$size.png" $size:$size
+  svgexport $favicon_base_image "./public/icons/favicon-${size}x$size.png" $size:$size
 done
 
 for size in "${apple_sizes[@]}"; do
