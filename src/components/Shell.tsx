@@ -13,6 +13,7 @@ import NoSSR from './NoSSR'
 import { useTheme } from './Theme'
 import { TopBarLoadingQuery } from './__generated__/TopBarLoadingQuery'
 import { UserQuery } from './__generated__/UserQuery'
+import DarkModeIcon from './icons/DarkModeIcon'
 import LogoutIcon from './icons/LogoutIcon'
 import OverflowMenuIcon from './icons/OverflowMenuIcon'
 import SettingsIcon from './icons/SettingsIcon'
@@ -64,7 +65,10 @@ const DefaultMenuItems: React.FC = () => {
         }
         reverse
       >
-        <Trans>Dark mode</Trans>
+        <div className="flex items-center">
+          <DarkModeIcon className="mr-4 text-secondary" aria-hidden />
+          <Trans>Dark mode</Trans>
+        </div>
       </Switch>
       <Divider className="my-3" />
       <MenuItem
@@ -87,7 +91,7 @@ const MobileMenu: React.FC<{ username: string; email: string }> = ({
 
   return (
     <Menu>
-      <MenuButton icon className="md:hidden">
+      <MenuButton icon className="md:hidden text-primary">
         <OverflowMenuIcon />
       </MenuButton>
       <NoSSR>

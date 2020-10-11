@@ -70,9 +70,9 @@ export const Switch: React.FC<
           'text-primary': !checked && !disabled,
           'text-action-primary': checked && !disabled,
         })}
-        viewBox="0 0 60 32"
-        width="60"
-        height="32"
+        viewBox="0 0 62 34"
+        width="62"
+        height="34"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         aria-hidden
@@ -81,17 +81,17 @@ export const Switch: React.FC<
           <rect
             x="1"
             y="1"
-            width="58"
-            height="30"
-            rx="15"
+            width="60"
+            height="32"
+            rx="16"
             stroke="var(--primary)"
             strokeWidth="2"
           />
         )}
         <rect
           className="transition-color ease-in-out duration-200"
-          x={checked ? 3 : 4}
-          y={checked ? 3 : 4}
+          x={checked ? 4 : 5}
+          y={checked ? 4 : 5}
           width={checked ? '54' : '52'}
           height={checked ? '26' : '24'}
           rx={checked ? '13' : '12'}
@@ -106,8 +106,8 @@ export const Switch: React.FC<
             { 'text-surface': checked }
           )}
           style={{ transform: `translateX(${checked ? '28px' : '0px'})` }}
-          cx="16"
-          cy="16"
+          cx="17"
+          cy="17"
           r="9"
           fill={checked ? 'var(--on-primary)' : 'currentColor'}
         />
