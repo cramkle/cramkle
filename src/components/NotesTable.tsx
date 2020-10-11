@@ -5,6 +5,8 @@ import { Link, useHistory } from 'react-router-dom'
 
 import DeleteNoteDialog from './DeleteNoteDialog'
 import { PageArgs, Pagination } from './Pagination'
+import EditIcon from './icons/EditIcon'
+import TrashBinIcon from './icons/TrashBinIcon'
 import {
   DeckQuery_deck_notes,
   DeckQuery_deck_notes_edges_node,
@@ -91,9 +93,6 @@ const NotesTable: React.FC<Props> = ({
               <Trans>Note</Trans>
             </TableCell>
             <TableCell className="hidden md:table-cell">
-              <Trans>Deck</Trans>
-            </TableCell>
-            <TableCell className="hidden md:table-cell">
               <Trans>Model type</Trans>
             </TableCell>
             <TableCell className="hidden md:table-cell">
@@ -119,13 +118,12 @@ const NotesTable: React.FC<Props> = ({
             notes.edges.map(({ node: note }) => {
               return (
                 <TableRow key={note.id}>
-                  <TableCell>
-                    {note.text || (
+                  <TableCell className="max-w-xxs sm:max-w-sm md:max-w-xxs lg:max-w-lg">
+                    {note.text ? (
+                      <p className="truncate">{note.text}</p>
+                    ) : (
                       <span className="text-secondary italic">empty note</span>
                     )}
-                  </TableCell>
-                  <TableCell className="hidden md:table-cell">
-                    {note.deck.title}
                   </TableCell>
                   <TableCell className="hidden md:table-cell">
                     {note.model.name}
@@ -141,13 +139,13 @@ const NotesTable: React.FC<Props> = ({
                       className="text-action-primary"
                       to={`/d/${deckSlug}/note/${note.id}`}
                     >
-                      <Trans>Edit</Trans>
+                      <EditIcon aria-label={i18n._(t`Edit`)} />
                     </Link>
                     <Button
                       className="ml-3"
                       onClick={() => setDeletingNote(note)}
                     >
-                      <Trans>Delete</Trans>
+                      <TrashBinIcon aria-label={i18n._(t`Delete`)} />
                     </Button>
                   </TableCell>
                 </TableRow>
