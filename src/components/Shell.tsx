@@ -10,6 +10,7 @@ import { ReactComponent as Logo } from '../assets/logo.svg'
 import useOffline from '../hooks/useOffline'
 import AppName from './AppName'
 import NoSSR from './NoSSR'
+import { useTheme } from './Theme'
 import { TopBarLoadingQuery } from './__generated__/TopBarLoadingQuery'
 import { UserQuery } from './__generated__/UserQuery'
 import LogoutIcon from './icons/LogoutIcon'
@@ -21,6 +22,7 @@ import Divider from './views/Divider'
 import { Header, HeaderContent, HeaderSection } from './views/Header'
 import { LoadingBar } from './views/LoadingBar'
 import { Menu, MenuButton, MenuItem, MenuList } from './views/MenuButton'
+import { Switch } from './views/Switch'
 
 const TOP_BAR_LOADING_QUERY = gql`
   query TopBarLoadingQuery {
@@ -32,6 +34,7 @@ const TOP_BAR_LOADING_QUERY = gql`
 
 const DefaultMenuItems: React.FC = () => {
   const history = useHistory()
+  const { theme, setTheme } = useTheme()
 
   const handleSettingsClick = useCallback(() => {
     history.push('/settings')
@@ -52,6 +55,18 @@ const DefaultMenuItems: React.FC = () => {
       >
         <Trans>Settings</Trans>
       </MenuItem>
+      <Switch
+        className="w-full px-4 justify-between"
+        name="darkMode"
+        checked={theme === 'dark'}
+        onChange={({ target: { checked } }) =>
+          setTheme(checked ? 'dark' : 'light')
+        }
+        reverse
+      >
+        <Trans>Dark mode</Trans>
+      </Switch>
+      <Divider className="my-3" />
       <MenuItem
         onSelect={handleLogout}
         icon={<LogoutIcon className="text-secondary" />}
@@ -75,25 +90,27 @@ const MobileMenu: React.FC<{ username: string; email: string }> = ({
       <MenuButton icon className="md:hidden">
         <OverflowMenuIcon />
       </MenuButton>
-      <MenuList
-        portal={false}
-        className="absolute z-10 right-0"
-        style={{ top: '1.25rem' }}
-      >
-        <div className="flex flex-col px-5 mb-3">
-          <span className="text-primary text-lg">{username}</span>
-          <span className="text-secondary">{email}</span>
-        </div>
-        <MenuItem
-          className="md:hidden"
-          onSelect={handleStatisticsClick}
-          icon={<StatisticsIcon className="text-secondary" />}
+      <NoSSR>
+        <MenuList
+          portal={false}
+          className="absolute z-10 right-0"
+          style={{ top: '1.25rem' }}
         >
-          <Trans>Statistics</Trans>
-        </MenuItem>
-        <Divider className="my-3 md:hidden" />
-        <DefaultMenuItems />
-      </MenuList>
+          <div className="flex flex-col px-5 mb-3">
+            <span className="text-primary text-lg">{username}</span>
+            <span className="text-secondary">{email}</span>
+          </div>
+          <MenuItem
+            className="md:hidden"
+            onSelect={handleStatisticsClick}
+            icon={<StatisticsIcon className="text-secondary" />}
+          >
+            <Trans>Statistics</Trans>
+          </MenuItem>
+          <Divider className="my-3 md:hidden" />
+          <DefaultMenuItems />
+        </MenuList>
+      </NoSSR>
     </Menu>
   )
 }
@@ -107,18 +124,20 @@ const DefaultMenu: React.FC<{ username?: string; email?: string }> = ({
       <MenuButton icon className="hidden md:inline-block text-primary">
         <OverflowMenuIcon />
       </MenuButton>
-      <MenuList
-        portal={false}
-        className="absolute z-10 right-0"
-        style={{ top: '1.25rem' }}
-      >
-        <div className="flex flex-col px-5 mb-3">
-          <span className="text-primary text-lg">{username}</span>
-          <span className="text-secondary">{email}</span>
-        </div>
-        <Divider />
-        <DefaultMenuItems />
-      </MenuList>
+      <NoSSR>
+        <MenuList
+          portal={false}
+          className="absolute z-10 right-0"
+          style={{ top: '1.25rem' }}
+        >
+          <div className="flex flex-col px-5 mb-3">
+            <span className="text-primary text-lg">{username}</span>
+            <span className="text-secondary">{email}</span>
+          </div>
+          <Divider />
+          <DefaultMenuItems />
+        </MenuList>
+      </NoSSR>
     </Menu>
   )
 }
