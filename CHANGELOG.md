@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Fixed
 - Truncate note title to avoid horizontal scroll in the table.
+- Placeholder in editor not hidden when used any list styling.
 
 ## [0.11.7] - 2020-10-03
 ### Fixed

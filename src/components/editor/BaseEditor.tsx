@@ -14,10 +14,20 @@ type Props = Omit<
 const BaseEditor: React.FC<Props> = (props) => {
   const baseContext = useBaseEditorControls()
 
+  const placeholder =
+    baseContext.editorState
+      .getCurrentContent()
+      .getBlockMap()
+      .first()
+      .getType() !== 'unstyled'
+      ? undefined
+      : props.placeholder
+
   return (
     <div className={styles.editor}>
       <Editor
         {...props}
+        placeholder={placeholder}
         editorState={baseContext?.editorState}
         onChange={baseContext?.onChange}
         blockStyleFn={blockStyleFn}

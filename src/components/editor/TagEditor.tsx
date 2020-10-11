@@ -262,10 +262,17 @@ const TagEditor: React.FunctionComponent<Props> = ({
     }
   }
 
+  const placeholder =
+    editorState.getCurrentContent().getBlockMap().first().getType() !==
+    'unstyled'
+      ? undefined
+      : props.placeholder
+
   return (
     <div className={classnames(styles.editor, 'bg-editor')}>
       <Editor
         {...props}
+        placeholder={placeholder}
         ariaAutoComplete={ariaAutoComplete}
         ariaExpanded={showingTags}
         role="combobox"
