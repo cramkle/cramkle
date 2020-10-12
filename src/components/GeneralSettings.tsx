@@ -70,7 +70,11 @@ const TimezoneOption: React.FC<{
   const formattedOffset = `${sign}${formattedHour}:${formattedMinutes}`
 
   return (
-    <ListboxOption key={name} style={style} value={name}>
+    <ListboxOption
+      key={name}
+      style={{ ...style, width: 'calc(100% - 1rem)' }}
+      value={name}
+    >
       <div className="w-full flex items-center justify-between">
         <span className="truncate">{name}</span>
         <Chip className="ml-2 flex-shrink-0" color="primary" size="small">
