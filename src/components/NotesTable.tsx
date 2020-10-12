@@ -122,7 +122,9 @@ const NotesTable: React.FC<Props> = ({
                     {note.text ? (
                       <p className="truncate">{note.text}</p>
                     ) : (
-                      <span className="text-secondary italic"><Trans>empty note</Trans></span>
+                      <span className="text-secondary italic">
+                        <Trans>empty note</Trans>
+                      </span>
                     )}
                   </TableCell>
                   <TableCell className="hidden md:table-cell">
