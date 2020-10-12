@@ -54,23 +54,23 @@ export const icons = [
     rel: 'icon',
     type: 'image/png',
     sizes: '16x16',
-    href: '/icons/favicon-16x16.png',
+    href: '/icons/favicon-16x16.png?v=1',
   },
   {
     rel: 'icon',
     type: 'image/png',
     sizes: '32x32',
-    href: '/icons/favicon-32x32.png',
+    href: '/icons/favicon-32x32.png?v=1',
   },
   {
     rel: 'icon',
     type: 'image/png',
     sizes: '64x64',
-    href: '/icons/favicon-64x64.png',
+    href: '/icons/favicon-64x64.png?v=1',
   },
   {
     rel: 'shortcut icon',
     type: 'image/x-icon',
-    href: '/icons/favicon.ico',
+    href: '/icons/favicon.ico?v=1',
   },
 ]

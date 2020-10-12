@@ -12,7 +12,17 @@ module.exports = {
   rules: {
     'no-underscore-dangle': [
       1,
-      { allow: ['_id', '__NAME__', '__WB_MANIFEST', '__APOLLO_STATE__'] },
+      {
+        allow: [
+          '_id',
+          '__NAME__',
+          '__WB_MANIFEST',
+          '__APOLLO_STATE__',
+          '__theme',
+          '__onThemeChange',
+          '__setPreferredTheme',
+        ],
+      },
     ],
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/ban-ts-comment': 'off',

@@ -7,6 +7,7 @@ import { Redirect, Route, Switch } from 'react-router'
 
 import NoSSR from './components/NoSSR'
 import NotificationToasts from './components/NotificationToasts'
+import { ThemeProvider } from './components/Theme'
 import AboutPage from './components/pages/AboutPage'
 import ForgotPasswordPage from './components/pages/ForgotPasswordPage'
 import LandingPage from './components/pages/LandingPage'
@@ -16,6 +17,7 @@ import RegisterPage from './components/pages/RegisterPage'
 import ResetPasswordPage from './components/pages/ResetPasswordPage'
 import { GuestRoute, UserRoute } from './components/routes/AuthRoute'
 import ShellRoute from './components/routes/ShellRoute'
+import { darkThemeHelmetScript } from './utils/darkThemeScript'
 import { errorFallback } from './utils/errorFallback'
 import { icons } from './utils/headLinks'
 
@@ -83,73 +85,80 @@ const App: React.FunctionComponent = () => {
             href: '/manifest.json',
           },
         ]}
+        script={[darkThemeHelmetScript]}
       />
       <ErrorBoundary fallback={errorFallback}>
-        <NotificationToasts />
-        <Switch>
-          <GuestRoute path="/" exact>
-            <LandingPage />
-          </GuestRoute>
-          <ShellRoute RouteComponent={UserRoute} path="/home" exact>
-            <HomePage />
-          </ShellRoute>
-          <Redirect
-            from="/decks"
-            to={{ pathname: '/home', state: { currentTab: 1 } }}
-            exact
-          />
-          <Redirect
-            from="/models"
-            to={{ pathname: '/home', state: { currentTab: 2 } }}
-            exact
-          />
-          <ShellRoute RouteComponent={UserRoute} path="/d/:slug" exact>
-            <DeckPage />
-          </ShellRoute>
-          <ShellRoute RouteComponent={UserRoute} path="/d/:slug/new-note" exact>
-            <AddNotePage />
-          </ShellRoute>
-          <ShellRoute RouteComponent={UserRoute} path="/d/:slug/note/:noteId">
-            <NotePage />
-          </ShellRoute>
-          <UserRoute path="/study/:slug" exact>
-            <NoSSR>
-              <Suspense fallback={<div className="h-full bg-background" />}>
-                <StudyPage />
-              </Suspense>
-            </NoSSR>
-          </UserRoute>
-          <ShellRoute RouteComponent={UserRoute} path="/m/:id" exact>
-            <ModelPage />
-          </ShellRoute>
-          <ShellRoute RouteComponent={UserRoute} path="/models/create" exact>
-            <AddModelPage />
-          </ShellRoute>
-          <ShellRoute RouteComponent={UserRoute} path="/statistics" exact>
-            <StatisticsPage />
-          </ShellRoute>
-          <ShellRoute RouteComponent={UserRoute} path="/settings" exact>
-            <SettingsPage />
-          </ShellRoute>
-          <GuestRoute path="/register" exact>
-            <RegisterPage />
-          </GuestRoute>
-          <GuestRoute path="/login" exact>
-            <LoginPage />
-          </GuestRoute>
-          <GuestRoute path="/forgot-password" exact>
-            <ForgotPasswordPage />
-          </GuestRoute>
-          <GuestRoute path="/reset-password/:userId" exact>
-            <ResetPasswordPage />
-          </GuestRoute>
-          <Route path="/about" exact>
-            <AboutPage />
-          </Route>
-          <Route>
-            <NotFoundPage />
-          </Route>
-        </Switch>
+        <ThemeProvider>
+          <NotificationToasts />
+          <Switch>
+            <GuestRoute path="/" exact>
+              <LandingPage />
+            </GuestRoute>
+            <ShellRoute RouteComponent={UserRoute} path="/home" exact>
+              <HomePage />
+            </ShellRoute>
+            <Redirect
+              from="/decks"
+              to={{ pathname: '/home', state: { currentTab: 1 } }}
+              exact
+            />
+            <Redirect
+              from="/models"
+              to={{ pathname: '/home', state: { currentTab: 2 } }}
+              exact
+            />
+            <ShellRoute RouteComponent={UserRoute} path="/d/:slug" exact>
+              <DeckPage />
+            </ShellRoute>
+            <ShellRoute
+              RouteComponent={UserRoute}
+              path="/d/:slug/new-note"
+              exact
+            >
+              <AddNotePage />
+            </ShellRoute>
+            <ShellRoute RouteComponent={UserRoute} path="/d/:slug/note/:noteId">
+              <NotePage />
+            </ShellRoute>
+            <UserRoute path="/study/:slug" exact>
+              <NoSSR>
+                <Suspense fallback={<div className="h-full bg-background" />}>
+                  <StudyPage />
+                </Suspense>
+              </NoSSR>
+            </UserRoute>
+            <ShellRoute RouteComponent={UserRoute} path="/m/:id" exact>
+              <ModelPage />
+            </ShellRoute>
+            <ShellRoute RouteComponent={UserRoute} path="/models/create" exact>
+              <AddModelPage />
+            </ShellRoute>
+            <ShellRoute RouteComponent={UserRoute} path="/statistics" exact>
+              <StatisticsPage />
+            </ShellRoute>
+            <ShellRoute RouteComponent={UserRoute} path="/settings" exact>
+              <SettingsPage />
+            </ShellRoute>
+            <GuestRoute path="/register" exact>
+              <RegisterPage />
+            </GuestRoute>
+            <GuestRoute path="/login" exact>
+              <LoginPage />
+            </GuestRoute>
+            <GuestRoute path="/forgot-password" exact>
+              <ForgotPasswordPage />
+            </GuestRoute>
+            <GuestRoute path="/reset-password/:userId" exact>
+              <ResetPasswordPage />
+            </GuestRoute>
+            <Route path="/about" exact>
+              <AboutPage />
+            </Route>
+            <Route>
+              <NotFoundPage />
+            </Route>
+          </Switch>
+        </ThemeProvider>
       </ErrorBoundary>
     </>
   )

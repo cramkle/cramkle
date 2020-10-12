@@ -14,6 +14,8 @@ module.exports = {
   theme: {
     colors: {
       primary: 'var(--primary)',
+      'background-primary': 'var(--primary-background)',
+      'primary-disabled': 'var(--primary-disabled)',
       secondary: 'var(--secondary)',
       surface: 'var(--surface)',
       disabled: 'var(--disabled)',
@@ -33,7 +35,7 @@ module.exports = {
       hint: 'var(--text-hint)',
       icon: 'var(--text-icon)',
       'action-primary': 'var(--primary)',
-      'action-secondary': 'var(--secondary)',
+      'action-primary-disabled': 'var(--primary-disabled)',
       ...commonColors,
     },
     opacity: {

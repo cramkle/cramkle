@@ -17,15 +17,15 @@ msgstr ""
 msgid "({0} notes)"
 msgstr "({0} notes)"
 
-#: src/components/pages/StatisticsPage.tsx:235
+#: src/components/pages/StatisticsPage.tsx:270
 msgid "1 month"
 msgstr "1 month"
 
-#: src/components/pages/StatisticsPage.tsx:238
+#: src/components/pages/StatisticsPage.tsx:273
 msgid "1 year"
 msgstr "1 year"
 
-#: src/components/pages/StatisticsPage.tsx:232
+#: src/components/pages/StatisticsPage.tsx:267
 msgid "7 days"
 msgstr "7 days"
 
@@ -53,7 +53,7 @@ msgstr "Account Settings"
 msgid "Account created successfully"
 msgstr "Account created successfully"
 
-#: src/components/NotesTable.tsx:25
+#: src/components/NotesTable.tsx:27
 #: src/components/pages/AddNotePage.tsx:156
 msgid "Add Note"
 msgstr "Add Note"
@@ -95,6 +95,10 @@ msgstr "Already have an account? <0>Log In</0>"
 #: src/components/pages/NotePage.tsx:132
 msgid "An error has occurred when saving your note"
 msgstr "An error has occurred when saving your note"
+
+#: src/components/pages/StatisticsPage.tsx:157
+msgid "An error has occurred, try refreshing the page or wait a few minutes before trying again"
+msgstr "An error has occurred, try refreshing the page or wait a few minutes before trying again"
 
 #: src/components/pages/StudySection.tsx:47
 msgid "An error has ocurred when trying to get your decks to study."
@@ -243,11 +247,13 @@ msgstr "Create template"
 msgid "Creating model..."
 msgstr "Creating model..."
 
-#: src/components/NotesTable.tsx:38
-msgid "Deck"
-msgstr "Deck"
+#: src/components/Shell.tsx:50
+msgid "Dark mode"
+msgstr "Dark mode"
 
-#: src/components/pages/StatisticsPage.tsx:182
+#: src/components/pages/StatisticsPage.tsx:153
+#: src/components/pages/StatisticsPage.tsx:169
+#: src/components/pages/StatisticsPage.tsx:217
 msgid "Deck Statistics"
 msgstr "Deck Statistics"
 
@@ -280,7 +286,7 @@ msgstr "Decks"
 #: src/components/DeleteModelButton.tsx:73
 #: src/components/DeleteModelButton.tsx:93
 #: src/components/DeleteNoteDialog.tsx:52
-#: src/components/NotesTable.tsx:77
+#: src/components/NotesTable.tsx:73
 msgid "Delete"
 msgstr "Delete"
 
@@ -331,7 +337,7 @@ msgstr "Don't have an account? <0>Sign Up</0>"
 msgid "Easy"
 msgstr "Easy"
 
-#: src/components/NotesTable.tsx:74
+#: src/components/NotesTable.tsx:70
 msgid "Edit"
 msgstr "Edit"
 
@@ -416,12 +422,12 @@ msgstr "Fields that you can use in your templates and notes. You can add a field
 msgid "First page"
 msgstr "First page"
 
-#: src/components/NotesTable.tsx:44
+#: src/components/NotesTable.tsx:43
 #: src/components/pages/NotePage.tsx:182
 msgid "Flashcards"
 msgstr "Flashcards"
 
-#: src/components/pages/StatisticsPage.tsx:252
+#: src/components/pages/StatisticsPage.tsx:287
 msgid "Flashcards studied"
 msgstr "Flashcards studied"
 
@@ -503,7 +509,7 @@ msgstr "Home"
 msgid "I agree to the <0>Terms & Conditions</0>"
 msgstr "I agree to the <0>Terms & Conditions</0>"
 
-#: src/components/pages/StatisticsPage.tsx:229
+#: src/components/pages/StatisticsPage.tsx:264
 msgid "Interval"
 msgstr "Interval"
 
@@ -536,11 +542,11 @@ msgstr "Language"
 msgid "Last page"
 msgstr "Last page"
 
-#: src/components/FlashCardStatus.tsx:19
+#: src/components/FlashCardStatus.tsx:20
 msgid "Learning"
 msgstr "Learning"
 
-#: src/components/Shell.tsx:44
+#: src/components/Shell.tsx:55
 msgid "Log out"
 msgstr "Log out"
 
@@ -578,7 +584,7 @@ msgstr "Model name"
 msgid "Model not found"
 msgstr "Model not found"
 
-#: src/components/NotesTable.tsx:41
+#: src/components/NotesTable.tsx:40
 msgid "Model type"
 msgstr "Model type"
 
@@ -594,7 +600,7 @@ msgstr "Monospace"
 msgid "Name is required"
 msgstr "Name is required"
 
-#: src/components/FlashCardStatus.tsx:18
+#: src/components/FlashCardStatus.tsx:19
 msgid "New"
 msgstr "New"
 
@@ -619,7 +625,7 @@ msgstr "Next page"
 msgid "No fields added"
 msgstr "No fields added"
 
-#: src/components/NotesTable.tsx:56
+#: src/components/NotesTable.tsx:55
 msgid "No notes were found"
 msgstr "No notes were found"
 
@@ -627,7 +633,7 @@ msgstr "No notes were found"
 msgid "No templates added"
 msgstr "No templates added"
 
-#: src/components/NotesTable.tsx:35
+#: src/components/NotesTable.tsx:37
 msgid "Note"
 msgstr "Note"
 
@@ -647,11 +653,11 @@ msgstr "Note's model"
 msgid "Notes"
 msgstr "Notes"
 
-#: src/components/pages/StatisticsPage.tsx:219
+#: src/components/pages/StatisticsPage.tsx:254
 msgid "Number of flashcards studied"
 msgstr "Number of flashcards studied"
 
-#: src/components/pages/StatisticsPage.tsx:218
+#: src/components/pages/StatisticsPage.tsx:253
 msgid "Number of times studied"
 msgstr "Number of times studied"
 
@@ -663,7 +669,7 @@ msgstr "OL"
 msgid "Optimize your knowledge retention with this effective study method."
 msgstr "Optimize your knowledge retention with this effective study method."
 
-#: src/components/pages/StatisticsPage.tsx:192
+#: src/components/pages/StatisticsPage.tsx:227
 msgid "Overview"
 msgstr "Overview"
 
@@ -770,7 +776,7 @@ msgstr "Reset password token is expired"
 msgid "Retry"
 msgstr "Retry"
 
-#: src/components/FlashCardStatus.tsx:20
+#: src/components/FlashCardStatus.tsx:21
 msgid "Review"
 msgstr "Review"
 
@@ -778,7 +784,7 @@ msgstr "Review"
 msgid "Save"
 msgstr "Save"
 
-#: src/components/NotesTable.tsx:28
+#: src/components/NotesTable.tsx:30
 msgid "Search notes..."
 msgstr "Search notes..."
 
@@ -786,7 +792,7 @@ msgstr "Search notes..."
 msgid "Select a model"
 msgstr "Select a model"
 
-#: src/components/Shell.tsx:41
+#: src/components/Shell.tsx:45
 msgid "Settings"
 msgstr "Settings"
 
@@ -814,7 +820,7 @@ msgstr "Something went wrong"
 msgid "Start Session"
 msgstr "Start Session"
 
-#: src/components/Shell.tsx:61
+#: src/components/Shell.tsx:73
 #: src/components/pages/HomePage.tsx:97
 msgid "Statistics"
 msgstr "Statistics"
@@ -827,7 +833,7 @@ msgstr "Study"
 msgid "Study deck"
 msgstr "Study deck"
 
-#: src/components/pages/StatisticsPage.tsx:225
+#: src/components/pages/StatisticsPage.tsx:260
 msgid "Study frequency"
 msgstr "Study frequency"
 
@@ -906,7 +912,7 @@ msgstr "Title"
 msgid "To create a note you need to associate it with a model."
 msgstr "To create a note you need to associate it with a model."
 
-#: src/components/pages/StatisticsPage.tsx:196
+#: src/components/pages/StatisticsPage.tsx:231
 msgid "Total study time"
 msgstr "Total study time"
 
@@ -915,7 +921,11 @@ msgstr "Total study time"
 msgid "Try again"
 msgstr "Try again"
 
-#: src/components/pages/StatisticsPage.tsx:282
+#: src/components/pages/StatisticsPage.tsx:176
+msgid "Try creating a deck first and study it in order to see your study statistics here."
+msgstr "Try creating a deck first and study it in order to see your study statistics here."
+
+#: src/components/pages/StatisticsPage.tsx:317
 msgid "Try selecting a broader interval above."
 msgstr "Try selecting a broader interval above."
 
@@ -972,7 +982,11 @@ msgstr "Warning"
 msgid "We couldn't find the page you requested"
 msgstr "We couldn't find the page you requested"
 
-#: src/components/pages/StatisticsPage.tsx:277
+#: src/components/pages/StatisticsPage.tsx:173
+msgid "We don't have anything to show to you right now."
+msgstr "We don't have anything to show to you right now."
+
+#: src/components/pages/StatisticsPage.tsx:312
 msgid "We don't have enough data to display in the supplied period."
 msgstr "We don't have enough data to display in the supplied period."
 
@@ -996,7 +1010,7 @@ msgstr "You haven't created any decks yet."
 msgid "You haven't created any models yet"
 msgstr "You haven't created any models yet"
 
-#: src/components/NotesTable.tsx:52
+#: src/components/NotesTable.tsx:51
 msgid "You haven't created any notes on this deck yet"
 msgstr "You haven't created any notes on this deck yet"
 
@@ -1024,6 +1038,7 @@ msgstr "Your models"
 msgid "Your note is not saved, are you sure you want to exit the page?"
 msgstr "Your note is not saved, are you sure you want to exit the page?"
 
+#: src/components/NotesTable.tsx:60
 #: src/components/pages/NotePage.tsx:172
 msgid "empty note"
 msgstr "empty note"
@@ -1064,7 +1079,7 @@ msgstr "{0, plural, zero {# decks} one {# deck} other {# decks}}"
 msgid "{0, plural, zero {# models} one {# model} other {# models}}"
 msgstr "{0, plural, zero {# models} one {# model} other {# models}}"
 
-#: src/components/pages/StatisticsPage.tsx:196
+#: src/components/pages/StatisticsPage.tsx:231
 msgid "{0, select, millisecond {{1, plural, one {{formattedStudyTime} millisecond} other {{formattedStudyTime} milliseconds}}} second {{2, plural, one {{formattedStudyTime} second} other {{formattedStudyTime} seconds}}} minute {{3, plural, one {{formattedStudyTime} minute} other {{formattedStudyTime} minutes}}} hour {{4, plural, one {{formattedStudyTime} hour} other {{formattedStudyTime} hours}}} day {{5, plural, one {{formattedStudyTime} day} other {{formattedStudyTime} days}}}}"
 msgstr "{0, select, millisecond {{1, plural, one {{formattedStudyTime} millisecond} other {{formattedStudyTime} milliseconds}}} second {{2, plural, one {{formattedStudyTime} second} other {{formattedStudyTime} seconds}}} minute {{3, plural, one {{formattedStudyTime} minute} other {{formattedStudyTime} minutes}}} hour {{4, plural, one {{formattedStudyTime} hour} other {{formattedStudyTime} hours}}} day {{5, plural, one {{formattedStudyTime} day} other {{formattedStudyTime} days}}}}"
 

@@ -3,6 +3,7 @@ import { useLingui } from '@lingui/react'
 import React from 'react'
 
 import { FlashCardStatus } from '../globalTypes'
+import { useTheme } from './Theme'
 import { Chip, ChipProps } from './views/Chip'
 
 interface Props {
@@ -24,6 +25,7 @@ const chipTypeByStatus = {
 const FlashCardStatusChip: React.FC<
   Props & Omit<ChipProps, 'type' | 'inverted'>
 > = ({ status, children, ...props }) => {
+  const { theme } = useTheme()
   const { i18n } = useLingui()
 
   let message = null
@@ -43,7 +45,11 @@ const FlashCardStatusChip: React.FC<
   }
 
   return (
-    <Chip {...props} color={chipTypeByStatus[status]} inverted>
+    <Chip
+      {...props}
+      color={chipTypeByStatus[status]}
+      inverted={theme === 'light'}
+    >
       {message}
     </Chip>
   )

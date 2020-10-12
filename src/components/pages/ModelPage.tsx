@@ -247,7 +247,7 @@ const ModelPage: React.FC = () => {
 
             <div className="sm:hidden">
               <Menu>
-                <MenuButton icon>
+                <MenuButton icon className="text-primary">
                   <OverflowMenuIcon />
                 </MenuButton>
                 <MenuList>

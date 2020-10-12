@@ -40,7 +40,7 @@ const LandingPage: React.FunctionComponent = () => {
         </HeaderContent>
       </Header>
       <div
-        className="flex bg-primary text-on-primary min-h-screen w-full"
+        className="flex bg-background-primary text-on-primary min-h-screen w-full"
         style={{ backgroundImage: `url(${bgUrl})` }}
       >
         <div className="flex flex-col sm:flex-row justify-around items-center w-full mx-2 lg:mx-16 py-16 sm:py-32">

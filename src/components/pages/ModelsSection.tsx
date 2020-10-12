@@ -47,7 +47,7 @@ const ModelsSection: React.FunctionComponent = () => {
   if (models.length === 0) {
     return (
       <div className="flex flex-col items-center">
-        <Body1 className="mt-8">
+        <Body1 className="mt-8 text-primary">
           <Trans>You haven't created any models yet</Trans>
         </Body1>
 
