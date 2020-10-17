@@ -21,6 +21,7 @@ import { darkThemeHelmetScript } from './utils/darkThemeScript'
 import { errorFallback } from './utils/errorFallback'
 import { icons } from './utils/headLinks'
 
+import './material.global.scss'
 import './app.global.scss'
 import './_tailwind.global.css'
 

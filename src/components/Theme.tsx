@@ -15,7 +15,7 @@ const ctx = React.createContext<ThemeValue | undefined>(undefined)
 
 export const ThemeProvider: React.FC = ({ children }) => {
   const [theme, setTheme] = useState(() =>
-    typeof window === 'undefined' ? 'light' : window.__theme
+    typeof window === 'undefined' ? 'light' : window.__theme ?? 'light'
   )
 
   useEffect(() => {
