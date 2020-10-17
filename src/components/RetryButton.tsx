@@ -14,7 +14,7 @@ const RetryButton: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement>> = (
         'flex items-center text-red-1 text-sm rounded hover:bg-hover-overlay border border-red-1 px-2 py-1'
       )}
     >
-      <RetryIcon className="mr-2 h-4 w-4" />
+      <RetryIcon className="mr-2 h-4 w-4 flex-shrink-0" />
       {props.children}
     </button>
   )

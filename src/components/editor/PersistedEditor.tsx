@@ -12,12 +12,12 @@ import React, {
 } from 'react'
 
 import { useBlock } from '../../hooks/useBlock'
+import { useFadeEffect } from '../../hooks/useFadeEffect'
 import { notificationState } from '../../notification'
 import RetryButton from '../RetryButton'
 import DoneIcon from '../icons/DoneIcon'
 import CircularProgress from '../views/CircularProgress'
 import { Caption } from '../views/Typography'
-import styles from './PersistedEditor.css'
 
 interface PersistedEditorProps<T extends readonly unknown[]> {
   saveDebounceMs: number
@@ -123,28 +123,34 @@ const PersistedEditor = <T extends readonly unknown[]>({
     prevSavedRef.current = saved
   }, [saved])
 
+  const [shouldRender, visible, ref] = useFadeEffect(saved)
+
   return (
     <>
-      <div className="text-base h-8 flex items-center">
-        {title}{' '}
-        <div className="ml-2 flex items-center">
-          {loading && <CircularProgress size={16} />}
+      <div className="text-base h-8 flex items-center max-w-full">
+        <div className="flex-shrink-0">{title}</div>{' '}
+        <div className="ml-2 h-full flex-auto flex items-center min-w-0">
+          {loading && <CircularProgress className="flex-shrink-0" size={16} />}
           {error && (
             <RetryButton onClick={retrySave}>
               <Trans>Try again</Trans>
             </RetryButton>
           )}
           <Caption
+            ref={ref}
             className={classnames(
-              'inline-flex items-center invisible opacity-0',
+              'overflow-hidden flex items-center transition-opacity duration-200 ease-in-out',
               {
-                [styles.fadeIn]: saved,
-                [styles.fadeOut]: prevSavedRef.current && !saved,
+                hidden: !shouldRender || loading,
+                'opacity-0': !visible,
+                'opacity-100': visible,
               }
             )}
           >
-            <DoneIcon className="text-green-1 mr-2 text-base" />
-            <Trans>Changes saved successfully</Trans>
+            <DoneIcon className="text-green-1 mr-2 text-base flex-shrink-0" />
+            <span className="min-w-0 truncate">
+              <Trans>Saved successfully</Trans>
+            </span>
           </Caption>
         </div>
       </div>
