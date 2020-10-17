@@ -7,7 +7,11 @@ import React from 'react'
 import { useHistory } from 'react-router'
 import * as yup from 'yup'
 
-import { notificationState } from '../../notification/index'
+import {
+  TIMEOUT_MEDIUM,
+  pushErrorToast,
+  pushToast,
+} from '../../toasts/pushToast'
 import { deckCardFragment } from '../DeckCard'
 import { DECKS_QUERY } from '../pages/DecksSection'
 import { DecksQuery } from '../pages/__generated__/DecksQuery'
@@ -86,22 +90,29 @@ const AddDeckForm: React.FunctionComponent<Props> = ({ open, onClose }) => {
 
           const slug = mutationResult.data.createDeck.deck.slug
 
-          notificationState.addNotification({
-            message: t`Deck created successfully!`,
-            actionText: t`View`,
-            onAction: () => {
-              history.push(`/d/${slug}`)
+          pushToast(
+            {
+              message: t`Deck created successfully!`,
+              action: {
+                label: t`View`,
+                onPress: () => {
+                  history.push(`/d/${slug}`)
+                },
+              },
             },
-          })
+            TIMEOUT_MEDIUM
+          )
 
           resetForm()
           onClose()
         } catch (e) {
           console.error(e)
-          notificationState.addNotification({
-            message: t`An error ocurred when creating the deck`,
-            actionText: t`Dismiss`,
-          })
+          pushErrorToast(
+            {
+              message: t`An error ocurred when creating the deck`,
+            },
+            TIMEOUT_MEDIUM
+          )
         }
       }}
     >

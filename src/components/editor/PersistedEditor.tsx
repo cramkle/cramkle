@@ -13,7 +13,7 @@ import React, {
 
 import { useBlock } from '../../hooks/useBlock'
 import { useFadeEffect } from '../../hooks/useFadeEffect'
-import { notificationState } from '../../notification'
+import { TIMEOUT_LONG, pushErrorToast } from '../../toasts/pushToast'
 import RetryButton from '../RetryButton'
 import DoneIcon from '../icons/DoneIcon'
 import CircularProgress from '../views/CircularProgress'
@@ -90,11 +90,16 @@ const PersistedEditor = <T extends readonly unknown[]>({
     }
 
     if (error) {
-      notificationState.addNotification({
-        message: errorMessage,
-        actionText: i18n._(t`Retry`),
-        onAction: retrySave,
-      })
+      pushErrorToast(
+        {
+          message: errorMessage,
+          action: {
+            label: i18n._(t`Retry`),
+            onPress: retrySave,
+          },
+        },
+        TIMEOUT_LONG
+      )
       return
     }
 

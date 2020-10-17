@@ -9,7 +9,7 @@ import { useHistory } from 'react-router'
 import { Link } from 'react-router-dom'
 import * as yup from 'yup'
 
-import { notificationState } from '../../notification/index'
+import { pushSimpleToast } from '../../toasts/pushToast'
 import Button from '../views/Button'
 import { Card, CardContent } from '../views/Card'
 import { Headline2 } from '../views/Typography'
@@ -94,10 +94,7 @@ const RegisterForm: React.FunctionComponent<Props> = ({
       })}
       onSubmit={(user) =>
         register({ variables: user }).then(() => {
-          notificationState.addNotification({
-            message: t`Account created successfully`,
-            actionText: t`Dismiss`,
-          })
+          pushSimpleToast(t`Account created successfully`)
 
           history.push('/login')
         })

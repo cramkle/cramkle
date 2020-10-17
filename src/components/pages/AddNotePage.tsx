@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 
 import { FieldInput, FieldValueInput } from '../../globalTypes'
 import useTopBarLoading from '../../hooks/useTopBarLoading'
-import { notificationState } from '../../notification/index'
+import { TIMEOUT_MEDIUM, pushToast } from '../../toasts/pushToast'
 import BackButton from '../BackButton'
 import FieldValueEditor from '../FieldValueEditor'
 import Button from '../views/Button'
@@ -124,13 +124,18 @@ const AddNotePage: React.FC = () => {
       },
     })
 
-    notificationState.addNotification({
-      message: t`Note created successfully`,
-      actionText: t`View`,
-      onAction: () => {
-        history.push(`/d/${slug}/note/${id}`)
+    pushToast(
+      {
+        message: t`Note created successfully`,
+        action: {
+          label: t`View`,
+          onPress: () => {
+            history.push(`/d/${slug}/note/${id}`)
+          },
+        },
       },
-    })
+      TIMEOUT_MEDIUM
+    )
 
     setFieldValueMap({})
     setFormKey((prevKey) => prevKey + 1)

@@ -4,7 +4,11 @@ import gql from 'graphql-tag'
 import React, { useCallback, useRef, useState } from 'react'
 import { useHistory } from 'react-router'
 
-import { notificationState } from '../notification/index'
+import {
+  TIMEOUT_MEDIUM,
+  pushErrorToast,
+  pushSimpleToast,
+} from '../toasts/pushToast'
 import {
   DeleteDeckMutation,
   DeleteDeckMutationVariables,
@@ -66,17 +70,17 @@ const DeleteDeckButton: React.FunctionComponent<Props> = ({ deckId }) => {
       .then(() => {
         history.push('/decks')
 
-        notificationState.addNotification({
-          message: t`Deck deleted successfully`,
-        })
+        pushSimpleToast(t`Deck deleted successfully`)
       })
       .catch(() => {
         setDeleting(false)
 
-        notificationState.addNotification({
-          message: t`An error ocurred when deleting the deck`,
-          actionText: t`Dismiss`,
-        })
+        pushErrorToast(
+          {
+            message: t`An error ocurred when deleting the deck`,
+          },
+          TIMEOUT_MEDIUM
+        )
       })
   }, [deckId, history, mutate])
 
