@@ -1,0 +1,26 @@
+.toast {
+  max-width: calc(320px - 2rem);
+  width: 100%;
+}
+
+@media only screen and (min-width: 640px) {
+  .toast {
+    width: auto;
+    max-width: 100%;
+    min-width: 320px;
+  }
+}
+
+.appearBottom {
+  animation: appearBottom 200ms ease-in-out;
+}
+
+@keyframes appearBottom {
+  from {
+    transform: translateY(200%) scale(80%);
+  }
+
+  to {
+    transform: translateY(0) scale(100%);
+  }
+}

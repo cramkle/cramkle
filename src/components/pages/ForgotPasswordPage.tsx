@@ -9,7 +9,11 @@ import { useHistory, useLocation } from 'react-router'
 import * as yup from 'yup'
 
 import { ReactComponent as Logo } from '../../assets/logo-white.svg'
-import { notificationState } from '../../notification'
+import {
+  TIMEOUT_MEDIUM,
+  pushErrorToast,
+  pushSimpleToast,
+} from '../../toasts/pushToast'
 import Button from '../views/Button'
 import { Card, CardContent } from '../views/Card'
 import CircularProgress from '../views/CircularProgress'
@@ -67,13 +71,14 @@ const ForgotPasswordPage: React.FC = () => {
     })
 
     if (success) {
-      notificationState.addNotification({
-        message: t`Email sent!`,
-      })
+      pushSimpleToast(t`Email sent!`)
     } else {
-      notificationState.addNotification({
-        message: t`User not found`,
-      })
+      pushErrorToast(
+        {
+          message: t`User not found`,
+        },
+        TIMEOUT_MEDIUM
+      )
     }
   }
 

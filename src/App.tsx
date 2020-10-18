@@ -5,8 +5,8 @@ import { Helmet } from 'react-helmet'
 import { hot } from 'react-hot-loader/root'
 import { Redirect, Route, Switch } from 'react-router'
 
+import CramkleToasts from './components/CramkleToasts'
 import NoSSR from './components/NoSSR'
-import NotificationToasts from './components/NotificationToasts'
 import { ThemeProvider } from './components/Theme'
 import AboutPage from './components/pages/AboutPage'
 import ForgotPasswordPage from './components/pages/ForgotPasswordPage'
@@ -21,6 +21,7 @@ import { darkThemeHelmetScript } from './utils/darkThemeScript'
 import { errorFallback } from './utils/errorFallback'
 import { icons } from './utils/headLinks'
 
+import './material.global.scss'
 import './app.global.scss'
 import './_tailwind.global.css'
 
@@ -89,7 +90,7 @@ const App: React.FunctionComponent = () => {
       />
       <ErrorBoundary fallback={errorFallback}>
         <ThemeProvider>
-          <NotificationToasts />
+          <CramkleToasts />
           <Switch>
             <GuestRoute path="/" exact>
               <LandingPage />

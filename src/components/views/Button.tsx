@@ -3,16 +3,26 @@ import React, { forwardRef, useState } from 'react'
 
 type Props = {
   variation?: 'outline' | 'primary' | 'secondary' | 'plain'
+  size?: 'normal' | 'small'
 } & React.ButtonHTMLAttributes<HTMLButtonElement>
 
 const Button = forwardRef<HTMLButtonElement, Props>(function Button(
-  { className = '', variation = 'plain', children, disabled, ...props },
+  {
+    className = '',
+    variation = 'plain',
+    size = 'normal',
+    children,
+    disabled,
+    ...props
+  },
   inputRef
 ) {
   const classes = classnames(
     className,
-    'relative rounded h-10 py-1 px-2 outline-reset overflow-hidden',
+    'relative rounded py-1 px-2 outline-reset overflow-hidden',
     {
+      'h-10': size === 'normal',
+      'h-8': size === 'small',
       'font-medium': variation !== 'plain',
       'font-normal': variation === 'plain',
       'border-0': variation !== 'outline',
@@ -65,7 +75,12 @@ const Button = forwardRef<HTMLButtonElement, Props>(function Button(
       ref={inputRef}
       disabled={disabled}
     >
-      <div className="relative z-0 flex items-center justify-center text-base">
+      <div
+        className={classnames('relative z-0 flex items-center justify-center', {
+          'text-base': size === 'normal',
+          'text-sm': size === 'small',
+        })}
+      >
         {children}
       </div>
       <div

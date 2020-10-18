@@ -7,7 +7,7 @@ import React from 'react'
 import { useHistory, useLocation } from 'react-router'
 import * as yup from 'yup'
 
-import { notificationState } from '../../notification/index'
+import { TIMEOUT_MEDIUM, pushToast } from '../../toasts/pushToast'
 import BackButton from '../BackButton'
 import { TextInputField } from '../forms/Fields'
 import TrashBinIcon from '../icons/TrashBinIcon'
@@ -118,13 +118,18 @@ const AddModelPage: React.FunctionComponent = () => {
               proxy.writeQuery({ query: MODELS_QUERY, data })
             },
           }).then((query) => {
-            notificationState.addNotification({
-              message: t`Model created successfully`,
-              actionText: t`View`,
-              onAction: () => {
-                history.push(`/m/${query.data.createModel.model.id}`)
+            pushToast(
+              {
+                message: t`Model created successfully`,
+                action: {
+                  label: t`View`,
+                  onPress: () => {
+                    history.push(`/m/${query.data.createModel.model.id}`)
+                  },
+                },
               },
-            })
+              TIMEOUT_MEDIUM
+            )
 
             history.push(location.state?.referrer ?? '/models')
           })

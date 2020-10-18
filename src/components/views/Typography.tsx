@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import React from 'react'
+import React, { forwardRef } from 'react'
 
 export interface TypographyProps<TElement extends HTMLElement>
   extends React.HTMLAttributes<TElement> {
@@ -8,19 +8,18 @@ export interface TypographyProps<TElement extends HTMLElement>
 }
 
 function typography(Tag: keyof React.ReactHTML, baseClasses: string) {
-  const Typography: React.FC<React.HTMLAttributes<HTMLElement>> = ({
-    children,
-    className = '',
-    ...otherProps
-  }) => {
-    const classes = classNames(className, baseClasses)
+  const Typography = forwardRef<HTMLElement, React.HTMLAttributes<HTMLElement>>(
+    function Typography({ children, className = '', ...otherProps }, ref) {
+      const classes = classNames(className, baseClasses)
 
-    return (
-      <Tag {...otherProps} className={classes}>
-        {children}
-      </Tag>
-    )
-  }
+      return (
+        // @ts-ignore
+        <Tag {...otherProps} className={classes} ref={ref}>
+          {children}
+        </Tag>
+      )
+    }
+  )
 
   return Typography
 }

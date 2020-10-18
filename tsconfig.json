@@ -13,10 +13,10 @@
     "strictBindCallApply": true,
     "strictFunctionTypes": true,
     "target": "es5",
-    "lib": ["es6", "dom"],
+    "lib": ["esnext", "dom"],
     "jsx": "react",
     "types": ["graphql", "jest"],
     "resolveJsonModule": true
   },
-  "exclude": ["jest/**/*"]
+  "exclude": ["jest/**/*", "jest.config.js"]
 }

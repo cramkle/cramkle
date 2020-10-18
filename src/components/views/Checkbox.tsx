@@ -58,7 +58,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
         />
         <div
           className={classnames(
-            'w-5 h-5 border-2 rounded-sm z-10 pointer-events-none',
+            'w-5 h-5 border-2 rounded-sm z-1 pointer-events-none',
             'transition-colors ease-in-out duration-200',
             {
               'bg-yellow-1 border-yellow-1': checked,

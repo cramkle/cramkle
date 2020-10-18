@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import ReactDOM from 'react-dom'
 
-const Portal: React.FunctionComponent = ({ children }) => {
-  const anchor = document.getElementById('portal-anchor') || document.body
-  return ReactDOM.createPortal(children, anchor)
+interface PortalProps {
+  children: ReactNode
+  target?: HTMLElement
+}
+
+const Portal: React.VFC<PortalProps> = ({
+  children,
+  target = document.getElementById('portal-anchor') || document.body,
+}) => {
+  return ReactDOM.createPortal(children, target)
 }
 
 export default Portal

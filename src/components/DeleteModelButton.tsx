@@ -4,7 +4,11 @@ import gql from 'graphql-tag'
 import React, { useRef, useState } from 'react'
 import { useHistory } from 'react-router'
 
-import { notificationState } from '../notification/index'
+import {
+  TIMEOUT_MEDIUM,
+  pushErrorToast,
+  pushSimpleToast,
+} from '../toasts/pushToast'
 import {
   DeleteModelMutation,
   DeleteModelMutationVariables,
@@ -72,17 +76,17 @@ const DeleteModelButton: React.FunctionComponent<Props> = ({ model }) => {
       .then(() => {
         history.push('/models')
 
-        notificationState.addNotification({
-          message: t`Model deleted successfully`,
-        })
+        pushSimpleToast(t`Model deleted successfully`)
       })
       .catch(() => {
         setDeleting(false)
 
-        notificationState.addNotification({
-          message: t`An error ocurred when deleting the model`,
-          actionText: t`Dismiss`,
-        })
+        pushErrorToast(
+          {
+            message: t`An error ocurred when deleting the model`,
+          },
+          TIMEOUT_MEDIUM
+        )
       })
   }
 

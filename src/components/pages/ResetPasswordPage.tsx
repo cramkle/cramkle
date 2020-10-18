@@ -9,7 +9,11 @@ import { useHistory, useLocation, useParams } from 'react-router'
 import * as yup from 'yup'
 
 import { ReactComponent as Logo } from '../../assets/logo-white.svg'
-import { notificationState } from '../../notification'
+import {
+  TIMEOUT_MEDIUM,
+  pushErrorToast,
+  pushSimpleToast,
+} from '../../toasts/pushToast'
 import Button from '../views/Button'
 import { Card, CardContent } from '../views/Card'
 import CircularProgress from '../views/CircularProgress'
@@ -86,15 +90,16 @@ const ResetPasswordPage: React.FC = () => {
     })
 
     if (success) {
-      notificationState.addNotification({
-        message: t`Password changed successfully`,
-      })
+      pushSimpleToast(t`Password changed successfully`)
 
       history.push('/login')
     } else {
-      notificationState.addNotification({
-        message: t`Reset password token is expired`,
-      })
+      pushErrorToast(
+        {
+          message: t`Reset password token is expired`,
+        },
+        TIMEOUT_MEDIUM
+      )
     }
   }
 

@@ -6,8 +6,9 @@ import { Helmet } from 'react-helmet'
 import { useHistory, useLocation } from 'react-router'
 import { Link } from 'react-router-dom'
 
-import { notificationState } from '../../notification/index'
 import registerSW from '../../registerSW'
+import { pushSimpleToast, pushToast } from '../../toasts/pushToast'
+import ToastStore from '../../toasts/store'
 import { positionMatchMinWidth } from '../../utils/popover'
 import HeaderPortal from '../HeaderPortal'
 import CircleIcon from '../icons/CircleIcon'
@@ -26,6 +27,8 @@ import DecksSection from './DecksSection'
 import styles from './HomePage.css'
 import ModelsSection from './ModelsSection'
 import StudySection from './StudySection'
+
+const toastStore = ToastStore.getInstance()
 
 const HomeTab: React.FC<{
   Icon: React.ComponentType<React.SVGAttributes<SVGSVGElement>>
@@ -69,28 +72,28 @@ const HomePage: React.FunctionComponent = () => {
 
     registerSW({
       onUpdate: () => {
-        updateNotificationId = notificationState.addNotification({
+        updateNotificationId = pushToast({
           message: t`A new update is available!`,
-          actionText: t`Refresh`,
-          onAction: () => {
-            window.location.reload()
+          action: {
+            label: t`Refresh`,
+            onPress: () => {
+              window.location.reload()
+            },
           },
         })
       },
       onInstall: () => {
-        installNotificationId = notificationState.addNotification({
-          message: t`Ready to work offline`,
-        })
+        installNotificationId = pushSimpleToast(t`Ready to work offline`)
       },
     })
 
     return () => {
       if (updateNotificationId) {
-        notificationState.removeNotification(updateNotificationId)
+        toastStore.remove(updateNotificationId)
       }
 
       if (installNotificationId) {
-        notificationState.removeNotification(installNotificationId)
+        toastStore.remove(installNotificationId)
       }
     }
   }, [])
