@@ -38,8 +38,13 @@ msgid "A new update is available!"
 msgstr "Uma nova atualização está disponível!"
 
 #: src/components/Footer.tsx:10
+#: src/components/pages/AboutPage.tsx:9
 msgid "About"
 msgstr "Sobre"
+
+#: src/components/pages/AboutPage.tsx:10
+msgid "About our mission and values, read more"
+msgstr "Sobre nossa missão e valores, leia mais"
 
 #: src/components/pages/HomePage.tsx:114
 msgid "About us"
@@ -88,7 +93,7 @@ msgid "Align right"
 msgstr "Alinhar à direita"
 
 #: src/components/pages/LandingPage.tsx:51
-#: src/components/pages/RegisterPage.tsx:20
+#: src/components/pages/RegisterPage.tsx:21
 msgid "Already have an account? <0>Log In</0>"
 msgstr "Já possui uma conta? <0>Entrar</0>"
 
@@ -239,6 +244,10 @@ msgstr "Criar nota para o deck <0>{0}</0>"
 msgid "Create template"
 msgstr "Criar template"
 
+#: src/components/pages/RegisterPage.tsx:13
+msgid "Create your account today and start studying for free!"
+msgstr "Crie sua conta hoje e comece a estudar de graça!"
+
 #: src/components/pages/AddModelPage.tsx:183
 msgid "Creating model..."
 msgstr "Criando modelo..."
@@ -318,7 +327,7 @@ msgstr "Descrição"
 msgid "Do you want to start a study session of the deck {0}?"
 msgstr "Você quer começar uma sessão de estudos para o deck {0}?"
 
-#: src/components/pages/LoginPage.tsx:20
+#: src/components/pages/LoginPage.tsx:21
 msgid "Don't have an account? <0>Sign Up</0>"
 msgstr "Não possui uma conta? <0>Cadastre-se</0>"
 
@@ -544,6 +553,10 @@ msgstr "Sair"
 #: src/components/pages/LoginPage.tsx:12
 msgid "Login"
 msgstr "Login"
+
+#: src/components/pages/LoginPage.tsx:13
+msgid "Login to your account to study your decks"
+msgstr "Entre na sua conta para estudar seus decks"
 
 #: src/components/pages/LandingPage.tsx:38
 msgid "Make sure your knowledge will last"

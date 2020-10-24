@@ -14,6 +14,10 @@ const LoginPage: React.FunctionComponent = () => {
     <div className="flex flex-col min-h-screen w-full p-4 items-center justify-center bg-background-primary text-on-primary">
       <Helmet>
         <title>{i18n._(t`Login`)}</title>
+        <meta
+          name="description"
+          content={i18n._(t`Login to your account to study your decks`)}
+        />
       </Helmet>
 
       <Logo className="w-16 mb-8" />
