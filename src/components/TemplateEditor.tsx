@@ -9,8 +9,6 @@ import TagEditor from './editor/TagEditor'
 import { decorators as tagsDecorators } from './editor/TagsPopup'
 import type { ModelQuery_model_templates_frontSide as TemplateContent } from './pages/__generated__/ModelQuery'
 
-const decorators = new CompositeDecorator(tagsDecorators)
-
 interface Props {
   id: string
   initialContentState: TemplateContent
@@ -42,7 +40,7 @@ const TemplateEditor: React.FunctionComponent<Props> = ({
       className="mt-2 border border-divider border-opacity-divider"
       onChange={handleChange}
       initialContentState={initialContentState as RawDraftContentState}
-      decorators={decorators}
+      decorators={[tagsDecorator]}
     >
       <TagEditor tagSource={fields} />
     </BaseEditorControls>

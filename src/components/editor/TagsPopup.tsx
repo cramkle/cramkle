@@ -1,5 +1,6 @@
 import type { SelectionState } from 'draft-js'
 import * as React from 'react'
+import { memo } from 'react'
 
 import Portal from '../Portal'
 import TypeaheadView from '../views/TypeaheadView'
@@ -8,12 +9,10 @@ import type { TaggableEntry } from './TaggableEntry'
 import getSelectionRect from './getSelectionRect'
 import { findTagEntities } from './strategies'
 
-export const decorators = [
-  {
-    strategy: findTagEntities,
-    component: TagSpan,
-  },
-]
+export const decorator = {
+  strategy: findTagEntities,
+  component: TagSpan,
+}
 
 interface Props {
   tagEntries: TaggableEntry[]
@@ -92,6 +91,8 @@ const TagsPopup: React.FunctionComponent<Props> = ({
 }) => {
   const selectionRect = getSelectionRect(characterOffset)
 
+  console.log(selectionRect, characterOffset)
+
   const show =
     selection.isCollapsed() && selection.getHasFocus() && tagEntries.length
 
@@ -114,4 +115,4 @@ const TagsPopup: React.FunctionComponent<Props> = ({
   )
 }
 
-export default TagsPopup
+export default memo(TagsPopup)

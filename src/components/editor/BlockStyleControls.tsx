@@ -23,8 +23,16 @@ export const BLOCK_TYPES: Style[] = [
   { label: t`H5`, style: 'header-five' },
   { label: t`H6`, style: 'header-six' },
   { label: t`Blockquote`, style: 'blockquote', icon: <QuoteIcon /> },
-  { label: t`UL`, style: 'unordered-list-item', icon: <ListBulletedIcon /> },
-  { label: t`OL`, style: 'ordered-list-item', icon: <ListNumberedIcon /> },
+  {
+    label: t`Unordered list`,
+    style: 'unordered-list-item',
+    icon: <ListBulletedIcon />,
+  },
+  {
+    label: t`Ordered list`,
+    style: 'ordered-list-item',
+    icon: <ListNumberedIcon />,
+  },
   { label: t`Code Block`, style: 'code-block' },
 ]
 
@@ -143,6 +151,7 @@ const BlockStyleControls: React.FunctionComponent<{
     <div className="w-full mb-2 text-sm flex overflow-x-auto">
       {BLOCK_TYPES.map((type) => (
         <StyleButton
+          className="mr-2"
           key={type.style}
           active={type.style === blockType}
           label={type.label}
@@ -153,6 +162,7 @@ const BlockStyleControls: React.FunctionComponent<{
       ))}
       {ALIGNMENT_STYLES.map((alignmentStyle) => (
         <StyleButton
+          className="mr-2"
           key={alignmentStyle.style}
           style={alignmentStyle.style}
           label={alignmentStyle.label}

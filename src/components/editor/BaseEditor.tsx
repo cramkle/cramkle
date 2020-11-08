@@ -4,8 +4,9 @@ import 'draft-js/dist/Draft.css'
 import * as React from 'react'
 
 import styles from './BaseEditor.css'
-import { useBaseEditorControls } from './BaseEditorControls'
+import { useBaseEditorControls } from './BaseEditorContext'
 import { blockStyleFn } from './BlockStyleControls'
+import { inlineStyleMap } from './InlineStyleControls'
 
 type Props = Omit<
   EditorProps,
@@ -32,6 +33,7 @@ const BaseEditor: React.FC<Props> = (props) => {
         editorState={baseContext?.editorState}
         onChange={baseContext?.onChange}
         blockStyleFn={blockStyleFn}
+        customStyleMap={inlineStyleMap}
         handleKeyCommand={baseContext?.handleKeyCommand}
       />
     </div>

@@ -40,7 +40,7 @@ const DialogOverlay: React.FC<DialogProps> = (props) => {
   return (
     <ReachDialogOverlay
       {...props}
-      className={classnames(props.className, 'z-50 px-2')}
+      className={classnames(props.className, 'z-50 px-2 bg-dialog-overlay')}
     />
   )
 }

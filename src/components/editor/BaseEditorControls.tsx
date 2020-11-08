@@ -1,51 +1,31 @@
 import classnames from 'classnames'
 import type {
-  CompositeDecorator,
   ContentState,
+  DraftDecorator,
   DraftEditorCommand,
   EditorProps,
   RawDraftContentState,
 } from 'draft-js'
-import { EditorState, RichUtils, convertFromRaw } from 'draft-js'
 import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react'
+  CompositeDecorator,
+  EditorState,
+  RichUtils,
+  convertFromRaw,
+} from 'draft-js'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import * as React from 'react'
 import { TabController } from 'react-tab-controller'
 
+import { BaseEditorContextProvider } from './BaseEditorContext'
 import BlockStyleControls from './BlockStyleControls'
-import InlineStyleControls from './InlineStyleControls'
-
-type BaseEditorContext = Pick<
-  EditorProps,
-  'onChange' | 'editorState' | 'handleKeyCommand'
->
-
-const ctx = createContext<undefined | BaseEditorContext>(undefined)
-
-export const useBaseEditorControls = () => {
-  const contextValue = useContext(ctx)
-
-  if (!contextValue) {
-    throw new Error(
-      'useBaseEditorControls must be used inside <BaseEditorControls />'
-    )
-  }
-
-  return contextValue
-}
+import { linkDecorator } from './EditorLink'
+import InlineStylePopup from './InlineStylePopup'
 
 interface Props extends Pick<EditorProps, 'handleKeyCommand'> {
   initialContentState?: RawDraftContentState
   onChange?: (content: ContentState) => void
   className?: string
-  decorators?: CompositeDecorator
+  decorators?: DraftDecorator[]
 }
 
 const BaseEditorControls: React.FC<Props> = ({
@@ -53,19 +33,26 @@ const BaseEditorControls: React.FC<Props> = ({
   initialContentState,
   onChange,
   handleKeyCommand,
-  decorators,
+  decorators: decoratorsProps = [],
   children,
 }) => {
+  const decorators = useMemo(() => [...decoratorsProps, linkDecorator], [
+    decoratorsProps,
+  ])
+
   const [editor, setEditor] = useState(() => {
     if (!initialContentState || initialContentState.blocks.length === 0) {
-      return EditorState.createEmpty(decorators)
+      return EditorState.createEmpty(new CompositeDecorator(decorators))
     }
 
     const contentState = convertFromRaw(
       initialContentState as RawDraftContentState
     )
 
-    return EditorState.createWithContent(contentState, decorators)
+    return EditorState.createWithContent(
+      contentState,
+      new CompositeDecorator(decorators)
+    )
   })
 
   const contentState = editor.getCurrentContent()
@@ -79,13 +66,6 @@ const BaseEditorControls: React.FC<Props> = ({
     prevContentState.current = contentState
     onChange?.(contentState)
   }, [onChange, contentState])
-
-  const handleStyleToggle = useCallback(
-    (style: string) => {
-      setEditor(RichUtils.toggleInlineStyle(editor, style))
-    },
-    [editor]
-  )
 
   const handleBlockStyleToggle = useCallback(
     (style: string | ContentState) => {
@@ -127,15 +107,18 @@ const BaseEditorControls: React.FC<Props> = ({
     [baseHandleKeyCommand, editor]
   )
 
+  const rootRef = useRef<HTMLDivElement>(null)
+
   return (
-    <ctx.Provider value={contextValue}>
+    <BaseEditorContextProvider value={contextValue}>
       <div
         className={classnames(
           className,
-          'bg-editor text-on-surface rounded-xl p-0 overflow-hidden'
+          'relative bg-editor text-on-surface rounded-xl p-0'
         )}
+        ref={rootRef}
       >
-        <div className="flex items-center p-2 border-b border-divider border-opacity-divider">
+        <div className="flex items-center p-2 border-b border-divider border-opacity-divider overflow-hidden">
           <div className="w-full flex flex-col items-start">
             <TabController>
               <BlockStyleControls
@@ -143,17 +126,12 @@ const BaseEditorControls: React.FC<Props> = ({
                 onToggle={handleBlockStyleToggle}
               />
             </TabController>
-            <TabController>
-              <InlineStyleControls
-                editor={editor}
-                onToggle={handleStyleToggle}
-              />
-            </TabController>
           </div>
         </div>
+        <InlineStylePopup selection={editor.getSelection()} rootRef={rootRef} />
         <div>{children}</div>
       </div>
-    </ctx.Provider>
+    </BaseEditorContextProvider>
   )
 }
 

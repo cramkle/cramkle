@@ -19,3 +19,13 @@ export const positionMatchWindowWidth: Position = (targetRect, popoverRect) => {
     width: window.innerWidth,
   }
 }
+
+export const positionTop: Position = (targetRect, popoverRect) => {
+  const pos = positionDefault(targetRect, popoverRect)
+
+  return {
+    ...pos,
+    top: undefined,
+    bottom: targetRect?.top,
+  }
+}

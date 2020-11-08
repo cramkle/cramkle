@@ -5,7 +5,7 @@ import * as KeyCode from 'keycode-js'
 import { useCallback, useEffect, useReducer, useRef } from 'react'
 import * as React from 'react'
 
-import { useBaseEditorControls } from './BaseEditorControls'
+import { useBaseEditorControls } from './BaseEditorContext'
 import { blockStyleFn } from './BlockStyleControls'
 import styles from './TagEditor.css'
 import type { TaggableEntry } from './TaggableEntry'
@@ -82,6 +82,8 @@ const TagEditor: React.FunctionComponent<Props> = ({
     { highlightedTag, visibleTagEntries, characterOffset },
     dispatch,
   ] = useReducer(reducer, initialState)
+
+  console.log('state', highlightedTag, visibleTagEntries, characterOffset)
 
   const prevEditorState = useRef(editorState)
 
