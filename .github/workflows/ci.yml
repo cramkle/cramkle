@@ -61,7 +61,8 @@ jobs:
     - name: Lint
       run: |
         yarn lint
-        yarn lint:ts
+        # TODO: Temporarily disabled
+        # yarn lint:ts
         yarn lint:css
 
   test:
