@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 
 const SettingsIcon: React.FC<React.SVGAttributes<SVGSVGElement>> = (props) => {
   return (

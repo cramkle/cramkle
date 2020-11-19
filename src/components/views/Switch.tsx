@@ -1,6 +1,7 @@
 import VisuallyHidden from '@reach/visually-hidden'
 import classnames from 'classnames'
-import React, { useState } from 'react'
+import { useState } from 'react'
+import * as React from 'react'
 
 export const Switch: React.FC<
   Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type' | 'value'> & {

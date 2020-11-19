@@ -1,6 +1,6 @@
 import { t } from '@lingui/macro'
 import { EditorState } from 'draft-js'
-import React from 'react'
+import * as React from 'react'
 
 import BoldFormatIcon from '../icons/BoldFormatIcon'
 import ItalicFormatIcon from '../icons/ItalicFormatIcon'

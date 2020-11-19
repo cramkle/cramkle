@@ -1,7 +1,8 @@
 import { useMutation } from '@apollo/react-hooks'
 import { Plural, Trans } from '@lingui/macro'
 import gql from 'graphql-tag'
-import React, { useRef } from 'react'
+import { useRef } from 'react'
+import * as React from 'react'
 
 import {
   DeleteNoteMutation,

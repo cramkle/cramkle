@@ -2,9 +2,10 @@ import { useQuery } from '@apollo/react-hooks'
 import { Trans, plural } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import gql from 'graphql-tag'
-import React, { useCallback, useRef, useState } from 'react'
+import { useCallback, useRef, useState } from 'react'
+import * as React from 'react'
 import { Helmet } from 'react-helmet'
-import { useHistory, useLocation, useParams } from 'react-router'
+import { useLocation, useNavigate, useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 
 import useLatestRefEffect from '../../hooks/useLatestRefEffect'
@@ -93,7 +94,7 @@ const DeckPage: React.FunctionComponent = () => {
   const { i18n } = useLingui()
   const { slug } = useParams<{ slug: string }>()
   const location = useLocation()
-  const history = useHistory()
+  const navigate = useNavigate()
   const {
     paginationParams,
     pageSize,
@@ -134,12 +135,12 @@ const DeckPage: React.FunctionComponent = () => {
       searchParams.set('page', '1')
 
       if (!skipHistoryPush) {
-        history.push(location.pathname + '?' + searchParams.toString())
+        navigate(location.pathname + '?' + searchParams.toString())
       }
 
       setSearchVariable(search)
     },
-    [history, location.pathname, location.search, searchInputValue]
+    [navigate, location.pathname, location.search, searchInputValue]
   )
 
   useLatestRefEffect(location.search, (latestLocationSearch) => {

@@ -1,8 +1,8 @@
 import { useQuery } from '@apollo/react-hooks'
-import React, { ReactElement } from 'react'
-import { useLocation } from 'react-router'
-import { Redirect, Route, RouteProps } from 'react-router-dom'
+import * as React from 'react'
+import { Outlet } from 'react-router'
 
+import Redirect from '../Redirect'
 import { UserQuery } from '../__generated__/UserQuery'
 import USER_QUERY from '../userQuery.gql'
 
@@ -10,16 +10,16 @@ interface Input {
   challenge: (user: UserQuery['me']) => boolean
   redirectPath: string
   displayName: string
+  appendReturnUrl?: boolean
 }
 
-type SupportedRouteProps = Pick<
-  RouteProps,
-  Exclude<keyof RouteProps, 'render' | 'component'>
->
-
-const createRoute = ({ challenge, redirectPath, displayName }: Input) => {
+export const createRoute = ({
+  challenge,
+  redirectPath,
+  displayName,
+  appendReturnUrl,
+}: Input) => {
   const RouteComponent: React.FC = ({ children }) => {
-    const location = useLocation()
     const { data, loading } = useQuery<UserQuery>(USER_QUERY, {
       errorPolicy: 'ignore',
     })
@@ -29,27 +29,17 @@ const createRoute = ({ challenge, redirectPath, displayName }: Input) => {
     }
 
     if (challenge(data.me)) {
-      return children as ReactElement
+      return <>{children}</>
     }
 
-    return (
-      <Redirect
-        to={{
-          pathname: redirectPath,
-          state: { from: location },
-        }}
-      />
-    )
+    return <Redirect to={redirectPath} appendReturnUrl={appendReturnUrl} />
   }
 
-  const CustomRoute: React.FunctionComponent<SupportedRouteProps> = ({
-    children,
-    ...routeProps
-  }) => {
+  const CustomRoute: React.VFC = () => {
     return (
-      <Route {...routeProps}>
-        <RouteComponent>{children}</RouteComponent>
-      </Route>
+      <RouteComponent>
+        <Outlet />
+      </RouteComponent>
     )
   }
 
@@ -57,15 +47,3 @@ const createRoute = ({ challenge, redirectPath, displayName }: Input) => {
 
   return CustomRoute
 }
-
-export const GuestRoute = createRoute({
-  challenge: (user) => user == null,
-  redirectPath: '/home',
-  displayName: 'GuestRoute',
-})
-
-export const UserRoute = createRoute({
-  challenge: (user) => user != null,
-  redirectPath: '/login',
-  displayName: 'UserRoute',
-})

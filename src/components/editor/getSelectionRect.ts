@@ -1,4 +1,8 @@
 const getSelectionRect = (offset: number) => {
+  if (typeof window === 'undefined') {
+    return null
+  }
+
   const selection = window.getSelection()
 
   if (!selection || !selection.rangeCount) {

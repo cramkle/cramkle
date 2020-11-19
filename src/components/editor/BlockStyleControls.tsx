@@ -1,7 +1,8 @@
 import { t } from '@lingui/macro'
 import classnames from 'classnames'
 import { ContentBlock, ContentState, EditorState, Modifier } from 'draft-js'
-import React, { memo, useCallback } from 'react'
+import { memo, useCallback } from 'react'
+import * as React from 'react'
 
 import AlignCenterIcon from '../icons/AlignCenterIcon'
 import AlignLeftIcon from '../icons/AlignLeftIcon'

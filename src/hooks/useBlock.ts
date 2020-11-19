@@ -1,14 +1,5 @@
-import { useEffect } from 'react'
-import { useHistory } from 'react-router'
+import { usePrompt } from 'react-router-dom'
 
 export const useBlock = (shouldBlock: boolean, message?: string) => {
-  const history = useHistory()
-
-  useEffect(() => {
-    if (!shouldBlock) {
-      return
-    }
-
-    return history.block(message)
-  }, [history, shouldBlock, message])
+  usePrompt(message, shouldBlock)
 }

@@ -52,12 +52,17 @@ jobs:
       with:
         path: ./*
         key: ${{ github.sha }}
+    - name: NodeJS 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
     - name: Messages compilation
       run: yarn compile
     - name: Lint
       run: |
         yarn lint
-        yarn lint:ts
+        # TODO: Temporarily disabled
+        # yarn lint:ts
         yarn lint:css
 
   test:
@@ -71,6 +76,10 @@ jobs:
       with:
         path: ./*
         key: ${{ github.sha }}
+    - name: NodeJS 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
     - name: Test App
       run: |
         yarn compile
@@ -87,6 +96,10 @@ jobs:
       with:
         path: ./*
         key: ${{ github.sha }}
+    - name: NodeJS 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
     - name: Build
       run: yarn build
 

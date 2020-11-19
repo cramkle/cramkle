@@ -3,8 +3,9 @@ import { Trans } from '@lingui/macro'
 import { NetworkStatus } from 'apollo-client'
 import classNames from 'classnames'
 import gql from 'graphql-tag'
-import React, { useRef, useState } from 'react'
-import { useHistory } from 'react-router'
+import { useRef, useState } from 'react'
+import * as React from 'react'
+import { useNavigate } from 'react-router'
 
 import useTopBarLoading from '../../hooks/useTopBarLoading'
 import DeckCard, { deckCardFragment } from '../DeckCard'
@@ -32,7 +33,7 @@ const DECKS_TO_STUDY_QUERY = gql`
 `
 
 const StudySection: React.FunctionComponent = () => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const { data, loading, error, refetch, networkStatus } = useQuery<
     DecksToStudy
   >(DECKS_TO_STUDY_QUERY, {
@@ -49,7 +50,7 @@ const StudySection: React.FunctionComponent = () => {
   }
 
   const handleStudyDeck = () => {
-    history.push(`/study/${selectedDeck.slug}`)
+    navigate(`/study/${selectedDeck.slug}`)
   }
 
   if (loading && networkStatus !== NetworkStatus.refetch) {

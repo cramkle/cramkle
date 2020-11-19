@@ -1,5 +1,6 @@
 import classNames from 'classnames'
-import React, { forwardRef } from 'react'
+import { forwardRef } from 'react'
+import * as React from 'react'
 
 export interface TypographyProps<TElement extends HTMLElement>
   extends React.HTMLAttributes<TElement> {

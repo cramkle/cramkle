@@ -1,12 +1,12 @@
 import { useCallback, useMemo } from 'react'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 import { PageArgs } from '../components/Pagination'
 
 type PaginationState = PageArgs
 
 const usePaginationParams = () => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const location = useLocation<PaginationState>()
 
   const queryParams = useMemo(() => new URLSearchParams(location.search), [
@@ -40,9 +40,9 @@ const usePaginationParams = () => {
       updatedQueryParams.set('page', updatedParams.page.toString())
       updatedQueryParams.set('size', updatedParams.size.toString())
 
-      history.push(location.pathname + '?' + updatedQueryParams.toString())
+      navigate(location.pathname + '?' + updatedQueryParams.toString())
     },
-    [queryParams, paginationParams, history, location.pathname]
+    [queryParams, paginationParams, navigate, location.pathname]
   )
 
   return {

@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 
 const SearchIcon: React.FC<React.SVGAttributes<SVGSVGElement>> = (props) => {
   return (

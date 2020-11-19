@@ -1,6 +1,5 @@
 import { Trans, t } from '@lingui/macro'
-import React from 'react'
-import { useHistory } from 'react-router'
+import * as React from 'react'
 import { Link } from 'react-router-dom'
 
 import bgUrl from '../../assets/landing-bg.svg'
@@ -8,13 +7,10 @@ import { ReactComponent as Logo } from '../../assets/logo.svg'
 import AppName from '../AppName'
 import Footer from '../Footer'
 import RegisterForm from '../forms/RegisterForm'
-import Button from '../views/Button'
 import { Header, HeaderContent, HeaderSection } from '../views/Header'
 import { Headline2, Headline4 } from '../views/Typography'
 
 const LandingPage: React.FunctionComponent = () => {
-  const history = useHistory()
-
   return (
     <>
       <Header>
@@ -26,16 +22,18 @@ const LandingPage: React.FunctionComponent = () => {
             </div>
           </HeaderSection>
           <HeaderSection align="end">
-            <Button onClick={() => history.push('/register')}>
-              <Trans>Sign Up</Trans>
-            </Button>
-            <Button
-              variation="primary"
-              onClick={() => history.push('/login')}
-              className="ml-2"
+            <Link
+              to="/login"
+              className="text-primary hover:bg-secondary rounded py-1 px-2 h-10 flex items-center"
             >
               <Trans>Login</Trans>
-            </Button>
+            </Link>
+            <Link
+              className="text-on-primary bg-primary rounded py-1 px-2 h-10 flex items-center ml-2"
+              to="/register"
+            >
+              <Trans>Sign Up</Trans>
+            </Link>
           </HeaderSection>
         </HeaderContent>
       </Header>

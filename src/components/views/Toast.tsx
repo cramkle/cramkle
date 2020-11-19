@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import React, {
+import {
   ReactElement,
   ReactNode,
   useCallback,
@@ -7,6 +7,7 @@ import React, {
   useMemo,
   useState,
 } from 'react'
+import * as React from 'react'
 
 import { useFadeEffect } from '../../hooks/useFadeEffect'
 import ToastStore, { ToastState } from '../../toasts/store'

@@ -6,7 +6,7 @@ import {
 } from '@reach/tooltip'
 import { forwardRefWithAs } from '@reach/utils'
 import classnames from 'classnames'
-import React from 'react'
+import { Children, cloneElement } from 'react'
 
 import { useTheme } from '../Theme'
 
@@ -14,7 +14,7 @@ export const Tooltip = forwardRefWithAs<TooltipProps, 'div'>(function Tooltip(
   props,
   forwardedRef
 ) {
-  const child = React.Children.only(props.children) as any
+  const child = Children.only(props.children) as any
 
   // We need to pass some properties from the child into useTooltip
   // to make sure users can maintain control over the trigger's ref and events
@@ -33,7 +33,7 @@ export const Tooltip = forwardRefWithAs<TooltipProps, 'div'>(function Tooltip(
 
   return (
     <>
-      {React.cloneElement(child, trigger as any)}
+      {cloneElement(child, trigger as any)}
       <TooltipPopup
         ref={forwardedRef}
         label={props.label}

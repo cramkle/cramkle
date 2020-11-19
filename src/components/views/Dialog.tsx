@@ -5,7 +5,8 @@ import {
   DialogOverlay as ReachDialogOverlay,
 } from '@reach/dialog'
 import classnames from 'classnames'
-import React, { forwardRef } from 'react'
+import { forwardRef } from 'react'
+import * as React from 'react'
 
 type DialogTitleProps = React.HTMLAttributes<HTMLHeadingElement>
 

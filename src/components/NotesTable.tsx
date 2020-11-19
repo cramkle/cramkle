@@ -1,7 +1,8 @@
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import React, { useState } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { useState } from 'react'
+import * as React from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 
 import DeleteNoteDialog from './DeleteNoteDialog'
 import { PageArgs, Pagination } from './Pagination'
@@ -50,7 +51,7 @@ const NotesTable: React.FC<Props> = ({
     setDeletingNote,
   ] = useState<DeckQuery_deck_notes_edges_node | null>(null)
   const { i18n } = useLingui()
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const handleDeleteNoteClose = () => {
     setDeletingNote(null)
@@ -73,7 +74,7 @@ const NotesTable: React.FC<Props> = ({
       <div className="flex items-center justify-between">
         <Button
           className="flex-shrink-0"
-          onClick={() => history.push(`${location.pathname}/new-note`)}
+          onClick={() => navigate(`${location.pathname}/new-note`)}
         >
           {i18n._(t`Add Note`)}
         </Button>

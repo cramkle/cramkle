@@ -1,7 +1,6 @@
-import { fireEvent, screen, waitFor } from '@testing-library/react'
+import { act, fireEvent, screen, waitFor } from '@testing-library/react'
 import { MemoryHistory, createMemoryHistory } from 'history'
-import React from 'react'
-import { Route } from 'react-router'
+import { Route, Routes } from 'react-router'
 
 import { render } from '../../../test/utils'
 import DeckPage, { DECK_QUERY } from '../DeckPage'
@@ -91,9 +90,11 @@ describe('DeckPage', () => {
     history.push('/d/deck-1?page=1&size=1')
 
     const { getByText, queryByText } = render(
-      <Route path="/d/:slug">
-        <DeckPage />
-      </Route>,
+      <Routes>
+        <Route path="/d/:slug">
+          <DeckPage />
+        </Route>
+      </Routes>,
       {
         history,
         mocks: [
@@ -139,11 +140,11 @@ describe('DeckPage', () => {
 
     await waitFor(() => expect(getByText('note 1')).toBeInTheDocument())
 
-    history.push('/d/deck-1?page=2&size=1')
+    act(() => history.push('/d/deck-1?page=2&size=1'))
 
     await waitFor(() => expect(getByText('note 2')).toBeInTheDocument())
 
-    history.push('/d/deck-1?page=2&size=1&search=my search')
+    act(() => history.push('/d/deck-1?page=2&size=1&search=my search'))
 
     await waitFor(() => expect(queryByText('note 1')).toBeNull())
 
@@ -154,9 +155,11 @@ describe('DeckPage', () => {
     history.push('/d/deck-1?page=1&size=1&search=my search')
 
     const { getByText, queryByText } = render(
-      <Route path="/d/:slug">
-        <DeckPage />
-      </Route>,
+      <Routes>
+        <Route path="/d/:slug">
+          <DeckPage />
+        </Route>
+      </Routes>,
       {
         history,
         mocks: [
@@ -190,7 +193,7 @@ describe('DeckPage', () => {
 
     await waitFor(() => expect(queryByText('note 1')).not.toBeInTheDocument())
 
-    history.push('/d/deck-1?page=1&size=1')
+    act(() => history.push('/d/deck-1?page=1&size=1'))
 
     await waitFor(() => expect(getByText('note 1')).toBeInTheDocument())
   })
@@ -199,9 +202,11 @@ describe('DeckPage', () => {
     history.push('/d/deck-1')
 
     const { getByText, queryByText } = render(
-      <Route path="/d/:slug">
-        <DeckPage />
-      </Route>,
+      <Routes>
+        <Route path="/d/:slug">
+          <DeckPage />
+        </Route>
+      </Routes>,
       {
         history,
         mocks: [

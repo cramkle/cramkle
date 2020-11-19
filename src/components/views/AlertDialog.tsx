@@ -7,7 +7,8 @@ import {
   AlertDialogOverlay as ReachAlertDialogOverlay,
 } from '@reach/alert-dialog'
 import classnames from 'classnames'
-import React, { forwardRef } from 'react'
+import { forwardRef } from 'react'
+import * as React from 'react'
 
 const AlertDialogDescription: React.FC<React.HTMLAttributes<HTMLDivElement>> = (
   props

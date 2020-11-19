@@ -5,7 +5,6 @@ import { onError } from 'apollo-link-error'
 import { createHttpLink } from 'apollo-link-http'
 
 import { defaults, resolvers } from '../resolvers/index'
-import fetch from './fetch'
 
 export const createApolloClient = (uri: string, cookie?: string) => {
   const cache = new InMemoryCache()

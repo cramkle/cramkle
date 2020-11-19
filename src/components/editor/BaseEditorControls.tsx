@@ -9,7 +9,7 @@ import {
   RichUtils,
   convertFromRaw,
 } from 'draft-js'
-import React, {
+import {
   createContext,
   useCallback,
   useContext,
@@ -18,6 +18,7 @@ import React, {
   useRef,
   useState,
 } from 'react'
+import * as React from 'react'
 import { TabController } from 'react-tab-controller'
 
 import BlockStyleControls from './BlockStyleControls'

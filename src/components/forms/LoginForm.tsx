@@ -1,12 +1,13 @@
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { Formik } from 'formik'
-import React from 'react'
-import { Link } from 'react-router-dom'
+import * as React from 'react'
+import { Link, useSearchParams } from 'react-router-dom'
 import { object, string } from 'yup'
 
 import Button from '../views/Button'
 import { Card, CardContent } from '../views/Card'
+import CircularProgress from '../views/CircularProgress'
 import { Headline2 } from '../views/Typography'
 import { TextInputField } from './Fields'
 
@@ -20,6 +21,7 @@ const passwordRequired = t`Password is required`
 
 const LoginForm: React.FunctionComponent = () => {
   const { i18n } = useLingui()
+  const [searchParams] = useSearchParams()
 
   return (
     <Formik<LoginFormValues>
@@ -37,7 +39,11 @@ const LoginForm: React.FunctionComponent = () => {
           .required(i18n._(usernameRequired)),
         password: string().required(i18n._(passwordRequired)),
       })}
-      onSubmit={async (values, props) => {
+      onSubmit={async (values, helpers) => {
+        if (!(await helpers.validateForm(values))) {
+          return
+        }
+
         try {
           const res = await fetch('/_c/auth/login', {
             method: 'POST',
@@ -52,15 +58,17 @@ const LoginForm: React.FunctionComponent = () => {
             throw new Error(res.statusText)
           }
 
-          window.location.assign('/')
+          window.location.assign(
+            searchParams.has('returnUrl') ? searchParams.get('returnUrl') : '/'
+          )
         } catch {
-          props.setErrors({
+          helpers.setErrors({
             password: i18n._(t`Invalid username and/or password`),
           })
         }
       }}
     >
-      {({ isSubmitting, isValid, handleSubmit }) => (
+      {({ isSubmitting, handleSubmit }) => (
         <form className="w-full max-w-md" onSubmit={handleSubmit}>
           <Card>
             <CardContent>
@@ -91,11 +99,15 @@ const LoginForm: React.FunctionComponent = () => {
               <Button
                 variation="primary"
                 className="w-full mt-3"
-                disabled={!isValid || isSubmitting}
+                disabled={isSubmitting}
                 type="submit"
                 data-testid="submit-btn"
               >
-                <Trans id="login.button">Login</Trans>
+                {isSubmitting ? (
+                  <CircularProgress />
+                ) : (
+                  <Trans id="login.button">Login</Trans>
+                )}
               </Button>
             </CardContent>
           </Card>

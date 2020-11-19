@@ -1,8 +1,9 @@
 import { useMutation } from '@apollo/react-hooks'
 import { Plural, Trans, t } from '@lingui/macro'
 import gql from 'graphql-tag'
-import React, { useRef, useState } from 'react'
-import { useHistory } from 'react-router'
+import { useRef, useState } from 'react'
+import * as React from 'react'
+import { useNavigate } from 'react-router'
 
 import {
   TIMEOUT_MEDIUM,
@@ -38,7 +39,7 @@ const DELETE_MODEL_MUTATION = gql`
 `
 
 const DeleteModelButton: React.FunctionComponent<Props> = ({ model }) => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const [mutate] = useMutation<
     DeleteModelMutation,
     DeleteModelMutationVariables
@@ -74,7 +75,7 @@ const DeleteModelButton: React.FunctionComponent<Props> = ({ model }) => {
       },
     })
       .then(() => {
-        history.push('/models')
+        navigate('/models')
 
         pushSimpleToast(t`Model deleted successfully`)
       })

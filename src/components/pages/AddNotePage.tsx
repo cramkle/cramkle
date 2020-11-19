@@ -3,8 +3,9 @@ import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { ContentState, convertToRaw } from 'draft-js'
 import gql from 'graphql-tag'
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
-import { useHistory, useLocation, useParams } from 'react-router'
+import { useCallback, useEffect, useMemo, useState } from 'react'
+import * as React from 'react'
+import { useLocation, useNavigate, useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 
 import { FieldInput, FieldValueInput } from '../../globalTypes'
@@ -63,7 +64,7 @@ const DEFAULT_OPTION = 'default'
 
 const AddNotePage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>()
-  const history = useHistory()
+  const navigate = useNavigate()
   const location = useLocation()
   const { data, loading } = useQuery<NoteFormQuery, NoteFormQueryVariables>(
     MODELS_QUERY,
@@ -130,7 +131,7 @@ const AddNotePage: React.FC = () => {
         action: {
           label: t`View`,
           onPress: () => {
-            history.push(`/d/${slug}/note/${id}`)
+            navigate(`/d/${slug}/note/${id}`)
           },
         },
       },
@@ -139,7 +140,7 @@ const AddNotePage: React.FC = () => {
 
     setFieldValueMap({})
     setFormKey((prevKey) => prevKey + 1)
-  }, [createNote, deck, selectedModelId, fieldValueMap, history, slug])
+  }, [createNote, deck, selectedModelId, fieldValueMap, navigate, slug])
 
   const handleFieldValueChange = useCallback(
     (content: ContentState, field: FieldInput) => {
@@ -258,7 +259,9 @@ const AddNotePage: React.FC = () => {
           <Button
             className="mt-6"
             onClick={() =>
-              history.push('/models/create', { referrer: location.pathname })
+              navigate('/models/create', {
+                state: { referrer: location.pathname },
+              })
             }
           >
             <Trans>Create a model</Trans>

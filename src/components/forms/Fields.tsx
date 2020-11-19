@@ -1,5 +1,5 @@
 import { useField } from 'formik'
-import React, { useCallback } from 'react'
+import { forwardRef, memo, useCallback } from 'react'
 
 import { Checkbox, CheckboxProps } from '../views/Checkbox'
 import { HelperText, Input, Label, LabelProps, Textarea } from '../views/Input'
@@ -12,7 +12,7 @@ interface TextInputProps extends LabelProps {
   textarea?: boolean
 }
 
-export const TextInputField = React.memo(function TextInputField({
+export const TextInputField = memo(function TextInputField({
   type = 'text',
   id,
   label,
@@ -36,7 +36,7 @@ export const TextInputField = React.memo(function TextInputField({
   )
 })
 
-export const CheckboxField = React.forwardRef<HTMLInputElement, CheckboxProps>(
+export const CheckboxField = forwardRef<HTMLInputElement, CheckboxProps>(
   function CheckboxField(props, ref) {
     const [field] = useField({
       name: props.name,

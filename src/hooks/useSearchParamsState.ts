@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from 'react'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const useSearchParamsState = (key: string, defaultValue: string = null) => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const location = useLocation()
 
   const [value, setValue] = useState(() => {
@@ -34,9 +34,9 @@ const useSearchParamsState = (key: string, defaultValue: string = null) => {
 
       searchParams.set(key, newValue)
 
-      history.push(location.pathname + '?' + searchParams.toString())
+      navigate(location.pathname + '?' + searchParams.toString())
     },
-    [history, key, location.pathname, location.search]
+    [navigate, key, location.pathname, location.search]
   )
 
   return [value, updateValue] as const

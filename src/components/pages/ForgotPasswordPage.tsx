@@ -3,9 +3,10 @@ import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import classnames from 'classnames'
 import gql from 'graphql-tag'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
+import * as React from 'react'
 import { Helmet } from 'react-helmet'
-import { useHistory, useLocation } from 'react-router'
+import { useLocation, useNavigate } from 'react-router'
 import * as yup from 'yup'
 
 import { ReactComponent as Logo } from '../../assets/logo-white.svg'
@@ -34,7 +35,7 @@ const REQUEST_PASSWORD_RESET_MUTATION = gql`
 
 const ForgotPasswordPage: React.FC = () => {
   const { i18n } = useLingui()
-  const history = useHistory()
+  const navigate = useNavigate()
   const { state, pathname } = useLocation<{ showSuccess?: boolean }>()
   const [email, setEmail] = useState('')
   const [emailValid, setEmailValid] = useState(false)
@@ -94,12 +95,12 @@ const ForgotPasswordPage: React.FC = () => {
 
   useEffect(() => {
     if (!loading && data?.requestPasswordReset.success) {
-      history.push(pathname, { showSuccess: true })
+      navigate(pathname, { state: { showSuccess: true } })
     }
-  }, [data, history, loading, pathname])
+  }, [data, navigate, loading, pathname])
 
   const handleGoToLogin = () => {
-    history.push('/login')
+    navigate('/login')
   }
 
   let content = null

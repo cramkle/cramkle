@@ -3,13 +3,7 @@ import { useLingui } from '@lingui/react'
 import { ApolloError } from 'apollo-client'
 import classnames from 'classnames'
 import { ContentState } from 'draft-js'
-import React, {
-  ReactNode,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
+import { ReactNode, useCallback, useEffect, useRef, useState } from 'react'
 
 import { useBlock } from '../../hooks/useBlock'
 import { useFadeEffect } from '../../hooks/useFadeEffect'

@@ -1,5 +1,3 @@
-import React from 'react'
-
 import WarningIcon from '../components/icons/WarningIcon'
 import { Toast, ToastProps } from '../components/views/Toast'
 import ToastStore from './store'

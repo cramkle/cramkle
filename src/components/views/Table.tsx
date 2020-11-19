@@ -1,5 +1,6 @@
 import classnames from 'classnames'
-import React, { useContext, useMemo } from 'react'
+import { useContext, useMemo } from 'react'
+import * as React from 'react'
 
 type TableProps = React.TableHTMLAttributes<HTMLTableElement>
 

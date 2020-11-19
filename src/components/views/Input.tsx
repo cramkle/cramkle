@@ -1,5 +1,6 @@
 import classnames from 'classnames'
-import React, { ReactNode, forwardRef, useContext } from 'react'
+import { ReactNode, forwardRef, useContext } from 'react'
+import * as React from 'react'
 
 import styles from './Input.css'
 

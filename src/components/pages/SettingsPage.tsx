@@ -1,5 +1,5 @@
 import { Trans } from '@lingui/macro'
-import React from 'react'
+import * as React from 'react'
 
 import GeneralSettings from '../GeneralSettings'
 import Container from '../views/Container'

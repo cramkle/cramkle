@@ -3,8 +3,8 @@ import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { Formik } from 'formik'
 import gql from 'graphql-tag'
-import React from 'react'
-import { useHistory } from 'react-router'
+import * as React from 'react'
+import { useNavigate } from 'react-router'
 import * as yup from 'yup'
 
 import {
@@ -45,7 +45,7 @@ export const CREATE_DECK_MUTATION = gql`
 const titleRequired = t`The title is required`
 
 const AddDeckForm: React.FunctionComponent<Props> = ({ open, onClose }) => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const [mutate] = useMutation<CreateDeckMutation, CreateDeckMutationVariables>(
     CREATE_DECK_MUTATION
   )
@@ -96,7 +96,7 @@ const AddDeckForm: React.FunctionComponent<Props> = ({ open, onClose }) => {
               action: {
                 label: t`View`,
                 onPress: () => {
-                  history.push(`/d/${slug}`)
+                  navigate(`/d/${slug}`)
                 },
               },
             },

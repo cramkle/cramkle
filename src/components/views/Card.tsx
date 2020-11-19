@@ -1,5 +1,6 @@
 import classnames from 'classnames'
-import React, { useRef, useState } from 'react'
+import { useRef, useState } from 'react'
+import * as React from 'react'
 
 export interface CardPressableProps extends React.HTMLProps<HTMLDivElement> {
   'aria-describedby': string

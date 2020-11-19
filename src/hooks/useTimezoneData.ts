@@ -15,9 +15,7 @@ const loadTimezoneData = (() => {
     }
 
     if (promise == null) {
-      promise = import(
-        /* webpackChunkName: "timezone-data" */ '../data/tzinfo.json'
-      ).then(({ default: data }) => {
+      promise = import('../data/tzinfo.json').then(({ default: data }) => {
         timezones = data
         promise = null
 
