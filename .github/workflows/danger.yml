@@ -1,4 +1,4 @@
-name: Node CI
+name: Danger
 on: [pull_request]
 
 jobs:
