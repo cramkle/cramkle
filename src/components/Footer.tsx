@@ -1,6 +1,6 @@
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import React from 'react'
+import * as React from 'react'
 import { Link } from 'react-router-dom'
 
 import { ReactComponent as GithubLogo } from '../assets/github-logo.svg'

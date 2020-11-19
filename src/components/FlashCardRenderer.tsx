@@ -9,7 +9,8 @@ import {
   convertFromRaw,
 } from 'draft-js'
 import 'draft-js/dist/Draft.css'
-import React, { useContext, useMemo } from 'react'
+import { useContext, useMemo } from 'react'
+import * as React from 'react'
 
 import styles from './FlashCardRenderer.css'
 import { blockStyleFn } from './editor/BlockStyleControls'

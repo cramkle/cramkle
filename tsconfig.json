@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
     "esModuleInterop": true,
     "allowJs": true,
     "sourceMap": true,
+    "module": "esnext",
     "noImplicitAny": true,
     "noImplicitThis": true,
     "moduleResolution": "node",
@@ -14,8 +14,7 @@
     "strictFunctionTypes": true,
     "target": "es5",
     "lib": ["esnext", "dom"],
-    "jsx": "react",
-    "types": ["graphql", "jest"],
+    "jsx": "react-jsx",
     "resolveJsonModule": true
   },
   "exclude": ["jest/**/*", "jest.config.js"]

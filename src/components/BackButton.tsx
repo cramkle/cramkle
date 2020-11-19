@@ -1,23 +1,21 @@
 import { Trans } from '@lingui/macro'
-import React, { useCallback } from 'react'
-import { useHistory } from 'react-router'
+import { useCallback } from 'react'
+import * as React from 'react'
+import { useNavigate } from 'react-router'
 
 import BackArrowIcon from './icons/BackArrowIcon'
 import Button from './views/Button'
 
 interface Props {
-  to?: string
+  to: string
 }
 
 const BackButton: React.FC<Props> = ({ to }) => {
-  const history = useHistory()
+  const navigate = useNavigate()
+
   const handleClick = useCallback(() => {
-    if (to) {
-      history.push(to)
-    } else {
-      history.goBack()
-    }
-  }, [to, history])
+    navigate(to)
+  }, [to, navigate])
 
   return (
     <Button className="mb-4 sm:mt-2" onClick={handleClick}>

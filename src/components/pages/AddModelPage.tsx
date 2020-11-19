@@ -3,8 +3,8 @@ import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { FieldArray, Formik } from 'formik'
 import gql from 'graphql-tag'
-import React from 'react'
-import { useHistory, useLocation } from 'react-router'
+import * as React from 'react'
+import { useLocation, useNavigate } from 'react-router'
 import * as yup from 'yup'
 
 import { TIMEOUT_MEDIUM, pushToast } from '../../toasts/pushToast'
@@ -54,7 +54,7 @@ const CREATE_MODEL_MUTATION = gql`
 `
 
 const AddModelPage: React.FunctionComponent = () => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const location = useLocation<{ referrer?: string }>()
   const { i18n } = useLingui()
 
@@ -124,14 +124,14 @@ const AddModelPage: React.FunctionComponent = () => {
                 action: {
                   label: t`View`,
                   onPress: () => {
-                    history.push(`/m/${query.data.createModel.model.id}`)
+                    navigate(`/m/${query.data.createModel.model.id}`)
                   },
                 },
               },
               TIMEOUT_MEDIUM
             )
 
-            history.push(location.state?.referrer ?? '/models')
+            navigate(location.state?.referrer ?? '/models')
           })
         }}
       >

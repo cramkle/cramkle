@@ -1,5 +1,5 @@
 import { SelectionState } from 'draft-js'
-import React from 'react'
+import * as React from 'react'
 
 import Portal from '../Portal'
 import TypeaheadView from '../views/TypeaheadView'

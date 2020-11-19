@@ -1,7 +1,8 @@
 import { MessageDescriptor } from '@lingui/core'
 import { useLingui } from '@lingui/react'
 import classNames from 'classnames'
-import React, { memo, useRef } from 'react'
+import { memo, useRef } from 'react'
+import * as React from 'react'
 import { useControlledTabIndex } from 'react-tab-controller'
 
 export interface Style {

@@ -6,7 +6,8 @@ import { scaleLinear, scaleTime } from 'd3-scale'
 import { line } from 'd3-shape'
 import { differenceInDays, endOfToday, startOfDay, subDays } from 'date-fns'
 import gql from 'graphql-tag'
-import React, { ReactNode, useEffect, useMemo, useRef, useState } from 'react'
+import { ReactNode, useEffect, useMemo, useRef, useState } from 'react'
+import * as React from 'react'
 import ResizeObserver from 'resize-observer-polyfill'
 
 import useSearchParamsState from '../../hooks/useSearchParamsState'
@@ -168,12 +169,13 @@ const StatisticsPage: React.FC = () => {
 
   const { height, margin } = getChartDimensions(width)
 
+  const chartContainerNode = chartContainerRef.current
+
   useEffect(() => {
-    if (!chartContainerRef.current) {
+    if (!chartContainerNode) {
       return
     }
 
-    const chartContainerNode = chartContainerRef.current
     const chartContainerRect = chartContainerNode.getBoundingClientRect()
 
     setWidth(chartContainerRect.width)
@@ -185,7 +187,7 @@ const StatisticsPage: React.FC = () => {
     observer.observe(chartContainerNode)
 
     return () => observer.unobserve(chartContainerNode)
-  }, [chartContainerRef.current])
+  }, [chartContainerNode])
 
   const studyFrequency = useMemo(
     () =>

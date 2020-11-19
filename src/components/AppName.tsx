@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import React from 'react'
+import * as React from 'react'
 
 const AppName: React.FC<React.HTMLAttributes<HTMLSpanElement>> = (props) => {
   return (

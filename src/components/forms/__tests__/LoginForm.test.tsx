@@ -1,5 +1,4 @@
 import { fireEvent, waitFor } from '@testing-library/react'
-import React from 'react'
 
 import { render } from '../../../test/utils'
 import LoginForm from '../LoginForm'
@@ -18,12 +17,8 @@ describe('<LoginForm />', () => {
 
     const submitButton = getByTestId('submit-btn')
 
-    await waitFor(() => expect(submitButton).toBeDisabled())
-
     fireEvent.change(usernameInput, { target: { value: 'lucas' } })
     fireEvent.change(passwordInput, { target: { value: 'password' } })
-
-    await waitFor(() => expect(submitButton).toBeEnabled())
 
     fireEvent.click(submitButton)
 

@@ -2,8 +2,9 @@ import { useQuery } from '@apollo/react-hooks'
 import { Trans } from '@lingui/macro'
 import classnames from 'classnames'
 import gql from 'graphql-tag'
-import React, { Suspense, useCallback } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { useCallback } from 'react'
+import * as React from 'react'
+import { Link, Outlet, useNavigate } from 'react-router-dom'
 
 import { ReactComponent as LogoGray } from '../assets/logo-gray.svg'
 import { ReactComponent as Logo } from '../assets/logo.svg'
@@ -34,12 +35,12 @@ const TOP_BAR_LOADING_QUERY = gql`
 `
 
 const DefaultMenuItems: React.FC = () => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const { theme, setTheme } = useTheme()
 
   const handleSettingsClick = useCallback(() => {
-    history.push('/settings')
-  }, [history])
+    navigate('/settings')
+  }, [navigate])
 
   const handleLogout = useCallback(() => {
     fetch('/_c/auth/logout', {
@@ -85,9 +86,9 @@ const MobileMenu: React.FC<{ username: string; email: string }> = ({
   username,
   email,
 }) => {
-  const history = useHistory()
+  const navigate = useNavigate()
 
-  const handleStatisticsClick = () => history.push('/statistics')
+  const handleStatisticsClick = () => navigate('/statistics')
 
   return (
     <Menu>
@@ -146,7 +147,7 @@ const DefaultMenu: React.FC<{ username?: string; email?: string }> = ({
   )
 }
 
-const Shell: React.FunctionComponent = ({ children }) => {
+const Shell: React.FC = () => {
   const { data } = useQuery<TopBarLoadingQuery>(TOP_BAR_LOADING_QUERY)
 
   const loading = data?.topBar?.loading ?? false
@@ -156,14 +157,6 @@ const Shell: React.FunctionComponent = ({ children }) => {
   const { data: userData } = useQuery<UserQuery>(USER_QUERY)
 
   const me = userData?.me
-
-  if (React.Children.count(children) === 0) {
-    return null
-  }
-
-  const fallbackLoader = (
-    <LoadingBar className="absolute left-0 right-0 top-0 z-1" />
-  )
 
   return (
     <div className="w-full h-full flex flex-col relative">
@@ -193,12 +186,8 @@ const Shell: React.FunctionComponent = ({ children }) => {
         />
       </Header>
       <main className="flex-1 overflow-auto w-full relative bg-background">
-        <NoSSR fallback={fallbackLoader}>
-          <Suspense fallback={fallbackLoader}>
-            {children}
-            <div id="portal-anchor" />
-          </Suspense>
-        </NoSSR>
+        <Outlet />
+        <div id="portal-anchor" />
       </main>
     </div>
   )

@@ -1,9 +1,10 @@
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import classNames from 'classnames'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import * as React from 'react'
 import { Helmet } from 'react-helmet'
-import { useHistory, useLocation } from 'react-router'
+import { useLocation, useNavigate } from 'react-router'
 import { Link } from 'react-router-dom'
 
 import registerSW from '../../registerSW'
@@ -11,6 +12,7 @@ import { pushSimpleToast, pushToast } from '../../toasts/pushToast'
 import ToastStore from '../../toasts/store'
 import { positionMatchMinWidth } from '../../utils/popover'
 import HeaderPortal from '../HeaderPortal'
+import NoSSR from '../NoSSR'
 import CircleIcon from '../icons/CircleIcon'
 import DecksIcon from '../icons/DecksIcon'
 import MarketplaceIcon from '../icons/MarketplaceIcon'
@@ -48,7 +50,7 @@ const HomeTab: React.FC<{
 }
 
 const HomePage: React.FunctionComponent = () => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const location = useLocation<{ currentTab?: number }>()
   const { i18n } = useLingui()
 
@@ -67,6 +69,10 @@ const HomePage: React.FunctionComponent = () => {
   }, [location.state])
 
   useEffect(() => {
+    if (process.env.NODE_ENV !== 'production') {
+      return
+    }
+
     let updateNotificationId: string | null = null
     let installNotificationId: string | null = null
 
@@ -100,14 +106,14 @@ const HomePage: React.FunctionComponent = () => {
 
   const handleTabChange = useCallback(
     (index: number) => {
-      history.push('/home', { currentTab: index })
+      navigate('/home', { state: { currentTab: index } })
     },
-    [history]
+    [navigate]
   )
 
   const handleStatisticsClick = useCallback(() => {
-    history.push('/statistics')
-  }, [history])
+    navigate('/statistics')
+  }, [navigate])
 
   return (
     <>
@@ -115,90 +121,95 @@ const HomePage: React.FunctionComponent = () => {
         <title>{i18n._(t`Home`)}</title>
       </Helmet>
 
-      <div
-        className={classNames(
-          styles.grid,
-          'h-full grid gap-4 md:gap-6 xl:gap-8'
-        )}
-      >
-        <nav
+      <NoSSR>
+        <div
           className={classNames(
-            styles.sidenav,
-            'hidden md:block w-100 px-8 py-6 border-r border-divider'
+            styles.grid,
+            'h-full grid gap-4 md:gap-6 xl:gap-8'
           )}
         >
-          <Body1 className="font-medium text-primary">
-            <Trans>Sidebar</Trans>
-          </Body1>
+          <nav
+            className={classNames(
+              styles.sidenav,
+              'hidden md:block w-100 px-8 py-6 border-r border-divider'
+            )}
+          >
+            <Body1 className="font-medium text-primary">
+              <Trans>Sidebar</Trans>
+            </Body1>
 
-          <List className="py-4 -mx-3">
-            <ListItem onClick={handleStatisticsClick} icon={<StatisticsIcon />}>
-              <Trans>Statistics</Trans>
-            </ListItem>
-            <ListItem onClick={() => {}} icon={<MarketplaceIcon />} disabled>
-              <div className="flex items-center">
-                <Trans>Marketplace</Trans>
+            <List className="py-4 -mx-3">
+              <ListItem
+                onClick={handleStatisticsClick}
+                icon={<StatisticsIcon />}
+              >
+                <Trans>Statistics</Trans>
+              </ListItem>
+              <ListItem onClick={() => {}} icon={<MarketplaceIcon />} disabled>
+                <div className="flex items-center">
+                  <Trans>Marketplace</Trans>
 
-                <Chip size="small" color="primary" className="ml-auto">
-                  <Trans>soon</Trans>
-                </Chip>
-              </div>
-            </ListItem>
-          </List>
+                  <Chip size="small" color="primary" className="ml-auto">
+                    <Trans>soon</Trans>
+                  </Chip>
+                </div>
+              </ListItem>
+            </List>
 
-          <footer className="mt-4 flex justify-between items-center text-secondary text-xs">
-            <Link to="/about">
-              <Trans>About us</Trans>
-            </Link>
+            <footer className="mt-4 flex justify-between items-center text-secondary text-xs">
+              <Link to="/about">
+                <Trans>About us</Trans>
+              </Link>
 
-            <CircleIcon />
+              <CircleIcon />
 
-            <a
-              href="https://www.patreon.com/lucasecdb"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Patreon
-            </a>
+              <a
+                href="https://www.patreon.com/lucasecdb"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Patreon
+              </a>
 
-            <CircleIcon />
+              <CircleIcon />
 
-            <a
-              href="https://github.com/cramkle/cramkle"
-              target="_blank"
-              rel="noreferrer"
-            >
-              GitHub
-            </a>
-          </footer>
-        </nav>
+              <a
+                href="https://github.com/cramkle/cramkle"
+                target="_blank"
+                rel="noreferrer"
+              >
+                GitHub
+              </a>
+            </footer>
+          </nav>
 
-        <Container
-          lean
-          className={classNames(styles.content, 'mx-0 col-span-2')}
-        >
-          <Tabs index={index} onChange={handleTabChange}>
-            <HeaderPortal>
-              <TabList className="overflow-y-auto w-full md:w-auto h-full justify-around md:justify-center">
-                <HomeTab Icon={StudyIcon} label={i18n._(t`Study`)} />
-                <HomeTab Icon={DecksIcon} label={i18n._(t`Decks`)} />
-                <HomeTab Icon={ModelsIcon} label={i18n._(t`Models`)} />
-              </TabList>
-            </HeaderPortal>
-            <TabPanels>
-              <TabPanel>
-                <StudySection />
-              </TabPanel>
-              <TabPanel>
-                <DecksSection />
-              </TabPanel>
-              <TabPanel>
-                <ModelsSection />
-              </TabPanel>
-            </TabPanels>
-          </Tabs>
-        </Container>
-      </div>
+          <Container
+            lean
+            className={classNames(styles.content, 'mx-0 col-span-2')}
+          >
+            <Tabs index={index} onChange={handleTabChange}>
+              <HeaderPortal>
+                <TabList className="overflow-y-auto w-full md:w-auto h-full justify-around md:justify-center">
+                  <HomeTab Icon={StudyIcon} label={i18n._(t`Study`)} />
+                  <HomeTab Icon={DecksIcon} label={i18n._(t`Decks`)} />
+                  <HomeTab Icon={ModelsIcon} label={i18n._(t`Models`)} />
+                </TabList>
+              </HeaderPortal>
+              <TabPanels>
+                <TabPanel>
+                  <StudySection />
+                </TabPanel>
+                <TabPanel>
+                  <DecksSection />
+                </TabPanel>
+                <TabPanel>
+                  <ModelsSection />
+                </TabPanel>
+              </TabPanels>
+            </Tabs>
+          </Container>
+        </div>
+      </NoSSR>
     </>
   )
 }

@@ -3,9 +3,10 @@ import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import classnames from 'classnames'
 import gql from 'graphql-tag'
-import React, { useState } from 'react'
+import { useState } from 'react'
+import * as React from 'react'
 import { Helmet } from 'react-helmet'
-import { useHistory, useLocation, useParams } from 'react-router'
+import { useLocation, useNavigate, useParams } from 'react-router'
 import * as yup from 'yup'
 
 import { ReactComponent as Logo } from '../../assets/logo-white.svg'
@@ -48,7 +49,7 @@ const ResetPasswordPage: React.FC = () => {
   const { i18n } = useLingui()
   const { userId } = useParams<{ userId: string }>()
   const { search } = useLocation()
-  const history = useHistory()
+  const navigate = useNavigate()
   const [mutateResetPassword, { loading }] = useMutation<
     ResetPassword,
     ResetPasswordVariables
@@ -92,7 +93,7 @@ const ResetPasswordPage: React.FC = () => {
     if (success) {
       pushSimpleToast(t`Password changed successfully`)
 
-      history.push('/login')
+      navigate('/login')
     } else {
       pushErrorToast(
         {

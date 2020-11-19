@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import React from 'react'
+import * as React from 'react'
 
 export interface ChipProps extends React.HTMLAttributes<HTMLDivElement> {
   color?: 'primary' | 'green' | 'red' | 'violet'

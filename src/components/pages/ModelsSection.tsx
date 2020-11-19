@@ -1,8 +1,8 @@
 import { useQuery } from '@apollo/react-hooks'
 import { Plural, Trans } from '@lingui/macro'
 import gql from 'graphql-tag'
-import React from 'react'
-import { useHistory } from 'react-router'
+import * as React from 'react'
+import { useNavigate } from 'react-router'
 
 import useTopBarLoading from '../../hooks/useTopBarLoading'
 import ModelCard from '../ModelCard'
@@ -28,10 +28,10 @@ export const MODELS_QUERY = gql`
 `
 
 const ModelsSection: React.FunctionComponent = () => {
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const handleAddClick = () => {
-    history.push('/models/create')
+    navigate('/models/create')
   }
 
   const { data: { models = [] } = {}, loading } = useQuery<ModelsQuery>(

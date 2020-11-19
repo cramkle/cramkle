@@ -11,7 +11,8 @@ import {
 } from '@reach/menu-button'
 import { ForwardRefExoticComponentWithAs } from '@reach/utils'
 import classnames from 'classnames'
-import React, { ReactNode, forwardRef } from 'react'
+import { ReactNode, forwardRef } from 'react'
+import * as React from 'react'
 import { Link, LinkProps } from 'react-router-dom'
 
 import styles from './MenuButton.css'

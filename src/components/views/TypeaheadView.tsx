@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 
 import { TaggableEntry } from '../editor/TaggableEntry'
 import TypeaheadViewItem from './TypeaheadViewItem'

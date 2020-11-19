@@ -1,4 +1,5 @@
-import React, { ReactNode } from 'react'
+import { ReactNode } from 'react'
+import * as React from 'react'
 
 function number<T>(scale: TickScale<T>) {
   return (d: T) => +scale(d)

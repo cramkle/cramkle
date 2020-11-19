@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 
 import NoSSR from './NoSSR'
 import Portal from './Portal'

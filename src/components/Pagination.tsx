@@ -1,7 +1,7 @@
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import classnames from 'classnames'
-import React from 'react'
+import * as React from 'react'
 
 import CaretLeftIcon from './icons/CaretLeftIcon'
 import CaretRightIcon from './icons/CaretRightIcon'

@@ -4,10 +4,12 @@ import { useLingui } from '@lingui/react'
 import { positionRight } from '@reach/popover'
 import classNames from 'classnames'
 import gql from 'graphql-tag'
-import React, { useState } from 'react'
+import { useState } from 'react'
+import * as React from 'react'
 import { FixedSizeList as WindowList } from 'react-window'
 import Cookies from 'universal-cookie'
 
+import useOffline from '../hooks/useOffline'
 import { TimezoneEntry, useTimezoneData } from '../hooks/useTimezoneData'
 import styles from './GeneralSettings.css'
 import {
@@ -108,6 +110,7 @@ const GeneralSettings: React.FC = () => {
 
     const cookies = new Cookies()
     cookies.set('language', language)
+    window.location.reload()
   }
 
   const handleSave = () => {
@@ -147,6 +150,7 @@ const GeneralSettings: React.FC = () => {
             className={classNames(styles.settingInput, 'ml-2')}
             value={currentLanguage}
             onChange={handleChangeLanguage}
+            disabled={useOffline()}
           >
             <ListboxButton />
             <ListboxPopover position={positionRight}>

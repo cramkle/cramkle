@@ -4,7 +4,7 @@ import {
   CustomCheckboxInput,
 } from '@reach/checkbox'
 import classnames from 'classnames'
-import React, { ReactNode, forwardRef } from 'react'
+import { ReactNode, forwardRef } from 'react'
 
 import styles from './Checkbox.css'
 import { Label } from './Input'

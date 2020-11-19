@@ -4,8 +4,6 @@
     "macros"
   ],
   "presets": [
-    ["@babel/preset-env", {"targets": {"node": "current"}}],
-    "react-app",
-    "@babel/preset-typescript"
+    ["react-app", { "runtime": "automatic", "typescript": true }]
   ]
 }

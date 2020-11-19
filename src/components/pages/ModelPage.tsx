@@ -4,7 +4,8 @@ import { useLingui } from '@lingui/react'
 import { ContentState, convertToRaw } from 'draft-js'
 import { DocumentNode } from 'graphql'
 import gql from 'graphql-tag'
-import React, { ReactNode, useCallback, useState } from 'react'
+import { ReactNode, useCallback, useState } from 'react'
+import * as React from 'react'
 import { Helmet } from 'react-helmet'
 import { useParams } from 'react-router'
 import { Link } from 'react-router-dom'
@@ -198,7 +199,7 @@ const ModelPage: React.FC = () => {
     <>
       <Helmet title={model.name} />
       <Container>
-        <BackButton />
+        <BackButton to="/models" />
         <div className="flex flex-col mb-8">
           <div className="flex justify-between items-baseline">
             <Headline1 className="text-primary">

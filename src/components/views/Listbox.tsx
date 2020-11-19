@@ -12,7 +12,8 @@ import {
   ListboxPopoverProps as PopoverProps,
 } from '@reach/listbox'
 import classnames from 'classnames'
-import React, { forwardRef } from 'react'
+import { forwardRef } from 'react'
+import * as React from 'react'
 
 import ArrowDownIcon from '../icons/ArrowDownIcon'
 import DoneIcon from '../icons/DoneIcon'

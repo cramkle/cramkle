@@ -1,6 +1,6 @@
 import { Editor, EditorProps } from 'draft-js'
 import 'draft-js/dist/Draft.css'
-import React from 'react'
+import * as React from 'react'
 
 import styles from './BaseEditor.css'
 import { useBaseEditorControls } from './BaseEditorControls'

@@ -10,7 +10,8 @@ import {
 } from '@reach/tabs'
 import { ForwardRefExoticComponentWithAs, forwardRefWithAs } from '@reach/utils'
 import classNames from 'classnames'
-import React, { HTMLAttributes, forwardRef, useState } from 'react'
+import { HTMLAttributes, forwardRef, useState } from 'react'
+import * as React from 'react'
 
 import styles from './Tabs.css'
 

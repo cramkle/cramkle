@@ -7,7 +7,8 @@ import {
   getDefaultKeyBinding,
 } from 'draft-js'
 import * as KeyCode from 'keycode-js'
-import React, { useCallback, useEffect, useReducer, useRef } from 'react'
+import { useCallback, useEffect, useReducer, useRef } from 'react'
+import * as React from 'react'
 
 import { useBaseEditorControls } from './BaseEditorControls'
 import { blockStyleFn } from './BlockStyleControls'

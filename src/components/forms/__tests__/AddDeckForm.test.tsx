@@ -1,6 +1,5 @@
 import { MockedResponse } from '@apollo/react-testing'
 import { fireEvent, waitFor } from '@testing-library/react'
-import React from 'react'
 
 import { render } from '../../../test/utils'
 import AddDeckForm, { CREATE_DECK_MUTATION } from '../AddDeckForm'

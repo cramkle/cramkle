@@ -8,24 +8,29 @@ const registerSW = ({ onUpdate, onInstall }: Options = {}) => {
     return
   }
 
-  navigator.serviceWorker.register('/service-worker.js').then((reg) => {
-    if (!reg) {
-      return
-    }
+  navigator.serviceWorker
+    .register('/service-worker.js')
+    .then((reg) => {
+      if (!reg) {
+        return
+      }
 
-    reg.onupdatefound = () => {
-      const installingWorker = reg.installing
-      installingWorker.onstatechange = () => {
-        if (installingWorker.state === 'installed') {
-          if (navigator.serviceWorker.controller) {
-            onUpdate?.()
-          } else {
-            onInstall?.()
+      reg.onupdatefound = () => {
+        const installingWorker = reg.installing
+        installingWorker.onstatechange = () => {
+          if (installingWorker.state === 'installed') {
+            if (navigator.serviceWorker.controller) {
+              onUpdate?.()
+            } else {
+              onInstall?.()
+            }
           }
         }
       }
-    }
-  })
+    })
+    .catch((err) => {
+      console.warn('Error registering service worker', err)
+    })
 }
 
 export default registerSW

@@ -1,7 +1,8 @@
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { ContentState } from 'draft-js'
-import React, { useCallback, useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
+import * as React from 'react'
 
 import BaseEditor from './editor/BaseEditor'
 import BaseEditorControls from './editor/BaseEditorControls'

@@ -4,14 +4,15 @@ import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { Formik } from 'formik'
 import gql from 'graphql-tag'
-import React from 'react'
-import { useHistory } from 'react-router'
+import * as React from 'react'
+import { useNavigate } from 'react-router'
 import { Link } from 'react-router-dom'
 import * as yup from 'yup'
 
 import { pushSimpleToast } from '../../toasts/pushToast'
 import Button from '../views/Button'
 import { Card, CardContent } from '../views/Card'
+import CircularProgress from '../views/CircularProgress'
 import { Headline2 } from '../views/Typography'
 import { CheckboxField, TextInputField } from './Fields'
 
@@ -49,7 +50,7 @@ const agreementRequired = t`Agreement is required`
 const RegisterForm: React.FunctionComponent<Props> = ({
   title = t`Register`,
 }) => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const [register] = useMutation(REGISTER_MUTATION)
   const { i18n } = useLingui()
 
@@ -92,16 +93,25 @@ const RegisterForm: React.FunctionComponent<Props> = ({
           .test('consent', i18n._(agreementRequired), (value) => value === true)
           .required(i18n._(agreementRequired)),
       })}
-      onSubmit={(user) =>
-        register({ variables: user }).then(() => {
+      onSubmit={(user, helpers) => {
+        if (!helpers.validateForm(user)) {
+          return
+        }
+
+        return register({ variables: user }).then(() => {
           pushSimpleToast(t`Account created successfully`)
 
-          history.push('/login')
+          navigate('/login')
         })
-      }
+      }}
     >
-      {({ handleSubmit, isValid, isSubmitting }) => (
-        <form className="w-full max-w-md" onSubmit={handleSubmit}>
+      {({ handleSubmit, isSubmitting }) => (
+        <form
+          className="w-full max-w-md"
+          method="post"
+          onSubmit={handleSubmit}
+          noValidate
+        >
           <Card className="pb-2">
             <CardContent>
               <Headline2 className="text-center">{i18n._(title)}</Headline2>
@@ -140,11 +150,11 @@ const RegisterForm: React.FunctionComponent<Props> = ({
               </div>
               <Button
                 className="w-full mt-3"
-                disabled={!isValid || isSubmitting}
+                disabled={isSubmitting}
                 data-testid="register-submit-btn"
                 variation="primary"
               >
-                <Trans>Register</Trans>
+                {isSubmitting ? <CircularProgress /> : <Trans>Register</Trans>}
               </Button>
             </CardContent>
           </Card>

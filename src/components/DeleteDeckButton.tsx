@@ -1,8 +1,9 @@
 import { useMutation } from '@apollo/react-hooks'
 import { Trans, t } from '@lingui/macro'
 import gql from 'graphql-tag'
-import React, { useCallback, useRef, useState } from 'react'
-import { useHistory } from 'react-router'
+import { useCallback, useRef, useState } from 'react'
+import * as React from 'react'
+import { useNavigate } from 'react-router'
 
 import {
   TIMEOUT_MEDIUM,
@@ -38,7 +39,7 @@ const DELETE_DECK_MUTATION = gql`
 `
 
 const DeleteDeckButton: React.FunctionComponent<Props> = ({ deckId }) => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const [mutate] = useMutation<DeleteDeckMutation, DeleteDeckMutationVariables>(
     DELETE_DECK_MUTATION
   )
@@ -68,7 +69,7 @@ const DeleteDeckButton: React.FunctionComponent<Props> = ({ deckId }) => {
       },
     })
       .then(() => {
-        history.push('/decks')
+        navigate('/decks')
 
         pushSimpleToast(t`Deck deleted successfully`)
       })
@@ -82,7 +83,7 @@ const DeleteDeckButton: React.FunctionComponent<Props> = ({ deckId }) => {
           TIMEOUT_MEDIUM
         )
       })
-  }, [deckId, history, mutate])
+  }, [deckId, navigate, mutate])
 
   const handleClose = useCallback(() => {
     if (deleting) {

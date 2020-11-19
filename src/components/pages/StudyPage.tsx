@@ -2,8 +2,9 @@ import { useLazyQuery, useMutation } from '@apollo/react-hooks'
 import { Trans } from '@lingui/macro'
 import classnames from 'classnames'
 import gql from 'graphql-tag'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { useHistory, useParams } from 'react-router'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import * as React from 'react'
+import { useNavigate, useParams } from 'react-router'
 
 import { FlashCardAnswer } from '../../globalTypes'
 import FlashCardRenderer from '../FlashCardRenderer'
@@ -95,7 +96,7 @@ const ANSWER_FLASH_CARD_MUTATION = gql`
 `
 
 const CancelStudyButton: React.FC = () => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const [showCancelConfirmation, setShowCancelConfirmation] = useState(false)
 
   const handleCancelButtonClick = () => {
@@ -107,7 +108,7 @@ const CancelStudyButton: React.FC = () => {
   }
 
   const handleCancel = () => {
-    history.push('/home')
+    navigate('/home')
   }
 
   const cancelRef = useRef<HTMLButtonElement>(null)
@@ -203,10 +204,10 @@ const StudyPage: React.FC = () => {
     setShowBackSide(true)
   }
 
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const handleGoHomeClick = () => {
-    history.push('/home')
+    navigate('/home')
   }
 
   if (loading || !data) {

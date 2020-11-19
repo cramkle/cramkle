@@ -4,7 +4,8 @@ import {
   RawDraftContentState,
 } from 'draft-js'
 import 'draft-js/dist/Draft.css'
-import React, { useCallback, useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
+import * as React from 'react'
 
 import BaseEditorControls from './editor/BaseEditorControls'
 import TagEditor from './editor/TagEditor'

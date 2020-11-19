@@ -1,16 +1,15 @@
 import { fireEvent, waitFor } from '@testing-library/react'
-import React from 'react'
 
 import { fireCheckboxClick, render } from '../../../test/utils'
 import RegisterForm from '../RegisterForm'
 
 describe('<RegisterForm />', () => {
-  it('should be initially disabled', async () => {
+  it('should be always enabled', async () => {
     const { getByTestId } = render(<RegisterForm />)
 
     const submitButton = getByTestId('register-submit-btn')
 
-    await waitFor(() => expect(submitButton).toBeDisabled())
+    await waitFor(() => expect(submitButton).toBeEnabled())
   })
 
   it('should be enabled with filled fields', async () => {
@@ -45,6 +44,6 @@ describe('<RegisterForm />', () => {
     fireEvent.change(emailInput, { target: { value: 'user@email.com' } })
     fireEvent.change(passwordInput, { target: { value: 'hunter2' } })
 
-    await waitFor(() => expect(submitButton).toBeDisabled())
+    await waitFor(() => expect(submitButton).toBeEnabled())
   })
 })

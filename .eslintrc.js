@@ -6,6 +6,7 @@ module.exports = {
     browser: true,
     jest: true,
   },
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     project: './tsconfig.json',
   },
@@ -29,6 +30,7 @@ module.exports = {
     '@typescript-eslint/no-var-requires': 'off',
     '@typescript-eslint/no-empty-function': 'off',
     'react/no-unescaped-entities': 'off',
+    'react/react-in-jsx-scope': 'off',
   },
   settings: {
     react: {

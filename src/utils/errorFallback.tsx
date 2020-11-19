@@ -1,5 +1,4 @@
 import { Trans } from '@lingui/macro'
-import React from 'react'
 
 import Button from '../components/views/Button'
 import { Body1, Headline4, Overline } from '../components/views/Typography'

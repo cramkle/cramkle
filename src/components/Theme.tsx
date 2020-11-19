@@ -1,10 +1,5 @@
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react'
+import { useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import * as React from 'react'
 
 interface ThemeValue {
   theme: Theme

@@ -1,8 +1,8 @@
 import { plural } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import gql from 'graphql-tag'
-import React from 'react'
-import { useHistory } from 'react-router'
+import * as React from 'react'
+import { useNavigate } from 'react-router'
 
 import { FlashCardStatus } from '../globalTypes'
 import FlashCardStatusChip from './FlashCardStatus'
@@ -37,14 +37,14 @@ const DeckCard: React.FunctionComponent<Props> = ({
   deck,
   showStudySessionDetails = false,
 }) => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const { i18n } = useLingui()
 
   const handleClick = () => {
     if (onClick) {
       onClick(deck)
     } else {
-      history.push(`/d/${deck.slug}`)
+      navigate(`/d/${deck.slug}`)
     }
   }
 
