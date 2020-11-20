@@ -102,6 +102,11 @@ jobs:
         node-version: 12.x
     - name: Build
       run: yarn build
+    - uses: actions/upload-artifact@v2
+      if: github.ref == 'refs/heads/main'
+      with:
+        name: build-artifact
+        path: ./.dist
 
   deploy:
     runs-on: ubuntu-latest
