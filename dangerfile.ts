@@ -1,3 +1,4 @@
+import { exec } from 'child_process'
 import fs from 'fs'
 import path from 'path'
 
@@ -133,6 +134,18 @@ const getFileSizeDifferences = (
   return sizeDifferences
 }
 
+function git(args: string) {
+  return new Promise((res) => {
+    exec('git ' + args, (err, stdout) => {
+      if (err) {
+        throw err
+      } else {
+        res(stdout.trim())
+      }
+    })
+  })
+}
+
 downloadBuildArtifacts()
   .catch((error) => {
     console.error(error)
@@ -143,26 +156,32 @@ downloadBuildArtifacts()
       return
     }
 
-    const fileSizeDifferences = getFileSizeDifferences(
-      mainBranchRoutesManifest.routes,
-      routesManifest.routes
-    )
+    const upstreamRef = danger.github.pr.base.ref
 
-    fileSizeDifferences.sort(
-      (a, b) => Math.abs(a.sizeDifference) - Math.abs(b.sizeDifference)
-    )
+    return git(`merge-base HEAD upstream/${upstreamRef}`).then((baseCommit) => {
+      const fileSizeDifferences = getFileSizeDifferences(
+        mainBranchRoutesManifest.routes,
+        routesManifest.routes
+      )
 
-    const tableBody = fileSizeDifferences.map((fileSizeDiff) => {
-      return `| \`${JSON.stringify(fileSizeDiff.path)}\` | ${getDifferenceLabel(
-        fileSizeDiff.size,
-        fileSizeDiff.prevSize
-      )} |`
-    })
+      fileSizeDifferences.sort(
+        (a, b) => Math.abs(a.sizeDifference) - Math.abs(b.sizeDifference)
+      )
 
-    markdown(`
+      const tableBody = fileSizeDifferences.map((fileSizeDiff) => {
+        return `| \`${JSON.stringify(
+          fileSizeDiff.path
+        )}\` | ${getDifferenceLabel(
+          fileSizeDiff.size,
+          fileSizeDiff.prevSize
+        )} |`
+      })
+
+      markdown(`
 <details>
 <summary>Details of assets sizes by route</summary>
 
+<p>Comparing: ${baseCommit}...${danger.github.pr.head.sha}</p>
 
 | Route path | Asset size difference |
 | --- | --- |
@@ -170,4 +189,5 @@ ${tableBody.join('\n')}
 
 </details>
 `)
+    })
   })
