@@ -226,6 +226,10 @@ const main = async () => {
     return
   }
 
+  if (!baseBranchRoutesManifest) {
+    warn('Build artifact does not exist for the base branch of this PR')
+  }
+
   const fileSizeDifferences = getFileSizeDifferences(
     baseBranchRoutesManifest?.routes ?? [],
     routesManifest.routes
