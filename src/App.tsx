@@ -1,5 +1,5 @@
 import { ApolloProvider } from '@apollo/react-hooks'
-import { Routes } from '@app-server/components'
+import { Routes } from '@casterly/components'
 import { I18nProvider } from '@lingui/react'
 import { ErrorBoundary } from '@sentry/react'
 import { FC, StrictMode } from 'react'

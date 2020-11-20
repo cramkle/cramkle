@@ -1,5 +1,5 @@
 // @ts-check
-const { createRequestHandler } = require('@app-server/express')
+const { createRequestHandler } = require('@casterly/express')
 const cookieParser = require('cookie-parser')
 const express = require('express')
 const requestLanguage = require('express-request-language')

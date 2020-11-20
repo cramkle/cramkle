@@ -5,9 +5,9 @@
   "private": true,
   "scripts": {
     "release": "release-it",
-    "dev": "concurrently \"rs watch\" \"nodemon server.js\"",
+    "dev": "concurrently \"casterly watch\" \"nodemon server.js\"",
     "start": "NODE_ENV=production node server.js",
-    "build": "NODE_ENV=production rs build",
+    "build": "NODE_ENV=production casterly build",
     "build-tailwind": "tailwindcss build src/tailwind.css -o src/_tailwind.global.css",
     "prebuild": "yarn compile --strict",
     "prepare": "yarn build-tailwind",
@@ -43,8 +43,8 @@
   "dependencies": {
     "@apollo/react-hooks": "^3.1.3",
     "@apollo/react-ssr": "^3.1.3",
-    "@app-server/components": "^0.4.0",
-    "@app-server/express": "^0.4.0",
+    "@casterly/components": "^0.4.0",
+    "@casterly/express": "^0.4.0",
     "@lingui/react": "3.2.1",
     "@material/icon-button": "^3.1.0",
     "@reach/alert-dialog": "^0.11.2",
@@ -99,11 +99,11 @@
   },
   "devDependencies": {
     "@apollo/react-testing": "3.1.4",
-    "@app-server/cli": "^0.4.0",
     "@babel/core": "^7.12.3",
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-typescript": "^7.12.1",
+    "@casterly/cli": "^0.4.0",
     "@lingui/cli": "3.2.1",
     "@lingui/macro": "3.2.1",
     "@lucasecdb/eslint-config": "^0.14.0",
@@ -161,7 +161,7 @@
     "stylelint": "^13.7.1",
     "stylelint-config-recommended-scss": "^4.2.0",
     "stylelint-scss": "^3.18.0",
-    "typescript": "^4.1.1-rc"
+    "typescript": "^4.1.2"
   },
   "resolutions": {
     "graphql": "15.3.0"
