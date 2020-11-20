@@ -1,4 +1,4 @@
-import { RootBrowser } from '@app-server/components/browser'
+import { RootBrowser } from '@casterly/components/browser'
 import { i18n } from '@lingui/core'
 import * as Sentry from '@sentry/react'
 import { en as enPlural, pt as ptPlural } from 'make-plural/plurals'
