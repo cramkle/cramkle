@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+### Changed
+- Updated tooltip component to work better in dark mode.
+- Update SSR library version.
+
 ## [0.12.0] - 2020-10-12
 ### Fixed
 - Truncate note title to avoid horizontal scroll in the table.
