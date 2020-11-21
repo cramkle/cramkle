@@ -34,9 +34,13 @@ const DECKS_TO_STUDY_QUERY = gql`
 
 const StudySection: React.FunctionComponent = () => {
   const navigate = useNavigate()
-  const { data, loading, error, refetch, networkStatus } = useQuery<
-    DecksToStudy
-  >(DECKS_TO_STUDY_QUERY, {
+  const {
+    data,
+    loading,
+    error,
+    refetch,
+    networkStatus,
+  } = useQuery<DecksToStudy>(DECKS_TO_STUDY_QUERY, {
     fetchPolicy: 'network-only',
     notifyOnNetworkStatusChange: true,
   })

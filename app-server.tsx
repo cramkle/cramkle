@@ -44,7 +44,7 @@ export default async function handleRequest(
   headers: Headers,
   context: unknown
 ) {
-  const language = request.headers.get('x-cramkle-lang')
+  const language = request.headers.get('x-cramkle-lang')!
 
   i18n.load('en', enCatalog.messages)
   i18n.load('pt', ptCatalog.messages)
@@ -53,7 +53,7 @@ export default async function handleRequest(
 
   i18n.activate(language)
 
-  const cookie = request.headers.get('cookie')
+  const cookie = request.headers.get('cookie') ?? undefined
 
   const client = createApolloClient(
     `http://${request.headers.get('host')}/_c/graphql`,
@@ -64,7 +64,7 @@ export default async function handleRequest(
     <RootServer context={context} url={request.url}>
       <App
         i18n={i18n}
-        userAgent={request.headers.get('userAgent')}
+        userAgent={request.headers.get('userAgent')!}
         apolloClient={client}
       />
     </RootServer>
@@ -82,6 +82,10 @@ export default async function handleRequest(
         <html {...head.htmlAttributes.toComponent()}>
           <head>
             <meta charSet="utf-8" />
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1, shrink-to-fit=no"
+            />
             {head.meta.toComponent()}
             {head.title.toComponent()}
             {head.base.toComponent()}
