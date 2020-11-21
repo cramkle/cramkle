@@ -10,6 +10,8 @@
     "allowSyntheticDefaultImports": true,
     "alwaysStrict": true,
     "skipLibCheck": true,
+    "strict": true,
+    "strictNullChecks": true,
     "strictBindCallApply": true,
     "strictFunctionTypes": true,
     "target": "es5",
