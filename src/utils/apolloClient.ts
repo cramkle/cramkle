@@ -29,6 +29,9 @@ export const createApolloClient = (uri: string, cookie?: string) => {
     headers: {
       cookie,
     },
+    fetchOptions: {
+      method: 'POST',
+    },
   })
 
   const client = new ApolloClient({
