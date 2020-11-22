@@ -4,11 +4,43 @@ const cookieParser = require('cookie-parser')
 const express = require('express')
 const requestLanguage = require('express-request-language')
 const helmet = require('helmet')
+const { v4: uuidv4 } = require('uuid')
 
 const app = express()
 
 if (process.env.NODE_ENV === 'production') {
   app.use(helmet())
+
+  app.use((_, res, next) => {
+    res.locals.cspNonce = Buffer.from(uuidv4()).toString('base64')
+    next()
+  })
+
+  app.use(
+    helmet.contentSecurityPolicy({
+      directives: {
+        defaultSrc: ["'self'"],
+        baseUri: ["'self'"],
+        blockAllMixedContent: [],
+        fontSrc: ["'self'", 'https:', 'data:'],
+        frameAncestors: ["'self'"],
+        imgSrc: ["'self'", 'data:'],
+        objectSrc: ["'none'"],
+        scriptSrc: [
+          "'self'",
+          (
+            /** @type {any} */
+            _,
+            /** @type {any} */
+            res
+          ) => `'nonce-${res.locals.cspNonce}'`,
+        ],
+        scriptSrcAttr: ["'none'"],
+        styleSrc: ["'self'", 'https:', "'unsafe-inline'"],
+        upgradeInsecureRequests: [],
+      },
+    })
+  )
 }
 
 app.use(cookieParser())

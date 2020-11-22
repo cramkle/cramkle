@@ -1385,17 +1385,17 @@
     webpack-hot-middleware "^2.25.0"
     workbox-webpack-plugin "^6.0.0-alpha.3"
 
-"@casterly/components@^0.4.1":
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/@casterly/components/-/components-0.4.1.tgz#8e06837e323eda870a915f7250781c21a75d46d0"
-  integrity sha512-eo+V6aXoeifEJqD5DN2DCpGyDcZKGp5gcfTAXkg+pE/VILjgfPAEPlz9nN+63FC4+QARjDsxKfj3mV0IsBUAZw==
+"@casterly/components@^0.4.2":
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/@casterly/components/-/components-0.4.2.tgz#286897850c388a1a9fd45bc1307b739332a97a78"
+  integrity sha512-MMNpXYrRvRxryP6xJI0MJJASN2p3DPp12m1vmz/iybVgmy0C/f8+jSNV8NpVWaFIG/MjVLoAH8Ol93lahR9RlQ==
 
-"@casterly/express@^0.4.1":
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/@casterly/express/-/express-0.4.1.tgz#c24df0b4c4fa75f30d5ec5a3a63b9ded0becd0e0"
-  integrity sha512-656MxqRqvJSg1NeHm6WrWuVmBGMeTzV8raiIXQLyIjA85hrgTRngrFEhFebDQmF22RA34c7OGq/mT7oLeZ+nWw==
+"@casterly/express@^0.4.3":
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/@casterly/express/-/express-0.4.3.tgz#94a2df5a5cf5f531ccae0bcb9ba1c075164fc2d7"
+  integrity sha512-WqswZlFTuE8Mj98YLY8LHL4PlNlQLZ/aWNhwo8f5T5DpgCNbKmmRDDbYvZMJElFO66INasi+ZxRZLKTDnYz6RA==
   dependencies:
-    casterly "^0.4.1"
+    casterly "^0.4.3"
 
 "@cnakazawa/watch@^1.0.3":
   version "1.0.4"
@@ -5952,10 +5952,10 @@ caseless@~0.12.0:
   resolved "https://registry.yarnpkg.com/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
   integrity sha1-G2gcIf+EAzyCZUMJBolCDRhxUdw=
 
-casterly@^0.4.1:
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/casterly/-/casterly-0.4.1.tgz#a8116668b731302452f18cfdce831079f06b909c"
-  integrity sha512-6LOkuTtHNJvWsdqucC9vuB5G49Jx0aWBdAgny2TQBptIXRrPpIAQCMZqyFX59eeTvJ4l4q04uuntbwX4wB74zg==
+casterly@^0.4.3:
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/casterly/-/casterly-0.4.3.tgz#2737edb756fc55dce45a839a21ee5ad74e2b883b"
+  integrity sha512-etGxZJbIJMZToc2lpG6WNQregpmktIrfzx+bcKZuzwUD1Q6QhrQl2d+Zm4ufYcP6bBZ9j9UVWsIbExzocaq8Kg==
   dependencies:
     etag "^1.8.1"
     fresh "^0.5.2"

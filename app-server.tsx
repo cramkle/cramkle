@@ -16,6 +16,7 @@ import { RedirectError } from './src/components/Redirect'
 import enCatalog from './src/locales/en/messages'
 import ptCatalog from './src/locales/pt/messages'
 import { createApolloClient } from './src/utils/apolloClient'
+import { darkThemeHelmetScript } from './src/utils/darkThemeScript'
 
 const ROUTES_WITHOUT_JAVASCRIPT = ['/about']
 
@@ -45,6 +46,17 @@ export default async function handleRequest(
   context: unknown
 ) {
   const language = request.headers.get('x-cramkle-lang')!
+
+  const cspNonce =
+    headers
+      .get('content-security-policy')
+      ?.split(';')
+      .map((policy) => policy.trim())
+      .filter((policy) => policy.startsWith('script-src '))
+      .map((policy) => policy.slice('script-src '.length))
+      .flatMap((policy) => policy.split(' '))
+      .find((policyValue) => policyValue.startsWith("'nonce-"))
+      ?.match(/^'nonce-(.*)'$/)?.[1] ?? undefined
 
   i18n.load('en', enCatalog.messages)
   i18n.load('pt', ptCatalog.messages)
@@ -94,13 +106,27 @@ export default async function handleRequest(
             {head.title.toComponent()}
             {head.base.toComponent()}
             {head.link.toComponent()}
+            <style
+              nonce={cspNonce}
+              dangerouslySetInnerHTML={{
+                __html:
+                  'html,body{height: 100%;}body{overscroll-behavior-y:none;}',
+              }}
+            />
             <Styles />
           </head>
           <body {...head.bodyAttributes.toComponent()}>
+            <script
+              nonce={cspNonce}
+              dangerouslySetInnerHTML={{
+                __html: darkThemeHelmetScript.innerHTML,
+              }}
+            />
             {head.script.toComponent()}
             {head.noscript.toComponent()}
             <div id="root" dangerouslySetInnerHTML={{ __html: content }} />
             <script
+              nonce={cspNonce}
               dangerouslySetInnerHTML={{
                 __html:
                   'window.__APOLLO_STATE__ = ' + serializeJavascript(state),
@@ -109,7 +135,7 @@ export default async function handleRequest(
             {!ROUTES_WITHOUT_JAVASCRIPT.includes(request.url) && (
               <>
                 <script defer src={getLanguageLocaleFile(language)} />
-                <Scripts />
+                <Scripts nonce={cspNonce} />
               </>
             )}
           </body>
