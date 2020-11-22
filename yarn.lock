@@ -1330,10 +1330,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@casterly/cli@^0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@casterly/cli/-/cli-0.4.0.tgz#2bffe6d88cde51b0df8467c73724591b80f05d7c"
-  integrity sha512-q4ptiQ/hqGhI22UrXlRcpweJ7rqQJlxSwO7szD1/EugqnyLJCpHerzXHvKFPHL0X19wtFuB66XQDnVVhHUFq1Q==
+"@casterly/cli@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@casterly/cli/-/cli-0.4.1.tgz#c1feb87c75b75bb0a2e9a9e2c026ca6f087c413f"
+  integrity sha512-SknofNNU5e39FHRTkcqsQx7hS5A2tWzGBszJ8i5bnGUXd6wAZrIYtRxXaoYiLW0eLiPxIi6HFvaxjaovB8F8wg==
   dependencies:
     "@babel/core" "^7.11.4"
     "@babel/plugin-proposal-class-properties" "^7.10.4"
@@ -1385,17 +1385,17 @@
     webpack-hot-middleware "^2.25.0"
     workbox-webpack-plugin "^6.0.0-alpha.3"
 
-"@casterly/components@^0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@casterly/components/-/components-0.4.0.tgz#3ce5a4115b0d2f7455061065c3a73b92ae9d0d65"
-  integrity sha512-FJf4fmFCjt8miOVqv8RYnEsa5VCS9etD5ofZ/BpfbMksjUpwa51id0FlEcfq9dbP/jHnZCr7CGiRYfPAiqiwWQ==
+"@casterly/components@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@casterly/components/-/components-0.4.1.tgz#8e06837e323eda870a915f7250781c21a75d46d0"
+  integrity sha512-eo+V6aXoeifEJqD5DN2DCpGyDcZKGp5gcfTAXkg+pE/VILjgfPAEPlz9nN+63FC4+QARjDsxKfj3mV0IsBUAZw==
 
-"@casterly/express@^0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@casterly/express/-/express-0.4.0.tgz#7f2609b1beb66e68bd349ad93db2c21e510c90e5"
-  integrity sha512-hOZOUa79kk0xtIfhKsm2vzFCMHvPy/lS4SySbDbznDeK4kDv7buzf2hMJG1uia6rngslr6J9jefxR5B2xUiBdg==
+"@casterly/express@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@casterly/express/-/express-0.4.1.tgz#c24df0b4c4fa75f30d5ec5a3a63b9ded0becd0e0"
+  integrity sha512-656MxqRqvJSg1NeHm6WrWuVmBGMeTzV8raiIXQLyIjA85hrgTRngrFEhFebDQmF22RA34c7OGq/mT7oLeZ+nWw==
   dependencies:
-    casterly "^0.4.0"
+    casterly "^0.4.1"
 
 "@cnakazawa/watch@^1.0.3":
   version "1.0.4"
@@ -1781,28 +1781,28 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@lingui/babel-plugin-extract-messages@3.2.1":
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/@lingui/babel-plugin-extract-messages/-/babel-plugin-extract-messages-3.2.1.tgz#709b92092b18f660d66d2788be29297a7e683a59"
-  integrity sha512-lyPdBcgjZ/mlpOZD0TSduO0ORQzKsx6EKvd+i2/B+PaAwccSyZOgQtCFMK83TbprEwVhmIWQg+cLtSfXmbi1wA==
+"@lingui/babel-plugin-extract-messages@^3.2.3":
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/@lingui/babel-plugin-extract-messages/-/babel-plugin-extract-messages-3.2.3.tgz#59f861bb02edb7eb4d29d1d283a3351f98b4e4f4"
+  integrity sha512-F1N6cwjxSxKClUT4yfRnRtJ6lkUckrDx73RSbVL7OgrefQzZS9/RjnufULPV0kU9p1XDKfaBI1YHR4zQvdR+5A==
   dependencies:
     "@babel/generator" "^7.11.6"
     "@babel/runtime" "^7.11.2"
-    "@lingui/conf" "3.2.1"
+    "@lingui/conf" "^3.2.3"
     mkdirp "^1.0.4"
 
-"@lingui/cli@3.2.1":
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/@lingui/cli/-/cli-3.2.1.tgz#c77fb44b025685ee7cc764a0fb2dad18dba6a723"
-  integrity sha512-V1qeH+1XsS3FFtLlotG5b7vj04FCV8+c6D+/J4cqMAjeJHXitnofiCU4oHUs3mttM1IYLO4cf9y+xo+RM9BZBw==
+"@lingui/cli@3.2.3":
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/@lingui/cli/-/cli-3.2.3.tgz#40b83512edb468fe3b61da00c3f8885d9946c104"
+  integrity sha512-fsbiKrO8CO5dWy3hDQ6a8w0/m82Elv3UZ+T/LPyLT0spSxEVsZbJgySmomy2u/tYEkOEhXipkvoGR8mueaF8rA==
   dependencies:
     "@babel/generator" "^7.11.6"
     "@babel/parser" "^7.11.5"
     "@babel/plugin-syntax-jsx" "^7.10.4"
     "@babel/runtime" "^7.11.2"
     "@babel/types" "^7.11.5"
-    "@lingui/babel-plugin-extract-messages" "3.2.1"
-    "@lingui/conf" "3.2.1"
+    "@lingui/babel-plugin-extract-messages" "^3.2.3"
+    "@lingui/conf" "^3.2.3"
     babel-plugin-macros "^2.8.0"
     bcp-47 "^1.0.7"
     chalk "^4.1.0"
@@ -1824,41 +1824,41 @@
     pseudolocale "^1.1.0"
     ramda "^0.27.1"
 
-"@lingui/conf@3.2.1":
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/@lingui/conf/-/conf-3.2.1.tgz#376f6fe742c67344d319816c39ace6988e9768f4"
-  integrity sha512-V+ShdnsMuXoAKu4zFqB5fNqQX+5S0TUCzn3fJKJbaCEgdwAmbhkDXAtItoSraDTUxo0uejk+SLj69Jjb0DpE7Q==
+"@lingui/conf@^3.2.3":
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/@lingui/conf/-/conf-3.2.3.tgz#ab3ac70eef8f2f219ce85d8b8516ecc128af477a"
+  integrity sha512-9Zfq/Z0vH9BucaXVbeIIoWDb7RsnqBizdHn9+PUzQx5AiudzBeKrW8gF0IGxFwugFoS5ho8qVLovYoDS2JSDYA==
   dependencies:
     "@babel/runtime" "^7.11.2"
     chalk "^4.1.0"
     cosmiconfig "^7.0.0"
     jest-validate "^26.5.2"
 
-"@lingui/core@3.2.1":
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/@lingui/core/-/core-3.2.1.tgz#8d8f87253cfba4a29f3cf5151e3c55b1efa3fab3"
-  integrity sha512-lrRO9faZXbB5I3c/otGiqUKX0OgEEQvIiaqjfV4J7nut5Y4p3HKSu0CEDpGIZUvjD3rw/oKAKXkNTSBpqZOAcg==
+"@lingui/core@^3.2.3":
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/@lingui/core/-/core-3.2.3.tgz#2eeba173d3a3a1cbe9f9de4ed57380d2dc45ecff"
+  integrity sha512-TiWk6LGjZ9sNVi7itiJDWUIB1Uyr8WKR/8M6RhQVTRnL+Yh3mElsVPjIRPH1he4ClkwaH6G5eDOfWiB67Csgbw==
   dependencies:
     "@babel/runtime" "^7.11.2"
     make-plural "^6.2.2"
     messageformat-parser "^4.1.3"
 
-"@lingui/macro@3.2.1":
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/@lingui/macro/-/macro-3.2.1.tgz#70be606b2381748d8913fc4697d71e20d2ebd1f9"
-  integrity sha512-SRSUUmH7044Q+P0BdUPN2jEKBK+hThNc4TDNisx3MtKAxP0BSP2ZgEqsvTEpZsmB0sansDXT697BNnzgB9yVtQ==
+"@lingui/macro@3.2.3":
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/@lingui/macro/-/macro-3.2.3.tgz#d054f9f6008b068a134d7bb3bfe87b3573c5d556"
+  integrity sha512-XcGUD8qQe8b351qGA/AyX+WKQWJu3T/r8wlXsttKoeFd7OXIitAw53L+OLc6xauM5xUssdaWo6BtOJnLw034gA==
   dependencies:
     "@babel/runtime" "^7.11.2"
-    "@lingui/conf" "3.2.1"
+    "@lingui/conf" "^3.2.3"
     ramda "^0.27.1"
 
-"@lingui/react@3.2.1":
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/@lingui/react/-/react-3.2.1.tgz#c72dfc89c0a9fc91aca8e6617240a0207a75b03c"
-  integrity sha512-OQ9ejwZ/9IcptRpharH7LvVHKJXLHbG1kBLIQlVzPHuJUtNNPjarXfEyEHse4OPD2l1dNMgXn7w22s9fPx052g==
+"@lingui/react@3.2.3":
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/@lingui/react/-/react-3.2.3.tgz#8cf78a217d4a2314ab38c68521a6dd544f87b258"
+  integrity sha512-oPqy7LhJddBDvgDvfKikZh8sFP4uG1/NaDhIkHXVCwf+ONxuAwsDPvW47e/K5hQ60UX2LqGbbB7LuAFK5Klr1Q==
   dependencies:
     "@babel/runtime" "^7.11.2"
-    "@lingui/core" "3.2.1"
+    "@lingui/core" "^3.2.3"
 
 "@lucasecdb/eslint-config@^0.14.0":
   version "0.14.0"
@@ -5952,10 +5952,10 @@ caseless@~0.12.0:
   resolved "https://registry.yarnpkg.com/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
   integrity sha1-G2gcIf+EAzyCZUMJBolCDRhxUdw=
 
-casterly@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/casterly/-/casterly-0.4.0.tgz#bbefd647f714c977225ca26bbaf8d891c5f05d39"
-  integrity sha512-sOixqoBjhu6UejLGHvWxdxWjy5upVbaWRHQ2D1xXzUH3h2iVps9YTFBP0HG5PzF3GontgpntqFav9b1IaxePeA==
+casterly@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/casterly/-/casterly-0.4.1.tgz#a8116668b731302452f18cfdce831079f06b909c"
+  integrity sha512-6LOkuTtHNJvWsdqucC9vuB5G49Jx0aWBdAgny2TQBptIXRrPpIAQCMZqyFX59eeTvJ4l4q04uuntbwX4wB74zg==
   dependencies:
     etag "^1.8.1"
     fresh "^0.5.2"
@@ -9809,6 +9809,11 @@ header-case@^2.0.3:
   dependencies:
     capital-case "^1.0.3"
     tslib "^1.10.0"
+
+helmet@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/helmet/-/helmet-4.2.0.tgz#e81f5613cc1c90402af581794dc9878ad078b237"
+  integrity sha512-aoiSxXMd0ks1ojYpSCFoCRzgv4rY/uB9jKStaw8PkXwsdLYa/Gq+Nc5l0soH0cwBIsLAlujPnx4HLQs+LaXCrQ==
 
 hex-color-regex@^1.1.0:
   version "1.1.0"

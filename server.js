@@ -3,8 +3,13 @@ const { createRequestHandler } = require('@casterly/express')
 const cookieParser = require('cookie-parser')
 const express = require('express')
 const requestLanguage = require('express-request-language')
+const helmet = require('helmet')
 
 const app = express()
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(helmet())
+}
 
 app.use(cookieParser())
 
