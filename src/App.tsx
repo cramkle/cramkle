@@ -8,7 +8,6 @@ import { Helmet } from 'react-helmet'
 import CramkleToasts from './components/CramkleToasts'
 import { HintsProvider } from './components/HintsContext'
 import { ThemeProvider } from './components/Theme'
-import { darkThemeHelmetScript } from './utils/darkThemeScript'
 import { errorFallback } from './utils/errorFallback'
 import { icons } from './utils/headLinks'
 
@@ -57,12 +56,6 @@ const App: FC<{ i18n: any; apolloClient: any; userAgent: string }> = ({
                   content: '#ffffff',
                 },
               ]}
-              style={[
-                {
-                  cssText:
-                    'html,body{height: 100%;}body{overscroll-behavior-y:none;}',
-                },
-              ]}
               link={[
                 ...icons,
                 {
@@ -75,7 +68,6 @@ const App: FC<{ i18n: any; apolloClient: any; userAgent: string }> = ({
                   href: '/manifest.json',
                 },
               ]}
-              script={[darkThemeHelmetScript]}
             />
             <ErrorBoundary fallback={errorFallback}>
               <ThemeProvider>
