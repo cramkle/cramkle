@@ -18,7 +18,11 @@ export const errorFallback = ({
       <Body1 className="mt-1 text-primary">
         <Trans>Please, try reloading the page</Trans>
       </Body1>
-      <Button className="mt-4" onClick={() => window.location.reload()}>
+      <Button
+        id="refresh-button"
+        className="mt-4"
+        onClick={() => window.location.reload()}
+      >
         <Trans>Refresh</Trans>
       </Button>
       {process.env.NODE_ENV === 'development' && error && (
