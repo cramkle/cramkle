@@ -55,10 +55,9 @@ export default async function handleRequest(
 
   const cookie = request.headers.get('cookie') ?? undefined
 
-  const client = createApolloClient(
-    `http://${request.headers.get('host')}/_c/graphql`,
-    cookie
-  )
+  const host = process.env.API_HOST ?? `http://${request.headers.get('host')}`
+
+  const client = createApolloClient(`${host}/_c/graphql`, cookie)
 
   const root = (
     <RootServer context={context} url={request.url}>
