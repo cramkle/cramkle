@@ -5,6 +5,7 @@ import { renderToStringWithData } from '@apollo/react-ssr'
 import { Scripts, Styles } from '@casterly/components'
 import { RootServer } from '@casterly/components/server'
 import { i18n } from '@lingui/core'
+import { I18nProvider } from '@lingui/react'
 import { en as enPlural, pt as ptPlural } from 'make-plural/plurals'
 import { renderToString } from 'react-dom/server'
 import { Helmet } from 'react-helmet'
@@ -17,6 +18,7 @@ import enCatalog from './src/locales/en/messages'
 import ptCatalog from './src/locales/pt/messages'
 import { createApolloClient } from './src/utils/apolloClient'
 import { darkThemeHelmetScript } from './src/utils/darkThemeScript'
+import { errorFallback } from './src/utils/errorFallback'
 
 const ROUTES_WITHOUT_JAVASCRIPT = ['/about']
 
@@ -166,6 +168,55 @@ export default async function handleRequest(
       })
     }
 
-    throw err
+    return new Response(
+      '<!doctype html>' +
+        renderToString(
+          <RootServer context={context} url={request.url}>
+            <html>
+              <head>
+                <meta charSet="utf-8" />
+                <meta
+                  name="viewport"
+                  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+                />
+                <meta name="robots" content="noindex, nofollow" />
+                <title>Error</title>
+                <style
+                  nonce={cspNonce}
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      'html,body{height: 100%;}body{overscroll-behavior-y:none;}',
+                  }}
+                />
+                <Styles />
+              </head>
+              <body>
+                <I18nProvider i18n={i18n}>
+                  {errorFallback({ error: err, componentStack: '' })}
+                </I18nProvider>
+                <script
+                  nonce={cspNonce}
+                  dangerouslySetInnerHTML={{
+                    __html: `
+var refreshButton = document.getElementById('refresh-button');
+
+refreshButton.onclick = function() {
+  window.location.reload()
+};
+`.trim(),
+                  }}
+                />
+              </body>
+            </html>
+          </RootServer>
+        ),
+      {
+        status: 500,
+        headers: {
+          ...Object.fromEntries((headers as unknown) as [string, string][]),
+          'content-type': 'text/html',
+        },
+      }
+    )
   }
 }
