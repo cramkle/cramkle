@@ -55,9 +55,12 @@ export default async function handleRequest(
 
   const cookie = request.headers.get('cookie') ?? undefined
 
-  const baseApiUrl = `http://${
-    process.env.API_HOST ?? request.headers.get('host')
-  }`
+  // hack to avoid DefinePlugin inlining value of `process.env`
+  const apiHost =
+    process[('env' + Math.random()).slice(0, 3) as 'env'].API_HOST ??
+    request.headers.get('host')
+
+  const baseApiUrl = `http://${apiHost}`
 
   const client = createApolloClient(`${baseApiUrl}/_c/graphql`, cookie)
 
