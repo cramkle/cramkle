@@ -1,4 +1,4 @@
-FROM node:12-alpine AS build-env
+FROM node:14-alpine AS build-env
 WORKDIR /cramkle
 
 COPY . .
@@ -7,7 +7,9 @@ RUN yarn --frozen-lockfile
 
 RUN yarn build
 
-FROM node:12-alpine
+RUN rm -rf .dist/cache
+
+FROM node:14-alpine
 WORKDIR /cramkle
 
 COPY --from=build-env /cramkle .
