@@ -19,8 +19,9 @@ cd cramkle
 # Install dependencies
 yarn
 
-# Compile messages translations from PO files to JSON
+# Compile messages translations and css
 yarn compile
+yarn build-tailwind
 ```
 
 If you want to run this project locally, you will also need to setup and run [Hipocampo](https://github.com/cramkle/hipocampo),
