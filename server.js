@@ -20,6 +20,7 @@ if (process.env.NODE_ENV === 'production') {
     helmet.contentSecurityPolicy({
       directives: {
         defaultSrc: ["'self'"],
+        connectSrc: ["'self'", '*.sentry.io'],
         baseUri: ["'self'"],
         blockAllMixedContent: [],
         fontSrc: ["'self'", 'https:', 'data:'],
