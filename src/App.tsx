@@ -11,6 +11,10 @@ import { ThemeProvider } from './components/Theme'
 import { errorFallback } from './utils/errorFallback'
 import { icons } from './utils/headLinks'
 
+import 'fontsource-libre-franklin/latin-300.css'
+import 'fontsource-libre-franklin/latin-400.css'
+import 'fontsource-libre-franklin/latin-500.css'
+import 'fontsource-libre-franklin/latin-600.css'
 import './material.global.scss'
 import './app.global.scss'
 import './_tailwind.global.css'
@@ -58,11 +62,6 @@ const App: FC<{ i18n: any; apolloClient: any; userAgent: string }> = ({
               ]}
               link={[
                 ...icons,
-                {
-                  rel: 'stylesheet',
-                  href:
-                    'https://fonts.googleapis.com/css?family=Libre+Franklin:300,400,500,600&display=swap',
-                },
                 {
                   rel: 'manifest',
                   href: '/manifest.json',
