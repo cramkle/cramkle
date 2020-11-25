@@ -2,11 +2,13 @@ import fs from 'fs'
 import path from 'path'
 
 import { renderToStringWithData } from '@apollo/react-ssr'
-import { Scripts, Styles } from '@casterly/components'
+import { RootContext, Scripts, Styles } from '@casterly/components'
 import { RootServer } from '@casterly/components/server'
+import { paths } from '@casterly/utils'
 import { i18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
 import { en as enPlural, pt as ptPlural } from 'make-plural/plurals'
+import PurgeCSS from 'purgecss'
 import { renderToString } from 'react-dom/server'
 import { Helmet } from 'react-helmet'
 import serializeJavascript from 'serialize-javascript'
@@ -41,11 +43,14 @@ const getLanguageLocaleFile = (() => {
   }
 })()
 
+const purgeTailwindClasses = (content: string) =>
+  content.match(/[A-Za-z0-9-_:/]+/g) ?? []
+
 export default async function handleRequest(
   request: Request,
   statusCode: number,
   headers: Headers,
-  context: unknown
+  context: RootContext
 ) {
   const language = request.headers.get('x-cramkle-lang')!
 
@@ -95,10 +100,45 @@ export default async function handleRequest(
 
     const head = Helmet.rewind()
 
+    const purgeResult = await new PurgeCSS().purge({
+      css: context.mainAssets
+        .concat(context.matchedRoutesAssets)
+        .filter((file) => file.endsWith('.css'))
+        .map((file) => path.join(paths.appBuildFolder, file)),
+      content: [
+        {
+          raw: content,
+          extension: 'html',
+        },
+      ],
+      safelist: ['__dark-mode', '__light-mode', 'h-full'],
+      extractors: [
+        {
+          extractor: purgeTailwindClasses,
+          extensions: ['html'],
+        },
+      ],
+    })
+
     const rootContainer = (
       <RootServer context={context} url={request.url}>
         <html {...head.htmlAttributes.toComponent()}>
           <head>
+            {context.matchedRoutesAssets
+              .concat(context.mainAssets)
+              .map((assetName) => (
+                <link
+                  key={assetName}
+                  rel="preload"
+                  as={assetName.endsWith('.js') ? 'script' : 'style'}
+                  href={`${process.env.ASSET_PATH}${assetName.slice(1)}`}
+                />
+              ))}
+            <link
+              rel="preload"
+              as="script"
+              href={getLanguageLocaleFile(language)}
+            />
             <meta charSet="utf-8" />
             <meta
               name="viewport"
@@ -115,7 +155,18 @@ export default async function handleRequest(
                   'html,body{height: 100%;}body{overscroll-behavior-y:none;}',
               }}
             />
-            <Styles />
+            {purgeResult.map(({ css, file }) => (
+              <style
+                key={file}
+                nonce={cspNonce}
+                dangerouslySetInnerHTML={{ __html: css }}
+              />
+            ))}
+            <Styles
+              // @ts-ignore: attribute exist in HTML spec
+              disabled
+              data-ssr-stylesheet=""
+            />
           </head>
           <body {...head.bodyAttributes.toComponent()}>
             <script
@@ -126,20 +177,39 @@ export default async function handleRequest(
             />
             {head.script.toComponent()}
             {head.noscript.toComponent()}
-            <div id="root" dangerouslySetInnerHTML={{ __html: content }} />
-            <script
-              nonce={cspNonce}
-              dangerouslySetInnerHTML={{
-                __html:
-                  'window.__APOLLO_STATE__ = ' + serializeJavascript(state),
-              }}
+            <div
+              id="root"
+              className="h-full"
+              dangerouslySetInnerHTML={{ __html: content }}
             />
             {!ROUTES_WITHOUT_JAVASCRIPT.includes(request.url) && (
               <>
+                <script
+                  nonce={cspNonce}
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      'window.__APOLLO_STATE__ = ' + serializeJavascript(state),
+                  }}
+                />
                 <script defer src={getLanguageLocaleFile(language)} />
                 <Scripts nonce={cspNonce} />
               </>
             )}
+            <script
+              nonce={cspNonce}
+              dangerouslySetInnerHTML={{
+                // Enabling all stylesheets once everything in the page has been loaded.
+                __html: `
+(function() {
+  var disabledStylesheets = document.querySelectorAll('link[data-ssr-stylesheet=""]')
+
+  disabledStylesheets.forEach(function(link) {
+    link.disabled = false
+  })
+})()
+`.trim(),
+              }}
+            />
           </body>
         </html>
       </RootServer>
