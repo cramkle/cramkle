@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser')
 const express = require('express')
 const requestLanguage = require('express-request-language')
 const helmet = require('helmet')
+const { createProxyMiddleware } = require('http-proxy-middleware')
 const { v4: uuidv4 } = require('uuid')
 
 const app = express()
@@ -46,24 +47,17 @@ if (process.env.NODE_ENV === 'production') {
 
 app.use(cookieParser())
 
-if (process.env.NODE_ENV !== 'production') {
-  const { createProxyMiddleware } = require('http-proxy-middleware')
-
-  app.use(
-    '/_c',
-    createProxyMiddleware({
-      target: 'http://localhost:5000',
-      changeOrigin: true,
-      pathRewrite: {
-        '^/_c': '',
-      },
-      cookieDomainRewrite: {
-        'localhost:5000': 'localhost:3000',
-      },
-      logLevel: 'silent',
-    })
-  )
-}
+app.use(
+  '/_c',
+  createProxyMiddleware({
+    target: 'http://localhost:5000',
+    changeOrigin: true,
+    cookieDomainRewrite: {
+      'localhost:5000': 'localhost:3000',
+    },
+    logLevel: 'silent',
+  })
+)
 
 app.use(
   requestLanguage({
