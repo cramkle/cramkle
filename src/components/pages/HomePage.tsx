@@ -32,6 +32,13 @@ import StudySection from './StudySection'
 
 const toastStore = ToastStore.getInstance()
 
+export const headers = () => {
+  return {
+    'cache-control': `public, max-age=${1}, stale-while-revalidate=${60}`,
+    vary: 'cookie',
+  }
+}
+
 const HomeTab: React.FC<{
   Icon: React.ComponentType<React.SVGAttributes<SVGSVGElement>>
   label: string
@@ -51,22 +58,24 @@ const HomeTab: React.FC<{
 
 const HomePage: React.FunctionComponent = () => {
   const navigate = useNavigate()
-  const location = useLocation<{ currentTab?: number }>()
+  const location = useLocation()
   const { i18n } = useLingui()
 
-  const [index, setIndex] = useState(location.state?.currentTab ?? 0)
+  const state = location.state as { currentTab?: number } | null
+
+  const [index, setIndex] = useState(state?.currentTab ?? 0)
 
   const prevTabRef = useRef(index)
 
   useEffect(() => {
-    const stateIndex = location.state?.currentTab ?? 0
+    const stateIndex = state?.currentTab ?? 0
 
     if (prevTabRef.current !== stateIndex) {
       setIndex(stateIndex)
     }
 
     prevTabRef.current = stateIndex
-  }, [location.state])
+  }, [state])
 
   useEffect(() => {
     if (process.env.NODE_ENV !== 'production') {
