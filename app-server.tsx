@@ -9,7 +9,7 @@ import { i18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
 import { en as enPlural, pt as ptPlural } from 'make-plural/plurals'
 import PurgeCSS from 'purgecss'
-import { renderToString } from 'react-dom/server'
+import { renderToNodeStream, renderToString } from 'react-dom/server'
 import { Helmet } from 'react-helmet'
 import serializeJavascript from 'serialize-javascript'
 
@@ -21,6 +21,7 @@ import ptCatalog from './src/locales/pt/messages'
 import { createApolloClient } from './src/utils/apolloClient'
 import { darkThemeHelmetScript } from './src/utils/darkThemeScript'
 import { errorFallback } from './src/utils/errorFallback'
+import { icons } from './src/utils/headLinks'
 
 const ROUTES_WITHOUT_JAVASCRIPT = ['/about']
 
@@ -43,6 +44,9 @@ const getLanguageLocaleFile = (() => {
   }
 })()
 
+// hack to avoid DefinePlugin inlining value of `process.env`
+const ENV = ('env' + Math.random()).slice(0, 3) as 'env'
+
 const purgeTailwindClasses = (content: string) =>
   content.match(/[A-Za-z0-9-_:/]+/g) ?? []
 
@@ -54,16 +58,7 @@ export default async function handleRequest(
 ) {
   const language = request.headers.get('x-cramkle-lang')!
 
-  const cspNonce =
-    headers
-      .get('content-security-policy')
-      ?.split(';')
-      .map((policy) => policy.trim())
-      .filter((policy) => policy.startsWith('script-src '))
-      .map((policy) => policy.slice('script-src '.length))
-      .flatMap((policy) => policy.split(' '))
-      .find((policyValue) => policyValue.startsWith("'nonce-"))
-      ?.match(/^'nonce-(.*)'$/)?.[1] ?? undefined
+  const cspNonce = request.headers.get('x-cramkle-nonce') ?? undefined
 
   i18n.load('en', enCatalog.messages)
   i18n.load('pt', ptCatalog.messages)
@@ -74,10 +69,7 @@ export default async function handleRequest(
 
   const cookie = request.headers.get('cookie') ?? undefined
 
-  // hack to avoid DefinePlugin inlining value of `process.env`
-  const apiHost =
-    process[('env' + Math.random()).slice(0, 3) as 'env'].API_HOST ??
-    request.headers.get('host')
+  const apiHost = process[ENV].API_HOST ?? request.headers.get('host')
 
   const baseApiUrl = `http://${apiHost}`
 
@@ -122,8 +114,13 @@ export default async function handleRequest(
 
     const rootContainer = (
       <RootServer context={context} url={request.url}>
-        <html {...head.htmlAttributes.toComponent()}>
+        <html lang={i18n.locale} style={{ fontSize: '16px' }}>
           <head>
+            <meta charSet="utf-8" />
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1, shrink-to-fit=no"
+            />
             {context.matchedRoutesAssets
               .concat(context.mainAssets)
               .map((assetName) => (
@@ -139,15 +136,19 @@ export default async function handleRequest(
               as="script"
               href={getLanguageLocaleFile(language)}
             />
-            <meta charSet="utf-8" />
-            <meta
-              name="viewport"
-              content="width=device-width, initial-scale=1, shrink-to-fit=no"
-            />
-            {head.meta.toComponent()}
             {head.title.toComponent()}
-            {head.base.toComponent()}
+            {head.meta.toComponent()}
             {head.link.toComponent()}
+            {icons.map(({ rel, sizes, href, type }) => (
+              <link
+                key={href}
+                rel={rel}
+                sizes={sizes}
+                href={href}
+                type={type}
+              />
+            ))}
+            <link rel="manifest" href="/manifest.json" />
             <style
               nonce={cspNonce}
               dangerouslySetInnerHTML={{
@@ -167,16 +168,17 @@ export default async function handleRequest(
               disabled
               data-ssr-stylesheet=""
             />
+            <noscript>
+              <Styles />
+            </noscript>
           </head>
-          <body {...head.bodyAttributes.toComponent()}>
+          <body>
             <script
               nonce={cspNonce}
               dangerouslySetInnerHTML={{
                 __html: darkThemeHelmetScript.innerHTML,
               }}
             />
-            {head.script.toComponent()}
-            {head.noscript.toComponent()}
             <div
               id="root"
               className="h-full"
@@ -215,13 +217,25 @@ export default async function handleRequest(
       </RootServer>
     )
 
-    const rootContent = renderToString(rootContainer)
+    const rootContent = renderToNodeStream(rootContainer)
 
-    return new Response('<!doctype html>' + rootContent, {
+    rootContent.unshift('<!doctype html>')
+
+    return new Response(rootContent as any, {
       status: statusCode,
       headers: {
         ...Object.fromEntries((headers as unknown) as [string, string][]),
         'content-type': 'text/html',
+        vary: Array.from(
+          new Set(
+            (
+              'cookie' +
+              (headers.has('vary') ? ', ' + headers.get('vary')! : '')
+            )
+              .split(',')
+              .map((header) => header.trim())
+          )
+        ).join(', '),
       },
     })
   } catch (err) {
