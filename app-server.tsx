@@ -27,7 +27,7 @@ const locales = linguiConfig.locales.sort()
 const getLanguageLocaleFile = (() => {
   const files = fs
     .readdirSync(
-      path.join(fs.realpathSync(process.cwd()), '.dist/static/chunks')
+      path.join(fs.realpathSync(process.cwd()), 'build/static/chunks')
     )
     .filter((fileName) => fileName.match(/locale\d+\.\w+\.js$/))
 
