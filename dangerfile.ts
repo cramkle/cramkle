@@ -8,8 +8,8 @@ import filesize from 'filesize'
 import { sync as gzipSize } from 'gzip-size'
 import unzipper from 'unzipper'
 
-const BUILD_DIR = path.join(__dirname, '.dist')
-const BASE_BRANCH_BUILD_DIR = path.join(__dirname, 'build-dist')
+const BUILD_DIR = path.join(__dirname, 'build')
+const BASE_BRANCH_BUILD_DIR = path.join(__dirname, 'base-build')
 
 const routesManifest = JSON.parse(
   fs.readFileSync(path.join(BUILD_DIR, 'routes-manifest.json')).toString()
