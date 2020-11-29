@@ -10,7 +10,7 @@ fi
 version=${unparsed_version//v}
 
 if [[ ! -z "$SENTRY_DSN" ]]; then
-  echo "REACT_APP_SENTRY_DSN=$SENTRY_DSN" >> .env
+  echo "CASTERLY_PUBLIC_SENTRY_DSN=$SENTRY_DSN" >> .env
 else
   echo "No SENTRY_DSN, skipping Sentry config.."
 fi
