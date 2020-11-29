@@ -20,10 +20,20 @@ if [[ -z "$REGISTRY_SERVER" ]]; then
   exit 0;
 fi
 
+dockerfile=Dockerfile
+
+while [[ "$#" -gt 0 ]]; do
+  case $1 in
+    -l|--local) dockerfile=local.Dockerfile; shift ;;
+    *) echo "Unknown parameter passed: $1"; exit 1 ;;
+  esac
+  shift
+done
+
 image_name=$REGISTRY_SERVER/cramkle/cramkle:$version
 image_latest=$REGISTRY_SERVER/cramkle/cramkle:latest
 
-docker build -t $image_name .
+docker build -t $image_name -f $dockerfile .
 
 echo "Pushing version $version"
 
