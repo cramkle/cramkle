@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Try to improve TTI and TBT.
 
+### Fixed
+- Public env variable name.
+
 ## [0.13.6] - 2020-11-24
 ### Fixed
 - Sentry requests blocked by CSP.

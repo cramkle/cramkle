@@ -17,9 +17,9 @@ i18n.loadLocaleData({ en: { plurals: enPlural }, pt: { plurals: ptPlural } })
 
 const apolloClient = createApolloClient('/_c/graphql')
 
-if (process.env.REACT_APP_SENTRY_DSN) {
+if (process.env.CASTERLY_PUBLIC_SENTRY_DSN) {
   Sentry.init({
-    dsn: process.env.REACT_APP_SENTRY_DSN,
+    dsn: process.env.CASTERLY_PUBLIC_SENTRY_DSN,
   })
 }
 
