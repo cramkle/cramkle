@@ -7,7 +7,7 @@ RUN yarn --frozen-lockfile
 
 RUN yarn build
 
-RUN rm -rf .dist/cache
+RUN rm -rf build/cache
 
 FROM node:14-alpine
 WORKDIR /cramkle
