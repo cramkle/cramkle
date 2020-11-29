@@ -2460,10 +2460,10 @@
   dependencies:
     tslib "^2.0.0"
 
-"@release-it/keep-a-changelog@^2.0.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@release-it/keep-a-changelog/-/keep-a-changelog-2.1.0.tgz#a19b37c205c07091cc79efdb9a0e268048dce501"
-  integrity sha512-ymVwWCSOliCT/U8lJwOd3AilMOUsjsPBuL0d78fnQQ33MtOh9g994rOrhOIybUYNM0FYUkW7VdNlt7kPJltMbQ==
+"@release-it/keep-a-changelog@^2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@release-it/keep-a-changelog/-/keep-a-changelog-2.2.0.tgz#bedfd23438f1e0c11122bae708cbebb07258cfe6"
+  integrity sha512-bJofQA8eYxSX4ds0M49R02xS/nNzKGOI6Y/3fUwP3D1ged/c6SkUfw16tTvhrVoV3dfSp7FZx01IX3Lc5z2MmA==
   dependencies:
     detect-newline "^3.1.0"
 
