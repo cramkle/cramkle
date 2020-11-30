@@ -1330,10 +1330,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@casterly/cli@^0.4.4":
-  version "0.4.4"
-  resolved "https://registry.yarnpkg.com/@casterly/cli/-/cli-0.4.4.tgz#e1db742db6de0e31f4a452ac24f11c5d00272505"
-  integrity sha512-IwLwSN40BrUTk37aTM6xtrfFh75v9/llcY7e7n6IpWqbNsFZOUyKDVwWWo0QvU79r+dFY2m30ghRS9sfdOkoJw==
+"@casterly/cli@^0.4.5":
+  version "0.4.5"
+  resolved "https://registry.yarnpkg.com/@casterly/cli/-/cli-0.4.5.tgz#2179475068aba8fdee694b4d76f6a1f72172e609"
+  integrity sha512-5c/5Ed49qpUfbj27+sFkretzsTWzMWgJcsMq6SQ1R6jhldcOXheBdazzxxshY/bdRngFvXoOwlyFTE3zPHAkFQ==
   dependencies:
     "@babel/core" "^7.11.4"
     "@babel/plugin-proposal-class-properties" "^7.10.4"
@@ -1385,17 +1385,17 @@
     webpack-hot-middleware "^2.25.0"
     workbox-webpack-plugin "^6.0.0-alpha.3"
 
-"@casterly/components@^0.4.2":
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/@casterly/components/-/components-0.4.2.tgz#286897850c388a1a9fd45bc1307b739332a97a78"
-  integrity sha512-MMNpXYrRvRxryP6xJI0MJJASN2p3DPp12m1vmz/iybVgmy0C/f8+jSNV8NpVWaFIG/MjVLoAH8Ol93lahR9RlQ==
+"@casterly/components@^0.4.5":
+  version "0.4.5"
+  resolved "https://registry.yarnpkg.com/@casterly/components/-/components-0.4.5.tgz#74fd4ea9ad7ea00df88e343d82c7ad4ff219830f"
+  integrity sha512-vYU1KBsMJ+DeX4g1k5/SU8k5Zm12Z4e3GtToXY+4+/iFYzS7l8GofKpxOd8Kb/klVLbkFbKpM46lyM/GShaibw==
 
-"@casterly/express@^0.4.4":
-  version "0.4.4"
-  resolved "https://registry.yarnpkg.com/@casterly/express/-/express-0.4.4.tgz#39c1484101e30cf64b4551da2152ba6210c5bfd0"
-  integrity sha512-GRwuzSSgfLnqlMLMAIGkM5rlJevwAL8I3lbxvbm5HMMYpqK8VANAnJUJ1OJE6eCZNZkzuxr3YCeHn9Ozy/mJJA==
+"@casterly/express@^0.4.5":
+  version "0.4.5"
+  resolved "https://registry.yarnpkg.com/@casterly/express/-/express-0.4.5.tgz#ad23a17c0554a244362fac3e68d0c6d7e29b66fb"
+  integrity sha512-7+MJan7NyKIEQeSDDr3LRa6PUOK+RUtFdbNKTITisEXtA+WrZQhucMb+CYvICUICwrMWqh1zHeECMzrA5Eky3A==
   dependencies:
-    casterly "^0.4.4"
+    casterly "^0.4.5"
 
 "@cnakazawa/watch@^1.0.3":
   version "1.0.4"
@@ -2460,10 +2460,10 @@
   dependencies:
     tslib "^2.0.0"
 
-"@release-it/keep-a-changelog@^2.2.0":
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/@release-it/keep-a-changelog/-/keep-a-changelog-2.2.0.tgz#bedfd23438f1e0c11122bae708cbebb07258cfe6"
-  integrity sha512-bJofQA8eYxSX4ds0M49R02xS/nNzKGOI6Y/3fUwP3D1ged/c6SkUfw16tTvhrVoV3dfSp7FZx01IX3Lc5z2MmA==
+"@release-it/keep-a-changelog@^2.2.2":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@release-it/keep-a-changelog/-/keep-a-changelog-2.2.2.tgz#16896c4c25978993886fa0b0cfcbceb31c53a27d"
+  integrity sha512-fFHtjKcnxA2bE0jVBFTFSQq2U4bPqL1EhRx9kDl+fzAXqERjEazcvrrp6fk2LaVRSID4L0IPKQ4KyOBJGf0Y3g==
   dependencies:
     detect-newline "^3.1.0"
 
@@ -5934,10 +5934,10 @@ caseless@~0.12.0:
   resolved "https://registry.yarnpkg.com/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
   integrity sha1-G2gcIf+EAzyCZUMJBolCDRhxUdw=
 
-casterly@^0.4.4:
-  version "0.4.4"
-  resolved "https://registry.yarnpkg.com/casterly/-/casterly-0.4.4.tgz#a9da12690f97c5b5c84859520ade340a3175195c"
-  integrity sha512-DCCFKDgqG3x+3VD+XBiOAAasQvATBluYbljJRCJyQ645cabA6ee6gBh6mcbnycVtDbFNG155lWIT4LGpZgalrg==
+casterly@^0.4.5:
+  version "0.4.5"
+  resolved "https://registry.yarnpkg.com/casterly/-/casterly-0.4.5.tgz#f2bdd89b06711a20d88cacb9cdf72ad1d7f9b805"
+  integrity sha512-MJAuce5HrwWDZYrKAIsOEPPPn1k1AySoNTQKIsFEjk0Uh6pGJkU8Q0dTd2GNPmTi6wM1aom3PIyzCytUELX3IQ==
   dependencies:
     etag "^1.8.1"
     fresh "^0.5.2"
