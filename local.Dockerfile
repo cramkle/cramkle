@@ -3,6 +3,8 @@ WORKDIR /cramkle
 
 COPY . .
 
+RUN yarn install --silent
+
 RUN yarn build
 
 RUN rm -rf build/cache
