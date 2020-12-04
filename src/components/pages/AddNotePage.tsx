@@ -63,7 +63,7 @@ const CREATE_NOTE_MUTATION = gql`
 const DEFAULT_OPTION = 'default'
 
 const AddNotePage: React.FC = () => {
-  const { slug } = useParams<{ slug: string }>()
+  const { slug } = useParams() as { slug: string }
   const navigate = useNavigate()
   const location = useLocation()
   const { data, loading } = useQuery<NoteFormQuery, NoteFormQueryVariables>(

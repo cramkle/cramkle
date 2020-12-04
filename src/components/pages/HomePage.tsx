@@ -1,6 +1,7 @@
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import classNames from 'classnames'
+import { Location } from 'history'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import * as React from 'react'
 import { Helmet } from 'react-helmet'
@@ -51,7 +52,7 @@ const HomeTab: React.FC<{
 
 const HomePage: React.FunctionComponent = () => {
   const navigate = useNavigate()
-  const location = useLocation<{ currentTab?: number }>()
+  const location = useLocation() as Location<{ currentTab?: number }>
   const { i18n } = useLingui()
 
   const [index, setIndex] = useState(location.state?.currentTab ?? 0)

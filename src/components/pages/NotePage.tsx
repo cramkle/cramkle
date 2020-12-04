@@ -180,10 +180,10 @@ const FieldValueDetail: React.FC<FieldValueDetailProps> = ({
 }
 
 const NotePage: React.FC = () => {
-  const { slug: deckSlug, noteId } = useParams<{
+  const { slug: deckSlug, noteId } = useParams() as {
     slug: string
     noteId: string
-  }>()
+  }
   const { data, loading } = useQuery<NoteQuery, NoteQueryVariables>(
     NOTE_QUERY,
     { variables: { noteId } }

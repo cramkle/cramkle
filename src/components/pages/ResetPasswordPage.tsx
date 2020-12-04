@@ -47,7 +47,7 @@ const RESET_PASSWORD_MUTATION = gql`
 
 const ResetPasswordPage: React.FC = () => {
   const { i18n } = useLingui()
-  const { userId } = useParams<{ userId: string }>()
+  const { userId } = useParams() as { userId: string }
   const { search } = useLocation()
   const navigate = useNavigate()
   const [mutateResetPassword, { loading }] = useMutation<

@@ -3,6 +3,7 @@ import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { FieldArray, Formik } from 'formik'
 import gql from 'graphql-tag'
+import { Location } from 'history'
 import * as React from 'react'
 import { useLocation, useNavigate } from 'react-router'
 import * as yup from 'yup'
@@ -55,7 +56,7 @@ const CREATE_MODEL_MUTATION = gql`
 
 const AddModelPage: React.FunctionComponent = () => {
   const navigate = useNavigate()
-  const location = useLocation<{ referrer?: string }>()
+  const location = useLocation() as Location<{ referrer?: string }>
   const { i18n } = useLingui()
 
   const [mutate] = useMutation<
