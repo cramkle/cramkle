@@ -1,3 +1,4 @@
+import { Location } from 'history'
 import { useCallback, useMemo } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
@@ -7,7 +8,7 @@ type PaginationState = PageArgs
 
 const usePaginationParams = () => {
   const navigate = useNavigate()
-  const location = useLocation<PaginationState>()
+  const location = useLocation() as Location<PaginationState>
 
   const queryParams = useMemo(() => new URLSearchParams(location.search), [
     location.search,

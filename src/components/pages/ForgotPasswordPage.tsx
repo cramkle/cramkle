@@ -3,6 +3,7 @@ import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import classnames from 'classnames'
 import gql from 'graphql-tag'
+import { Location } from 'history'
 import { useEffect, useState } from 'react'
 import * as React from 'react'
 import { Helmet } from 'react-helmet'
@@ -36,7 +37,9 @@ const REQUEST_PASSWORD_RESET_MUTATION = gql`
 const ForgotPasswordPage: React.FC = () => {
   const { i18n } = useLingui()
   const navigate = useNavigate()
-  const { state, pathname } = useLocation<{ showSuccess?: boolean }>()
+  const { state, pathname } = useLocation() as Location<{
+    showSuccess?: boolean
+  }>
   const [email, setEmail] = useState('')
   const [emailValid, setEmailValid] = useState(false)
   const [showEmailError, setShowEmailError] = useState(false)

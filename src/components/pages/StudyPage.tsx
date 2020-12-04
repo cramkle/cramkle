@@ -148,7 +148,7 @@ const CancelStudyButton: React.FC = () => {
 }
 
 const StudyPage: React.FC = () => {
-  const { slug } = useParams<{ slug: string }>()
+  const { slug } = useParams() as { slug: string }
   const [startTime, setStartTime] = useState(0)
   const [queryNextFlashCard, { data, loading }] = useLazyQuery(
     STUDY_CARD_QUERY,

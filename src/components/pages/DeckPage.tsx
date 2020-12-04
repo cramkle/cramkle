@@ -92,7 +92,7 @@ export const DECK_QUERY = gql`
 
 const DeckPage: React.FunctionComponent = () => {
   const { i18n } = useLingui()
-  const { slug } = useParams<{ slug: string }>()
+  const { slug } = useParams() as { slug: string }
   const location = useLocation()
   const navigate = useNavigate()
   const {

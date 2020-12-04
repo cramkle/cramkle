@@ -162,7 +162,7 @@ const ModelTemplateDetails: React.FC<ModelTemplateDetailsProps> = ({
 }
 
 const ModelPage: React.FC = () => {
-  const { id } = useParams<{ id: string }>()
+  const { id } = useParams() as { id: string }
   const { i18n } = useLingui()
   const { data, loading } = useQuery<ModelQuery, ModelQueryVariables>(
     MODEL_QUERY,
