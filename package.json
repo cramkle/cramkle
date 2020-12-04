@@ -108,7 +108,7 @@
     "@lingui/cli": "3.2.3",
     "@lingui/macro": "3.2.3",
     "@lucasecdb/eslint-config": "^0.14.0",
-    "@release-it/keep-a-changelog": "^2.0.0",
+    "@release-it/keep-a-changelog": "^2.2.2",
     "@storybook/addon-actions": "^6.1.0",
     "@storybook/addon-essentials": "^6.1.0",
     "@storybook/addon-links": "^6.1.0",
