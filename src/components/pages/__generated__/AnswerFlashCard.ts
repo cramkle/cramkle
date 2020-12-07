@@ -18,7 +18,7 @@ export interface AnswerFlashCard_answerFlashCard_flashCard {
 }
 
 export interface AnswerFlashCard_answerFlashCard {
-  __typename: "AnswerFlashCardPayload";
+  __typename: "AnswerFlashcardPayload";
   flashCard: AnswerFlashCard_answerFlashCard_flashCard;
 }
 

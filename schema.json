@@ -1853,7 +1853,7 @@
       {
         "kind": "OBJECT",
         "name": "FlashCard",
-        "description": "FlashCards are what the user study/reviews in the study sessions.\n\nThe objects of this type are auto generated when creating\nthe note and depend of the number of templates that are\nassociated with the model.\n\nThe number of flashcards on each note is always equal to the\nnumber of templates.",
+        "description": "Flashcards are what the user study/reviews in the study sessions.\n\nThe objects of this type are auto generated when creating\nthe note and depend of the number of templates that are\nassociated with the model.\n\nThe number of flashcards on each note is always equal to the\nnumber of templates.",
         "fields": [
           {
             "name": "id",
@@ -2285,15 +2285,11 @@
                 "name": "zoneInfo",
                 "description": "Timezone",
                 "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
                 },
-                "defaultValue": null
+                "defaultValue": "\"UTC\""
               }
             ],
             "type": {
@@ -2468,7 +2464,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "AnswerFlashCardInput",
+                    "name": "AnswerFlashcardInput",
                     "ofType": null
                   }
                 },
@@ -2477,7 +2473,34 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "AnswerFlashCardPayload",
+              "name": "AnswerFlashcardPayload",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "answerFlashcard",
+            "description": "Records an answer to the flashcard during the study session and re-schedules it to a future date.",
+            "args": [
+              {
+                "name": "input",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "AnswerFlashcardInput",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "AnswerFlashcardPayload",
               "ofType": null
             },
             "isDeprecated": false,
@@ -3199,7 +3222,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "AnswerFlashCardPayload",
+        "name": "AnswerFlashcardPayload",
         "description": null,
         "fields": [
           {
@@ -3254,7 +3277,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "AnswerFlashCardInput",
+        "name": "AnswerFlashcardInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -5670,7 +5693,18 @@
           {
             "name": "inputFields",
             "description": null,
-            "args": [],
+            "args": [
+              {
+                "name": "includeDeprecated",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                },
+                "defaultValue": "false"
+              }
+            ],
             "type": {
               "kind": "LIST",
               "name": null,
@@ -5800,7 +5834,18 @@
           {
             "name": "args",
             "description": null,
-            "args": [],
+            "args": [
+              {
+                "name": "includeDeprecated",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                },
+                "defaultValue": "false"
+              }
+            ],
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -5923,6 +5968,34 @@
           {
             "name": "defaultValue",
             "description": "A GraphQL-formatted string representing the default value for this input value.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "isDeprecated",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "deprecationReason",
+            "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",

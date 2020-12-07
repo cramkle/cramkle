@@ -1,7 +1,13 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-const useSearchParamsState = (key: string, defaultValue: string = null) => {
+const useSearchParamsState = <DefaultValue extends string | undefined>(
+  key: string,
+  defaultValue?: DefaultValue
+): readonly [
+  DefaultValue extends string ? string : string | undefined,
+  (newValue: string) => void
+] => {
   const navigate = useNavigate()
   const location = useLocation()
 
@@ -9,7 +15,7 @@ const useSearchParamsState = (key: string, defaultValue: string = null) => {
     const searchParams = new URLSearchParams(location.search)
 
     if (searchParams.has(key)) {
-      return searchParams.get(key)
+      return searchParams.get(key)!
     }
 
     return defaultValue
@@ -23,7 +29,7 @@ const useSearchParamsState = (key: string, defaultValue: string = null) => {
         return
       }
 
-      setValue(searchParams.get(key))
+      setValue(searchParams.get(key)!)
       return
     }
   }, [location, key, value])
@@ -39,7 +45,7 @@ const useSearchParamsState = (key: string, defaultValue: string = null) => {
     [navigate, key, location.pathname, location.search]
   )
 
-  return [value, updateValue] as const
+  return [value as any, updateValue]
 }
 
 export default useSearchParamsState

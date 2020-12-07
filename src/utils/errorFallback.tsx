@@ -30,7 +30,7 @@ export const errorFallback = ({
           <Overline className="mt-4 text-primary">
             Error message: "{error.message}"
           </Overline>
-          <pre className="text-primary">{componentStack}</pre>
+          <pre className="text-primary">{componentStack ?? error.stack}</pre>
         </>
       )}
     </div>
