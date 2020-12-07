@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "release": "release-it",
-    "dev": "concurrently \"casterly watch\" \"nodemon server.js\"",
+    "dev": "concurrently \"casterly watch\" \"nodemon server.js -i build\"",
     "start": "NODE_ENV=production node server.js",
     "build": "NODE_ENV=production casterly build",
     "build-tailwind": "tailwindcss build src/tailwind.css -o src/_tailwind.global.css",
