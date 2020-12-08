@@ -159,7 +159,7 @@ const FieldValueDetail: React.FC<FieldValueDetailProps> = ({
 
   return (
     <PersistedEditor
-      title={<span className="text-primary">{fieldValue.field.name}</span>}
+      title={<span className="text-primary">{fieldValue.field!.name}</span>}
       loading={loading}
       error={error}
       saveDebounceMs={FIELD_VALUE_CHANGE_DEBOUNCE}
@@ -171,7 +171,7 @@ const FieldValueDetail: React.FC<FieldValueDetailProps> = ({
         <FieldValueEditor
           className="mb-4 mt-1"
           initialContentState={fieldValue.data}
-          field={fieldValue.field}
+          field={fieldValue.field!}
           onChange={onChange}
         />
       )}
@@ -208,9 +208,7 @@ const NotePage: React.FC = () => {
     return null
   }
 
-  const {
-    note: { values, deck, flashCards, text },
-  } = data
+  const { id, values, deck, flashCards, text } = data!.note!
 
   return (
     <>
@@ -219,6 +217,7 @@ const NotePage: React.FC = () => {
           <FlashCardRenderer
             values={values.map(({ data, ...value }) => ({
               ...value,
+              field: value.field!,
               data: data as RawDraftContentState,
             }))}
             hideBackSide={false}
@@ -231,13 +230,13 @@ const NotePage: React.FC = () => {
           />
         </Dialog>
       )}
-      <Helmet title={text} />
+      <Helmet title={text!} />
       <Container>
         <BackButton to={`/d/${deckSlug}`} />
 
         <div className="flex flex-col mb-8">
           <Caption className="mt-1 text-secondary">
-            <Trans>Deck {deck.title}</Trans>
+            <Trans>Deck {deck!.title}</Trans>
           </Caption>
           <Headline1 className="text-primary font-bold">
             <Trans>Note details</Trans>
@@ -252,11 +251,7 @@ const NotePage: React.FC = () => {
         </div>
 
         {values.map((value) => (
-          <FieldValueDetail
-            noteId={data.note.id}
-            fieldValue={value}
-            key={value.id}
-          />
+          <FieldValueDetail noteId={id} fieldValue={value} key={value.id} />
         ))}
 
         <Divider className="my-8" />
@@ -282,9 +277,9 @@ const NotePage: React.FC = () => {
                 <TableCell className="flex justify-center items-center">
                   <Checkbox checked={flashCard.active} />
                 </TableCell>
-                <TableCell>{flashCard.template.name}</TableCell>
+                <TableCell>{flashCard.template?.name}</TableCell>
                 <TableCell>
-                  <FlashCardStatus status={flashCard.status} />
+                  <FlashCardStatus status={flashCard.status!} />
                 </TableCell>
                 <TableCell>{flashCard.lapses}</TableCell>
                 <TableCell>

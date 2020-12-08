@@ -59,7 +59,7 @@ const LoginForm: React.FunctionComponent = () => {
           }
 
           window.location.assign(
-            searchParams.has('returnUrl') ? searchParams.get('returnUrl') : '/'
+            searchParams.has('returnUrl') ? searchParams.get('returnUrl')! : '/'
           )
         } catch {
           helpers.setErrors({

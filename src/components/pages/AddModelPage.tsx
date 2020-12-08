@@ -109,12 +109,14 @@ const AddModelPage: React.FunctionComponent = () => {
         onSubmit={(values) => {
           return mutate({
             variables: values,
-            update: (proxy, { data: { createModel } }) => {
+            update: (proxy, mutationResult) => {
               const data = proxy.readQuery<ModelsQuery>({
                 query: MODELS_QUERY,
               })
 
-              data.models.push(createModel.model)
+              const { createModel } = mutationResult!.data!
+
+              data?.models.push(createModel!.model!)
 
               proxy.writeQuery({ query: MODELS_QUERY, data })
             },
@@ -125,7 +127,7 @@ const AddModelPage: React.FunctionComponent = () => {
                 action: {
                   label: t`View`,
                   onPress: () => {
-                    navigate(`/m/${query.data.createModel.model.id}`)
+                    navigate(`/m/${query.data!.createModel!.model!.id}`)
                   },
                 },
               },

@@ -20,7 +20,7 @@ const HeaderPortal: React.FC = ({ children }) => {
 
   return createPortal(
     shouldRenderMobile ? <HeaderContent>{children}</HeaderContent> : children,
-    isMobile || !isMediumOrGreaterViewport ? headerMobileAnchor : headerAnchor
+    isMobile || !isMediumOrGreaterViewport ? headerMobileAnchor! : headerAnchor!
   )
 }
 

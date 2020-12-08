@@ -66,13 +66,11 @@ const ForgotPasswordPage: React.FC = () => {
       return
     }
 
-    const {
-      data: {
-        requestPasswordReset: { success },
-      },
-    } = await mutateRequestPasswordReset({
+    const { data } = await mutateRequestPasswordReset({
       variables: { email },
     })
+
+    const success = data?.requestPasswordReset?.success
 
     if (success) {
       pushSimpleToast(t`Email sent!`)
@@ -97,7 +95,7 @@ const ForgotPasswordPage: React.FC = () => {
   }
 
   useEffect(() => {
-    if (!loading && data?.requestPasswordReset.success) {
+    if (!loading && data?.requestPasswordReset?.success) {
       navigate(pathname, { state: { showSuccess: true } })
     }
   }, [data, navigate, loading, pathname])

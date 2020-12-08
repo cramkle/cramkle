@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router'
 
 import useTopBarLoading from '../../hooks/useTopBarLoading'
 import DeckCard, { deckCardFragment } from '../DeckCard'
+import { DeckCard_deck } from '../__generated__/DeckCard_deck'
 import {
   AlertDialog,
   AlertDialogDescription,
@@ -44,17 +45,17 @@ const StudySection: React.FunctionComponent = () => {
     fetchPolicy: 'network-only',
     notifyOnNetworkStatusChange: true,
   })
-  const [selectedDeck, setSelectedDeck] = useState(null)
+  const [selectedDeck, setSelectedDeck] = useState<DeckCard_deck | null>(null)
   const cancelRef = useRef<HTMLButtonElement>(null)
 
   useTopBarLoading(loading)
 
   const handleDeckSelect = (deck: { id: string }) => {
-    setSelectedDeck(data.decks.find(({ id }) => deck.id === id))
+    setSelectedDeck(data!.decks.find(({ id }) => deck.id === id)!)
   }
 
   const handleStudyDeck = () => {
-    navigate(`/study/${selectedDeck.slug}`)
+    navigate(`/study/${selectedDeck!.slug}`)
   }
 
   if (loading && networkStatus !== NetworkStatus.refetch) {
@@ -89,7 +90,7 @@ const StudySection: React.FunctionComponent = () => {
     )
   }
 
-  const { decks } = data
+  const { decks } = data!
 
   return (
     <>

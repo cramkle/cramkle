@@ -18,12 +18,16 @@ const usePaginationParams = () => {
     let page = 1
     let size = 10
 
-    if (queryParams.get('page')) {
-      page = parseInt(queryParams.get('page'), 10)
+    const queryPage = queryParams.get('page')
+
+    if (queryPage) {
+      page = parseInt(queryPage, 10)
     }
 
-    if (queryParams.get('size')) {
-      size = parseInt(queryParams.get('size'), 10)
+    const querySize = queryParams.get('size')
+
+    if (querySize) {
+      size = parseInt(querySize, 10)
     }
 
     return {

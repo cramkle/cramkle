@@ -97,7 +97,7 @@ export const blockStyleFn = (contentBlock: ContentBlock) => {
   let alignmentStyle = ''
 
   if (blockAlignment) {
-    alignmentStyle = getAlignmentStyles(blockAlignment)
+    alignmentStyle = getAlignmentStyles(blockAlignment) ?? ''
   }
 
   const blockStyle = getBlockTypeStyle(blockType)

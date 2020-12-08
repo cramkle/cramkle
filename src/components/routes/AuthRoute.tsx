@@ -28,7 +28,7 @@ export const createRoute = ({
       return null
     }
 
-    if (challenge(data.me)) {
+    if (challenge(data?.me ?? null)) {
       return <>{children}</>
     }
 

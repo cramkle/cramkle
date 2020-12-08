@@ -89,20 +89,15 @@ const TimezoneOption: React.FC<{
 
 const GeneralSettings: React.FC = () => {
   const { i18n } = useLingui()
-  const {
-    data: {
-      me: {
-        preferences: { zoneInfo },
-      },
-    },
-  } = useQuery<UserQuery>(USER_QUERY)
+  const { data } = useQuery<UserQuery>(USER_QUERY)
+  const zoneInfo = data!.me!.preferences.zoneInfo
   const [updatePreferences, { loading }] = useMutation<
     UpdatePreferences,
     UpdatePreferencesVariables
   >(UPDATE_PREFERENCES_MUTATION)
   const [timeZone, setTimeZone] = useState(zoneInfo)
   const [currentLanguage, setCurrentLanguage] = useState(i18n.locale)
-  const { timezones, loading: timezonesLoading } = useTimezoneData()
+  const timezoneData = useTimezoneData()
 
   const handleChangeLanguage = (language: string) => {
     setCurrentLanguage(language)
@@ -184,7 +179,7 @@ const GeneralSettings: React.FC = () => {
               time.
             </Trans>
           </Subtitle2>
-          {timezonesLoading ? (
+          {timezoneData.loading ? (
             <CircularProgress
               className={classNames(styles.settingInput, 'self-center mx-4')}
             />
@@ -229,9 +224,9 @@ const GeneralSettings: React.FC = () => {
                     className="-my-2 rounded"
                     height={256}
                     width={300}
-                    itemCount={timezones.length}
+                    itemCount={timezoneData.timezones.length}
                     itemSize={40}
-                    itemData={timezones}
+                    itemData={timezoneData.timezones}
                   >
                     {TimezoneOption}
                   </WindowList>

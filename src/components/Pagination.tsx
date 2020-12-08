@@ -17,14 +17,14 @@ interface PageCursor {
   isCurrent: boolean
 }
 
-interface PageCursors {
+export interface PageCursors {
   first?: PageCursor
   around: PageCursor[]
   last?: PageCursor
   previous?: PageCursor
 }
 
-interface PageInfo {
+export interface PageInfo {
   hasNextPage: boolean
   endCursor?: string
 }
@@ -53,19 +53,19 @@ export const Pagination: React.FC<Props> = ({
   }
 
   const handleFirstPageClick = () => {
-    onChange({ page: pageCursors.first.page })
+    onChange({ page: pageCursors.first?.page })
   }
 
   const handleLastPageClick = () => {
-    onChange({ page: pageCursors.last.page })
+    onChange({ page: pageCursors.last?.page })
   }
 
   const handlePrevPageClick = () => {
-    onChange({ page: pageCursors.previous.page })
+    onChange({ page: pageCursors.previous?.page })
   }
 
   const handleNextPageClick = () => {
-    onChange({ page: currentPage.page + 1 })
+    onChange({ page: (currentPage?.page ?? 0) + 1 })
   }
 
   const handlePageClick = (page: number) => {

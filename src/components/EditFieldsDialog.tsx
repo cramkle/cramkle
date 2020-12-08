@@ -109,7 +109,7 @@ const EditFieldsDialog: React.FC<{
   const confirmDeleteField = async () => {
     await deleteField({
       variables: {
-        fieldId: editingFieldId,
+        fieldId: editingFieldId!,
       },
       update: (proxy, mutationResult) => {
         const data = proxy.readQuery<ModelQuery, ModelQueryVariables>({
@@ -117,12 +117,14 @@ const EditFieldsDialog: React.FC<{
           variables: { id: modelId },
         })
 
-        const fieldIndex = data.model.fields.findIndex(
+        const fieldIndex = data?.model?.fields.findIndex(
           (field) =>
-            field.id === mutationResult.data.removeFieldFromModel.field.id
+            field.id === mutationResult.data?.removeFieldFromModel?.field?.id
         )
 
-        data.model.fields.splice(fieldIndex, 1)
+        if (fieldIndex) {
+          data?.model?.fields.splice(fieldIndex, 1)
+        }
 
         proxy.writeQuery({
           query: MODEL_QUERY,
@@ -144,7 +146,9 @@ const EditFieldsDialog: React.FC<{
           variables: { id: modelId },
         })
 
-        data.model.fields.push(mutationResult.data.addFieldToModel.field)
+        if (mutationResult.data?.addFieldToModel?.field) {
+          data?.model?.fields.push(mutationResult.data.addFieldToModel.field)
+        }
 
         proxy.writeQuery({
           query: MODEL_QUERY,
@@ -158,7 +162,7 @@ const EditFieldsDialog: React.FC<{
   }
 
   const confirmUpdateField = async () => {
-    await renameField({ variables: { fieldId: editingFieldId, fieldName } })
+    await renameField({ variables: { fieldId: editingFieldId!, fieldName } })
 
     clearEditField()
   }

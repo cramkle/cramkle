@@ -13,7 +13,7 @@ interface Props<T> extends React.SVGProps<SVGGElement> {
 
 export default function ChartGrid<T>({
   scaler,
-  ticks,
+  ticks = 0,
   inlineStart,
   inlineEnd,
   tickKeyFn,
@@ -38,7 +38,7 @@ export default function ChartGrid<T>({
   return (
     <g {...props} stroke={stroke} strokeOpacity={strokeOpacity}>
       {values.map((tick) => {
-        const position = 0.5 + scaler(tick)
+        const position = 0.5 + scaler(tick)!
 
         const positionProps =
           orientation === 'vertical'
@@ -53,7 +53,7 @@ export default function ChartGrid<T>({
 
         return (
           <line
-            key={tickKeyFn?.(tick) ?? tick.toString()}
+            key={tickKeyFn?.(tick) ?? (tick as any).toString()}
             {...lineProps}
             {...positionProps}
           />

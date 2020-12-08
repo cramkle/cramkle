@@ -241,35 +241,35 @@ const StatisticsPage: React.FC = () => {
     )
   }
 
-  const frequencyX = scaleTime()
-    .domain(extent(studyFrequency, (data) => data.date))
+  const frequencyX = scaleTime<number, number>()
+    .domain(extent(studyFrequency, (data) => data.date) as [Date, Date])
     .range([margin.left, width - margin.right])
 
   const frequencyY = scaleLinear()
     .domain([
       0,
       Math.max(
-        max(studyFrequency, (d) => d.learning),
-        max(studyFrequency, (d) => d.new),
-        max(studyFrequency, (d) => d.review)
+        max(studyFrequency, (d) => d.learning) as number,
+        max(studyFrequency, (d) => d.new) as number,
+        max(studyFrequency, (d) => d.review) as number
       ),
     ])
     .nice()
     .range([height - margin.bottom, margin.top])
 
   const reviewLineShape = line<TransformedStudyFrequency>()
-    .x((d) => frequencyX(d.date))
-    .y((d) => frequencyY(d.review))
+    .x((d) => frequencyX(d.date)!)
+    .y((d) => frequencyY(d.review)!)
   const learningLineShape = line<TransformedStudyFrequency>()
-    .x((d) => frequencyX(d.date))
-    .y((d) => frequencyY(d.learning))
+    .x((d) => frequencyX(d.date)!)
+    .y((d) => frequencyY(d.learning)!)
   const newLineShape = line<TransformedStudyFrequency>()
-    .x((d) => frequencyX(d.date))
-    .y((d) => frequencyY(d.new))
+    .x((d) => frequencyX(d.date)!)
+    .y((d) => frequencyY(d.new)!)
 
-  const reviewLine = reviewLineShape(studyFrequency)
-  const learningLine = learningLineShape(studyFrequency)
-  const newLine = newLineShape(studyFrequency)
+  const reviewLine = reviewLineShape(studyFrequency) ?? ''
+  const learningLine = learningLineShape(studyFrequency) ?? ''
+  const newLine = newLineShape(studyFrequency) ?? ''
 
   const daysInterval = differenceInDays(today, startDate)
 

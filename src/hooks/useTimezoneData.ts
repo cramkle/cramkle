@@ -60,7 +60,7 @@ const init = (_: unknown) => {
   return { loading: false, timezones: maybeTimezones } as State
 }
 
-export const useTimezoneData = () => {
+export const useTimezoneData = (): State => {
   const [state, dispatch] = useReducer<React.Reducer<State, Action>, undefined>(
     reducer,
     undefined,

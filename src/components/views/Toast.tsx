@@ -68,7 +68,7 @@ export const Toast: React.VFC<ToastProps> = ({
             <Button
               size="small"
               onClick={(evt) => {
-                onDismiss()
+                onDismiss?.()
                 action.onPress(evt)
               }}
             >
