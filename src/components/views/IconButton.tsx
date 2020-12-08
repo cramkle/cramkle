@@ -19,7 +19,7 @@ const IconButton: React.FC<Props> = ({
   ...props
 }) => {
   const { classList, addClass, removeClass } = useClassList()
-  const foundationRef = useRef<MDCIconButtonToggleFoundation>(null)
+  const foundationRef = useRef<MDCIconButtonToggleFoundation | null>(null)
   const [attrs, setAttrs] = useState<React.HTMLAttributes<HTMLElement>>({})
 
   const ref = useRef(null)
@@ -46,7 +46,7 @@ const IconButton: React.FC<Props> = ({
     foundationRef.current.init()
 
     return () => {
-      foundationRef.current.destroy()
+      foundationRef.current?.destroy()
     }
   }, [addClass, removeClass])
 

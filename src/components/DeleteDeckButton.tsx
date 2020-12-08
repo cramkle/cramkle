@@ -52,7 +52,7 @@ const DeleteDeckButton: React.FunctionComponent<Props> = ({ deckId }) => {
     mutate({
       variables: { deckId },
       update: (cache, { data }) => {
-        const deletedDeckId = data?.deleteDeck?.deck.id
+        const deletedDeckId = data?.deleteDeck?.deck?.id
 
         const cachedDecksQuery = cache.readQuery<DecksQuery>({
           query: DECKS_QUERY,

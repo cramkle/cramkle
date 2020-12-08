@@ -54,7 +54,7 @@ const DeleteModelButton: React.FunctionComponent<Props> = ({ model }) => {
     mutate({
       variables: { modelId: model.id },
       update: (cache, { data }) => {
-        const deletedModelId = data?.deleteModel?.model.id
+        const deletedModelId = data?.deleteModel?.model?.id
 
         const cachedModelsQuery = cache.readQuery<ModelsQuery>({
           query: MODELS_QUERY,

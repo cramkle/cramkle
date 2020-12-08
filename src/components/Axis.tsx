@@ -2,13 +2,13 @@ import { ReactNode } from 'react'
 import * as React from 'react'
 
 function number<T>(scale: TickScale<T>) {
-  return (d: T) => +scale(d)
+  return (d: T) => +(scale(d) ?? 0)
 }
 
 function center<T>(scale: BandedScale<T>) {
   let offset = Math.max(0, scale.bandwidth() - 1) / 2 // Adjust for 0.5px offset.
   if (scale.round()) offset = Math.round(offset)
-  return (d: T) => +scale(d) + offset
+  return (d: T) => +(scale(d) ?? 0) + offset
 }
 
 function translateX(x: number) {
@@ -20,7 +20,7 @@ function translateY(y: number) {
 }
 
 export type BandedScale<T> = {
-  (x: T): number
+  (x: T): number | undefined
   domain(): Array<T>
   range(): Array<number>
   copy(): BandedScale<T>
@@ -29,7 +29,7 @@ export type BandedScale<T> = {
 }
 
 export type TickScale<T> = {
-  (x: T): number
+  (x: T): number | undefined
   domain(): Array<T>
   range(): Array<number>
   ticks(count: number): Array<T>
@@ -55,7 +55,7 @@ interface AxisProps<T> extends Omit<React.SVGProps<SVGGElement>, 'transform'> {
 export default function Axis<T>({
   orientation = 'left',
   scaler,
-  ticks,
+  ticks = 0,
   tickKeyFn,
   tickLabel,
   tickSizeInner = 6,
@@ -119,7 +119,7 @@ export default function Axis<T>({
       {!hideDomainLine && <path {...domainLineProps} d={axisPath} />}
       {values.map((tick) => (
         <g
-          key={tickKeyFn?.(tick) ?? tick.toString()}
+          key={tickKeyFn?.(tick) ?? (tick as any).toString()}
           transform={transform(position(tick))}
         >
           <line stroke="currentColor" {...{ [x + '2']: k * tickSizeInner }} />

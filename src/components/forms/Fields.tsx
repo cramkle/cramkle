@@ -25,9 +25,9 @@ export const TextInputField = memo(function TextInputField({
   return (
     <Label {...props} text={label}>
       {textarea ? (
-        <Textarea id={id} name={name} {...field} />
+        <Textarea id={id} {...field} name={name} />
       ) : (
-        <Input id={id} type={type} name={name} {...field} />
+        <Input id={id} type={type} {...field} name={name} />
       )}
       {meta.touched && meta.error ? (
         <HelperText variation="error">{meta.error}</HelperText>
@@ -39,7 +39,7 @@ export const TextInputField = memo(function TextInputField({
 export const CheckboxField = forwardRef<HTMLInputElement, CheckboxProps>(
   function CheckboxField(props, ref) {
     const [field] = useField({
-      name: props.name,
+      name: props.name ?? '',
       type: 'checkbox',
       checked: props.checked === 'mixed' ? false : props.checked,
       value: props.value,

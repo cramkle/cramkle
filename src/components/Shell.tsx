@@ -82,7 +82,7 @@ const DefaultMenuItems: React.FC = () => {
   )
 }
 
-const MobileMenu: React.FC<{ username: string; email: string }> = ({
+const MobileMenu: React.FC<{ username?: string; email?: string }> = ({
   username,
   email,
 }) => {

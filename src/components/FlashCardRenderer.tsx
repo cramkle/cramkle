@@ -48,7 +48,7 @@ const FlashCardValue: React.FC<FlashCardValueProps> = ({
   const values = useContext(ValuesContext)
 
   const value = useMemo(
-    () => values.find(({ field }) => field.id === data.id),
+    () => values?.find(({ field }) => field.id === data.id),
     [values, data.id]
   )
 

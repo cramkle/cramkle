@@ -31,7 +31,17 @@ type BaseEditorContext = Pick<
 
 const ctx = createContext<undefined | BaseEditorContext>(undefined)
 
-export const useBaseEditorControls = () => useContext(ctx)
+export const useBaseEditorControls = () => {
+  const contextValue = useContext(ctx)
+
+  if (!contextValue) {
+    throw new Error(
+      'useBaseEditorControls must be used inside <BaseEditorControls />'
+    )
+  }
+
+  return contextValue
+}
 
 interface Props extends Pick<EditorProps, 'handleKeyCommand'> {
   initialContentState?: RawDraftContentState

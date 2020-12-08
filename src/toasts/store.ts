@@ -89,7 +89,7 @@ export default class ToastStore {
       return
     }
 
-    const toast = this.toasts.get(id)
+    const toast = this.toasts.get(id)!
 
     if (toast.timeoutId == null) {
       return
@@ -98,7 +98,7 @@ export default class ToastStore {
     clearTimeout(toast.timeoutId)
 
     this.toasts = new Map(
-      Array.from(this.toasts).concat([[id, { ...toast, timeoutId: null }]])
+      Array.from(this.toasts).concat([[id, { ...toast, timeoutId: undefined }]])
     )
   })
 
@@ -109,7 +109,7 @@ export default class ToastStore {
 
     this.pauseTimer(id)
 
-    const toast = this.toasts.get(id)
+    const toast = this.toasts.get(id)!
 
     if (toast.config.timeoutMs == null) {
       return
@@ -129,7 +129,7 @@ export default class ToastStore {
       return
     }
 
-    const toast = this.toasts.get(id)
+    const toast = this.toasts.get(id)!
 
     if (toast.shown) {
       return
@@ -145,7 +145,7 @@ export default class ToastStore {
       return
     }
 
-    const toast = this.toasts.get(id)
+    const toast = this.toasts.get(id)!
 
     if (toast.shown || toast.expired) {
       this.pauseTimer(id)
@@ -159,7 +159,7 @@ export default class ToastStore {
       return
     }
 
-    const toast = this.toasts.get(id)
+    const toast = this.toasts.get(id)!
 
     this.toasts.set(id, { ...toast, expired: true })
 

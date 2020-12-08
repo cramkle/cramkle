@@ -3,9 +3,9 @@ import * as React from 'react'
 
 export const HintsContext = createContext({ isMobile: true })
 
-export const HintsProvider: React.FunctionComponent<{ userAgent?: string }> = ({
+export const HintsProvider: React.FC<{ userAgent?: string }> = ({
   children,
-  userAgent,
+  userAgent = '',
 }) => {
   const isMobile = /android|ios|iphone|ipad/i.test(
     !process.browser ? userAgent : navigator.userAgent

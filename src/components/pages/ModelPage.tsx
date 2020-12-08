@@ -145,14 +145,14 @@ const ModelTemplateDetails: React.FC<ModelTemplateDetailsProps> = ({
     <>
       <TemplateDetails
         label={<Trans>Template front side</Trans>}
-        draftContent={template.frontSide}
+        draftContent={template.frontSide!}
         templateId={template.id}
         fields={fields}
         mutation={UPDATE_FRONT_TEMPLATE_MUTATION}
       />
       <TemplateDetails
         label={<Trans>Template back side</Trans>}
-        draftContent={template.backSide}
+        draftContent={template.backSide!}
         templateId={template.id}
         fields={fields}
         mutation={UPDATE_BACK_TEMPLATE_MUTATION}
@@ -197,7 +197,7 @@ const ModelPage: React.FC = () => {
 
   return (
     <>
-      <Helmet title={model.name} />
+      <Helmet title={model.name!} />
       <Container>
         <BackButton to="/models" />
         <div className="flex flex-col mb-8">

@@ -75,13 +75,9 @@ const ResetPasswordPage: React.FC = () => {
 
     const urlParams = new URLSearchParams(search)
 
-    const [timestamp, token] = urlParams.get('token').split('-')
+    const [timestamp, token] = urlParams.get('token')?.split('-') ?? ['', '']
 
-    const {
-      data: {
-        resetPassword: { success },
-      },
-    } = await mutateResetPassword({
+    const { data } = await mutateResetPassword({
       variables: {
         token,
         timestamp,
@@ -89,6 +85,8 @@ const ResetPasswordPage: React.FC = () => {
         newPassword,
       },
     })
+
+    const success = data?.resetPassword?.success
 
     if (success) {
       pushSimpleToast(t`Password changed successfully`)

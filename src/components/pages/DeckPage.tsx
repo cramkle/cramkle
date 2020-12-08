@@ -229,18 +229,36 @@ const DeckPage: React.FunctionComponent = () => {
         <Headline3 className="text-primary">
           <Trans>Notes</Trans>{' '}
           <Caption className="ml-1">
-            <Trans>({deck.notes.totalCount} notes)</Trans>
+            <Trans>({deck.notes?.totalCount ?? 0} notes)</Trans>
           </Caption>
         </Headline3>
 
         <div className="mt-4 mb-8">
           <NotesTable
             totalDeckNotes={deck.totalNotes}
-            notes={deck.notes}
+            notes={
+              deck.notes ?? {
+                __typename: 'NoteConnection',
+                totalCount: 0,
+                edges: [],
+                pageInfo: {
+                  __typename: 'PageInfo',
+                  endCursor: null,
+                  hasNextPage: false,
+                },
+                pageCursors: {
+                  __typename: 'PageCursors',
+                  last: null,
+                  first: null,
+                  around: [],
+                  previous: null,
+                },
+              }
+            }
             deckSlug={deck.slug}
             onPaginationChange={onPaginationChange}
             pageSize={pageSize}
-            searchQuery={searchInputValue}
+            searchQuery={searchInputValue ?? ''}
             onSearchChange={handleSearchChange}
             onSearchSubmit={handleSearchSubmit}
             onRefetchNotes={handleRefetchNotes}

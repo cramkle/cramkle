@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 
 const useWindowSize = () => {
-  const timeoutRef = useRef(null)
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const [width, setWidth] = useState(0)
   const [height, setHeight] = useState(0)
 

@@ -33,7 +33,7 @@ const FieldValueEditor: React.FC<Props> = ({
 
   const handleChange = useCallback(
     (contentState: ContentState) => {
-      onChangeRef.current(contentState, field)
+      onChangeRef.current?.(contentState, field)
     },
     [field]
   )

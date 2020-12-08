@@ -89,7 +89,7 @@ const AddNotePage: React.FC = () => {
   const [selectedModelId, setSelectedModelId] = useState(DEFAULT_OPTION)
 
   useEffect(() => {
-    if (loading || data.models.length === 0) {
+    if (loading || !data || data.models.length == 0) {
       return
     }
 
@@ -111,19 +111,19 @@ const AddNotePage: React.FC = () => {
   useTopBarLoading(loading)
 
   const handleSubmit = useCallback(async () => {
-    const {
-      data: {
-        createNote: {
-          note: { id },
-        },
-      },
-    } = await createNote({
+    const { data } = await createNote({
       variables: {
         modelId: selectedModelId,
-        deckId: deck.id,
+        deckId: deck!.id,
         values: Object.values(fieldValueMap),
       },
     })
+
+    const id = data?.createNote?.note?.id
+
+    if (!id) {
+      return
+    }
 
     pushToast(
       {
@@ -146,7 +146,7 @@ const AddNotePage: React.FC = () => {
     (content: ContentState, field: FieldInput) => {
       setFieldValueMap((prevValue) => ({
         ...prevValue,
-        [field.id]: {
+        [field.id!]: {
           field: {
             id: field.id,
             name: field.name,
@@ -169,11 +169,11 @@ const AddNotePage: React.FC = () => {
       <Headline1 className="border-b border-divider text-primary">
         <Trans>
           Create note for deck{' '}
-          <span className="font-semibold">{deck.title}</span>
+          <span className="font-semibold">{deck!.title}</span>
         </Trans>
       </Headline1>
 
-      {models.length > 0 ? (
+      {models?.length ?? 0 > 0 ? (
         <div className="flex flex-col mt-6">
           <label className="flex items-center text-primary">
             <Trans>Note's model</Trans>
@@ -185,7 +185,7 @@ const AddNotePage: React.FC = () => {
               <ListboxOption value={DEFAULT_OPTION} disabled>
                 {i18n._(t`Select a model`)}
               </ListboxOption>
-              {models.map((model) => (
+              {models?.map((model) => (
                 <ListboxOption key={model.id} value={model.id}>
                   {model.name}
                 </ListboxOption>

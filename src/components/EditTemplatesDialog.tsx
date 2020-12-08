@@ -130,7 +130,7 @@ const EditTemplatesDialog: React.FC<{
 
   const handleRenameTemplate = async () => {
     await renameTemplate({
-      variables: { templateId: editingTemplateId, templateName },
+      variables: { templateId: editingTemplateId!, templateName },
     })
 
     clearEditTemplate()
@@ -144,7 +144,7 @@ const EditTemplatesDialog: React.FC<{
   const handleConfirmDeleteTemplate = async () => {
     await deleteTemplate({
       variables: {
-        templateId: editingTemplateId,
+        templateId: editingTemplateId!,
       },
       update: (proxy, mutationResult) => {
         const data = proxy.readQuery<ModelQuery, ModelQueryVariables>({
@@ -152,13 +152,15 @@ const EditTemplatesDialog: React.FC<{
           variables: { id: modelId },
         })
 
-        const templateIndex = data.model.templates.findIndex(
+        const templateIndex = data?.model?.templates.findIndex(
           (template) =>
             template.id ===
-            mutationResult.data.removeTemplateFromModel.template.id
+            mutationResult.data?.removeTemplateFromModel?.template?.id
         )
 
-        data.model.templates.splice(templateIndex, 1)
+        if (templateIndex) {
+          data?.model?.templates.splice(templateIndex, 1)
+        }
 
         proxy.writeQuery({
           query: MODEL_QUERY,
@@ -183,9 +185,11 @@ const EditTemplatesDialog: React.FC<{
           variables: { id: modelId },
         })
 
-        data.model.templates.push(
-          mutationResult.data.addTemplateToModel.template
-        )
+        if (mutationResult.data?.addTemplateToModel?.template) {
+          data?.model?.templates.push(
+            mutationResult.data.addTemplateToModel.template
+          )
+        }
 
         proxy.writeQuery({
           query: MODEL_QUERY,

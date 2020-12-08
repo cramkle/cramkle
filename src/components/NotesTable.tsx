@@ -5,11 +5,12 @@ import * as React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 import DeleteNoteDialog from './DeleteNoteDialog'
-import { PageArgs, Pagination } from './Pagination'
+import { PageArgs, PageCursors, PageInfo, Pagination } from './Pagination'
 import EditIcon from './icons/EditIcon'
 import TrashBinIcon from './icons/TrashBinIcon'
 import {
   DeckQuery_deck_notes,
+  DeckQuery_deck_notes_edges,
   DeckQuery_deck_notes_edges_node,
 } from './pages/__generated__/DeckQuery'
 import Button from './views/Button'
@@ -109,59 +110,61 @@ const NotesTable: React.FC<Props> = ({
                 <Trans>You haven't created any notes on this deck yet</Trans>
               </TableCell>
             </TableRow>
-          ) : notes.edges.length === 0 ? (
+          ) : notes.edges?.length === 0 ? (
             <TableRow>
               <TableCell colSpan={5} className="text-center">
                 <Trans>No notes were found</Trans>
               </TableCell>
             </TableRow>
           ) : (
-            notes.edges.map(({ node: note }) => {
-              return (
-                <TableRow key={note.id}>
-                  <TableCell className="max-w-xxs sm:max-w-sm md:max-w-xxs lg:max-w-lg">
-                    {note.text ? (
-                      <p className="truncate">{note.text}</p>
-                    ) : (
-                      <span className="text-secondary italic">
-                        <Trans>empty note</Trans>
-                      </span>
-                    )}
-                  </TableCell>
-                  <TableCell className="hidden md:table-cell">
-                    {note.model.name}
-                  </TableCell>
-                  <TableCell className="hidden md:table-cell">
-                    {note.flashCards.length}
-                  </TableCell>
-                  <TableCell
-                    align="right"
-                    className="flex items-center justify-end"
-                  >
-                    <Link
-                      className="text-action-primary"
-                      to={`/d/${deckSlug}/note/${note.id}`}
+            (notes.edges as DeckQuery_deck_notes_edges[]).map(
+              ({ node: note }) => {
+                return (
+                  <TableRow key={note!.id}>
+                    <TableCell className="max-w-xxs sm:max-w-sm md:max-w-xxs lg:max-w-lg">
+                      {note!.text ? (
+                        <p className="truncate">{note!.text}</p>
+                      ) : (
+                        <span className="text-secondary italic">
+                          <Trans>empty note</Trans>
+                        </span>
+                      )}
+                    </TableCell>
+                    <TableCell className="hidden md:table-cell">
+                      {note!.model!.name}
+                    </TableCell>
+                    <TableCell className="hidden md:table-cell">
+                      {note!.flashCards.length}
+                    </TableCell>
+                    <TableCell
+                      align="right"
+                      className="flex items-center justify-end"
                     >
-                      <EditIcon aria-label={i18n._(t`Edit`)} />
-                    </Link>
-                    <Button
-                      className="ml-3"
-                      onClick={() => setDeletingNote(note)}
-                    >
-                      <TrashBinIcon aria-label={i18n._(t`Delete`)} />
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              )
-            })
+                      <Link
+                        className="text-action-primary"
+                        to={`/d/${deckSlug}/note/${note!.id}`}
+                      >
+                        <EditIcon aria-label={i18n._(t`Edit`)} />
+                      </Link>
+                      <Button
+                        className="ml-3"
+                        onClick={() => setDeletingNote(note)}
+                      >
+                        <TrashBinIcon aria-label={i18n._(t`Delete`)} />
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                )
+              }
+            )
           )}
         </TableBody>
         <TableFooter>
           <TableRow>
             <TableCell colSpan={5}>
               <Pagination
-                pageInfo={notes.pageInfo}
-                pageCursors={notes.pageCursors}
+                pageInfo={notes.pageInfo as PageInfo}
+                pageCursors={notes.pageCursors as PageCursors}
                 onChange={onPaginationChange}
                 pageSize={pageSize}
               />

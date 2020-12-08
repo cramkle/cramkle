@@ -16,7 +16,7 @@ export class RedirectError extends Error {
 }
 
 const Redirect: React.VFC<{
-  to?: string | Partial<Location>
+  to: string | Partial<Location>
   appendReturnUrl?: boolean
 }> = ({ to, appendReturnUrl = false }) => {
   const resolvedTo = useHref(to)
