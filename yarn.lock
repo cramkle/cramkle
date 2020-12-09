@@ -1329,10 +1329,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@casterly/cli@^0.5.1":
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/@casterly/cli/-/cli-0.5.1.tgz#742e1e135fc2f1724f8e8f5424d4acd5223f80bd"
-  integrity sha512-IvsLHfmf0LhmEQzq9AKYmJeP2IOhBru5in5v/6adxWRJ/EHMgXCcJ3pslIl1jSrY3iswQHoQ7L1P/M8enR5xPQ==
+"@casterly/cli@^0.5.2":
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/@casterly/cli/-/cli-0.5.2.tgz#32e6cefd3e7a43c902b8317cab6736dd00b905a6"
+  integrity sha512-DfQJKl6SaxHfOoueTBkycSznZDb+em22poo/uXItwtswvWmT98zZ9IHdpAEm3dh8Pr7Bw2SSKxWpfU6n7Xa/aQ==
   dependencies:
     "@babel/core" "^7.11.4"
     "@babel/plugin-proposal-class-properties" "^7.10.4"
@@ -1342,7 +1342,7 @@
     "@babel/preset-env" "^7.11.0"
     "@babel/preset-react" "^7.12.5"
     "@babel/preset-typescript" "^7.10.4"
-    "@casterly/utils" "^0.5.0"
+    "@casterly/utils" "^0.5.2"
     "@pmmmwh/react-refresh-webpack-plugin" "^0.4.3"
     "@svgr/webpack" "^5.4.0"
     babel-core "^7.0.0-bridge.0"
@@ -1389,17 +1389,17 @@
   resolved "https://registry.yarnpkg.com/@casterly/components/-/components-0.5.1.tgz#ee455495aa1c6627e7a4fc0e6ab62833e71142df"
   integrity sha512-cQkMo96DR066HxtYPcaGOMaYsl1SKaIEsjiNwO2zPVSFKmFkeT1Ob1NBPVtrga9cti+5tVW1mGlMqviyzHBpcg==
 
-"@casterly/express@^0.5.1":
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/@casterly/express/-/express-0.5.1.tgz#cdc9562b5bfde33a45dcb1e0da84ece78a1c9371"
-  integrity sha512-F9WeMqAi5wPBzINYpOcq7J2Kw6VvcQf+hxkYz3naZDtb2+a6hXxvvR/TbXsV+t5tEBmTJNvsuEPw6zc0Mt2bqA==
+"@casterly/express@^0.5.2":
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/@casterly/express/-/express-0.5.2.tgz#44baa2def47f533f20f7f96db0b4f777bcb93491"
+  integrity sha512-kePoqmPTQMzRHa9q9aX2OnZSnFqQnTN/uL+lv7sAvEwleVoMZzYcWZFa0xWPNhb7L5qF7S63QX+3HD+Atb2UOQ==
   dependencies:
-    casterly "^0.5.1"
+    casterly "^0.5.2"
 
-"@casterly/utils@^0.5.0":
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/@casterly/utils/-/utils-0.5.0.tgz#4e874091d1a096954132bf812b67a2a43f8788fa"
-  integrity sha512-j0PvEKRFJwIuas1xvjtuWj+mAzwBl+9gdYYgjKzfs8u6frfAmVFtjDW9sh9ghuzG/g8ePyiHQMHFPJ7kfI2pzA==
+"@casterly/utils@^0.5.2":
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/@casterly/utils/-/utils-0.5.2.tgz#2195420b9cfce842ef81ac7b3b3d4ae29d2ae5ab"
+  integrity sha512-saBeS5Rn6VIexAIRKvDEFzu8tzaGrAoxHweLbvi+/D+0wZpoYSr342T/sc2RXFuqwk9nrhafzz/cT8Nji7xxOw==
 
 "@cnakazawa/watch@^1.0.3":
   version "1.0.4"
@@ -6131,12 +6131,12 @@ caseless@~0.12.0:
   resolved "https://registry.yarnpkg.com/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
   integrity sha1-G2gcIf+EAzyCZUMJBolCDRhxUdw=
 
-casterly@^0.5.1:
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/casterly/-/casterly-0.5.1.tgz#acf4ba1eb461d906bf555e47dd773efadfd7dc24"
-  integrity sha512-wiBA5pyB/UBvsq+VlaJcR6JbDJW2sxCf65ciZJcWflYDXfxA4F+VLXvLPxO+53Rlb3f/NgME6WaDb09fJOwkEQ==
+casterly@^0.5.2:
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/casterly/-/casterly-0.5.2.tgz#23fd85f38061b250668cb413815d8d61921463eb"
+  integrity sha512-HQsKCUrw0Mtz2maG7+UsbIn5oecJpbVHYD1Quc82tLL9TisP7KvsWwNTo/wNoFZPyhaIEn6tcXZIPXkk97jjjg==
   dependencies:
-    "@casterly/utils" "^0.5.0"
+    "@casterly/utils" "^0.5.2"
     etag "^1.8.1"
     fresh "^0.5.2"
     history "^5.0.0"
