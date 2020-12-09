@@ -12,8 +12,10 @@ const app = express()
 if (process.env.NODE_ENV === 'production') {
   app.use(helmet())
 
-  app.use((_, res, next) => {
-    res.locals.cspNonce = Buffer.from(uuidv4()).toString('base64')
+  app.use((req, res, next) => {
+    const nonce = Buffer.from(uuidv4()).toString('base64')
+    res.locals.cspNonce = nonce
+    req.headers['x-cramkle-nonce'] = nonce
     next()
   })
 
