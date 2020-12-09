@@ -34,10 +34,10 @@ const getLanguageLocaleFile = (() => {
   return (language: string) => {
     const languageIndex = locales.indexOf(language)
     if (process.env.NODE_ENV === 'production') {
-      return `/static/chunks/${files[languageIndex]}`
+      return `${process.env.ASSET_PATH}static/chunks/${files[languageIndex]}`
     }
 
-    return `/static/chunks/locale${languageIndex}.js`
+    return `${process.env.ASSET_PATH}static/chunks/locale${languageIndex}.js`
   }
 })()
 
