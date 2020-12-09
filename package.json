@@ -1,6 +1,6 @@
 {
   "name": "@cramkle/cramkle",
-  "version": "0.13.6",
+  "version": "0.13.7-beta.2",
   "license": "MIT",
   "private": true,
   "scripts": {
