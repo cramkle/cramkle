@@ -21,6 +21,9 @@ const createWorkboxPlugin = (dev) => {
         })
       ),
     ],
+    modifyURLPrefix: {
+      '/static/': '/_casterly/static/',
+    },
   })
 }
 
