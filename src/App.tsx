@@ -9,7 +9,6 @@ import CramkleToasts from './components/CramkleToasts'
 import { HintsProvider } from './components/HintsContext'
 import { ThemeProvider } from './components/Theme'
 import { errorFallback } from './utils/errorFallback'
-import { icons } from './utils/headLinks'
 
 import 'fontsource-libre-franklin/latin-300.css'
 import 'fontsource-libre-franklin/latin-400.css'
@@ -32,14 +31,6 @@ const App: FC<{ i18n: any; apolloClient: any; userAgent: string }> = ({
             <Helmet
               defaultTitle="Cramkle"
               titleTemplate="%s - Cramkle"
-              htmlAttributes={{
-                lang: i18n.locale,
-                // @ts-ignore this works but typescript complains
-                style:
-                  typeof window === 'undefined'
-                    ? { fontSize: '16px' }
-                    : 'font-size: 16px',
-              }}
               meta={[
                 {
                   name: 'application-name',
@@ -58,13 +49,6 @@ const App: FC<{ i18n: any; apolloClient: any; userAgent: string }> = ({
                 {
                   name: 'theme-color',
                   content: '#ffffff',
-                },
-              ]}
-              link={[
-                ...icons,
-                {
-                  rel: 'manifest',
-                  href: '/manifest.json',
                 },
               ]}
             />
