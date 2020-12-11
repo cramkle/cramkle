@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.13.7-beta.5] - 2020-12-11
 ### Changed
 - Try to improve TTI and TBT.
 
@@ -411,3 +413,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [0.1.6] - 2019-04-06
 ### Fixed
 - Hydration logic on production environment
+
+
+[Unreleased]: https://github.com/cramkle/cramkle/compare/v0.13.7-beta.5...HEAD
+[0.13.7-beta.5]: https://github.com/cramkle/cramkle/compare/v0.13.6...v0.13.7-beta.5
