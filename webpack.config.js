@@ -32,5 +32,7 @@ module.exports = (config, { dev, isServer }) => {
     config.plugins.push(createWorkboxPlugin(dev))
   }
 
+  config.module.rules[0].oneOf[2].options.presets[2][1].runtime = 'automatic'
+
   return config
 }

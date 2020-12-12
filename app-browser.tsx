@@ -1,8 +1,10 @@
+/// <reference types="react/experimental" />
+/// <reference types="react-dom/experimental" />
+
 import { RootBrowser } from '@casterly/components/browser'
 import { i18n } from '@lingui/core'
 import * as Sentry from '@sentry/react'
 import { en as enPlural, pt as ptPlural } from 'make-plural/plurals'
-import React from 'react'
 import ReactDOM from 'react-dom'
 import Cookies from 'universal-cookie'
 
@@ -30,15 +32,16 @@ import(
 
   i18n.activate(language)
 
-  ReactDOM.hydrate(
+  ReactDOM.unstable_createRoot(document.getElementById('root')!, {
+    hydrate: true,
+  }).render(
     <RootBrowser>
       <App
         apolloClient={apolloClient}
         userAgent={navigator.userAgent}
         i18n={i18n}
       />
-    </RootBrowser>,
-    document.getElementById('root')
+    </RootBrowser>
   )
 })
 
