@@ -107,7 +107,7 @@ jobs:
       if: github.ref == 'refs/heads/main'
       with:
         name: build-artifact
-        path: ./.dist
+        path: ./build
 
   deploy:
     runs-on: ubuntu-latest
