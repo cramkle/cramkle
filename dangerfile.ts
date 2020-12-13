@@ -53,7 +53,7 @@ const downloadBuildArtifacts = async (ref: string) => {
 
   fs.writeFileSync(
     path.join(__dirname, 'build-artifact.zip'),
-    Buffer.from(data)
+    Buffer.from(data as ArrayBuffer)
   )
 
   await new Promise<void>((resolve) =>
