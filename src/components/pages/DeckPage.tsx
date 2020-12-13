@@ -4,7 +4,7 @@ import { useLingui } from '@lingui/react'
 import gql from 'graphql-tag'
 import { useCallback, useRef, useState } from 'react'
 import * as React from 'react'
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet-async'
 import { useLocation, useNavigate, useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 

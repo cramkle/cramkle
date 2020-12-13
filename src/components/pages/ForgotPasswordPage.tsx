@@ -6,7 +6,7 @@ import gql from 'graphql-tag'
 import { Location } from 'history'
 import { useEffect, useState } from 'react'
 import * as React from 'react'
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet-async'
 import { useLocation, useNavigate } from 'react-router'
 import * as yup from 'yup'
 

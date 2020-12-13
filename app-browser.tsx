@@ -6,6 +6,7 @@ import { i18n } from '@lingui/core'
 import * as Sentry from '@sentry/react'
 import { en as enPlural, pt as ptPlural } from 'make-plural/plurals'
 import ReactDOM from 'react-dom'
+import { HelmetProvider } from 'react-helmet-async'
 import Cookies from 'universal-cookie'
 
 import App from './src/App'
@@ -41,11 +42,13 @@ import(
 
   reactRoot.render(
     <RootBrowser>
-      <App
-        apolloClient={apolloClient}
-        userAgent={navigator.userAgent}
-        i18n={i18n}
-      />
+      <HelmetProvider>
+        <App
+          apolloClient={apolloClient}
+          userAgent={navigator.userAgent}
+          i18n={i18n}
+        />
+      </HelmetProvider>
     </RootBrowser>
   )
 })

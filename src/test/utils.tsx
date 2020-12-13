@@ -5,6 +5,7 @@ import { act, fireEvent, render as rtlRender } from '@testing-library/react'
 import { MemoryHistory, Update, createMemoryHistory } from 'history'
 import { en as enPlural } from 'make-plural/plurals'
 import { FC, ReactElement, useLayoutEffect, useReducer, useRef } from 'react'
+import { HelmetProvider } from 'react-helmet-async'
 import { Router } from 'react-router'
 
 import enCatalog from '../locales/en/messages'
@@ -56,11 +57,13 @@ export function render(ui: ReactElement, options?: RenderOptions) {
 
   const utils = rtlRender(
     <BrowserRouter history={options?.history}>
-      <I18nProvider i18n={i18n}>
-        <MockedProvider mocks={options?.mocks} addTypename={false}>
-          {ui}
-        </MockedProvider>
-      </I18nProvider>
+      <HelmetProvider>
+        <I18nProvider i18n={i18n}>
+          <MockedProvider mocks={options?.mocks} addTypename={false}>
+            {ui}
+          </MockedProvider>
+        </I18nProvider>
+      </HelmetProvider>
     </BrowserRouter>
   )
 
