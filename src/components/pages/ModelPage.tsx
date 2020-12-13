@@ -6,7 +6,7 @@ import type { DocumentNode } from 'graphql'
 import gql from 'graphql-tag'
 import { ReactNode, useCallback, useState } from 'react'
 import * as React from 'react'
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet-async'
 import { useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 

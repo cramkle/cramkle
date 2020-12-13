@@ -5,7 +5,7 @@ import classnames from 'classnames'
 import gql from 'graphql-tag'
 import { useState } from 'react'
 import * as React from 'react'
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet-async'
 import { useLocation, useNavigate, useParams } from 'react-router'
 import * as yup from 'yup'
 

@@ -3,7 +3,7 @@ import { Routes } from '@casterly/components'
 import { I18nProvider } from '@lingui/react'
 import { ErrorBoundary } from '@sentry/react'
 import { FC, StrictMode } from 'react'
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet-async'
 
 import CramkleToasts from './components/CramkleToasts'
 import { HintsProvider } from './components/HintsContext'

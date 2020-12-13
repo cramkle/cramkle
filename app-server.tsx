@@ -10,7 +10,7 @@ import { I18nProvider } from '@lingui/react'
 import { en as enPlural, pt as ptPlural } from 'make-plural/plurals'
 import PurgeCSS from 'purgecss'
 import { renderToNodeStream, renderToString } from 'react-dom/server'
-import { Helmet } from 'react-helmet'
+import { FilledContext, HelmetProvider } from 'react-helmet-async'
 import serializeJavascript from 'serialize-javascript'
 
 import linguiConfig from './.linguirc.json'
@@ -75,13 +75,17 @@ export default async function handleRequest(
 
   const client = createApolloClient(`${baseApiUrl}/_c/graphql`, cookie)
 
+  const helmetContext = {}
+
   const root = (
     <RootServer context={context} url={request.url}>
-      <App
-        i18n={i18n}
-        userAgent={request.headers.get('userAgent')!}
-        apolloClient={client}
-      />
+      <HelmetProvider context={helmetContext}>
+        <App
+          i18n={i18n}
+          userAgent={request.headers.get('userAgent')!}
+          apolloClient={client}
+        />
+      </HelmetProvider>
     </RootServer>
   )
 
@@ -90,7 +94,7 @@ export default async function handleRequest(
 
     const state = client.extract()
 
-    const head = Helmet.rewind()
+    const { helmet } = helmetContext as FilledContext
 
     const purgeResult = await new PurgeCSS().purge({
       css: context.mainAssets
@@ -136,9 +140,9 @@ export default async function handleRequest(
               as="script"
               href={getLanguageLocaleFile(language)}
             />
-            {head.title.toComponent()}
-            {head.meta.toComponent()}
-            {head.link.toComponent()}
+            {helmet.title.toComponent()}
+            {helmet.meta.toComponent()}
+            {helmet.link.toComponent()}
             {icons.map(({ rel, sizes, href, type }) => (
               <link
                 key={href}

@@ -4,7 +4,7 @@ import classNames from 'classnames'
 import { Location } from 'history'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import * as React from 'react'
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet-async'
 import { useLocation, useNavigate } from 'react-router'
 import { Link } from 'react-router-dom'
 
