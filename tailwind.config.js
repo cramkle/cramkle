@@ -118,4 +118,6 @@ module.exports = {
     purgeLayersByDefault: true,
   },
   plugins: [],
+  corePlugins: { float: false },
+  purge: ['./src/**/*.tsx'],
 }

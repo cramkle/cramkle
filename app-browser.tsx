@@ -25,6 +25,13 @@ if (process.env.CASTERLY_PUBLIC_SENTRY_DSN) {
   })
 }
 
+const reactRoot = ReactDOM.unstable_createRoot(
+  document.getElementById('root')!,
+  {
+    hydrate: true,
+  }
+)
+
 import(
   /* webpackChunkName: "locale" */ `./src/locales/${language}/messages`
 ).then((catalog) => {
@@ -32,9 +39,7 @@ import(
 
   i18n.activate(language)
 
-  ReactDOM.unstable_createRoot(document.getElementById('root')!, {
-    hydrate: true,
-  }).render(
+  reactRoot.render(
     <RootBrowser>
       <App
         apolloClient={apolloClient}
