@@ -122,8 +122,18 @@ tags
 
 # End of https://www.gitignore.io/api/vim,node,macos
 
+# Yarn 2 (https://yarnpkg.com/getting-started/qa#which-files-should-be-gitignored)
+
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+
+# Custom
+
 build
-.dist
 src/_tailwind.global.css
 src/locales/_build/
 src/locales/**/*.js
