@@ -7,7 +7,7 @@
     "release": "release-it",
     "dev": "concurrently \"NODE_ENV=development casterly watch\" \"NODE_ENV=development nodemon server.js -i build/\"",
     "start": "NODE_ENV=production node server.js",
-    "build": "casterly build",
+    "build": "yarn prebuild && casterly build",
     "build-tailwind": "tailwindcss build src/tailwind.css -o src/_tailwind.global.css",
     "prebuild": "yarn compile --strict && yarn build-tailwind",
     "prettier": "prettier --write 'src/**/*.ts' 'src/**/*.tsx'",
