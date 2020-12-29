@@ -2,7 +2,7 @@ import { exec } from 'child_process'
 import fs from 'fs'
 import path from 'path'
 
-import type { RoutesManifest } from '@casterly/cli'
+import type { RoutesManifest } from 'casterly'
 import { danger, markdown, warn } from 'danger'
 import filesize from 'filesize'
 import { sync as gzipSize } from 'gzip-size'
