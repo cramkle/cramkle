@@ -1866,21 +1866,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@casterly/components@npm:^0.5.1":
-  version: 0.5.1
-  resolution: "@casterly/components@npm:0.5.1"
+"@casterly/components@npm:^0.5.5":
+  version: 0.5.5
+  resolution: "@casterly/components@npm:0.5.5"
   peerDependencies:
     react: ^16.9.0 || ^17.0.1
     react-dom: ^16.9.0 || ^17.0.1
     react-router: ^6.0.0-beta.0
     react-router-dom: ^6.0.0-beta.0
-  checksum: 2afc971ab6572a48235c3687882a844e00213ee692fb6a09e899ffcd5df70f5a350ccb7773341377f0c262d1c133884021c6108173bcd6e2dc96df3c9b1a9cee
+  checksum: a2338af78677e0f31be973ee8bab7c00cb799eaf894004f410d45847af8e86d4aedc8c07eb344163197368c663adbc743842fdcaf297b1e28bd3a4819cf4d627
   languageName: node
   linkType: hard
 
-"@casterly/core@npm:^0.5.4":
-  version: 0.5.4
-  resolution: "@casterly/core@npm:0.5.4"
+"@casterly/core@npm:^0.5.5":
+  version: 0.5.5
+  resolution: "@casterly/core@npm:0.5.5"
   dependencies:
     "@casterly/utils": ^0.5.3
     etag: ^1.8.1
@@ -1895,15 +1895,15 @@ __metadata:
     react-dom: ^16.9.0 || ^17.0.0
     react-router: ^6.0.0-beta.0
     react-router-dom: ^6.0.0-beta.0
-  checksum: ee340cc0c5a7cbc495cfcb9cda618fc9ae19276322a8e89079d546fd07ad3a1b7bbd84e238a25e20e032ba51a806f743543d82ec3d7a5b39d8e550d672edde2b
+  checksum: da46caaa0b952ef8fb75166153fe811d713671d1bcb1f033e89b1767d68d8236263fa562f98bf7a1f384dcfbeacec06262d5f98f842f14fb0c0b71af42a89a3f
   languageName: node
   linkType: hard
 
-"@casterly/express@npm:^0.5.4":
-  version: 0.5.4
-  resolution: "@casterly/express@npm:0.5.4"
+"@casterly/express@npm:^0.5.5":
+  version: 0.5.5
+  resolution: "@casterly/express@npm:0.5.5"
   dependencies:
-    "@casterly/core": ^0.5.4
+    "@casterly/core": ^0.5.5
   peerDependencies:
     "@casterly/components": ^0.4.0
     express: ^4.17.1
@@ -1911,7 +1911,7 @@ __metadata:
     react-dom: ^16.9.0 || ^17.0.0
     react-router: ^6.0.0-beta.0
     react-router-dom: ^6.0.0-beta.0
-  checksum: 8d4e2330a76ee145b72197bad6b1416d853dac5e039ae1a57bda3eb387b2ed7645fb4a8be5ea0698f542fee52c4a513e37e00fec360e98d3c67d93d87f86ffba
+  checksum: dc871cb7bbadc5ecbeffc3399e439f0016c375c7c39dcfa73350bd7ae69e7b62013a421e2178daae732be704d466eebf758a20f6bd3a2484f1d4f7f9314823c8
   languageName: node
   linkType: hard
 
@@ -1945,8 +1945,8 @@ __metadata:
     "@babel/plugin-syntax-dynamic-import": ^7.8.3
     "@babel/preset-env": ^7.12.1
     "@babel/preset-typescript": ^7.12.1
-    "@casterly/components": ^0.5.1
-    "@casterly/express": ^0.5.4
+    "@casterly/components": ^0.5.5
+    "@casterly/express": ^0.5.5
     "@lingui/cli": 3.2.3
     "@lingui/macro": 3.2.3
     "@lingui/react": 3.2.3
@@ -2005,7 +2005,7 @@ __metadata:
     babel-plugin-graphql-tag: ^3.1.0
     babel-plugin-macros: ^2.8.0
     babel-preset-react-app: ^10.0.0
-    casterly: ^0.5.4
+    casterly: ^0.5.5
     classnames: ^2.2.6
     concurrently: ^5.3.0
     cookie-parser: ^1.4.5
@@ -8206,9 +8206,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"casterly@npm:^0.5.4":
-  version: 0.5.4
-  resolution: "casterly@npm:0.5.4"
+"casterly@npm:^0.5.5":
+  version: 0.5.5
+  resolution: "casterly@npm:0.5.5"
   dependencies:
     "@babel/core": ^7.11.4
     "@babel/plugin-proposal-class-properties": ^7.10.4
@@ -8261,7 +8261,7 @@ __metadata:
     webpack-hot-middleware: ^2.25.0
   bin:
     casterly: bin/casterly-bin.js
-  checksum: 40f973ae5912d093a25bc5fdf8ebdc8f8767c6c68c157fc26642ac008ec5cb40abc463fb7ea8c06b6bd39348acbf3f1c61c90ad19b9985b9e3566cff808e649f
+  checksum: dbc4f161c0dec43f873bb96edf766a47f2e2f77818e3bce873126b89937c92361ecf9d6dd6691a7880cfb37bf9dd413fb16b19b2e0e94bf9dac35911909bdc25
   languageName: node
   linkType: hard
 
