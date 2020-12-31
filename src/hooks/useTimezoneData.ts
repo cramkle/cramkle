@@ -74,6 +74,8 @@ export const useTimezoneData = (): State => {
       maybeTimezones.then((data) => {
         dispatch({ type: 'LOADED', data })
       })
+    } else {
+      dispatch({ type: 'LOADED', data: maybeTimezones })
     }
   }, [])
 
