@@ -32,13 +32,6 @@ import StudySection from './StudySection'
 
 const toastStore = ToastStore.getInstance()
 
-export const headers = () => {
-  return {
-    'cache-control': `public, max-age=${1}, stale-while-revalidate=${60}`,
-    vary: 'cookie',
-  }
-}
-
 const HomeTab: React.FC<{
   Icon: React.ComponentType<React.SVGAttributes<SVGSVGElement>>
   label: string

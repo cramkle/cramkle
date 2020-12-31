@@ -10,12 +10,6 @@ import RegisterForm from '../forms/RegisterForm'
 import { Header, HeaderContent, HeaderSection } from '../views/Header'
 import { Headline2, Headline4 } from '../views/Typography'
 
-export const headers = () => {
-  return {
-    'cache-control': `public, max-age=${60 * 60}, s-maxage=${24 * 60 * 60}`,
-  }
-}
-
 const LandingPage: React.FunctionComponent = () => {
   return (
     <>
