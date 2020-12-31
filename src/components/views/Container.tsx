@@ -1,22 +1,15 @@
 import classnames from 'classnames'
-import * as React from 'react'
+import { FC } from 'react'
 
-interface ContainerProps extends React.HTMLAttributes<HTMLElement> {
-  lean?: boolean
-}
-
-const Container: React.FunctionComponent<ContainerProps> = ({
+const Container: FC<React.HTMLAttributes<HTMLElement>> = ({
   children,
   className = '',
-  lean = false,
   ...props
 }) => {
   return (
     <section
       {...props}
-      className={classnames(className, 'px-3 mx-auto container', {
-        'py-4': !lean,
-      })}
+      className={classnames(className, 'px-3 py-4 mx-auto container')}
     >
       {children}
     </section>

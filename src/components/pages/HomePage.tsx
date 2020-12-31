@@ -21,7 +21,6 @@ import ModelsIcon from '../icons/ModelsIcon'
 import StatisticsIcon from '../icons/StatisticsIcon'
 import StudyIcon from '../icons/StudyIcon'
 import { Chip } from '../views/Chip'
-import Container from '../views/Container'
 import { List, ListItem } from '../views/List'
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from '../views/Tabs'
 import { Tooltip } from '../views/Tooltip'
@@ -191,9 +190,11 @@ const HomePage: React.FunctionComponent = () => {
             </footer>
           </nav>
 
-          <Container
-            lean
-            className={classNames(styles.content, 'mx-0 col-span-2')}
+          <section
+            className={classNames(
+              styles.content,
+              'mx-4 md:ml-0 md:mr-6 xl:mr-8 col-span-2'
+            )}
           >
             <Tabs index={index} onChange={handleTabChange}>
               <HeaderPortal>
@@ -215,7 +216,7 @@ const HomePage: React.FunctionComponent = () => {
                 </TabPanel>
               </TabPanels>
             </Tabs>
-          </Container>
+          </section>
         </div>
       </NoSSR>
     </>

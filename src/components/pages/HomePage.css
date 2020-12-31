@@ -17,7 +17,7 @@
 
 @media only screen and (min-width: 768px) {
   .grid {
-    grid-template-columns: 220px 1fr;
+    grid-template-columns: 320px 1fr;
     grid-template-areas: "sidenav content";
   }
 }
