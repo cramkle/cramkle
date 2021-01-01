@@ -104,6 +104,7 @@ export default function Axis<T>({
       'V' +
       k * tickSizeOuter
     : 'M' + minRange + ',0.5H' + maxRange
+
   const values = 'ticks' in scaler ? scaler.ticks(ticks) : scaler.domain()
 
   return (

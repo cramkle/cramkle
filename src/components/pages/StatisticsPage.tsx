@@ -278,6 +278,9 @@ const StatisticsPage: React.FC = () => {
     maximumFractionDigits: 2,
   })
 
+  const ticksX = interval === '7' ? 7 : width / 80
+  const ticksY = 5
+
   if (!data?.deckStatistics) {
     return null
   }
@@ -290,8 +293,16 @@ const StatisticsPage: React.FC = () => {
         <Trans>Deck Statistics</Trans>
       </Headline1>
 
+      <label
+        className="text-primary inline-block mt-6"
+        htmlFor="statistics-deck-listbox"
+      >
+        <Trans>Select your deck</Trans>
+      </label>
+
       <Listbox
-        className="mt-3"
+        id="statistics-deck-listbox"
+        className="mt-2"
         value={data.deckStatistics.deck.id}
         onChange={setSelectedDeck}
       >
@@ -302,7 +313,7 @@ const StatisticsPage: React.FC = () => {
         ))}
       </Listbox>
 
-      <Headline2 className="text-primary mt-12">
+      <Headline2 className="text-primary mt-6">
         <Trans>Overview</Trans>
       </Headline2>
 
@@ -381,7 +392,7 @@ const StatisticsPage: React.FC = () => {
                 offset={margin.left}
                 scaler={frequencyY}
                 tickSizeOuter={1}
-                ticks={5}
+                ticks={ticksY}
                 textAnchor="end"
                 domainLineProps={{
                   stroke: 'currentColor',
@@ -406,7 +417,7 @@ const StatisticsPage: React.FC = () => {
                 orientation="bottom"
                 offset={height - margin.bottom}
                 scaler={frequencyX}
-                ticks={interval === '7' ? 7 : width / 80}
+                ticks={ticksX}
                 tickKeyFn={(tick) => tick.getTime()}
                 tickLabel={(tick) =>
                   i18n.date(tick, {
@@ -430,12 +441,14 @@ const StatisticsPage: React.FC = () => {
               <ChartGrid
                 orientation="horizontal"
                 scaler={frequencyX}
+                ticks={ticksX}
                 inlineStart={margin.top}
                 inlineEnd={height - margin.bottom}
               />
               <ChartGrid
                 orientation="vertical"
                 scaler={frequencyY}
+                ticks={ticksY}
                 inlineStart={margin.left}
                 inlineEnd={width - margin.right}
               />
@@ -446,21 +459,9 @@ const StatisticsPage: React.FC = () => {
                 strokeLinecap="round"
                 strokeLinejoin="round"
               >
-                <path
-                  className="text-violet-1"
-                  d={learningLine}
-                  style={{ mixBlendMode: 'multiply' }}
-                />
-                <path
-                  className="text-green-1"
-                  d={newLine}
-                  style={{ mixBlendMode: 'multiply' }}
-                />
-                <path
-                  className="text-primary"
-                  d={reviewLine}
-                  style={{ mixBlendMode: 'multiply' }}
-                />
+                <path className="text-violet-1" d={learningLine} />
+                <path className="text-green-1" d={newLine} />
+                <path className="text-primary" d={reviewLine} />
               </g>
             </svg>
           ) : (
