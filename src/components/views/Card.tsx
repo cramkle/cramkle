@@ -78,7 +78,7 @@ export const Card: React.FunctionComponent<CardProps> = ({
   return (
     <div
       className={classnames(
-        'bg-surface text-on-surface rounded-xl shadow',
+        'bg-surface text-on-surface rounded-xl shadow border-2 border-divider',
         className
       )}
       {...otherProps}

@@ -227,8 +227,8 @@ const ModelPage: React.FC = () => {
           </Body2>
         </div>
 
-        <div className="bg-surface border rounded overflow-hidden border-divider pt-2 px-4 pb-4">
-          <div className="flex items-center justify-between mb-3">
+        <div className="bg-surface border-2 rounded-xl overflow-hidden border-divider px-4 pb-4">
+          <div className="flex items-center justify-between py-4">
             <Body1 className="inline-block text-primary">
               <Trans>Templates</Trans>
             </Body1>

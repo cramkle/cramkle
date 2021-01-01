@@ -13,7 +13,7 @@ export const Table: React.FC<TableProps> = ({
     <div
       className={classnames(
         className,
-        'border rounded border-divider inline-block overflow-auto bg-surface shadow'
+        'border-2 rounded border-divider inline-block overflow-auto bg-surface shadow'
       )}
     >
       <table {...props} className="collapse w-full">

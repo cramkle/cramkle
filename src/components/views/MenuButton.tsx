@@ -49,7 +49,7 @@ export const MenuList: React.FC<MenuListProps> = ({
       {...props}
       className={classnames(
         className,
-        'mt-1 py-0 border-0 border-none rounded-xl shadow-lg bg-surface'
+        'mt-1 py-0 border-2 border-divider rounded-xl shadow-lg bg-surface'
       )}
     >
       <div className="py-2 h-full shadow-xs rounded-xl">{children}</div>
