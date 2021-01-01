@@ -119,27 +119,25 @@ const StudySection: React.FunctionComponent = () => {
           </div>
         </AlertDialog>
       )}
+      <Headline1 className="mt-6 text-primary">
+        <Trans>Study today</Trans>
+      </Headline1>
       {decks.length > 0 ? (
-        <>
-          <Headline1 className="mt-6 text-primary">
-            <Trans>Study today</Trans>
-          </Headline1>
-          <div className="mt-6 mb-4">
-            <div className={classNames(styles.grid, 'grid gap-4')}>
-              {decks.map((deck) => (
-                <DeckCard
-                  key={deck.id}
-                  deck={deck}
-                  onClick={handleDeckSelect}
-                  showStudySessionDetails
-                />
-              ))}
-            </div>
+        <div className="mt-6 mb-4">
+          <div className={classNames(styles.grid, 'grid gap-4')}>
+            {decks.map((deck) => (
+              <DeckCard
+                key={deck.id}
+                deck={deck}
+                onClick={handleDeckSelect}
+                showStudySessionDetails
+              />
+            ))}
           </div>
-        </>
+        </div>
       ) : (
-        <div className="mt-8 flex justify-center">
-          <Body1 className="text-base text-center text-primary">
+        <div className="mt-6 flex">
+          <Body1 className="text-base text-primary">
             <Trans>You've finished studying your decks for now.</Trans>
           </Body1>
         </div>
