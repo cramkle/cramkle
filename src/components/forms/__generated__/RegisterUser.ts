@@ -51,4 +51,5 @@ export interface RegisterUserVariables {
   email: string;
   password: string;
   zoneInfo?: string | null;
+  locale?: string | null;
 }

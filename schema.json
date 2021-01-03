@@ -4293,6 +4293,16 @@
             "defaultValue": null
           },
           {
+            "name": "locale",
+            "description": "User preferred locale",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "zoneInfo",
             "description": "User timezone",
             "type": {
