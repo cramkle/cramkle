@@ -129,6 +129,7 @@ msgstr "Ocorreu um erro ao apagar o modelo"
 msgid "An error occurred when saving the template"
 msgstr "Ocorreu um erro ao salvar o template"
 
+#: src/components/GeneralSettings.tsx:93
 #: src/components/UpdatePasswordDialog.tsx:68
 #: src/components/UpdatePasswordDialog.tsx:73
 msgid "An unexpected error has occurred"
@@ -422,7 +423,7 @@ msgstr "Encerrar"
 msgid "End study session"
 msgstr "Encerrar sessão de estudos"
 
-#: src/components/GeneralSettings.tsx:36
+#: src/components/GeneralSettings.tsx:37
 msgid "English"
 msgstr "Inglês"
 
@@ -581,7 +582,7 @@ msgstr "Itálico"
 msgid "Items per page"
 msgstr "Itens por página"
 
-#: src/components/GeneralSettings.tsx:95
+#: src/components/GeneralSettings.tsx:107
 msgid "Language"
 msgstr "Idioma"
 
@@ -758,13 +759,17 @@ msgstr "Senha precisa ter pelo menos 6 caracteres"
 msgid "Please, try reloading the page"
 msgstr "Por favor, tente recarregar a página"
 
-#: src/components/GeneralSettings.tsx:40
+#: src/components/GeneralSettings.tsx:41
 msgid "Portuguese"
 msgstr "Português"
 
-#: src/components/GeneralSettings.tsx:93
+#: src/components/GeneralSettings.tsx:105
 msgid "Preferences"
 msgstr "Preferências"
+
+#: src/components/GeneralSettings.tsx:96
+msgid "Preferences updated successfully"
+msgstr "Preferências atualizadas com sucesso"
 
 #: src/components/pages/NotePage.tsx:214
 msgid "Preview"
@@ -850,7 +855,7 @@ msgstr "Tentar novamente"
 msgid "Review"
 msgstr "Revisão"
 
-#: src/components/GeneralSettings.tsx:136
+#: src/components/GeneralSettings.tsx:148
 msgid "Save preferences"
 msgstr "Salvar preferências"
 
@@ -979,7 +984,7 @@ msgstr "Essa ação irá apagar todos os valores das notas associadas com esse c
 msgid "This link may be broken or the typed URL is incorrect."
 msgstr "Este link pode estar quebrado ou a URL digitada está incorreta."
 
-#: src/components/GeneralSettings.tsx:110
+#: src/components/GeneralSettings.tsx:122
 msgid "Time zone"
 msgstr "Fuso horário"
 
@@ -1024,11 +1029,11 @@ msgstr "Atualizar senha da conta"
 msgid "Update your account email"
 msgstr "Atualize o email de sua conta"
 
-#: src/components/GeneralSettings.tsx:95
+#: src/components/GeneralSettings.tsx:107
 msgid "Update your preferred language for headlines, buttons and other texts."
 msgstr "Atualize sua língua preferida para manchetes, botões e outros textos."
 
-#: src/components/GeneralSettings.tsx:110
+#: src/components/GeneralSettings.tsx:122
 msgid "Used to compute the statistics and study schedule in your local time."
 msgstr "Usado para computar as estatísticas e o cronograma de estudo em seu tempo local."
 

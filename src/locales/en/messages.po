@@ -129,6 +129,7 @@ msgstr "An error occurred when deleting the model"
 msgid "An error occurred when saving the template"
 msgstr "An error occurred when saving the template"
 
+#: src/components/GeneralSettings.tsx:93
 #: src/components/UpdatePasswordDialog.tsx:68
 #: src/components/UpdatePasswordDialog.tsx:73
 msgid "An unexpected error has occurred"
@@ -422,7 +423,7 @@ msgstr "End"
 msgid "End study session"
 msgstr "End study session"
 
-#: src/components/GeneralSettings.tsx:36
+#: src/components/GeneralSettings.tsx:37
 msgid "English"
 msgstr "English"
 
@@ -581,7 +582,7 @@ msgstr "Italic"
 msgid "Items per page"
 msgstr "Items per page"
 
-#: src/components/GeneralSettings.tsx:95
+#: src/components/GeneralSettings.tsx:107
 msgid "Language"
 msgstr "Language"
 
@@ -758,13 +759,17 @@ msgstr "Password must be at least 6 characters"
 msgid "Please, try reloading the page"
 msgstr "Please, try reloading the page"
 
-#: src/components/GeneralSettings.tsx:40
+#: src/components/GeneralSettings.tsx:41
 msgid "Portuguese"
 msgstr "Portuguese"
 
-#: src/components/GeneralSettings.tsx:93
+#: src/components/GeneralSettings.tsx:105
 msgid "Preferences"
 msgstr "Preferences"
+
+#: src/components/GeneralSettings.tsx:96
+msgid "Preferences updated successfully"
+msgstr "Preferences updated successfully"
 
 #: src/components/pages/NotePage.tsx:214
 msgid "Preview"
@@ -850,7 +855,7 @@ msgstr "Retry"
 msgid "Review"
 msgstr "Review"
 
-#: src/components/GeneralSettings.tsx:136
+#: src/components/GeneralSettings.tsx:148
 msgid "Save preferences"
 msgstr "Save preferences"
 
@@ -979,7 +984,7 @@ msgstr "This action will delete all values from the notes associated with this m
 msgid "This link may be broken or the typed URL is incorrect."
 msgstr "This link may be broken or the typed URL is incorrect."
 
-#: src/components/GeneralSettings.tsx:110
+#: src/components/GeneralSettings.tsx:122
 msgid "Time zone"
 msgstr "Time zone"
 
@@ -1024,11 +1029,11 @@ msgstr "Update account password"
 msgid "Update your account email"
 msgstr "Update your account email"
 
-#: src/components/GeneralSettings.tsx:95
+#: src/components/GeneralSettings.tsx:107
 msgid "Update your preferred language for headlines, buttons and other texts."
 msgstr "Update your preferred language for headlines, buttons and other texts."
 
-#: src/components/GeneralSettings.tsx:110
+#: src/components/GeneralSettings.tsx:122
 msgid "Used to compute the statistics and study schedule in your local time."
 msgstr "Used to compute the statistics and study schedule in your local time."
 

@@ -11,6 +11,7 @@ import Cookies from 'universal-cookie'
 
 import useOffline from '../hooks/useOffline'
 import { TimezoneEntry, useTimezoneData } from '../hooks/useTimezoneData'
+import { pushSimpleToast } from '../toasts/pushToast'
 import styles from './GeneralSettings.css'
 import SettingItem from './SettingItem'
 import {
@@ -103,14 +104,26 @@ const GeneralSettings: React.FC = () => {
 
   const handleChangeLanguage = (language: string) => {
     setCurrentLanguage(language)
-    i18n.activate(language)
-
-    const cookies = new Cookies()
-    cookies.set('language', language)
   }
 
   const handleSave = () => {
-    updatePreferences({ variables: { timeZone, locale: currentLanguage } })
+    updatePreferences({
+      variables: { timeZone, locale: currentLanguage },
+    }).then((mutationResult) => {
+      const cookies = new Cookies()
+      cookies.set('language', currentLanguage)
+
+      if (mutationResult.errors) {
+        pushSimpleToast(t`An unexpected error has occurred`)
+        return
+      }
+
+      pushSimpleToast(t`Preferences updated successfully`)
+
+      if (currentLanguage !== i18n.locale) {
+        window.location.reload()
+      }
+    })
   }
 
   return (
