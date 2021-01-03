@@ -79,7 +79,7 @@ export default function UpdatePasswordDialog({
                 .string()
                 .oneOf(
                   [yup.ref('newPassword')],
-                  t`Confirm password must be equal to new password`
+                  t`Confirm password must be equal to the new password`
                 ),
             })
             .required(t`Confirm password is required`),

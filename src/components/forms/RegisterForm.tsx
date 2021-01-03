@@ -117,7 +117,7 @@ const RegisterForm: React.FunctionComponent<Props> = ({
             mutationResult.errors ||
             mutationResult.data?.createUser == null
           ) {
-            pushSimpleToast(t`An unknown error has occurred'`)
+            pushSimpleToast(t`An unknown error has occurred`)
             return
           }
 

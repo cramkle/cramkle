@@ -78,7 +78,7 @@ const DeleteDeckButton: React.FunctionComponent<Props> = ({ deckId }) => {
 
         pushErrorToast(
           {
-            message: t`An error ocurred when deleting the deck`,
+            message: t`An error occurred when deleting the deck`,
           },
           TIMEOUT_MEDIUM
         )

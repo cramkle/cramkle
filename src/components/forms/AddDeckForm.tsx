@@ -111,7 +111,7 @@ const AddDeckForm: React.FunctionComponent<Props> = ({ open, onClose }) => {
           console.error(e)
           pushErrorToast(
             {
-              message: t`An error ocurred when creating the deck`,
+              message: t`An error occurred when creating the deck`,
             },
             TIMEOUT_MEDIUM
           )
