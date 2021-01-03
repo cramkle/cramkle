@@ -44,12 +44,13 @@ const OPTIONS = [
 ]
 
 const UPDATE_PREFERENCES_MUTATION = gql`
-  mutation UpdatePreferences($timeZone: String) {
-    updatePreferences(input: { zoneInfo: $timeZone }) {
+  mutation UpdatePreferences($timeZone: String, $locale: String) {
+    updatePreferences(input: { zoneInfo: $timeZone, locale: $locale }) {
       user {
         id
         preferences {
           zoneInfo
+          locale
         }
       }
     }
@@ -106,11 +107,10 @@ const GeneralSettings: React.FC = () => {
 
     const cookies = new Cookies()
     cookies.set('language', language)
-    window.location.reload()
   }
 
   const handleSave = () => {
-    updatePreferences({ variables: { timeZone } })
+    updatePreferences({ variables: { timeZone, locale: currentLanguage } })
   }
 
   return (

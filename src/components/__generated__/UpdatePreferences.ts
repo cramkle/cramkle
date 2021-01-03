@@ -10,9 +10,13 @@
 export interface UpdatePreferences_updatePreferences_user_preferences {
   __typename: "UserPreferences";
   /**
-   * User prefered timezone
+   * User preferred timezone
    */
   zoneInfo: string;
+  /**
+   * User preferred locale
+   */
+  locale: string;
 }
 
 export interface UpdatePreferences_updatePreferences_user {
@@ -38,4 +42,5 @@ export interface UpdatePreferences {
 
 export interface UpdatePreferencesVariables {
   timeZone?: string | null;
+  locale?: string | null;
 }

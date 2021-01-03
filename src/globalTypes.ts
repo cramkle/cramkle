@@ -7,6 +7,15 @@
 // START Enums and Input Objects
 //==============================================================
 
+/**
+ * Type of error
+ */
+export enum Error {
+  authentication = "authentication",
+  badInput = "badInput",
+  serverError = "serverError",
+}
+
 export enum FlashCardAnswer {
   EASY = "EASY",
   GOOD = "GOOD",

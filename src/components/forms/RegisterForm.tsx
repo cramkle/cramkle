@@ -15,13 +15,17 @@ import { Card, CardContent } from '../views/Card'
 import CircularProgress from '../views/CircularProgress'
 import { Headline2 } from '../views/Typography'
 import { CheckboxField, TextInputField } from './Fields'
+import {
+  RegisterUser,
+  RegisterUserVariables,
+} from './__generated__/RegisterUser'
 
 interface Props {
   title?: MessageDescriptor | string
 }
 
 const REGISTER_MUTATION = gql`
-  mutation RegisterUserMutation(
+  mutation RegisterUser(
     $username: String!
     $email: String!
     $password: String!
@@ -38,6 +42,14 @@ const REGISTER_MUTATION = gql`
       user {
         id
       }
+      error {
+        type
+        status
+        fields {
+          fieldName
+          errorDescription
+        }
+      }
     }
   }
 `
@@ -51,7 +63,9 @@ const RegisterForm: React.FunctionComponent<Props> = ({
   title = t`Register`,
 }) => {
   const navigate = useNavigate()
-  const [register] = useMutation(REGISTER_MUTATION)
+  const [register] = useMutation<RegisterUser, RegisterUserVariables>(
+    REGISTER_MUTATION
+  )
   const { i18n } = useLingui()
 
   return (
@@ -98,7 +112,33 @@ const RegisterForm: React.FunctionComponent<Props> = ({
           return
         }
 
-        return register({ variables: user }).then(() => {
+        return register({ variables: user }).then((mutationResult) => {
+          if (
+            mutationResult.errors ||
+            mutationResult.data?.createUser == null
+          ) {
+            pushSimpleToast(t`An unknown error has occurred'`)
+            return
+          }
+
+          if (mutationResult.data.createUser.error != null) {
+            if (!mutationResult.data.createUser.error.fields) {
+              pushSimpleToast(t`An unknown error has occurred`)
+              return
+            }
+
+            const formErrors = Object.fromEntries(
+              mutationResult.data.createUser.error.fields.map(
+                ({ fieldName, errorDescription }) => [
+                  fieldName,
+                  errorDescription,
+                ]
+              )
+            )
+            helpers.setErrors(formErrors)
+            return
+          }
+
           pushSimpleToast(t`Account created successfully`)
 
           navigate('/login')

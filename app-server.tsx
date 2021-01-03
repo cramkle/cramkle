@@ -16,6 +16,8 @@ import serializeJavascript from 'serialize-javascript'
 import linguiConfig from './.linguirc.json'
 import App from './src/App'
 import { RedirectError } from './src/components/Redirect'
+import { UserQuery } from './src/components/__generated__/UserQuery'
+import userQuery from './src/components/userQuery.gql'
 import enCatalog from './src/locales/en/messages'
 import ptCatalog from './src/locales/pt/messages'
 import { createApolloClient } from './src/utils/apolloClient'
@@ -56,7 +58,20 @@ export default async function handleRequest(
   headers: Headers,
   context: RootContext
 ) {
-  const language = request.headers.get('x-cramkle-lang')!
+  const cookie = request.headers.get('cookie') ?? undefined
+
+  const apiHost = process[ENV].API_HOST ?? request.headers.get('host')
+
+  const baseApiUrl = `http://${apiHost}`
+
+  const client = createApolloClient(`${baseApiUrl}/_c/graphql`, cookie)
+
+  const {
+    data: { me: user },
+  } = await client.query<UserQuery>({ query: userQuery })
+
+  const language =
+    user?.preferences.locale ?? request.headers.get('x-cramkle-lang')!
 
   const cspNonce = request.headers.get('x-cramkle-nonce') ?? undefined
 
@@ -66,14 +81,6 @@ export default async function handleRequest(
   i18n.loadLocaleData({ en: { plurals: enPlural }, pt: { plurals: ptPlural } })
 
   i18n.activate(language)
-
-  const cookie = request.headers.get('cookie') ?? undefined
-
-  const apiHost = process[ENV].API_HOST ?? request.headers.get('host')
-
-  const baseApiUrl = `http://${apiHost}`
-
-  const client = createApolloClient(`${baseApiUrl}/_c/graphql`, cookie)
 
   const helmetContext = {}
 
@@ -180,7 +187,7 @@ export default async function handleRequest(
             <script
               nonce={cspNonce}
               dangerouslySetInnerHTML={{
-                __html: darkThemeHelmetScript.innerHTML,
+                __html: darkThemeHelmetScript(user?.preferences.darkMode),
               }}
             />
             <div
