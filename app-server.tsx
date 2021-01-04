@@ -7,6 +7,7 @@ import { RootServer } from '@casterly/components/server'
 import { paths } from '@casterly/utils'
 import { i18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
+import gql from 'graphql-tag'
 import { en as enPlural, pt as ptPlural } from 'make-plural/plurals'
 import PurgeCSS from 'purgecss'
 import { renderToNodeStream, renderToString } from 'react-dom/server'
@@ -69,6 +70,26 @@ export default async function handleRequest(
   const {
     data: { me: user },
   } = await client.query<UserQuery>({ query: userQuery })
+
+  if (user && user.preferences.locale == null) {
+    await client.mutate({
+      mutation: gql`
+        mutation UpdateUserLocale($locale: String!) {
+          updatePreferences(input: { locale: $locale }) {
+            user {
+              id
+              preferences {
+                locale
+              }
+            }
+          }
+        }
+      `,
+      variables: {
+        locale: request.headers.get('x-cramkle-lang') ?? 'en',
+      },
+    })
+  }
 
   const language =
     user?.preferences.locale ?? request.headers.get('x-cramkle-lang')!
