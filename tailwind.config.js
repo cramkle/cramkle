@@ -77,5 +77,7 @@ module.exports = {
   },
   plugins: [],
   corePlugins: { float: false },
-  purge: ['./src/**/*.tsx'],
+  purge: {
+    content: ['./src/**/*.tsx'],
+  },
 }
