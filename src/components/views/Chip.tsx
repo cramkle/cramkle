@@ -43,7 +43,7 @@ export const Chip: React.FC<ChipProps> = ({
           [`text-${colorName}`]:
             inverted && (color !== undefined || color !== 'primary'),
           'text-action-primary': inverted && color === 'primary',
-          'overflow-hidden whitespace-no-wrap': truncated,
+          'overflow-hidden whitespace-nowrap': truncated,
         })}
       >
         {children}

@@ -49,11 +49,11 @@ export const ListboxPopover = forwardRef<HTMLDivElement, PopoverProps>(
         className={classnames(
           styles.popover,
           className,
-          'absolute z-40 border-0 border-none rounded shadow-lg bg-input py-0 mt-1 outline-none'
+          'absolute z-40 border-0 border-none rounded shadow-xl bg-surface py-0 mt-1 outline-none'
         )}
         ref={ref}
       >
-        <div className="py-2 h-full shadow-xs rounded">{children}</div>
+        <div className="py-2 h-full shadow-sm rounded">{children}</div>
       </Popover>
     )
   }
@@ -75,7 +75,7 @@ export const ListboxOption: React.FC<
       className={classnames(
         className,
         styles.option,
-        'flex items-center bg-input text-on-surface relative p-2 mx-2 rounded overflow-hidden whitespace-no-wrap',
+        'flex items-center bg-surface text-on-surface relative p-2 mx-2 rounded overflow-hidden whitespace-nowrap',
         { 'text-disabled': disabled }
       )}
     >
