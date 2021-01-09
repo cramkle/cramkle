@@ -32,16 +32,9 @@ module.exports = (config, { dev, isServer }) => {
     config.plugins.push(createWorkboxPlugin(dev))
   }
 
-  config.module.rules[0].oneOf[2].options.presets[2][1].runtime = 'automatic'
   config.module.rules[0].oneOf[2].options.plugins.push(
     require.resolve('babel-plugin-graphql-tag')
   )
-
-  if (!isServer) {
-    config.module.rules[0].oneOf[4].use[2].options.postcssOptions.plugins.push(
-      require.resolve('tailwindcss')
-    )
-  }
 
   return config
 }

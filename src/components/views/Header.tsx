@@ -9,7 +9,7 @@ export const Header: React.FC<React.HTMLAttributes<HTMLElement>> = (props) => {
         'bg-surface border-b border-divider'
       )}
     >
-      <div className="shadow-xs">{props.children}</div>
+      <div className="shadow-sm">{props.children}</div>
     </header>
   )
 }

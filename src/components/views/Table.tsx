@@ -105,7 +105,7 @@ export const TableCell: React.FC<TableCellProps> = ({
       className={classnames(className, 'px-6', {
         'text-primary': !secondary,
         'text-secondary': secondary,
-        'h-16 sm:whitespace-no-wrap': !isHead,
+        'h-16 sm:whitespace-nowrap': !isHead,
         'leading-4 text-xs font-medium uppercase tracking-wider py-3 relative': isHead,
         'text-left': align === 'left',
         'text-right': align === 'right',
