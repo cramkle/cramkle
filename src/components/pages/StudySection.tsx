@@ -67,7 +67,7 @@ const StudySection: React.FunctionComponent = () => {
       <Container className="mt-0 md:mt-8 flex flex-col justify-center items-center text-center">
         <Body1 className="text-primary">
           <Trans>
-            An error has ocurred when trying to get your decks to study.
+            An error has occurred when trying to get your decks to study.
           </Trans>
         </Body1>
         <Body2 className="text-secondary mt-2">

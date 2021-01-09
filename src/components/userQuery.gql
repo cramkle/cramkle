@@ -5,6 +5,8 @@ query UserQuery {
     email
     preferences {
       zoneInfo
+      locale
+      darkMode
     }
   }
 }

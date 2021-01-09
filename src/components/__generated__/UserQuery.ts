@@ -10,9 +10,17 @@
 export interface UserQuery_me_preferences {
   __typename: "UserPreferences";
   /**
-   * User prefered timezone
+   * User preferred timezone
    */
   zoneInfo: string;
+  /**
+   * User preferred locale
+   */
+  locale: string;
+  /**
+   * User preferred dark mode or not
+   */
+  darkMode: boolean;
 }
 
 export interface UserQuery_me {

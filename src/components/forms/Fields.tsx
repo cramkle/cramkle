@@ -2,37 +2,78 @@ import { useField } from 'formik'
 import { forwardRef, memo, useCallback } from 'react'
 
 import { Checkbox, CheckboxProps } from '../views/Checkbox'
-import { HelperText, Input, Label, LabelProps, Textarea } from '../views/Input'
+import {
+  HelperText,
+  Input,
+  InputProps,
+  Label,
+  Textarea,
+  TextareaProps,
+} from '../views/Input'
 
-interface TextInputProps extends LabelProps {
-  label: string
+type TextInputProps = {
+  label?: string
   type?: string
   id?: string
   name: string
-  textarea?: boolean
-}
+  checkbox?: boolean
+  className?: string
+} & (({ textarea: true } & TextareaProps) | ({ textarea?: false } & InputProps))
 
-export const TextInputField = memo(function TextInputField({
-  type = 'text',
-  id,
-  label,
-  name,
-  textarea = false,
-  ...props
-}: TextInputProps) {
-  const [field, meta] = useField(name)
+export const TextInputField = memo(function TextInputField(
+  props: TextInputProps
+) {
+  const [field, meta] = useField(props.name)
 
-  return (
-    <Label {...props} text={label}>
-      {textarea ? (
-        <Textarea id={id} {...field} name={name} />
-      ) : (
-        <Input id={id} type={type} {...field} name={name} />
-      )}
+  let content
+
+  if (props.textarea) {
+    const {
+      className,
+      label,
+      type,
+      id,
+      name,
+      checkbox,
+      textarea,
+      ...inputProps
+    } = props
+    content = <Textarea {...inputProps} id={id} {...field} name={name} />
+  } else {
+    const {
+      className,
+      label,
+      type,
+      id,
+      name,
+      checkbox,
+      textarea,
+      ...inputProps
+    } = props
+    content = (
+      <Input {...inputProps} id={id} type={type} {...field} name={name} />
+    )
+  }
+
+  content = (
+    <>
+      {content}{' '}
       {meta.touched && meta.error ? (
         <HelperText variation="error">{meta.error}</HelperText>
       ) : null}
+    </>
+  )
+
+  return props.label ? (
+    <Label
+      className={props.className}
+      text={props.label}
+      checkbox={props.checkbox}
+    >
+      {content}
     </Label>
+  ) : (
+    <div className={props.className}>{content}</div>
   )
 })
 

@@ -11,7 +11,9 @@ import Cookies from 'universal-cookie'
 
 import useOffline from '../hooks/useOffline'
 import { TimezoneEntry, useTimezoneData } from '../hooks/useTimezoneData'
+import { pushSimpleToast } from '../toasts/pushToast'
 import styles from './GeneralSettings.css'
+import SettingItem from './SettingItem'
 import {
   UpdatePreferences,
   UpdatePreferencesVariables,
@@ -29,7 +31,7 @@ import {
   ListboxOption,
   ListboxPopover,
 } from './views/Listbox'
-import { Headline2, Subtitle2 } from './views/Typography'
+import { Headline2 } from './views/Typography'
 
 const OPTIONS = [
   {
@@ -43,12 +45,13 @@ const OPTIONS = [
 ]
 
 const UPDATE_PREFERENCES_MUTATION = gql`
-  mutation UpdatePreferences($timeZone: String) {
-    updatePreferences(input: { zoneInfo: $timeZone }) {
+  mutation UpdatePreferences($timeZone: String, $locale: String) {
+    updatePreferences(input: { zoneInfo: $timeZone, locale: $locale }) {
       user {
         id
         preferences {
           zoneInfo
+          locale
         }
       }
     }
@@ -101,15 +104,26 @@ const GeneralSettings: React.FC = () => {
 
   const handleChangeLanguage = (language: string) => {
     setCurrentLanguage(language)
-    i18n.activate(language)
-
-    const cookies = new Cookies()
-    cookies.set('language', language)
-    window.location.reload()
   }
 
   const handleSave = () => {
-    updatePreferences({ variables: { timeZone } })
+    updatePreferences({
+      variables: { timeZone, locale: currentLanguage },
+    }).then((mutationResult) => {
+      const cookies = new Cookies()
+      cookies.set('language', currentLanguage)
+
+      if (mutationResult.errors) {
+        pushSimpleToast(t`An unexpected error has occurred`)
+        return
+      }
+
+      pushSimpleToast(t`Preferences updated successfully`)
+
+      if (currentLanguage !== i18n.locale) {
+        window.location.reload()
+      }
+    })
   }
 
   return (
@@ -118,31 +132,19 @@ const GeneralSettings: React.FC = () => {
         <Headline2>
           <Trans>Preferences</Trans>
         </Headline2>
-        <div
-          className={classNames(
-            styles.settingItem,
-            'mt-4 grid items-center sm:items-start'
-          )}
-        >
-          <label htmlFor="user-language" className="flex flex-col">
-            <span>
-              <Trans>Language</Trans>
-            </span>
-          </label>
-          <Subtitle2
-            className={classNames(
-              styles.settingDescription,
-              'mt-2 sm:mt-1 text-secondary'
-            )}
-          >
+        <SettingItem
+          className="mt-4"
+          id="user-language"
+          title={<Trans>Language</Trans>}
+          description={
             <Trans>
-              This configuration applies to this browser only, and won't be
-              synchronized across your devices.
+              Update your preferred language for headlines, buttons and other
+              texts.
             </Trans>
-          </Subtitle2>
+          }
+        >
           <ListboxInput
             id="user-language"
-            className={classNames(styles.settingInput, 'ml-2')}
             value={currentLanguage}
             onChange={handleChangeLanguage}
             disabled={useOffline()}
@@ -158,35 +160,23 @@ const GeneralSettings: React.FC = () => {
               </ListboxList>
             </ListboxPopover>
           </ListboxInput>
-        </div>
-        <div
-          className={classNames(
-            styles.settingItem,
-            'mt-4 grid items-center sm:items-start'
-          )}
-        >
-          <label htmlFor="user-timezone">
-            <Trans>Time zone</Trans>
-          </label>
-          <Subtitle2
-            className={classNames(
-              styles.settingDescription,
-              'mt-2 sm:mt-1 text-secondary w-full'
-            )}
-          >
+        </SettingItem>
+        <SettingItem
+          className={'mt-4'}
+          id="user-timezone"
+          title={<Trans>Time zone</Trans>}
+          description={
             <Trans>
               Used to compute the statistics and study schedule in your local
               time.
             </Trans>
-          </Subtitle2>
+          }
+        >
           {timezoneData.loading ? (
-            <CircularProgress
-              className={classNames(styles.settingInput, 'self-center mx-4')}
-            />
+            <CircularProgress />
           ) : (
             <ListboxInput
               id="user-timezone"
-              className={classNames(styles.settingInput, 'ml-2')}
               value={timeZone}
               onChange={setTimeZone}
               disabled={loading}
@@ -234,16 +224,18 @@ const GeneralSettings: React.FC = () => {
               </ListboxPopover>
             </ListboxInput>
           )}
-        </div>
+        </SettingItem>
+      </CardContent>
+      <div className="p-4 flex border-t border-divider">
         <Button
           variation="primary"
-          className="mt-4 ml-auto"
+          className="ml-auto"
           onClick={handleSave}
           disabled={loading}
         >
-          {loading ? <CircularProgress /> : <Trans>Save</Trans>}
+          {loading ? <CircularProgress /> : <Trans>Save preferences</Trans>}
         </Button>
-      </CardContent>
+      </div>
     </Card>
   )
 }

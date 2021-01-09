@@ -84,7 +84,7 @@ const DeleteModelButton: React.FunctionComponent<Props> = ({ model }) => {
 
         pushErrorToast(
           {
-            message: t`An error ocurred when deleting the model`,
+            message: t`An error occurred when deleting the model`,
           },
           TIMEOUT_MEDIUM
         )

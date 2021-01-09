@@ -7,6 +7,7 @@ import { RootServer } from '@casterly/components/server'
 import { paths } from '@casterly/utils'
 import { i18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
+import gql from 'graphql-tag'
 import { en as enPlural, pt as ptPlural } from 'make-plural/plurals'
 import PurgeCSS from 'purgecss'
 import { renderToNodeStream, renderToString } from 'react-dom/server'
@@ -16,6 +17,8 @@ import serializeJavascript from 'serialize-javascript'
 import linguiConfig from './.linguirc.json'
 import App from './src/App'
 import { RedirectError } from './src/components/Redirect'
+import { UserQuery } from './src/components/__generated__/UserQuery'
+import userQuery from './src/components/userQuery.gql'
 import enCatalog from './src/locales/en/messages'
 import ptCatalog from './src/locales/pt/messages'
 import { createApolloClient } from './src/utils/apolloClient'
@@ -56,7 +59,40 @@ export default async function handleRequest(
   headers: Headers,
   context: RootContext
 ) {
-  const language = request.headers.get('x-cramkle-lang')!
+  const cookie = request.headers.get('cookie') ?? undefined
+
+  const apiHost = process[ENV].API_HOST ?? request.headers.get('host')
+
+  const baseApiUrl = `http://${apiHost}`
+
+  const client = createApolloClient(`${baseApiUrl}/_c/graphql`, cookie)
+
+  const {
+    data: { me: user },
+  } = await client.query<UserQuery>({ query: userQuery })
+
+  if (user && user.preferences.locale == null) {
+    await client.mutate({
+      mutation: gql`
+        mutation UpdateUserLocale($locale: String!) {
+          updatePreferences(input: { locale: $locale }) {
+            user {
+              id
+              preferences {
+                locale
+              }
+            }
+          }
+        }
+      `,
+      variables: {
+        locale: request.headers.get('x-cramkle-lang') ?? 'en',
+      },
+    })
+  }
+
+  const language =
+    user?.preferences.locale ?? request.headers.get('x-cramkle-lang')!
 
   const cspNonce = request.headers.get('x-cramkle-nonce') ?? undefined
 
@@ -66,14 +102,6 @@ export default async function handleRequest(
   i18n.loadLocaleData({ en: { plurals: enPlural }, pt: { plurals: ptPlural } })
 
   i18n.activate(language)
-
-  const cookie = request.headers.get('cookie') ?? undefined
-
-  const apiHost = process[ENV].API_HOST ?? request.headers.get('host')
-
-  const baseApiUrl = `http://${apiHost}`
-
-  const client = createApolloClient(`${baseApiUrl}/_c/graphql`, cookie)
 
   const helmetContext = {}
 
@@ -180,7 +208,7 @@ export default async function handleRequest(
             <script
               nonce={cspNonce}
               dangerouslySetInnerHTML={{
-                __html: darkThemeHelmetScript.innerHTML,
+                __html: darkThemeHelmetScript(user?.preferences.darkMode),
               }}
             />
             <div

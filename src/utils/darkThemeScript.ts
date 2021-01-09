@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 declare global {
   type Theme = 'dark' | 'light'
 
@@ -9,7 +8,8 @@ declare global {
   }
 }
 
-const darkThemeToggleScript = `
+export const darkThemeHelmetScript = (darkMode?: boolean) => {
+  return `
  (function() {
   window.__onThemeChange = function() {};
   function setTheme(newTheme) {
@@ -19,24 +19,19 @@ const darkThemeToggleScript = `
     document.documentElement.classList.add('__' + newTheme + '-mode');
     window.__onThemeChange(newTheme);
   }
-  var preferredTheme;
-  try {
-    preferredTheme = localStorage.getItem('theme');
-  } catch (err) { }
+
+  var preferredTheme = ${JSON.stringify(
+    darkMode == null ? undefined : darkMode ? 'dark' : 'light'
+  )};
+
   window.__setPreferredTheme = function(newTheme) {
     setTheme(newTheme);
     try {
       localStorage.setItem('theme', newTheme);
     } catch (err) {}
   }
-  var darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
-  darkQuery.addListener(function(e) {
-    window.__setPreferredTheme(e.matches ? 'dark' : 'light')
-  });
-  setTheme(preferredTheme || (darkQuery.matches ? 'dark' : 'light'));
+
+  setTheme(preferredTheme || 'light');
 })();
 `.trim()
-
-export const darkThemeHelmetScript = {
-  innerHTML: darkThemeToggleScript,
 }

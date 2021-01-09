@@ -51,6 +51,6 @@ export const Overline = typography(
   'text-xs uppercase tracking-widest font-medium'
 )
 
-export const Subtitle1 = typography('h6', 'font-normal')
+export const Subtitle1 = typography('p', 'font-normal')
 
-export const Subtitle2 = typography('h6', 'text-sm font-medium')
+export const Subtitle2 = typography('p', 'text-sm font-medium')
