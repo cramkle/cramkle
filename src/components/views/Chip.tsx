@@ -16,12 +16,6 @@ export const Chip: React.FC<ChipProps> = ({
   size = 'normal',
   children,
 }) => {
-  let colorName = color as string
-
-  if (colorName !== 'primary' && colorName !== undefined) {
-    colorName = `${colorName}-1`
-  }
-
   return (
     <div
       className={classNames(
@@ -40,8 +34,9 @@ export const Chip: React.FC<ChipProps> = ({
           '__dark-mode': !inverted && color !== undefined,
           'text-primary': !inverted && color !== 'primary',
           'text-on-primary': !inverted && color === 'primary',
-          [`text-${colorName}`]:
-            inverted && (color !== undefined || color !== 'primary'),
+          'text-red-1': inverted && color === 'red',
+          'text-green-1': inverted && color === 'green',
+          'text-violet-1': inverted && color === 'violet',
           'text-action-primary': inverted && color === 'primary',
           'overflow-hidden whitespace-nowrap': truncated,
         })}
@@ -51,7 +46,9 @@ export const Chip: React.FC<ChipProps> = ({
       <div
         className={classNames('absolute top-0 left-0 right-0 bottom-0 -z-1', {
           'opacity-08': inverted && color !== undefined,
-          [`bg-${colorName}`]: color !== undefined,
+          'bg-green-1': color === 'green',
+          'bg-red-1': color === 'red',
+          'bg-violet-1': color === 'violet',
           'bg-secondary': color === undefined,
         })}
       />

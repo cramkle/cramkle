@@ -20,5 +20,5 @@
     "resolveJsonModule": true
   },
   "exclude": ["jest/**/*", "jest.config.js", "node_modules"],
-  "include": ["./**/*.ts", "./**/*.tsx", "./.storybook/**/*"]
+  "include": ["./**/*.ts", "./**/*.tsx", "./**/*.js", "./.storybook/**/*"]
 }

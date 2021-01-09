@@ -9,7 +9,7 @@
     "start": "NODE_ENV=production node server.js",
     "build": "yarn prebuild && casterly build",
     "build-tailwind": "tailwindcss build src/tailwind.css -o src/_tailwind.global.css",
-    "prebuild": "yarn compile --strict && yarn build-tailwind",
+    "prebuild": "yarn compile --strict && NODE_ENV=production yarn build-tailwind",
     "prettier": "prettier --write 'src/**/*.ts' 'src/**/*.tsx'",
     "test": "NODE_ENV=test jest",
     "lint": "eslint --ext ts,tsx .",
