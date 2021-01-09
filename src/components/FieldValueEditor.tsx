@@ -1,5 +1,6 @@
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
+import classNames from 'classnames'
 import { ContentState } from 'draft-js'
 import { useCallback, useEffect, useRef } from 'react'
 import * as React from 'react'
@@ -40,7 +41,7 @@ const FieldValueEditor: React.FC<Props> = ({
 
   return (
     <BaseEditorControls
-      className={className}
+      className={classNames(className, 'border border-divider')}
       initialContentState={initialContentState}
       onChange={handleChange}
     >

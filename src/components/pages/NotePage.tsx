@@ -15,6 +15,7 @@ import FlashCardRenderer from '../FlashCardRenderer'
 import FlashCardStatus from '../FlashCardStatus'
 import PersistedEditor from '../editor/PersistedEditor'
 import Button from '../views/Button'
+import { Card } from '../views/Card'
 import { Checkbox } from '../views/Checkbox'
 import Container from '../views/Container'
 import { Dialog } from '../views/Dialog'
@@ -260,40 +261,44 @@ const NotePage: React.FC = () => {
           <Trans>Flashcards</Trans>
         </Headline2>
 
-        <Table className="mt-4 mb-8 w-full">
-          <TableHead>
-            <TableRow>
-              <TableCell className="w-0" />
-              <TableCell>Template</TableCell>
-              <TableCell>Status</TableCell>
-              <TableCell>Lapses</TableCell>
-              <TableCell>Due Date</TableCell>
-              <TableCell />
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {flashCards.map((flashCard) => (
-              <TableRow key={flashCard.id}>
-                <TableCell className="flex justify-center items-center">
-                  <Checkbox checked={flashCard.active} />
-                </TableCell>
-                <TableCell>{flashCard.template?.name}</TableCell>
-                <TableCell>
-                  <FlashCardStatus status={flashCard.status!} />
-                </TableCell>
-                <TableCell>{flashCard.lapses}</TableCell>
-                <TableCell>
-                  {flashCard.due && i18n.date(new Date(flashCard.due), {})}
-                </TableCell>
-                <TableCell align="right">
-                  <Button onClick={() => handleShowFlashCardPreview(flashCard)}>
-                    <Trans>Preview</Trans>
-                  </Button>
-                </TableCell>
+        <Card className="mt-4 mb-8 w-full">
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell className="w-0" />
+                <TableCell>Template</TableCell>
+                <TableCell>Status</TableCell>
+                <TableCell>Lapses</TableCell>
+                <TableCell>Due Date</TableCell>
+                <TableCell />
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+            </TableHead>
+            <TableBody>
+              {flashCards.map((flashCard) => (
+                <TableRow key={flashCard.id}>
+                  <TableCell className="flex justify-center items-center">
+                    <Checkbox checked={flashCard.active} />
+                  </TableCell>
+                  <TableCell>{flashCard.template?.name}</TableCell>
+                  <TableCell>
+                    <FlashCardStatus status={flashCard.status!} />
+                  </TableCell>
+                  <TableCell>{flashCard.lapses}</TableCell>
+                  <TableCell>
+                    {flashCard.due && i18n.date(new Date(flashCard.due), {})}
+                  </TableCell>
+                  <TableCell align="right">
+                    <Button
+                      onClick={() => handleShowFlashCardPreview(flashCard)}
+                    >
+                      <Trans>Preview</Trans>
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </Card>
       </Container>
     </>
   )

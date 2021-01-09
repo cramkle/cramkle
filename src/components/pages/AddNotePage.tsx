@@ -14,6 +14,7 @@ import { TIMEOUT_MEDIUM, pushToast } from '../../toasts/pushToast'
 import BackButton from '../BackButton'
 import FieldValueEditor from '../FieldValueEditor'
 import Button from '../views/Button'
+import { Card, CardContent } from '../views/Card'
 import CircularProgress from '../views/CircularProgress'
 import Container from '../views/Container'
 import { Listbox, ListboxOption } from '../views/Listbox'
@@ -175,74 +176,78 @@ const AddNotePage: React.FC = () => {
 
       {models?.length ?? 0 > 0 ? (
         <div className="flex flex-col mt-6">
-          <label className="flex items-center text-primary">
-            <Trans>Note's model</Trans>
-            <Listbox
-              className="ml-3"
-              value={selectedModelId}
-              onChange={(value) => setSelectedModelId(value)}
-            >
-              <ListboxOption value={DEFAULT_OPTION} disabled>
-                {i18n._(t`Select a model`)}
-              </ListboxOption>
-              {models?.map((model) => (
-                <ListboxOption key={model.id} value={model.id}>
-                  {model.name}
-                </ListboxOption>
-              ))}
-            </Listbox>
-          </label>
-
-          {selectedModel != null && (
-            <React.Fragment key={formKey}>
-              <Headline2 className="mt-3 text-primary">
-                <Trans>Fields</Trans>
-              </Headline2>
-
-              {selectedModel.fields.length > 0 ? (
-                <>
-                  {selectedModel.fields.map((field) => (
-                    <React.Fragment key={field.id}>
-                      <Body1 className="mt-4 text-primary" key={field.id}>
-                        {field.name}
-                      </Body1>
-
-                      <FieldValueEditor
-                        className="mt-2"
-                        onChange={handleFieldValueChange}
-                        field={field}
-                      />
-                    </React.Fragment>
+          <Card>
+            <CardContent>
+              <label className="flex items-center text-primary">
+                <Trans>Note's model</Trans>
+                <Listbox
+                  className="ml-3"
+                  value={selectedModelId}
+                  onChange={(value) => setSelectedModelId(value)}
+                >
+                  <ListboxOption value={DEFAULT_OPTION} disabled>
+                    {i18n._(t`Select a model`)}
+                  </ListboxOption>
+                  {models?.map((model) => (
+                    <ListboxOption key={model.id} value={model.id}>
+                      {model.name}
+                    </ListboxOption>
                   ))}
+                </Listbox>
+              </label>
 
-                  <Button
-                    className="mt-4 self-start"
-                    variation="primary"
-                    onClick={handleSubmit}
-                    disabled={submitLoading}
-                  >
-                    {!submitLoading ? (
-                      <Trans>Add Note</Trans>
-                    ) : (
-                      <CircularProgress />
-                    )}
-                  </Button>
-                </>
-              ) : (
-                <Body1 className="mt-6 text-primary">
-                  <Trans>
-                    The selected model doesn't have any fields.{' '}
-                    <Link
-                      className="text-action-primary hover:underline"
-                      to={`/m/${selectedModel.id}`}
-                    >
-                      Click here to edit it
-                    </Link>
-                  </Trans>
-                </Body1>
+              {selectedModel != null && (
+                <React.Fragment key={formKey}>
+                  <Headline2 className="mt-3 text-primary">
+                    <Trans>Fields</Trans>
+                  </Headline2>
+
+                  {selectedModel.fields.length > 0 ? (
+                    <>
+                      {selectedModel.fields.map((field) => (
+                        <React.Fragment key={field.id}>
+                          <Body1 className="mt-4 text-primary" key={field.id}>
+                            {field.name}
+                          </Body1>
+
+                          <FieldValueEditor
+                            className="mt-2"
+                            onChange={handleFieldValueChange}
+                            field={field}
+                          />
+                        </React.Fragment>
+                      ))}
+
+                      <Button
+                        className="mt-4 self-start"
+                        variation="primary"
+                        onClick={handleSubmit}
+                        disabled={submitLoading}
+                      >
+                        {!submitLoading ? (
+                          <Trans>Add Note</Trans>
+                        ) : (
+                          <CircularProgress />
+                        )}
+                      </Button>
+                    </>
+                  ) : (
+                    <Body1 className="mt-6 text-primary">
+                      <Trans>
+                        The selected model doesn't have any fields.{' '}
+                        <Link
+                          className="text-action-primary hover:underline"
+                          to={`/m/${selectedModel.id}`}
+                        >
+                          Click here to edit it
+                        </Link>
+                      </Trans>
+                    </Body1>
+                  )}
+                </React.Fragment>
               )}
-            </React.Fragment>
-          )}
+            </CardContent>
+          </Card>
         </div>
       ) : (
         <div className="flex flex-col justify-center items-center mt-6">

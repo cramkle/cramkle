@@ -15,7 +15,7 @@ import useTopBarLoading from '../../hooks/useTopBarLoading'
 import Axis from '../Axis'
 import BackButton from '../BackButton'
 import ChartGrid from '../ChartGrid'
-import { Card } from '../views/Card'
+import { Card, CardContent } from '../views/Card'
 import Container from '../views/Container'
 import { Listbox, ListboxOption } from '../views/Listbox'
 import {
@@ -293,25 +293,29 @@ const StatisticsPage: React.FC = () => {
         <Trans>Deck Statistics</Trans>
       </Headline1>
 
-      <label
-        className="text-primary inline-block mt-6"
-        htmlFor="statistics-deck-listbox"
-      >
-        <Trans>Select your deck</Trans>
-      </label>
+      <Card className="mt-6">
+        <CardContent>
+          <label
+            className="text-primary inline-block"
+            htmlFor="statistics-deck-listbox"
+          >
+            <Trans>Select your deck</Trans>
+          </label>
 
-      <Listbox
-        id="statistics-deck-listbox"
-        className="mt-2"
-        value={data.deckStatistics.deck.id}
-        onChange={setSelectedDeck}
-      >
-        {data.decks.map((deck) => (
-          <ListboxOption key={deck.id} value={deck.id}>
-            {deck.title}
-          </ListboxOption>
-        ))}
-      </Listbox>
+          <Listbox
+            id="statistics-deck-listbox"
+            className="mt-2"
+            value={data.deckStatistics.deck.id}
+            onChange={setSelectedDeck}
+          >
+            {data.decks.map((deck) => (
+              <ListboxOption key={deck.id} value={deck.id}>
+                {deck.title}
+              </ListboxOption>
+            ))}
+          </Listbox>
+        </CardContent>
+      </Card>
 
       <Headline2 className="text-primary mt-6">
         <Trans>Overview</Trans>
@@ -354,7 +358,7 @@ const StatisticsPage: React.FC = () => {
       </div>
 
       <Card className="mt-12">
-        <div className="border-b border-secondary flex flex-wrap justify-between items-center p-2">
+        <div className="border-b border-divider flex flex-wrap justify-between items-center p-2">
           <Headline2 className="m-2">
             <Trans>Study frequency</Trans>
           </Headline2>

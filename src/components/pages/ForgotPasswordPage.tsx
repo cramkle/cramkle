@@ -16,6 +16,7 @@ import {
   pushErrorToast,
   pushSimpleToast,
 } from '../../toasts/pushToast'
+import DoneIcon from '../icons/DoneIcon'
 import Button from '../views/Button'
 import { Card, CardContent } from '../views/Card'
 import CircularProgress from '../views/CircularProgress'
@@ -110,19 +111,7 @@ const ForgotPasswordPage: React.FC = () => {
     content = (
       <>
         <div className="flex justify-center items-center">
-          <svg
-            className="text-green-1 rounded-full border-2 border-green-1 p-1"
-            height="48"
-            aria-hidden
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M1.73,12.91 8.1,19.28 20.79,6.59"
-              strokeWidth="3"
-              fill="none"
-              stroke="currentColor"
-            />
-          </svg>
+          <DoneIcon className="h-10 w-10 text-green-1 rounded-full border-2 border-green-1 p-2" />
           <Headline2 className="ml-3 ma-0">
             <Trans>Check your inbox!</Trans>
           </Headline2>

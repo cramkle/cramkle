@@ -13,6 +13,7 @@ import BackButton from '../BackButton'
 import { TextInputField } from '../forms/Fields'
 import TrashBinIcon from '../icons/TrashBinIcon'
 import Button from '../views/Button'
+import { Card, CardContent } from '../views/Card'
 import Container from '../views/Container'
 import {
   Body1,
@@ -139,135 +140,136 @@ const AddModelPage: React.FunctionComponent = () => {
         }}
       >
         {({ handleSubmit, values, isSubmitting }) => (
-          <form
-            className="flex flex-col w-full mt-8 mb-4"
-            onSubmit={handleSubmit}
-          >
-            <TextInputField name="name" label={i18n._(t`Model name`)} />
+          <Card className="mt-6 mb-4 w-full">
+            <CardContent>
+              <form className="flex flex-col w-full" onSubmit={handleSubmit}>
+                <TextInputField name="name" label={i18n._(t`Model name`)} />
 
-            <div className="flex flex-col sm:flex-row">
-              <FieldArray name="templates" validateOnChange={false}>
-                {({ push, remove }) => (
-                  <div className={`${styles.evenColumn} mt-4 sm:pr-4`}>
-                    <Headline2 className="text-primary">
-                      <Trans>Templates</Trans>
-                    </Headline2>
-                    <div className="my-6 flex flex-col">
-                      {values.templates?.length ? (
-                        values.templates.map((_, index) => (
-                          <>
-                            <Headline3 className="text-primary">
-                              <Trans>Template #{index}</Trans>
-                            </Headline3>
+                <div className="flex flex-col sm:flex-row">
+                  <FieldArray name="templates" validateOnChange={false}>
+                    {({ push, remove }) => (
+                      <div className={`${styles.evenColumn} mt-4 sm:pr-4`}>
+                        <Headline2 className="text-primary">
+                          <Trans>Templates</Trans>
+                        </Headline2>
+                        <div className="my-6 flex flex-col">
+                          {values.templates?.length ? (
+                            values.templates.map((_, index) => (
+                              <>
+                                <Headline3 className="text-primary">
+                                  <Trans>Template #{index}</Trans>
+                                </Headline3>
 
-                            <div className="my-3 flex" key={index}>
-                              <div className="w-full">
-                                <TextInputField
-                                  className="w-full"
-                                  name={`templates.${index}.name`}
-                                  label={i18n._(t`Template name`)}
-                                />
-                              </div>
+                                <div className="my-3 flex" key={index}>
+                                  <div className="w-full">
+                                    <TextInputField
+                                      className="w-full"
+                                      name={`templates.${index}.name`}
+                                      label={i18n._(t`Template name`)}
+                                    />
+                                  </div>
 
-                              <Button
-                                variation="outline"
-                                className="ml-3 text-primary"
-                                onClick={() => remove(index)}
-                                aria-label={i18n._(t`Remove template`)}
-                                style={{
-                                  marginTop: 'calc(1.5rem + 0.0625rem)',
-                                }}
-                              >
-                                <TrashBinIcon />
-                              </Button>
-                            </div>
-                          </>
-                        ))
-                      ) : (
-                        <Body2 className="mx-auto mb-3">
-                          <Trans>No templates added</Trans>
-                        </Body2>
-                      )}
+                                  <Button
+                                    variation="outline"
+                                    className="ml-3 text-primary"
+                                    onClick={() => remove(index)}
+                                    aria-label={i18n._(t`Remove template`)}
+                                    style={{
+                                      marginTop: 'calc(1.5rem + 0.0625rem)',
+                                    }}
+                                  >
+                                    <TrashBinIcon />
+                                  </Button>
+                                </div>
+                              </>
+                            ))
+                          ) : (
+                            <Body2 className="mx-auto mb-3">
+                              <Trans>No templates added</Trans>
+                            </Body2>
+                          )}
 
-                      <Button
-                        className="self-start"
-                        onClick={() => push({ name: '' })}
-                      >
-                        <Trans>Add template</Trans>
-                      </Button>
-                    </div>
-                  </div>
-                )}
-              </FieldArray>
+                          <Button
+                            className="self-start"
+                            onClick={() => push({ name: '' })}
+                          >
+                            <Trans>Add template</Trans>
+                          </Button>
+                        </div>
+                      </div>
+                    )}
+                  </FieldArray>
 
-              <FieldArray name="fields" validateOnChange={false}>
-                {({ push, remove }) => (
-                  <div className={`${styles.evenColumn} mt-4`}>
-                    <Headline2 className="text-primary">
-                      <Trans>Fields</Trans>
-                    </Headline2>
-                    <div className="my-6 flex flex-col">
-                      {values.fields?.length ? (
-                        values.fields.map((_, index) => (
-                          <>
-                            <Headline3 className="text-primary">
-                              <Trans>Field #{index}</Trans>
-                            </Headline3>
+                  <FieldArray name="fields" validateOnChange={false}>
+                    {({ push, remove }) => (
+                      <div className={`${styles.evenColumn} mt-4`}>
+                        <Headline2 className="text-primary">
+                          <Trans>Fields</Trans>
+                        </Headline2>
+                        <div className="my-6 flex flex-col">
+                          {values.fields?.length ? (
+                            values.fields.map((_, index) => (
+                              <>
+                                <Headline3 className="text-primary">
+                                  <Trans>Field #{index}</Trans>
+                                </Headline3>
 
-                            <div className="my-3 flex" key={index}>
-                              <div className="w-full">
-                                <TextInputField
-                                  className="w-full"
-                                  name={`fields.${index}.name`}
-                                  label={i18n._(t`Field name`)}
-                                />
-                              </div>
+                                <div className="my-3 flex" key={index}>
+                                  <div className="w-full">
+                                    <TextInputField
+                                      className="w-full"
+                                      name={`fields.${index}.name`}
+                                      label={i18n._(t`Field name`)}
+                                    />
+                                  </div>
 
-                              <Button
-                                variation="outline"
-                                className="ml-3 text-primary"
-                                onClick={() => remove(index)}
-                                aria-label={i18n._(t`Remove field`)}
-                                style={{
-                                  marginTop: 'calc(1.5rem + 0.0625rem)',
-                                }}
-                              >
-                                <TrashBinIcon />
-                              </Button>
-                            </div>
-                          </>
-                        ))
-                      ) : (
-                        <Body2 className="mx-auto mb-3">
-                          <Trans>No fields added</Trans>
-                        </Body2>
-                      )}
+                                  <Button
+                                    variation="outline"
+                                    className="ml-3 text-primary"
+                                    onClick={() => remove(index)}
+                                    aria-label={i18n._(t`Remove field`)}
+                                    style={{
+                                      marginTop: 'calc(1.5rem + 0.0625rem)',
+                                    }}
+                                  >
+                                    <TrashBinIcon />
+                                  </Button>
+                                </div>
+                              </>
+                            ))
+                          ) : (
+                            <Body2 className="mx-auto mb-3">
+                              <Trans>No fields added</Trans>
+                            </Body2>
+                          )}
 
-                      <Button
-                        className="self-start"
-                        onClick={() => push({ name: '' })}
-                      >
-                        <Trans>Add field</Trans>
-                      </Button>
-                    </div>
-                  </div>
-                )}
-              </FieldArray>
-            </div>
+                          <Button
+                            className="self-start"
+                            onClick={() => push({ name: '' })}
+                          >
+                            <Trans>Add field</Trans>
+                          </Button>
+                        </div>
+                      </div>
+                    )}
+                  </FieldArray>
+                </div>
 
-            <Button
-              className="self-start mt-4"
-              variation="primary"
-              type="submit"
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? (
-                <Trans>Creating model...</Trans>
-              ) : (
-                <Trans>Create model</Trans>
-              )}
-            </Button>
-          </form>
+                <Button
+                  className="self-start mt-4"
+                  variation="primary"
+                  type="submit"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    <Trans>Creating model...</Trans>
+                  ) : (
+                    <Trans>Create model</Trans>
+                  )}
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
         )}
       </Formik>
     </Container>
