@@ -26,7 +26,9 @@ module.exports = {
       name: '@storybook/preset-scss',
       options: {
         sassLoaderOptions: {
-          includePaths: nodePaths,
+          sassOptions: {
+            includePaths: nodePaths,
+          },
         },
       },
     },
