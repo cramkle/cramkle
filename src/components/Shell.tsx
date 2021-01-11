@@ -8,6 +8,7 @@ import { Link, Outlet, useNavigate } from 'react-router-dom'
 
 import { ReactComponent as LogoGray } from '../assets/logo-gray.svg'
 import { ReactComponent as Logo } from '../assets/logo.svg'
+import useDarkModePreferencesSync from '../hooks/useDarkModePreferencesSync'
 import useOffline from '../hooks/useOffline'
 import AppName from './AppName'
 import NoSSR from './NoSSR'
@@ -157,6 +158,8 @@ const Shell: React.FC = () => {
   const { data: userData } = useQuery<UserQuery>(USER_QUERY)
 
   const me = userData?.me
+
+  useDarkModePreferencesSync()
 
   return (
     <div className="w-full h-full flex flex-col relative">
