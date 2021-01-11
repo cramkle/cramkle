@@ -230,16 +230,25 @@ const main = async () => {
     warn('Build artifact does not exist for the base branch of this PR')
   }
 
-  const fileSizeDifferences = getFileSizeDifferences(
+  const routesFileSizeDifferences = getFileSizeDifferences(
     baseBranchRoutesManifest?.routes ?? [],
     routesManifest.routes
   )
 
-  fileSizeDifferences.sort(
+  const baseBranchMainFilesize = getSizeForAssets(
+    BASE_BRANCH_BUILD_DIR,
+    baseBranchRoutesManifest?.main ?? []
+  )
+  const currentBranchMainFilesize = getSizeForAssets(
+    BUILD_DIR,
+    routesManifest.main
+  )
+
+  routesFileSizeDifferences.sort(
     (a, b) => Math.abs(b.sizeDifference) - Math.abs(a.sizeDifference)
   )
 
-  const tableBody = fileSizeDifferences.map((fileSizeDiff) => {
+  const tableBody = routesFileSizeDifferences.map((fileSizeDiff) => {
     return `| \`${JSON.stringify(fileSizeDiff.path)}\` | ${getDifferenceLabel(
       fileSizeDiff.size,
       fileSizeDiff.prevSize
@@ -257,6 +266,13 @@ const main = async () => {
 
 | Route path | Asset size difference (gzip) | Percentage difference |
 | --- | --- | --- |
+| Main page (shared by all routes) | ${getDifferenceLabel(
+    currentBranchMainFilesize,
+    baseBranchMainFilesize
+  )} | ${getPercentageDifference({
+    size: currentBranchMainFilesize,
+    prevSize: baseBranchMainFilesize,
+  })} |
 ${tableBody.join('\n')}
 
 </details>
