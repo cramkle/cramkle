@@ -2010,6 +2010,7 @@ __metadata:
     classnames: ^2.2.6
     concurrently: ^5.3.0
     cookie-parser: ^1.4.5
+    css-loader: ^5.0.1
     d3-array: ^2.7.1
     d3-scale: ^3.2.2
     d3-shape: ^1.3.7
@@ -2052,6 +2053,7 @@ __metadata:
     react-window: ^1.8.6
     release-it: ^14.0.3
     resize-observer-polyfill: ^1.5.1
+    sass-loader: ^10.1.1
     serialize-javascript: ^5.0.1
     style-loader: ^1.3.0
     stylelint: ^13.7.1
@@ -21472,6 +21474,31 @@ react@experimental:
     sass:
       optional: true
   checksum: f443dad79ba982462ff69a860207324c9f19e122c59f03b0608557a4aa7ec2158e6172059c6d8ae4fe5bad0182c3b0434904571b3a36e8ec5e0c44a7610bcebb
+  languageName: node
+  linkType: hard
+
+"sass-loader@npm:^10.1.1":
+  version: 10.1.1
+  resolution: "sass-loader@npm:10.1.1"
+  dependencies:
+    klona: ^2.0.4
+    loader-utils: ^2.0.0
+    neo-async: ^2.6.2
+    schema-utils: ^3.0.0
+    semver: ^7.3.2
+  peerDependencies:
+    fibers: ">= 3.1.0"
+    node-sass: ^4.0.0 || ^5.0.0
+    sass: ^1.3.0
+    webpack: ^4.36.0 || ^5.0.0
+  peerDependenciesMeta:
+    fibers:
+      optional: true
+    node-sass:
+      optional: true
+    sass:
+      optional: true
+  checksum: 725245f0259453fcc51c4a1012c484dda1340ebb10b9c461e2b3b4408105f5426ad5613282ad0861c1f32744533d8a584450b11daf42aa1237b04287f01223d4
   languageName: node
   linkType: hard
 
