@@ -266,7 +266,7 @@ const main = async () => {
 
 | Route path | Asset size difference (gzip) | Percentage difference |
 | --- | --- | --- |
-| Main page (shared by all routes) | ${getDifferenceLabel(
+| Main entrypoint (shared by all routes) | ${getDifferenceLabel(
     currentBranchMainFilesize,
     baseBranchMainFilesize
   )} | ${getPercentageDifference({
