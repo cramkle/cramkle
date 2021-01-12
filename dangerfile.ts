@@ -60,17 +60,17 @@ const downloadBuildArtifacts = async (ref: string) => {
     fs
       .createReadStream(path.join(__dirname, 'build-artifact.zip'))
       .pipe(
-        unzipper.Extract({ path: BASE_BRANCH_BUILD_DIR }).on('finish', resolve)
+        unzipper.Extract({ path: BASE_BRANCH_BUILD_DIR }).on('close', resolve)
       )
   )
 
-  const mainBranchRoutesManifest = JSON.parse(
+  const baseBranchRoutesManifest = JSON.parse(
     fs
       .readFileSync(path.join(BASE_BRANCH_BUILD_DIR, 'routes-manifest.json'))
       .toString()
   )
 
-  return mainBranchRoutesManifest as RoutesManifest
+  return baseBranchRoutesManifest as RoutesManifest
 }
 
 const getSizeForAssets = (base: string, assets: string[]) => {
