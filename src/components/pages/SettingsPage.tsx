@@ -12,7 +12,7 @@ const SettingsPage: React.FC = () => {
     <>
       <Helmet title={t`Settings`} />
       <Container>
-        <Headline2 className="text-primary font-bold">
+        <Headline2 className="text-txt text-opacity-text-primary font-bold">
           <Trans>Account Settings</Trans>
         </Headline2>
         <GeneralSettings />

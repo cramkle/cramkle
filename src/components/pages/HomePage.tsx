@@ -43,7 +43,7 @@ const HomeTab: React.FC<{
       position={positionMatchMinWidth}
     >
       <Tab className="min-h-full justify-center flex-1 md:flex-initial md:w-32">
-        <Icon className="text-icon h-6 w-6 md:h-8 md:w-8" />
+        <Icon className="text-txt text-opacity-text-icon h-6 w-6 md:h-8 md:w-8" />
       </Tab>
     </Tooltip>
   )
@@ -131,10 +131,10 @@ const HomePage: React.FunctionComponent = () => {
           <nav
             className={classNames(
               styles.sidenav,
-              'hidden md:block w-100 px-8 py-6 border-r border-divider'
+              'hidden md:block w-100 px-8 py-6 border-r border-divider border-opacity-divider'
             )}
           >
-            <Body1 className="font-medium text-primary">
+            <Body1 className="font-medium text-txt text-opacity-text-primary">
               <Trans>Sidebar</Trans>
             </Body1>
 
@@ -156,7 +156,7 @@ const HomePage: React.FunctionComponent = () => {
               </ListItem>
             </List>
 
-            <footer className="mt-4 flex justify-between items-center text-secondary text-xs">
+            <footer className="mt-4 flex justify-between items-center text-txt text-opacity-text-secondary text-xs">
               <Link to="/about">
                 <Trans>About us</Trans>
               </Link>

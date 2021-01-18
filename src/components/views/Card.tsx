@@ -39,6 +39,11 @@ export const CardPressable: React.FunctionComponent<CardPressableProps> = ({
 
   const classes = classnames(
     'flex flex-col relative outline-none cursor-pointer',
+    'bg-hover-overlay transition-colors ease-in-out duration-200',
+    {
+      'bg-opacity-0': !hovered && !focused,
+      'bg-opacity-08': hovered || focused,
+    },
     className
   )
 
@@ -55,15 +60,6 @@ export const CardPressable: React.FunctionComponent<CardPressableProps> = ({
       {...props}
     >
       {children}
-      <div
-        className={classnames(
-          'absolute z-1 top-0 left-0 right-0 bottom-0 bg-hover-overlay transition-opacity ease-in-out duration-200 rounded-xl',
-          {
-            'opacity-0': !hovered && !focused,
-            'opacity-100': hovered || focused,
-          }
-        )}
-      />
     </div>
   )
 }
@@ -78,7 +74,7 @@ export const Card: React.FunctionComponent<CardProps> = ({
   return (
     <div
       className={classnames(
-        'bg-surface text-on-surface rounded-xl shadow border-2 border-divider',
+        'bg-surface text-on-surface rounded-xl shadow border-2 border-divider border-opacity-divider',
         className
       )}
       {...otherProps}

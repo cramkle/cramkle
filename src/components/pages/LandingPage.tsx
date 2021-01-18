@@ -24,7 +24,7 @@ const LandingPage: React.FunctionComponent = () => {
           <HeaderSection align="end">
             <Link
               to="/login"
-              className="text-primary hover:bg-secondary rounded py-1 px-2 h-10 flex items-center"
+              className="text-txt text-opacity-text-primary hover:bg-secondary hover:bg-opacity-secondary rounded py-1 px-2 h-10 flex items-center"
             >
               <Trans>Login</Trans>
             </Link>

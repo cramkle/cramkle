@@ -35,7 +35,7 @@ export const ListboxButton: React.FC<
       className={classnames(
         styles.button,
         className,
-        'outline-reset inline-flex items-center justify-between select-none cursor-default bg-input text-on-surface rounded border border-divider px-3 py-2 focus:border-primary'
+        'outline-reset inline-flex items-center justify-between select-none cursor-default bg-input text-on-surface rounded border border-divider border-opacity-divider px-3 py-2 focus:border-primary'
       )}
     />
   )
@@ -76,7 +76,7 @@ export const ListboxOption: React.FC<
         className,
         styles.option,
         'flex items-center bg-surface text-on-surface relative p-2 mx-2 rounded overflow-hidden whitespace-nowrap',
-        { 'text-disabled': disabled }
+        { 'text-txt text-opacity-text-disabled': disabled }
       )}
     >
       <DoneIcon className={classnames(styles.optionIcon, 'hidden h-4 pr-2')} />

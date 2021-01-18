@@ -34,7 +34,7 @@ export default function SettingItem({
         <Subtitle2
           className={classNames(
             styles.settingDescription,
-            'mt-2 sm:mt-1 text-secondary'
+            'mt-2 sm:mt-1 text-txt text-opacity-text-secondary'
           )}
         >
           {description}

@@ -28,15 +28,17 @@ const Button = forwardRef<HTMLButtonElement, Props>(function Button(
       'font-normal': variation === 'plain',
       'border-0': variation !== 'outline',
       'border-2 border-primary': variation === 'outline',
-      'text-action-primary':
+      'text-primary':
         (variation === 'plain' || variation === 'outline') && !disabled,
       'text-on-primary': variation === 'primary' && !disabled,
-      'text-primary': variation === 'secondary' && !disabled,
-      'text-disabled': disabled,
+      'text-txt text-opacity-text-primary':
+        variation === 'secondary' && !disabled,
+      'text-txt text-opacity-text-disabled': disabled,
       'bg-primary': variation === 'primary' && !disabled,
-      'bg-secondary': variation === 'secondary' && !disabled,
+      'bg-secondary bg-opacity-secondary':
+        variation === 'secondary' && !disabled,
       'bg-transparent': variation === 'outline' && !disabled,
-      'bg-disabled': disabled,
+      'bg-disabled bg-opacity-disabled': disabled,
     }
   )
 
@@ -98,7 +100,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(function Button(
               variation !== 'secondary',
             'bg-primary':
               (variation === 'plain' || variation === 'outline') && !disabled,
-            'bg-hover-overlay': variation === 'secondary',
+            'bg-hover-overlay bg-opacity-08': variation === 'secondary',
           }
         )}
       />

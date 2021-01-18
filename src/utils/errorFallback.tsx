@@ -11,11 +11,11 @@ export const errorFallback = ({
   componentStack: string
 }) => {
   return (
-    <div className="flex flex-col justify-center items-center py-8 min-h-screen bg-background">
-      <Headline4 className="text-primary">
+    <div className="flex flex-col justify-center items-center py-8 min-h-screen bg-background  bg-opacity-background">
+      <Headline4 className="text-txt text-opacity-text-primary">
         <Trans>Something went wrong</Trans>
       </Headline4>
-      <Body1 className="mt-1 text-primary">
+      <Body1 className="mt-1 text-txt text-opacity-text-primary">
         <Trans>Please, try reloading the page</Trans>
       </Body1>
       <Button
@@ -27,10 +27,12 @@ export const errorFallback = ({
       </Button>
       {process.env.NODE_ENV === 'development' && error && (
         <>
-          <Overline className="mt-4 text-primary">
+          <Overline className="mt-4 text-txt text-opacity-text-primary">
             Error message: "{error.message}"
           </Overline>
-          <pre className="text-primary">{componentStack ?? error.stack}</pre>
+          <pre className="text-txt text-opacity-text-primary">
+            {componentStack ?? error.stack}
+          </pre>
         </>
       )}
     </div>

@@ -41,7 +41,10 @@ const FieldValueEditor: React.FC<Props> = ({
 
   return (
     <BaseEditorControls
-      className={classNames(className, 'border border-divider')}
+      className={classNames(
+        className,
+        'border border-divider border-opacity-divider'
+      )}
       initialContentState={initialContentState}
       onChange={handleChange}
     >

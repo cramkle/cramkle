@@ -58,7 +58,12 @@ export const TableFooter: React.FC<TableFooterProps> = ({
   children,
 }) => {
   return (
-    <tfoot className={classnames(className, 'border-t border-divider')}>
+    <tfoot
+      className={classnames(
+        className,
+        'border-t border-divider border-opacity-divider'
+      )}
+    >
       {children}
     </tfoot>
   )
@@ -76,7 +81,9 @@ export const TableRow: React.FC<TableRowProps> = ({
   return (
     <tr
       {...props}
-      className={classnames(className, { 'border-t border-divider': !isHead })}
+      className={classnames(className, {
+        'border-t border-divider border-opacity-divider': !isHead,
+      })}
     >
       {children}
     </tr>
@@ -103,8 +110,8 @@ export const TableCell: React.FC<TableCellProps> = ({
     <Tag
       {...props}
       className={classnames(className, 'px-6', {
-        'text-primary': !secondary,
-        'text-secondary': secondary,
+        'text-txt text-opacity-text-primary': !secondary,
+        'text-txt text-opacity-text-secondary': secondary,
         'h-16 sm:whitespace-nowrap': !isHead,
         'leading-4 text-xs font-medium uppercase tracking-wider py-3 relative': isHead,
         'text-left': align === 'left',

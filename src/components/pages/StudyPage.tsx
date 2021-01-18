@@ -212,7 +212,7 @@ const StudyPage: React.FC = () => {
 
   if (loading || !data) {
     return (
-      <div className="h-full flex items-center justify-center bg-background">
+      <div className="h-full flex items-center justify-center bg-background bg-opacity-background">
         <CircularProgress />
       </div>
     )
@@ -220,8 +220,8 @@ const StudyPage: React.FC = () => {
 
   if (data.studyFlashCard === null) {
     return (
-      <section className="h-full flex flex-col items-center justify-center bg-background">
-        <Headline2 className="text-xl text-center leading-none text-primary">
+      <section className="h-full flex flex-col items-center justify-center bg-background bg-opacity-background">
+        <Headline2 className="text-xl text-center leading-none text-txt text-opacity-text-primary">
           <Trans>
             Congratulations, you have finished studying this deck for now.
           </Trans>
@@ -234,7 +234,7 @@ const StudyPage: React.FC = () => {
   }
 
   return (
-    <section className="min-h-full pt-4 pb-16 flex flex-col items-start bg-background">
+    <section className="min-h-full pt-4 pb-16 flex flex-col items-start bg-background bg-opacity-background">
       <CancelStudyButton />
 
       <div className="self-stretch flex-auto flex flex-col items-center justify-center">

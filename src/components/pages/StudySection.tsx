@@ -65,12 +65,12 @@ const StudySection: React.FunctionComponent = () => {
   if (error || networkStatus === NetworkStatus.refetch) {
     return (
       <Container className="mt-0 md:mt-8 flex flex-col justify-center items-center text-center">
-        <Body1 className="text-primary">
+        <Body1 className="text-txt text-opacity-text-primary">
           <Trans>
             An error has occurred when trying to get your decks to study.
           </Trans>
         </Body1>
-        <Body2 className="text-secondary mt-2">
+        <Body2 className="text-txt text-opacity-text-secondary mt-2">
           <Trans>Check your internet connection and try again.</Trans>
         </Body2>
 
@@ -119,7 +119,7 @@ const StudySection: React.FunctionComponent = () => {
           </div>
         </AlertDialog>
       )}
-      <Headline1 className="mt-6 text-primary">
+      <Headline1 className="mt-6 text-txt text-opacity-text-primary">
         <Trans>Study today</Trans>
       </Headline1>
       {decks.length > 0 ? (
@@ -137,7 +137,7 @@ const StudySection: React.FunctionComponent = () => {
         </div>
       ) : (
         <div className="mt-6 flex">
-          <Body1 className="text-base text-primary">
+          <Body1 className="text-base text-txt text-opacity-text-primary">
             <Trans>You've finished studying your decks for now.</Trans>
           </Body1>
         </div>

@@ -57,7 +57,7 @@ export const Toast: React.VFC<ToastProps> = ({
       >
         {icon && <div className="w-6 h-6 mr-4">{icon}</div>}
         <div
-          className="text-primary mr-auto text-sm sm:text-base"
+          className="text-txt text-opacity-text-primary mr-auto text-sm sm:text-base"
           role="alert"
           aria-atomic
         >
@@ -78,7 +78,7 @@ export const Toast: React.VFC<ToastProps> = ({
         )}
         <div className="flex items-center ml-4">
           <IconButton className="h-6 w-6 p-0" onClick={onDismiss}>
-            <ClearIcon className="text-primary" />
+            <ClearIcon className="text-txt text-opacity-text-primary" />
           </IconButton>
         </div>
       </div>

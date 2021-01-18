@@ -13,7 +13,7 @@ const CircularProgress: React.FC<Props> = ({
   return (
     <div
       {...props}
-      className={classnames(props.className, 'text-action-primary')}
+      className={classnames(props.className, 'text-primary')}
       role="progressbar"
       aria-valuemin={0}
       aria-valuemax={1}

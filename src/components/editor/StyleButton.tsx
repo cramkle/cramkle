@@ -32,9 +32,9 @@ const StyleButton: React.FunctionComponent<Props> = ({
   }
 
   const className = classNames(
-    'mdc-ripple-surface flex-shrink-0 text-primary bg-editor relative cursor-pointer mr-2 border-0 border-none rounded-sm flex items-center text-center outline-none p-1',
+    'mdc-ripple-surface flex-shrink-0 text-txt text-opacity-text-primary bg-editor relative cursor-pointer mr-2 border-0 border-none rounded-sm flex items-center text-center outline-none p-1',
     {
-      'mdc-ripple-surface--primary text-action-primary': active,
+      'mdc-ripple-surface--primary text-primary': active,
     }
   )
 

@@ -28,7 +28,7 @@ export const MenuButton: React.FC<MenuButtonProps & { icon?: boolean }> = ({
       {...props}
       className={classnames(
         className,
-        'relative outline-reset bg-surface border-0 border-none rounded py-2 px-1 cursor-pointer overflow-hidden hover:bg-secondary focus:bg-secondary',
+        'relative outline-reset bg-surface border-0 border-none rounded py-2 px-1 cursor-pointer overflow-hidden hover:bg-secondary hover:bg-opacity-secondary focus:bg-secondary focus:bg-opacity-secondary',
         {
           'px-2 rounded-full': icon,
         }
@@ -49,7 +49,7 @@ export const MenuList: React.FC<MenuListProps> = ({
       {...props}
       className={classnames(
         className,
-        'mt-1 py-0 border-2 border-divider rounded-xl shadow-lg bg-surface'
+        'mt-1 py-0 border-2 border-divider border-opacity-divider rounded-xl shadow-lg bg-surface'
       )}
     >
       <div className="py-2 h-full rounded-xl">{children}</div>

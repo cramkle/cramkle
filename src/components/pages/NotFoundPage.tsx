@@ -13,7 +13,7 @@ const NotFoundPage: React.FunctionComponent = () => {
       <Body1 className="mt-2 sm:mt-1 text-center sm:text-left">
         <Trans>This link may be broken or the typed URL is incorrect.</Trans>
       </Body1>
-      <Link className="mt-8 sm:mt-4 text-action-primary" to="/">
+      <Link className="mt-8 sm:mt-4 text-primary" to="/">
         <Trans>Go to Home</Trans>
       </Link>
     </div>

@@ -29,7 +29,7 @@ const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
         {...props}
         className={classnames(
           props.className,
-          'bg-surface text-primary rounded shadow p-6 w-full max-w-xl md:max-w-3xl'
+          'bg-surface text-txt text-opacity-text-primary rounded shadow p-6 w-full max-w-xl md:max-w-3xl'
         )}
         ref={ref}
       />

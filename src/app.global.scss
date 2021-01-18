@@ -1,3 +1,7 @@
+@use "sass:color";
+@use "sass:map";
+@use "sass:meta";
+
 @import './styles/_variables';
 
 @import '~@reach/checkbox/styles.css';
@@ -18,67 +22,145 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-:root, .__light-mode {
+:root {
   // Reach imports
   --reach-tooltip: 1;
+}
 
-  // Theme variables
-  --background: hsla(224, 30%, 20%, 0.05);
-  --disabled: rgba(0, 0, 0, 0.12);
-  --divider: hsl(224, 5%, 65%);
-  --editor-background: hsl(0, 0%, 100%);
-  --gray-1: hsl(224, 0%, 87.8%);
-  --gray-2: hsl(224, 5%, 58.7%);
-  --gray-3: hsl(224, 10%, 32.5%);
-  --gray-4: hsl(224, 16%, 12.8%);
-  --green-1: hsl(122.4, 39.4%, 36.2%);
-  --hover-overlay: hsla(224, 70%, 58%, 0.08);
-  --input-background: hsl(224, 40%, 97%);
-  --on-primary: hsl(0, 0%, 100%);
-  --on-surface: hsl(0, 0%, 0%);
-  --primary: hsl(224, 100%, 58%);
-  --primary-background: hsl(224, 100%, 58%);
-  --primary-disabled: hsl(224, 30%, 77%);
-  --red-1: hsl(349.1, 100%, 34.5%);
-  --secondary: hsl(224, 15%, 90.8%);
-  --surface: hsl(0, 0%, 100%);
-  --text-disabled: rgba(0, 0, 0, .38);
-  --text-hint: rgba(0, 0, 0, .38);
-  --text-icon: rgba(0, 0, 0, .54);
-  --text-primary: rgba(0, 0, 0, .87);
-  --text-secondary: rgba(0, 0, 0, .54);
-  --violet-1: hsl(264.8, 57.9%, 41%);
-  --violet-2: hsl(264.8, 23.7%, 63.5%);
-  --yellow-1: hsl(39.1, 100%, 66.3%);
+$lightColors: (
+  background: hsl(224, 30%, 20%),
+  disabled: rgb(0, 0, 0),
+  divider: hsl(224, 5%, 65%),
+  editor: hsl(0, 0%, 100%),
+  gray-1: hsl(224, 0%, 87.8%),
+  gray-2: hsl(224, 5%, 58.7%),
+  gray-3: hsl(224, 10%, 32.5%),
+  gray-4: hsl(224, 16%, 12.8%),
+  green-1: hsl(122.4, 39.4%, 36.2%),
+  hover-overlay: hsl(224, 70%, 58%),
+  input: hsl(224, 40%, 97%),
+  on-primary: hsl(0, 0%, 100%),
+  on-surface: hsl(0, 0%, 0%),
+  primary: hsl(224, 100%, 58%),
+  primary-background: hsl(224, 100%, 58%),
+  primary-disabled: hsl(224, 30%, 77%),
+  red-1: hsl(349.1, 100%, 34.5%),
+  secondary: hsl(224, 15%, 90.8%),
+  surface: hsl(0, 0%, 100%),
+  txt: rgb(0, 0, 0),
+  violet-1: hsl(264.8, 57.9%, 41%),
+  violet-2: hsl(264.8, 23.7%, 63.5%),
+  yellow-1: hsl(39.1, 100%, 66.3%),
+);
+
+$lightOpacities: (
+  background: 0.05,
+  disabled: 1,
+  divider: 1,
+  secondary: 1,
+  text-disabled: .38,
+  text-hint: .38,
+  text-icon: .54,
+  text-primary: .87,
+  text-secondary: .54,
+);
+
+$darkColors: (
+  background: hsl(225, 5%, 10%),
+  disabled: rgb(255, 255, 255),
+  divider: hsl(0, 0%, 100%),
+  editor: hsl(224, 5%, 17%),
+  gray-1: hsl(224, 0%, 87.8%),
+  gray-2: hsl(224, 5%, 58.7%),
+  gray-3: hsl(224, 10%, 32.5%),
+  gray-4: hsl(224, 16%, 12.8%),
+  green-1: hsl(122.4, 35.4%, 50.2%),
+  hover-overlay: hsl(215, 39%, 30%),
+  input: hsl(224, 5%, 17%),
+  on-primary: hsl(0, 0%, 100%),
+  on-surface: #fff,
+  primary: hsl(224, 100%, 63%),
+  primary-background: hsl(224, 100%, 30%),
+  primary-disabled: hsl(224, 30%, 77%),
+  red-1: hsl(349.1, 75%, 50%),
+  secondary: hsla(224, 10%, 25%, 0.87),
+  surface: hsl(224, 5%, 12.4%),
+  txt: rgb(255, 255, 255, .38),
+  violet-1: hsl(264.8, 58.9%, 61%),
+  violet-2: hsl(264.8, 35%, 73.5%),
+  yellow-1: hsl(39.1, 100%, 66.3%),
+);
+
+$darkOpacities: (
+  background: 1,
+  disabled: 0.12,
+  divider: 0.1,
+  secondary: 0.87,
+  text-disabled: .38,
+  text-hint: .60,
+  text-icon: .38,
+  text-primary: 1,
+  text-secondary: .87,
+);
+
+@function validateVariables($setA, $setB, $themeName) {
+  @each $name, $value in $setB {
+    @if not map.get($setA, $name) {
+      @error "Missing variable #{meta.inspect($name)} in #{$themeName} variable set."
+    }
+  }
+
+  @return 1
+}
+
+@debug validateVariables($lightColors, $darkColors, "light theme");
+@debug validateVariables($darkColors, $lightColors, "dark theme");
+
+@function getColor($color, $alpha) {
+  @return rgba(
+    #{color.red($color)},
+    #{color.green($color)},
+    #{color.blue($color)},
+    #{$alpha}
+  );
+}
+
+@mixin colorVariable($prefix, $name, $color, $prefixClass) {
+  #{$prefixClass} .#{$prefix}-#{$name}, #{$prefixClass}.#{$prefix}-#{$name} {
+    --#{$prefix}-#{$name}: #{$color};
+  }
+}
+
+@mixin themeVariables($colors, $themeClass) {
+  @each $name, $color in $colors {
+    $textColor: getColor($color, var(--tw-text-opacity));
+    $bgColor: getColor($color, var(--tw-bg-opacity));
+    $ringColor: getColor($color, var(--tw-ring-opacity));
+    $borderColor: getColor($color, var(--tw-border-opacity));
+
+    --#{$name}: #{$color};
+
+    @at-root {
+      @include colorVariable(text, $name, $textColor, $themeClass);
+      @include colorVariable(bg, $name, $bgColor, $themeClass);
+      @include colorVariable(ring, $name, $ringColor, $themeClass);
+      @include colorVariable(border, $name, $borderColor, $themeClass);
+    }
+  }
+}
+
+@mixin opacityVariables($opacities) {
+  @each $name, $value in $opacities {
+    --opacity-#{$name}: #{$value};
+  }
+}
+
+:root, .__light-mode {
+  @include themeVariables($lightColors, ".__light-mode");
+  @include opacityVariables($lightOpacities);
 }
 
 .__dark-mode, :root.__dark-mode {
-  // Theme variables
-  --background: hsl(225, 5%, 10%);
-  --disabled: rgba(255, 255, 255, 0.12);
-  --divider: hsla(0, 0%, 100%, 0.1);
-  --editor-background: hsl(224, 5%, 17%);
-  --gray-1: hsl(224, 0%, 87.8%);
-  --gray-2: hsl(224, 5%, 58.7%);
-  --gray-3: hsl(224, 10%, 32.5%);
-  --gray-4: hsl(224, 16%, 12.8%);
-  --green-1: hsl(122.4, 35.4%, 50.2%);
-  --hover-overlay: hsla(215, 39%, 30%, 0.08);
-  --input-background: hsl(224, 5%, 17%);
-  --on-primary: hsl(0, 0%, 100%);
-  --on-surface: #fff;
-  --primary: hsl(224, 100%, 63%);
-  --primary-background: hsl(224, 100%, 30%);
-  --primary-disabled: hsl(224, 30%, 77%);
-  --red-1: hsl(349.1, 75%, 50%);
-  --secondary: hsla(224, 10%, 25%, 0.87);
-  --surface: hsl(224, 5%, 12.4%);
-  --text-disabled: rgba(255, 255, 255, .38);
-  --text-hint: rgba(255, 255, 255, .60);
-  --text-icon: rgba(255, 255, 255, .38);
-  --text-primary: rgba(255, 255, 255, 1);
-  --text-secondary: rgba(255, 255, 255, .87);
-  --violet-1: hsl(264.8, 58.9%, 61%);
-  --violet-2: hsl(264.8, 35%, 73.5%);
-  --yellow-1: hsl(39.1, 100%, 66.3%);
+  @include themeVariables($darkColors, ".__dark-mode");
+  @include opacityVariables($darkOpacities);
 }

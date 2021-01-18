@@ -1,48 +1,81 @@
-const commonColors = {
-  'green-1': 'var(--green-1)',
-  'red-1': 'var(--red-1)',
-  'violet-1': 'var(--violet-1)',
-  'violet-2': 'var(--violet-2)',
-  'yellow-1': 'var(--yellow-1)',
-  'gray-1': 'var(--gray-1)',
-  'gray-2': 'var(--gray-2)',
-  'gray-3': 'var(--gray-3)',
-  'gray-4': 'var(--gray-4)',
-  transparent: 'transparent',
-}
+const customColors = [
+  'background',
+  'background-primary',
+  'disabled',
+  'divider',
+  'editor',
+  'gray-1',
+  'gray-2',
+  'gray-3',
+  'gray-4',
+  'green-1',
+  'hover-overlay',
+  'input',
+  'on-primary',
+  'on-secondary',
+  'on-surface',
+  'primary',
+  'primary-disabled',
+  'red-1',
+  'secondary',
+  'surface',
+  'txt',
+  'violet-1',
+  'violet-2',
+  'yellow-1',
+]
+
+const customBorderColors = customColors.reduce(
+  (colors, colorName) => ({
+    ...colors,
+    [colorName]: `var(--border-${colorName}); --tw-border-opacity: 1`,
+  }),
+  []
+)
+
+const customBgColors = customColors.reduce(
+  (colors, colorName) => ({
+    ...colors,
+    [colorName]: `var(--bg-${colorName}); --tw-bg-opacity: 1`,
+  }),
+  []
+)
+
+const customTextColors = customColors.reduce(
+  (colors, colorName) => ({
+    ...colors,
+    [colorName]: `var(--text-${colorName}); --tw-text-opacity: 1`,
+  }),
+  []
+)
+
+const customRingColors = customColors.reduce(
+  (colors, colorName) => ({
+    ...colors,
+    [colorName]: `var(--ring-${colorName}); --tw-ring-opacity: 1`,
+  }),
+  []
+)
 
 module.exports = {
   theme: {
-    colors: {
-      primary: 'var(--primary)',
-      'background-primary': 'var(--primary-background)',
-      'primary-disabled': 'var(--primary-disabled)',
-      secondary: 'var(--secondary)',
-      surface: 'var(--surface)',
-      disabled: 'var(--disabled)',
-      background: 'var(--background)',
-      'hover-overlay': 'var(--hover-overlay)',
-      divider: 'var(--divider)',
-      input: 'var(--input-background)',
-      editor: 'var(--editor-background)',
-      ...commonColors,
-    },
-    textColor: {
-      'on-primary': 'var(--on-primary)',
-      'on-surface': 'var(--on-surface)',
-      primary: 'var(--text-primary)',
-      secondary: 'var(--text-secondary)',
-      disabled: 'var(--text-disabled)',
-      hint: 'var(--text-hint)',
-      icon: 'var(--text-icon)',
-      'action-primary': 'var(--primary)',
-      'action-primary-disabled': 'var(--primary-disabled)',
-      ...commonColors,
-    },
     extend: {
+      textColor: customTextColors,
+      backgroundColor: customBgColors,
+      borderColor: customBorderColors,
+      ringColor: customRingColors,
       opacity: {
         '08': '.08',
         12: '.12',
+        background: 'var(--opacity-background)',
+        disabled: 'var(--opacity-disabled)',
+        divider: 'var(--opacity-divider)',
+        secondary: 'var(--opacity-secondary)',
+        'text-primary': 'var(--opacity-text-primary)',
+        'text-secondary': 'var(--opacity-text-secondary)',
+        'text-icon': 'var(--opacity-text-icon)',
+        'text-hint': 'var(--opacity-text-hint)',
+        'text-disabled': 'var(--opacity-text-disabled)',
       },
       zIndex: {
         '-10': '-10',
@@ -75,8 +108,6 @@ module.exports = {
       'group-focus',
     ],
   },
-  plugins: [],
-  corePlugins: { float: false },
   purge: {
     content: ['./src/**/*.tsx'],
   },

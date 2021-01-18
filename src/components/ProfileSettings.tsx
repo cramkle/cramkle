@@ -151,7 +151,7 @@ const ProfileSettings: React.FC = () => {
                     <Trans>
                       <button
                         type="button"
-                        className="text-action-primary"
+                        className="text-primary"
                         onClick={() => setPasswordDialogOpen(true)}
                       >
                         Click to change password.
@@ -160,13 +160,13 @@ const ProfileSettings: React.FC = () => {
                     </Trans>
                   }
                 >
-                  <PasswordPlaceholder className="text-disabled font-bold" />
+                  <PasswordPlaceholder className="text-txt text-opacity-text-disabled font-bold" />
                 </SettingItem>
               </form>
             )}
           </Formik>
         </CardContent>
-        <div className="p-4 flex border-t border-divider">
+        <div className="p-4 flex border-t border-divider border-opacity-divider">
           <Button
             variation="primary"
             className="ml-auto"

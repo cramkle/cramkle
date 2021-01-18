@@ -21,7 +21,7 @@ const TypeaheadViewItem: React.FunctionComponent<Props> = ({
       className={classnames(
         'px-2 py-3 text-on-surface cursor-pointer text-sm',
         {
-          'text-action-primary': highlighted,
+          'text-primary': highlighted,
           'relative bg-transparent': highlighted,
         }
       )}

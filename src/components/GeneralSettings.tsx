@@ -226,7 +226,7 @@ const GeneralSettings: React.FC = () => {
           )}
         </SettingItem>
       </CardContent>
-      <div className="p-4 flex border-t border-divider">
+      <div className="p-4 flex border-t border-divider border-opacity-divider">
         <Button
           variation="primary"
           className="ml-auto"

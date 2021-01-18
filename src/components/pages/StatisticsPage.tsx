@@ -102,7 +102,9 @@ const StatisticsCard: React.FC<{ label: ReactNode; value: ReactNode }> = ({
   return (
     <Card className="p-4 md:p-6">
       <div className="flex flex-col">
-        <Overline className="text-secondary">{label}</Overline>
+        <Overline className="text-txt text-opacity-text-secondary">
+          {label}
+        </Overline>
         <span className="mt-1 text-3xl md:text-4xl font-medium">{value}</span>
       </div>
     </Card>
@@ -205,11 +207,11 @@ const StatisticsPage: React.FC = () => {
       <Container>
         <BackButton to="/" />
 
-        <Headline1 className="text-primary">
+        <Headline1 className="text-txt text-opacity-text-primary">
           <Trans>Deck Statistics</Trans>
         </Headline1>
 
-        <Body1 className="mt-3 text-primary">
+        <Body1 className="mt-3 text-txt text-opacity-text-primary">
           <Trans>
             An error has occurred, try refreshing the page or wait a few minutes
             before trying again
@@ -224,11 +226,11 @@ const StatisticsPage: React.FC = () => {
       <Container>
         <BackButton to="/" />
 
-        <Headline1 className="text-primary">
+        <Headline1 className="text-txt text-opacity-text-primary">
           <Trans>Deck Statistics</Trans>
         </Headline1>
 
-        <Body1 className="mt-6 text-primary text-center">
+        <Body1 className="mt-6 text-txt text-opacity-text-primary text-center">
           <Trans>We don't have anything to show to you right now.</Trans>
         </Body1>
         <Body2 className="mt-2 text-center">
@@ -289,14 +291,14 @@ const StatisticsPage: React.FC = () => {
     <Container>
       <BackButton to="/" />
 
-      <Headline1 className="text-primary">
+      <Headline1 className="text-txt text-opacity-text-primary">
         <Trans>Deck Statistics</Trans>
       </Headline1>
 
       <Card className="mt-6">
         <CardContent>
           <label
-            className="text-primary inline-block"
+            className="text-txt text-opacity-text-primary inline-block"
             htmlFor="statistics-deck-listbox"
           >
             <Trans>Select your deck</Trans>
@@ -317,7 +319,7 @@ const StatisticsPage: React.FC = () => {
         </CardContent>
       </Card>
 
-      <Headline2 className="text-primary mt-6">
+      <Headline2 className="text-txt text-opacity-text-primary mt-6">
         <Trans>Overview</Trans>
       </Headline2>
 
@@ -358,7 +360,7 @@ const StatisticsPage: React.FC = () => {
       </div>
 
       <Card className="mt-12">
-        <div className="border-b border-divider flex flex-wrap justify-between items-center p-2">
+        <div className="border-b border-divider border-opacity-divider flex flex-wrap justify-between items-center p-2">
           <Headline2 className="m-2">
             <Trans>Study frequency</Trans>
           </Headline2>
@@ -465,7 +467,10 @@ const StatisticsPage: React.FC = () => {
               >
                 <path className="text-violet-1" d={learningLine} />
                 <path className="text-green-1" d={newLine} />
-                <path className="text-primary" d={reviewLine} />
+                <path
+                  className="text-txt text-opacity-text-primary"
+                  d={reviewLine}
+                />
               </g>
             </svg>
           ) : (
