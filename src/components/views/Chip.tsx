@@ -46,6 +46,7 @@ export const Chip: React.FC<ChipProps> = ({
       <div
         className={classNames('absolute top-0 left-0 right-0 bottom-0 -z-1', {
           'opacity-08': inverted && color !== undefined,
+          'bg-primary': color === 'primary',
           'bg-green-1': color === 'green',
           'bg-red-1': color === 'red',
           'bg-violet-1': color === 'violet',
