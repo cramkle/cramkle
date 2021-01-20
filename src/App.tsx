@@ -16,7 +16,7 @@ import 'fontsource-libre-franklin/latin-500.css'
 import 'fontsource-libre-franklin/latin-600.css'
 import './material.global.scss'
 import './app.global.scss'
-import './_tailwind.global.css'
+import './tailwind.global.scss'
 
 const App: FC<{ i18n: any; apolloClient: any; userAgent: string }> = ({
   i18n,

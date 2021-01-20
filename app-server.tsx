@@ -4,12 +4,10 @@ import path from 'path'
 import { renderToStringWithData } from '@apollo/react-ssr'
 import { RootContext, Scripts, Styles } from '@casterly/components'
 import { RootServer } from '@casterly/components/server'
-import { paths } from '@casterly/utils'
 import { i18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
 import gql from 'graphql-tag'
 import { en as enPlural, pt as ptPlural } from 'make-plural/plurals'
-import PurgeCSS from 'purgecss'
 import { renderToNodeStream, renderToString } from 'react-dom/server'
 import { FilledContext, HelmetProvider } from 'react-helmet-async'
 import serializeJavascript from 'serialize-javascript'
@@ -49,9 +47,6 @@ const getLanguageLocaleFile = (() => {
 
 // hack to avoid DefinePlugin inlining value of `process.env`
 const ENV = ('env' + Math.random()).slice(0, 3) as 'env'
-
-const purgeTailwindClasses = (content: string) =>
-  content.match(/[A-Za-z0-9-_:/]+/g) ?? []
 
 export default async function handleRequest(
   request: Request,
@@ -124,26 +119,6 @@ export default async function handleRequest(
 
     const { helmet } = helmetContext as FilledContext
 
-    const purgeResult = await new PurgeCSS().purge({
-      css: context.mainAssets
-        .concat(context.matchedRoutesAssets)
-        .filter((file) => file.endsWith('.css'))
-        .map((file) => path.join(paths.appBuildFolder, file)),
-      content: [
-        {
-          raw: content,
-          extension: 'html',
-        },
-      ],
-      safelist: ['__dark-mode', '__light-mode', 'h-full'],
-      extractors: [
-        {
-          extractor: purgeTailwindClasses,
-          extensions: ['html'],
-        },
-      ],
-    })
-
     const rootContainer = (
       <RootServer context={context} url={request.url}>
         <html lang={i18n.locale} style={{ fontSize: '16px' }}>
@@ -188,21 +163,7 @@ export default async function handleRequest(
                   'html,body{height: 100%;}body{overscroll-behavior-y:none;}',
               }}
             />
-            {purgeResult.map(({ css, file }) => (
-              <style
-                key={file}
-                nonce={cspNonce}
-                dangerouslySetInnerHTML={{ __html: css }}
-              />
-            ))}
-            <Styles
-              // @ts-ignore: attribute exist in HTML spec
-              disabled
-              data-ssr-stylesheet=""
-            />
-            <noscript>
-              <Styles />
-            </noscript>
+            <Styles />
           </head>
           <body>
             <script
@@ -229,21 +190,6 @@ export default async function handleRequest(
                 <Scripts nonce={cspNonce} />
               </>
             )}
-            <script
-              nonce={cspNonce}
-              dangerouslySetInnerHTML={{
-                // Enabling all stylesheets once everything in the page has been loaded.
-                __html: `
-(function() {
-  var disabledStylesheets = document.querySelectorAll('link[data-ssr-stylesheet=""]')
-
-  disabledStylesheets.forEach(function(link) {
-    link.disabled = false
-  })
-})()
-`.trim(),
-              }}
-            />
           </body>
         </html>
       </RootServer>
