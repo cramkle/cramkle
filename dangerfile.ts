@@ -262,8 +262,8 @@ const main = async () => {
       fileSizeDiff.size.gzipSize,
       fileSizeDiff.prevSize.gzipSize
     )} | ${getDifferenceLabel(
-      fileSizeDiff.size.gzipSize,
-      fileSizeDiff.prevSize.gzipSize
+      fileSizeDiff.size.size,
+      fileSizeDiff.prevSize.size
     )}| ${getPercentageDifference({
       size: fileSizeDiff.size.gzipSize,
       prevSize: fileSizeDiff.prevSize.gzipSize,
@@ -285,8 +285,8 @@ const main = async () => {
     currentBranchMainFilesize.gzipSize,
     baseBranchMainFilesize.gzipSize
   )} | ${getDifferenceLabel(
-    currentBranchMainFilesize.gzipSize,
-    baseBranchMainFilesize.gzipSize
+    currentBranchMainFilesize.size,
+    baseBranchMainFilesize.size
   )} | ${getPercentageDifference({
     size: currentBranchMainFilesize.size,
     prevSize: baseBranchMainFilesize.size,
