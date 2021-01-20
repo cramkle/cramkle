@@ -261,12 +261,12 @@ const main = async () => {
     return `| \`${JSON.stringify(fileSizeDiff.path)}\` | ${getDifferenceLabel(
       fileSizeDiff.size.gzipSize,
       fileSizeDiff.prevSize.gzipSize
-    )} | ${getPercentageDifference({
+    )} | ${getDifferenceLabel(
+      fileSizeDiff.size.gzipSize,
+      fileSizeDiff.prevSize.gzipSize
+    )}| ${getPercentageDifference({
       size: fileSizeDiff.size.gzipSize,
       prevSize: fileSizeDiff.prevSize.gzipSize,
-    })}| ${getPercentageDifference({
-      size: fileSizeDiff.size.size,
-      prevSize: fileSizeDiff.prevSize.size,
     })} |`
   })
 
@@ -284,10 +284,10 @@ const main = async () => {
 | Main entrypoint (shared by all routes) | ${getDifferenceLabel(
     currentBranchMainFilesize.gzipSize,
     baseBranchMainFilesize.gzipSize
+  )} | ${getDifferenceLabel(
+    currentBranchMainFilesize.gzipSize,
+    baseBranchMainFilesize.gzipSize
   )} | ${getPercentageDifference({
-    size: currentBranchMainFilesize.gzipSize,
-    prevSize: baseBranchMainFilesize.gzipSize,
-  })} | ${getPercentageDifference({
     size: currentBranchMainFilesize.size,
     prevSize: baseBranchMainFilesize.size,
   })} |
