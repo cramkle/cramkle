@@ -74,11 +74,20 @@ const downloadBuildArtifacts = async (ref: string) => {
 }
 
 const getSizeForAssets = (base: string, assets: string[]) => {
-  return assets.reduce((totalSize, assetName) => {
-    const size = gzipSize(fs.readFileSync(path.join(base, assetName)))
+  return assets.reduce(
+    (totalSize, assetName) => {
+      const compressedSize = gzipSize(
+        fs.readFileSync(path.join(base, assetName))
+      )
+      const size = fs.statSync(path.join(base, assetName)).size
 
-    return totalSize + size
-  }, 0)
+      return {
+        gzipSize: totalSize.gzipSize + compressedSize,
+        size: totalSize.size + size,
+      }
+    },
+    { gzipSize: 0, size: 0 }
+  )
 }
 
 function getDifferenceLabel(currentSize: number, previousSize: number) {
@@ -101,8 +110,8 @@ const getFileSizeDifferences = (
 ) => {
   const sizeDifferences: Array<{
     path: string
-    prevSize: number
-    size: number
+    prevSize: { gzipSize: number; size: number }
+    size: { gzipSize: number; size: number }
     sizeDifference: number
   }> = []
 
@@ -123,7 +132,7 @@ const getFileSizeDifferences = (
 
     const baseSize = baseRoute
       ? getSizeForAssets(BASE_BRANCH_BUILD_DIR, baseRoute.assets)
-      : 0
+      : { size: 0, gzipSize: 0 }
 
     const currentSize = getSizeForAssets(BUILD_DIR, route.assets)
 
@@ -131,7 +140,7 @@ const getFileSizeDifferences = (
       path: route.path,
       prevSize: baseSize,
       size: currentSize,
-      sizeDifference: baseSize - currentSize,
+      sizeDifference: baseSize.gzipSize - currentSize.gzipSize,
     })
 
     if (route.children) {
@@ -158,7 +167,7 @@ const getFileSizeDifferences = (
 
     sizeDifferences.push({
       path: baseRoute.path,
-      size: 0,
+      size: { size: 0, gzipSize: 0 },
       prevSize: assetSize,
       sizeDifference: -assetSize,
     })
@@ -250,9 +259,15 @@ const main = async () => {
 
   const tableBody = routesFileSizeDifferences.map((fileSizeDiff) => {
     return `| \`${JSON.stringify(fileSizeDiff.path)}\` | ${getDifferenceLabel(
-      fileSizeDiff.size,
-      fileSizeDiff.prevSize
-    )} | ${getPercentageDifference(fileSizeDiff)} |`
+      fileSizeDiff.size.gzipSize,
+      fileSizeDiff.prevSize.gzipSize
+    )} | ${getPercentageDifference({
+      size: fileSizeDiff.size.gzipSize,
+      prevSize: fileSizeDiff.prevSize.gzipSize,
+    })}| ${getPercentageDifference({
+      size: fileSizeDiff.size.size,
+      prevSize: fileSizeDiff.prevSize.size,
+    })} |`
   })
 
   markdown(`
@@ -264,14 +279,17 @@ const main = async () => {
 <p>Comparing: ${baseCommit}...${danger.github.pr.head.sha}</p>
 
 
-| Route path | Asset size difference (gzip) | Percentage difference |
-| --- | --- | --- |
+| Route path | Asset size difference (gzip) | Asset size difference (uncompressed) | Percentage difference |
+| --- | --- | --- | --- |
 | Main entrypoint (shared by all routes) | ${getDifferenceLabel(
-    currentBranchMainFilesize,
-    baseBranchMainFilesize
+    currentBranchMainFilesize.gzipSize,
+    baseBranchMainFilesize.gzipSize
   )} | ${getPercentageDifference({
-    size: currentBranchMainFilesize,
-    prevSize: baseBranchMainFilesize,
+    size: currentBranchMainFilesize.gzipSize,
+    prevSize: baseBranchMainFilesize.gzipSize,
+  })} | ${getPercentageDifference({
+    size: currentBranchMainFilesize.size,
+    prevSize: baseBranchMainFilesize.size,
   })} |
 ${tableBody.join('\n')}
 
