@@ -14,7 +14,9 @@ export const parameters = {
 export const decorators = [
   (Story) => (
     <ThemeProvider>
-      <Story />
+      <div className="__light-mode">
+        <Story />
+      </div>
     </ThemeProvider>
   ),
 ]
