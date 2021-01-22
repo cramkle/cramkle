@@ -28,7 +28,7 @@ const createWorkboxPlugin = (dev) => {
 }
 
 module.exports = (config, { dev, isServer }) => {
-  if (!isServer) {
+  if (!isServer && !dev) {
     config.plugins.push(createWorkboxPlugin(dev))
   }
 

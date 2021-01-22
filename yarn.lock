@@ -1315,10 +1315,10 @@
   resolved "https://registry.yarnpkg.com/@casterly/components/-/components-0.7.0.tgz#88ced62ae5cbc637f2849037050975ae7a074fc7"
   integrity sha512-MttZ0JZsQIrPiHbu1pNCHCkWgmcOzlUc2iiksGKuCO9E3v2aMU1B5eTTCzX6gnm+FSHvK5zUyyd70Q/KAis6FA==
 
-"@casterly/core@^0.7.1":
-  version "0.7.1"
-  resolved "https://registry.yarnpkg.com/@casterly/core/-/core-0.7.1.tgz#083251c05f62599785bcee1101972311cfd4e3a8"
-  integrity sha512-shT/HoqycYxC2fMQXDrLkMZjeZwI3hKXKSPSAux0PFGbpTCZD3nfoVySFpg+zV9pmuC8i5mEIce+2CQuxnV02w==
+"@casterly/core@^0.7.2":
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/@casterly/core/-/core-0.7.2.tgz#852f94ef9c96c9c3028ca16b9e9ac665d79ce470"
+  integrity sha512-nomWPx4jPpsKqZAxy6eZRXuQvjyA2xxJmz1tACWew4oxvZoy5XIjRuqKfGMkrwC+MYdgK0YJEnTihmwr4MfZAw==
   dependencies:
     "@casterly/utils" "^0.7.0"
     etag "^1.8.1"
@@ -1328,12 +1328,12 @@
     mime "^2.4.6"
     path-to-regexp "^6.1.0"
 
-"@casterly/express@^0.7.1":
-  version "0.7.1"
-  resolved "https://registry.yarnpkg.com/@casterly/express/-/express-0.7.1.tgz#a214d88916c96ba14a3aaf9b751cc16efb7eb63c"
-  integrity sha512-SyVn3mxutxp7vKV6BxIX2koSPMbLEIQ3i/wz/IO9VarqyDlFiI5HNfiXNNE02j9AkvPhvKaBo2YuUSsrOJegbg==
+"@casterly/express@^0.7.2":
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/@casterly/express/-/express-0.7.2.tgz#d642c69319eb85d30d8060da286158171e05de53"
+  integrity sha512-MNKZj5DjKjuwgNpX/8qM/VsXDdX2WUuSV3RQsuiht1oc1aFLlm8CxAg/lehg/GiXiDvx2P3QkyN416zKw6Qj2g==
   dependencies:
-    "@casterly/core" "^0.7.1"
+    "@casterly/core" "^0.7.2"
 
 "@casterly/utils@^0.7.0":
   version "0.7.0"
@@ -6066,10 +6066,10 @@ caseless@~0.12.0:
   resolved "https://registry.yarnpkg.com/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
   integrity sha1-G2gcIf+EAzyCZUMJBolCDRhxUdw=
 
-casterly@^0.7.1:
-  version "0.7.1"
-  resolved "https://registry.yarnpkg.com/casterly/-/casterly-0.7.1.tgz#5a0354fdea826f505c4f8998232604e33101bffd"
-  integrity sha512-JN2MKtodObCx3aAUU7RHfw7jMOxZ9x0Ssgf7SneeDmWE4fvTrYSOtqJX8wfN3ruvXZXDjLHNfUraSGp0zWLjzA==
+casterly@^0.7.2:
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/casterly/-/casterly-0.7.2.tgz#9296099ced27011fe56a0b526f95ccaecf24afbb"
+  integrity sha512-x60Jl3kRhmu+ZoBY1Tz3RMxpWRJL/esxLgzkNH3h77IdJu8gokSLd8DCDiK3LoEGjQ7Gn+jH8udoLO52iiIrfg==
   dependencies:
     "@babel/core" "^7.11.4"
     "@babel/plugin-proposal-class-properties" "^7.10.4"
