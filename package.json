@@ -31,7 +31,7 @@
     "*.{js,ts,jsx,tsx}": [
       "eslint --fix"
     ],
-    "*.{json,graphql,gql}": [
+    "*.{json,graphql,gql,scss,css}": [
       "prettier --write"
     ],
     "*.{scss,css}": [
