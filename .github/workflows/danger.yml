@@ -13,7 +13,7 @@ jobs:
         node-version: 12.x
     - name: yarn install, build, and test
       run: |
-        yarn install --immutable --check-cache
+        yarn install --frozen-lockfile
         yarn build
         yarn test
     - name: Danger
