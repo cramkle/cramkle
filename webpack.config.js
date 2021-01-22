@@ -32,9 +32,11 @@ module.exports = (config, { dev, isServer }) => {
     config.plugins.push(createWorkboxPlugin(dev))
   }
 
-  config.module.rules[0].oneOf[2].options.plugins.push(
-    require.resolve('babel-plugin-graphql-tag')
-  )
+  config.module.rules.push({
+    test: /\.(graphql|gql)$/,
+    exclude: /node_modules/,
+    loader: 'graphql-tag/loader',
+  })
 
   return config
 }

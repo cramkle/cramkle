@@ -1,9 +1,0 @@
-{
-  "plugins": [
-    "@babel/plugin-syntax-dynamic-import",
-    "macros"
-  ],
-  "presets": [
-    ["react-app", { "runtime": "automatic", "typescript": true }]
-  ]
-}
