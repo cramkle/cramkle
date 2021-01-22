@@ -117,16 +117,10 @@
   @mixin colorVariable($prefix, $name, $color, $prefixClass) {
     $classList: "";
 
-    @each $modifier in "", "hover\\:", "group-hover\\:", "focus\\:", "focus-within\\:" {
-      @each $breakpoint in "", "sm\\:", "md\\:", "lg\\:", "xl\\:", "\\32xl\\:" {
-        $className: ".#{$breakpoint}#{$modifier}#{$prefix}-#{$name}";
-
-        $classList: #{$classList}, #{$prefixClass}#{$className}, "#{$prefixClass} #{$className}";
+    @variants responsive, hover, focus, active, group-hover, group-focus, focus-within, focus-visible, disabled, visited, checked, first, last, odd, even {
+      #{$prefixClass} .#{$prefix}-#{$name} {
+        --#{$prefix}-#{$name}: #{$color};
       }
-    }
-
-    #{$classList} {
-      --#{$prefix}-#{$name}: #{$color};
     }
   }
 
