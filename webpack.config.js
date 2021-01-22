@@ -38,5 +38,13 @@ module.exports = (config, { dev, isServer }) => {
     loader: 'graphql-tag/loader',
   })
 
+  config.module.rules.push({
+    include: [/\.svg$/, /\.woff2?$/],
+    loader: 'file-loader',
+    options: {
+      name: 'static/media/[name].[hash:8].[ext]',
+    },
+  })
+
   return config
 }

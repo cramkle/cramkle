@@ -40,6 +40,10 @@ module.exports = {
       rule.test.test('file.css')
     )
 
+    const scssRules = config.module.rules.filter((rule) =>
+      rule.test.test('file.scss')
+    )
+
     const newCssRules = cssRules
       .map((cssRule) => {
         return {
@@ -90,13 +94,35 @@ module.exports = {
       }
     })
 
+    const scssRulesWithPostcss = scssRules.map((scssRule) => {
+      const sassLoaderIndex = scssRule.use.findIndex((loader) =>
+        /\Wsass-loader\W/.test(loader.loader)
+      )
+
+      const uses = scssRule.use
+        .slice(0, sassLoaderIndex)
+        .concat([
+          {
+            loader: 'postcss-loader',
+            options: { config: { path: path.resolve(__dirname, '..') } },
+          },
+        ])
+        .concat(scssRule.use.slice(sassLoaderIndex))
+
+      return {
+        ...scssRule,
+        use: uses,
+      }
+    })
+
     const nonCssRules = config.module.rules.filter(
-      (rule) => !rule.test.test('file.css')
+      (rule) => !rule.test.test('file.css') && !rule.test.test('file.scss')
     )
 
     config.module.rules = nonCssRules.concat([
       ...newCssRules,
       ...cssModulesRules,
+      ...scssRulesWithPostcss,
     ])
 
     return config

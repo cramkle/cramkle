@@ -1315,10 +1315,10 @@
   resolved "https://registry.yarnpkg.com/@casterly/components/-/components-0.7.0.tgz#88ced62ae5cbc637f2849037050975ae7a074fc7"
   integrity sha512-MttZ0JZsQIrPiHbu1pNCHCkWgmcOzlUc2iiksGKuCO9E3v2aMU1B5eTTCzX6gnm+FSHvK5zUyyd70Q/KAis6FA==
 
-"@casterly/core@^0.7.2":
-  version "0.7.2"
-  resolved "https://registry.yarnpkg.com/@casterly/core/-/core-0.7.2.tgz#852f94ef9c96c9c3028ca16b9e9ac665d79ce470"
-  integrity sha512-nomWPx4jPpsKqZAxy6eZRXuQvjyA2xxJmz1tACWew4oxvZoy5XIjRuqKfGMkrwC+MYdgK0YJEnTihmwr4MfZAw==
+"@casterly/core@^0.7.3":
+  version "0.7.3"
+  resolved "https://registry.yarnpkg.com/@casterly/core/-/core-0.7.3.tgz#22563adbc8eb2c265b80669c9aeb749b3f4f9853"
+  integrity sha512-QnrLXB7yPcOU8Ur+0DMK26+Wu44Gix2fFR2jsaH8fQK5eaIfdHDZ5s2xeUcYTQOkyuvjhk4ysjUJaxQyGSHTmQ==
   dependencies:
     "@casterly/utils" "^0.7.0"
     etag "^1.8.1"
@@ -1328,12 +1328,12 @@
     mime "^2.4.6"
     path-to-regexp "^6.1.0"
 
-"@casterly/express@^0.7.2":
-  version "0.7.2"
-  resolved "https://registry.yarnpkg.com/@casterly/express/-/express-0.7.2.tgz#d642c69319eb85d30d8060da286158171e05de53"
-  integrity sha512-MNKZj5DjKjuwgNpX/8qM/VsXDdX2WUuSV3RQsuiht1oc1aFLlm8CxAg/lehg/GiXiDvx2P3QkyN416zKw6Qj2g==
+"@casterly/express@^0.7.3":
+  version "0.7.3"
+  resolved "https://registry.yarnpkg.com/@casterly/express/-/express-0.7.3.tgz#ca13f9fbc6aa35a61d783cdc7b52cbe16debe6a0"
+  integrity sha512-dKyzb9R2API/6JsBpvMSXCP7pAFDWj//VTr+/VI1vVaCGZXmzr3lo/grxZGl1PVOx2OP6wvjfFpyAmCpmVzU7Q==
   dependencies:
-    "@casterly/core" "^0.7.2"
+    "@casterly/core" "^0.7.3"
 
 "@casterly/utils@^0.7.0":
   version "0.7.0"
@@ -3448,7 +3448,7 @@
     "@types/estree" "*"
     "@types/json-schema" "*"
 
-"@types/estree@*":
+"@types/estree@*", "@types/estree@^0.0.46":
   version "0.0.46"
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.46.tgz#0fb6bfbbeabd7a30880504993369c4bf1deab1fe"
   integrity sha512-laIjwTQaD+5DukBZaygQ79K1Z0jb1bPEMRrkXSLjtCcZm+abyp5YbrqpSLzD42FwWW6gK/aS4NYpJ804nG2brg==
@@ -6066,10 +6066,10 @@ caseless@~0.12.0:
   resolved "https://registry.yarnpkg.com/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
   integrity sha1-G2gcIf+EAzyCZUMJBolCDRhxUdw=
 
-casterly@^0.7.2:
-  version "0.7.2"
-  resolved "https://registry.yarnpkg.com/casterly/-/casterly-0.7.2.tgz#9296099ced27011fe56a0b526f95ccaecf24afbb"
-  integrity sha512-x60Jl3kRhmu+ZoBY1Tz3RMxpWRJL/esxLgzkNH3h77IdJu8gokSLd8DCDiK3LoEGjQ7Gn+jH8udoLO52iiIrfg==
+casterly@^0.7.3:
+  version "0.7.3"
+  resolved "https://registry.yarnpkg.com/casterly/-/casterly-0.7.3.tgz#9914ec1cc9ad1732c2f59216cf451e632fd8101c"
+  integrity sha512-CuygNXJB4d6Wi4/EJjJGe5zMKqA6+BW3157DcimjK/AbqZ0+JM7G9VkMYMkTp/odZjTGB+Kxbw8gJaZZ4NVwiA==
   dependencies:
     "@babel/core" "^7.11.4"
     "@babel/plugin-proposal-class-properties" "^7.10.4"
@@ -6093,7 +6093,6 @@ casterly@^0.7.2:
     dotenv-expand "^5.1.0"
     express "^4.17.1"
     fibers "^5.0.0"
-    file-loader "^6.2.0"
     filesize "^6.1.0"
     fork-ts-checker-webpack-plugin "^6.0.5"
     fs-extra "^9.0.1"
@@ -18203,13 +18202,43 @@ webpack@^4.44.2:
     watchpack "^1.7.4"
     webpack-sources "^1.4.1"
 
-webpack@^5.10.0, webpack@^5.13.0:
+webpack@^5.10.0:
   version "5.16.0"
   resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.16.0.tgz#796e093c2d92c229f013aefefde82b50c0572570"
   integrity sha512-QOkctcjYfEGxcYg4AzPJafyAQ7ANc266/URkX881uFA7b2k31E0Dmpy1ExfppHOTp1kHDTsRh9sXojVUvgPF0g==
   dependencies:
     "@types/eslint-scope" "^3.7.0"
     "@types/estree" "^0.0.45"
+    "@webassemblyjs/ast" "1.11.0"
+    "@webassemblyjs/wasm-edit" "1.11.0"
+    "@webassemblyjs/wasm-parser" "1.11.0"
+    acorn "^8.0.4"
+    browserslist "^4.14.5"
+    chrome-trace-event "^1.0.2"
+    enhanced-resolve "^5.7.0"
+    es-module-lexer "^0.3.26"
+    eslint-scope "^5.1.1"
+    events "^3.2.0"
+    glob-to-regexp "^0.4.1"
+    graceful-fs "^4.2.4"
+    json-parse-better-errors "^1.0.2"
+    loader-runner "^4.2.0"
+    mime-types "^2.1.27"
+    neo-async "^2.6.2"
+    pkg-dir "^5.0.0"
+    schema-utils "^3.0.0"
+    tapable "^2.1.1"
+    terser-webpack-plugin "^5.1.1"
+    watchpack "^2.0.0"
+    webpack-sources "^2.1.1"
+
+webpack@^5.17.0:
+  version "5.17.0"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.17.0.tgz#e92aebad45be25f86f788dc72fc11daacdcfd55d"
+  integrity sha512-R+IdNEaYcYaACpXZOt7reyc8txBK7J06lOPkX1SbgmeoAnUbyBZivJIksrDBnmMA3wlTWvPcX7DubxELyPB8rA==
+  dependencies:
+    "@types/eslint-scope" "^3.7.0"
+    "@types/estree" "^0.0.46"
     "@webassemblyjs/ast" "1.11.0"
     "@webassemblyjs/wasm-edit" "1.11.0"
     "@webassemblyjs/wasm-parser" "1.11.0"
