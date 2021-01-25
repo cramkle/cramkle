@@ -121,11 +121,11 @@
   @mixin colorVariable($prefix, $name, $color, $prefixClass) {
     $classList: '';
 
-    @each $variant in '', 'hover\\:', 'focus\\:', 'active\\:', 'group-hover\\:',
-      'group-focus\\:', 'focus-within\\:', 'focus-visible\\:', 'disabled\\:',
-      'visited\\:', 'checked\\:', 'first\\:', 'last\\:', 'odd\\:', 'even\\:'
+    @variants responsive, hover, focus, active, group-hover,
+      group-focus, focus-within, focus-visible, disabled,
+      visited, checked, first, last, odd, even
     {
-      .#{$variant}#{$prefix}-#{$name} {
+      /* prefix: #{$prefixClass} */ .#{$prefix}-#{$name} {
         --#{$prefix}-#{$name}: #{$color};
       }
     }
@@ -140,10 +140,12 @@
 
       --#{$name}: #{$color};
 
-      @include colorVariable(text, $name, $textColor, $themeClass);
-      @include colorVariable(bg, $name, $bgColor, $themeClass);
-      @include colorVariable(ring, $name, $ringColor, $themeClass);
-      @include colorVariable(border, $name, $borderColor, $themeClass);
+      @at-root {
+        @include colorVariable(text, $name, $textColor, $themeClass);
+        @include colorVariable(bg, $name, $bgColor, $themeClass);
+        @include colorVariable(ring, $name, $ringColor, $themeClass);
+        @include colorVariable(border, $name, $borderColor, $themeClass);
+      }
     }
   }
 
