@@ -1,21 +1,5 @@
 const path = require('path')
 
-const appPath = path.resolve(__dirname, '..')
-
-const buildNodePath = (basePath) => {
-  const nodePath = []
-  const splitted = [''].concat(basePath.split(path.sep))
-
-  for (let i = splitted.length - 1; i > 0; i--) {
-    nodePath.push(path.join(splitted.join(path.sep), 'node_modules'))
-    splitted.pop()
-  }
-
-  return nodePath
-}
-
-const nodePaths = buildNodePath(appPath)
-
 const cssRegex = /\.global\.css$/
 const cssModulesRegex = /\.css$/
 
@@ -26,9 +10,7 @@ module.exports = {
       name: '@storybook/preset-scss',
       options: {
         sassLoaderOptions: {
-          sassOptions: {
-            includePaths: nodePaths,
-          },
+          implementation: require('sass'),
         },
       },
     },

@@ -28,7 +28,7 @@ const Footer: React.FC = () => {
   return (
     <footer className="w-full py-8 px-4 lg:px-8 xl:px-32 flex flex-col-reverse sm:flex-row bg-surface">
       <div className="flex flex-col mt-4 sm:mt-0">
-        <Overline className="sm:leading-tight text-primary">
+        <Overline className="sm:leading-tight text-txt text-opacity-text-primary">
           &copy; {new Date().getFullYear()} Cramkle, Inc.
         </Overline>
         <ul className="list-reset mt-4 flex">
@@ -38,7 +38,7 @@ const Footer: React.FC = () => {
               rel="noopener noreferrer"
               target="_blank"
             >
-              <GithubLogo className="text-secondary" />
+              <GithubLogo className="text-txt text-opacity-text-secondary" />
             </a>
           </li>
           <li className="ml-4">
@@ -47,19 +47,22 @@ const Footer: React.FC = () => {
               rel="noopener noreferrer"
               target="_blank"
             >
-              <TwitterLogo className="text-secondary" />
+              <TwitterLogo className="text-txt text-opacity-text-secondary" />
             </a>
           </li>
         </ul>
       </div>
       <div className="sm:ml-16">
-        <Subtitle2 className="leading-tight text-primary">
+        <Subtitle2 className="leading-tight text-txt text-opacity-text-primary">
           <Trans>Company</Trans>
         </Subtitle2>
         <ul className="list-reset mt-4 flex flex-col">
           {links.map((link, i) => (
             <li className="leading-normal mb-2" key={i}>
-              <Link to={link.url} className="link text-secondary">
+              <Link
+                to={link.url}
+                className="link text-txt text-opacity-text-secondary"
+              >
                 <Body2>{i18n._(link.text)}</Body2>
               </Link>
             </li>

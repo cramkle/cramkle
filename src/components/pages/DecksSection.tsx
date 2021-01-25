@@ -48,7 +48,7 @@ const DecksSection: React.FunctionComponent = () => {
   if (!decks || decks.length === 0) {
     return (
       <div className="flex flex-col items-center">
-        <Body1 className="mt-8 text-primary">
+        <Body1 className="mt-8 text-txt text-opacity-text-primary">
           <Trans>You haven't created any decks yet.</Trans>
         </Body1>
 
@@ -63,12 +63,12 @@ const DecksSection: React.FunctionComponent = () => {
 
   return (
     <>
-      <Headline1 className="mt-6 leading-none text-primary">
+      <Headline1 className="mt-6 leading-none text-txt text-opacity-text-primary">
         <Trans>Your decks</Trans>
       </Headline1>
 
       <div className="flex items-center mt-6">
-        <Body1 className="text-secondary font-medium">
+        <Body1 className="text-txt text-opacity-text-secondary font-medium">
           <Plural
             value={decks.length}
             zero="# decks"

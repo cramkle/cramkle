@@ -74,7 +74,7 @@ const NotesTable: React.FC<Props> = ({
         />
       )}
       <Card>
-        <div className="p-4 flex items-center justify-between border-b border-divider">
+        <div className="p-4 flex items-center justify-between border-b border-divider border-opacity-divider">
           <Button
             className="flex-shrink-0"
             onClick={() => navigate(`${location.pathname}/new-note`)}
@@ -127,7 +127,7 @@ const NotesTable: React.FC<Props> = ({
                         {note!.text ? (
                           <p className="truncate">{note!.text}</p>
                         ) : (
-                          <span className="text-secondary italic">
+                          <span className="text-txt text-opacity-text-secondary italic">
                             <Trans>empty note</Trans>
                           </span>
                         )}
@@ -143,7 +143,7 @@ const NotesTable: React.FC<Props> = ({
                         className="flex items-center justify-end"
                       >
                         <Link
-                          className="text-action-primary"
+                          className="text-primary"
                           to={`/d/${deckSlug}/note/${note!.id}`}
                         >
                           <EditIcon aria-label={i18n._(t`Edit`)} />

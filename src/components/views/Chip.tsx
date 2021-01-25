@@ -24,6 +24,12 @@ export const Chip: React.FC<ChipProps> = ({
         {
           'px-2 h-8 text-sm': size === 'normal',
           'px-1 h-6 text-xs': size === 'small',
+          'bg-opacity-08': inverted && color !== undefined,
+          'bg-green-1': color === 'green',
+          'bg-red-1': color === 'red',
+          'bg-violet-1': color === 'violet',
+          'bg-primary': color === 'primary',
+          'bg-secondary bg-opacity-secondary': color === undefined,
         }
       )}
       role="row"
@@ -31,28 +37,20 @@ export const Chip: React.FC<ChipProps> = ({
       <span
         style={{ textOverflow: truncated ? 'ellipsis' : 'initial' }}
         className={classNames('inline-block mx-1', {
-          '__dark-mode': !inverted && color !== undefined,
-          'text-primary': !inverted && color !== 'primary',
+          'text-txt text-opacity-text-primary':
+            !inverted && color === undefined,
+          'text-always-white':
+            !inverted && color !== 'primary' && color !== undefined,
           'text-on-primary': !inverted && color === 'primary',
           'text-red-1': inverted && color === 'red',
           'text-green-1': inverted && color === 'green',
           'text-violet-1': inverted && color === 'violet',
-          'text-action-primary': inverted && color === 'primary',
+          'text-primary': inverted && color === 'primary',
           'overflow-hidden whitespace-nowrap': truncated,
         })}
       >
         {children}
       </span>
-      <div
-        className={classNames('absolute top-0 left-0 right-0 bottom-0 -z-1', {
-          'opacity-08': inverted && color !== undefined,
-          'bg-primary': color === 'primary',
-          'bg-green-1': color === 'green',
-          'bg-red-1': color === 'red',
-          'bg-violet-1': color === 'violet',
-          'bg-secondary': color === undefined,
-        })}
-      />
     </div>
   )
 }

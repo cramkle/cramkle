@@ -16,7 +16,10 @@ const AlertDialogDescription: React.FC<React.HTMLAttributes<HTMLDivElement>> = (
   return (
     <ReachAlertDialogDescription
       {...props}
-      className={classnames(props.className, 'text-secondary mt-2 mb-4')}
+      className={classnames(
+        props.className,
+        'text-txt text-opacity-text-secondary mt-2 mb-4'
+      )}
     />
   )
 }
@@ -42,7 +45,7 @@ const AlertDialogContent = forwardRef<HTMLDivElement, AlertDialogContentProps>(
         {...props}
         className={classnames(
           props.className,
-          'bg-surface text-primary rounded shadow p-6 w-full max-w-xl md:max-w-3xl'
+          'bg-surface text-txt text-opacity-text-primary rounded shadow p-6 w-full max-w-xl md:max-w-3xl'
         )}
         ref={ref}
       />

@@ -160,7 +160,11 @@ const FieldValueDetail: React.FC<FieldValueDetailProps> = ({
 
   return (
     <PersistedEditor
-      title={<span className="text-primary">{fieldValue.field!.name}</span>}
+      title={
+        <span className="text-txt text-opacity-text-primary">
+          {fieldValue.field!.name}
+        </span>
+      }
       loading={loading}
       error={error}
       saveDebounceMs={FIELD_VALUE_CHANGE_DEBOUNCE}
@@ -236,15 +240,15 @@ const NotePage: React.FC = () => {
         <BackButton to={`/d/${deckSlug}`} />
 
         <div className="flex flex-col mb-8">
-          <Caption className="mt-1 text-secondary">
+          <Caption className="mt-1 text-txt text-opacity-text-secondary">
             <Trans>Deck {deck!.title}</Trans>
           </Caption>
-          <Headline1 className="text-primary font-bold">
+          <Headline1 className="text-txt text-opacity-text-primary font-bold">
             <Trans>Note details</Trans>
           </Headline1>
-          <Headline2 className="mt-4 text-primary">
+          <Headline2 className="mt-4 text-txt text-opacity-text-primary">
             {text || (
-              <span className="text-secondary italic">
+              <span className="text-txt text-opacity-text-secondary italic">
                 <Trans>empty note</Trans>
               </span>
             )}
@@ -257,7 +261,7 @@ const NotePage: React.FC = () => {
 
         <Divider className="my-8" />
 
-        <Headline2 className="font-bold text-primary">
+        <Headline2 className="font-bold text-txt text-opacity-text-primary">
           <Trans>Flashcards</Trans>
         </Headline2>
 

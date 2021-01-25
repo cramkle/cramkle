@@ -137,7 +137,7 @@ const BaseEditorControls: React.FC<Props> = ({
           'bg-editor text-on-surface rounded-xl shadow p-0 overflow-hidden'
         )}
       >
-        <div className="flex items-center p-2 border-b border-divider">
+        <div className="flex items-center p-2 border-b border-divider border-opacity-divider">
           <div className="w-full flex flex-col items-start">
             <TabController>
               <BlockStyleControls

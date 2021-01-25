@@ -44,8 +44,8 @@ export const Switch: React.FC<
     <label
       className={classnames(className, 'flex items-center', {
         'flex-row-reverse': reverse,
-        'text-disabled': disabled,
-        'text-primary': !disabled,
+        'text-txt text-opacity-text-disabled': disabled,
+        'text-txt text-opacity-text-primary': !disabled,
       })}
     >
       <VisuallyHidden>
@@ -66,10 +66,10 @@ export const Switch: React.FC<
         className={classnames({
           'mr-3': !reverse,
           'ml-3': reverse,
-          'text-disabled': !checked && disabled,
-          'text-action-primary-disabled': checked && disabled,
-          'text-primary': !checked && !disabled,
-          'text-action-primary': checked && !disabled,
+          'text-txt text-opacity-text-disabled': !checked && disabled,
+          'text-primary-disabled': checked && disabled,
+          'text-txt text-opacity-text-primary': !checked && !disabled,
+          'text-primary': checked && !disabled,
         })}
         viewBox="0 0 62 34"
         width="62"

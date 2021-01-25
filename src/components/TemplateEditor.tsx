@@ -42,7 +42,7 @@ const TemplateEditor: React.FunctionComponent<Props> = ({
 
   return (
     <BaseEditorControls
-      className="mt-2 border border-divider"
+      className="mt-2 border border-divider border-opacity-divider"
       onChange={handleChange}
       initialContentState={initialContentState as RawDraftContentState}
       decorators={decorators}

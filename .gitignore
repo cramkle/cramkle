@@ -134,6 +134,5 @@ tags
 # Custom
 
 build
-src/_tailwind.global.css
 src/locales/_build/
 src/locales/**/*.js

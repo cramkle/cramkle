@@ -90,7 +90,7 @@ const LoginForm: React.FunctionComponent = () => {
                 label={i18n._(t`Password`)}
               />
               <Link
-                className="text-action-primary hover:underline"
+                className="text-primary hover:underline"
                 to="/forgot-password"
               >
                 <Trans>Forgot your password?</Trans>

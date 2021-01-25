@@ -186,7 +186,7 @@ const ModelPage: React.FC = () => {
         <Headline2 className="text-center sm:text-left">
           <Trans>Model not found</Trans>
         </Headline2>
-        <Link className="mt-8 sm:mt-4 text-action-primary" to="/home">
+        <Link className="mt-8 sm:mt-4 text-primary" to="/home">
           <Trans>Go to home</Trans>
         </Link>
       </div>
@@ -202,14 +202,16 @@ const ModelPage: React.FC = () => {
         <BackButton to="/models" />
         <div className="flex flex-col mb-8">
           <div className="flex justify-between items-baseline">
-            <Headline1 className="text-primary">
+            <Headline1 className="text-txt text-opacity-text-primary">
               <Trans>Model details</Trans>
             </Headline1>
 
             <DeleteModelButton model={model} />
           </div>
 
-          <Headline2 className="text-primary mt-4">{model.name}</Headline2>
+          <Headline2 className="text-txt text-opacity-text-primary mt-4">
+            {model.name}
+          </Headline2>
           <Body2 className="mt-1">
             {i18n._(
               plural(model.totalNotes, {
@@ -227,9 +229,9 @@ const ModelPage: React.FC = () => {
           </Body2>
         </div>
 
-        <div className="bg-surface border-2 rounded-xl overflow-hidden border-divider px-4 pb-4">
+        <div className="bg-surface border-2 rounded-xl overflow-hidden border-divider border-opacity-divider px-4 pb-4">
           <div className="flex items-center justify-between py-4">
-            <Body1 className="inline-block text-primary">
+            <Body1 className="inline-block text-txt text-opacity-text-primary">
               <Trans>Templates</Trans>
             </Body1>
 
@@ -248,7 +250,7 @@ const ModelPage: React.FC = () => {
 
             <div className="sm:hidden">
               <Menu>
-                <MenuButton icon className="text-primary">
+                <MenuButton icon className="text-txt text-opacity-text-primary">
                   <OverflowMenuIcon />
                 </MenuButton>
                 <MenuList>
@@ -281,9 +283,12 @@ const ModelPage: React.FC = () => {
           </div>
           {model.templates.length ? (
             <Tabs>
-              <TabList className="border-t border-b border-divider -mx-4">
+              <TabList className="border-t border-b border-divider border-opacity-divider -mx-4">
                 {model.templates.map((template) => (
-                  <Tab key={template.id} className="text-primary">
+                  <Tab
+                    key={template.id}
+                    className="text-txt text-opacity-text-primary"
+                  >
                     {template.name}
                   </Tab>
                 ))}
@@ -301,8 +306,8 @@ const ModelPage: React.FC = () => {
               </TabPanels>
             </Tabs>
           ) : (
-            <div className="border-t border-divider -mx-4">
-              <Body2 className="text-primary text-center mt-6 mb-4">
+            <div className="border-t border-divider border-opacity-divider -mx-4">
+              <Body2 className="text-txt text-opacity-text-primary text-center mt-6 mb-4">
                 <Trans>
                   You haven't created any templates on this model yet.
                 </Trans>

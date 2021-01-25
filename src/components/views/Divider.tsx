@@ -11,10 +11,14 @@ const Divider: React.FC<Props> = ({ horizontal = true, className = '' }) => {
 
   return (
     <Component
-      className={classnames(className, 'border-r-0 bb-0 border-divider', {
-        'bl-0 border-t w-full': horizontal,
-        'bt-0 lg:border h-full': !horizontal,
-      })}
+      className={classnames(
+        className,
+        'border-r-0 bb-0 border-divider border-opacity-divider',
+        {
+          'bl-0 border-t w-full': horizontal,
+          'bt-0 lg:border h-full': !horizontal,
+        }
+      )}
     />
   )
 }

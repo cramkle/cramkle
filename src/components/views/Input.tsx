@@ -28,7 +28,12 @@ export const Label = forwardRef<HTMLLabelElement, LabelProps>(function Label(
           'flex-row-reverse items-center': checkbox,
         })}
       >
-        <span className={classnames(styles.label, 'text-primary text-sm')}>
+        <span
+          className={classnames(
+            styles.label,
+            'text-txt text-opacity-text-primary text-sm'
+          )}
+        >
           {text}
         </span>
         {children}
@@ -51,7 +56,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
       ref={ref}
       className={classnames(
         className,
-        'bg-input text-primary rounded border border-divider outline-none py-2 px-4 focus:border-primary placeholder-gray-2',
+        'bg-input text-txt text-opacity-text-primary rounded border border-divider border-opacity-divider outline-none py-2 px-4 focus:border-primary placeholder-gray-2',
         {
           'mt-2': isLabelled,
         }
@@ -72,7 +77,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         ref={ref}
         className={classnames(
           className,
-          'bg-input text-primary rounded border border-divider py-2 px-4 focus:border-primary placeholder-gray-2',
+          'bg-input text-txt text-opacity-text-primary rounded border border-divider border-opacity-divider py-2 px-4 focus:border-primary placeholder-gray-2',
           {
             'mt-2': isLabelled,
           }
@@ -93,7 +98,7 @@ export const HelperText = forwardRef<HTMLDivElement, HelperTextProps>(
         {...props}
         ref={ref}
         className={classnames('dib mt-1 text-sm', {
-          'text-secondary': variation === 'normal',
+          'text-txt text-opacity-text-secondary': variation === 'normal',
           'text-red-1': variation === 'error',
           'text-green-1': variation === 'success',
         })}

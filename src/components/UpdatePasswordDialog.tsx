@@ -133,7 +133,7 @@ export default function UpdatePasswordDialog({
 
             <Subtitle2
               id="profile-current-password-change-description"
-              className="text-primary mt-3"
+              className="text-txt text-opacity-text-primary mt-3"
             >
               <Trans>
                 For security, please enter your current password to continue.

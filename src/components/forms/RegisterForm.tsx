@@ -182,7 +182,7 @@ const RegisterForm: React.FunctionComponent<Props> = ({
                   <Trans>
                     I agree to the{' '}
                     <Link
-                      className="text-action-primary hover:underline"
+                      className="text-primary hover:underline"
                       to="/terms"
                       target="_blank"
                     >

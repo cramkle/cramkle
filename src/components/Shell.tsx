@@ -54,7 +54,7 @@ const DefaultMenuItems: React.FC = () => {
     <>
       <MenuItem
         onSelect={handleSettingsClick}
-        icon={<SettingsIcon className="text-secondary" />}
+        icon={<SettingsIcon className="text-txt text-opacity-text-secondary" />}
       >
         <Trans>Settings</Trans>
       </MenuItem>
@@ -68,14 +68,17 @@ const DefaultMenuItems: React.FC = () => {
         reverse
       >
         <div className="flex items-center">
-          <DarkModeIcon className="mr-4 text-secondary" aria-hidden />
+          <DarkModeIcon
+            className="mr-4 text-txt text-opacity-text-secondary"
+            aria-hidden
+          />
           <Trans>Dark mode</Trans>
         </div>
       </Switch>
       <Divider className="my-3" />
       <MenuItem
         onSelect={handleLogout}
-        icon={<LogoutIcon className="text-secondary" />}
+        icon={<LogoutIcon className="text-txt text-opacity-text-secondary" />}
       >
         <Trans>Log out</Trans>
       </MenuItem>
@@ -93,7 +96,7 @@ const MobileMenu: React.FC<{ username?: string; email?: string }> = ({
 
   return (
     <Menu>
-      <MenuButton icon className="md:hidden text-primary">
+      <MenuButton icon className="md:hidden text-txt text-opacity-text-primary">
         <OverflowMenuIcon />
       </MenuButton>
       <NoSSR>
@@ -103,13 +106,19 @@ const MobileMenu: React.FC<{ username?: string; email?: string }> = ({
           style={{ top: '1.25rem' }}
         >
           <div className="flex flex-col px-5 mb-3">
-            <span className="text-primary text-lg">{username}</span>
-            <span className="text-secondary">{email}</span>
+            <span className="text-txt text-opacity-text-primary text-lg">
+              {username}
+            </span>
+            <span className="text-txt text-opacity-text-secondary">
+              {email}
+            </span>
           </div>
           <MenuItem
             className="md:hidden"
             onSelect={handleStatisticsClick}
-            icon={<StatisticsIcon className="text-secondary" />}
+            icon={
+              <StatisticsIcon className="text-txt text-opacity-text-secondary" />
+            }
           >
             <Trans>Statistics</Trans>
           </MenuItem>
@@ -127,7 +136,10 @@ const DefaultMenu: React.FC<{ username?: string; email?: string }> = ({
 }) => {
   return (
     <Menu>
-      <MenuButton icon className="hidden md:inline-block text-primary">
+      <MenuButton
+        icon
+        className="hidden md:inline-block text-txt text-opacity-text-primary"
+      >
         <OverflowMenuIcon />
       </MenuButton>
       <NoSSR>
@@ -137,8 +149,12 @@ const DefaultMenu: React.FC<{ username?: string; email?: string }> = ({
           style={{ top: '1.25rem' }}
         >
           <div className="flex flex-col px-5 mb-3">
-            <span className="text-primary text-lg">{username}</span>
-            <span className="text-secondary">{email}</span>
+            <span className="text-txt text-opacity-text-primary text-lg">
+              {username}
+            </span>
+            <span className="text-txt text-opacity-text-secondary">
+              {email}
+            </span>
           </div>
           <Divider />
           <DefaultMenuItems />
@@ -188,7 +204,7 @@ const Shell: React.FC = () => {
           style={{ top: 'calc(100% + 1px)' }}
         />
       </Header>
-      <main className="flex-1 overflow-auto w-full relative bg-background">
+      <main className="flex-1 overflow-auto w-full relative bg-background bg-opacity-background">
         <Outlet />
         <div id="portal-anchor" />
       </main>

@@ -6,7 +6,7 @@ export const Header: React.FC<React.HTMLAttributes<HTMLElement>> = (props) => {
     <header
       className={classnames(
         props.className,
-        'bg-surface border-b border-divider'
+        'bg-surface border-b border-divider border-opacity-divider'
       )}
     >
       <div className="shadow-sm">{props.children}</div>

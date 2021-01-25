@@ -167,7 +167,7 @@ const AddNotePage: React.FC = () => {
     <Container>
       <BackButton to={`/d/${slug}`} />
 
-      <Headline1 className="border-b border-divider text-primary">
+      <Headline1 className="border-b border-divider border-opacity-divider text-txt text-opacity-text-primary">
         <Trans>
           Create note for deck{' '}
           <span className="font-semibold">{deck!.title}</span>
@@ -178,7 +178,7 @@ const AddNotePage: React.FC = () => {
         <div className="flex flex-col mt-6">
           <Card>
             <CardContent>
-              <label className="flex items-center text-primary">
+              <label className="flex items-center text-txt text-opacity-text-primary">
                 <Trans>Note's model</Trans>
                 <Listbox
                   className="ml-3"
@@ -198,7 +198,7 @@ const AddNotePage: React.FC = () => {
 
               {selectedModel != null && (
                 <React.Fragment key={formKey}>
-                  <Headline2 className="mt-3 text-primary">
+                  <Headline2 className="mt-3 text-txt text-opacity-text-primary">
                     <Trans>Fields</Trans>
                   </Headline2>
 
@@ -206,7 +206,10 @@ const AddNotePage: React.FC = () => {
                     <>
                       {selectedModel.fields.map((field) => (
                         <React.Fragment key={field.id}>
-                          <Body1 className="mt-4 text-primary" key={field.id}>
+                          <Body1
+                            className="mt-4 text-txt text-opacity-text-primary"
+                            key={field.id}
+                          >
                             {field.name}
                           </Body1>
 
@@ -232,11 +235,11 @@ const AddNotePage: React.FC = () => {
                       </Button>
                     </>
                   ) : (
-                    <Body1 className="mt-6 text-primary">
+                    <Body1 className="mt-6 text-txt text-opacity-text-primary">
                       <Trans>
                         The selected model doesn't have any fields.{' '}
                         <Link
-                          className="text-action-primary hover:underline"
+                          className="text-primary hover:underline"
                           to={`/m/${selectedModel.id}`}
                         >
                           Click here to edit it
@@ -251,7 +254,7 @@ const AddNotePage: React.FC = () => {
         </div>
       ) : (
         <div className="flex flex-col justify-center items-center mt-6">
-          <Body1 className="text-primary">
+          <Body1 className="text-txt text-opacity-text-primary">
             <Trans>You haven't created a model yet.</Trans>
           </Body1>
 

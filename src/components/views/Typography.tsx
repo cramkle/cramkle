@@ -42,9 +42,15 @@ export const Headline6 = typography('h6', 'text-sm leading-normal font-medium')
 
 export const Body1 = typography('p', 'text-base')
 
-export const Body2 = typography('p', 'text-secondary text-sm')
+export const Body2 = typography(
+  'p',
+  'text-txt text-opacity-text-secondary text-sm'
+)
 
-export const Caption = typography('span', 'text-secondary text-xs')
+export const Caption = typography(
+  'span',
+  'text-txt text-opacity-text-secondary text-xs'
+)
 
 export const Overline = typography(
   'span',
