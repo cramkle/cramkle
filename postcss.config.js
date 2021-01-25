@@ -9,7 +9,7 @@ module.exports = {
       },
       stage: 3,
     },
-    [path.resolve(__dirname, 'postcss', 'theme-prefix.js')]: {},
     tailwindcss: {},
+    [path.resolve(__dirname, 'postcss', 'theme-prefix.js')]: {},
   },
 }

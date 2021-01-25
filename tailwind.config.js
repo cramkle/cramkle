@@ -1,4 +1,6 @@
 const customColors = [
+  'always-black',
+  'always-white',
   'background',
   'background-primary',
   'disabled',
@@ -19,7 +21,9 @@ const customColors = [
   'red-1',
   'secondary',
   'surface',
+  'surface-inverted',
   'txt',
+  'txt-inverted',
   'violet-1',
   'violet-2',
   'yellow-1',

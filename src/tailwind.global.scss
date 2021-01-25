@@ -19,6 +19,8 @@
 
 @layer components {
   $lightColors: (
+    always-white: hsl(0, 0%, 100%),
+    always-black: hsl(0, 0%, 0%),
     background: hsl(224, 30%, 20%),
     disabled: rgb(0, 0, 0),
     divider: hsl(224, 5%, 65%),
@@ -57,6 +59,8 @@
   );
 
   $darkColors: (
+    always-white: hsl(0, 0%, 100%),
+    always-black: hsl(0, 0%, 0%),
     background: hsl(225, 5%, 10%),
     disabled: rgb(255, 255, 255),
     divider: hsl(0, 0%, 100%),
@@ -93,6 +97,11 @@
     text-primary: 1,
     text-secondary: 0.87,
   );
+
+  @each $invertedColor in "surface", "txt" {
+    $lightColors: map.set($lightColors, "#{$invertedColor}-inverted", map.get($darkColors, $invertedColor));
+    $darkColors: map.set($darkColors, "#{$invertedColor}-inverted", map.get($lightColors, $invertedColor));
+  }
 
   @function validateVariables($setA, $setB, $themeName) {
     @each $name, $value in $setB {

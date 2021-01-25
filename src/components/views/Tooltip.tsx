@@ -8,8 +8,6 @@ import { forwardRefWithAs } from '@reach/utils'
 import classnames from 'classnames'
 import { Children, cloneElement } from 'react'
 
-import { useTheme } from '../Theme'
-
 export const Tooltip = forwardRefWithAs<TooltipProps, 'div'>(function Tooltip(
   props,
   forwardedRef
@@ -47,19 +45,13 @@ export const Tooltip = forwardRefWithAs<TooltipProps, 'div'>(function Tooltip(
 
 export const TooltipPopup = forwardRefWithAs<TooltipPopupProps, 'div'>(
   function TooltipPopup(props, forwardedRef) {
-    const { theme } = useTheme()
-
     return (
       <ReachTooltipPopup
         {...props}
         ref={forwardedRef}
         className={classnames(
           props.className,
-          'z-1 p-2 pointer-events-none absolute whitespace-nowrap text-txt text-opacity-text-primary bg-surface shadow-lg rounded',
-          {
-            '__dark-mode': theme === 'light',
-            '__light-mode': theme === 'dark',
-          }
+          'z-1 p-2 pointer-events-none absolute whitespace-nowrap text-txt-inverted bg-surface-inverted shadow-lg rounded'
         )}
       />
     )

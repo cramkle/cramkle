@@ -11,7 +11,6 @@ import * as React from 'react'
 
 import { useFadeEffect } from '../../hooks/useFadeEffect'
 import ToastStore, { ToastState } from '../../toasts/store'
-import { useTheme } from '../Theme'
 import ClearIcon from '../icons/ClearIcon'
 import Button from './Button'
 import IconButton from './IconButton'
@@ -38,26 +37,19 @@ export const Toast: React.VFC<ToastProps> = ({
   icon,
   ...props
 }) => {
-  const { theme } = useTheme()
-
   return (
-    <div
-      className={classnames({
-        '__dark-mode': theme === 'light',
-        '__light-mode': theme === 'dark',
-      })}
-    >
+    <div>
       <div
         {...props}
         className={classnames(
           props.className,
           styles.toast,
-          'h-16 bg-surface inline-flex items-center rounded p-4 shadow max-w-100'
+          'h-16 bg-surface-inverted inline-flex items-center rounded p-4 shadow max-w-100'
         )}
       >
         {icon && <div className="w-6 h-6 mr-4">{icon}</div>}
         <div
-          className="text-txt text-opacity-text-primary mr-auto text-sm sm:text-base"
+          className="text-txt-inverted mr-auto text-sm sm:text-base"
           role="alert"
           aria-atomic
         >
@@ -78,7 +70,7 @@ export const Toast: React.VFC<ToastProps> = ({
         )}
         <div className="flex items-center ml-4">
           <IconButton className="h-6 w-6 p-0" onClick={onDismiss}>
-            <ClearIcon className="text-txt text-opacity-text-primary" />
+            <ClearIcon className="text-txt-inverted" />
           </IconButton>
         </div>
       </div>
