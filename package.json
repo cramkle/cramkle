@@ -109,6 +109,7 @@
     "@storybook/react": "^6.1.0",
     "@storybook/theming": "^6.1.0",
     "@svgr/webpack": "^5.5.0",
+    "@tailwindcss/forms": "^0.2.1",
     "@tailwindcss/postcss7-compat": "^2.0.2",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.1",

@@ -114,4 +114,5 @@ module.exports = {
       safelist: ['__light-mode', '__dark-mode', 'h-full'],
     },
   },
+  plugins: [require('@tailwindcss/forms')],
 }
