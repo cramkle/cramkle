@@ -2,8 +2,6 @@ import classnames from 'classnames'
 import { ReactNode, forwardRef, useContext } from 'react'
 import * as React from 'react'
 
-import styles from './Input.css'
-
 const LabelContext = React.createContext<{ label: boolean } | undefined>(
   undefined
 )
@@ -29,10 +27,7 @@ export const Label = forwardRef<HTMLLabelElement, LabelProps>(function Label(
         })}
       >
         <span
-          className={classnames(
-            styles.label,
-            'text-txt text-opacity-text-primary text-sm'
-          )}
+          className={classnames('text-txt text-opacity-text-primary text-sm')}
         >
           {text}
         </span>
@@ -56,7 +51,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
       ref={ref}
       className={classnames(
         className,
-        'bg-input text-txt text-opacity-text-primary rounded border border-divider border-opacity-divider outline-none py-2 px-4 focus:border-primary placeholder-gray-2',
+        'bg-input text-txt text-opacity-text-primary rounded border border-divider border-opacity-divider outline-none py-2 px-4 focus:border-primary placeholder-gray-2 leading-snug',
         {
           'mt-2': isLabelled,
         }

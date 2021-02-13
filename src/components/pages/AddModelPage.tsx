@@ -1,32 +1,25 @@
 import { useMutation } from '@apollo/react-hooks'
 import { Trans, t } from '@lingui/macro'
-import { useLingui } from '@lingui/react'
-import { FieldArray, Formik } from 'formik'
+import { useMachine } from '@xstate/react'
 import gql from 'graphql-tag'
 import { Location } from 'history'
 import * as React from 'react'
 import { useLocation, useNavigate } from 'react-router'
-import * as yup from 'yup'
+import { Machine, assign } from 'xstate'
 
 import { TIMEOUT_MEDIUM, pushToast } from '../../toasts/pushToast'
 import BackButton from '../BackButton'
-import { TextInputField } from '../forms/Fields'
-import TrashBinIcon from '../icons/TrashBinIcon'
-import Button from '../views/Button'
-import { Card, CardContent } from '../views/Card'
+import ModelFieldsForm from '../ModelFieldsForm'
+import ModelNameForm from '../ModelNameForm'
+import ModelTemplatesForm from '../ModelTemplatesForm'
+import StepTab from '../StepTab'
 import Container from '../views/Container'
-import {
-  Body1,
-  Body2,
-  Headline1,
-  Headline2,
-  Headline3,
-} from '../views/Typography'
-import styles from './AddModelPage.css'
+import { Headline1 } from '../views/Typography'
 import { MODELS_QUERY } from './ModelsSection'
 import {
   CreateModelMutation,
   CreateModelMutationVariables,
+  CreateModelMutation_createModel_model,
 } from './__generated__/CreateModelMutation'
 import { ModelsQuery } from './__generated__/ModelsQuery'
 
@@ -55,15 +48,191 @@ const CREATE_MODEL_MUTATION = gql`
   }
 `
 
-const AddModelPage: React.FunctionComponent = () => {
-  const navigate = useNavigate()
-  const location = useLocation() as Location<{ referrer?: string }>
-  const { i18n } = useLingui()
+interface MachineContext {
+  name: string
+  fields: { name: string }[]
+  templates: { name: string }[]
+  model: CreateModelMutation_createModel_model | null
+}
 
+type MachineEvents =
+  | { type: 'SUBMIT_NAME'; name: string }
+  | { type: 'SUBMIT_FIELDS'; fields: { name: string }[] }
+  | { type: 'SUBMIT_TEMPLATES'; templates: { name: string }[] }
+  | { type: 'GO_BACK' }
+
+const machine = Machine<MachineContext, MachineEvents>(
+  {
+    initial: 'editName',
+    context: {
+      name: '',
+      fields: [{ name: '' }],
+      templates: [{ name: '' }],
+      model: null,
+    },
+    states: {
+      editName: {
+        on: {
+          SUBMIT_NAME: {
+            target: 'editFields',
+            actions: assign({ name: (_, event) => event.name }),
+          },
+        },
+      },
+      editFields: {
+        on: {
+          GO_BACK: 'editName',
+          SUBMIT_FIELDS: {
+            target: 'editTemplates',
+            actions: assign({ fields: (_, event) => event.fields }),
+          },
+        },
+      },
+      editTemplates: {
+        on: {
+          GO_BACK: 'editFields',
+        },
+        initial: 'idle',
+        states: {
+          idle: {
+            on: {
+              SUBMIT_TEMPLATES: {
+                target: 'submitting',
+                actions: assign({ templates: (_, event) => event.templates }),
+              },
+            },
+          },
+          submitting: {
+            on: {
+              SUBMIT_TEMPLATES: undefined,
+            },
+            invoke: {
+              src: 'tryToCreateModel',
+              onDone: {
+                target: 'submitted',
+                actions: assign({
+                  model: (_, event) => event.data.createModel.model,
+                }),
+              },
+              onError: {
+                target: 'error',
+              },
+            },
+          },
+          submitted: { type: 'final' },
+          error: {
+            on: {
+              SUBMIT_TEMPLATES: 'submitting',
+            },
+          },
+        },
+        onDone: {
+          actions: ['showCreatedToast', 'navigateToModelList'],
+        },
+      },
+    },
+  },
+  {
+    actions: {
+      showCreatedToast: () => {},
+      navigateToModelList: () => {},
+    },
+  }
+)
+
+const AddModelPage: React.VFC = () => {
   const [mutate] = useMutation<
     CreateModelMutation,
     CreateModelMutationVariables
   >(CREATE_MODEL_MUTATION)
+
+  const location = useLocation() as Location<{ referrer?: string }>
+  const navigate = useNavigate()
+
+  const [state, send] = useMachine(machine, {
+    actions: {
+      showCreatedToast: (ctx) => {
+        pushToast(
+          {
+            message: t`Model created successfully`,
+            action: {
+              label: t`View`,
+              onPress: () => {
+                navigate(`/m/${ctx.model!.id}`)
+              },
+            },
+          },
+          TIMEOUT_MEDIUM
+        )
+      },
+      navigateToModelList: () => {
+        navigate(location.state?.referrer ?? '/models')
+      },
+    },
+    services: {
+      tryToCreateModel: (ctx) => {
+        return mutate({
+          variables: ctx,
+          update: (proxy, mutationResult) => {
+            let data: ModelsQuery | null
+
+            try {
+              data = proxy.readQuery<ModelsQuery>({
+                query: MODELS_QUERY,
+              })
+            } catch {
+              return
+            }
+
+            const { createModel } = mutationResult!.data!
+
+            data?.models.push(createModel!.model!)
+
+            proxy.writeQuery({ query: MODELS_QUERY, data })
+          },
+        }).then(({ data }) => data)
+      },
+    },
+  })
+
+  let content = null
+
+  switch (true) {
+    case state.matches('editName'): {
+      content = (
+        <ModelNameForm
+          name={state.context.name}
+          onSubmit={(name) => send('SUBMIT_NAME', { name })}
+        />
+      )
+      break
+    }
+    case state.matches('editFields'): {
+      content = (
+        <ModelFieldsForm
+          fields={state.context.fields}
+          onSubmit={(fields) => send('SUBMIT_FIELDS', { fields })}
+          onGoBack={() => send('GO_BACK')}
+        />
+      )
+      break
+    }
+    case state.matches('editTemplates'): {
+      content = (
+        <ModelTemplatesForm
+          templates={state.context.templates}
+          onGoBack={() => send('GO_BACK')}
+          onSubmit={(templates) => send('SUBMIT_TEMPLATES', { templates })}
+          isSubmitting={state.matches({ editTemplates: 'submitting' })}
+          hasError={state.matches({ editTemplates: 'error' })}
+        />
+      )
+      break
+    }
+    default: {
+      throw new Error('Invalid state: ' + state.toStrings().join(', '))
+    }
+  }
 
   return (
     <Container>
@@ -73,205 +242,31 @@ const AddModelPage: React.FunctionComponent = () => {
         <Trans>Create model</Trans>
       </Headline1>
 
-      <Body1 className="mt-6 text-txt text-opacity-text-primary">
-        <Trans>
-          A model consist of both fields and templates. A field is used in a
-          note to fill values that are used inside the template, and the
-          template is used to define the frontside and backside of each
-          flashcard, using the fields defined in the model. You'll be able to
-          edit the templates content after creating the model.
-        </Trans>
-      </Body1>
+      <div className="mt-6">
+        <div className="flex space-x-6">
+          <StepTab isActive index={0} className="flex-1">
+            <Trans>Base information</Trans>
+          </StepTab>
+          <StepTab
+            isActive={
+              state.matches('editFields') || state.matches('editTemplates')
+            }
+            index={1}
+            className="flex-1"
+          >
+            <Trans>Fields</Trans>
+          </StepTab>
+          <StepTab
+            isActive={state.matches('editTemplates')}
+            index={2}
+            className="flex-1"
+          >
+            <Trans>Templates</Trans>
+          </StepTab>
+        </div>
 
-      <Body1 className="mt-3 text-txt text-opacity-text-primary">
-        <Trans>
-          When you create a note, we will create the corresponding number of
-          flashcards based on how much templates the note's model has, and will
-          use the note's values to fill in the template.
-        </Trans>
-      </Body1>
-
-      <Formik
-        initialValues={{ name: '', fields: [], templates: [] }}
-        validateOnBlur
-        validationSchema={yup.object().shape({
-          name: yup.string().required(i18n._(t`Name is required`)),
-          fields: yup.array(
-            yup.object().shape({
-              name: yup.string().required(i18n._(t`Field name is required`)),
-            })
-          ),
-          templates: yup.array(
-            yup.object().shape({
-              name: yup.string().required(i18n._(t`Template name is required`)),
-            })
-          ),
-        })}
-        onSubmit={(values) => {
-          return mutate({
-            variables: values,
-            update: (proxy, mutationResult) => {
-              const data = proxy.readQuery<ModelsQuery>({
-                query: MODELS_QUERY,
-              })
-
-              const { createModel } = mutationResult!.data!
-
-              data?.models.push(createModel!.model!)
-
-              proxy.writeQuery({ query: MODELS_QUERY, data })
-            },
-          }).then((query) => {
-            pushToast(
-              {
-                message: t`Model created successfully`,
-                action: {
-                  label: t`View`,
-                  onPress: () => {
-                    navigate(`/m/${query.data!.createModel!.model!.id}`)
-                  },
-                },
-              },
-              TIMEOUT_MEDIUM
-            )
-
-            navigate(location.state?.referrer ?? '/models')
-          })
-        }}
-      >
-        {({ handleSubmit, values, isSubmitting }) => (
-          <Card className="mt-6 mb-4 w-full">
-            <CardContent>
-              <form className="flex flex-col w-full" onSubmit={handleSubmit}>
-                <TextInputField name="name" label={i18n._(t`Model name`)} />
-
-                <div className="flex flex-col sm:flex-row">
-                  <FieldArray name="templates" validateOnChange={false}>
-                    {({ push, remove }) => (
-                      <div className={`${styles.evenColumn} mt-4 sm:pr-4`}>
-                        <Headline2 className="text-txt text-opacity-text-primary">
-                          <Trans>Templates</Trans>
-                        </Headline2>
-                        <div className="my-6 flex flex-col">
-                          {values.templates?.length ? (
-                            values.templates.map((_, index) => (
-                              <>
-                                <Headline3 className="text-txt text-opacity-text-primary">
-                                  <Trans>Template #{index}</Trans>
-                                </Headline3>
-
-                                <div className="my-3 flex" key={index}>
-                                  <div className="w-full">
-                                    <TextInputField
-                                      className="w-full"
-                                      name={`templates.${index}.name`}
-                                      label={i18n._(t`Template name`)}
-                                    />
-                                  </div>
-
-                                  <Button
-                                    variation="outline"
-                                    className="ml-3 text-txt text-opacity-text-primary"
-                                    onClick={() => remove(index)}
-                                    aria-label={i18n._(t`Remove template`)}
-                                    style={{
-                                      marginTop: 'calc(1.5rem + 0.0625rem)',
-                                    }}
-                                  >
-                                    <TrashBinIcon />
-                                  </Button>
-                                </div>
-                              </>
-                            ))
-                          ) : (
-                            <Body2 className="mx-auto mb-3">
-                              <Trans>No templates added</Trans>
-                            </Body2>
-                          )}
-
-                          <Button
-                            className="self-start"
-                            onClick={() => push({ name: '' })}
-                          >
-                            <Trans>Add template</Trans>
-                          </Button>
-                        </div>
-                      </div>
-                    )}
-                  </FieldArray>
-
-                  <FieldArray name="fields" validateOnChange={false}>
-                    {({ push, remove }) => (
-                      <div className={`${styles.evenColumn} mt-4`}>
-                        <Headline2 className="text-txt text-opacity-text-primary">
-                          <Trans>Fields</Trans>
-                        </Headline2>
-                        <div className="my-6 flex flex-col">
-                          {values.fields?.length ? (
-                            values.fields.map((_, index) => (
-                              <>
-                                <Headline3 className="text-txt text-opacity-text-primary">
-                                  <Trans>Field #{index}</Trans>
-                                </Headline3>
-
-                                <div className="my-3 flex" key={index}>
-                                  <div className="w-full">
-                                    <TextInputField
-                                      className="w-full"
-                                      name={`fields.${index}.name`}
-                                      label={i18n._(t`Field name`)}
-                                    />
-                                  </div>
-
-                                  <Button
-                                    variation="outline"
-                                    className="ml-3 text-txt text-opacity-text-primary"
-                                    onClick={() => remove(index)}
-                                    aria-label={i18n._(t`Remove field`)}
-                                    style={{
-                                      marginTop: 'calc(1.5rem + 0.0625rem)',
-                                    }}
-                                  >
-                                    <TrashBinIcon />
-                                  </Button>
-                                </div>
-                              </>
-                            ))
-                          ) : (
-                            <Body2 className="mx-auto mb-3">
-                              <Trans>No fields added</Trans>
-                            </Body2>
-                          )}
-
-                          <Button
-                            className="self-start"
-                            onClick={() => push({ name: '' })}
-                          >
-                            <Trans>Add field</Trans>
-                          </Button>
-                        </div>
-                      </div>
-                    )}
-                  </FieldArray>
-                </div>
-
-                <Button
-                  className="self-start mt-4"
-                  variation="primary"
-                  type="submit"
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? (
-                    <Trans>Creating model...</Trans>
-                  ) : (
-                    <Trans>Create model</Trans>
-                  )}
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
-        )}
-      </Formik>
+        {content}
+      </div>
     </Container>
   )
 }

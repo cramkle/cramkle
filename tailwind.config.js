@@ -102,15 +102,10 @@ module.exports = {
     },
   },
   variants: {
-    display: ['responsive', 'group-hover', 'group-focus'],
-    opacity: [
-      'responsive',
-      'hover',
-      'focus',
-      'active',
-      'group-hover',
-      'group-focus',
-    ],
+    extend: {
+      display: ['group-hover', 'group-focus'],
+      opacity: ['group-focus'],
+    },
   },
   purge: {
     content: ['./src/**/*.tsx'],
