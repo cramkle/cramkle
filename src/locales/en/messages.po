@@ -13,19 +13,19 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/components/pages/DeckPage.tsx:178
+#: src/components/pages/DeckPage.tsx:180
 msgid "({0} notes)"
 msgstr "({0} notes)"
 
-#: src/components/pages/StatisticsPage.tsx:277
+#: src/components/pages/StatisticsPage.tsx:283
 msgid "1 month"
 msgstr "1 month"
 
-#: src/components/pages/StatisticsPage.tsx:280
+#: src/components/pages/StatisticsPage.tsx:286
 msgid "1 year"
 msgstr "1 year"
 
-#: src/components/pages/StatisticsPage.tsx:274
+#: src/components/pages/StatisticsPage.tsx:280
 msgid "7 days"
 msgstr "7 days"
 
@@ -33,9 +33,9 @@ msgstr "7 days"
 msgid "<0>Click to change password.</0> Secure your account with a strong password"
 msgstr "<0>Click to change password.</0> Secure your account with a strong password"
 
-#: src/components/pages/AddModelPage.tsx:56
-msgid "A model consist of both fields and templates. A field is used in a note to fill values that are used inside the template, and the template is used to define the frontside and backside of each flashcard, using the fields defined in the model. You'll be able to edit the templates content after creating the model."
-msgstr "A model consist of both fields and templates. A field is used in a note to fill values that are used inside the template, and the template is used to define the frontside and backside of each flashcard, using the fields defined in the model. You'll be able to edit the templates content after creating the model."
+#: src/components/ModelFieldsForm.tsx:40
+msgid "A model consist of both fields and templates. A field is used in a note to fill values that are used inside the template."
+msgstr "A model consist of both fields and templates. A field is used in a note to fill values that are used inside the template."
 
 #: src/components/pages/HomePage.tsx:62
 msgid "A new update is available!"
@@ -58,16 +58,16 @@ msgstr "About us"
 msgid "Account Settings"
 msgstr "Account Settings"
 
-#: src/components/forms/RegisterForm.tsx:105
+#: src/components/forms/RegisterForm.tsx:108
 msgid "Account created successfully"
 msgstr "Account created successfully"
 
-#: src/components/NotesTable.tsx:29
-#: src/components/pages/AddNotePage.tsx:165
+#: src/components/NotesTable.tsx:31
+#: src/components/pages/AddNotePage.tsx:168
 msgid "Add Note"
 msgstr "Add Note"
 
-#: src/components/pages/AddModelPage.tsx:175
+#: src/components/ModelFieldsForm.tsx:35
 msgid "Add field"
 msgstr "Add field"
 
@@ -76,11 +76,11 @@ msgstr "Add field"
 msgid "Add new"
 msgstr "Add new"
 
-#: src/components/pages/AddModelPage.tsx:139
+#: src/components/ModelTemplatesForm.tsx:37
 msgid "Add template"
 msgstr "Add template"
 
-#: src/components/forms/RegisterForm.tsx:48
+#: src/components/forms/RegisterForm.tsx:50
 msgid "Agreement is required"
 msgstr "Agreement is required"
 
@@ -101,7 +101,11 @@ msgstr "Align right"
 msgid "Already have an account? <0>Log In</0>"
 msgstr "Already have an account? <0>Log In</0>"
 
-#: src/components/pages/NotePage.tsx:133
+#: src/components/ModelTemplatesForm.tsx:87
+msgid "An error has occurred when creating your model. Submit the form to try again"
+msgstr "An error has occurred when creating your model. Submit the form to try again"
+
+#: src/components/pages/NotePage.tsx:136
 msgid "An error has occurred when saving your note"
 msgstr "An error has occurred when saving your note"
 
@@ -109,7 +113,7 @@ msgstr "An error has occurred when saving your note"
 msgid "An error has occurred when trying to get your decks to study."
 msgstr "An error has occurred when trying to get your decks to study."
 
-#: src/components/pages/StatisticsPage.tsx:158
+#: src/components/pages/StatisticsPage.tsx:160
 msgid "An error has occurred, try refreshing the page or wait a few minutes before trying again"
 msgstr "An error has occurred, try refreshing the page or wait a few minutes before trying again"
 
@@ -129,7 +133,7 @@ msgstr "An error occurred when deleting the model"
 msgid "An error occurred when saving the template"
 msgstr "An error occurred when saving the template"
 
-#: src/components/GeneralSettings.tsx:93
+#: src/components/GeneralSettings.tsx:92
 #: src/components/UpdatePasswordDialog.tsx:68
 #: src/components/UpdatePasswordDialog.tsx:73
 msgid "An unexpected error has occurred"
@@ -137,8 +141,8 @@ msgstr "An unexpected error has occurred"
 
 #: src/components/ProfileSettings.tsx:73
 #: src/components/ProfileSettings.tsx:78
-#: src/components/forms/RegisterForm.tsx:90
-#: src/components/forms/RegisterForm.tsx:95
+#: src/components/forms/RegisterForm.tsx:93
+#: src/components/forms/RegisterForm.tsx:98
 msgid "An unknown error has occurred"
 msgstr "An unknown error has occurred"
 
@@ -166,13 +170,17 @@ msgstr "Are you sure you want to delete this model? {0, plural, one {There's # n
 msgid "Are you sure you want to delete this note? {0, plural, one {It contains one flashcard} other {It contains # flashcards}}"
 msgstr "Are you sure you want to delete this note? {0, plural, one {It contains one flashcard} other {It contains # flashcards}}"
 
-#: src/components/FlashCardRenderer.tsx:68
+#: src/components/FlashCardRenderer.tsx:70
 msgid "Back side"
 msgstr "Back side"
 
-#: src/components/FlashCardRenderer.tsx:68
+#: src/components/FlashCardRenderer.tsx:70
 msgid "Back side template is empty"
 msgstr "Back side template is empty"
+
+#: src/components/pages/AddModelPage.tsx:189
+msgid "Base information"
+msgstr "Base information"
 
 #: src/components/editor/BlockStyleControls.tsx:21
 msgid "Blockquote"
@@ -201,7 +209,7 @@ msgstr "Change password"
 msgid "Change your account username"
 msgstr "Change your account username"
 
-#: src/components/pages/ForgotPasswordPage.tsx:91
+#: src/components/pages/ForgotPasswordPage.tsx:90
 msgid "Check your inbox!"
 msgstr "Check your inbox!"
 
@@ -251,17 +259,21 @@ msgstr "Continue Studying"
 msgid "Create"
 msgstr "Create"
 
-#: src/components/pages/AddNotePage.tsx:190
+#: src/components/pages/AddNotePage.tsx:195
 msgid "Create a model"
 msgstr "Create a model"
+
+#: src/components/ModelNameForm.tsx:19
+msgid "Create a name for your model."
+msgstr "Create a name for your model."
 
 #: src/components/pages/DecksSection.tsx:44
 #: src/components/pages/DecksSection.tsx:60
 msgid "Create deck"
 msgstr "Create deck"
 
-#: src/components/pages/AddModelPage.tsx:52
-#: src/components/pages/AddModelPage.tsx:184
+#: src/components/ModelTemplatesForm.tsx:82
+#: src/components/pages/AddModelPage.tsx:183
 #: src/components/pages/ModelsSection.tsx:43
 #: src/components/pages/ModelsSection.tsx:57
 msgid "Create model"
@@ -271,7 +283,7 @@ msgstr "Create model"
 msgid "Create new deck"
 msgstr "Create new deck"
 
-#: src/components/pages/AddNotePage.tsx:131
+#: src/components/pages/AddNotePage.tsx:132
 msgid "Create note for deck <0>{0}</0>"
 msgstr "Create note for deck <0>{0}</0>"
 
@@ -283,7 +295,7 @@ msgstr "Create template"
 msgid "Create your account today and start studying for free!"
 msgstr "Create your account today and start studying for free!"
 
-#: src/components/pages/AddModelPage.tsx:184
+#: src/components/ModelTemplatesForm.tsx:82
 msgid "Creating model..."
 msgstr "Creating model..."
 
@@ -295,13 +307,13 @@ msgstr "Current password"
 msgid "Current password is required to change your password"
 msgstr "Current password is required to change your password"
 
-#: src/components/Shell.tsx:51
+#: src/components/Shell.tsx:52
 msgid "Dark mode"
 msgstr "Dark mode"
 
-#: src/components/pages/StatisticsPage.tsx:154
-#: src/components/pages/StatisticsPage.tsx:170
-#: src/components/pages/StatisticsPage.tsx:220
+#: src/components/pages/StatisticsPage.tsx:156
+#: src/components/pages/StatisticsPage.tsx:172
+#: src/components/pages/StatisticsPage.tsx:222
 msgid "Deck Statistics"
 msgstr "Deck Statistics"
 
@@ -321,7 +333,7 @@ msgstr "Deck details"
 msgid "Deck not found"
 msgstr "Deck not found"
 
-#: src/components/pages/NotePage.tsx:166
+#: src/components/pages/NotePage.tsx:169
 msgid "Deck {0}"
 msgstr "Deck {0}"
 
@@ -334,7 +346,7 @@ msgstr "Decks"
 #: src/components/DeleteModelButton.tsx:71
 #: src/components/DeleteModelButton.tsx:91
 #: src/components/DeleteNoteDialog.tsx:53
-#: src/components/NotesTable.tsx:77
+#: src/components/NotesTable.tsx:79
 msgid "Delete"
 msgstr "Delete"
 
@@ -378,40 +390,40 @@ msgstr "Don't have an account? <0>Sign Up</0>"
 msgid "Easy"
 msgstr "Easy"
 
-#: src/components/NotesTable.tsx:74
+#: src/components/NotesTable.tsx:76
 msgid "Edit"
 msgstr "Edit"
 
-#: src/components/pages/ModelPage.tsx:151
-#: src/components/pages/ModelPage.tsx:163
+#: src/components/pages/ModelPage.tsx:153
+#: src/components/pages/ModelPage.tsx:165
 msgid "Edit fields"
 msgstr "Edit fields"
 
-#: src/components/pages/ModelPage.tsx:148
-#: src/components/pages/ModelPage.tsx:159
+#: src/components/pages/ModelPage.tsx:150
+#: src/components/pages/ModelPage.tsx:161
 msgid "Edit templates"
 msgstr "Edit templates"
 
 #: src/components/ProfileSettings.tsx:95
-#: src/components/forms/RegisterForm.tsx:114
+#: src/components/forms/RegisterForm.tsx:117
 msgid "Email"
 msgstr "Email"
 
-#: src/components/pages/ForgotPasswordPage.tsx:121
+#: src/components/pages/ForgotPasswordPage.tsx:120
 msgid "Email address"
 msgstr "Email address"
 
 #: src/components/ProfileSettings.tsx:64
-#: src/components/forms/RegisterForm.tsx:46
+#: src/components/forms/RegisterForm.tsx:48
 msgid "Email is required"
 msgstr "Email is required"
 
 #: src/components/ProfileSettings.tsx:63
-#: src/components/forms/RegisterForm.tsx:72
+#: src/components/forms/RegisterForm.tsx:75
 msgid "Email must be a valid email"
 msgstr "Email must be a valid email"
 
-#: src/components/pages/ForgotPasswordPage.tsx:58
+#: src/components/pages/ForgotPasswordPage.tsx:59
 msgid "Email sent!"
 msgstr "Email sent!"
 
@@ -427,34 +439,35 @@ msgstr "End study session"
 msgid "English"
 msgstr "English"
 
-#: src/components/pages/ForgotPasswordPage.tsx:114
+#: src/components/pages/ForgotPasswordPage.tsx:113
 msgid "Enter the email associated with your account and we will send a link to reset your password"
 msgstr "Enter the email associated with your account and we will send a link to reset your password"
 
-#: src/components/pages/ForgotPasswordPage.tsx:128
+#: src/components/pages/ForgotPasswordPage.tsx:127
 msgid "Enter your email address"
 msgstr "Enter your email address"
 
-#: src/components/pages/AddModelPage.tsx:156
-msgid "Field #{index}"
-msgstr "Field #{index}"
+#: src/components/views/Alert.tsx:30
+msgid "Error"
+msgstr "Error"
 
 #: src/components/EditFieldsDialog.tsx:152
-#: src/components/pages/AddModelPage.tsx:161
+#: src/components/ModelFieldsForm.tsx:57
 msgid "Field name"
 msgstr "Field name"
 
-#: src/components/pages/AddModelPage.tsx:76
+#: src/components/ModelFieldsForm.tsx:18
 msgid "Field name is required"
 msgstr "Field name is required"
 
-#: src/components/FieldValueEditor.tsx:18
+#: src/components/FieldValueEditor.tsx:19
 msgid "Field value..."
 msgstr "Field value..."
 
 #: src/components/EditFieldsDialog.tsx:138
-#: src/components/pages/AddModelPage.tsx:151
-#: src/components/pages/AddNotePage.tsx:152
+#: src/components/ModelFieldsForm.tsx:32
+#: src/components/pages/AddModelPage.tsx:192
+#: src/components/pages/AddNotePage.tsx:155
 msgid "Fields"
 msgstr "Fields"
 
@@ -466,12 +479,12 @@ msgstr "Fields that you can use in your templates and notes. You can add a field
 msgid "First page"
 msgstr "First page"
 
-#: src/components/NotesTable.tsx:45
-#: src/components/pages/NotePage.tsx:183
+#: src/components/NotesTable.tsx:47
+#: src/components/pages/NotePage.tsx:186
 msgid "Flashcards"
 msgstr "Flashcards"
 
-#: src/components/pages/StatisticsPage.tsx:294
+#: src/components/pages/StatisticsPage.tsx:300
 msgid "Flashcards studied"
 msgstr "Flashcards studied"
 
@@ -479,11 +492,11 @@ msgstr "Flashcards studied"
 msgid "For security, please enter your current password to continue."
 msgstr "For security, please enter your current password to continue."
 
-#: src/components/pages/ForgotPasswordPage.tsx:141
+#: src/components/pages/ForgotPasswordPage.tsx:140
 msgid "Forgot password"
 msgstr "Forgot password"
 
-#: src/components/pages/ForgotPasswordPage.tsx:110
+#: src/components/pages/ForgotPasswordPage.tsx:109
 msgid "Forgot password?"
 msgstr "Forgot password?"
 
@@ -491,11 +504,11 @@ msgstr "Forgot password?"
 msgid "Forgot your password?"
 msgstr "Forgot your password?"
 
-#: src/components/FlashCardRenderer.tsx:65
+#: src/components/FlashCardRenderer.tsx:67
 msgid "Front side"
 msgstr "Front side"
 
-#: src/components/FlashCardRenderer.tsx:65
+#: src/components/FlashCardRenderer.tsx:67
 msgid "Front side template is empty"
 msgstr "Front side template is empty"
 
@@ -508,14 +521,22 @@ msgstr "Go back"
 msgid "Go to Home"
 msgstr "Go to Home"
 
+#: src/components/ModelNameForm.tsx:25
+msgid "Go to fields"
+msgstr "Go to fields"
+
 #: src/components/pages/DeckPage.tsx:143
 #: src/components/pages/ModelPage.tsx:100
 msgid "Go to home"
 msgstr "Go to home"
 
-#: src/components/pages/ForgotPasswordPage.tsx:103
+#: src/components/pages/ForgotPasswordPage.tsx:102
 msgid "Go to login"
 msgstr "Go to login"
+
+#: src/components/ModelFieldsForm.tsx:70
+msgid "Go to templates"
+msgstr "Go to templates"
 
 #: src/components/pages/StudyPage.tsx:217
 msgid "Good"
@@ -553,15 +574,15 @@ msgstr "Hard"
 msgid "Home"
 msgstr "Home"
 
-#: src/components/forms/RegisterForm.tsx:118
+#: src/components/forms/RegisterForm.tsx:121
 msgid "I agree to the <0>Terms & Conditions</0>"
 msgstr "I agree to the <0>Terms & Conditions</0>"
 
-#: src/components/pages/StatisticsPage.tsx:271
+#: src/components/pages/StatisticsPage.tsx:277
 msgid "Interval"
 msgstr "Interval"
 
-#: src/components/pages/ForgotPasswordPage.tsx:130
+#: src/components/pages/ForgotPasswordPage.tsx:129
 msgid "Invalid email"
 msgstr "Invalid email"
 
@@ -582,11 +603,11 @@ msgstr "Italic"
 msgid "Items per page"
 msgstr "Items per page"
 
-#: src/components/GeneralSettings.tsx:107
+#: src/components/GeneralSettings.tsx:106
 msgid "Language"
 msgstr "Language"
 
-#: src/components/Pagination.tsx:66
+#: src/components/Pagination.tsx:68
 msgid "Last page"
 msgstr "Last page"
 
@@ -594,7 +615,7 @@ msgstr "Last page"
 msgid "Learning"
 msgstr "Learning"
 
-#: src/components/Shell.tsx:56
+#: src/components/Shell.tsx:57
 msgid "Log out"
 msgstr "Log out"
 
@@ -616,7 +637,7 @@ msgstr "Make sure your knowledge will last"
 msgid "Marketplace"
 msgstr "Marketplace"
 
-#: src/components/pages/AddModelPage.tsx:95
+#: src/components/pages/AddModelPage.tsx:125
 msgid "Model created successfully"
 msgstr "Model created successfully"
 
@@ -628,7 +649,7 @@ msgstr "Model deleted successfully"
 msgid "Model details"
 msgstr "Model details"
 
-#: src/components/pages/AddModelPage.tsx:107
+#: src/components/ModelNameForm.tsx:22
 msgid "Model name"
 msgstr "Model name"
 
@@ -636,7 +657,7 @@ msgstr "Model name"
 msgid "Model not found"
 msgstr "Model not found"
 
-#: src/components/NotesTable.tsx:42
+#: src/components/NotesTable.tsx:44
 msgid "Model type"
 msgstr "Model type"
 
@@ -648,7 +669,7 @@ msgstr "Models"
 msgid "Monospace"
 msgstr "Monospace"
 
-#: src/components/pages/AddModelPage.tsx:74
+#: src/components/ModelNameForm.tsx:13
 msgid "Name is required"
 msgstr "Name is required"
 
@@ -678,47 +699,39 @@ msgstr "New password must be at lest 6 characters"
 msgid "New template name"
 msgstr "New template name"
 
-#: src/components/Pagination.tsx:63
+#: src/components/Pagination.tsx:65
 msgid "Next page"
 msgstr "Next page"
 
-#: src/components/pages/AddModelPage.tsx:171
-msgid "No fields added"
-msgstr "No fields added"
-
-#: src/components/NotesTable.tsx:57
+#: src/components/NotesTable.tsx:59
 msgid "No notes were found"
 msgstr "No notes were found"
 
-#: src/components/pages/AddModelPage.tsx:135
-msgid "No templates added"
-msgstr "No templates added"
-
-#: src/components/NotesTable.tsx:39
+#: src/components/NotesTable.tsx:41
 msgid "Note"
 msgstr "Note"
 
-#: src/components/pages/AddNotePage.tsx:104
+#: src/components/pages/AddNotePage.tsx:105
 msgid "Note created successfully"
 msgstr "Note created successfully"
 
-#: src/components/pages/NotePage.tsx:169
+#: src/components/pages/NotePage.tsx:172
 msgid "Note details"
 msgstr "Note details"
 
-#: src/components/pages/AddNotePage.tsx:139
+#: src/components/pages/AddNotePage.tsx:142
 msgid "Note's model"
 msgstr "Note's model"
 
-#: src/components/pages/DeckPage.tsx:176
+#: src/components/pages/DeckPage.tsx:178
 msgid "Notes"
 msgstr "Notes"
 
-#: src/components/pages/StatisticsPage.tsx:261
+#: src/components/pages/StatisticsPage.tsx:267
 msgid "Number of flashcards studied"
 msgstr "Number of flashcards studied"
 
-#: src/components/pages/StatisticsPage.tsx:260
+#: src/components/pages/StatisticsPage.tsx:266
 msgid "Number of times studied"
 msgstr "Number of times studied"
 
@@ -730,13 +743,13 @@ msgstr "OL"
 msgid "Optimize your knowledge retention with this effective study method."
 msgstr "Optimize your knowledge retention with this effective study method."
 
-#: src/components/pages/StatisticsPage.tsx:234
+#: src/components/pages/StatisticsPage.tsx:240
 msgid "Overview"
 msgstr "Overview"
 
 #: src/components/ProfileSettings.tsx:98
 #: src/components/forms/LoginForm.tsx:69
-#: src/components/forms/RegisterForm.tsx:115
+#: src/components/forms/RegisterForm.tsx:118
 msgid "Password"
 msgstr "Password"
 
@@ -746,11 +759,11 @@ msgid "Password changed successfully"
 msgstr "Password changed successfully"
 
 #: src/components/forms/LoginForm.tsx:22
-#: src/components/forms/RegisterForm.tsx:47
+#: src/components/forms/RegisterForm.tsx:49
 msgid "Password is required"
 msgstr "Password is required"
 
-#: src/components/forms/RegisterForm.tsx:76
+#: src/components/forms/RegisterForm.tsx:79
 #: src/components/pages/ResetPasswordPage.tsx:130
 msgid "Password must be at least 6 characters"
 msgstr "Password must be at least 6 characters"
@@ -763,15 +776,15 @@ msgstr "Please, try reloading the page"
 msgid "Portuguese"
 msgstr "Portuguese"
 
-#: src/components/GeneralSettings.tsx:105
+#: src/components/GeneralSettings.tsx:104
 msgid "Preferences"
 msgstr "Preferences"
 
-#: src/components/GeneralSettings.tsx:96
+#: src/components/GeneralSettings.tsx:95
 msgid "Preferences updated successfully"
 msgstr "Preferences updated successfully"
 
-#: src/components/pages/NotePage.tsx:214
+#: src/components/pages/NotePage.tsx:218
 msgid "Preview"
 msgstr "Preview"
 
@@ -800,17 +813,17 @@ msgstr "Ready to work offline"
 msgid "Refresh"
 msgstr "Refresh"
 
-#: src/components/forms/RegisterForm.tsx:49
-#: src/components/forms/RegisterForm.tsx:127
+#: src/components/forms/RegisterForm.tsx:51
+#: src/components/forms/RegisterForm.tsx:130
 #: src/components/pages/RegisterPage.tsx:12
 msgid "Register"
 msgstr "Register"
 
-#: src/components/pages/AddModelPage.tsx:164
+#: src/components/ModelFieldsForm.tsx:60
 msgid "Remove field"
 msgstr "Remove field"
 
-#: src/components/pages/AddModelPage.tsx:128
+#: src/components/ModelTemplatesForm.tsx:72
 msgid "Remove template"
 msgstr "Remove template"
 
@@ -830,7 +843,7 @@ msgstr "Rename {0} template"
 msgid "Repeat"
 msgstr "Repeat"
 
-#: src/components/pages/ForgotPasswordPage.tsx:135
+#: src/components/pages/ForgotPasswordPage.tsx:134
 msgid "Request Password Reset"
 msgstr "Request Password Reset"
 
@@ -855,7 +868,7 @@ msgstr "Retry"
 msgid "Review"
 msgstr "Review"
 
-#: src/components/GeneralSettings.tsx:148
+#: src/components/GeneralSettings.tsx:147
 msgid "Save preferences"
 msgstr "Save preferences"
 
@@ -867,19 +880,19 @@ msgstr "Save profile"
 msgid "Saved successfully"
 msgstr "Saved successfully"
 
-#: src/components/NotesTable.tsx:32
+#: src/components/NotesTable.tsx:34
 msgid "Search notes..."
 msgstr "Search notes..."
 
-#: src/components/pages/AddNotePage.tsx:142
+#: src/components/pages/AddNotePage.tsx:145
 msgid "Select a model"
 msgstr "Select a model"
 
-#: src/components/pages/StatisticsPage.tsx:224
+#: src/components/pages/StatisticsPage.tsx:228
 msgid "Select your deck"
 msgstr "Select your deck"
 
-#: src/components/Shell.tsx:46
+#: src/components/Shell.tsx:47
 #: src/components/pages/SettingsPage.tsx:10
 msgid "Settings"
 msgstr "Settings"
@@ -908,10 +921,14 @@ msgstr "Something went wrong"
 msgid "Start Session"
 msgstr "Start Session"
 
-#: src/components/Shell.tsx:74
+#: src/components/Shell.tsx:79
 #: src/components/pages/HomePage.tsx:104
 msgid "Statistics"
 msgstr "Statistics"
+
+#: src/components/StepTab.tsx:26
+msgid "Step {0}"
+msgstr "Step {0}"
 
 #: src/components/pages/HomePage.tsx:140
 msgid "Study"
@@ -921,7 +938,7 @@ msgstr "Study"
 msgid "Study deck"
 msgstr "Study deck"
 
-#: src/components/pages/StatisticsPage.tsx:267
+#: src/components/pages/StatisticsPage.tsx:273
 msgid "Study frequency"
 msgstr "Study frequency"
 
@@ -929,9 +946,9 @@ msgstr "Study frequency"
 msgid "Study today"
 msgstr "Study today"
 
-#: src/components/pages/AddModelPage.tsx:120
-msgid "Template #{index}"
-msgstr "Template #{index}"
+#: src/components/views/Alert.tsx:27
+msgid "Success"
+msgstr "Success"
 
 #: src/components/pages/ModelPage.tsx:79
 msgid "Template back side"
@@ -942,17 +959,18 @@ msgid "Template front side"
 msgstr "Template front side"
 
 #: src/components/EditTemplatesDialog.tsx:173
-#: src/components/pages/AddModelPage.tsx:125
+#: src/components/ModelTemplatesForm.tsx:69
 msgid "Template name"
 msgstr "Template name"
 
-#: src/components/pages/AddModelPage.tsx:79
+#: src/components/ModelTemplatesForm.tsx:19
 msgid "Template name is required"
 msgstr "Template name is required"
 
 #: src/components/EditTemplatesDialog.tsx:162
-#: src/components/pages/AddModelPage.tsx:115
-#: src/components/pages/ModelPage.tsx:135
+#: src/components/ModelTemplatesForm.tsx:33
+#: src/components/pages/AddModelPage.tsx:195
+#: src/components/pages/ModelPage.tsx:137
 msgid "Templates"
 msgstr "Templates"
 
@@ -964,9 +982,13 @@ msgstr "Templates of the current model"
 msgid "Terms and Conditions"
 msgstr "Terms and Conditions"
 
-#: src/components/pages/AddNotePage.tsx:168
+#: src/components/pages/AddNotePage.tsx:171
 msgid "The selected model doesn't have any fields. <0>Click here to edit it</0>"
 msgstr "The selected model doesn't have any fields. <0>Click here to edit it</0>"
+
+#: src/components/ModelTemplatesForm.tsx:42
+msgid "The templates are used to define the frontside and backside of each flashcard, using the fields defined in the previous step. You'll be able to edit the template's content after creating the model."
+msgstr "The templates are used to define the frontside and backside of each flashcard, using the fields defined in the previous step. You'll be able to edit the template's content after creating the model."
 
 #: src/components/forms/AddDeckForm.tsx:37
 msgid "The title is required"
@@ -984,7 +1006,7 @@ msgstr "This action will delete all values from the notes associated with this m
 msgid "This link may be broken or the typed URL is incorrect."
 msgstr "This link may be broken or the typed URL is incorrect."
 
-#: src/components/GeneralSettings.tsx:122
+#: src/components/GeneralSettings.tsx:121
 msgid "Time zone"
 msgstr "Time zone"
 
@@ -992,11 +1014,11 @@ msgstr "Time zone"
 msgid "Title"
 msgstr "Title"
 
-#: src/components/pages/AddNotePage.tsx:182
+#: src/components/pages/AddNotePage.tsx:187
 msgid "To create a note you need to associate it with a model."
 msgstr "To create a note you need to associate it with a model."
 
-#: src/components/pages/StatisticsPage.tsx:238
+#: src/components/pages/StatisticsPage.tsx:244
 msgid "Total study time"
 msgstr "Total study time"
 
@@ -1005,11 +1027,11 @@ msgstr "Total study time"
 msgid "Try again"
 msgstr "Try again"
 
-#: src/components/pages/StatisticsPage.tsx:177
+#: src/components/pages/StatisticsPage.tsx:179
 msgid "Try creating a deck first and study it in order to see your study statistics here."
 msgstr "Try creating a deck first and study it in order to see your study statistics here."
 
-#: src/components/pages/StatisticsPage.tsx:324
+#: src/components/pages/StatisticsPage.tsx:330
 msgid "Try selecting a broader interval above."
 msgstr "Try selecting a broader interval above."
 
@@ -1029,53 +1051,54 @@ msgstr "Update account password"
 msgid "Update your account email"
 msgstr "Update your account email"
 
-#: src/components/GeneralSettings.tsx:107
+#: src/components/GeneralSettings.tsx:106
 msgid "Update your preferred language for headlines, buttons and other texts."
 msgstr "Update your preferred language for headlines, buttons and other texts."
 
-#: src/components/GeneralSettings.tsx:122
+#: src/components/GeneralSettings.tsx:121
 msgid "Used to compute the statistics and study schedule in your local time."
 msgstr "Used to compute the statistics and study schedule in your local time."
 
-#: src/components/pages/ForgotPasswordPage.tsx:62
+#: src/components/pages/ForgotPasswordPage.tsx:63
 msgid "User not found"
 msgstr "User not found"
 
 #: src/components/ProfileSettings.tsx:92
 #: src/components/forms/LoginForm.tsx:68
-#: src/components/forms/RegisterForm.tsx:113
+#: src/components/forms/RegisterForm.tsx:116
 msgid "Username"
 msgstr "Username"
 
 #: src/components/ProfileSettings.tsx:60
 #: src/components/forms/LoginForm.tsx:21
-#: src/components/forms/RegisterForm.tsx:45
+#: src/components/forms/RegisterForm.tsx:47
 msgid "Username is required"
 msgstr "Username is required"
 
 #: src/components/ProfileSettings.tsx:57
-#: src/components/forms/RegisterForm.tsx:66
+#: src/components/forms/RegisterForm.tsx:69
 msgid "Username must be at least 4 characters"
 msgstr "Username must be at least 4 characters"
 
 #: src/components/ProfileSettings.tsx:58
-#: src/components/forms/RegisterForm.tsx:67
+#: src/components/forms/RegisterForm.tsx:70
 msgid "Username must be at most 20 characters"
 msgstr "Username must be at most 20 characters"
 
 #: src/components/ProfileSettings.tsx:59
-#: src/components/forms/RegisterForm.tsx:68
+#: src/components/forms/RegisterForm.tsx:71
 msgid "Username must consist only of alphanumeric characters and underscores"
 msgstr "Username must consist only of alphanumeric characters and underscores"
 
 #: src/components/forms/AddDeckForm.tsx:76
-#: src/components/pages/AddModelPage.tsx:97
-#: src/components/pages/AddNotePage.tsx:106
+#: src/components/pages/AddModelPage.tsx:127
+#: src/components/pages/AddNotePage.tsx:107
 msgid "View"
 msgstr "View"
 
 #: src/components/EditFieldsDialog.tsx:164
 #: src/components/EditTemplatesDialog.tsx:184
+#: src/components/views/Alert.tsx:30
 msgid "Warning"
 msgstr "Warning"
 
@@ -1083,23 +1106,23 @@ msgstr "Warning"
 msgid "We couldn't find the page you requested"
 msgstr "We couldn't find the page you requested"
 
-#: src/components/pages/StatisticsPage.tsx:174
+#: src/components/pages/StatisticsPage.tsx:176
 msgid "We don't have anything to show to you right now."
 msgstr "We don't have anything to show to you right now."
 
-#: src/components/pages/StatisticsPage.tsx:319
+#: src/components/pages/StatisticsPage.tsx:325
 msgid "We don't have enough data to display in the supplied period."
 msgstr "We don't have enough data to display in the supplied period."
 
-#: src/components/pages/ForgotPasswordPage.tsx:96
+#: src/components/pages/ForgotPasswordPage.tsx:95
 msgid "We have sent you an email with instructions to help you reset your password. Remember to also check the spam folder."
 msgstr "We have sent you an email with instructions to help you reset your password. Remember to also check the spam folder."
 
-#: src/components/pages/AddModelPage.tsx:66
+#: src/components/ModelTemplatesForm.tsx:51
 msgid "When you create a note, we will create the corresponding number of flashcards based on how much templates the note's model has, and will use the note's values to fill in the template."
 msgstr "When you create a note, we will create the corresponding number of flashcards based on how much templates the note's model has, and will use the note's values to fill in the template."
 
-#: src/components/pages/AddNotePage.tsx:178
+#: src/components/pages/AddNotePage.tsx:183
 msgid "You haven't created a model yet."
 msgstr "You haven't created a model yet."
 
@@ -1111,11 +1134,11 @@ msgstr "You haven't created any decks yet."
 msgid "You haven't created any models yet"
 msgstr "You haven't created any models yet"
 
-#: src/components/NotesTable.tsx:53
+#: src/components/NotesTable.tsx:55
 msgid "You haven't created any notes on this deck yet"
 msgstr "You haven't created any notes on this deck yet"
 
-#: src/components/pages/ModelPage.tsx:181
+#: src/components/pages/ModelPage.tsx:183
 msgid "You haven't created any templates on this model yet."
 msgstr "You haven't created any templates on this model yet."
 
@@ -1135,12 +1158,12 @@ msgstr "Your model is not saved, are you sure you want to exit the page?"
 msgid "Your models"
 msgstr "Your models"
 
-#: src/components/pages/NotePage.tsx:133
+#: src/components/pages/NotePage.tsx:136
 msgid "Your note is not saved, are you sure you want to exit the page?"
 msgstr "Your note is not saved, are you sure you want to exit the page?"
 
-#: src/components/NotesTable.tsx:63
-#: src/components/pages/NotePage.tsx:173
+#: src/components/NotesTable.tsx:65
+#: src/components/pages/NotePage.tsx:176
 msgid "empty note"
 msgstr "empty note"
 
@@ -1157,14 +1180,14 @@ msgid "{0, plural, one {# field} other {# fields}}"
 msgstr "{0, plural, one {# field} other {# fields}}"
 
 #: src/components/DeckCard.tsx:64
-#: src/components/pages/DeckPage.tsx:168
-#: src/components/pages/ModelPage.tsx:125
+#: src/components/pages/DeckPage.tsx:170
+#: src/components/pages/ModelPage.tsx:127
 msgid "{0, plural, one {# flashcard} other {# flashcards}}"
 msgstr "{0, plural, one {# flashcard} other {# flashcards}}"
 
 #: src/components/DeckCard.tsx:59
-#: src/components/pages/DeckPage.tsx:166
-#: src/components/pages/ModelPage.tsx:120
+#: src/components/pages/DeckPage.tsx:168
+#: src/components/pages/ModelPage.tsx:122
 msgid "{0, plural, one {# note} other {# notes}}"
 msgstr "{0, plural, one {# note} other {# notes}}"
 
@@ -1180,7 +1203,7 @@ msgstr "{0, plural, zero {# decks} one {# deck} other {# decks}}"
 msgid "{0, plural, zero {# models} one {# model} other {# models}}"
 msgstr "{0, plural, zero {# models} one {# model} other {# models}}"
 
-#: src/components/pages/StatisticsPage.tsx:238
+#: src/components/pages/StatisticsPage.tsx:244
 msgid "{0, select, millisecond {{1, plural, one {{formattedStudyTime} millisecond} other {{formattedStudyTime} milliseconds}}} second {{2, plural, one {{formattedStudyTime} second} other {{formattedStudyTime} seconds}}} minute {{3, plural, one {{formattedStudyTime} minute} other {{formattedStudyTime} minutes}}} hour {{4, plural, one {{formattedStudyTime} hour} other {{formattedStudyTime} hours}}} day {{5, plural, one {{formattedStudyTime} day} other {{formattedStudyTime} days}}}}"
 msgstr "{0, select, millisecond {{1, plural, one {{formattedStudyTime} millisecond} other {{formattedStudyTime} milliseconds}}} second {{2, plural, one {{formattedStudyTime} second} other {{formattedStudyTime} seconds}}} minute {{3, plural, one {{formattedStudyTime} minute} other {{formattedStudyTime} minutes}}} hour {{4, plural, one {{formattedStudyTime} hour} other {{formattedStudyTime} hours}}} day {{5, plural, one {{formattedStudyTime} day} other {{formattedStudyTime} days}}}}"
 

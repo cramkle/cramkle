@@ -10,7 +10,7 @@ import {
 } from '@reach/tabs'
 import { ForwardRefExoticComponentWithAs, forwardRefWithAs } from '@reach/utils'
 import classNames from 'classnames'
-import { HTMLAttributes, forwardRef, useState } from 'react'
+import { HTMLAttributes, forwardRef } from 'react'
 import * as React from 'react'
 
 import styles from './Tabs.css'
@@ -29,39 +29,18 @@ export const Tab = forwardRefWithAs<TabProps, 'button'>(function Tab(
   { children, className = '', ...props },
   ref
 ) {
-  const [focused, setFocused] = useState(false)
-
-  const handleBlur: React.FocusEventHandler<HTMLButtonElement> = (evt) => {
-    setFocused(false)
-    props.onBlur?.(evt)
-  }
-
-  const handleFocus: React.FocusEventHandler<HTMLButtonElement> = (evt) => {
-    setFocused(true)
-    props.onFocus?.(evt)
-  }
-
   return (
     <ReachTab
       {...props}
-      onFocus={handleFocus}
-      onBlur={handleBlur}
       ref={ref}
       className={classNames(
         className,
         styles.tab,
-        'group outline-reset font-medium text-sm relative capitalize px-4 md:px-6 py-2 inline-flex justify-start items-center'
+        'group outline-reset font-medium text-sm relative capitalize px-4 md:px-6 py-2 inline-flex justify-start items-center border-0'
       )}
     >
       {children}
-      <div
-        className={classNames(
-          'absolute top-0 left-0 right-0 bottom-0 bg-primary opacity-0 hover:opacity-08',
-          {
-            'opacity-08': focused,
-          }
-        )}
-      />
+      <div className="absolute top-0 left-0 right-0 bottom-0 bg-primary opacity-0 hover:opacity-08 group-focus:opacity-08" />
       <div
         className={classNames(
           styles.border,
