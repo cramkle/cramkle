@@ -1,8 +1,9 @@
-const customColors = [
+// @ts-check
+
+const customColors = /** @type {Array<string | [string, Record<string,string>]>} */ [
   'always-black',
   'always-white',
   'background',
-  'background-primary',
   'disabled',
   'divider',
   'editor',
@@ -11,39 +12,77 @@ const customColors = [
   'gray-3',
   'gray-4',
   'green-1',
-  'hover-overlay',
   'input',
   'on-primary',
   'on-secondary',
   'on-surface',
-  'primary',
+  [
+    'primary',
+    { dark: 'primary-dark', DEFAULT: 'primary', light: 'primary-light' },
+  ],
   'primary-disabled',
   'red-1',
-  'secondary',
+  ['secondary', { dark: 'secondary-dark', DEFAULT: 'secondary' }],
   'surface',
   'surface-inverted',
   'txt',
+  'txt-secondary',
   'txt-inverted',
   'violet-1',
   'violet-2',
   'yellow-1',
-].reduce((colorMap, color) => {
-  colorMap[color] = ({ opacityVariable, opacityValue }) => {
-    if (opacityValue !== undefined) {
-      return `hsla(var(--${color}), ${opacityValue})`
-    }
-    if (opacityVariable !== undefined) {
-      return `hsla(var(--${color}), var(${opacityVariable}, 1))`
-    }
-    return `hsl(var(--${color}))`
+].reduce((/** @type {Record<string, any>} */ colorMap, colorOrArray) => {
+  /** @type {string} */
+  let color
+  /** @type {string | Record<string, string>} */
+  let value
+
+  if (Array.isArray(colorOrArray)) {
+    color = /** @type {string} */ (colorOrArray[0])
+    value = colorOrArray[1]
+  } else {
+    color = colorOrArray
+    value = colorOrArray
   }
+
+  const createColorFunction = (/** @type string */ colorName) =>
+    function colorFn(
+      /** @type {{ opacityVariable?: string; opacityValue?: string }} */ {
+        opacityVariable,
+        opacityValue,
+      }
+    ) {
+      if (opacityValue !== undefined) {
+        return `hsla(var(--${colorName}), ${opacityValue})`
+      }
+      if (opacityVariable !== undefined) {
+        return `hsla(var(--${colorName}), var(${opacityVariable}, 1))`
+      }
+      return `hsl(var(--${colorName}))`
+    }
+
+  colorMap[color] =
+    typeof value === 'string'
+      ? createColorFunction(value)
+      : Object.fromEntries(
+          Object.keys(value).map((valueKey) => [
+            valueKey,
+            createColorFunction(
+              /** @type {Record<string, string>} */ (value)[valueKey]
+            ),
+          ])
+        )
 
   return colorMap
 }, {})
 
 module.exports = {
   theme: {
-    colors: customColors,
+    colors: {
+      ...customColors,
+      transparent: 'transparent',
+      current: 'currentColor',
+    },
     extend: {
       opacity: {
         '08': '.08',
@@ -90,5 +129,8 @@ module.exports = {
       safelist: ['__light-mode', '__dark-mode', 'h-full'],
     },
   },
-  plugins: [require('@tailwindcss/forms')],
+  plugins: [
+    // @ts-ignore
+    require('@tailwindcss/forms'),
+  ],
 }

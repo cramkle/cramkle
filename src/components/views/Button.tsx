@@ -1,28 +1,34 @@
+import { forwardRefWithAs } from '@reach/utils'
 import classnames from 'classnames'
-import { forwardRef } from 'react'
-import * as React from 'react'
 
 type Props = {
   variation?: 'outline' | 'primary' | 'secondary' | 'plain'
-  size?: 'normal' | 'small'
-} & React.ButtonHTMLAttributes<HTMLButtonElement>
+  size?: 'normal' | 'small' | 'large'
+  disabled?: boolean
+}
 
-const Button = forwardRef<HTMLButtonElement, Props>(function Button(
+const Button = forwardRefWithAs<Props, 'button'>(function Button(
   {
     className = '',
     variation = 'plain',
     size = 'normal',
     children,
     disabled,
+    as: As = 'button',
     ...props
   },
   inputRef
 ) {
   const classes = classnames(
     className,
-    'relative rounded py-1 px-4 outline-reset overflow-hidden',
+    'relative inline-block outline-reset overflow-hidden tracking-normal',
     'transition-opacity ease-in-out duration-200',
     {
+      'py-2 px-6 md:py-4 md:px-10': size === 'large',
+      'py-1 px-6': size === 'normal' || size === 'small',
+      rounded: size === 'normal' || size === 'small',
+      'rounded-lg': size === 'large',
+      'h-14 md:h-16': size === 'large',
       'h-10': size === 'normal',
       'h-8': size === 'small',
       'font-medium': variation !== 'plain',
@@ -38,16 +44,14 @@ const Button = forwardRef<HTMLButtonElement, Props>(function Button(
       'text-txt text-opacity-text-primary':
         variation === 'secondary' && !disabled,
       'text-txt text-opacity-text-disabled': disabled,
-      'bg-primary':
+      'bg-primary hover:bg-primary-light focus:bg-primary-light':
         (variation === 'primary' ||
           variation === 'plain' ||
           variation === 'outline') &&
         !disabled,
-      'hover:bg-hover-overlay focus:bg-hover-overlay hover:bg-opacity-100 focus:bg-opacity-100':
-        (variation === 'primary' || variation === 'secondary') && !disabled,
       'bg-opacity-12 hover:bg-opacity-20 focus:bg-opacity-20':
         (variation === 'plain' || variation === 'outline') && !disabled,
-      'bg-secondary bg-opacity-secondary':
+      'bg-secondary bg-opacity-secondary hover:bg-opacity-100 focus:bg-opacity-100 hover:bg-secondary-dark focus:bg-secondary-dark':
         variation === 'secondary' && !disabled,
       'bg-transparent': variation === 'outline' && !disabled,
       'bg-disabled bg-opacity-disabled': disabled,
@@ -55,16 +59,17 @@ const Button = forwardRef<HTMLButtonElement, Props>(function Button(
   )
 
   return (
-    <button {...props} className={classes} ref={inputRef} disabled={disabled}>
+    <As {...props} className={classes} ref={inputRef} disabled={disabled}>
       <div
         className={classnames('relative z-0 flex items-center justify-center', {
+          'text-xl': size === 'large',
           'text-base': size === 'normal',
           'text-sm': size === 'small',
         })}
       >
         {children}
       </div>
-    </button>
+    </As>
   )
 })
 
