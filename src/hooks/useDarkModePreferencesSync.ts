@@ -1,6 +1,6 @@
 import { useMutation } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 
 import { useTheme } from '../components/Theme'
 import {
@@ -29,7 +29,15 @@ export default function useDarkModePreferencesSync() {
     UpdateDarkModeVariables
   >(UPDATE_DARK_MODE_PREFERENCE)
 
+  const prevThemeRef = useRef(theme)
+
   useEffect(() => {
+    if (prevThemeRef.current === theme) {
+      return
+    }
+
+    prevThemeRef.current = theme
+
     updatePreferredTheme({ variables: { darkMode: theme === 'dark' } })
   }, [updatePreferredTheme, theme])
 }
