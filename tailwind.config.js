@@ -27,47 +27,24 @@ const customColors = [
   'violet-1',
   'violet-2',
   'yellow-1',
-]
+].reduce((colorMap, color) => {
+  colorMap[color] = ({ opacityVariable, opacityValue }) => {
+    if (opacityValue !== undefined) {
+      return `hsla(var(--${color}), ${opacityValue})`
+    }
+    if (opacityVariable !== undefined) {
+      return `hsla(var(--${color}), var(${opacityVariable}, 1))`
+    }
+    return `hsl(var(--${color}))`
+  }
 
-const customBorderColors = customColors.reduce(
-  (colors, colorName) => ({
-    ...colors,
-    [colorName]: `var(--border-${colorName}); --tw-border-opacity: 1`,
-  }),
-  []
-)
-
-const customBgColors = customColors.reduce(
-  (colors, colorName) => ({
-    ...colors,
-    [colorName]: `var(--bg-${colorName}); --tw-bg-opacity: 1`,
-  }),
-  []
-)
-
-const customTextColors = customColors.reduce(
-  (colors, colorName) => ({
-    ...colors,
-    [colorName]: `var(--text-${colorName}); --tw-text-opacity: 1`,
-  }),
-  []
-)
-
-const customRingColors = customColors.reduce(
-  (colors, colorName) => ({
-    ...colors,
-    [colorName]: `var(--ring-${colorName}); --tw-ring-opacity: 1`,
-  }),
-  []
-)
+  return colorMap
+}, {})
 
 module.exports = {
   theme: {
+    colors: customColors,
     extend: {
-      textColor: customTextColors,
-      backgroundColor: customBgColors,
-      borderColor: customBorderColors,
-      ringColor: customRingColors,
       opacity: {
         '08': '.08',
         12: '.12',

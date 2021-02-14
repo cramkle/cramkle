@@ -1,5 +1,3 @@
-const path = require('path')
-
 module.exports = {
   plugins: {
     'postcss-flexbugs-fixes': {},
@@ -10,6 +8,5 @@ module.exports = {
       stage: 3,
     },
     tailwindcss: {},
-    [path.resolve(__dirname, 'postcss', 'theme-prefix.js')]: {},
   },
 }
