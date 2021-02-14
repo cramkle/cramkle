@@ -1,12 +1,12 @@
-.menuItem[data-reach-menu-item][data-selected=""],
+.menuItem[data-reach-menu-item][data-selected=''],
 .menuItem:hover,
 .menuItem:focus {
   background: transparent;
-  color: var(--primary);
+  color: hsl(var(--primary));
 }
 
-.menuItem[data-selected=""] .menuItemBackdrop,
+.menuItem[data-selected=''] .menuItemBackdrop,
 .menuItem:hover .menuItemBackdrop,
 .menuItem:focus .menuItemBackdrop {
-  opacity: .12;
+  opacity: 0.12;
 }

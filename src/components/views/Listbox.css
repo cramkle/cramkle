@@ -2,29 +2,29 @@
   --reach-listbox: 1;
 }
 
-.button[aria-expanded="true"] {
-  border-color: var(--primary);
+.button[aria-expanded='true'] {
+  border-color: hsl(var(--primary));
 }
 
-.option[aria-selected="true"]:not([aria-disabled="true"]) {
-  color: var(--primary);
+.option[aria-selected='true']:not([aria-disabled='true']) {
+  color: hsl(var(--primary));
   background-color: transparent;
 }
 
-.option:not([data-current=""]) {
+.option:not([data-current='']) {
   padding-left: 2rem;
 }
 
 .optionBackdrop {
-  opacity: .12;
+  opacity: 0.12;
 }
 
-.option[aria-selected="true"]:not([aria-disabled="true"]) .optionBackdrop {
+.option[aria-selected='true']:not([aria-disabled='true']) .optionBackdrop {
   position: absolute;
-  opacity: .12;
+  opacity: 0.12;
 }
 
-.option[data-current=""] .optionIcon {
+.option[data-current=''] .optionIcon {
   display: block;
 }
 

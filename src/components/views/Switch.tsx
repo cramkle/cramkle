@@ -85,7 +85,7 @@ export const Switch: React.FC<
             width="60"
             height="32"
             rx="16"
-            stroke="var(--primary)"
+            stroke="hsl(var(--primary))"
             strokeWidth="2"
           />
         )}
@@ -110,7 +110,7 @@ export const Switch: React.FC<
           cx="17"
           cy="17"
           r="9"
-          fill={checked ? 'var(--on-primary)' : 'currentColor'}
+          fill={checked ? 'hsl(var(--on-primary))' : 'currentColor'}
         />
       </svg>
       {children}
