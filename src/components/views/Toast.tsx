@@ -59,7 +59,7 @@ export const Toast: React.VFC<ToastProps> = ({
           <div className="ml-4">
             <Button
               size="small"
-              onClick={(evt) => {
+              onClick={(evt: React.MouseEvent<HTMLButtonElement>) => {
                 onDismiss?.()
                 action.onPress(evt)
               }}
