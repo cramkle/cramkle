@@ -25,6 +25,7 @@
     "./**/*.tsx",
     "./**/*.js",
     "./.*.js",
-    "./.storybook/**/*"
+    "./.storybook/**/*",
+    "./src/typings/*.d.ts"
   ]
 }

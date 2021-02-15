@@ -11,7 +11,7 @@ const LoginPage: React.FunctionComponent = () => {
   const { i18n } = useLingui()
 
   return (
-    <div className="flex flex-col min-h-screen w-full p-4 items-center justify-center bg-background-primary text-on-primary">
+    <div className="flex flex-col min-h-screen w-full p-4 items-center justify-center bg-primary-dark text-on-primary">
       <Helmet>
         <title>{i18n._(t`Login`)}</title>
         <meta

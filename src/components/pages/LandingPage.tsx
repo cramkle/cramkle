@@ -7,8 +7,8 @@ import { ReactComponent as Logo } from '../../assets/logo.svg'
 import AppName from '../AppName'
 import Footer from '../Footer'
 import RegisterForm from '../forms/RegisterForm'
+import Button from '../views/Button'
 import { Header, HeaderContent, HeaderSection } from '../views/Header'
-import { Headline2, Headline4 } from '../views/Typography'
 
 const LandingPage: React.FunctionComponent = () => {
   return (
@@ -22,58 +22,126 @@ const LandingPage: React.FunctionComponent = () => {
             </div>
           </HeaderSection>
           <HeaderSection align="end">
-            <Link
+            <Button
+              as={Link}
+              variation="secondary"
               to="/login"
-              className="text-txt text-opacity-text-primary hover:bg-secondary hover:bg-opacity-secondary rounded py-1 px-2 h-10 flex items-center"
+              className="flex items-center"
             >
               <Trans>Login</Trans>
-            </Link>
-            <Link
-              className="text-on-primary bg-primary rounded py-1 px-2 h-10 flex items-center ml-2"
+            </Button>
+            <Button
+              as={Link}
+              variation="primary"
               to="/register"
+              className="flex items-center ml-3"
             >
               <Trans>Sign Up</Trans>
-            </Link>
+            </Button>
           </HeaderSection>
         </HeaderContent>
       </Header>
-      <div
-        className="flex bg-background-primary text-on-primary min-h-screen w-full"
-        style={{ backgroundImage: `url(${bgUrl})` }}
-      >
-        <div className="flex flex-col sm:flex-row justify-around items-center w-full mx-2 lg:mx-16 py-16 sm:py-32">
-          <div
-            className="flex flex-wrap py-8 sm:py-0 w-full"
-            style={{ maxWidth: 450 }}
-          >
-            <Headline2 className="text-4xl sm:text-5xl font-bold leading-tight">
-              <Trans>Make sure your knowledge will last</Trans>
-            </Headline2>
-            <Headline4 className="text-base sm:text-2xl mt-4 leading-tight">
-              <Trans>
-                Optimize your knowledge retention with this effective study
-                method.
-              </Trans>
-            </Headline4>
-          </div>
-          <div
-            className="inline-flex flex-col items-center w-full"
-            style={{ maxWidth: 450 }}
-          >
-            <RegisterForm title={t`Sign up now!`} />
+      <section className="bg-surface space-y-20 sm:space-y-32 md:space-y-40 lg:space-y-44">
+        <div
+          className="bg-primary text-on-primary"
+          style={{
+            backgroundImage: `url(${bgUrl})`,
+          }}
+        >
+          <section className="max-w-screen-lg xl:max-w-screen-xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-8 py-16 px-4 sm:px-6 md:px-8">
+              <div className="self-center mx-auto lg:mx-none max-w-lg lg:max-w-none">
+                <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tighter">
+                  <Trans>Make sure your knowledge will last</Trans>
+                </h1>
+                <p className="text-on-primary text-opacity-text-primary text-lg sm:text-2xl mt-8 sm:mt-10 font-medium tracking-normal">
+                  <Trans>
+                    Optimize your knowledge retention with this effective study
+                    method.
+                  </Trans>
+                </p>
+              </div>
+              <div className="self-center flex flex-col items-center">
+                <RegisterForm title={t`Sign up now!`} />
 
-            <span className="mt-4">
-              <Trans>
-                Already have an account?{' '}
-                <Link to="/login" className="font-bold text-on-primary">
-                  Log In
-                </Link>
-              </Trans>
-            </span>
-          </div>
+                <span className="mt-4">
+                  <Trans>
+                    Already have an account?{' '}
+                    <Link to="/login" className="font-bold text-on-primary">
+                      Log In
+                    </Link>
+                  </Trans>
+                </span>
+              </div>
+            </div>
+          </section>
         </div>
-      </div>
-      <Footer />
+        <section className="max-w-screen-lg xl:max-w-screen-xl mx-auto space-y-20 sm:space-y-32 md:space-y-40 lg:space-y-44">
+          <div className="px-4 sm:px-6 md:px-8 mb-10 sm:mb-16 md:mb-20">
+            <p className="text-txt-secondary max-w-4xl text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium sm:leading-10 mb-12">
+              <Trans id="product-description">
+                Cramkle is a flashcard-based study platform, where you can group
+                subjects into decks, that automatically schedules study sessions
+                using a spaced-repetition algorithm to maximize your knowledge
+                retention
+              </Trans>
+            </p>
+
+            <Button
+              as="a"
+              href="https://wikipedia.org/wiki/Spaced_repetition"
+              target="_blank"
+              size="large"
+              className="inline-flex items-center"
+            >
+              <Trans>Learn more</Trans>
+            </Button>
+          </div>
+          <div className="text-right px-4 sm:px-6 md:px-8 mb-10 sm:mb-16 md:mb-20">
+            <p className="text-transparent bg-clip-text bg-gradient-to-b from-primary to-primary-dark text-3xl sm:text-5xl lg:text-6xl leading-tight py-1 font-extrabold tracking-tight mb-8">
+              <Trans>
+                Simple for those who want it, powerful for those who need it
+              </Trans>
+            </p>
+            <p className="text-txt-secondary ml-auto max-w-4xl text-lg sm:text-2xl font-medium sm:leading-10">
+              <Trans>
+                From creating simple front and back flashcards, to automating
+                their creation with models and user-defined templates, you can
+                achieve the flexibility you need without complicating your study
+                routine.
+              </Trans>
+            </p>
+          </div>
+          <div className="px-4 sm:px-6 md:px-8 mb-10 sm:mb-16 md:mb-20">
+            <p className="text-transparent bg-clip-text bg-gradient-to-b from-primary-dark to-txt text-3xl sm:text-5xl lg:text-6xl leading-tight py-1 font-extrabold tracking-tight mb-8">
+              <Trans>Start studying now, anonymously</Trans>
+            </p>
+            <p className="text-txt-secondary max-w-4xl text-lg sm:text-2xl font-medium sm:leading-10">
+              <Trans>
+                With Cramkle you don't need to create an account to start
+                studying, use the anonymous login to get a feel for the app and
+                fill in your personal information later when you're comfortable
+                to do so.
+              </Trans>
+            </p>
+          </div>
+          <div className="text-center px-4 sm:px-6 md:px-8">
+            <h1 className="text txt text-opacity-text-primary text-3xl sm:text-5xl lg:text-6xl leading-none font-extrabold tracking-tight mb-12">
+              <Trans>Create your account today!</Trans>
+            </h1>
+            <Button
+              as={Link}
+              to="/register"
+              size="large"
+              variation="primary"
+              className="inline-flex items-center"
+            >
+              <Trans id="landing.cta">Get started</Trans>
+            </Button>
+          </div>
+        </section>
+        <Footer />
+      </section>
     </>
   )
 }
