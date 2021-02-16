@@ -16,7 +16,7 @@ export interface UpdatePreferences_updatePreferences_user_preferences {
   /**
    * User preferred locale
    */
-  locale: string;
+  locale: string | null;
 }
 
 export interface UpdatePreferences_updatePreferences_user {

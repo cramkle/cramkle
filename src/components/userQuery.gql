@@ -3,6 +3,7 @@ query UserQuery {
     id
     username
     email
+    anonymous
     preferences {
       zoneInfo
       locale

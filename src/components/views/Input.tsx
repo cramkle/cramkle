@@ -52,7 +52,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
       ref={ref}
       className={classnames(
         className,
-        'bg-input text-txt text-opacity-text-primary rounded border border-divider border-opacity-divider outline-none py-2 px-4 focus:border-primary placeholder-gray-2 leading-snug',
+        'bg-input text-txt text-opacity-text-primary rounded border border-divider border-opacity-divider outline-none py-2 px-4 focus:border-primary placeholder-gray-2 leading-snug min-w-0',
         {
           'mt-2': isLabelled,
         }
@@ -73,7 +73,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         ref={ref}
         className={classnames(
           className,
-          'bg-input text-txt text-opacity-text-primary rounded border border-divider border-opacity-divider py-2 px-4 focus:border-primary placeholder-gray-2',
+          'bg-input text-txt text-opacity-text-primary rounded border border-divider border-opacity-divider py-2 px-4 focus:border-primary placeholder-gray-2 min-w-0',
           {
             'mt-2': isLabelled,
           }

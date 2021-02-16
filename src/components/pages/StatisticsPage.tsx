@@ -231,10 +231,10 @@ const StatisticsPage: React.FC = () => {
           <Trans>Deck Statistics</Trans>
         </Headline1>
 
-        <Body1 className="mt-6 text-txt text-opacity-text-primary text-center">
+        <Body1 className="mt-6 text-txt text-opacity-text-primary">
           <Trans>We don't have anything to show to you right now.</Trans>
         </Body1>
-        <Body2 className="mt-2 text-center">
+        <Body2 className="mt-2">
           <Trans>
             Try creating a deck first and study it in order to see your study
             statistics here.

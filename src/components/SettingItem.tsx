@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import type { ReactNode } from 'react'
 
-import styles from './GeneralSettings.css'
+import styles from './SettingItem.css'
 import { Subtitle2 } from './views/Typography'
 
 interface Props {
@@ -40,7 +40,9 @@ export default function SettingItem({
           {description}
         </Subtitle2>
       )}
-      <div className={classNames(styles.settingInput, 'ml-2 self-center')}>
+      <div
+        className={classNames(styles.settingInput, 'ml-2 self-center min-w-0')}
+      >
         {children}
       </div>
     </div>

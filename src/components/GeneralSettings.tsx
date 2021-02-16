@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from '@apollo/react-hooks'
+import { useMutation } from '@apollo/react-hooks'
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { positionRight } from '@reach/popover'
@@ -15,12 +15,11 @@ import { useTimezoneData } from '../hooks/useTimezoneData'
 import { pushSimpleToast } from '../toasts/pushToast'
 import styles from './GeneralSettings.css'
 import SettingItem from './SettingItem'
+import { useCurrentUser } from './UserContext'
 import type {
   UpdatePreferences,
   UpdatePreferencesVariables,
 } from './__generated__/UpdatePreferences'
-import type { UserQuery } from './__generated__/UserQuery'
-import USER_QUERY from './userQuery.gql'
 import Button from './views/Button'
 import { Card, CardContent } from './views/Card'
 import { Chip } from './views/Chip'
@@ -93,8 +92,8 @@ const TimezoneOption: React.FC<{
 
 const GeneralSettings: React.FC = () => {
   const { i18n } = useLingui()
-  const { data } = useQuery<UserQuery>(USER_QUERY)
-  const zoneInfo = data!.me!.preferences.zoneInfo
+  const me = useCurrentUser()
+  const zoneInfo = me.preferences.zoneInfo
   const [updatePreferences, { loading }] = useMutation<
     UpdatePreferences,
     UpdatePreferencesVariables

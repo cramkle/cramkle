@@ -23,6 +23,7 @@ export interface UpdateProfile_updateProfile_user {
    * User's email
    */
   email: string;
+  anonymous: boolean;
 }
 
 export interface UpdateProfile_updateProfile_error_fields {
@@ -54,4 +55,5 @@ export interface UpdateProfile {
 export interface UpdateProfileVariables {
   email?: string | null;
   username?: string | null;
+  password?: string | null;
 }

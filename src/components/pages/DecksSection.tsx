@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/react-hooks'
 import { Plural, Trans } from '@lingui/macro'
-import classNames from 'classnames'
+import classnames from 'classnames'
 import gql from 'graphql-tag'
 import { useCallback, useState } from 'react'
 import * as React from 'react'
@@ -45,22 +45,6 @@ const DecksSection: React.FunctionComponent = () => {
     return null
   }
 
-  if (!decks || decks.length === 0) {
-    return (
-      <div className="flex flex-col items-center">
-        <Body1 className="mt-8 text-txt text-opacity-text-primary">
-          <Trans>You haven't created any decks yet.</Trans>
-        </Body1>
-
-        <Button className="mt-6" onClick={handleDialogOpen}>
-          <Trans>Create deck</Trans>
-        </Button>
-
-        <AddDeckForm open={dialogOpen} onClose={handleDialogClose} />
-      </div>
-    )
-  }
-
   return (
     <>
       <Headline1 className="mt-6 leading-none text-txt text-opacity-text-primary">
@@ -68,26 +52,37 @@ const DecksSection: React.FunctionComponent = () => {
       </Headline1>
 
       <div className="flex items-center mt-6">
-        <Body1 className="text-txt text-opacity-text-secondary font-medium">
-          <Plural
-            value={decks.length}
-            zero="# decks"
-            one="# deck"
-            other="# decks"
-          />
-        </Body1>
-        <Button className="ml-6" onClick={handleDialogOpen}>
+        {decks && decks.length > 0 && (
+          <Body1 className="text-txt text-opacity-text-secondary font-medium">
+            <Plural
+              value={decks.length}
+              zero="# decks"
+              one="# deck"
+              other="# decks"
+            />
+          </Body1>
+        )}
+        <Button
+          className={classnames({ 'ml-6': decks && decks.length > 0 })}
+          onClick={handleDialogOpen}
+        >
           <Trans>Create deck</Trans>
         </Button>
       </div>
 
-      <div className="mt-6 mb-4">
-        <div className={classNames(styles.grid, 'grid gap-4')}>
-          {decks.map((deck) => (
-            <DeckCard key={deck.id} deck={deck} />
-          ))}
+      {!decks || decks.length === 0 ? (
+        <Body1 className="mt-8 text-txt text-opacity-text-primary">
+          <Trans>You haven't created any decks yet.</Trans>
+        </Body1>
+      ) : (
+        <div className="mt-6 mb-4">
+          <div className={classnames(styles.grid, 'grid gap-4')}>
+            {decks.map((deck) => (
+              <DeckCard key={deck.id} deck={deck} />
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
       <AddDeckForm open={dialogOpen} onClose={handleDialogClose} />
     </>

@@ -29,7 +29,7 @@ msgstr "1 ano"
 msgid "7 days"
 msgstr "7 dias"
 
-#: src/components/ProfileSettings.tsx:98
+#: src/components/ProfileSettings.tsx:113
 msgid "<0>Click to change password.</0> Secure your account with a strong password"
 msgstr "<0>Clique para mudar a senha.</0> Proteja sua conta com uma senha forte"
 
@@ -37,7 +37,7 @@ msgstr "<0>Clique para mudar a senha.</0> Proteja sua conta com uma senha forte"
 msgid "A model consist of both fields and templates. A field is used in a note to fill values that are used inside the template."
 msgstr "Um modelo consiste tanto de campos quanto templates. Um campo é utilizado em uma nota para preencher os valores usados dentro do template."
 
-#: src/components/pages/HomePage.tsx:62
+#: src/components/pages/HomePage.tsx:64
 msgid "A new update is available!"
 msgstr "Uma nova atualização está disponível!"
 
@@ -50,7 +50,7 @@ msgstr "Sobre"
 msgid "About our mission and values, read more"
 msgstr "Sobre nossa missão e valores, leia mais"
 
-#: src/components/pages/HomePage.tsx:119
+#: src/components/pages/HomePage.tsx:121
 msgid "About us"
 msgstr "Sobre nós"
 
@@ -139,12 +139,16 @@ msgstr "Ocorreu um erro ao salvar o template"
 msgid "An unexpected error has occurred"
 msgstr "Ocorreu um erro inesperado"
 
-#: src/components/ProfileSettings.tsx:73
-#: src/components/ProfileSettings.tsx:78
+#: src/components/ProfileSettings.tsx:86
+#: src/components/ProfileSettings.tsx:91
 #: src/components/forms/RegisterForm.tsx:93
 #: src/components/forms/RegisterForm.tsx:98
 msgid "An unknown error has occurred"
 msgstr "Ocorreu um erro desconhecido"
+
+#: src/components/Shell.tsx:105
+msgid "Anonymous user"
+msgstr "Usuário anônimo"
 
 #: src/components/pages/StudyPage.tsx:114
 msgid "Are you sure you want to cancel the current study session?"
@@ -169,6 +173,10 @@ msgstr "Você tem certeza que deseja apagar esse modelo? {0, plural, one {Existe
 #: src/components/DeleteNoteDialog.tsx:43
 msgid "Are you sure you want to delete this note? {0, plural, one {It contains one flashcard} other {It contains # flashcards}}"
 msgstr "Você tem certeza que deseja apagar essa nota? {0, plural, one {Ela contém um flashcard} other {Ela contém # flashcards}}"
+
+#: src/components/Shell.tsx:62
+msgid "Are you sure you want to logout?"
+msgstr "Você tem certeza que quer sair?"
 
 #: src/components/FlashCardRenderer.tsx:70
 msgid "Back side"
@@ -195,6 +203,7 @@ msgstr "Negrito"
 #: src/components/EditTemplatesDialog.tsx:175
 #: src/components/EditTemplatesDialog.tsx:202
 #: src/components/EditTemplatesDialog.tsx:227
+#: src/components/Shell.tsx:74
 #: src/components/UpdatePasswordDialog.tsx:101
 #: src/components/pages/StudyPage.tsx:128
 #: src/components/pages/StudySection.tsx:75
@@ -205,7 +214,7 @@ msgstr "Cancelar"
 msgid "Change password"
 msgstr "Mudar senha"
 
-#: src/components/ProfileSettings.tsx:92
+#: src/components/ProfileSettings.tsx:105
 msgid "Change your account username"
 msgstr "Mude o nome de usuário de sua conta"
 
@@ -228,6 +237,10 @@ msgstr "Bloco de código"
 #: src/components/Footer.tsx:44
 msgid "Company"
 msgstr "Empresa"
+
+#: src/components/ProfileSettings.tsx:55
+msgid "Complete your profile below."
+msgstr "Complete seu perfil abaixo."
 
 #: src/components/UpdatePasswordDialog.tsx:97
 msgid "Confirm new password"
@@ -255,6 +268,10 @@ msgstr "Parabéns, você terminou seus estudos desse deck por enquanto."
 msgid "Continue Studying"
 msgstr "Continuar estudando"
 
+#: src/components/pages/LoginPage.tsx:36
+msgid "Continue without account"
+msgstr "Continuar sem uma conta"
+
 #: src/components/forms/AddDeckForm.tsx:106
 msgid "Create"
 msgstr "Criar"
@@ -267,15 +284,21 @@ msgstr "Criar um modelo"
 msgid "Create a name for your model."
 msgstr "Crie um nome para seu modelo."
 
-#: src/components/pages/DecksSection.tsx:44
-#: src/components/pages/DecksSection.tsx:60
+#: src/components/ProfileSettings.tsx:111
+msgid "Create a password for your account"
+msgstr "Crie uma senha para sua conta"
+
+#: src/components/ProfileSettings.tsx:105
+msgid "Create an username for your account"
+msgstr "Crie um nome de usuário para sua conta"
+
+#: src/components/pages/DecksSection.tsx:47
 msgid "Create deck"
 msgstr "Criar deck"
 
 #: src/components/ModelTemplatesForm.tsx:80
 #: src/components/pages/AddModelPage.tsx:183
-#: src/components/pages/ModelsSection.tsx:43
-#: src/components/pages/ModelsSection.tsx:57
+#: src/components/pages/ModelsSection.tsx:47
 msgid "Create model"
 msgstr "Criar modelo"
 
@@ -311,7 +334,7 @@ msgstr "Senha atual"
 msgid "Current password is required to change your password"
 msgstr "Senha atual é obrigatória para mudar sua senha"
 
-#: src/components/Shell.tsx:52
+#: src/components/Shell.tsx:87
 msgid "Dark mode"
 msgstr "Modo escuro"
 
@@ -341,7 +364,7 @@ msgstr "Deck não encontrado"
 msgid "Deck {0}"
 msgstr "Deck {0}"
 
-#: src/components/pages/HomePage.tsx:141
+#: src/components/pages/HomePage.tsx:143
 msgid "Decks"
 msgstr "Decks"
 
@@ -386,7 +409,7 @@ msgstr "Descrição"
 msgid "Do you want to start a study session of the deck {0}?"
 msgstr "Você quer começar uma sessão de estudos para o deck {0}?"
 
-#: src/components/pages/LoginPage.tsx:21
+#: src/components/pages/LoginPage.tsx:43
 msgid "Don't have an account? <0>Sign Up</0>"
 msgstr "Não possui uma conta? <0>Cadastre-se</0>"
 
@@ -408,7 +431,7 @@ msgstr "Editar campos"
 msgid "Edit templates"
 msgstr "Editar templates"
 
-#: src/components/ProfileSettings.tsx:95
+#: src/components/ProfileSettings.tsx:108
 #: src/components/forms/RegisterForm.tsx:117
 msgid "Email"
 msgstr "Email"
@@ -417,12 +440,12 @@ msgstr "Email"
 msgid "Email address"
 msgstr "Endereço de email"
 
-#: src/components/ProfileSettings.tsx:64
+#: src/components/ProfileSettings.tsx:71
 #: src/components/forms/RegisterForm.tsx:48
 msgid "Email is required"
 msgstr "Email é obrigatório"
 
-#: src/components/ProfileSettings.tsx:63
+#: src/components/ProfileSettings.tsx:70
 #: src/components/forms/RegisterForm.tsx:75
 msgid "Email must be a valid email"
 msgstr "Email precisa ser um email válido"
@@ -479,6 +502,10 @@ msgstr "Campos"
 msgid "Fields that you can use in your templates and notes. You can add a field to a template by typing the @ symbol and the field name"
 msgstr "Campos que você pode utilizar em seus templates e notas. Você pode adicionar um campo a um template digitando o símbolo @ e o nome do campo"
 
+#: src/components/ProfileSettings.tsx:108
+msgid "Fill the email for your account"
+msgstr "Preencha o email da sua conta"
+
 #: src/components/Pagination.tsx:52
 msgid "First page"
 msgstr "Primeira página"
@@ -504,7 +531,7 @@ msgstr "Esqueceu a senha"
 msgid "Forgot password?"
 msgstr "Esqueceu a senha?"
 
-#: src/components/forms/LoginForm.tsx:71
+#: src/components/forms/LoginForm.tsx:68
 msgid "Forgot your password?"
 msgstr "Esqueceu sua senha?"
 
@@ -578,7 +605,7 @@ msgstr "H6"
 msgid "Hard"
 msgstr "Difícil"
 
-#: src/components/pages/HomePage.tsx:92
+#: src/components/pages/HomePage.tsx:94
 msgid "Home"
 msgstr "Página Inicial"
 
@@ -594,11 +621,11 @@ msgstr "Intervalo"
 msgid "Invalid email"
 msgstr "Email inválido"
 
-#: src/components/forms/LoginForm.tsx:34
+#: src/components/forms/LoginForm.tsx:33
 msgid "Invalid username"
 msgstr "Nome de usuário inválido"
 
-#: src/components/forms/LoginForm.tsx:57
+#: src/components/forms/LoginForm.tsx:56
 msgid "Invalid username and/or password"
 msgstr "Nome de usuário e/ou senha inválidos"
 
@@ -627,25 +654,29 @@ msgstr "Aprenda mais"
 msgid "Learning"
 msgstr "Aprendendo"
 
-#: src/components/Shell.tsx:57
+#: src/components/Shell.tsx:92
 msgid "Log out"
 msgstr "Sair"
 
-#: src/components/forms/LoginForm.tsx:65
+#: src/components/forms/LoginForm.tsx:62
 #: src/components/pages/LandingPage.tsx:23
-#: src/components/pages/LoginPage.tsx:12
+#: src/components/pages/LoginPage.tsx:14
 msgid "Login"
 msgstr "Login"
 
-#: src/components/pages/LoginPage.tsx:13
+#: src/components/pages/LoginPage.tsx:15
 msgid "Login to your account to study your decks"
 msgstr "Entre na sua conta para estudar seus decks"
+
+#: src/components/Shell.tsx:77
+msgid "Logout and delete account"
+msgstr "Sair e apagar conta"
 
 #: src/components/pages/LandingPage.tsx:39
 msgid "Make sure your knowledge will last"
 msgstr "Garanta que seu conhecimento irá durar"
 
-#: src/components/pages/HomePage.tsx:108
+#: src/components/pages/HomePage.tsx:110
 msgid "Marketplace"
 msgstr "Marketplace"
 
@@ -673,7 +704,7 @@ msgstr "Modelo não encontrado"
 msgid "Model type"
 msgstr "Tipo do modelo"
 
-#: src/components/pages/HomePage.tsx:142
+#: src/components/pages/HomePage.tsx:144
 msgid "Models"
 msgstr "Modelos"
 
@@ -759,8 +790,9 @@ msgstr "Otimize a sua retenção de conhecimento com esse método efetivo de est
 msgid "Overview"
 msgstr "Visão geral"
 
-#: src/components/ProfileSettings.tsx:98
-#: src/components/forms/LoginForm.tsx:69
+#: src/components/ProfileSettings.tsx:111
+#: src/components/ProfileSettings.tsx:113
+#: src/components/forms/LoginForm.tsx:66
 #: src/components/forms/RegisterForm.tsx:118
 msgid "Password"
 msgstr "Senha"
@@ -770,11 +802,13 @@ msgstr "Senha"
 msgid "Password changed successfully"
 msgstr "Senha alterada com sucesso"
 
-#: src/components/forms/LoginForm.tsx:22
+#: src/components/ProfileSettings.tsx:76
+#: src/components/forms/LoginForm.tsx:21
 #: src/components/forms/RegisterForm.tsx:49
 msgid "Password is required"
 msgstr "Senha é obrigatória"
 
+#: src/components/ProfileSettings.tsx:75
 #: src/components/forms/RegisterForm.tsx:79
 #: src/components/pages/ResetPasswordPage.tsx:130
 msgid "Password must be at least 6 characters"
@@ -808,19 +842,19 @@ msgstr "Página anterior"
 msgid "Privacy Policy"
 msgstr "Política de Privacidade"
 
-#: src/components/ProfileSettings.tsx:48
+#: src/components/ProfileSettings.tsx:51
 msgid "Profile"
 msgstr "Perfil"
 
-#: src/components/ProfileSettings.tsx:88
+#: src/components/ProfileSettings.tsx:101
 msgid "Profile updated successfully"
 msgstr "Perfil atualizado com sucesso"
 
-#: src/components/pages/HomePage.tsx:72
+#: src/components/pages/HomePage.tsx:74
 msgid "Ready to work offline"
 msgstr "Pronto para funcionar offline"
 
-#: src/components/pages/HomePage.tsx:64
+#: src/components/pages/HomePage.tsx:66
 #: src/utils/errorFallback.tsx:13
 msgid "Refresh"
 msgstr "Atualizar"
@@ -884,7 +918,7 @@ msgstr "Revisão"
 msgid "Save preferences"
 msgstr "Salvar preferências"
 
-#: src/components/ProfileSettings.tsx:111
+#: src/components/ProfileSettings.tsx:126
 msgid "Save profile"
 msgstr "Salvar perfil"
 
@@ -904,7 +938,7 @@ msgstr "Selecione um modelo"
 msgid "Select your deck"
 msgstr "Selecione seu deck"
 
-#: src/components/Shell.tsx:47
+#: src/components/Shell.tsx:82
 #: src/components/pages/SettingsPage.tsx:10
 msgid "Settings"
 msgstr "Configurações"
@@ -913,7 +947,7 @@ msgstr "Configurações"
 msgid "Show"
 msgstr "Mostrar"
 
-#: src/components/pages/HomePage.tsx:99
+#: src/components/pages/HomePage.tsx:101
 msgid "Sidebar"
 msgstr "Barra lateral"
 
@@ -941,8 +975,8 @@ msgstr "Começar sessão"
 msgid "Start studying now, anonymously"
 msgstr "Começe a estudar agora, anonimamente"
 
-#: src/components/Shell.tsx:79
-#: src/components/pages/HomePage.tsx:104
+#: src/components/Shell.tsx:127
+#: src/components/pages/HomePage.tsx:106
 msgid "Statistics"
 msgstr "Estatísticas"
 
@@ -950,7 +984,7 @@ msgstr "Estatísticas"
 msgid "Step {0}"
 msgstr "Passo {0}"
 
-#: src/components/pages/HomePage.tsx:140
+#: src/components/pages/HomePage.tsx:142
 msgid "Study"
 msgstr "Estudar"
 
@@ -1067,7 +1101,7 @@ msgstr "Sublinha"
 msgid "Update account password"
 msgstr "Atualizar senha da conta"
 
-#: src/components/ProfileSettings.tsx:95
+#: src/components/ProfileSettings.tsx:108
 msgid "Update your account email"
 msgstr "Atualize o email de sua conta"
 
@@ -1083,29 +1117,29 @@ msgstr "Usado para computar as estatísticas e o cronograma de estudo em seu tem
 msgid "User not found"
 msgstr "Usuário não encontrado"
 
-#: src/components/ProfileSettings.tsx:92
-#: src/components/forms/LoginForm.tsx:68
+#: src/components/ProfileSettings.tsx:105
+#: src/components/forms/LoginForm.tsx:65
 #: src/components/forms/RegisterForm.tsx:116
 msgid "Username"
 msgstr "Nome de usuário"
 
-#: src/components/ProfileSettings.tsx:60
-#: src/components/forms/LoginForm.tsx:21
+#: src/components/ProfileSettings.tsx:68
+#: src/components/forms/LoginForm.tsx:20
 #: src/components/forms/RegisterForm.tsx:47
 msgid "Username is required"
 msgstr "Nome de usuário é obrigatório"
 
-#: src/components/ProfileSettings.tsx:57
+#: src/components/ProfileSettings.tsx:65
 #: src/components/forms/RegisterForm.tsx:69
 msgid "Username must be at least 4 characters"
 msgstr "Nome de usuário precisa ter pelo menos 4 caracteres"
 
-#: src/components/ProfileSettings.tsx:58
+#: src/components/ProfileSettings.tsx:66
 #: src/components/forms/RegisterForm.tsx:70
 msgid "Username must be at most 20 characters"
 msgstr "Nome de usuário precisa ter no máximo 20 caracteres"
 
-#: src/components/ProfileSettings.tsx:59
+#: src/components/ProfileSettings.tsx:67
 #: src/components/forms/RegisterForm.tsx:71
 msgid "Username must consist only of alphanumeric characters and underscores"
 msgstr "O nome de usuário precisa conter apenas caracteres alfanuméricos e sublinhas"
@@ -1146,15 +1180,23 @@ msgstr "Quando você criar uma nota, nós iremos criar o número correspondente 
 msgid "With Cramkle you don't need to create an account to start studying, use the anonymous login to get a feel for the app and fill in your personal information later when you're comfortable to do so."
 msgstr "Com o Cramkle você não precisa criar uma conta para começar a estudar, use o login anônimo e veja o que temos a oferecer e depois preencha suas informações pessoais quando se sentir confortável."
 
+#: src/components/pages/HomePage.tsx:150
+msgid "You are using an <0>anonymous account</0>, to persist your study history and created decks and flashcards, fill your profile info in the settings page."
+msgstr "Você está usando uma <0>conta anônima</0>, para persistir o seu histórico de estudos e decks e flashcards criados, preencha as informações de perfil na página de configuração."
+
+#: src/components/Shell.tsx:65
+msgid "You are using an anonymous account, if you logout now you will lose all your study history and created decks and flashcards. If you want to keep all your data, go back and fill your profile information in the settings page."
+msgstr "Você está usando uma conta anônima, se você sair agora irá perder todo seu histórico de estudos e decks e flashcards criados. Se você deseja manter seu dados, volte e preencha as informações de seu perfil na página de configurações."
+
 #: src/components/pages/AddNotePage.tsx:183
 msgid "You haven't created a model yet."
 msgstr "Você ainda não criou um modelo."
 
-#: src/components/pages/DecksSection.tsx:40
+#: src/components/pages/DecksSection.tsx:52
 msgid "You haven't created any decks yet."
 msgstr "Você ainda não criou nenhum deck."
 
-#: src/components/pages/ModelsSection.tsx:39
+#: src/components/pages/ModelsSection.tsx:52
 msgid "You haven't created any models yet"
 msgstr "Você ainda não criou nenhum modelo."
 
@@ -1170,7 +1212,7 @@ msgstr "Você ainda não criou nenhum template neste modelo."
 msgid "You've finished studying your decks for now."
 msgstr "Você terminou de estudar seus decks por hora."
 
-#: src/components/pages/DecksSection.tsx:52
+#: src/components/pages/DecksSection.tsx:39
 msgid "Your decks"
 msgstr "Seus decks"
 
@@ -1178,7 +1220,7 @@ msgstr "Seus decks"
 msgid "Your model is not saved, are you sure you want to exit the page?"
 msgstr "Seu modelo não está salvo, você tem certeza que quer sair da página?"
 
-#: src/components/pages/ModelsSection.tsx:49
+#: src/components/pages/ModelsSection.tsx:39
 msgid "Your models"
 msgstr "Seus modelos"
 
@@ -1195,15 +1237,19 @@ msgstr "nota vazia"
 msgid "landing.cta"
 msgstr "Começar os estudos"
 
-#: src/components/forms/LoginForm.tsx:75
+#: src/components/forms/LoginForm.tsx:72
 msgid "login.button"
 msgstr "Entrar"
+
+#: src/components/pages/LoginPage.tsx:27
+msgid "or"
+msgstr "ou"
 
 #: src/components/pages/LandingPage.tsx:66
 msgid "product-description"
 msgstr "Cramkle é uma plataforma de estudos baseada em flashcards, onde você pode agrupar matérias em decks, que automaticamente agenda sessões de estudos usando um algoritmo de repetição espaçada para maximizar sua retenção de conhecimento"
 
-#: src/components/pages/HomePage.tsx:111
+#: src/components/pages/HomePage.tsx:113
 msgid "soon"
 msgstr "em breve"
 
@@ -1227,11 +1273,11 @@ msgstr "{0, plural, one {# nota} other {# notas}}"
 msgid "{0, plural, one {# template} other {# templates}}"
 msgstr "{0, plural, one {# template} other {# templates}}"
 
-#: src/components/pages/DecksSection.tsx:57
+#: src/components/pages/DecksSection.tsx:44
 msgid "{0, plural, zero {# decks} one {# deck} other {# decks}}"
 msgstr "{0, plural, zero {# decks} one {# deck} other {# decks}}"
 
-#: src/components/pages/ModelsSection.tsx:54
+#: src/components/pages/ModelsSection.tsx:44
 msgid "{0, plural, zero {# models} one {# model} other {# models}}"
 msgstr "{0, plural, zero {# modelos} one {# modelo} other {# modelos}}"
 
