@@ -1,6 +1,6 @@
-import { ContentState, SelectionState } from 'draft-js'
+import type { ContentState, SelectionState } from 'draft-js'
 
-import { TaggableEntry } from './TaggableEntry'
+import type { TaggableEntry } from './TaggableEntry'
 
 const SYMBOL_REGEX =
   '\\.,\\+\\*\\?\\$\\@\\|#{}\\(\\)\\^\\-\\[\\]\\\\/!%\'"~=<>_:;'

@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router'
 
 import { FlashCardStatus } from '../globalTypes'
 import FlashCardStatusChip from './FlashCardStatus'
-import { DeckCard_deck } from './__generated__/DeckCard_deck'
+import type { DeckCard_deck } from './__generated__/DeckCard_deck'
 import { Card, CardContent, CardPressable } from './views/Card'
 import { Body2, Headline3 } from './views/Typography'
 

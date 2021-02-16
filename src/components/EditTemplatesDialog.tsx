@@ -7,15 +7,15 @@ import { useRef, useState } from 'react'
 import * as React from 'react'
 
 import useLatestRefEffect from '../hooks/useLatestRefEffect'
-import {
+import type {
   CreateTemplate,
   CreateTemplateVariables,
 } from './__generated__/CreateTemplate'
-import {
+import type {
   DeleteTemplate,
   DeleteTemplateVariables,
 } from './__generated__/DeleteTemplate'
-import {
+import type {
   RenameTemplate,
   RenameTemplateVariables,
 } from './__generated__/RenameTemplate'
@@ -26,7 +26,7 @@ import EditIcon from './icons/EditIcon'
 import TrashBinIcon from './icons/TrashBinIcon'
 import WarningIcon from './icons/WarningIcon'
 import { DRAFT_CONTENT_FRAGMENT, MODEL_QUERY } from './pages/ModelQuery'
-import {
+import type {
   ModelQuery,
   ModelQueryVariables,
   ModelQuery_model_templates,

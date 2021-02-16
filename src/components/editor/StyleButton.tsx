@@ -1,4 +1,4 @@
-import { MessageDescriptor } from '@lingui/core'
+import type { MessageDescriptor } from '@lingui/core'
 import { useLingui } from '@lingui/react'
 import classNames from 'classnames'
 import { memo, useRef } from 'react'

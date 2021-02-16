@@ -26,7 +26,7 @@ const Button = forwardRefWithAs<Props, 'button'>(function Button(
     {
       'py-2 px-6 md:py-4 md:px-10': size === 'large',
       'py-1 px-6': size === 'normal' || size === 'small',
-      rounded: size === 'normal' || size === 'small',
+      'rounded': size === 'normal' || size === 'small',
       'rounded-lg': size === 'large',
       'h-14 md:h-16': size === 'large',
       'h-10': size === 'normal',

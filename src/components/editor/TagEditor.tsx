@@ -1,11 +1,6 @@
 import classnames from 'classnames'
-import {
-  DraftHandleValue,
-  Editor,
-  EditorProps,
-  EditorState,
-  getDefaultKeyBinding,
-} from 'draft-js'
+import type { DraftHandleValue, EditorProps, EditorState } from 'draft-js'
+import { Editor, getDefaultKeyBinding } from 'draft-js'
 import * as KeyCode from 'keycode-js'
 import { useCallback, useEffect, useReducer, useRef } from 'react'
 import * as React from 'react'
@@ -13,7 +8,7 @@ import * as React from 'react'
 import { useBaseEditorControls } from './BaseEditorControls'
 import { blockStyleFn } from './BlockStyleControls'
 import styles from './TagEditor.css'
-import { TaggableEntry } from './TaggableEntry'
+import type { TaggableEntry } from './TaggableEntry'
 import TagsPopup from './TagsPopup'
 import replaceTagInEditorState from './replaceTagInEditorState'
 import searchTags from './searchTags'

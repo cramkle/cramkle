@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router'
 
 import useTopBarLoading from '../../hooks/useTopBarLoading'
 import DeckCard, { deckCardFragment } from '../DeckCard'
-import { DeckCard_deck } from '../__generated__/DeckCard_deck'
+import type { DeckCard_deck } from '../__generated__/DeckCard_deck'
 import {
   AlertDialog,
   AlertDialogDescription,
@@ -20,7 +20,7 @@ import CircularProgress from '../views/CircularProgress'
 import Container from '../views/Container'
 import { Body1, Body2, Headline1 } from '../views/Typography'
 import styles from './StudySection.css'
-import { DecksToStudy } from './__generated__/DecksToStudy'
+import type { DecksToStudy } from './__generated__/DecksToStudy'
 
 const DECKS_TO_STUDY_QUERY = gql`
   query DecksToStudy {

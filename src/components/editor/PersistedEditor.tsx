@@ -1,9 +1,10 @@
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import { ApolloError } from 'apollo-client'
+import type { ApolloError } from 'apollo-client'
 import classnames from 'classnames'
-import { ContentState } from 'draft-js'
-import { ReactNode, useCallback, useEffect, useRef, useState } from 'react'
+import type { ContentState } from 'draft-js'
+import type { ReactNode } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 import { useBlock } from '../../hooks/useBlock'
 import { useFadeEffect } from '../../hooks/useFadeEffect'
@@ -140,7 +141,7 @@ const PersistedEditor = <T extends readonly unknown[]>({
             className={classnames(
               'overflow-hidden flex items-center transition-opacity duration-200 ease-in-out',
               {
-                hidden: !shouldRender || loading,
+                'hidden': !shouldRender || loading,
                 'opacity-0': !visible,
                 'opacity-100': visible,
               }

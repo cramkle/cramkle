@@ -1,19 +1,23 @@
-import {
-  Menu,
+import type {
   MenuButtonProps,
   MenuItemProps,
   MenuLinkProps,
   MenuListProps,
+} from '@reach/menu-button'
+import {
+  Menu,
   MenuButton as ReachMenuButton,
   MenuItem as ReachMenuItem,
   MenuLink as ReachMenuLink,
   MenuList as ReachMenuList,
 } from '@reach/menu-button'
-import { ForwardRefExoticComponentWithAs } from '@reach/utils'
+import type { ForwardRefExoticComponentWithAs } from '@reach/utils'
 import classnames from 'classnames'
-import { ReactNode, forwardRef } from 'react'
+import type { ReactNode } from 'react'
+import { forwardRef } from 'react'
 import * as React from 'react'
-import { Link, LinkProps } from 'react-router-dom'
+import type { LinkProps } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import styles from './MenuButton.css'
 

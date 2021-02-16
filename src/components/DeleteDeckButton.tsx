@@ -10,13 +10,13 @@ import {
   pushErrorToast,
   pushSimpleToast,
 } from '../toasts/pushToast'
-import {
+import type {
   DeleteDeckMutation,
   DeleteDeckMutationVariables,
 } from './__generated__/DeleteDeckMutation'
 import TrashBinIcon from './icons/TrashBinIcon'
 import { DECKS_QUERY } from './pages/DecksSection'
-import { DecksQuery } from './pages/__generated__/DecksQuery'
+import type { DecksQuery } from './pages/__generated__/DecksQuery'
 import {
   AlertDialog,
   AlertDialogDescription,

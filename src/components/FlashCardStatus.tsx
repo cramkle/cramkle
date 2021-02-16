@@ -4,7 +4,8 @@ import * as React from 'react'
 
 import { FlashCardStatus } from '../globalTypes'
 import { useTheme } from './Theme'
-import { Chip, ChipProps } from './views/Chip'
+import type { ChipProps } from './views/Chip'
+import { Chip } from './views/Chip'
 
 interface Props {
   status: FlashCardStatus

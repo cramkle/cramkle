@@ -10,11 +10,11 @@ import { pushSimpleToast } from '../toasts/pushToast'
 import PasswordPlaceholder from './PasswordPlaceholder'
 import SettingItem from './SettingItem'
 import UpdatePasswordDialog from './UpdatePasswordDialog'
-import {
+import type {
   UpdateProfile,
   UpdateProfileVariables,
 } from './__generated__/UpdateProfile'
-import { UserQuery } from './__generated__/UserQuery'
+import type { UserQuery } from './__generated__/UserQuery'
 import { TextInputField } from './forms/Fields'
 import USER_QUERY from './userQuery.gql'
 import Button from './views/Button'

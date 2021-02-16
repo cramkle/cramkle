@@ -7,9 +7,18 @@ import { useRef, useState } from 'react'
 import * as React from 'react'
 
 import useLatestRefEffect from '../hooks/useLatestRefEffect'
-import { CreateField, CreateFieldVariables } from './__generated__/CreateField'
-import { DeleteField, DeleteFieldVariables } from './__generated__/DeleteField'
-import { RenameField, RenameFieldVariables } from './__generated__/RenameField'
+import type {
+  CreateField,
+  CreateFieldVariables,
+} from './__generated__/CreateField'
+import type {
+  DeleteField,
+  DeleteFieldVariables,
+} from './__generated__/DeleteField'
+import type {
+  RenameField,
+  RenameFieldVariables,
+} from './__generated__/RenameField'
 import AddFieldIcon from './icons/AddFieldIcon'
 import ClearIcon from './icons/ClearIcon'
 import DoneIcon from './icons/DoneIcon'
@@ -17,7 +26,7 @@ import EditIcon from './icons/EditIcon'
 import TrashBinIcon from './icons/TrashBinIcon'
 import WarningIcon from './icons/WarningIcon'
 import { MODEL_QUERY } from './pages/ModelQuery'
-import {
+import type {
   ModelQuery,
   ModelQueryVariables,
   ModelQuery_model_fields,

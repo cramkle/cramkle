@@ -1,7 +1,7 @@
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import classNames from 'classnames'
-import { ContentState } from 'draft-js'
+import type { ContentState } from 'draft-js'
 import { useCallback, useEffect, useRef } from 'react'
 import * as React from 'react'
 

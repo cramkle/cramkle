@@ -1,4 +1,4 @@
-import { MockedResponse } from '@apollo/react-testing'
+import type { MockedResponse } from '@apollo/react-testing'
 import { fireEvent, waitFor } from '@testing-library/react'
 
 import { render } from '../../../test/utils'

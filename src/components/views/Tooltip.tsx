@@ -1,9 +1,5 @@
-import {
-  TooltipPopup as ReachTooltipPopup,
-  TooltipPopupProps,
-  TooltipProps,
-  useTooltip,
-} from '@reach/tooltip'
+import type { TooltipPopupProps, TooltipProps } from '@reach/tooltip'
+import { TooltipPopup as ReachTooltipPopup, useTooltip } from '@reach/tooltip'
 import { forwardRefWithAs } from '@reach/utils'
 import classnames from 'classnames'
 import { Children, cloneElement } from 'react'

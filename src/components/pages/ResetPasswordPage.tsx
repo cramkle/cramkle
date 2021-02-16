@@ -20,7 +20,7 @@ import { Card, CardContent } from '../views/Card'
 import CircularProgress from '../views/CircularProgress'
 import { HelperText, Input, Label } from '../views/Input'
 import { Body1, Headline2 } from '../views/Typography'
-import {
+import type {
   ResetPassword,
   ResetPasswordVariables,
 } from './__generated__/ResetPassword'

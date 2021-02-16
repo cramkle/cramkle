@@ -1,5 +1,4 @@
-import { ReactNode } from 'react'
-import * as React from 'react'
+import type { ReactNode, VFC } from 'react'
 import ReactDOM from 'react-dom'
 
 interface PortalProps {
@@ -7,9 +6,9 @@ interface PortalProps {
   target?: HTMLElement
 }
 
-const Portal: React.VFC<PortalProps> = ({
+const Portal: VFC<PortalProps> = ({
   children,
-  target = document.getElementById('portal-anchor') || document.body,
+  target = document.getElementById('portal-anchor') ?? document.body,
 }) => {
   return ReactDOM.createPortal(children, target)
 }

@@ -1,4 +1,4 @@
-import { Resolvers } from 'apollo-client'
+import type { Resolvers } from 'apollo-client'
 
 const topBarTypename = 'TopBar'
 

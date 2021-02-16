@@ -1,16 +1,16 @@
+import type { TabListProps, TabPanelProps, TabProps } from '@reach/tabs'
 import {
   Tab as ReachTab,
   TabList as ReachTabList,
   TabPanel as ReachTabPanel,
-  TabListProps,
-  TabPanelProps,
   TabPanels,
-  TabProps,
   Tabs,
 } from '@reach/tabs'
-import { ForwardRefExoticComponentWithAs, forwardRefWithAs } from '@reach/utils'
+import type { ForwardRefExoticComponentWithAs } from '@reach/utils'
+import { forwardRefWithAs } from '@reach/utils'
 import classNames from 'classnames'
-import { HTMLAttributes, forwardRef } from 'react'
+import type { HTMLAttributes } from 'react'
+import { forwardRef } from 'react'
 import * as React from 'react'
 
 import styles from './Tabs.css'

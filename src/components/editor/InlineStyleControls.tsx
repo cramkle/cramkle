@@ -1,11 +1,12 @@
 import { t } from '@lingui/macro'
-import { EditorState } from 'draft-js'
+import type { EditorState } from 'draft-js'
 import * as React from 'react'
 
 import BoldFormatIcon from '../icons/BoldFormatIcon'
 import ItalicFormatIcon from '../icons/ItalicFormatIcon'
 import UnderlineFormatIcon from '../icons/UnderlineFormatIcon'
-import StyleButton, { Style } from './StyleButton'
+import type { Style } from './StyleButton'
+import StyleButton from './StyleButton'
 
 export const INLINE_STYLES: Style[] = [
   { label: t`Bold`, style: 'BOLD', icon: <BoldFormatIcon /> },

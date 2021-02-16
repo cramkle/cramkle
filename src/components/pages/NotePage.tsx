@@ -1,7 +1,8 @@
 import { useMutation, useQuery } from '@apollo/react-hooks'
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import { ContentState, RawDraftContentState, convertToRaw } from 'draft-js'
+import type { ContentState, RawDraftContentState } from 'draft-js'
+import { convertToRaw } from 'draft-js'
 import gql from 'graphql-tag'
 import { useCallback, useState } from 'react'
 import * as React from 'react'
@@ -28,13 +29,13 @@ import {
   TableRow,
 } from '../views/Table'
 import { Caption, Headline1, Headline2 } from '../views/Typography'
-import {
+import type {
   NoteQuery,
   NoteQueryVariables,
   NoteQuery_note_flashCards,
   NoteQuery_note_values,
 } from './__generated__/NoteQuery'
-import {
+import type {
   UpdateFieldValue,
   UpdateFieldValueVariables,
 } from './__generated__/UpdateFieldValue'

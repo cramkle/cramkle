@@ -1,5 +1,6 @@
 import * as React from 'react'
-import { Route, RouteProps } from 'react-router'
+import type { RouteProps } from 'react-router'
+import { Route } from 'react-router'
 
 import Shell from '../Shell'
 

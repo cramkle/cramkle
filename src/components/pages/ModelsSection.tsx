@@ -8,7 +8,7 @@ import useTopBarLoading from '../../hooks/useTopBarLoading'
 import ModelCard from '../ModelCard'
 import Button from '../views/Button'
 import { Body1, Headline1 } from '../views/Typography'
-import { ModelsQuery } from './__generated__/ModelsQuery'
+import type { ModelsQuery } from './__generated__/ModelsQuery'
 
 export const MODELS_QUERY = gql`
   query ModelsQuery {

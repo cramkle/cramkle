@@ -20,7 +20,8 @@ import font800italic from 'fontsource-libre-franklin/files/libre-franklin-latin-
 import font800normal from 'fontsource-libre-franklin/files/libre-franklin-latin-800-normal.woff2'
 import font900italic from 'fontsource-libre-franklin/files/libre-franklin-latin-900-italic.woff2'
 import font900normal from 'fontsource-libre-franklin/files/libre-franklin-latin-900-normal.woff2'
-import { FC, StrictMode } from 'react'
+import type { FC } from 'react'
+import { StrictMode } from 'react'
 import { Helmet } from 'react-helmet-async'
 
 import CramkleToasts from './components/CramkleToasts'

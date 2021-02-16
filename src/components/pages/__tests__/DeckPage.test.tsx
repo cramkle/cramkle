@@ -1,10 +1,11 @@
 import { act, fireEvent, screen, waitFor } from '@testing-library/react'
-import { MemoryHistory, createMemoryHistory } from 'history'
+import type { MemoryHistory } from 'history'
+import { createMemoryHistory } from 'history'
 import { Route, Routes } from 'react-router'
 
 import { render } from '../../../test/utils'
 import DeckPage, { DECK_QUERY } from '../DeckPage'
-import { DeckQuery } from '../__generated__/DeckQuery'
+import type { DeckQuery } from '../__generated__/DeckQuery'
 
 const deckQueryResultForPage = ({
   page,

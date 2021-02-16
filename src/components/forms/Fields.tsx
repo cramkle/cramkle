@@ -1,15 +1,10 @@
 import { useField } from 'formik'
 import { forwardRef, memo, useCallback } from 'react'
 
-import { Checkbox, CheckboxProps } from '../views/Checkbox'
-import {
-  HelperText,
-  Input,
-  InputProps,
-  Label,
-  Textarea,
-  TextareaProps,
-} from '../views/Input'
+import type { CheckboxProps } from '../views/Checkbox'
+import { Checkbox } from '../views/Checkbox'
+import type { InputProps, TextareaProps } from '../views/Input'
+import { HelperText, Input, Label, Textarea } from '../views/Input'
 
 type TextInputProps = {
   label?: string

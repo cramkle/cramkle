@@ -1,4 +1,4 @@
-import { Location } from 'history'
+import type { Location } from 'history'
 import { useEffect } from 'react'
 import * as React from 'react'
 import { useHref, useLocation, useNavigate } from 'react-router'

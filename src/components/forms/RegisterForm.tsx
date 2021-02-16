@@ -1,5 +1,5 @@
 import { useMutation } from '@apollo/react-hooks'
-import { MessageDescriptor } from '@lingui/core'
+import type { MessageDescriptor } from '@lingui/core'
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { Formik } from 'formik'
@@ -15,7 +15,7 @@ import { Card, CardContent } from '../views/Card'
 import CircularProgress from '../views/CircularProgress'
 import { Headline2 } from '../views/Typography'
 import { CheckboxField, TextInputField } from './Fields'
-import {
+import type {
   RegisterUser,
   RegisterUserVariables,
 } from './__generated__/RegisterUser'
