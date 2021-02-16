@@ -10,15 +10,16 @@ import { FixedSizeList as WindowList } from 'react-window'
 import Cookies from 'universal-cookie'
 
 import useOffline from '../hooks/useOffline'
-import { TimezoneEntry, useTimezoneData } from '../hooks/useTimezoneData'
+import type { TimezoneEntry } from '../hooks/useTimezoneData'
+import { useTimezoneData } from '../hooks/useTimezoneData'
 import { pushSimpleToast } from '../toasts/pushToast'
 import styles from './GeneralSettings.css'
 import SettingItem from './SettingItem'
-import {
+import type {
   UpdatePreferences,
   UpdatePreferencesVariables,
 } from './__generated__/UpdatePreferences'
-import { UserQuery } from './__generated__/UserQuery'
+import type { UserQuery } from './__generated__/UserQuery'
 import USER_QUERY from './userQuery.gql'
 import Button from './views/Button'
 import { Card, CardContent } from './views/Card'

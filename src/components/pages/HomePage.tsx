@@ -1,7 +1,7 @@
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import classNames from 'classnames'
-import { Location } from 'history'
+import type { Location } from 'history'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import * as React from 'react'
 import { Helmet } from 'react-helmet-async'

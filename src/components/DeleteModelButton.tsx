@@ -10,13 +10,13 @@ import {
   pushErrorToast,
   pushSimpleToast,
 } from '../toasts/pushToast'
-import {
+import type {
   DeleteModelMutation,
   DeleteModelMutationVariables,
 } from './__generated__/DeleteModelMutation'
 import TrashBinIcon from './icons/TrashBinIcon'
 import { MODELS_QUERY } from './pages/ModelsSection'
-import { ModelsQuery } from './pages/__generated__/ModelsQuery'
+import type { ModelsQuery } from './pages/__generated__/ModelsQuery'
 import {
   AlertDialog,
   AlertDialogDescription,

@@ -6,7 +6,8 @@ import { scaleLinear, scaleTime } from 'd3-scale'
 import { line } from 'd3-shape'
 import { differenceInDays, endOfToday, startOfDay, subDays } from 'date-fns'
 import gql from 'graphql-tag'
-import { ReactNode, useEffect, useMemo, useRef, useState } from 'react'
+import type { ReactNode } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import * as React from 'react'
 import ResizeObserver from 'resize-observer-polyfill'
 
@@ -25,7 +26,7 @@ import {
   Headline2,
   Overline,
 } from '../views/Typography'
-import {
+import type {
   DeckStatistics,
   DeckStatisticsVariables,
   DeckStatistics_deckStatistics_studyFrequency,

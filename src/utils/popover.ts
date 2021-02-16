@@ -1,4 +1,5 @@
-import { Position, positionMatchWidth } from '@reach/popover'
+import type { Position } from '@reach/popover'
+import { positionMatchWidth } from '@reach/popover'
 
 export const positionMatchMinWidth: Position = (targetRect, popoverRect) => {
   const pos = positionMatchWidth(targetRect, popoverRect)

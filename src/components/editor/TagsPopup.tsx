@@ -1,10 +1,10 @@
-import { SelectionState } from 'draft-js'
+import type { SelectionState } from 'draft-js'
 import * as React from 'react'
 
 import Portal from '../Portal'
 import TypeaheadView from '../views/TypeaheadView'
 import TagSpan from './TagSpan'
-import { TaggableEntry } from './TaggableEntry'
+import type { TaggableEntry } from './TaggableEntry'
 import getSelectionRect from './getSelectionRect'
 import { findTagEntities } from './strategies'
 

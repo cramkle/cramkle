@@ -1,6 +1,5 @@
+import type { DialogContentProps, DialogProps } from '@reach/dialog'
 import {
-  DialogContentProps,
-  DialogProps,
   DialogContent as ReachDialogContent,
   DialogOverlay as ReachDialogOverlay,
 } from '@reach/dialog'

@@ -2,7 +2,7 @@ import { useMutation } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import { useEffect } from 'react'
 
-import {
+import type {
   SetLoadingMutation,
   SetLoadingMutationVariables,
 } from './__generated__/SetLoadingMutation'

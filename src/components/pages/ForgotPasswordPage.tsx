@@ -3,7 +3,7 @@ import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import classnames from 'classnames'
 import gql from 'graphql-tag'
-import { Location } from 'history'
+import type { Location } from 'history'
 import { useEffect, useState } from 'react'
 import * as React from 'react'
 import { Helmet } from 'react-helmet-async'
@@ -22,7 +22,7 @@ import { Card, CardContent } from '../views/Card'
 import CircularProgress from '../views/CircularProgress'
 import { HelperText, Input, Label } from '../views/Input'
 import { Body1, Headline2 } from '../views/Typography'
-import {
+import type {
   RequestPasswordReset,
   RequestPasswordResetVariables,
 } from './__generated__/RequestPasswordReset'

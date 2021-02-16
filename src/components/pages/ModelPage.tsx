@@ -1,10 +1,12 @@
 import { useMutation, useQuery } from '@apollo/react-hooks'
 import { Trans, plural, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import { ContentState, convertToRaw } from 'draft-js'
+import type { ContentState } from 'draft-js'
+import { convertToRaw } from 'draft-js'
 import type { DocumentNode } from 'graphql'
 import gql from 'graphql-tag'
-import { ReactNode, useCallback, useState } from 'react'
+import type { ReactNode } from 'react'
+import { useCallback, useState } from 'react'
 import * as React from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useParams } from 'react-router'
@@ -24,14 +26,14 @@ import { Menu, MenuButton, MenuItem, MenuList } from '../views/MenuButton'
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from '../views/Tabs'
 import { Body1, Body2, Headline1, Headline2 } from '../views/Typography'
 import { DRAFT_CONTENT_FRAGMENT, MODEL_QUERY } from './ModelQuery'
-import { DraftContent } from './__generated__/DraftContent'
-import {
+import type { DraftContent } from './__generated__/DraftContent'
+import type {
   ModelQuery,
   ModelQueryVariables,
   ModelQuery_model_fields,
   ModelQuery_model_templates,
 } from './__generated__/ModelQuery'
-import {
+import type {
   UpdateTemplateFrontContentMutation,
   UpdateTemplateFrontContentMutationVariables,
 } from './__generated__/UpdateTemplateFrontContentMutation'

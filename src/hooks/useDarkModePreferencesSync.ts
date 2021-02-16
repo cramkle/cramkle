@@ -3,7 +3,7 @@ import gql from 'graphql-tag'
 import { useEffect, useRef } from 'react'
 
 import { useTheme } from '../components/Theme'
-import {
+import type {
   UpdateDarkMode,
   UpdateDarkModeVariables,
 } from './__generated__/UpdateDarkMode'

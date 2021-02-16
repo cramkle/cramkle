@@ -3,7 +3,7 @@ import * as React from 'react'
 import { Outlet } from 'react-router'
 
 import Redirect from '../Redirect'
-import { UserQuery } from '../__generated__/UserQuery'
+import type { UserQuery } from '../__generated__/UserQuery'
 import USER_QUERY from '../userQuery.gql'
 
 interface Input {

@@ -5,7 +5,7 @@ import gql from 'graphql-tag'
 import * as yup from 'yup'
 
 import { pushSimpleToast } from '../toasts/pushToast'
-import {
+import type {
   UpdatePassword,
   UpdatePasswordVariables,
 } from './__generated__/UpdatePassword'

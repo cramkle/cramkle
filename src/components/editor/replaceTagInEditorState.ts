@@ -1,6 +1,7 @@
-import { ContentState, EditorState, Modifier, SelectionState } from 'draft-js'
+import type { ContentState, SelectionState } from 'draft-js'
+import { EditorState, Modifier } from 'draft-js'
 
-import { TaggableEntry } from './TaggableEntry'
+import type { TaggableEntry } from './TaggableEntry'
 import { TAG_TYPE } from './constants'
 
 const createTagEntity = (

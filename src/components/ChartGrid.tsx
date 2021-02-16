@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { BandedScale, TickScale } from './Axis'
+import type { BandedScale, TickScale } from './Axis'
 
 interface Props<T> extends React.SVGProps<SVGGElement> {
   scaler: BandedScale<T> | TickScale<T>

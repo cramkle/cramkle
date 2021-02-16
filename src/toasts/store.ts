@@ -1,4 +1,4 @@
-import { ReactElement } from 'react'
+import type { ReactElement } from 'react'
 import * as uuid from 'uuid'
 
 export interface ToastState {

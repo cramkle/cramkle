@@ -23,7 +23,7 @@ import {
   Headline2,
   Headline3,
 } from '../views/Typography'
-import { DeckQuery, DeckQueryVariables } from './__generated__/DeckQuery'
+import type { DeckQuery, DeckQueryVariables } from './__generated__/DeckQuery'
 
 export const DECK_QUERY = gql`
   query DeckQuery($slug: String!, $page: Int!, $size: Int!, $search: String) {

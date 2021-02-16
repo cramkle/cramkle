@@ -1,9 +1,7 @@
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import {
-  Alert as ReachAlert,
-  AlertProps as ReachAlertProps,
-} from '@reach/alert'
+import type { AlertProps as ReachAlertProps } from '@reach/alert'
+import { Alert as ReachAlert } from '@reach/alert'
 import { forwardRefWithAs } from '@reach/utils'
 import classnames from 'classnames'
 

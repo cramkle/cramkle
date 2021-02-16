@@ -1,10 +1,8 @@
-import {
-  CustomCheckboxContainer,
-  CustomCheckboxContainerProps,
-  CustomCheckboxInput,
-} from '@reach/checkbox'
+import type { CustomCheckboxContainerProps } from '@reach/checkbox'
+import { CustomCheckboxContainer, CustomCheckboxInput } from '@reach/checkbox'
 import classnames from 'classnames'
-import { ReactNode, forwardRef } from 'react'
+import type { ReactNode } from 'react'
+import { forwardRef } from 'react'
 
 import styles from './Checkbox.css'
 import { Label } from './Input'

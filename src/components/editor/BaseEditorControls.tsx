@@ -1,14 +1,12 @@
 import classnames from 'classnames'
-import {
+import type {
   CompositeDecorator,
   ContentState,
   DraftEditorCommand,
   EditorProps,
-  EditorState,
   RawDraftContentState,
-  RichUtils,
-  convertFromRaw,
 } from 'draft-js'
+import { EditorState, RichUtils, convertFromRaw } from 'draft-js'
 import {
   createContext,
   useCallback,

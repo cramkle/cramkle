@@ -1,5 +1,6 @@
 import classnames from 'classnames'
-import { ReactNode, useRef, useState } from 'react'
+import type { ReactNode } from 'react'
+import { useRef, useState } from 'react'
 import * as React from 'react'
 import { TabController, useControlledTabIndex } from 'react-tab-controller'
 

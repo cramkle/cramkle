@@ -1,4 +1,4 @@
-import { ContentBlock, ContentState } from 'draft-js'
+import type { ContentBlock, ContentState } from 'draft-js'
 
 import { TAG_TYPE } from './constants'
 

@@ -1,14 +1,15 @@
 import { useMutation, useQuery } from '@apollo/react-hooks'
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import { ContentState, convertToRaw } from 'draft-js'
+import type { ContentState } from 'draft-js'
+import { convertToRaw } from 'draft-js'
 import gql from 'graphql-tag'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import * as React from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 
-import { FieldInput, FieldValueInput } from '../../globalTypes'
+import type { FieldInput, FieldValueInput } from '../../globalTypes'
 import useTopBarLoading from '../../hooks/useTopBarLoading'
 import { TIMEOUT_MEDIUM, pushToast } from '../../toasts/pushToast'
 import BackButton from '../BackButton'
@@ -19,11 +20,11 @@ import CircularProgress from '../views/CircularProgress'
 import Container from '../views/Container'
 import { Listbox, ListboxOption } from '../views/Listbox'
 import { Body1, Body2, Headline1, Headline2 } from '../views/Typography'
-import {
+import type {
   CreateNoteMutation,
   CreateNoteMutationVariables,
 } from './__generated__/CreateNoteMutation'
-import {
+import type {
   NoteFormQuery,
   NoteFormQueryVariables,
 } from './__generated__/NoteFormQuery'

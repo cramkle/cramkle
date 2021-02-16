@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 
 import styles from './GeneralSettings.css'
 import { Subtitle2 } from './views/Typography'

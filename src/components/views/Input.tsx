@@ -1,5 +1,6 @@
 import classnames from 'classnames'
-import { ReactNode, forwardRef, useContext } from 'react'
+import type { ReactNode } from 'react'
+import { forwardRef, useContext } from 'react'
 import * as React from 'react'
 
 const LabelContext = React.createContext<{ label: boolean } | undefined>(

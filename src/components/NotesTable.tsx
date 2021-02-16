@@ -5,10 +5,11 @@ import * as React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 import DeleteNoteDialog from './DeleteNoteDialog'
-import { PageArgs, PageCursors, PageInfo, Pagination } from './Pagination'
+import type { PageArgs, PageCursors, PageInfo } from './Pagination'
+import { Pagination } from './Pagination'
 import EditIcon from './icons/EditIcon'
 import TrashBinIcon from './icons/TrashBinIcon'
-import {
+import type {
   DeckQuery_deck_notes,
   DeckQuery_deck_notes_edges,
   DeckQuery_deck_notes_edges_node,

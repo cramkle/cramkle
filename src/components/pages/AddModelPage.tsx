@@ -2,7 +2,7 @@ import { useMutation } from '@apollo/react-hooks'
 import { Trans, t } from '@lingui/macro'
 import { useMachine } from '@xstate/react'
 import gql from 'graphql-tag'
-import { Location } from 'history'
+import type { Location } from 'history'
 import * as React from 'react'
 import { useLocation, useNavigate } from 'react-router'
 import { Machine, assign } from 'xstate'
@@ -16,12 +16,12 @@ import StepTab from '../StepTab'
 import Container from '../views/Container'
 import { Headline1 } from '../views/Typography'
 import { MODELS_QUERY } from './ModelsSection'
-import {
+import type {
   CreateModelMutation,
   CreateModelMutationVariables,
   CreateModelMutation_createModel_model,
 } from './__generated__/CreateModelMutation'
-import { ModelsQuery } from './__generated__/ModelsQuery'
+import type { ModelsQuery } from './__generated__/ModelsQuery'
 
 const CREATE_MODEL_MUTATION = gql`
   mutation CreateModelMutation(

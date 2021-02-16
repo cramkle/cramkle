@@ -1,11 +1,10 @@
 import { Trans } from '@lingui/macro'
 import classnames from 'classnames'
+import type { ContentState, RawDraftContentState } from 'draft-js'
 import {
   CompositeDecorator,
-  ContentState,
   Editor,
   EditorState,
-  RawDraftContentState,
   convertFromRaw,
 } from 'draft-js'
 import 'draft-js/dist/Draft.css'

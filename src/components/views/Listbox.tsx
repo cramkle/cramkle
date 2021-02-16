@@ -1,15 +1,17 @@
-import {
-  ListboxButton as Button,
+import type {
   ListboxButtonProps as ButtonProps,
-  ListboxInput as Input,
   ListboxInputProps as InputProps,
-  ListboxList as List,
   ListboxListProps as ListProps,
   ListboxProps,
-  ListboxOption as Option,
   ListboxOptionProps as OptionProps,
-  ListboxPopover as Popover,
   ListboxPopoverProps as PopoverProps,
+} from '@reach/listbox'
+import {
+  ListboxButton as Button,
+  ListboxInput as Input,
+  ListboxList as List,
+  ListboxOption as Option,
+  ListboxPopover as Popover,
 } from '@reach/listbox'
 import classnames from 'classnames'
 import { forwardRef } from 'react'

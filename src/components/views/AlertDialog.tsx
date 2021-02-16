@@ -1,6 +1,8 @@
-import {
+import type {
   AlertDialogContentProps,
   AlertDialogProps,
+} from '@reach/alert-dialog'
+import {
   AlertDialogContent as ReachAlertDialogContent,
   AlertDialogDescription as ReachAlertDialogDescription,
   AlertDialogLabel as ReachAlertDialogLabel,

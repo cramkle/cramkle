@@ -14,11 +14,11 @@ import {
 } from '../../toasts/pushToast'
 import { deckCardFragment } from '../DeckCard'
 import { DECKS_QUERY } from '../pages/DecksSection'
-import { DecksQuery } from '../pages/__generated__/DecksQuery'
+import type { DecksQuery } from '../pages/__generated__/DecksQuery'
 import Button from '../views/Button'
 import { Dialog, DialogTitle } from '../views/Dialog'
 import { TextInputField } from './Fields'
-import {
+import type {
   CreateDeckMutation,
   CreateDeckMutationVariables,
 } from './__generated__/CreateDeckMutation'

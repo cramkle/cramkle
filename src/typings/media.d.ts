@@ -1,5 +1,5 @@
 declare module '*.svg' {
-  import { ComponentType, SVGAttributes } from 'react'
+  import type { ComponentType, SVGAttributes } from 'react'
 
   export const ReactComponent: ComponentType<SVGAttributes>
 

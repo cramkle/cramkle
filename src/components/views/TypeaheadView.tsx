@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { TaggableEntry } from '../editor/TaggableEntry'
+import type { TaggableEntry } from '../editor/TaggableEntry'
 import TypeaheadViewItem from './TypeaheadViewItem'
 
 interface Props extends Pick<React.HTMLAttributes<HTMLDivElement>, 'style'> {

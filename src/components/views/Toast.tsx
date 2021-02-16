@@ -1,16 +1,11 @@
 import classnames from 'classnames'
-import {
-  ReactElement,
-  ReactNode,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react'
+import type { ReactElement, ReactNode } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import * as React from 'react'
 
 import { useFadeEffect } from '../../hooks/useFadeEffect'
-import ToastStore, { ToastState } from '../../toasts/store'
+import type { ToastState } from '../../toasts/store'
+import ToastStore from '../../toasts/store'
 import ClearIcon from '../icons/ClearIcon'
 import Button from './Button'
 import IconButton from './IconButton'

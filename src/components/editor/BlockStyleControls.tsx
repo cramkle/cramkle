@@ -1,6 +1,7 @@
 import { t } from '@lingui/macro'
 import classnames from 'classnames'
-import { ContentBlock, ContentState, EditorState, Modifier } from 'draft-js'
+import type { ContentBlock, ContentState, EditorState } from 'draft-js'
+import { Modifier } from 'draft-js'
 import { memo, useCallback } from 'react'
 import * as React from 'react'
 
@@ -11,7 +12,8 @@ import ListBulletedIcon from '../icons/ListBulletedIcon'
 import ListNumberedIcon from '../icons/ListNumberedIcon'
 import QuoteIcon from '../icons/QuoteIcon'
 import styles from './BlockStyleControls.css'
-import StyleButton, { Style } from './StyleButton'
+import type { Style } from './StyleButton'
+import StyleButton from './StyleButton'
 
 export const BLOCK_TYPES: Style[] = [
   { label: t`H1`, style: 'header-one' },

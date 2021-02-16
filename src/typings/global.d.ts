@@ -1,6 +1,6 @@
 /// <reference types="graphql" />
 
-import { NormalizedCacheObject } from 'apollo-cache-inmemory'
+import type { NormalizedCacheObject } from 'apollo-cache-inmemory'
 
 declare global {
   interface Window {

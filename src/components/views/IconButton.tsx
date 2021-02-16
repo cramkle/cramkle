@@ -1,7 +1,5 @@
-import {
-  MDCIconButtonToggleAdapter,
-  MDCIconButtonToggleFoundation,
-} from '@material/icon-button'
+import type { MDCIconButtonToggleAdapter } from '@material/icon-button'
+import { MDCIconButtonToggleFoundation } from '@material/icon-button'
 import classNames from 'classnames'
 import { useEffect, useRef, useState } from 'react'
 import * as React from 'react'

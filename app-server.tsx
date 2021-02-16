@@ -2,20 +2,22 @@ import fs from 'fs'
 import path from 'path'
 
 import { renderToStringWithData } from '@apollo/react-ssr'
-import { RootContext, Scripts, Styles } from '@casterly/components'
+import type { RootContext } from '@casterly/components'
+import { Scripts, Styles } from '@casterly/components'
 import { RootServer } from '@casterly/components/server'
 import { i18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
 import gql from 'graphql-tag'
 import { en as enPlural, pt as ptPlural } from 'make-plural/plurals'
 import { renderToNodeStream, renderToString } from 'react-dom/server'
-import { FilledContext, HelmetProvider } from 'react-helmet-async'
+import type { FilledContext } from 'react-helmet-async'
+import { HelmetProvider } from 'react-helmet-async'
 import serializeJavascript from 'serialize-javascript'
 
 import linguiConfig from './.linguirc.json'
 import App from './src/App'
 import { RedirectError } from './src/components/Redirect'
-import { UserQuery } from './src/components/__generated__/UserQuery'
+import type { UserQuery } from './src/components/__generated__/UserQuery'
 import userQuery from './src/components/userQuery.gql'
 import enCatalog from './src/locales/en/messages'
 import ptCatalog from './src/locales/pt/messages'
@@ -204,7 +206,7 @@ export default async function handleRequest(
       headers: {
         ...Object.fromEntries((headers as unknown) as [string, string][]),
         'content-type': 'text/html',
-        vary: Array.from(
+        'vary': Array.from(
           new Set(
             (
               'cookie' +

@@ -1,7 +1,7 @@
 import classnames from 'classnames'
 import * as React from 'react'
 
-import { TaggableEntry } from '../editor/TaggableEntry'
+import type { TaggableEntry } from '../editor/TaggableEntry'
 
 interface Props {
   highlighted: boolean

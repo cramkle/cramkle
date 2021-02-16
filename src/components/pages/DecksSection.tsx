@@ -11,7 +11,7 @@ import AddDeckForm from '../forms/AddDeckForm'
 import Button from '../views/Button'
 import { Body1, Headline1 } from '../views/Typography'
 import styles from './DecksSection.css'
-import { DecksQuery } from './__generated__/DecksQuery'
+import type { DecksQuery } from './__generated__/DecksQuery'
 
 export const DECKS_QUERY = gql`
   query DecksQuery {

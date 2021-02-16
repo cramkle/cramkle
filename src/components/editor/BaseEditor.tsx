@@ -1,4 +1,5 @@
-import { Editor, EditorProps } from 'draft-js'
+import type { EditorProps } from 'draft-js'
+import { Editor } from 'draft-js'
 import 'draft-js/dist/Draft.css'
 import * as React from 'react'
 

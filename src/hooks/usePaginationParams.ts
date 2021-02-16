@@ -1,8 +1,8 @@
-import { Location } from 'history'
+import type { Location } from 'history'
 import { useCallback, useMemo } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-import { PageArgs } from '../components/Pagination'
+import type { PageArgs } from '../components/Pagination'
 
 type PaginationState = PageArgs
 
