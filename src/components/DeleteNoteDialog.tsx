@@ -67,7 +67,12 @@ const DeleteNoteDialog: React.FC<Props> = ({ note, onClose, onDeleted }) => {
         </Trans>
       </AlertDialogDescription>
       <div className="flex justify-end items-center">
-        <Button onClick={onClose} disabled={loading} ref={cancelRef}>
+        <Button
+          onClick={onClose}
+          disabled={loading}
+          ref={cancelRef}
+          variation="secondary"
+        >
           <Trans>Cancel</Trans>
         </Button>
         <Button className="ml-3" onClick={handleDelete} disabled={loading}>

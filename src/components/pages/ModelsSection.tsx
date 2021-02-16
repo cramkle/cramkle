@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/react-hooks'
 import { Plural, Trans } from '@lingui/macro'
+import classnames from 'classnames'
 import gql from 'graphql-tag'
 import * as React from 'react'
 import { useNavigate } from 'react-router'
@@ -44,20 +45,6 @@ const ModelsSection: React.FunctionComponent = () => {
     return null
   }
 
-  if (models.length === 0) {
-    return (
-      <div className="flex flex-col items-center">
-        <Body1 className="mt-8 text-txt text-opacity-text-primary">
-          <Trans>You haven't created any models yet</Trans>
-        </Body1>
-
-        <Button className="mt-6" onClick={handleAddClick}>
-          <Trans>Create model</Trans>
-        </Button>
-      </div>
-    )
-  }
-
   return (
     <>
       <Headline1 className="mt-6 leading-none text-txt text-opacity-text-primary">
@@ -65,26 +52,37 @@ const ModelsSection: React.FunctionComponent = () => {
       </Headline1>
 
       <div className="flex items-center mt-6">
-        <Body1 className="text-txt text-opacity-text-secondary font-medium">
-          <Plural
-            value={models.length}
-            zero="# models"
-            one="# model"
-            other="# models"
-          />
-        </Body1>
-        <Button className="ml-6" onClick={handleAddClick}>
+        {models.length > 0 && (
+          <Body1 className="text-txt text-opacity-text-secondary font-medium">
+            <Plural
+              value={models.length}
+              zero="# models"
+              one="# model"
+              other="# models"
+            />
+          </Body1>
+        )}
+        <Button
+          className={classnames({ 'ml-6': models.length > 0 })}
+          onClick={handleAddClick}
+        >
           <Trans>Create model</Trans>
         </Button>
       </div>
 
-      <div className="flex flex-col mt-6 mb-4">
-        {models.map((model) => (
-          <div key={model.id} className="mb-4">
-            <ModelCard {...model} />
-          </div>
-        ))}
-      </div>
+      {models.length === 0 ? (
+        <Body1 className="mt-8 text-txt text-opacity-text-primary">
+          <Trans>You haven't created any models yet</Trans>
+        </Body1>
+      ) : (
+        <div className="flex flex-col mt-6 mb-4">
+          {models.map((model) => (
+            <div key={model.id} className="mb-4">
+              <ModelCard {...model} />
+            </div>
+          ))}
+        </div>
+      )}
     </>
   )
 }

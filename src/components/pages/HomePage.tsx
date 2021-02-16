@@ -14,6 +14,7 @@ import ToastStore from '../../toasts/store'
 import { positionMatchMinWidth } from '../../utils/popover'
 import HeaderPortal from '../HeaderPortal'
 import NoSSR from '../NoSSR'
+import { useCurrentUser } from '../UserContext'
 import CircleIcon from '../icons/CircleIcon'
 import DecksIcon from '../icons/DecksIcon'
 import MarketplaceIcon from '../icons/MarketplaceIcon'
@@ -53,6 +54,8 @@ const HomePage: React.FunctionComponent = () => {
   const navigate = useNavigate()
   const location = useLocation() as Location<{ currentTab?: number }>
   const { i18n } = useLingui()
+
+  const me = useCurrentUser()
 
   const [index, setIndex] = useState(location.state?.currentTab ?? 0)
 
@@ -198,6 +201,19 @@ const HomePage: React.FunctionComponent = () => {
                 </TabList>
               </HeaderPortal>
               <TabPanels>
+                {me.anonymous && (
+                  <section className="mt-6 bg-yellow-1 bg-opacity-25 p-4 rounded">
+                    <p className="text-txt text-opacity-text-primary">
+                      <Trans>
+                        You are using an{' '}
+                        <span className="font-bold">anonymous account</span>, to
+                        persist your study history and created decks and
+                        flashcards, fill your profile info in the settings page.
+                      </Trans>
+                    </p>
+                  </section>
+                )}
+
                 <TabPanel>
                   <StudySection />
                 </TabPanel>

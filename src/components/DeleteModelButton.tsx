@@ -141,7 +141,12 @@ const DeleteModelButton: React.FunctionComponent<Props> = ({ model }) => {
           </Trans>
         </AlertDialogDescription>
         <div className="flex justify-end items-center">
-          <Button onClick={handleClose} disabled={deleting} ref={cancelRef}>
+          <Button
+            onClick={handleClose}
+            disabled={deleting}
+            ref={cancelRef}
+            variation="secondary"
+          >
             Cancel
           </Button>
           <Button className="ml-3" onClick={handleDelete} disabled={deleting}>

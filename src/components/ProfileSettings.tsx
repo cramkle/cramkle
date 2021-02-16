@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from '@apollo/react-hooks'
+import { useMutation } from '@apollo/react-hooks'
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { Formik } from 'formik'
@@ -10,25 +10,27 @@ import { pushSimpleToast } from '../toasts/pushToast'
 import PasswordPlaceholder from './PasswordPlaceholder'
 import SettingItem from './SettingItem'
 import UpdatePasswordDialog from './UpdatePasswordDialog'
+import { useCurrentUser } from './UserContext'
 import type {
   UpdateProfile,
   UpdateProfileVariables,
 } from './__generated__/UpdateProfile'
-import type { UserQuery } from './__generated__/UserQuery'
 import { TextInputField } from './forms/Fields'
-import USER_QUERY from './userQuery.gql'
 import Button from './views/Button'
 import { Card, CardContent } from './views/Card'
 import CircularProgress from './views/CircularProgress'
 import { Headline2 } from './views/Typography'
 
 const UPDATE_PROFILE_MUTATION = gql`
-  mutation UpdateProfile($email: String, $username: String) {
-    updateProfile(input: { email: $email, username: $username }) {
+  mutation UpdateProfile($email: String, $username: String, $password: String) {
+    updateProfile(
+      input: { email: $email, username: $username, password: $password }
+    ) {
       user {
         id
         username
         email
+        anonymous
       }
       error {
         type
@@ -45,9 +47,9 @@ const UPDATE_PROFILE_MUTATION = gql`
 const ProfileSettings: React.FC = () => {
   const { i18n } = useLingui()
 
-  const { data } = useQuery<UserQuery>(USER_QUERY)
+  const me = useCurrentUser()
 
-  const { username, email } = data!.me!
+  const { username, email } = me
 
   const [updateProfile, { loading }] = useMutation<
     UpdateProfile,
@@ -68,11 +70,21 @@ const ProfileSettings: React.FC = () => {
             <Trans>Profile</Trans>
           </Headline2>
 
+          {me.anonymous && (
+            <p className="mt-4">
+              <Trans>Complete your profile below.</Trans>
+            </p>
+          )}
+
           <Formik
-            initialValues={{
-              username,
-              email,
-            }}
+            initialValues={
+              me.anonymous
+                ? { username: '', email: '', password: '' }
+                : {
+                    username,
+                    email,
+                  }
+            }
             validationSchema={yup.object().shape({
               username: yup
                 .string()
@@ -89,6 +101,14 @@ const ProfileSettings: React.FC = () => {
                 .string()
                 .email(i18n._(t`Email must be a valid email`))
                 .required(i18n._(t`Email is required`)),
+              ...(me.anonymous
+                ? {
+                    password: yup
+                      .string()
+                      .min(6, i18n._(t`Password must be at least 6 characters`))
+                      .required(i18n._(t`Password is required`)),
+                  }
+                : null),
             })}
             onSubmit={(profile, helpers) => {
               if (!helpers.validateForm(profile)) {
@@ -132,36 +152,74 @@ const ProfileSettings: React.FC = () => {
                   id="profile-username"
                   className="mt-4"
                   title={<Trans>Username</Trans>}
-                  description={<Trans>Change your account username</Trans>}
+                  description={
+                    me.anonymous ? (
+                      <Trans>Create an username for your account</Trans>
+                    ) : (
+                      <Trans>Change your account username</Trans>
+                    )
+                  }
                 >
-                  <TextInputField id="profile-username" name="username" />
+                  <TextInputField
+                    id="profile-username"
+                    name="username"
+                    className="flex"
+                  />
                 </SettingItem>
                 <SettingItem
                   id="profile-email"
                   className="mt-8"
                   title={<Trans>Email</Trans>}
-                  description={<Trans>Update your account email</Trans>}
-                >
-                  <TextInputField id="profile-email" name="email" />
-                </SettingItem>
-                <SettingItem
-                  className="mt-8"
-                  title={<Trans>Password</Trans>}
                   description={
-                    <Trans>
-                      <button
-                        type="button"
-                        className="text-primary"
-                        onClick={() => setPasswordDialogOpen(true)}
-                      >
-                        Click to change password.
-                      </button>{' '}
-                      Secure your account with a strong password
-                    </Trans>
+                    me.anonymous ? (
+                      <Trans>Fill the email for your account</Trans>
+                    ) : (
+                      <Trans>Update your account email</Trans>
+                    )
                   }
                 >
-                  <PasswordPlaceholder className="text-txt text-opacity-text-disabled font-bold" />
+                  <TextInputField
+                    id="profile-email"
+                    name="email"
+                    className="flex"
+                  />
                 </SettingItem>
+                {me.anonymous ? (
+                  <SettingItem
+                    id="profile-password"
+                    className="mt-8"
+                    title={<Trans>Password</Trans>}
+                    description={
+                      <Trans>Create a password for your account</Trans>
+                    }
+                  >
+                    <TextInputField
+                      id="profile-password"
+                      name="password"
+                      type="password"
+                      className="flex"
+                    />
+                  </SettingItem>
+                ) : (
+                  <SettingItem
+                    className="mt-8"
+                    title={<Trans>Password</Trans>}
+                    description={
+                      <Trans>
+                        <button
+                          type="button"
+                          className="text-primary"
+                          onClick={() => setPasswordDialogOpen(true)}
+                        >
+                          Click to change password.
+                        </button>{' '}
+                        Secure your account with a strong password
+                      </Trans>
+                    }
+                  >
+                    <PasswordPlaceholder className="text-txt text-opacity-text-disabled font-bold" />
+                  </SettingItem>
+                )}
               </form>
             )}
           </Formik>

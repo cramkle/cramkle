@@ -16,7 +16,7 @@ export interface UserQuery_me_preferences {
   /**
    * User preferred locale
    */
-  locale: string;
+  locale: string | null;
   /**
    * User preferred dark mode or not
    */
@@ -37,6 +37,7 @@ export interface UserQuery_me {
    * User's email
    */
   email: string;
+  anonymous: boolean;
   preferences: UserQuery_me_preferences;
 }
 

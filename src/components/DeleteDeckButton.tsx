@@ -121,6 +121,7 @@ const DeleteDeckButton: React.FunctionComponent<Props> = ({ deckId }) => {
             onClick={() => setDialogOpen(false)}
             disabled={deleting}
             ref={cancelRef}
+            variation="secondary"
           >
             <Trans>Cancel</Trans>
           </Button>

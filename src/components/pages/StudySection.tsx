@@ -110,7 +110,11 @@ const StudySection: React.FunctionComponent = () => {
             </Trans>
           </AlertDialogDescription>
           <div className="flex justify-end">
-            <Button ref={cancelRef} onClick={() => setSelectedDeck(null)}>
+            <Button
+              ref={cancelRef}
+              onClick={() => setSelectedDeck(null)}
+              variation="secondary"
+            >
               <Trans>Cancel</Trans>
             </Button>
             <Button className="ml-2" onClick={handleStudyDeck}>

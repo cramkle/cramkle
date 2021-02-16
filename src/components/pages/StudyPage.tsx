@@ -129,7 +129,11 @@ const CancelStudyButton: React.FC = () => {
           </Trans>
         </AlertDialogDescription>
         <div className="flex justify-end">
-          <Button onClick={handleCloseConfirmationDialog} ref={cancelRef}>
+          <Button
+            onClick={handleCloseConfirmationDialog}
+            ref={cancelRef}
+            variation="secondary"
+          >
             <Trans>Continue Studying</Trans>
           </Button>
           <Button className="ml-2" onClick={handleCancel}>
