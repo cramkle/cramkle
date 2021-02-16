@@ -3,7 +3,9 @@ declare module '*.svg' {
 
   export const ReactComponent: ComponentType<SVGAttributes>
 
-  export const url: string
+  const url: string
+
+  export default url
 }
 
 declare module '*.woff2' {

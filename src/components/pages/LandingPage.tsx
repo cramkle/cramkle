@@ -1,5 +1,6 @@
 import { Trans, t } from '@lingui/macro'
 import * as React from 'react'
+import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 
 import bgUrl from '../../assets/landing-bg.svg'
@@ -13,6 +14,11 @@ import { Header, HeaderContent, HeaderSection } from '../views/Header'
 const LandingPage: React.FunctionComponent = () => {
   return (
     <>
+      <Helmet
+        link={[
+          { rel: 'preload', as: 'image', type: 'image/svg+xml', href: bgUrl },
+        ]}
+      />
       <Header>
         <HeaderContent>
           <HeaderSection>
