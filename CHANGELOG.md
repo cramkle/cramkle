@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.15.1] - 2021-02-17
 ### Fixed
 - Accessibility and SEO fixes on landing page.
 
@@ -429,7 +431,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Hydration logic on production environment
 
 
-[Unreleased]: https://github.com/cramkle/cramkle/compare/v0.15.0...HEAD
+[Unreleased]: https://github.com/cramkle/cramkle/compare/v0.15.1...HEAD
+[0.15.1]: https://github.com/cramkle/cramkle/compare/v0.15.0...v0.15.1
 [0.15.0]: https://github.com/cramkle/cramkle/compare/v0.14.1...v0.15.0
 [0.14.1]: https://github.com/cramkle/cramkle/compare/v0.14.0...v0.14.1
 [0.14.0]: https://github.com/cramkle/cramkle/compare/v0.13.6...v0.14.0
