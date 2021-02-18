@@ -41,7 +41,7 @@ msgstr "Um modelo consiste tanto de campos quanto templates. Um campo é utiliza
 msgid "A new update is available!"
 msgstr "Uma nova atualização está disponível!"
 
-#: src/components/Footer.tsx:10
+#: src/components/Footer.tsx:9
 #: src/components/pages/AboutPage.tsx:9
 msgid "About"
 msgstr "Sobre"
@@ -96,7 +96,7 @@ msgstr "Alinhar à esquerda"
 msgid "Align right"
 msgstr "Alinhar à direita"
 
-#: src/components/pages/LandingPage.tsx:52
+#: src/components/pages/LandingPage.tsx:82
 #: src/components/pages/RegisterPage.tsx:21
 msgid "Already have an account? <0>Log In</0>"
 msgstr "Já possui uma conta? <0>Entrar</0>"
@@ -234,7 +234,7 @@ msgstr "Escolha uma nova senha para sua conta."
 msgid "Code Block"
 msgstr "Bloco de código"
 
-#: src/components/Footer.tsx:44
+#: src/components/Footer.tsx:43
 msgid "Company"
 msgstr "Empresa"
 
@@ -318,7 +318,7 @@ msgstr "Criar template"
 msgid "Create your account today and start studying for free!"
 msgstr "Crie sua conta hoje e comece a estudar de graça!"
 
-#: src/components/pages/LandingPage.tsx:108
+#: src/components/pages/LandingPage.tsx:138
 msgid "Create your account today!"
 msgstr "Crie sua conta hoje!"
 
@@ -535,7 +535,7 @@ msgstr "Esqueceu a senha?"
 msgid "Forgot your password?"
 msgstr "Esqueceu sua senha?"
 
-#: src/components/pages/LandingPage.tsx:85
+#: src/components/pages/LandingPage.tsx:115
 msgid "From creating simple front and back flashcards, to automating their creation with models and user-defined templates, you can achieve the flexibility you need without complicating your study routine."
 msgstr "Desde a criação de simples flashcards com frente e verso, até a automatização de sua criação usando modelos e templates definidos por usuários, você pode atingir a flexibilidade que precisa sem complicar sua rotina de estudos."
 
@@ -546,6 +546,10 @@ msgstr "Frente"
 #: src/components/FlashCardRenderer.tsx:67
 msgid "Front side template is empty"
 msgstr "Frente do template está vazio"
+
+#: src/components/Footer.tsx:31
+msgid "GitHub"
+msgstr "GitHub"
 
 #: src/components/BackButton.tsx:14
 msgid "Go back"
@@ -646,9 +650,9 @@ msgstr "Idioma"
 msgid "Last page"
 msgstr "Última página"
 
-#: src/components/pages/LandingPage.tsx:75
-msgid "Learn more"
-msgstr "Aprenda mais"
+#: src/components/pages/LandingPage.tsx:105
+msgid "Learn about spaced repetition"
+msgstr "Aprenda sobre repetição espaçada"
 
 #: src/components/FlashCardStatus.tsx:20
 msgid "Learning"
@@ -659,7 +663,8 @@ msgid "Log out"
 msgstr "Sair"
 
 #: src/components/forms/LoginForm.tsx:62
-#: src/components/pages/LandingPage.tsx:23
+#: src/components/pages/LandingPage.tsx:34
+#: src/components/pages/LandingPage.tsx:49
 #: src/components/pages/LoginPage.tsx:14
 msgid "Login"
 msgstr "Login"
@@ -672,7 +677,7 @@ msgstr "Entre na sua conta para estudar seus decks"
 msgid "Logout and delete account"
 msgstr "Sair e apagar conta"
 
-#: src/components/pages/LandingPage.tsx:39
+#: src/components/pages/LandingPage.tsx:69
 msgid "Make sure your knowledge will last"
 msgstr "Garanta que seu conhecimento irá durar"
 
@@ -711,6 +716,10 @@ msgstr "Modelos"
 #: src/components/editor/InlineStyleControls.tsx:11
 msgid "Monospace"
 msgstr "Monoespaçada"
+
+#: src/components/pages/LandingPage.tsx:43
+msgid "More options"
+msgstr "Mais opções"
 
 #: src/components/ModelNameForm.tsx:13
 msgid "Name is required"
@@ -782,7 +791,7 @@ msgstr "Número de vezes estudado"
 msgid "OL"
 msgstr "Lista numerada"
 
-#: src/components/pages/LandingPage.tsx:42
+#: src/components/pages/LandingPage.tsx:72
 msgid "Optimize your knowledge retention with this effective study method."
 msgstr "Otimize a sua retenção de conhecimento com esse método efetivo de estudo."
 
@@ -838,7 +847,7 @@ msgstr "Pré-visualizar"
 msgid "Previous page"
 msgstr "Página anterior"
 
-#: src/components/Footer.tsx:18
+#: src/components/Footer.tsx:17
 msgid "Privacy Policy"
 msgstr "Política de Privacidade"
 
@@ -951,15 +960,16 @@ msgstr "Mostrar"
 msgid "Sidebar"
 msgstr "Barra lateral"
 
-#: src/components/pages/LandingPage.tsx:26
-msgid "Sign Up"
+#: src/components/pages/LandingPage.tsx:37
+#: src/components/pages/LandingPage.tsx:52
+msgid "Sign up"
 msgstr "Cadastre-se"
 
-#: src/components/pages/LandingPage.tsx:49
+#: src/components/pages/LandingPage.tsx:79
 msgid "Sign up now!"
 msgstr "Cadastre-se agora!"
 
-#: src/components/pages/LandingPage.tsx:80
+#: src/components/pages/LandingPage.tsx:110
 msgid "Simple for those who want it, powerful for those who need it"
 msgstr "Simples para os que querem, poderoso para os que precisam"
 
@@ -971,7 +981,7 @@ msgstr "Algo de errado aconteceu"
 msgid "Start Session"
 msgstr "Começar sessão"
 
-#: src/components/pages/LandingPage.tsx:95
+#: src/components/pages/LandingPage.tsx:125
 msgid "Start studying now, anonymously"
 msgstr "Começe a estudar agora, anonimamente"
 
@@ -1032,7 +1042,7 @@ msgstr "Templates"
 msgid "Templates of the current model"
 msgstr "Templates do modelo atual"
 
-#: src/components/Footer.tsx:14
+#: src/components/Footer.tsx:13
 msgid "Terms and Conditions"
 msgstr "Termos e Condições"
 
@@ -1088,6 +1098,14 @@ msgstr "Tente primeiro criar um deck e estude-o para que possa ver suas estatís
 #: src/components/pages/StatisticsPage.tsx:330
 msgid "Try selecting a broader interval above."
 msgstr "Tente selecionar um intervalo mais amplo acima."
+
+#: src/components/Footer.tsx:36
+msgid "Twitter"
+msgstr "Twitter"
+
+#: src/components/pages/LandingPage.tsx:28
+msgid "Two overlapping blue rectangles"
+msgstr "Dois retângulos azuis sobrepostos"
 
 #: src/components/editor/BlockStyleControls.tsx:22
 msgid "UL"
@@ -1176,7 +1194,7 @@ msgstr "Mandamos um email para você com instruções que vão te ajudar a reset
 msgid "When you create a note, we will create the corresponding number of flashcards based on how much templates the note's model has, and will use the note's values to fill in the template."
 msgstr "Quando você criar uma nota, nós iremos criar o número correspondente de flashcards baseado em quantos templates o modelo possui, e iremos utilizar os valores da nota para preencher o template."
 
-#: src/components/pages/LandingPage.tsx:98
+#: src/components/pages/LandingPage.tsx:128
 msgid "With Cramkle you don't need to create an account to start studying, use the anonymous login to get a feel for the app and fill in your personal information later when you're comfortable to do so."
 msgstr "Com o Cramkle você não precisa criar uma conta para começar a estudar, use o login anônimo e veja o que temos a oferecer e depois preencha suas informações pessoais quando se sentir confortável."
 
@@ -1233,7 +1251,7 @@ msgstr "Sua nota não está salva, tem certeza que quer sair da página?"
 msgid "empty note"
 msgstr "nota vazia"
 
-#: src/components/pages/LandingPage.tsx:111
+#: src/components/pages/LandingPage.tsx:141
 msgid "landing.cta"
 msgstr "Começar os estudos"
 
@@ -1245,7 +1263,7 @@ msgstr "Entrar"
 msgid "or"
 msgstr "ou"
 
-#: src/components/pages/LandingPage.tsx:66
+#: src/components/pages/LandingPage.tsx:96
 msgid "product-description"
 msgstr "Cramkle é uma plataforma de estudos baseada em flashcards, onde você pode agrupar matérias em decks, que automaticamente agenda sessões de estudos usando um algoritmo de repetição espaçada para maximizar sua retenção de conhecimento"
 

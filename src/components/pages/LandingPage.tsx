@@ -1,17 +1,25 @@
 import { Trans, t } from '@lingui/macro'
+import { useLingui } from '@lingui/react'
+import { MenuItem, MenuPopover } from '@reach/menu-button'
 import * as React from 'react'
 import { Helmet } from 'react-helmet-async'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import bgUrl from '../../assets/landing-bg.svg'
 import { ReactComponent as Logo } from '../../assets/logo.svg'
+import { positionMatchWindowWidth } from '../../utils/popover'
 import AppName from '../AppName'
-import Footer from '../Footer'
+import { Footer } from '../Footer'
 import RegisterForm from '../forms/RegisterForm'
+import OverflowMenuIcon from '../icons/OverflowMenuIcon'
 import Button from '../views/Button'
 import { Header, HeaderContent, HeaderSection } from '../views/Header'
+import { Menu, MenuButton } from '../views/MenuButton'
 
-const LandingPage: React.FunctionComponent = () => {
+const LandingPage: React.VFC = () => {
+  const navigate = useNavigate()
+  const { i18n } = useLingui()
+
   return (
     <>
       <Helmet
@@ -23,11 +31,14 @@ const LandingPage: React.FunctionComponent = () => {
         <HeaderContent>
           <HeaderSection>
             <div className="flex items-center pl-1">
-              <Logo width="32" />
+              <Logo
+                aria-label={i18n._(t`Two overlapping blue rectangles`)}
+                width="32"
+              />
               <AppName className="ml-2" />
             </div>
           </HeaderSection>
-          <HeaderSection align="end">
+          <HeaderSection className="hidden sm:inline-flex" align="end">
             <Button
               as={Link}
               variation="secondary"
@@ -42,8 +53,36 @@ const LandingPage: React.FunctionComponent = () => {
               to="/register"
               className="flex items-center ml-3"
             >
-              <Trans>Sign Up</Trans>
+              <Trans>Sign up</Trans>
             </Button>
+          </HeaderSection>
+          <HeaderSection className="sm:hidden" align="end">
+            <Menu>
+              <MenuButton icon>
+                <OverflowMenuIcon aria-label={i18n._(t`More options`)} />
+              </MenuButton>
+              <MenuPopover position={positionMatchWindowWidth}>
+                <div className="mx-2 mt-4 py-0 rounded-xl shadow-lg bg-surface">
+                  <div className="py-4 h-full rounded-xl">
+                    <Button
+                      as={MenuItem}
+                      className="flex justify-center items-center mb-4 mx-2"
+                      variation="secondary"
+                      onSelect={() => navigate('/login')}
+                    >
+                      <Trans>Login</Trans>
+                    </Button>
+                    <Button
+                      as={MenuItem}
+                      className="flex justify-center items-center mx-2"
+                      onSelect={() => navigate('/register')}
+                    >
+                      <Trans>Sign up</Trans>
+                    </Button>
+                  </div>
+                </div>
+              </MenuPopover>
+            </Menu>
           </HeaderSection>
         </HeaderContent>
       </Header>
@@ -60,7 +99,7 @@ const LandingPage: React.FunctionComponent = () => {
                 <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tighter">
                   <Trans>Make sure your knowledge will last</Trans>
                 </h1>
-                <p className="text-on-primary text-opacity-text-primary text-lg sm:text-2xl mt-8 sm:mt-10 font-medium tracking-normal">
+                <p className="text-on-primary text-lg sm:text-2xl mt-8 sm:mt-10 font-medium tracking-normal">
                   <Trans>
                     Optimize your knowledge retention with this effective study
                     method.
@@ -93,15 +132,14 @@ const LandingPage: React.FunctionComponent = () => {
               </Trans>
             </p>
 
-            <Button
-              as="a"
+            <a
+              className="text-primary hover:underline text-base sm:text-lg md:text-xl"
               href="https://wikipedia.org/wiki/Spaced_repetition"
               target="_blank"
-              size="large"
-              className="inline-flex items-center"
+              rel="noreferrer noopener"
             >
-              <Trans>Learn more</Trans>
-            </Button>
+              <Trans>Learn about spaced repetition</Trans>
+            </a>
           </div>
           <div className="text-right px-4 sm:px-6 md:px-8 mb-10 sm:mb-16 md:mb-20">
             <p className="text-transparent bg-clip-text bg-gradient-to-b from-primary to-primary-dark text-3xl sm:text-5xl lg:text-6xl leading-tight py-1 font-extrabold tracking-tight mb-8">

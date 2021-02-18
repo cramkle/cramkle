@@ -24,6 +24,7 @@ const Button = forwardRefWithAs<Props, 'button'>(function Button(
     'relative inline-block outline-reset overflow-hidden tracking-normal',
     'transition-opacity ease-in-out duration-200',
     {
+      'cursor-pointer': !disabled,
       'py-2 px-6 md:py-4 md:px-10': size === 'large',
       'py-1 px-6': size === 'normal' || size === 'small',
       'rounded': size === 'normal' || size === 'small',
