@@ -32,9 +32,9 @@ export const MenuButton: React.FC<MenuButtonProps & { icon?: boolean }> = ({
       {...props}
       className={classnames(
         className,
-        'relative outline-reset bg-surface border-0 border-none rounded py-2 px-1 cursor-pointer overflow-hidden hover:bg-secondary hover:bg-opacity-secondary focus:bg-secondary focus:bg-opacity-secondary',
+        'relative outline-reset bg-surface border-0 border-none rounded py-3 px-3 cursor-pointer overflow-hidden hover:bg-secondary hover:bg-opacity-secondary focus:bg-secondary focus:bg-opacity-secondary',
         {
-          'px-2 rounded-full': icon,
+          'rounded-full': icon,
         }
       )}
     >
