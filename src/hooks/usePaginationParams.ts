@@ -6,7 +6,7 @@ import type { PageArgs } from '../components/Pagination'
 
 type PaginationState = PageArgs
 
-const usePaginationParams = () => {
+export const usePaginationParams = () => {
   const navigate = useNavigate()
   const location = useLocation() as Location<PaginationState>
 
@@ -56,5 +56,3 @@ const usePaginationParams = () => {
     onPaginationChange: updatePaginationParams,
   }
 }
-
-export default usePaginationParams

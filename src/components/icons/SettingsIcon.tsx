@@ -1,6 +1,8 @@
 import * as React from 'react'
 
-const SettingsIcon: React.FC<React.SVGAttributes<SVGSVGElement>> = (props) => {
+export const SettingsIcon: React.FC<React.SVGAttributes<SVGSVGElement>> = (
+  props
+) => {
   return (
     <svg
       {...props}
@@ -17,5 +19,3 @@ const SettingsIcon: React.FC<React.SVGAttributes<SVGSVGElement>> = (props) => {
     </svg>
   )
 }
-
-export default SettingsIcon

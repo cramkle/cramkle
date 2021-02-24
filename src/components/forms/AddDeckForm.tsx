@@ -15,7 +15,7 @@ import {
 import { deckCardFragment } from '../DeckCard'
 import { DECKS_QUERY } from '../pages/DecksSection'
 import type { DecksQuery } from '../pages/__generated__/DecksQuery'
-import Button from '../views/Button'
+import { Button } from '../views/Button'
 import { Dialog, DialogTitle } from '../views/Dialog'
 import { TextInputField } from './Fields'
 import type {

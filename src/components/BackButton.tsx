@@ -3,8 +3,8 @@ import { useCallback } from 'react'
 import * as React from 'react'
 import { useNavigate } from 'react-router'
 
-import BackArrowIcon from './icons/BackArrowIcon'
-import Button from './views/Button'
+import { BackArrowIcon } from './icons/BackArrowIcon'
+import { Button } from './views/Button'
 
 interface Props {
   to: string

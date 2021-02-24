@@ -17,8 +17,8 @@ import classnames from 'classnames'
 import { forwardRef } from 'react'
 import * as React from 'react'
 
-import ArrowDownIcon from '../icons/ArrowDownIcon'
-import DoneIcon from '../icons/DoneIcon'
+import { ArrowDownIcon } from '../icons/ArrowDownIcon'
+import { DoneIcon } from '../icons/DoneIcon'
 import styles from './Listbox.css'
 
 export const ListboxInput = forwardRef<HTMLDivElement, InputProps>(

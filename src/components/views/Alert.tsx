@@ -5,8 +5,8 @@ import { Alert as ReachAlert } from '@reach/alert'
 import { forwardRefWithAs } from '@reach/utils'
 import classnames from 'classnames'
 
-import DoneIcon from '../icons/DoneIcon'
-import WarningIcon from '../icons/WarningIcon'
+import { DoneIcon } from '../icons/DoneIcon'
+import { WarningIcon } from '../icons/WarningIcon'
 
 export interface AlertProps extends ReachAlertProps {
   mode?: 'warning' | 'error' | 'success'

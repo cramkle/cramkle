@@ -3,12 +3,12 @@ import { useLingui } from '@lingui/react'
 import classnames from 'classnames'
 import * as React from 'react'
 
-import CaretLeftIcon from './icons/CaretLeftIcon'
-import CaretRightIcon from './icons/CaretRightIcon'
-import FirstPageIcon from './icons/FirstPageIcon'
-import LastPageIcon from './icons/LastPageIcon'
-import Button from './views/Button'
-import IconButton from './views/IconButton'
+import { CaretLeftIcon } from './icons/CaretLeftIcon'
+import { CaretRightIcon } from './icons/CaretRightIcon'
+import { FirstPageIcon } from './icons/FirstPageIcon'
+import { LastPageIcon } from './icons/LastPageIcon'
+import { Button } from './views/Button'
+import { IconButton } from './views/IconButton'
 import { Listbox, ListboxOption } from './views/Listbox'
 
 interface PageCursor {

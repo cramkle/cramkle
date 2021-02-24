@@ -1,6 +1,6 @@
 import { Trans } from '@lingui/macro'
 
-import Button from '../components/views/Button'
+import { Button } from '../components/views/Button'
 import { Body1, Headline4, Overline } from '../components/views/Typography'
 
 export const errorFallback = ({

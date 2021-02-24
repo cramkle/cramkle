@@ -6,7 +6,7 @@ interface Props {
   children?: JSX.Element
 }
 
-const NoSSR: React.FunctionComponent<Props> = ({
+export const NoSSR: React.FunctionComponent<Props> = ({
   fallback = null,
   children,
 }) => {
@@ -18,5 +18,3 @@ const NoSSR: React.FunctionComponent<Props> = ({
 
   return isServer ? fallback : (children as JSX.Element)
 }
-
-export default NoSSR

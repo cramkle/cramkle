@@ -2,8 +2,8 @@ import { useState } from 'react'
 
 import { pushSimpleToast } from '../../toasts/pushToast'
 import Portal from '../Portal'
-import WarningIcon from '../icons/WarningIcon'
-import Button from './Button'
+import { WarningIcon } from '../icons/WarningIcon'
+import { Button } from './Button'
 import { Toast, ToastAnimation, Toaster } from './Toast'
 
 export const Default = () => {

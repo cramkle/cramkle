@@ -1,6 +1,8 @@
 import * as React from 'react'
 
-const AddFieldIcon: React.FC<React.SVGAttributes<SVGSVGElement>> = (props) => {
+export const AddFieldIcon: React.FC<React.SVGAttributes<SVGSVGElement>> = (
+  props
+) => {
   return (
     <svg
       {...props}
@@ -42,5 +44,3 @@ const AddFieldIcon: React.FC<React.SVGAttributes<SVGSVGElement>> = (props) => {
     </svg>
   )
 }
-
-export default AddFieldIcon

@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async'
 
 import GeneralSettings from '../GeneralSettings'
 import ProfileSettings from '../ProfileSettings'
-import Container from '../views/Container'
+import { Container } from '../views/Container'
 import { Headline2 } from '../views/Typography'
 
 const SettingsPage: React.FC = () => {

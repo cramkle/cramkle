@@ -4,7 +4,7 @@ import { useRef, useState } from 'react'
 import * as React from 'react'
 import { TabController, useControlledTabIndex } from 'react-tab-controller'
 
-import useId from '../../hooks/useId'
+import { useId } from '../../hooks/useId'
 
 export const List: React.FC<React.HTMLAttributes<HTMLUListElement>> = ({
   children,

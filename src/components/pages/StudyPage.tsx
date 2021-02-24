@@ -14,8 +14,8 @@ import {
   AlertDialogDescription,
   AlertDialogLabel,
 } from '../views/AlertDialog'
-import Button from '../views/Button'
-import CircularProgress from '../views/CircularProgress'
+import { Button } from '../views/Button'
+import { CircularProgress } from '../views/CircularProgress'
 import { Headline2 } from '../views/Typography'
 import type {
   AnswerFlashCard,

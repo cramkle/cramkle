@@ -13,7 +13,7 @@ import ModelFieldsForm from '../ModelFieldsForm'
 import ModelNameForm from '../ModelNameForm'
 import ModelTemplatesForm from '../ModelTemplatesForm'
 import StepTab from '../StepTab'
-import Container from '../views/Container'
+import { Container } from '../views/Container'
 import { Headline1 } from '../views/Typography'
 import { MODELS_QUERY } from './ModelsSection'
 import type {

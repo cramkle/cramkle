@@ -1,7 +1,9 @@
 import classnames from 'classnames'
 import * as React from 'react'
 
-const AppName: React.FC<React.HTMLAttributes<HTMLSpanElement>> = (props) => {
+export const AppName: React.FC<React.HTMLAttributes<HTMLSpanElement>> = (
+  props
+) => {
   return (
     <span
       {...props}
@@ -14,5 +16,3 @@ const AppName: React.FC<React.HTMLAttributes<HTMLSpanElement>> = (props) => {
     </span>
   )
 }
-
-export default AppName

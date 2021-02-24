@@ -1,6 +1,8 @@
 import * as React from 'react'
 
-const CircleIcon: React.FC<React.SVGAttributes<SVGSVGElement>> = (props) => {
+export const CircleIcon: React.FC<React.SVGAttributes<SVGSVGElement>> = (
+  props
+) => {
   return (
     <svg
       {...props}
@@ -13,5 +15,3 @@ const CircleIcon: React.FC<React.SVGAttributes<SVGSVGElement>> = (props) => {
     </svg>
   )
 }
-
-export default CircleIcon

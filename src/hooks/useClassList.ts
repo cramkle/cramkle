@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react'
 
-const useClassList = () => {
+export const useClassList = () => {
   const [classList, setClassList] = useState<string[]>([])
 
   const addClass = useCallback((cls: string) => {
@@ -19,5 +19,3 @@ const useClassList = () => {
 
   return { classList, addClass, removeClass }
 }
-
-export default useClassList

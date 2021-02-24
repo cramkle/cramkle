@@ -6,7 +6,10 @@ interface Props {
   horizontal?: boolean
 }
 
-const Divider: React.FC<Props> = ({ horizontal = true, className = '' }) => {
+export const Divider: React.FC<Props> = ({
+  horizontal = true,
+  className = '',
+}) => {
   const Component = horizontal ? 'hr' : 'div'
 
   return (
@@ -22,5 +25,3 @@ const Divider: React.FC<Props> = ({ horizontal = true, className = '' }) => {
     />
   )
 }
-
-export default Divider

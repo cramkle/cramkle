@@ -1,8 +1,8 @@
 import * as React from 'react'
 
-const UnderlineFormatIcon: React.FC<React.SVGAttributes<SVGSVGElement>> = (
-  props
-) => {
+export const UnderlineFormatIcon: React.FC<
+  React.SVGAttributes<SVGSVGElement>
+> = (props) => {
   return (
     <svg
       {...props}
@@ -19,5 +19,3 @@ const UnderlineFormatIcon: React.FC<React.SVGAttributes<SVGSVGElement>> = (
     </svg>
   )
 }
-
-export default UnderlineFormatIcon

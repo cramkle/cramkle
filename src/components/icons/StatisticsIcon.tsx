@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-const StatisticsIcon: React.FC<React.SVGAttributes<SVGSVGElement>> = (
+export const StatisticsIcon: React.FC<React.SVGAttributes<SVGSVGElement>> = (
   props
 ) => {
   return (
@@ -19,5 +19,3 @@ const StatisticsIcon: React.FC<React.SVGAttributes<SVGSVGElement>> = (
     </svg>
   )
 }
-
-export default StatisticsIcon

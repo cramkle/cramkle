@@ -16,9 +16,9 @@ import type {
   UpdateProfileVariables,
 } from './__generated__/UpdateProfile'
 import { TextInputField } from './forms/Fields'
-import Button from './views/Button'
+import { Button } from './views/Button'
 import { Card, CardContent } from './views/Card'
-import CircularProgress from './views/CircularProgress'
+import { CircularProgress } from './views/CircularProgress'
 import { Headline2 } from './views/Typography'
 
 const UPDATE_PROFILE_MUTATION = gql`

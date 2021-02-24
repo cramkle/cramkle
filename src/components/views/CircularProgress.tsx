@@ -5,7 +5,7 @@ interface Props extends React.HTMLProps<HTMLDivElement> {
   size?: number
 }
 
-const CircularProgress: React.FC<Props> = ({
+export const CircularProgress: React.FC<Props> = ({
   size = 28,
   style = {},
   ...props
@@ -42,5 +42,3 @@ const CircularProgress: React.FC<Props> = ({
     </div>
   )
 }
-
-export default CircularProgress

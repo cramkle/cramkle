@@ -21,7 +21,7 @@ const UPDATE_DARK_MODE_PREFERENCE = gql`
   }
 `
 
-export default function useDarkModePreferencesSync() {
+export function useDarkModePreferencesSync() {
   const { theme } = useTheme()
 
   const [updatePreferredTheme] = useMutation<

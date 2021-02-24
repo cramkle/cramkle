@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 
-const useOffline = () => {
+export const useOffline = () => {
   const [offline, setOffline] = useState(
     typeof navigator === 'undefined' ? false : !navigator.onLine
   )
@@ -21,5 +21,3 @@ const useOffline = () => {
 
   return offline
 }
-
-export default useOffline

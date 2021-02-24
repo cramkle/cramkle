@@ -10,9 +10,9 @@ import { Link } from 'react-router-dom'
 import * as yup from 'yup'
 
 import { pushSimpleToast } from '../../toasts/pushToast'
-import Button from '../views/Button'
+import { Button } from '../views/Button'
 import { Card, CardContent } from '../views/Card'
-import CircularProgress from '../views/CircularProgress'
+import { CircularProgress } from '../views/CircularProgress'
 import { Headline2 } from '../views/Typography'
 import { CheckboxField, TextInputField } from './Fields'
 import type {

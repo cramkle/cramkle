@@ -14,7 +14,7 @@ import * as React from 'react'
 import styles from './FlashCardRenderer.css'
 import { blockStyleFn } from './editor/BlockStyleControls'
 import { findTagEntities } from './editor/strategies'
-import Divider from './views/Divider'
+import { Divider } from './views/Divider'
 import { Body2, Caption } from './views/Typography'
 
 interface NoteValue {

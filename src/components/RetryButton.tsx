@@ -1,7 +1,7 @@
 import classnames from 'classnames'
 import * as React from 'react'
 
-import RetryIcon from './icons/RetryIcon'
+import { RetryIcon } from './icons/RetryIcon'
 
 const RetryButton: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement>> = (
   props

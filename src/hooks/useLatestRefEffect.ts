@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 
-function useLatestRefEffect<T>(value: T, callback: (value: T) => void) {
+export function useLatestRefEffect<T>(value: T, callback: (value: T) => void) {
   const latestRef = useRef(value)
 
   const callbackRef = useRef(callback)
@@ -19,5 +19,3 @@ function useLatestRefEffect<T>(value: T, callback: (value: T) => void) {
     callbackRef.current(value)
   }, [value])
 }
-
-export default useLatestRefEffect
