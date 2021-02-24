@@ -14,7 +14,7 @@ import type {
   DeleteModelMutation,
   DeleteModelMutationVariables,
 } from './__generated__/DeleteModelMutation'
-import TrashBinIcon from './icons/TrashBinIcon'
+import { TrashBinIcon } from './icons/TrashBinIcon'
 import { MODELS_QUERY } from './pages/ModelsSection'
 import type { ModelsQuery } from './pages/__generated__/ModelsQuery'
 import {
@@ -22,7 +22,7 @@ import {
   AlertDialogDescription,
   AlertDialogLabel,
 } from './views/AlertDialog'
-import Button from './views/Button'
+import { Button } from './views/Button'
 
 interface Props {
   model: { id: string; templates: unknown[]; totalNotes: number }

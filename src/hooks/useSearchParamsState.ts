@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-const useSearchParamsState = <DefaultValue extends string | undefined>(
+export const useSearchParamsState = <DefaultValue extends string | undefined>(
   key: string,
   defaultValue?: DefaultValue
 ): readonly [
@@ -47,5 +47,3 @@ const useSearchParamsState = <DefaultValue extends string | undefined>(
 
   return [value as any, updateValue]
 }
-
-export default useSearchParamsState

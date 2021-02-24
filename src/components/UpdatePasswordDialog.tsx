@@ -10,8 +10,8 @@ import type {
   UpdatePasswordVariables,
 } from './__generated__/UpdatePassword'
 import { TextInputField } from './forms/Fields'
-import Button from './views/Button'
-import CircularProgress from './views/CircularProgress'
+import { Button } from './views/Button'
+import { CircularProgress } from './views/CircularProgress'
 import { Dialog, DialogTitle } from './views/Dialog'
 import { Subtitle2 } from './views/Typography'
 

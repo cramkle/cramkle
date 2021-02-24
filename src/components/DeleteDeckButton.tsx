@@ -14,7 +14,7 @@ import type {
   DeleteDeckMutation,
   DeleteDeckMutationVariables,
 } from './__generated__/DeleteDeckMutation'
-import TrashBinIcon from './icons/TrashBinIcon'
+import { TrashBinIcon } from './icons/TrashBinIcon'
 import { DECKS_QUERY } from './pages/DecksSection'
 import type { DecksQuery } from './pages/__generated__/DecksQuery'
 import {
@@ -22,7 +22,7 @@ import {
   AlertDialogDescription,
   AlertDialogLabel,
 } from './views/AlertDialog'
-import Button from './views/Button'
+import { Button } from './views/Button'
 
 interface Props {
   deckId: string

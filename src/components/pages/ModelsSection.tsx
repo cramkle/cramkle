@@ -5,9 +5,9 @@ import gql from 'graphql-tag'
 import * as React from 'react'
 import { useNavigate } from 'react-router'
 
-import useTopBarLoading from '../../hooks/useTopBarLoading'
+import { useTopBarLoading } from '../../hooks/useTopBarLoading'
 import ModelCard from '../ModelCard'
-import Button from '../views/Button'
+import { Button } from '../views/Button'
 import { Body1, Headline1 } from '../views/Typography'
 import type { ModelsQuery } from './__generated__/ModelsQuery'
 

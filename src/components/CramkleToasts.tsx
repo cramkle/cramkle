@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import NoSSR from './NoSSR'
+import { NoSSR } from './NoSSR'
 import Portal from './Portal'
 import { ToastAnimation, Toaster } from './views/Toast'
 

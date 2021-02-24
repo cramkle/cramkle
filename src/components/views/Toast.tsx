@@ -5,10 +5,10 @@ import * as React from 'react'
 
 import { useFadeEffect } from '../../hooks/useFadeEffect'
 import type { ToastState } from '../../toasts/store'
-import ToastStore from '../../toasts/store'
-import ClearIcon from '../icons/ClearIcon'
-import Button from './Button'
-import IconButton from './IconButton'
+import { ToastStore } from '../../toasts/store'
+import { ClearIcon } from '../icons/ClearIcon'
+import { Button } from './Button'
+import { IconButton } from './IconButton'
 import styles from './Toast.css'
 
 const toastStore = ToastStore.getInstance()

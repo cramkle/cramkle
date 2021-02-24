@@ -1,7 +1,7 @@
 import classnames from 'classnames'
 import type { FC } from 'react'
 
-const Container: FC<React.HTMLAttributes<HTMLElement>> = ({
+export const Container: FC<React.HTMLAttributes<HTMLElement>> = ({
   children,
   className = '',
   ...props
@@ -15,5 +15,3 @@ const Container: FC<React.HTMLAttributes<HTMLElement>> = ({
     </section>
   )
 }
-
-export default Container

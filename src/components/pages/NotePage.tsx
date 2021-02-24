@@ -9,18 +9,18 @@ import * as React from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useParams } from 'react-router'
 
-import useTopBarLoading from '../../hooks/useTopBarLoading'
+import { useTopBarLoading } from '../../hooks/useTopBarLoading'
 import BackButton from '../BackButton'
 import FieldValueEditor from '../FieldValueEditor'
 import FlashCardRenderer from '../FlashCardRenderer'
 import FlashCardStatus from '../FlashCardStatus'
 import PersistedEditor from '../editor/PersistedEditor'
-import Button from '../views/Button'
+import { Button } from '../views/Button'
 import { Card } from '../views/Card'
 import { Checkbox } from '../views/Checkbox'
-import Container from '../views/Container'
+import { Container } from '../views/Container'
 import { Dialog } from '../views/Dialog'
-import Divider from '../views/Divider'
+import { Divider } from '../views/Divider'
 import {
   Table,
   TableBody,

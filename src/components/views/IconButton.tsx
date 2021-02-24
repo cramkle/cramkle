@@ -4,13 +4,13 @@ import classNames from 'classnames'
 import { useEffect, useRef, useState } from 'react'
 import * as React from 'react'
 
-import useClassList from '../../hooks/useClassList'
+import { useClassList } from '../../hooks/useClassList'
 
 type Props =
   | React.ButtonHTMLAttributes<HTMLButtonElement>
   | ({ href: string } & React.AnchorHTMLAttributes<HTMLAnchorElement>)
 
-const IconButton: React.FC<Props> = ({
+export const IconButton: React.FC<Props> = ({
   className,
   style,
   children,
@@ -68,5 +68,3 @@ const IconButton: React.FC<Props> = ({
     </button>
   )
 }
-
-export default IconButton

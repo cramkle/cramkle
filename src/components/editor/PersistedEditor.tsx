@@ -10,8 +10,8 @@ import { useBlock } from '../../hooks/useBlock'
 import { useFadeEffect } from '../../hooks/useFadeEffect'
 import { TIMEOUT_LONG, pushErrorToast } from '../../toasts/pushToast'
 import RetryButton from '../RetryButton'
-import DoneIcon from '../icons/DoneIcon'
-import CircularProgress from '../views/CircularProgress'
+import { DoneIcon } from '../icons/DoneIcon'
+import { CircularProgress } from '../views/CircularProgress'
 import { Caption } from '../views/Typography'
 
 interface PersistedEditorProps<T extends readonly unknown[]> {

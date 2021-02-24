@@ -5,7 +5,7 @@ import { useMatchMedia } from '../hooks/useMatchMedia'
 import { useHints } from './HintsContext'
 import { HeaderContent } from './views/Header'
 
-const HeaderPortal: React.FC = ({ children }) => {
+export const HeaderPortal: React.FC = ({ children }) => {
   const headerAnchor = document.getElementById('header-portal-anchor') || null
   const headerMobileAnchor =
     document.getElementById('header-mobile-portal-anchor') || null
@@ -23,5 +23,3 @@ const HeaderPortal: React.FC = ({ children }) => {
     isMobile || !isMediumOrGreaterViewport ? headerMobileAnchor! : headerAnchor!
   )
 }
-
-export default HeaderPortal

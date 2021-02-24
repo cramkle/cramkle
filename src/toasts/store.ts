@@ -18,7 +18,7 @@ interface Listener {
   handler: (toasts: Record<string, ToastState>) => void
 }
 
-export default class ToastStore {
+export class ToastStore {
   private toasts = new Map<string, ToastState>()
 
   private listeners: Set<Listener> = new Set()

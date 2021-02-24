@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 
-const useWindowSize = () => {
+export const useWindowSize = () => {
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const [width, setWidth] = useState(0)
   const [height, setHeight] = useState(0)
@@ -26,5 +26,3 @@ const useWindowSize = () => {
 
   return { width, height }
 }
-
-export default useWindowSize

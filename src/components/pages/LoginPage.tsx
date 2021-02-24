@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 import { ReactComponent as Logo } from '../../assets/logo-white.svg'
 import LoginForm from '../forms/LoginForm'
-import Button from '../views/Button'
+import { Button } from '../views/Button'
 import { Card, CardContent } from '../views/Card'
 
 const LoginPage: React.FunctionComponent = () => {

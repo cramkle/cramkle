@@ -9,7 +9,7 @@ import * as React from 'react'
 import { FixedSizeList as WindowList } from 'react-window'
 import Cookies from 'universal-cookie'
 
-import useOffline from '../hooks/useOffline'
+import { useOffline } from '../hooks/useOffline'
 import type { TimezoneEntry } from '../hooks/useTimezoneData'
 import { useTimezoneData } from '../hooks/useTimezoneData'
 import { pushSimpleToast } from '../toasts/pushToast'
@@ -20,10 +20,10 @@ import type {
   UpdatePreferences,
   UpdatePreferencesVariables,
 } from './__generated__/UpdatePreferences'
-import Button from './views/Button'
+import { Button } from './views/Button'
 import { Card, CardContent } from './views/Card'
 import { Chip } from './views/Chip'
-import CircularProgress from './views/CircularProgress'
+import { CircularProgress } from './views/CircularProgress'
 import {
   ListboxButton,
   ListboxInput,

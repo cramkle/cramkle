@@ -7,7 +7,7 @@ import { useRef, useState } from 'react'
 import * as React from 'react'
 import { useNavigate } from 'react-router'
 
-import useTopBarLoading from '../../hooks/useTopBarLoading'
+import { useTopBarLoading } from '../../hooks/useTopBarLoading'
 import DeckCard, { deckCardFragment } from '../DeckCard'
 import type { DeckCard_deck } from '../__generated__/DeckCard_deck'
 import {
@@ -15,9 +15,9 @@ import {
   AlertDialogDescription,
   AlertDialogLabel,
 } from '../views/AlertDialog'
-import Button from '../views/Button'
-import CircularProgress from '../views/CircularProgress'
-import Container from '../views/Container'
+import { Button } from '../views/Button'
+import { CircularProgress } from '../views/CircularProgress'
+import { Container } from '../views/Container'
 import { Body1, Body2, Headline1 } from '../views/Typography'
 import styles from './StudySection.css'
 import type { DecksToStudy } from './__generated__/DecksToStudy'

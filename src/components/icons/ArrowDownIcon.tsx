@@ -1,6 +1,8 @@
 import * as React from 'react'
 
-const ArrowDownIcon: React.FC<React.SVGAttributes<SVGSVGElement>> = (props) => {
+export const ArrowDownIcon: React.FC<React.SVGAttributes<SVGSVGElement>> = (
+  props
+) => {
   return (
     <svg
       {...props}
@@ -16,5 +18,3 @@ const ArrowDownIcon: React.FC<React.SVGAttributes<SVGSVGElement>> = (props) => {
     </svg>
   )
 }
-
-export default ArrowDownIcon

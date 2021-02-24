@@ -5,7 +5,7 @@ import React from 'react'
 import * as yup from 'yup'
 
 import { TextInputField } from './forms/Fields'
-import Button from './views/Button'
+import { Button } from './views/Button'
 
 const ModelNameForm: React.VFC<{
   name: string

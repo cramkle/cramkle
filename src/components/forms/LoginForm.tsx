@@ -5,8 +5,8 @@ import * as React from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { object, string } from 'yup'
 
-import Button from '../views/Button'
-import CircularProgress from '../views/CircularProgress'
+import { Button } from '../views/Button'
+import { CircularProgress } from '../views/CircularProgress'
 import { Headline2 } from '../views/Typography'
 import { TextInputField } from './Fields'
 

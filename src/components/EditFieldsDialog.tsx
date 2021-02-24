@@ -6,7 +6,7 @@ import gql from 'graphql-tag'
 import { useRef, useState } from 'react'
 import * as React from 'react'
 
-import useLatestRefEffect from '../hooks/useLatestRefEffect'
+import { useLatestRefEffect } from '../hooks/useLatestRefEffect'
 import type {
   CreateField,
   CreateFieldVariables,
@@ -19,21 +19,21 @@ import type {
   RenameField,
   RenameFieldVariables,
 } from './__generated__/RenameField'
-import AddFieldIcon from './icons/AddFieldIcon'
-import ClearIcon from './icons/ClearIcon'
-import DoneIcon from './icons/DoneIcon'
-import EditIcon from './icons/EditIcon'
-import TrashBinIcon from './icons/TrashBinIcon'
-import WarningIcon from './icons/WarningIcon'
+import { AddFieldIcon } from './icons/AddFieldIcon'
+import { ClearIcon } from './icons/ClearIcon'
+import { DoneIcon } from './icons/DoneIcon'
+import { EditIcon } from './icons/EditIcon'
+import { TrashBinIcon } from './icons/TrashBinIcon'
+import { WarningIcon } from './icons/WarningIcon'
 import { MODEL_QUERY } from './pages/ModelQuery'
 import type {
   ModelQuery,
   ModelQueryVariables,
   ModelQuery_model_fields,
 } from './pages/__generated__/ModelQuery'
-import Button from './views/Button'
+import { Button } from './views/Button'
 import { Dialog, DialogTitle } from './views/Dialog'
-import IconButton from './views/IconButton'
+import { IconButton } from './views/IconButton'
 import { Input } from './views/Input'
 import { Body1, Body2, Caption } from './views/Typography'
 

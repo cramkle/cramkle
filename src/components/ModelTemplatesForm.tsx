@@ -6,10 +6,10 @@ import React from 'react'
 import * as yup from 'yup'
 
 import { TextInputField } from './forms/Fields'
-import BackArrowIcon from './icons/BackArrowIcon'
-import TrashBinIcon from './icons/TrashBinIcon'
+import { BackArrowIcon } from './icons/BackArrowIcon'
+import { TrashBinIcon } from './icons/TrashBinIcon'
 import { Alert } from './views/Alert'
-import Button from './views/Button'
+import { Button } from './views/Button'
 import { Headline2 } from './views/Typography'
 
 const ModelTemplatesForm: React.VFC<{

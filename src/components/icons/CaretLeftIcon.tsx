@@ -1,6 +1,8 @@
 import * as React from 'react'
 
-const CaretLeftIcon: React.FC<React.SVGAttributes<SVGSVGElement>> = (props) => {
+export const CaretLeftIcon: React.FC<React.SVGAttributes<SVGSVGElement>> = (
+  props
+) => {
   return (
     <svg
       {...props}
@@ -17,5 +19,3 @@ const CaretLeftIcon: React.FC<React.SVGAttributes<SVGSVGElement>> = (props) => {
     </svg>
   )
 }
-
-export default CaretLeftIcon

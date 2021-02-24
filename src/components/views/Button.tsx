@@ -7,7 +7,7 @@ type Props = {
   disabled?: boolean
 }
 
-const Button = forwardRefWithAs<Props, 'button'>(function Button(
+export const Button = forwardRefWithAs<Props, 'button'>(function Button(
   {
     className = '',
     variation = 'plain',
@@ -73,5 +73,3 @@ const Button = forwardRefWithAs<Props, 'button'>(function Button(
     </As>
   )
 })
-
-export default Button

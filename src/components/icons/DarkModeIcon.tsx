@@ -1,6 +1,8 @@
 import * as React from 'react'
 
-const DarkModeIcon: React.FC<React.SVGAttributes<SVGSVGElement>> = (props) => {
+export const DarkModeIcon: React.FC<React.SVGAttributes<SVGSVGElement>> = (
+  props
+) => {
   return (
     <svg
       {...props}
@@ -19,5 +21,3 @@ const DarkModeIcon: React.FC<React.SVGAttributes<SVGSVGElement>> = (props) => {
     </svg>
   )
 }
-
-export default DarkModeIcon

@@ -13,7 +13,7 @@ export const LOADING_MUTATION = gql`
   }
 `
 
-const useTopBarLoading = (loading: boolean) => {
+export const useTopBarLoading = (loading: boolean) => {
   const [mutate] = useMutation<SetLoadingMutation, SetLoadingMutationVariables>(
     LOADING_MUTATION
   )
@@ -26,5 +26,3 @@ const useTopBarLoading = (loading: boolean) => {
     mutate({ variables: { loading } })
   }, [loading, mutate])
 }
-
-export default useTopBarLoading

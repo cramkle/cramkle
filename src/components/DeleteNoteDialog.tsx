@@ -14,7 +14,7 @@ import {
   AlertDialogDescription,
   AlertDialogLabel,
 } from './views/AlertDialog'
-import Button from './views/Button'
+import { Button } from './views/Button'
 
 const DELETE_NOTE_MUTATION = gql`
   mutation DeleteNoteMutation($noteId: ID!) {

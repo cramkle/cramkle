@@ -1,7 +1,7 @@
-import WarningIcon from '../components/icons/WarningIcon'
+import { WarningIcon } from '../components/icons/WarningIcon'
 import type { ToastProps } from '../components/views/Toast'
 import { Toast } from '../components/views/Toast'
-import ToastStore from './store'
+import { ToastStore } from './store'
 
 export const TIMEOUT_LONG = 5000
 export const TIMEOUT_MEDIUM = 2000
