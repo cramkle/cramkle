@@ -30,8 +30,8 @@ while [[ "$#" -gt 0 ]]; do
   shift
 done
 
-image_name=$REGISTRY_SERVER/cramkle/cramkle:$version
-image_latest=$REGISTRY_SERVER/cramkle/cramkle:latest
+image_name=$REGISTRY_SERVER/cramkle:$version
+image_latest=$REGISTRY_SERVER/cramkle:latest
 
 docker build -t $image_name -f $dockerfile .
 
