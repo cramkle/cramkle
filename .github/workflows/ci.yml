@@ -135,13 +135,13 @@ jobs:
     steps:
     - uses: azure/docker-login@v1
       with:
-        login-server: ${{ secrets.ACR_REGISTRY_SERVER }}
-        username: ${{ secrets.ACR_REGISTRY_USERNAME }}
-        password: ${{ secrets.ACR_REGISTRY_PASSWORD }}
+        login-server: ${{ secrets.REGISTRY_SERVER }}
+        username: ${{ secrets.REGISTRY_USERNAME }}
+        password: ${{ secrets.REGISTRY_PASSWORD }}
     - uses: actions/checkout@v2
     - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
     - name: Deploy image
       env:
-        REGISTRY_SERVER: ${{ secrets.ACR_REGISTRY_SERVER }}
+        REGISTRY_SERVER: ${{ secrets.REGISTRY_SERVER }}
         SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
       run: ./deploy.sh
