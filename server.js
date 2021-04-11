@@ -2,12 +2,28 @@
 const { createRequestHandler } = require('@casterly/express')
 const cookieParser = require('cookie-parser')
 const express = require('express')
+const promBundle = require('express-prom-bundle')
 const requestLanguage = require('express-request-language')
 const helmet = require('helmet')
 const { createProxyMiddleware } = require('http-proxy-middleware')
 const { v4: uuidv4 } = require('uuid')
 
+const pkg = require('./package.json')
+
 const app = express()
+
+app.use(
+  promBundle({
+    includeMethod: true,
+    customLabels: {
+      app: 'cramkle',
+      version: pkg.version,
+    },
+    promClient: {
+      collectDefaultMetrics: {},
+    },
+  })
+)
 
 if (process.env.NODE_ENV === 'production') {
   app.use(helmet())
