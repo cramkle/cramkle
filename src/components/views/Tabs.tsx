@@ -19,7 +19,7 @@ export const TabList: React.FC<
   TabListProps & HTMLAttributes<HTMLDivElement>
 > = ({ children, className = '', ...props }) => {
   return (
-    <ReachTabList {...props} className={classNames(className, 'bg-surface')}>
+    <ReachTabList {...props} className={classNames(className, 'flex')}>
       {children}
     </ReachTabList>
   )
@@ -36,7 +36,7 @@ export const Tab = forwardRefWithAs<TabProps, 'button'>(function Tab(
       className={classNames(
         className,
         styles.tab,
-        'group outline-reset font-medium text-sm relative capitalize px-4 md:px-6 py-2 inline-flex justify-start items-center border-0'
+        'group outline-reset font-medium text-sm relative capitalize px-4 md:px-6 py-2 inline-flex justify-start items-center border-0 text-txt text-opacity-text-primary'
       )}
     >
       {children}
