@@ -39,15 +39,21 @@ if (process.env.NODE_ENV === 'production') {
     helmet.contentSecurityPolicy({
       directives: {
         defaultSrc: ["'self'"],
-        connectSrc: ["'self'", '*.sentry.io'],
+        connectSrc: ["'self'", '*.sentry.io', 'https://api.stripe.com'],
         baseUri: ["'self'"],
         blockAllMixedContent: [],
         fontSrc: ["'self'", 'https:', 'data:'],
+        frameSrc: [
+          "'self'",
+          'https://js.stripe.com',
+          'https://hooks.stripe.com',
+        ],
         frameAncestors: ["'self'"],
         imgSrc: ["'self'", 'data:'],
         objectSrc: ["'none'"],
         scriptSrc: [
           "'self'",
+          'https://js.stripe.com',
           (
             /** @type {any} */
             _,
