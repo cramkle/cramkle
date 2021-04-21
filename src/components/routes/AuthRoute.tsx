@@ -3,6 +3,7 @@ import * as React from 'react'
 import { Outlet } from 'react-router'
 
 import Redirect from '../Redirect'
+import { UserContext } from '../UserContext'
 import type { UserQuery } from '../__generated__/UserQuery'
 import USER_QUERY from '../userQuery.gql'
 
@@ -29,7 +30,11 @@ export const createRoute = ({
     }
 
     if (challenge(data?.me ?? null)) {
-      return <>{children}</>
+      return (
+        <>
+          <UserContext user={data!.me!}>{children}</UserContext>
+        </>
+      )
     }
 
     return <Redirect to={redirectPath} appendReturnUrl={appendReturnUrl} />

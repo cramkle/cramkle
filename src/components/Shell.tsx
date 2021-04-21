@@ -13,16 +13,14 @@ import { useOffline } from '../hooks/useOffline'
 import { AppName } from './AppName'
 import { NoSSR } from './NoSSR'
 import { useTheme } from './Theme'
-import { UserContext, useCurrentUser } from './UserContext'
+import { useCurrentUser } from './UserContext'
 import type { TopBarLoadingQuery } from './__generated__/TopBarLoadingQuery'
-import type { UserQuery } from './__generated__/UserQuery'
 import { AnonymousIcon } from './icons/AnonymousIcon'
 import { DarkModeIcon } from './icons/DarkModeIcon'
 import { LogoutIcon } from './icons/LogoutIcon'
 import { OverflowMenuIcon } from './icons/OverflowMenuIcon'
 import { SettingsIcon } from './icons/SettingsIcon'
 import { StatisticsIcon } from './icons/StatisticsIcon'
-import USER_QUERY from './userQuery.gql'
 import {
   AlertDialog,
   AlertDialogDescription,
@@ -170,7 +168,7 @@ const MobileMenu: React.FC = () => {
 
   return (
     <Menu>
-      <MenuButton icon className="md:hidden text-txt text-opacity-text-primary">
+      <MenuButton icon className="lg:hidden text-txt text-opacity-text-primary">
         <OverflowMenuIcon />
       </MenuButton>
       <NoSSR>
@@ -181,7 +179,6 @@ const MobileMenu: React.FC = () => {
         >
           <UserBanner />
           <MenuItem
-            className="md:hidden"
             onSelect={handleStatisticsClick}
             icon={
               <StatisticsIcon className="text-txt text-opacity-text-secondary" />
@@ -189,7 +186,7 @@ const MobileMenu: React.FC = () => {
           >
             <Trans>Statistics</Trans>
           </MenuItem>
-          <Divider className="my-3 md:hidden" />
+          <Divider className="my-3" />
           <DefaultMenuItems />
         </MenuList>
       </NoSSR>
@@ -202,7 +199,7 @@ const DefaultMenu: React.FC = () => {
     <Menu>
       <MenuButton
         icon
-        className="hidden md:inline-block text-txt text-opacity-text-primary"
+        className="hidden lg:inline-block text-txt text-opacity-text-primary"
       >
         <OverflowMenuIcon />
       </MenuButton>
@@ -228,46 +225,40 @@ const Shell: React.FC = () => {
 
   const isOffline = useOffline()
 
-  const { data: userData } = useQuery<UserQuery>(USER_QUERY)
-
-  const me = userData!.me!
-
   useDarkModePreferencesSync()
 
   return (
-    <UserContext user={me}>
-      <div className="w-full h-full flex flex-col relative">
-        <Header className="relative">
-          <HeaderContent>
-            <HeaderSection>
-              <Link className="flex items-center pl-1 link" to="/home">
-                {!isOffline ? <Logo width="32" /> : <LogoGray width="32" />}
-                <AppName className="ml-2" />
-              </Link>
-            </HeaderSection>
-            <div
-              id="header-portal-anchor"
-              className="flex-auto hidden md:inline-block"
-            />
-            <HeaderSection align="end">
-              <MobileMenu />
-              <DefaultMenu />
-            </HeaderSection>
-          </HeaderContent>
-          <div id="header-mobile-portal-anchor" />
-          <LoadingBar
-            className={classnames('absolute left-0 right-0 z-1', {
-              hidden: !loading,
-            })}
-            style={{ top: 'calc(100% + 1px)' }}
+    <div className="w-full h-full flex flex-col relative bg-background bg-opacity-background">
+      <Header className="relative">
+        <HeaderContent>
+          <HeaderSection>
+            <Link className="flex items-center pl-1 link" to="/home">
+              {!isOffline ? <Logo width="32" /> : <LogoGray width="32" />}
+              <AppName className="ml-2" />
+            </Link>
+          </HeaderSection>
+          <div
+            id="header-portal-anchor"
+            className="flex-auto hidden md:inline-block"
           />
-        </Header>
-        <main className="flex-1 overflow-auto w-full relative bg-background bg-opacity-background">
-          <Outlet />
-          <div id="portal-anchor" />
-        </main>
-      </div>
-    </UserContext>
+          <HeaderSection align="end">
+            <MobileMenu />
+            <DefaultMenu />
+          </HeaderSection>
+        </HeaderContent>
+        <div id="header-mobile-portal-anchor" />
+        <LoadingBar
+          className={classnames('absolute left-0 right-0 z-1', {
+            hidden: !loading,
+          })}
+          style={{ top: 'calc(100% + 1px)' }}
+        />
+      </Header>
+      <main className="flex-1 overflow-auto w-full relative">
+        <Outlet />
+        <div id="portal-anchor" />
+      </main>
+    </div>
   )
 }
 

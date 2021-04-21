@@ -195,7 +195,7 @@ const DeckPage: React.FunctionComponent = () => {
   return (
     <>
       <Helmet title={deck.title} />
-      <Container>
+      <Container className="py-4">
         <BackButton to="/decks" />
 
         <div className="flex flex-col mb-8">
