@@ -20,10 +20,14 @@ i18n.loadLocaleData({ en: { plurals: enPlural }, pt: { plurals: ptPlural } })
 
 const apolloClient = createApolloClient('/_c/graphql')
 
-if (process.env.CASTERLY_PUBLIC_SENTRY_DSN) {
-  Sentry.init({
-    dsn: process.env.CASTERLY_PUBLIC_SENTRY_DSN,
-  })
+try {
+  if (process.env.CASTERLY_PUBLIC_SENTRY_DSN) {
+    Sentry.init({
+      dsn: process.env.CASTERLY_PUBLIC_SENTRY_DSN,
+    })
+  }
+} catch {
+  // ignore
 }
 
 const reactRoot = ReactDOM.unstable_createRoot(
