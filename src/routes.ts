@@ -80,6 +80,16 @@ export default [
           {
             component: () => import('./components/pages/SettingsPage'),
             path: '/settings',
+            children: [
+              {
+                path: '',
+                component: () => import('./components/pages/GeneralSettings'),
+              },
+              {
+                path: '/profile',
+                component: () => import('./components/pages/ProfileSettings'),
+              },
+            ],
           },
           {
             component: () => import('./components/pages/StatisticsPage'),

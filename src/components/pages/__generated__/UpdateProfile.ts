@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { Error } from "./../../globalTypes";
+import { Error } from "./../../../globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: UpdateProfile

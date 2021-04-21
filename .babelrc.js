@@ -1,5 +1,13 @@
 module.exports = {
-  presets: [['casterly/babel', { 'preset-react': { runtime: 'automatic' } }]],
+  presets: [
+    [
+      'casterly/babel',
+      {
+        'preset-react': { runtime: 'automatic' },
+        'preset-env': { loose: true },
+      },
+    ],
+  ],
   plugins: [
     [
       'babel-plugin-named-asset-import',
@@ -13,5 +21,6 @@ module.exports = {
     ],
     'babel-plugin-macros',
     'babel-plugin-graphql-tag',
+    ['@babel/plugin-proposal-class-properties', { loose: true }],
   ],
 }

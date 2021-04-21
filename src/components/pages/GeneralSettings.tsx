@@ -9,29 +9,28 @@ import * as React from 'react'
 import { FixedSizeList as WindowList } from 'react-window'
 import Cookies from 'universal-cookie'
 
-import { useOffline } from '../hooks/useOffline'
-import type { TimezoneEntry } from '../hooks/useTimezoneData'
-import { useTimezoneData } from '../hooks/useTimezoneData'
-import { pushSimpleToast } from '../toasts/pushToast'
-import styles from './GeneralSettings.css'
-import SettingItem from './SettingItem'
-import { useCurrentUser } from './UserContext'
-import type {
-  UpdatePreferences,
-  UpdatePreferencesVariables,
-} from './__generated__/UpdatePreferences'
-import { Button } from './views/Button'
-import { Card, CardContent } from './views/Card'
-import { Chip } from './views/Chip'
-import { CircularProgress } from './views/CircularProgress'
+import { useOffline } from '../../hooks/useOffline'
+import type { TimezoneEntry } from '../../hooks/useTimezoneData'
+import { useTimezoneData } from '../../hooks/useTimezoneData'
+import { pushSimpleToast } from '../../toasts/pushToast'
+import SettingItem from '../SettingItem'
+import { useCurrentUser } from '../UserContext'
+import { Button } from '../views/Button'
+import { Card, CardContent } from '../views/Card'
+import { Chip } from '../views/Chip'
+import { CircularProgress } from '../views/CircularProgress'
 import {
   ListboxButton,
   ListboxInput,
   ListboxList,
   ListboxOption,
   ListboxPopover,
-} from './views/Listbox'
-import { Headline2 } from './views/Typography'
+} from '../views/Listbox'
+import styles from './GeneralSettings.css'
+import type {
+  UpdatePreferences,
+  UpdatePreferencesVariables,
+} from './__generated__/UpdatePreferences'
 
 const OPTIONS = [
   {
@@ -129,11 +128,7 @@ const GeneralSettings: React.FC = () => {
   return (
     <Card className="mt-4">
       <CardContent className="flex flex-col">
-        <Headline2>
-          <Trans>Preferences</Trans>
-        </Headline2>
         <SettingItem
-          className="mt-4"
           id="user-language"
           title={<Trans>Language</Trans>}
           description={

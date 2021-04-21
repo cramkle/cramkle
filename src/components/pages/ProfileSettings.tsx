@@ -6,20 +6,19 @@ import gql from 'graphql-tag'
 import React, { useState } from 'react'
 import * as yup from 'yup'
 
-import { pushSimpleToast } from '../toasts/pushToast'
-import PasswordPlaceholder from './PasswordPlaceholder'
-import SettingItem from './SettingItem'
-import UpdatePasswordDialog from './UpdatePasswordDialog'
-import { useCurrentUser } from './UserContext'
+import { pushSimpleToast } from '../../toasts/pushToast'
+import PasswordPlaceholder from '../PasswordPlaceholder'
+import SettingItem from '../SettingItem'
+import UpdatePasswordDialog from '../UpdatePasswordDialog'
+import { useCurrentUser } from '../UserContext'
+import { TextInputField } from '../forms/Fields'
+import { Button } from '../views/Button'
+import { Card, CardContent } from '../views/Card'
+import { CircularProgress } from '../views/CircularProgress'
 import type {
   UpdateProfile,
   UpdateProfileVariables,
 } from './__generated__/UpdateProfile'
-import { TextInputField } from './forms/Fields'
-import { Button } from './views/Button'
-import { Card, CardContent } from './views/Card'
-import { CircularProgress } from './views/CircularProgress'
-import { Headline2 } from './views/Typography'
 
 const UPDATE_PROFILE_MUTATION = gql`
   mutation UpdateProfile($email: String, $username: String, $password: String) {
@@ -54,7 +53,7 @@ const ProfileSettings: React.FC = () => {
   const [updateProfile, { loading }] = useMutation<
     UpdateProfile,
     UpdateProfileVariables
-  >(UPDATE_PROFILE_MUTATION)
+  >(UPDATE_PROFILE_MUTATION, { notifyOnNetworkStatusChange: true })
 
   const [passwordDialogOpen, setPasswordDialogOpen] = useState(false)
 
@@ -64,14 +63,10 @@ const ProfileSettings: React.FC = () => {
         open={passwordDialogOpen}
         onClose={() => setPasswordDialogOpen(false)}
       />
-      <Card className="mt-8">
+      <Card className="mt-4">
         <CardContent className="flex flex-col">
-          <Headline2>
-            <Trans>Profile</Trans>
-          </Headline2>
-
           {me.anonymous && (
-            <p className="mt-4">
+            <p className="mb-4">
               <Trans>Complete your profile below.</Trans>
             </p>
           )}
@@ -80,10 +75,7 @@ const ProfileSettings: React.FC = () => {
             initialValues={
               me.anonymous
                 ? { username: '', email: '', password: '' }
-                : {
-                    username,
-                    email,
-                  }
+                : { username, email }
             }
             validationSchema={yup.object().shape({
               username: yup
@@ -111,10 +103,6 @@ const ProfileSettings: React.FC = () => {
                 : null),
             })}
             onSubmit={(profile, helpers) => {
-              if (!helpers.validateForm(profile)) {
-                return
-              }
-
               updateProfile({ variables: profile }).then((mutationResult) => {
                 if (
                   mutationResult.errors ||
@@ -150,7 +138,6 @@ const ProfileSettings: React.FC = () => {
               <form id="profile-settings-form" onSubmit={handleSubmit}>
                 <SettingItem
                   id="profile-username"
-                  className="mt-4"
                   title={<Trans>Username</Trans>}
                   description={
                     me.anonymous ? (
@@ -160,11 +147,7 @@ const ProfileSettings: React.FC = () => {
                     )
                   }
                 >
-                  <TextInputField
-                    id="profile-username"
-                    name="username"
-                    className="flex"
-                  />
+                  <TextInputField id="profile-username" name="username" />
                 </SettingItem>
                 <SettingItem
                   id="profile-email"
@@ -178,11 +161,7 @@ const ProfileSettings: React.FC = () => {
                     )
                   }
                 >
-                  <TextInputField
-                    id="profile-email"
-                    name="email"
-                    className="flex"
-                  />
+                  <TextInputField id="profile-email" name="email" />
                 </SettingItem>
                 {me.anonymous ? (
                   <SettingItem
@@ -197,7 +176,6 @@ const ProfileSettings: React.FC = () => {
                       id="profile-password"
                       name="password"
                       type="password"
-                      className="flex"
                     />
                   </SettingItem>
                 ) : (
