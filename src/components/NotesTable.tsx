@@ -78,7 +78,7 @@ const NotesTable: React.FC<Props> = ({
         <div className="p-4 flex items-center justify-between border-b border-divider border-opacity-divider">
           <Button
             className="flex-shrink-0"
-            onClick={() => navigate(`${location.pathname}/new-note`)}
+            onClick={() => navigate('new-note')}
           >
             {i18n._(t`Add Note`)}
           </Button>
