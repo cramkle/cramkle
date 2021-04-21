@@ -74,7 +74,7 @@ export default function UpdatePasswordDialog({
           confirmNewPassword: yup
             .string()
             .when('newPassword', {
-              is: (val) => (val?.length > 0 ? true : false),
+              is: (val: string) => (val?.length > 0 ? true : false),
               then: yup
                 .string()
                 .oneOf(
