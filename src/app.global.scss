@@ -2,7 +2,6 @@
 
 @import '~@reach/checkbox/styles.css';
 @import '~@reach/dialog/styles.css';
-@import '~@reach/tabs/styles.css';
 
 @import './styles/_draft.scss';
 
@@ -20,4 +19,5 @@
 :root {
   // Reach imports
   --reach-tooltip: 1;
+  --reach-tabs: 1;
 }
