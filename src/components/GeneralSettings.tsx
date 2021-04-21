@@ -162,7 +162,7 @@ const GeneralSettings: React.FC = () => {
           </ListboxInput>
         </SettingItem>
         <SettingItem
-          className={'mt-4'}
+          className="mt-4"
           id="user-timezone"
           title={<Trans>Time zone</Trans>}
           description={

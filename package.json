@@ -14,7 +14,7 @@
     "lint": "eslint --ext ts,tsx .",
     "lint:css": "stylelint '**/*.{scss,css}'",
     "lint:ts": "tsc --noEmit --pretty",
-    "download-schema": "apollo service:download --endpoint=http://localhost:5000/graphql -k",
+    "download-schema": "apollo service:download --endpoint=http://localhost:5000/_c/graphql -k",
     "gen-types": "apollo client:codegen __generated__ --target=typescript --localSchemaFile=schema.json --globalTypesFile=src/globalTypes.ts",
     "add-locale": "lingui add-locale",
     "extract": "lingui extract --clean",
@@ -92,7 +92,7 @@
     "universal-cookie": "^4.0.3",
     "uuid": "^8.3.0",
     "xstate": "^4.16.0",
-    "yup": "^0.29.3"
+    "yup": "^0.32.9"
   },
   "devDependencies": {
     "@apollo/react-testing": "3.1.4",
@@ -102,7 +102,7 @@
     "@babel/preset-typescript": "^7.12.1",
     "@lingui/cli": "3.2.3",
     "@lingui/macro": "3.2.3",
-    "@lucasecdb/eslint-config": "^0.15.0",
+    "@lucasecdb/eslint-config": "^0.15.1",
     "@octokit/rest": "^18",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
     "@release-it/keep-a-changelog": "^2.2.2",
