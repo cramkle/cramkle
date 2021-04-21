@@ -132,7 +132,7 @@ const BaseEditorControls: React.FC<Props> = ({
       <div
         className={classnames(
           className,
-          'bg-editor text-on-surface rounded-xl shadow p-0 overflow-hidden'
+          'bg-editor text-on-surface rounded-xl p-0 overflow-hidden'
         )}
       >
         <div className="flex items-center p-2 border-b border-divider border-opacity-divider">

@@ -1,102 +1,82 @@
+import { forwardRefWithAs } from '@reach/utils'
 import classnames from 'classnames'
-import type { ReactNode } from 'react'
-import { useRef, useState } from 'react'
-import * as React from 'react'
+import type { FC, HTMLAttributes, ReactNode } from 'react'
+import { useRef } from 'react'
 import { TabController, useControlledTabIndex } from 'react-tab-controller'
 
 import { useId } from '../../hooks/useId'
+import { useMergeRefs } from '../../hooks/useMergeRefs'
 
-export const List: React.FC<React.HTMLAttributes<HTMLUListElement>> = ({
+export const List: FC<HTMLAttributes<HTMLUListElement>> = ({
   children,
   className,
   ...props
 }) => {
   return (
     <TabController>
-      <ul {...props} className={classnames(className, 'flex flex-col p-0')}>
+      <ul
+        {...props}
+        className={classnames(className, 'flex flex-col p-0 space-y-4')}
+      >
         {children}
       </ul>
     </TabController>
   )
 }
 
-interface ListItemProps extends React.LiHTMLAttributes<HTMLLIElement> {
+interface ListItemProps {
   icon?: ReactNode
   disabled?: boolean
 }
 
-export const ListItem: React.FC<ListItemProps> = ({
-  icon,
-  children,
-  className,
-  disabled = false,
-  ...props
-}) => {
-  const id = useId()
-  const ref = useRef<HTMLLIElement>(null)
+export const ListItem = forwardRefWithAs<ListItemProps, 'div'>(
+  function ListItem(
+    { icon, children, className, disabled = false, as: As = 'div', ...props },
+    propRef
+  ) {
+    const id = useId()
+    const ref = useRef(null)
 
-  const [hover, setHover] = useState(false)
-  const [focused, setFocused] = useState(false)
+    const { tabIndex, onKeyDown } = useControlledTabIndex(ref, id, disabled)
 
-  const { tabIndex, onKeyDown } = useControlledTabIndex(ref, id, disabled)
+    const elementRef = useMergeRefs(propRef, ref)
 
-  const handleMouseEnter = () => {
-    setHover(true)
+    return (
+      // @ts-ignore
+      <li>
+        <As
+          {...props}
+          className={classnames(
+            className,
+            'relative group z-10 flex items-center px-3 py-2 outline-reset rounded overflow-hidden transition-colors ease-in-out duration-100',
+            {
+              'text-txt text-opacity-text-primary focus:text-primary hover:text-primary cursor-pointer': !disabled,
+              'hover:bg-primary focus:bg-primary hover:bg-opacity-12 focus:bg-opacity-12': !disabled,
+              'text-txt text-opacity-text-disabled': disabled,
+            }
+          )}
+          ref={elementRef}
+          tabIndex={tabIndex}
+          onKeyDown={onKeyDown}
+        >
+          <div
+            className={classnames('flex-shrink-0', {
+              'text-txt text-opacity-text-disabled': disabled,
+              'text-txt text-opacity-text-icon': !disabled,
+              'group-hover:text-primary group-focus:text-primary group-hover:text-opacity-100 group-focus:text-opacity-100': !disabled,
+            })}
+          >
+            {icon}
+          </div>
+          <span
+            className={classnames('inline-block select-none flex-1', {
+              'ml-6': !!icon,
+            })}
+          >
+            {children}
+          </span>
+        </As>
+      </li>
+    )
   }
-
-  const handleMouseLeave = () => {
-    setHover(false)
-  }
-
-  const handleFocus = () => {
-    setFocused(true)
-  }
-
-  const handleBlur = () => {
-    setFocused(false)
-  }
-
-  return (
-    <li
-      {...props}
-      ref={ref}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      onFocus={handleFocus}
-      onBlur={handleBlur}
-      className={classnames(
-        className,
-        'relative group z-10 flex items-center px-3 py-2 my-2 outline-reset rounded overflow-hidden transition-colors ease-in-out duration-200',
-        {
-          'text-txt text-opacity-text-primary focus:text-primary hover:text-primary cursor-pointer': !disabled,
-          'text-txt text-opacity-text-disabled': disabled,
-        }
-      )}
-      tabIndex={tabIndex}
-      onKeyDown={onKeyDown}
-    >
-      <div
-        className={classnames('flex-shrink-0', {
-          'text-txt text-opacity-text-disabled': disabled,
-          'text-txt text-opacity-text-icon': (!hover || !focused) && !disabled,
-          'text-primary': (hover || focused) && !disabled,
-        })}
-      >
-        {icon}
-      </div>
-      <span
-        className={classnames('inline-block select-none flex-1', {
-          'ml-6': !!icon,
-        })}
-      >
-        {children}
-      </span>
-      <div
-        className={classnames(
-          'absolute -z-1 top-0 left-0 right-0 bottom-0 bg-primary opacity-0 group-hover:opacity-12 group-focus:opacity-12 transition-opacity ease-in-out duration-200',
-          { hidden: disabled }
-        )}
-      />
-    </li>
-  )
-}
+)

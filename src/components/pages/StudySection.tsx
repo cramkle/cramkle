@@ -64,7 +64,7 @@ const StudySection: React.FunctionComponent = () => {
 
   if (error || networkStatus === NetworkStatus.refetch) {
     return (
-      <Container className="mt-0 md:mt-8 flex flex-col justify-center items-center text-center">
+      <Container className="mt-0 md:mt-8 flex flex-col justify-center items-center text-center py-4">
         <Body1 className="text-txt text-opacity-text-primary">
           <Trans>
             An error has occurred when trying to get your decks to study.

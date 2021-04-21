@@ -165,7 +165,7 @@ const AddNotePage: React.FC = () => {
   }
 
   return (
-    <Container>
+    <Container className="py-4">
       <BackButton to={`/d/${slug}`} />
 
       <Headline1 className="border-b border-divider border-opacity-divider text-txt text-opacity-text-primary">

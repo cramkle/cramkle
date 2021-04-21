@@ -21,10 +21,11 @@ export const Button = forwardRefWithAs<Props, 'button'>(function Button(
 ) {
   const classes = classnames(
     className,
-    'relative inline-block outline-reset overflow-hidden tracking-normal',
+    'relative inline-block outline-reset overflow-hidden tracking-normal font-medium',
     'transition-opacity ease-in-out duration-200',
     {
       'cursor-pointer': !disabled,
+      'cursor-not-allowed': disabled,
       'py-2 px-6 md:py-4 md:px-10': size === 'large',
       'py-1 px-6': size === 'normal' || size === 'small',
       'rounded': size === 'normal' || size === 'small',

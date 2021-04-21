@@ -1,6 +1,5 @@
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import classNames from 'classnames'
 import type { Location } from 'history'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import * as React from 'react'
@@ -19,15 +18,15 @@ import { CircleIcon } from '../icons/CircleIcon'
 import { DecksIcon } from '../icons/DecksIcon'
 import { MarketplaceIcon } from '../icons/MarketplaceIcon'
 import { ModelsIcon } from '../icons/ModelsIcon'
+import { ProfileIcon } from '../icons/ProfileIcon'
+import { SettingsIcon } from '../icons/SettingsIcon'
 import { StatisticsIcon } from '../icons/StatisticsIcon'
 import { StudyIcon } from '../icons/StudyIcon'
 import { Chip } from '../views/Chip'
 import { List, ListItem } from '../views/List'
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from '../views/Tabs'
 import { Tooltip } from '../views/Tooltip'
-import { Body1 } from '../views/Typography'
 import DecksSection from './DecksSection'
-import styles from './HomePage.css'
 import ModelsSection from './ModelsSection'
 import StudySection from './StudySection'
 
@@ -114,10 +113,6 @@ const HomePage: React.FunctionComponent = () => {
     [navigate]
   )
 
-  const handleStatisticsClick = useCallback(() => {
-    navigate('/statistics')
-  }, [navigate])
-
   return (
     <>
       <Helmet>
@@ -125,30 +120,24 @@ const HomePage: React.FunctionComponent = () => {
       </Helmet>
 
       <NoSSR>
-        <div
-          className={classNames(
-            styles.grid,
-            'h-full grid gap-4 md:gap-6 xl:gap-8'
-          )}
-        >
-          <nav
-            className={classNames(
-              styles.sidenav,
-              'hidden md:block w-100 px-8 py-6 border-r border-divider border-opacity-divider'
-            )}
-          >
-            <Body1 className="font-medium text-txt text-opacity-text-primary">
-              <Trans>Sidebar</Trans>
-            </Body1>
-
-            <List className="py-4 -mx-3">
-              <ListItem
-                onClick={handleStatisticsClick}
-                icon={<StatisticsIcon />}
-              >
+        <section className="flex h-full w-full mx-auto px-2 sm:px-6 md:px-8 xl:container">
+          <nav className="hidden lg:block w-full px-8 py-6 max-w-xs">
+            <List>
+              <ListItem as={Link} to="/statistics" icon={<StatisticsIcon />}>
                 <Trans>Statistics</Trans>
               </ListItem>
-              <ListItem onClick={() => {}} icon={<MarketplaceIcon />} disabled>
+              <ListItem as={Link} icon={<SettingsIcon />} to="/settings">
+                <Trans>Settings</Trans>
+              </ListItem>
+              <ListItem as={Link} to="/settings/profile" icon={<ProfileIcon />}>
+                <Trans>Profile</Trans>
+              </ListItem>
+              <ListItem
+                as={Link}
+                to="/marketplace"
+                icon={<MarketplaceIcon />}
+                disabled
+              >
                 <div className="flex items-center">
                   <Trans>Marketplace</Trans>
 
@@ -159,7 +148,7 @@ const HomePage: React.FunctionComponent = () => {
               </ListItem>
             </List>
 
-            <footer className="mt-4 flex justify-between items-center text-txt text-opacity-text-secondary text-xs">
+            <footer className="max-w-xs mx-auto mt-10 px-8 flex justify-between items-center text-txt text-opacity-text-secondary text-xs">
               <Link to="/about">
                 <Trans>About us</Trans>
               </Link>
@@ -186,12 +175,7 @@ const HomePage: React.FunctionComponent = () => {
             </footer>
           </nav>
 
-          <section
-            className={classNames(
-              styles.content,
-              'mx-4 md:ml-0 md:mr-6 xl:mr-8 col-span-2'
-            )}
-          >
+          <section className="mx-4 md:mx-6 xl:mx-8 w-full">
             <Tabs index={index} onChange={handleTabChange}>
               <HeaderPortal>
                 <TabList className="overflow-y-auto w-full md:w-auto h-full justify-around md:justify-center">
@@ -226,7 +210,7 @@ const HomePage: React.FunctionComponent = () => {
               </TabPanels>
             </Tabs>
           </section>
-        </div>
+        </section>
       </NoSSR>
     </>
   )

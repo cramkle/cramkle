@@ -237,7 +237,7 @@ const NotePage: React.FC = () => {
         </Dialog>
       )}
       <Helmet title={text!} />
-      <Container>
+      <Container className="py-4">
         <BackButton to={`/d/${deckSlug}`} />
 
         <div className="flex flex-col mb-8">
