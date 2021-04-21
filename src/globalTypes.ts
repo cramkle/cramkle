@@ -39,6 +39,14 @@ export interface BlockInput {
   data?: any | null;
 }
 
+export interface CardDetails {
+  paymentMethodId: string;
+  cardLast4: string;
+  cardBrand: string;
+  cardExpirationMonth: string;
+  cardExpirationYear: string;
+}
+
 export interface ContentStateInput {
   blocks: BlockInput[];
   entityMap?: any | null;

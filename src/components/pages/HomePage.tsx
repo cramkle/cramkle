@@ -134,6 +134,17 @@ const HomePage: React.FunctionComponent = () => {
               </ListItem>
               <ListItem
                 as={Link}
+                icon={
+                  <span className="font-extrabold w-6 flex justify-center text-xl h-6 items-center">
+                    $
+                  </span>
+                }
+                to="/settings/subscription"
+              >
+                <Trans>Subscription</Trans>
+              </ListItem>
+              <ListItem
+                as={Link}
                 to="/marketplace"
                 icon={<MarketplaceIcon />}
                 disabled

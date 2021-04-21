@@ -9,5 +9,17 @@ query UserQuery {
       locale
       darkMode
     }
+    subscription {
+      active
+      plan
+      period
+      planPriceId
+      endsAt
+      paymentMethodId
+      cardLast4Digits
+      cardBrand
+      cardExpirationMonth
+      cardExpirationYear
+    }
   }
 }

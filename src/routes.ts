@@ -89,17 +89,30 @@ export default [
                 path: '/profile',
                 component: () => import('./components/pages/ProfileSettings'),
               },
+              {
+                path: '/subscription',
+                component: () =>
+                  import('./components/pages/SubscriptionSettings'),
+              },
             ],
           },
           {
             component: () => import('./components/pages/StatisticsPage'),
             path: '/statistics',
           },
+          {
+            component: () => import('./components/pages/PaymentHistory'),
+            path: '/settings/subscription/payment-history',
+          },
         ],
       },
       {
         component: () => import('./components/pages/StudyPage'),
         path: '/study/:slug',
+      },
+      {
+        component: () => import('./components/pages/SubscriptionCheckout'),
+        path: '/settings/subscription/checkout',
       },
     ],
   },

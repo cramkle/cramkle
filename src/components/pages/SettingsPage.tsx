@@ -19,6 +19,8 @@ const SettingsPage: VFC = () => {
         return 0
       case '/settings/profile':
         return 1
+      case '/settings/subscription':
+        return 2
       default:
         return 0
     }
@@ -39,6 +41,9 @@ const SettingsPage: VFC = () => {
               </Tab>
               <Tab as={Link} to="profile">
                 Profile
+              </Tab>
+              <Tab as={Link} to="subscription">
+                Subscription
               </Tab>
             </TabList>
             <TabPanels>
