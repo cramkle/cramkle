@@ -65,6 +65,10 @@ if (process.env.NODE_ENV === 'production') {
 
 app.use(cookieParser())
 
+app.get('/healthz', (_, res) => {
+  res.sendStatus(200)
+})
+
 app.use(
   '/_c',
   createProxyMiddleware({
