@@ -181,7 +181,7 @@
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "typescript": "^4.1.5",
     "unzipper": "^0.10.11",
-    "webpack": "^5.17.0",
+    "webpack": "^5.35.1",
     "workbox-cacheable-response": "^6.0.2",
     "workbox-expiration": "^6.0.2",
     "workbox-precaching": "^6.0.2",
