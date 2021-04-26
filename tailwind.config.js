@@ -77,6 +77,7 @@ const customColors = /** @type {Array<string | [string, Record<string,string>]>}
 }, {})
 
 module.exports = {
+  mode: 'jit',
   theme: {
     colors: {
       ...customColors,
@@ -116,14 +117,6 @@ module.exports = {
         '2xl':
           '0 25px 50px 0 rgba(0, 0, 0, 0.25), 0 32px 48px 0 rgba(0, 0, 0, .15)',
       },
-    },
-  },
-  variants: {
-    extend: {
-      display: ['group-hover', 'group-focus'],
-      opacity: ['group-focus'],
-      textColor: ['group-focus'],
-      backgroundColor: ['group-focus'],
     },
   },
   purge: {

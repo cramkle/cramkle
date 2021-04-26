@@ -42,7 +42,7 @@ const HomeTab: React.FC<{
       className="mt-2 text-center"
       position={positionMatchMinWidth}
     >
-      <Tab className="min-h-full justify-center flex-1 md:flex-initial md:w-32">
+      <Tab className="min-h-full !justify-center flex-1 md:flex-initial md:w-32">
         <Icon className="text-txt text-opacity-text-icon h-6 w-6 md:h-8 md:w-8" />
       </Tab>
     </Tooltip>

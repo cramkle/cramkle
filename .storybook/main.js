@@ -1,10 +1,11 @@
-const path = require('path')
-
 const cssRegex = /\.global\.css$/
 const cssModulesRegex = /\.css$/
 
 module.exports = {
   stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+  core: {
+    builder: 'webpack5',
+  },
   addons: [
     {
       name: '@storybook/preset-scss',
@@ -18,6 +19,11 @@ module.exports = {
     '@storybook/addon-essentials',
   ],
   webpackFinal: async (config) => {
+    config.resolve.fallback = {
+      ...config.resolve.fallback,
+      assert: require.resolve('assert/'),
+    }
+
     const cssRules = config.module.rules.filter((rule) =>
       rule.test.test('file.css')
     )
@@ -86,7 +92,6 @@ module.exports = {
         .concat([
           {
             loader: 'postcss-loader',
-            options: { config: { path: path.resolve(__dirname, '..') } },
           },
         ])
         .concat(scssRule.use.slice(sassLoaderIndex))
