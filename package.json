@@ -78,6 +78,7 @@
     "http-proxy-middleware": "^1.0.6",
     "keycode-js": "^3.1.0",
     "make-plural": "^6.2.2",
+    "postcss-flexbugs-fixes": "^5.0.2",
     "prom-client": "^13.1.0",
     "purgecss": "^3.0.0",
     "react": "experimental",
