@@ -7,7 +7,7 @@ on:
   push:
     branches:
     - main
-    - beta
+    - canary
 
 jobs:
   install:
