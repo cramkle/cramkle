@@ -3,14 +3,12 @@
 
 import { RootBrowser } from '@casterly/components/browser'
 import { i18n } from '@lingui/core'
-import * as Sentry from '@sentry/react'
 import { en as enPlural, pt as ptPlural } from 'make-plural/plurals'
 import ReactDOM from 'react-dom'
 import { HelmetProvider } from 'react-helmet-async'
 import Cookies from 'universal-cookie'
 
 import App from './src/App'
-import registerSW from './src/registerSW'
 import { createApolloClient } from './src/utils/apolloClient'
 
 declare module 'react-dom' {
@@ -31,8 +29,10 @@ const apolloClient = createApolloClient('/_c/graphql')
 
 try {
   if (process.env.CASTERLY_PUBLIC_SENTRY_DSN) {
-    Sentry.init({
-      dsn: process.env.CASTERLY_PUBLIC_SENTRY_DSN,
+    import('@sentry/react').then((Sentry) => {
+      Sentry.init({
+        dsn: process.env.CASTERLY_PUBLIC_SENTRY_DSN,
+      })
     })
   }
 } catch {
@@ -64,5 +64,7 @@ import(
 })
 
 if (process.env.NODE_ENV === 'production') {
-  registerSW()
+  import('./src/registerSW').then(({ default: registerSW }) => {
+    registerSW()
+  })
 }
