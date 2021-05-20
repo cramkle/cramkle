@@ -9,7 +9,10 @@ fi
 
 version=${unparsed_version//v}
 
-if [[ ! -z "$SENTRY_DSN" ]]; then
+[[ ! $version =~ - ]]
+is_stable=$?
+
+if [[ ! -z "$SENTRY_DSN" ]] && (( is_stable == 0 )); then
   echo "CASTERLY_PUBLIC_SENTRY_DSN=$SENTRY_DSN" >> .env
 else
   echo "No SENTRY_DSN, skipping Sentry config.."
@@ -41,7 +44,7 @@ docker push $image_name
 
 # If the version isn't a prerelease, we'll push it
 # using the latest tag as well
-if [[ ! $version =~ - ]]; then
+if (( is_stable == 0 )); then
   echo "Pushing image as latest version"
 
   docker tag $image_name $image_latest
