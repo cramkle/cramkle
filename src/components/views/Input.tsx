@@ -41,7 +41,7 @@ export const Label = forwardRef<HTMLLabelElement, LabelProps>(function Label(
 export type InputProps = React.InputHTMLAttributes<HTMLInputElement>
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
-  { className, ...props },
+  { className, type = 'text', ...props },
   ref
 ) {
   const isLabelled = useContext(LabelContext)?.label
@@ -50,6 +50,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     <input
       {...props}
       ref={ref}
+      type={type}
       className={classnames(
         className,
         'bg-input text-txt text-opacity-text-primary rounded border border-divider border-opacity-divider outline-none py-2 px-4 focus:border-primary placeholder-gray-2 leading-snug min-w-0',
