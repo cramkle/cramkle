@@ -1,6 +1,8 @@
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { MenuItem, MenuPopover } from '@reach/menu-button'
+import font700normal from 'fontsource-libre-franklin/files/libre-franklin-latin-700-normal.woff2'
+import font800normal from 'fontsource-libre-franklin/files/libre-franklin-latin-800-normal.woff2'
 import * as React from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Link, useNavigate } from 'react-router-dom'
@@ -24,6 +26,13 @@ const LandingPage: React.VFC = () => {
     <>
       <Helmet
         link={[
+          ...[font700normal, font800normal].map((fontSrc) => ({
+            rel: 'preload',
+            as: 'font',
+            type: 'font/woff2',
+            crossOrigin: 'anonymous',
+            href: fontSrc,
+          })),
           { rel: 'preload', as: 'image', type: 'image/svg+xml', href: bgUrl },
         ]}
       />
