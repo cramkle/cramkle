@@ -16000,14 +16000,14 @@ react-docgen@^5.0.0:
     node-dir "^0.1.10"
     strip-indent "^3.0.0"
 
-react-dom@experimental:
-  version "0.0.0-experimental-27659559e"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-0.0.0-experimental-27659559e.tgz#e7718b5656b66525a399d156d17666e215d6e388"
-  integrity sha512-eDuCfcWojPkptbmjgRYfjxGvLFUTOUFXyX6Gs8Gu8pNWaCa9wI9ptin1nv5iKIb3w4Z2zbdSgnk2Fk1f2/B1GA==
+react-dom@next:
+  version "0.0.0-3f8f4675d"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-0.0.0-3f8f4675d.tgz#ba1f1c4bef43a826d5138fab545c0f496d44298b"
+  integrity sha512-Iizc5ZBryR5zIW6GXC4XgZrMOW/4FULGrA4ZI7TiujfqmpYnCYamCLtmdwXgbDoVjuY2N+pSDg7gQUnNXruZ5A==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
-    scheduler "0.0.0-experimental-27659559e"
+    scheduler "0.0.0-3f8f4675d"
 
 react-draggable@^4.0.3:
   version "4.4.3"
@@ -16209,10 +16209,10 @@ react-window@^1.8.6:
     "@babel/runtime" "^7.0.0"
     memoize-one ">=3.1.1 <6"
 
-react@experimental:
-  version "0.0.0-experimental-27659559e"
-  resolved "https://registry.yarnpkg.com/react/-/react-0.0.0-experimental-27659559e.tgz#d882070dab7bd5ccb71fcabcdabb1f668060911e"
-  integrity sha512-HlKnbtDDSz1ywwI1VQVp5aAmivglqHyOOaLDW5ZijF6bLf3gUsLyhAL2zHG6SF83ZWAqUnSjROsmMOXn7chyTw==
+react@next:
+  version "0.0.0-3f8f4675d"
+  resolved "https://registry.yarnpkg.com/react/-/react-0.0.0-3f8f4675d.tgz#2e27471f7c90566585dce18878311dd8198e597d"
+  integrity sha512-OFu+DD0K7l0gZDR54+5DffjbzBv7YtolAbTug8Sih+ZZr6xr+j8ux7xDegrYj1H6XQWxwzCzkUxDXciyI5uNOg==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
@@ -16949,10 +16949,10 @@ saxes@^5.0.0:
   dependencies:
     xmlchars "^2.2.0"
 
-scheduler@0.0.0-experimental-27659559e:
-  version "0.0.0-experimental-27659559e"
-  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.0.0-experimental-27659559e.tgz#c9a5f661ac482a610c2455a56931afa2e77261d3"
-  integrity sha512-8ulxFiPri7L/9tjUGGG844nA1NeydNsVa/TvbEdZ585jc1P9MdBxBr94fkQHQHbzYBmlaFpnBGHtXcQJwTlPfg==
+scheduler@0.0.0-3f8f4675d:
+  version "0.0.0-3f8f4675d"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.0.0-3f8f4675d.tgz#c0bb8b58b1f8c5b0576d051e8e8227bfb4ec2f9a"
+  integrity sha512-EykXnHc4JBNFLNof2VDe6raTjsAG0Y8daSHMGW+cYEUno39WD+KUhy1rpXPaF/CHPBklxXouDjgCN/WaZK0Egw==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"

@@ -13,6 +13,15 @@ import App from './src/App'
 import registerSW from './src/registerSW'
 import { createApolloClient } from './src/utils/apolloClient'
 
+declare module 'react-dom' {
+  // `next` stable version of react-dom renamed
+  // `unstable_createRoot` to createRoot
+  function createRoot(
+    container: Element | Document | DocumentFragment | Comment,
+    options?: RootOptions
+  ): Root
+}
+
 const cookies = new Cookies()
 const language = cookies.get('language') || 'en'
 
@@ -30,12 +39,9 @@ try {
   // ignore
 }
 
-const reactRoot = ReactDOM.unstable_createRoot(
-  document.getElementById('root')!,
-  {
-    hydrate: true,
-  }
-)
+const reactRoot = ReactDOM.createRoot(document.getElementById('root')!, {
+  hydrate: true,
+})
 
 import(
   /* webpackChunkName: "locale" */ `./src/locales/${language}/messages`
