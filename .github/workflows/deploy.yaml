@@ -1,0 +1,23 @@
+name: Deploy
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: azure/docker-login@v1
+      with:
+        login-server: ${{ secrets.REGISTRY_SERVER }}
+        username: ${{ secrets.REGISTRY_USERNAME }}
+        password: ${{ secrets.REGISTRY_PASSWORD }}
+    - uses: actions/checkout@v2
+    - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+    - name: Deploy image
+      env:
+        REGISTRY_SERVER: ${{ secrets.REGISTRY_SERVER }}
+        SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+      run: ./deploy.sh
