@@ -48,7 +48,7 @@ if (( is_stable == 0 )); then
 else
   echo "Pushing canary image"
 
-  image_latest=$REGISTRY_SERVER/cramkle:canary
+  image_canary=$REGISTRY_SERVER/cramkle:canary
 
   docker tag $image_name $image_canary
 
