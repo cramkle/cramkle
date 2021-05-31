@@ -66,25 +66,6 @@ jobs:
         # yarn lint:ts
         yarn lint:css
 
-  storybook:
-    runs-on: ubuntu-latest
-    needs: install
-    steps:
-    - name: Restore cache
-      uses: actions/cache@v2
-      id: restore-build
-      with:
-        path: ./*
-        key: ${{ github.sha }}
-    - name: NodeJS 14.x
-      uses: actions/setup-node@v1
-      with:
-        node-version: 14.x
-    - name: Storybook Smoke Test
-      run: |
-        yarn prebuild
-        yarn storybook --smoke-test --ci --quiet
-
   test:
     runs-on: ubuntu-latest
     needs: install

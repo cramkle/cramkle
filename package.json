@@ -18,9 +18,7 @@
     "gen-types": "apollo client:codegen __generated__ --target=typescript --localSchemaFile=schema.json --globalTypesFile=src/globalTypes.ts",
     "add-locale": "lingui add-locale",
     "extract": "lingui extract --clean",
-    "compile": "lingui compile --typescript",
-    "storybook": "start-storybook -p 6006 --ci",
-    "build-storybook": "build-storybook"
+    "compile": "lingui compile --typescript"
   },
   "husky": {
     "hooks": {
@@ -107,13 +105,6 @@
     "@octokit/rest": "^18",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
     "@release-it/keep-a-changelog": "^2.2.2",
-    "@storybook/addon-actions": "^6.1.0",
-    "@storybook/addon-essentials": "^6.1.0",
-    "@storybook/addon-links": "^6.1.0",
-    "@storybook/addons": "^6.1.0",
-    "@storybook/preset-scss": "^1.0.3",
-    "@storybook/react": "^6.1.0",
-    "@storybook/theming": "^6.1.0",
     "@svgr/webpack": "^5.5.0",
     "@tailwindcss/forms": "^0.2.1",
     "@tailwindcss/postcss7-compat": "^2.0.2",
@@ -168,9 +159,9 @@
     "lint-staged": "^10.4.0",
     "nodemon": "^2.0.6",
     "postcss": "^7",
+    "postcss-flexbugs-fixes": "^5.0.2",
     "prettier": "^2.1.2",
     "react-app-polyfill": "^2.0.0",
-    "react-is": "^17.0.1",
     "release-it": "^14.0.3",
     "sass": "^1.32.4",
     "sass-loader": "^10.1.1",
