@@ -78,10 +78,8 @@ const TagEditor: React.FunctionComponent<Props> = ({
     handleKeyCommand: baseHandleKeyCommand,
   } = baseContext
 
-  const [
-    { highlightedTag, visibleTagEntries, characterOffset },
-    dispatch,
-  ] = useReducer(reducer, initialState)
+  const [{ highlightedTag, visibleTagEntries, characterOffset }, dispatch] =
+    useReducer(reducer, initialState)
 
   const prevEditorState = useRef(editorState)
 

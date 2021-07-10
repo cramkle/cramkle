@@ -49,10 +49,8 @@ const NotesTable: React.FC<Props> = ({
   totalDeckNotes,
   onRefetchNotes,
 }) => {
-  const [
-    deletingNote,
-    setDeletingNote,
-  ] = useState<DeckQuery_deck_notes_edges_node | null>(null)
+  const [deletingNote, setDeletingNote] =
+    useState<DeckQuery_deck_notes_edges_node | null>(null)
   const { i18n } = useLingui()
   const navigate = useNavigate()
 

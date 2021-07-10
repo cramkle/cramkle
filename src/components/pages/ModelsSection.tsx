@@ -35,9 +35,8 @@ const ModelsSection: React.FunctionComponent = () => {
     navigate('/models/create')
   }
 
-  const { data: { models = [] } = {}, loading } = useQuery<ModelsQuery>(
-    MODELS_QUERY
-  )
+  const { data: { models = [] } = {}, loading } =
+    useQuery<ModelsQuery>(MODELS_QUERY)
 
   useTopBarLoading(loading)
 
