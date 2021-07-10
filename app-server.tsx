@@ -1,5 +1,6 @@
 import fs from 'fs'
 import path from 'path'
+import type { Writable } from 'stream'
 
 import { renderToStringWithData } from '@apollo/react-ssr'
 import type { RootContext } from '@casterly/components'
@@ -7,9 +8,10 @@ import { Scripts, Styles } from '@casterly/components'
 import { RootServer } from '@casterly/components/server'
 import { i18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
-import gql from 'graphql-tag'
 import { en as enPlural, pt as ptPlural } from 'make-plural/plurals'
-import { renderToNodeStream, renderToString } from 'react-dom/server'
+import type { ReactElement } from 'react'
+import { Suspense } from 'react'
+import { pipeToNodeWritable, renderToString } from 'react-dom/server'
 import type { FilledContext } from 'react-helmet-async'
 import { HelmetProvider } from 'react-helmet-async'
 import serializeJavascript from 'serialize-javascript'
@@ -17,16 +19,31 @@ import serializeJavascript from 'serialize-javascript'
 import linguiConfig from './.linguirc.json'
 import App from './src/App'
 import { RedirectError } from './src/components/Redirect'
-import type { UserQuery } from './src/components/__generated__/UserQuery'
-import userQuery from './src/components/userQuery.gql'
 import enCatalog from './src/locales/en/messages'
 import ptCatalog from './src/locales/pt/messages'
 import { createApolloClient } from './src/utils/apolloClient'
 import { darkThemeHelmetScript } from './src/utils/darkThemeScript'
 import { errorFallback } from './src/utils/errorFallback'
 import { icons } from './src/utils/headLinks'
+import { getUserPreferences } from './src/utils/userPreferences'
 
-const ROUTES_WITHOUT_JAVASCRIPT = ['/about']
+declare module 'react-dom/server' {
+  interface StreamOptions {
+    startWriting(): void
+    abort(): void
+  }
+
+  interface StreamConfig {
+    onReadyToStream(): void
+    onError(error: Error): void
+  }
+
+  function pipeToNodeWritable(
+    element: ReactElement,
+    writable: Writable,
+    config: StreamConfig
+  ): StreamOptions
+}
 
 const locales = linguiConfig.locales.sort()
 
@@ -54,43 +71,14 @@ export default async function handleRequest(
   request: Request,
   statusCode: number,
   headers: Headers,
-  context: RootContext
+  context: RootContext,
+  { responseStream }: { responseStream: Writable }
 ) {
   const cookie = request.headers.get('cookie') ?? undefined
-
   const apiHost = process[ENV].API_HOST ?? request.headers.get('host')
-
   const baseApiUrl = `http://${apiHost}`
-
   const client = createApolloClient(`${baseApiUrl}/_c/graphql`, cookie)
-
-  const {
-    data: { me: user },
-  } = await client.query<UserQuery>({ query: userQuery })
-
-  if (user && user.preferences.locale == null) {
-    await client.mutate({
-      mutation: gql`
-        mutation UpdateUserLocale($locale: String!) {
-          updatePreferences(input: { locale: $locale }) {
-            user {
-              id
-              preferences {
-                locale
-              }
-            }
-          }
-        }
-      `,
-      variables: {
-        locale: request.headers.get('x-cramkle-lang') ?? 'en',
-      },
-    })
-  }
-
-  const language =
-    user?.preferences.locale ?? request.headers.get('x-cramkle-lang')!
-
+  const { language, darkMode } = await getUserPreferences(client, request)
   const cspNonce = request.headers.get('x-cramkle-nonce') ?? undefined
 
   i18n.load('en', enCatalog.messages)
@@ -103,19 +91,23 @@ export default async function handleRequest(
   const helmetContext = {}
 
   const root = (
-    <RootServer context={context} url={request.url}>
-      <HelmetProvider context={helmetContext}>
+    <HelmetProvider context={helmetContext}>
+      <Suspense fallback="loading...">
         <App
           i18n={i18n}
           userAgent={request.headers.get('userAgent')!}
           apolloClient={client}
         />
-      </HelmetProvider>
-    </RootServer>
+      </Suspense>
+    </HelmetProvider>
   )
 
   try {
-    const content = await renderToStringWithData(root)
+    await renderToStringWithData(
+      <RootServer context={context} url={request.url}>
+        {root}
+      </RootServer>
+    )
 
     const state = client.extract()
 
@@ -171,40 +163,45 @@ export default async function handleRequest(
             <script
               nonce={cspNonce}
               dangerouslySetInnerHTML={{
-                __html: darkThemeHelmetScript(user?.preferences.darkMode),
+                __html: darkThemeHelmetScript(darkMode),
               }}
             />
-            <div
-              id="root"
-              className="h-full"
-              dangerouslySetInnerHTML={{ __html: content }}
+            <div id="root" className="h-full">
+              {root}
+            </div>
+            <script
+              nonce={cspNonce}
+              dangerouslySetInnerHTML={{
+                __html:
+                  'window.__APOLLO_STATE__ = ' + serializeJavascript(state),
+              }}
             />
-            {!ROUTES_WITHOUT_JAVASCRIPT.includes(request.url) && (
-              <>
-                <script
-                  nonce={cspNonce}
-                  dangerouslySetInnerHTML={{
-                    __html:
-                      'window.__APOLLO_STATE__ = ' + serializeJavascript(state),
-                  }}
-                />
-                <script defer src={getLanguageLocaleFile(language)} />
-                <Scripts nonce={cspNonce} />
-              </>
-            )}
+            <script defer src={getLanguageLocaleFile(language)} />
+            <Scripts nonce={cspNonce} />
           </body>
         </html>
       </RootServer>
     )
 
-    const rootContent = renderToNodeStream(rootContainer)
+    const startWriting = await new Promise<() => void>((resolve, reject) => {
+      const { startWriting } = pipeToNodeWritable(
+        rootContainer,
+        responseStream,
+        {
+          onReadyToStream() {
+            resolve(startWriting)
+          },
+          onError(error) {
+            reject(error)
+          },
+        }
+      )
+    })
 
-    rootContent.unshift('<!doctype html>')
-
-    return new Response(rootContent as any, {
+    return {
       status: statusCode,
       headers: {
-        ...Object.fromEntries((headers as unknown) as [string, string][]),
+        ...Object.fromEntries(headers as unknown as [string, string][]),
         'content-type': 'text/html',
         'vary': Array.from(
           new Set(
@@ -217,10 +214,14 @@ export default async function handleRequest(
           )
         ).join(', '),
       },
-    })
+      body: responseStream,
+      onReadyToStream: () => {
+        startWriting()
+      },
+    }
   } catch (err) {
     if (err instanceof RedirectError) {
-      return new Response(null, {
+      return {
         status: 302,
         headers: {
           location: `${err.url}${
@@ -229,11 +230,17 @@ export default async function handleRequest(
               : ''
           }`,
         },
-      })
+      }
     }
 
-    return new Response(
-      '<!doctype html>' +
+    return {
+      status: 500,
+      headers: {
+        ...Object.fromEntries(headers as unknown as [string, string][]),
+        'content-type': 'text/html',
+      },
+      body:
+        '<!doctype html>' +
         renderToString(
           <RootServer context={context} url={request.url}>
             <html>
@@ -274,13 +281,6 @@ refreshButton.onclick = function() {
             </html>
           </RootServer>
         ),
-      {
-        status: 500,
-        headers: {
-          ...Object.fromEntries((headers as unknown) as [string, string][]),
-          'content-type': 'text/html',
-        },
-      }
-    )
+    }
   }
 }

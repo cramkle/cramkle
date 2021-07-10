@@ -5,7 +5,6 @@ import { ErrorBoundary } from '@sentry/react'
 import font400normal from 'fontsource-libre-franklin/files/libre-franklin-latin-400-normal.woff2'
 import font500normal from 'fontsource-libre-franklin/files/libre-franklin-latin-500-normal.woff2'
 import type { FC } from 'react'
-import { StrictMode } from 'react'
 import { Helmet } from 'react-helmet-async'
 
 import CramkleToasts from './components/CramkleToasts'
@@ -24,7 +23,7 @@ const App: FC<{ i18n: any; apolloClient: any; userAgent: string }> = ({
   userAgent,
 }) => {
   return (
-    <StrictMode>
+    <>
       <I18nProvider i18n={i18n}>
         <ApolloProvider client={apolloClient}>
           <HintsProvider userAgent={userAgent}>
@@ -68,7 +67,7 @@ const App: FC<{ i18n: any; apolloClient: any; userAgent: string }> = ({
           </HintsProvider>
         </ApolloProvider>
       </I18nProvider>
-    </StrictMode>
+    </>
   )
 }
 

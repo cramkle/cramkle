@@ -15,7 +15,7 @@ const SettingsPage: VFC = () => {
 
   const index = useMemo(() => {
     switch (location.pathname) {
-      case '/settings':
+      case '/settings/preferences':
         return 0
       case '/settings/profile':
         return 1
@@ -34,7 +34,7 @@ const SettingsPage: VFC = () => {
         <NoSSR>
           <Tabs className="mt-4" index={index}>
             <TabList>
-              <Tab as={Link} to="">
+              <Tab as={Link} to="preferences">
                 General
               </Tab>
               <Tab as={Link} to="profile">

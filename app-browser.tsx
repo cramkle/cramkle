@@ -4,6 +4,8 @@
 import { RootBrowser } from '@casterly/components/browser'
 import { i18n } from '@lingui/core'
 import { en as enPlural, pt as ptPlural } from 'make-plural/plurals'
+import type { ReactElement } from 'react'
+import { Suspense } from 'react'
 import ReactDOM from 'react-dom'
 import { HelmetProvider } from 'react-helmet-async'
 import Cookies from 'universal-cookie'
@@ -12,11 +14,11 @@ import App from './src/App'
 import { createApolloClient } from './src/utils/apolloClient'
 
 declare module 'react-dom' {
-  // `next` stable version of react-dom renamed
-  // `unstable_createRoot` to createRoot
-  function createRoot(
+  // `alpha` stable version of react-dom renamed
+  // `unstable_createRoot` to `hydrateRoot`
+  function hydrateRoot(
     container: Element | Document | DocumentFragment | Comment,
-    options?: RootOptions
+    element: ReactElement
   ): Root
 }
 
@@ -39,10 +41,6 @@ try {
   // ignore
 }
 
-const reactRoot = ReactDOM.createRoot(document.getElementById('root')!, {
-  hydrate: true,
-})
-
 import(
   /* webpackChunkName: "locale" */ `./src/locales/${language}/messages`
 ).then((catalog) => {
@@ -50,16 +48,28 @@ import(
 
   i18n.activate(language)
 
-  reactRoot.render(
-    <RootBrowser>
-      <HelmetProvider>
-        <App
-          apolloClient={apolloClient}
-          userAgent={navigator.userAgent}
-          i18n={i18n}
-        />
-      </HelmetProvider>
-    </RootBrowser>
+  const suspenseFallback = (
+    <div
+      className="h-full w-full flex items-center justify-center bg-background bg-opacity-background"
+      aria-busy="true"
+    >
+      <p className="text-txt text-opacity-text-primary">Loading...</p>
+    </div>
+  )
+
+  ReactDOM.hydrateRoot(
+    document.getElementById('root')!,
+    <Suspense fallback={suspenseFallback}>
+      <RootBrowser>
+        <HelmetProvider>
+          <App
+            apolloClient={apolloClient}
+            userAgent={navigator.userAgent}
+            i18n={i18n}
+          />
+        </HelmetProvider>
+      </RootBrowser>
+    </Suspense>
   )
 })
 
