@@ -15,7 +15,7 @@
     "strictBindCallApply": true,
     "strictFunctionTypes": true,
     "target": "es5",
-    "lib": ["esnext", "dom"],
+    "lib": ["esnext", "dom", "es2019"],
     "jsx": "react-jsx",
     "resolveJsonModule": true
   },
