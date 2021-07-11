@@ -1,10 +1,23 @@
 import { InMemoryCache } from 'apollo-cache-inmemory'
+import type { NormalizedCacheObject } from 'apollo-cache-inmemory'
 import { ApolloClient } from 'apollo-client'
 import { ApolloLink } from 'apollo-link'
 import { onError } from 'apollo-link-error'
 import { createHttpLink } from 'apollo-link-http'
 
 import { defaults, resolvers } from '../resolvers/index'
+
+declare global {
+  interface Window {
+    __APOLLO_STATE__: NormalizedCacheObject
+  }
+
+  namespace NodeJS {
+    interface Process {
+      browser: boolean
+    }
+  }
+}
 
 export const createApolloClient = (uri: string, cookie?: string) => {
   const cache = new InMemoryCache()
