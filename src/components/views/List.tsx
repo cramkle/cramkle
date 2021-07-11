@@ -50,8 +50,10 @@ export const ListItem = forwardRefWithAs<ListItemProps, 'div'>(
             className,
             'relative group z-10 flex items-center px-3 py-2 outline-reset rounded overflow-hidden transition-colors ease-in-out duration-100',
             {
-              'text-txt text-opacity-text-primary focus:text-primary hover:text-primary cursor-pointer': !disabled,
-              'hover:bg-primary focus:bg-primary hover:bg-opacity-12 focus:bg-opacity-12': !disabled,
+              'text-txt text-opacity-text-primary focus:text-primary hover:text-primary cursor-pointer':
+                !disabled,
+              'hover:bg-primary focus:bg-primary hover:bg-opacity-12 focus:bg-opacity-12':
+                !disabled,
               'text-txt text-opacity-text-disabled': disabled,
             }
           )}
@@ -63,7 +65,8 @@ export const ListItem = forwardRefWithAs<ListItemProps, 'div'>(
             className={classnames('flex-shrink-0', {
               'text-txt text-opacity-text-disabled': disabled,
               'text-txt text-opacity-text-icon': !disabled,
-              'group-hover:text-primary group-focus:text-primary group-hover:text-opacity-100 group-focus:text-opacity-100': !disabled,
+              'group-hover:text-primary group-focus:text-primary group-hover:text-opacity-100 group-focus:text-opacity-100':
+                !disabled,
             })}
           >
             {icon}

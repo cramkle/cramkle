@@ -435,7 +435,7 @@ const StatisticsPage: React.FC = () => {
                         : daysInterval <= 365
                         ? 'long'
                         : undefined,
-                    year: daysInterval > 365 ? 'long' : undefined,
+                    year: daysInterval > 365 ? 'numeric' : undefined,
                   })
                 }
                 tickSizeOuter={0}

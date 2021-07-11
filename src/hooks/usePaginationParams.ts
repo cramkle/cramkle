@@ -10,9 +10,10 @@ export const usePaginationParams = () => {
   const navigate = useNavigate()
   const location = useLocation() as Location<PaginationState>
 
-  const queryParams = useMemo(() => new URLSearchParams(location.search), [
-    location.search,
-  ])
+  const queryParams = useMemo(
+    () => new URLSearchParams(location.search),
+    [location.search]
+  )
 
   const paginationParams = useMemo<PaginationState>(() => {
     let page = 1

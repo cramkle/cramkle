@@ -1,15 +1,16 @@
 import fs from 'fs'
 import path from 'path'
+import type { Writable } from 'stream'
 
 import { renderToStringWithData } from '@apollo/react-ssr'
 import type { RootContext } from '@casterly/components'
 import { Scripts, Styles } from '@casterly/components'
 import { RootServer } from '@casterly/components/server'
 import { i18n } from '@lingui/core'
-import { I18nProvider } from '@lingui/react'
-import gql from 'graphql-tag'
 import { en as enPlural, pt as ptPlural } from 'make-plural/plurals'
-import { renderToNodeStream, renderToString } from 'react-dom/server'
+import type { ReactElement } from 'react'
+import { Suspense } from 'react'
+import { pipeToNodeWritable } from 'react-dom/server'
 import type { FilledContext } from 'react-helmet-async'
 import { HelmetProvider } from 'react-helmet-async'
 import serializeJavascript from 'serialize-javascript'
@@ -17,16 +18,30 @@ import serializeJavascript from 'serialize-javascript'
 import linguiConfig from './.linguirc.json'
 import App from './src/App'
 import { RedirectError } from './src/components/Redirect'
-import type { UserQuery } from './src/components/__generated__/UserQuery'
-import userQuery from './src/components/userQuery.gql'
 import enCatalog from './src/locales/en/messages'
 import ptCatalog from './src/locales/pt/messages'
 import { createApolloClient } from './src/utils/apolloClient'
 import { darkThemeHelmetScript } from './src/utils/darkThemeScript'
-import { errorFallback } from './src/utils/errorFallback'
 import { icons } from './src/utils/headLinks'
+import { getUserPreferences } from './src/utils/userPreferences'
 
-const ROUTES_WITHOUT_JAVASCRIPT = ['/about']
+declare module 'react-dom/server' {
+  interface StreamOptions {
+    startWriting(): void
+    abort(): void
+  }
+
+  interface StreamConfig {
+    onReadyToStream(): void
+    onError(error: Error): void
+  }
+
+  function pipeToNodeWritable(
+    element: ReactElement,
+    writable: Writable,
+    config: StreamConfig
+  ): StreamOptions
+}
 
 const locales = linguiConfig.locales.sort()
 
@@ -54,43 +69,14 @@ export default async function handleRequest(
   request: Request,
   statusCode: number,
   headers: Headers,
-  context: RootContext
+  context: RootContext,
+  { responseStream }: { responseStream: Writable }
 ) {
   const cookie = request.headers.get('cookie') ?? undefined
-
   const apiHost = process[ENV].API_HOST ?? request.headers.get('host')
-
   const baseApiUrl = `http://${apiHost}`
-
   const client = createApolloClient(`${baseApiUrl}/_c/graphql`, cookie)
-
-  const {
-    data: { me: user },
-  } = await client.query<UserQuery>({ query: userQuery })
-
-  if (user && user.preferences.locale == null) {
-    await client.mutate({
-      mutation: gql`
-        mutation UpdateUserLocale($locale: String!) {
-          updatePreferences(input: { locale: $locale }) {
-            user {
-              id
-              preferences {
-                locale
-              }
-            }
-          }
-        }
-      `,
-      variables: {
-        locale: request.headers.get('x-cramkle-lang') ?? 'en',
-      },
-    })
-  }
-
-  const language =
-    user?.preferences.locale ?? request.headers.get('x-cramkle-lang')!
-
+  const { language, darkMode } = await getUserPreferences(client, request)
   const cspNonce = request.headers.get('x-cramkle-nonce') ?? undefined
 
   i18n.load('en', enCatalog.messages)
@@ -103,184 +89,138 @@ export default async function handleRequest(
   const helmetContext = {}
 
   const root = (
-    <RootServer context={context} url={request.url}>
-      <HelmetProvider context={helmetContext}>
+    <HelmetProvider context={helmetContext}>
+      <Suspense fallback="loading...">
         <App
           i18n={i18n}
           userAgent={request.headers.get('userAgent')!}
           apolloClient={client}
         />
-      </HelmetProvider>
+      </Suspense>
+    </HelmetProvider>
+  )
+
+  await renderToStringWithData(
+    <RootServer context={context} url={request.url}>
+      {root}
     </RootServer>
   )
 
-  try {
-    const content = await renderToStringWithData(root)
+  const state = client.extract()
 
-    const state = client.extract()
+  const { helmet } = helmetContext as FilledContext
 
-    const { helmet } = helmetContext as FilledContext
-
-    const rootContainer = (
-      <RootServer context={context} url={request.url}>
-        <html lang={i18n.locale} style={{ fontSize: '16px' }}>
-          <head>
-            <meta charSet="utf-8" />
-            <meta
-              name="viewport"
-              content="width=device-width, initial-scale=1, shrink-to-fit=no"
-            />
-            {context.matchedRoutesAssets
-              .concat(context.mainAssets)
-              .map((assetName) => (
-                <link
-                  key={assetName}
-                  rel="preload"
-                  as={assetName.endsWith('.js') ? 'script' : 'style'}
-                  href={`${process.env.ASSET_PATH}${assetName.slice(1)}`}
-                />
-              ))}
-            <link
-              rel="preload"
-              as="script"
-              href={getLanguageLocaleFile(language)}
-            />
-            {helmet.title.toComponent()}
-            {helmet.meta.toComponent()}
-            {helmet.link.toComponent()}
-            {icons.map(({ rel, sizes, href, type }) => (
+  const rootContainer = (
+    <RootServer context={context} url={request.url}>
+      <html lang={i18n.locale} style={{ fontSize: '16px' }}>
+        <head>
+          <meta charSet="utf-8" />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+          />
+          {context.matchedRoutesAssets
+            .concat(context.mainAssets)
+            .map((assetName) => (
               <link
-                key={href}
-                rel={rel}
-                sizes={sizes}
-                href={href}
-                type={type}
+                key={assetName}
+                rel="preload"
+                as={assetName.endsWith('.js') ? 'script' : 'style'}
+                href={`${process.env.ASSET_PATH}${assetName.slice(1)}`}
               />
             ))}
-            <link rel="manifest" href="/manifest.json" />
-            <style
-              nonce={cspNonce}
-              dangerouslySetInnerHTML={{
-                __html:
-                  'html,body{height: 100%;}body{overscroll-behavior-y:none;}',
-              }}
-            />
-            <Styles />
-          </head>
-          <body>
-            <script
-              nonce={cspNonce}
-              dangerouslySetInnerHTML={{
-                __html: darkThemeHelmetScript(user?.preferences.darkMode),
-              }}
-            />
-            <div
-              id="root"
-              className="h-full"
-              dangerouslySetInnerHTML={{ __html: content }}
-            />
-            {!ROUTES_WITHOUT_JAVASCRIPT.includes(request.url) && (
-              <>
-                <script
-                  nonce={cspNonce}
-                  dangerouslySetInnerHTML={{
-                    __html:
-                      'window.__APOLLO_STATE__ = ' + serializeJavascript(state),
-                  }}
-                />
-                <script defer src={getLanguageLocaleFile(language)} />
-                <Scripts nonce={cspNonce} />
-              </>
-            )}
-          </body>
-        </html>
-      </RootServer>
-    )
+          <link
+            rel="preload"
+            as="script"
+            href={getLanguageLocaleFile(language)}
+          />
+          {helmet.title.toComponent()}
+          {helmet.meta.toComponent()}
+          {helmet.link.toComponent()}
+          {icons.map(({ rel, sizes, href, type }) => (
+            <link key={href} rel={rel} sizes={sizes} href={href} type={type} />
+          ))}
+          <link rel="manifest" href="/manifest.json" />
+          <style
+            nonce={cspNonce}
+            dangerouslySetInnerHTML={{
+              __html:
+                'html,body{height: 100%;}body{overscroll-behavior-y:none;}',
+            }}
+          />
+          <Styles />
+        </head>
+        <body>
+          <script
+            nonce={cspNonce}
+            dangerouslySetInnerHTML={{
+              __html: darkThemeHelmetScript(darkMode),
+            }}
+          />
+          <div id="root" className="h-full">
+            {root}
+          </div>
+          <script
+            nonce={cspNonce}
+            dangerouslySetInnerHTML={{
+              __html: 'window.__APOLLO_STATE__ = ' + serializeJavascript(state),
+            }}
+          />
+          <script defer src={getLanguageLocaleFile(language)} />
+          <Scripts nonce={cspNonce} />
+        </body>
+      </html>
+    </RootServer>
+  )
 
-    const rootContent = renderToNodeStream(rootContainer)
+  let status = statusCode
+  let didError = false
+  let didRedirect = false
+  let location = null
 
-    rootContent.unshift('<!doctype html>')
+  const startWriting = await new Promise<() => void>((resolve) => {
+    const { startWriting } = pipeToNodeWritable(rootContainer, responseStream, {
+      onReadyToStream() {
+        if (didError) {
+          status = 500
+        } else if (didRedirect) {
+          status = 302
+        }
 
-    return new Response(rootContent as any, {
-      status: statusCode,
-      headers: {
-        ...Object.fromEntries((headers as unknown) as [string, string][]),
-        'content-type': 'text/html',
-        'vary': Array.from(
-          new Set(
-            (
-              'cookie' +
-              (headers.has('vary') ? ', ' + headers.get('vary')! : '')
-            )
-              .split(',')
-              .map((header) => header.trim())
-          )
-        ).join(', '),
+        resolve(startWriting)
       },
-    })
-  } catch (err) {
-    if (err instanceof RedirectError) {
-      return new Response(null, {
-        status: 302,
-        headers: {
-          location: `${err.url}${
-            err.appendReturnUrl
+      onError(error) {
+        if (error instanceof RedirectError) {
+          location = `${error.url}${
+            error.appendReturnUrl
               ? `?returnUrl=${encodeURIComponent(request.url)}`
               : ''
-          }`,
-        },
-      })
-    }
+          }`
+          didRedirect = true
+        } else {
+          didError = true
+        }
+      },
+    })
+  })
 
-    return new Response(
-      '<!doctype html>' +
-        renderToString(
-          <RootServer context={context} url={request.url}>
-            <html>
-              <head>
-                <meta charSet="utf-8" />
-                <meta
-                  name="viewport"
-                  content="width=device-width, initial-scale=1, shrink-to-fit=no"
-                />
-                <meta name="robots" content="noindex, nofollow" />
-                <title>Error</title>
-                <style
-                  nonce={cspNonce}
-                  dangerouslySetInnerHTML={{
-                    __html:
-                      'html,body{height: 100%;}body{overscroll-behavior-y:none;}',
-                  }}
-                />
-                <Styles />
-              </head>
-              <body>
-                <I18nProvider i18n={i18n}>
-                  {errorFallback({ error: err, componentStack: '' })}
-                </I18nProvider>
-                <script
-                  nonce={cspNonce}
-                  dangerouslySetInnerHTML={{
-                    __html: `
-var refreshButton = document.getElementById('refresh-button');
-
-refreshButton.onclick = function() {
-  window.location.reload()
-};
-`.trim(),
-                  }}
-                />
-              </body>
-            </html>
-          </RootServer>
-        ),
-      {
-        status: 500,
-        headers: {
-          ...Object.fromEntries((headers as unknown) as [string, string][]),
-          'content-type': 'text/html',
-        },
-      }
-    )
+  return {
+    status,
+    headers: {
+      ...Object.fromEntries(headers as unknown as [string, string][]),
+      ...(didRedirect ? { location } : {}),
+      'content-type': 'text/html',
+      'vary': Array.from(
+        new Set(
+          ('cookie' + (headers.has('vary') ? ', ' + headers.get('vary')! : ''))
+            .split(',')
+            .map((header) => header.trim())
+        )
+      ).join(', '),
+    },
+    body: didRedirect ? null : responseStream,
+    onReadyToStream: () => {
+      startWriting()
+    },
   }
 }

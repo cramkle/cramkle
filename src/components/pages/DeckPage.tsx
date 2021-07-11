@@ -95,11 +95,8 @@ const DeckPage: React.FunctionComponent = () => {
   const { slug } = useParams() as { slug: string }
   const location = useLocation()
   const navigate = useNavigate()
-  const {
-    paginationParams,
-    pageSize,
-    onPaginationChange,
-  } = usePaginationParams()
+  const { paginationParams, pageSize, onPaginationChange } =
+    usePaginationParams()
 
   const [searchInputValue, setSearchInputValue] = useState(() => {
     const searchParams = new URLSearchParams(location.search)
@@ -156,20 +153,21 @@ const DeckPage: React.FunctionComponent = () => {
     refetch()
   }
 
-  const handleSearchChange: React.ChangeEventHandler<HTMLInputElement> = useCallback(
-    (evt) => {
-      const search = evt.target.value
-      setSearchInputValue(search)
-      if (searchDebounceRef.current) {
-        clearTimeout(searchDebounceRef.current)
-      }
+  const handleSearchChange: React.ChangeEventHandler<HTMLInputElement> =
+    useCallback(
+      (evt) => {
+        const search = evt.target.value
+        setSearchInputValue(search)
+        if (searchDebounceRef.current) {
+          clearTimeout(searchDebounceRef.current)
+        }
 
-      searchDebounceRef.current = setTimeout(() => {
-        handleSearchSubmit(search)
-      }, 500)
-    },
-    [handleSearchSubmit]
-  )
+        searchDebounceRef.current = setTimeout(() => {
+          handleSearchSubmit(search)
+        }, 500)
+      },
+      [handleSearchSubmit]
+    )
 
   useTopBarLoading(loading)
 

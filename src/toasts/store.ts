@@ -43,15 +43,15 @@ export class ToastStore {
     })
   }
 
-  private emitAfterReturn = <T, V>(fn: (...args: T[]) => V) => (
-    ...args: T[]
-  ) => {
-    const returnValue = fn(...args)
+  private emitAfterReturn =
+    <T, V>(fn: (...args: T[]) => V) =>
+    (...args: T[]) => {
+      const returnValue = fn(...args)
 
-    this.emit()
+      this.emit()
 
-    return returnValue
-  }
+      return returnValue
+    }
 
   public add = this.emitAfterReturn((toastConfig: ToastConfig) => {
     const id = uuid.v4()

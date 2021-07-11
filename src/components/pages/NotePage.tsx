@@ -194,10 +194,8 @@ const NotePage: React.FC = () => {
     NOTE_QUERY,
     { variables: { noteId } }
   )
-  const [
-    flashCardPreview,
-    setFlashCardPreview,
-  ] = useState<NoteQuery_note_flashCards | null>(null)
+  const [flashCardPreview, setFlashCardPreview] =
+    useState<NoteQuery_note_flashCards | null>(null)
   const { i18n } = useLingui()
 
   useTopBarLoading(loading)

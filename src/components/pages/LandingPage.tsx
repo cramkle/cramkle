@@ -12,11 +12,12 @@ import { ReactComponent as Logo } from '../../assets/logo.svg'
 import { positionMatchWindowWidth } from '../../utils/popover'
 import { AppName } from '../AppName'
 import { Footer } from '../Footer'
-import RegisterForm from '../forms/RegisterForm'
 import { OverflowMenuIcon } from '../icons/OverflowMenuIcon'
 import { Button } from '../views/Button'
 import { Header, HeaderContent, HeaderSection } from '../views/Header'
 import { Menu, MenuButton } from '../views/MenuButton'
+
+const RegisterForm = React.lazy(() => import('../forms/RegisterForm'))
 
 const LandingPage: React.VFC = () => {
   const navigate = useNavigate()
@@ -115,18 +116,20 @@ const LandingPage: React.VFC = () => {
                   </Trans>
                 </p>
               </div>
-              <div className="self-center flex flex-col items-center">
-                <RegisterForm title={t`Sign up now!`} />
+              <React.Suspense fallback={null}>
+                <div className="self-center flex flex-col items-center">
+                  <RegisterForm title={t`Sign up now!`} />
 
-                <span className="mt-4">
-                  <Trans>
-                    Already have an account?{' '}
-                    <Link to="/login" className="font-bold text-on-primary">
-                      Log In
-                    </Link>
-                  </Trans>
-                </span>
-              </div>
+                  <span className="mt-4">
+                    <Trans>
+                      Already have an account?{' '}
+                      <Link to="/login" className="font-bold text-on-primary">
+                        Log In
+                      </Link>
+                    </Trans>
+                  </span>
+                </div>
+              </React.Suspense>
             </div>
           </section>
         </div>

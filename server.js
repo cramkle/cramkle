@@ -12,6 +12,8 @@ const pkg = require('./package.json')
 
 const app = express()
 
+app.disable('etag')
+
 app.use(
   promBundle({
     includeMethod: true,

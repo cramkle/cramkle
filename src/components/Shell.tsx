@@ -4,7 +4,7 @@ import classnames from 'classnames'
 import gql from 'graphql-tag'
 import { useCallback } from 'react'
 import * as React from 'react'
-import { Link, Outlet, useNavigate } from 'react-router-dom'
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom'
 
 import { ReactComponent as LogoGray } from '../assets/logo-gray.svg'
 import { ReactComponent as Logo } from '../assets/logo.svg'
@@ -49,7 +49,7 @@ const DefaultMenuItems: React.FC = () => {
   const [showAnonLogoutModal, setShowAnonLogoutModal] = React.useState(false)
 
   const handleSettingsClick = useCallback(() => {
-    navigate('/settings')
+    navigate('/settings/preferences')
   }, [navigate])
 
   const handleLogout = useCallback(() => {
@@ -226,6 +226,15 @@ const Shell: React.FC = () => {
   const isOffline = useOffline()
 
   useDarkModePreferencesSync()
+
+  const location = useLocation()
+  const navigate = useNavigate()
+
+  React.useEffect(() => {
+    if (location.pathname === '/') {
+      navigate('/home')
+    }
+  }, [location.pathname, navigate])
 
   return (
     <div className="w-full h-full flex flex-col relative bg-background bg-opacity-background">

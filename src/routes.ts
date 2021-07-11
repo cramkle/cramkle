@@ -82,7 +82,7 @@ export default [
             path: '/settings',
             children: [
               {
-                path: '',
+                path: '/preferences',
                 component: () => import('./components/pages/GeneralSettings'),
               },
               {
