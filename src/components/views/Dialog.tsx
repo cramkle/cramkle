@@ -21,22 +21,25 @@ const DialogTitle = forwardRef<HTMLHeadingElement, DialogTitleProps>(
   }
 )
 
-const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
-  function DialogContent(props, ref) {
-    return (
-      <ReachDialogContent
-        {...props}
-        className={classnames(
-          props.className,
-          'bg-surface text-txt text-opacity-text-primary rounded shadow p-6 w-full max-w-xl md:max-w-3xl'
-        )}
-        ref={ref}
-      />
-    )
-  }
-)
+const DialogContent = forwardRef<
+  HTMLDivElement,
+  DialogContentProps & { className?: string }
+>(function DialogContent(props, ref) {
+  return (
+    <ReachDialogContent
+      {...props}
+      className={classnames(
+        props.className,
+        'bg-surface text-txt text-opacity-text-primary rounded shadow p-6 w-full max-w-xl md:max-w-3xl'
+      )}
+      ref={ref}
+    />
+  )
+})
 
-const DialogOverlay: React.FC<DialogProps> = (props) => {
+const DialogOverlay: React.FC<DialogProps & { className?: string }> = (
+  props
+) => {
   return (
     <ReachDialogOverlay
       {...props}
@@ -47,7 +50,10 @@ const DialogOverlay: React.FC<DialogProps> = (props) => {
 
 const noop = () => {}
 
-const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
+const Dialog = forwardRef<
+  HTMLDivElement,
+  DialogProps & { style?: React.CSSProperties }
+>(function Dialog(
   { isOpen, onDismiss = noop, initialFocusRef, allowPinchZoom, ...props },
   forwardedRef
 ) {

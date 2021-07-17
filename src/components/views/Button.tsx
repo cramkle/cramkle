@@ -1,5 +1,6 @@
-import { forwardRefWithAs } from '@reach/utils'
+import type * as Polymorphic from '@reach/utils/polymorphic'
 import classnames from 'classnames'
+import { forwardRef } from 'react'
 
 type Props = {
   variation?: 'outline' | 'primary' | 'secondary' | 'plain'
@@ -7,7 +8,7 @@ type Props = {
   disabled?: boolean
 }
 
-export const Button = forwardRefWithAs<Props, 'button'>(function Button(
+export const Button = forwardRef(function Button(
   {
     className = '',
     variation = 'plain',
@@ -73,4 +74,4 @@ export const Button = forwardRefWithAs<Props, 'button'>(function Button(
       </div>
     </As>
   )
-})
+}) as Polymorphic.ForwardRefComponent<'button', Props>

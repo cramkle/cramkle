@@ -6,8 +6,7 @@ import {
   TabPanels,
   Tabs,
 } from '@reach/tabs'
-import type { ForwardRefExoticComponentWithAs } from '@reach/utils'
-import { forwardRefWithAs } from '@reach/utils'
+import type * as Polymorphic from '@reach/utils/polymorphic'
 import classNames from 'classnames'
 import type { HTMLAttributes } from 'react'
 import { forwardRef } from 'react'
@@ -24,7 +23,7 @@ export const TabList: React.FC<TabListProps & HTMLAttributes<HTMLDivElement>> =
     )
   }
 
-export const Tab = forwardRefWithAs<TabProps, 'button'>(function Tab(
+export const Tab = React.forwardRef(function Tab(
   { children, className = '', ...props },
   ref
 ) {
@@ -48,17 +47,19 @@ export const Tab = forwardRefWithAs<TabProps, 'button'>(function Tab(
       />
     </ReachTab>
   )
-})
+}) as Polymorphic.ForwardRefComponent<'button', TabProps>
 
-export const TabPanel: ForwardRefExoticComponentWithAs<'div', TabPanelProps> =
-  forwardRef(function TabPanel({ className, ...props }, ref) {
-    return (
-      <ReachTabPanel
-        ref={ref}
-        className={classNames(className, 'outline-reset')}
-        {...props}
-      />
-    )
-  })
+export const TabPanel = forwardRef(function TabPanel(
+  { className, ...props },
+  ref
+) {
+  return (
+    <ReachTabPanel
+      ref={ref}
+      className={classNames(className, 'outline-reset')}
+      {...props}
+    />
+  )
+}) as Polymorphic.ForwardRefComponent<'div', TabPanelProps>
 
 export { Tabs, TabPanels }
