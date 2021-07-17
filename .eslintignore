@@ -1,6 +1,5 @@
-node_modules
-.dist
+node_modules/
+build/
 src/locales
-!.storybook
 .eslintrc.js
 !.babelrc.js
