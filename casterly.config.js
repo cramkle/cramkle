@@ -5,5 +5,6 @@ module.exports = {
   buildFolder: 'build',
   experiments: {
     esbuildDependencies: true,
+    esmExternals: true,
   },
 }

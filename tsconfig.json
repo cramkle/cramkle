@@ -19,7 +19,7 @@
     "jsx": "react-jsx",
     "resolveJsonModule": true
   },
-  "exclude": ["jest/**/*", "jest.config.js", "node_modules"],
+  "exclude": ["node_modules"],
   "include": [
     "./**/*.ts",
     "./**/*.tsx",

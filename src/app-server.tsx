@@ -15,15 +15,15 @@ import type { FilledContext } from 'react-helmet-async'
 import { HelmetProvider } from 'react-helmet-async'
 import serializeJavascript from 'serialize-javascript'
 
-import linguiConfig from './.linguirc.json'
-import App from './src/App'
-import { RedirectError } from './src/components/Redirect'
-import enCatalog from './src/locales/en/messages'
-import ptCatalog from './src/locales/pt/messages'
-import { createApolloClient } from './src/utils/apolloClient'
-import { darkThemeHelmetScript } from './src/utils/darkThemeScript'
-import { icons } from './src/utils/headLinks'
-import { getUserPreferences } from './src/utils/userPreferences'
+import linguiConfig from '../lingui.config'
+import App from './App'
+import { RedirectError } from './components/Redirect'
+import { messages as enCatalog } from './locales/en/messages'
+import { messages as ptCatalog } from './locales/pt/messages'
+import { createApolloClient } from './utils/apolloClient'
+import { darkThemeHelmetScript } from './utils/darkThemeScript'
+import { icons } from './utils/headLinks'
+import { getUserPreferences } from './utils/userPreferences'
 
 declare module 'react-dom/server' {
   interface StreamOptions {
@@ -79,8 +79,8 @@ export default async function handleRequest(
   const { language, darkMode } = await getUserPreferences(client, request)
   const cspNonce = request.headers.get('x-cramkle-nonce') ?? undefined
 
-  i18n.load('en', enCatalog.messages)
-  i18n.load('pt', ptCatalog.messages)
+  i18n.load('en', enCatalog)
+  i18n.load('pt', ptCatalog)
 
   i18n.loadLocaleData({ en: { plurals: enPlural }, pt: { plurals: ptPlural } })
 
