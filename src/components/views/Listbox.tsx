@@ -21,11 +21,12 @@ import { ArrowDownIcon } from '../icons/ArrowDownIcon'
 import { DoneIcon } from '../icons/DoneIcon'
 import styles from './Listbox.css'
 
-export const ListboxInput = forwardRef<HTMLDivElement, InputProps>(
-  function ListboxInput({ className, ...props }, ref) {
-    return <Input {...props} className={classnames(className)} ref={ref} />
-  }
-)
+export const ListboxInput = forwardRef<
+  HTMLDivElement,
+  InputProps & { className?: string; id?: string }
+>(function ListboxInput({ className, ...props }, ref) {
+  return <Input {...props} className={classnames(className)} ref={ref} />
+})
 
 export const ListboxButton: React.FC<
   Omit<ButtonProps, 'arrow'> & React.HTMLAttributes<HTMLSpanElement>
@@ -43,23 +44,24 @@ export const ListboxButton: React.FC<
   )
 }
 
-export const ListboxPopover = forwardRef<HTMLDivElement, PopoverProps>(
-  function ListboxPopover({ className, children, ...props }, ref) {
-    return (
-      <Popover
-        {...props}
-        className={classnames(
-          styles.popover,
-          className,
-          'absolute z-40 border-0 border-none rounded shadow-xl bg-surface py-0 mt-1 outline-none'
-        )}
-        ref={ref}
-      >
-        <div className="py-2 h-full shadow-sm rounded">{children}</div>
-      </Popover>
-    )
-  }
-)
+export const ListboxPopover = forwardRef<
+  HTMLDivElement,
+  PopoverProps & { className?: string }
+>(function ListboxPopover({ className, children, ...props }, ref) {
+  return (
+    <Popover
+      {...props}
+      className={classnames(
+        styles.popover,
+        className,
+        'absolute z-40 border-0 border-none rounded shadow-xl bg-surface py-0 mt-1 outline-none'
+      )}
+      ref={ref}
+    >
+      <div className="py-2 h-full shadow-sm rounded">{children}</div>
+    </Popover>
+  )
+})
 
 export const ListboxList: React.FC<
   ListProps & React.HTMLAttributes<HTMLUListElement>
@@ -93,28 +95,29 @@ export const ListboxOption: React.FC<
   )
 }
 
-export const Listbox = forwardRef<HTMLDivElement, Omit<ListboxProps, 'arrow'>>(
-  function Listbox(
-    { button, children, portal = true, ...props },
-    forwardedRef
-  ) {
-    return (
-      <ListboxInput {...props} ref={forwardedRef}>
-        {({ value, valueLabel }) => (
-          <>
-            <ListboxButton>
-              {button
-                ? typeof button === 'function'
-                  ? button({ value, label: valueLabel })
-                  : button
-                : undefined}
-            </ListboxButton>
-            <ListboxPopover portal={portal}>
-              <ListboxList>{children}</ListboxList>
-            </ListboxPopover>
-          </>
-        )}
-      </ListboxInput>
-    )
-  }
-)
+export const Listbox = forwardRef<
+  HTMLDivElement,
+  Omit<ListboxProps, 'arrow'> & { className?: string; id?: string }
+>(function Listbox(
+  { className, button, children, portal = true, ...props },
+  forwardedRef
+) {
+  return (
+    <ListboxInput className={className} {...props} ref={forwardedRef}>
+      {({ value, valueLabel }) => (
+        <>
+          <ListboxButton>
+            {button
+              ? typeof button === 'function'
+                ? button({ value, label: valueLabel })
+                : button
+              : undefined}
+          </ListboxButton>
+          <ListboxPopover portal={portal}>
+            <ListboxList>{children}</ListboxList>
+          </ListboxPopover>
+        </>
+      )}
+    </ListboxInput>
+  )
+})

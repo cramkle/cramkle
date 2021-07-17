@@ -40,29 +40,31 @@ const AlertDialogLabel: React.FC<React.HTMLAttributes<HTMLDivElement>> = (
   )
 }
 
-const AlertDialogContent = forwardRef<HTMLDivElement, AlertDialogContentProps>(
-  function DialogContent(props, ref) {
+const AlertDialogContent = forwardRef<
+  HTMLDivElement,
+  AlertDialogContentProps & { className?: string }
+>(function DialogContent(props, ref) {
+  return (
+    <ReachAlertDialogContent
+      {...props}
+      className={classnames(
+        props.className,
+        'bg-surface text-txt text-opacity-text-primary rounded shadow p-6 w-full max-w-xl md:max-w-3xl'
+      )}
+      ref={ref}
+    />
+  )
+})
+
+const AlertDialogOverlay: React.FC<AlertDialogProps & { className?: string }> =
+  (props) => {
     return (
-      <ReachAlertDialogContent
+      <ReachAlertDialogOverlay
         {...props}
-        className={classnames(
-          props.className,
-          'bg-surface text-txt text-opacity-text-primary rounded shadow p-6 w-full max-w-xl md:max-w-3xl'
-        )}
-        ref={ref}
+        className={classnames(props.className, 'z-50 px-2')}
       />
     )
   }
-)
-
-const AlertDialogOverlay: React.FC<AlertDialogProps> = (props) => {
-  return (
-    <ReachAlertDialogOverlay
-      {...props}
-      className={classnames(props.className, 'z-50 px-2')}
-    />
-  )
-}
 
 const AlertDialog: React.FC<AlertDialogProps> = ({
   id,

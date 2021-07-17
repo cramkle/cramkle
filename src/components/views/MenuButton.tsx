@@ -11,7 +11,7 @@ import {
   MenuLink as ReachMenuLink,
   MenuList as ReachMenuList,
 } from '@reach/menu-button'
-import type { ForwardRefExoticComponentWithAs } from '@reach/utils'
+import type * as Polymorphic from '@reach/utils/polymorphic'
 import classnames from 'classnames'
 import type { ReactNode } from 'react'
 import { forwardRef } from 'react'
@@ -21,12 +21,9 @@ import { Link } from 'react-router-dom'
 
 import styles from './MenuButton.css'
 
-export const MenuButton: React.FC<MenuButtonProps & { icon?: boolean }> = ({
-  children,
-  icon = false,
-  className = '',
-  ...props
-}) => {
+export const MenuButton: React.FC<
+  MenuButtonProps & { icon?: boolean; className?: string }
+> = ({ children, icon = false, className = '', ...props }) => {
   return (
     <ReachMenuButton
       {...props}
@@ -43,11 +40,9 @@ export const MenuButton: React.FC<MenuButtonProps & { icon?: boolean }> = ({
   )
 }
 
-export const MenuList: React.FC<MenuListProps> = ({
-  children,
-  className = '',
-  ...props
-}) => {
+export const MenuList: React.FC<
+  MenuListProps & { className?: string; style?: React.CSSProperties }
+> = ({ children, className = '', ...props }) => {
   return (
     <ReachMenuList
       {...props}
@@ -61,10 +56,10 @@ export const MenuList: React.FC<MenuListProps> = ({
   )
 }
 
-export const MenuItem: ForwardRefExoticComponentWithAs<
-  'div',
-  MenuItemProps & { icon?: ReactNode }
-> = forwardRef(function MenuItem({ children, icon, ...props }, ref) {
+export const MenuItem = forwardRef(function MenuItem(
+  { children, icon, ...props },
+  ref
+) {
   return (
     <ReachMenuItem
       {...props}
@@ -85,7 +80,10 @@ export const MenuItem: ForwardRefExoticComponentWithAs<
       />
     </ReachMenuItem>
   )
-})
+}) as Polymorphic.ForwardRefComponent<
+  'div',
+  MenuItemProps & { icon?: ReactNode }
+>
 
 export const MenuLink: React.FC<MenuLinkProps & LinkProps> = ({
   children,

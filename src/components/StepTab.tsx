@@ -1,11 +1,9 @@
 import { Trans } from '@lingui/macro'
-import { forwardRefWithAs } from '@reach/utils'
+import type * as Polymorphic from '@reach/utils/polymorphic'
 import classnames from 'classnames'
+import { forwardRef } from 'react'
 
-const StepTab = forwardRefWithAs<
-  { isActive?: boolean; children?: React.ReactNode; index: number },
-  'button'
->(function StepTab(
+const StepTab = forwardRef(function StepTab(
   { children, className = '', isActive = false, index, ...props },
   ref
 ) {
@@ -39,6 +37,9 @@ const StepTab = forwardRefWithAs<
       </div>
     </button>
   )
-})
+}) as Polymorphic.ForwardRefComponent<
+  'button',
+  { isActive?: boolean; children?: React.ReactNode; index: number }
+>
 
 export default StepTab
