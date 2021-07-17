@@ -11,7 +11,7 @@ import { useLayoutEffect, useReducer, useRef } from 'react'
 import { HelmetProvider } from 'react-helmet-async'
 import { Router } from 'react-router'
 
-import enCatalog from '../locales/en/messages'
+import { messages as enCatalog } from '../locales/en/messages'
 
 interface RenderOptions {
   mocks?: MockedResponse[]
@@ -21,7 +21,7 @@ interface RenderOptions {
 export function render(ui: ReactElement, options?: RenderOptions) {
   const i18n = setupI18n()
 
-  i18n.load('en', enCatalog.messages)
+  i18n.load('en', enCatalog)
   i18n.loadLocaleData({ en: { plurals: enPlural } })
 
   i18n.activate('en')
