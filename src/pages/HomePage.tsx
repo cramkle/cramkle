@@ -1,5 +1,6 @@
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
+import classNames from 'classnames'
 import type { Location } from 'history'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import * as React from 'react'
@@ -7,6 +8,7 @@ import { Helmet } from 'react-helmet-async'
 import { useLocation, useNavigate } from 'react-router'
 
 import { HeaderPortal } from '../components/HeaderPortal'
+import { useSsr } from '../components/NoSSR'
 import { useCurrentUser } from '../components/UserContext'
 import { DecksIcon } from '../components/icons/DecksIcon'
 import { ModelsIcon } from '../components/icons/ModelsIcon'
@@ -54,6 +56,8 @@ const HomePage: React.FunctionComponent = () => {
   const navigate = useNavigate()
   const location = useLocation() as Location<{ currentTab?: number }>
   const { i18n } = useLingui()
+
+  const isSsr = useSsr()
 
   const me = useCurrentUser()
 
@@ -146,13 +150,19 @@ const HomePage: React.FunctionComponent = () => {
                 </section>
               )}
 
-              <TabPanel>
+              <TabPanel
+                className={classNames({ hidden: isSsr || index !== 0 })}
+              >
                 <StudySection />
               </TabPanel>
-              <TabPanel>
+              <TabPanel
+                className={classNames({ hidden: isSsr || index !== 1 })}
+              >
                 <DecksSection />
               </TabPanel>
-              <TabPanel>
+              <TabPanel
+                className={classNames({ hidden: isSsr || index !== 2 })}
+              >
                 <ModelsSection />
               </TabPanel>
             </TabPanels>
