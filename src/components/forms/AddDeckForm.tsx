@@ -7,14 +7,14 @@ import * as React from 'react'
 import { useNavigate } from 'react-router'
 import * as yup from 'yup'
 
+import { DECKS_QUERY } from '../../pages/DecksSection'
+import type { DecksQuery } from '../../pages/__generated__/DecksQuery'
 import {
   TIMEOUT_MEDIUM,
   pushErrorToast,
   pushToast,
 } from '../../toasts/pushToast'
 import { deckCardFragment } from '../DeckCard'
-import { DECKS_QUERY } from '../pages/DecksSection'
-import type { DecksQuery } from '../pages/__generated__/DecksQuery'
 import { Button } from '../views/Button'
 import { Dialog, DialogTitle } from '../views/Dialog'
 import { TextInputField } from './Fields'

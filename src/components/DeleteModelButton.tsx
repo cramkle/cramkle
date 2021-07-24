@@ -5,6 +5,8 @@ import { useRef, useState } from 'react'
 import * as React from 'react'
 import { useNavigate } from 'react-router'
 
+import { MODELS_QUERY } from '../pages/ModelsSection'
+import type { ModelsQuery } from '../pages/__generated__/ModelsQuery'
 import {
   TIMEOUT_MEDIUM,
   pushErrorToast,
@@ -15,8 +17,6 @@ import type {
   DeleteModelMutationVariables,
 } from './__generated__/DeleteModelMutation'
 import { TrashBinIcon } from './icons/TrashBinIcon'
-import { MODELS_QUERY } from './pages/ModelsSection'
-import type { ModelsQuery } from './pages/__generated__/ModelsQuery'
 import {
   AlertDialog,
   AlertDialogDescription,

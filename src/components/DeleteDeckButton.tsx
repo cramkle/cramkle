@@ -5,6 +5,8 @@ import { useCallback, useRef, useState } from 'react'
 import * as React from 'react'
 import { useNavigate } from 'react-router'
 
+import { DECKS_QUERY } from '../pages/DecksSection'
+import type { DecksQuery } from '../pages/__generated__/DecksQuery'
 import {
   TIMEOUT_MEDIUM,
   pushErrorToast,
@@ -15,8 +17,6 @@ import type {
   DeleteDeckMutationVariables,
 } from './__generated__/DeleteDeckMutation'
 import { TrashBinIcon } from './icons/TrashBinIcon'
-import { DECKS_QUERY } from './pages/DecksSection'
-import type { DecksQuery } from './pages/__generated__/DecksQuery'
 import {
   AlertDialog,
   AlertDialogDescription,

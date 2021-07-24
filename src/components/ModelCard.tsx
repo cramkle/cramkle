@@ -4,7 +4,7 @@ import { useCallback } from 'react'
 import * as React from 'react'
 import { useNavigate } from 'react-router'
 
-import type { ModelsQuery_models } from './pages/__generated__/ModelsQuery'
+import type { ModelsQuery_models } from '../pages/__generated__/ModelsQuery'
 import { Card, CardContent, CardPressable } from './views/Card'
 import { Chip } from './views/Chip'
 import { Headline3 } from './views/Typography'
