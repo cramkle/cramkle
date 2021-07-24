@@ -4,11 +4,11 @@ import gql from 'graphql-tag'
 import { useRef } from 'react'
 import * as React from 'react'
 
+import type { DeckQuery_deck_notes_edges_node } from '../pages/__generated__/DeckQuery'
 import type {
   DeleteNoteMutation,
   DeleteNoteMutationVariables,
 } from './__generated__/DeleteNoteMutation'
-import type { DeckQuery_deck_notes_edges_node } from './pages/__generated__/DeckQuery'
 import {
   AlertDialog,
   AlertDialogDescription,

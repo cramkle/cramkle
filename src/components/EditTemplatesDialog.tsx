@@ -7,6 +7,12 @@ import { useRef, useState } from 'react'
 import * as React from 'react'
 
 import { useLatestRefEffect } from '../hooks/useLatestRefEffect'
+import { DRAFT_CONTENT_FRAGMENT, MODEL_QUERY } from '../pages/ModelQuery'
+import type {
+  ModelQuery,
+  ModelQueryVariables,
+  ModelQuery_model_templates,
+} from '../pages/__generated__/ModelQuery'
 import type {
   CreateTemplate,
   CreateTemplateVariables,
@@ -25,12 +31,6 @@ import { DoneIcon } from './icons/DoneIcon'
 import { EditIcon } from './icons/EditIcon'
 import { TrashBinIcon } from './icons/TrashBinIcon'
 import { WarningIcon } from './icons/WarningIcon'
-import { DRAFT_CONTENT_FRAGMENT, MODEL_QUERY } from './pages/ModelQuery'
-import type {
-  ModelQuery,
-  ModelQueryVariables,
-  ModelQuery_model_templates,
-} from './pages/__generated__/ModelQuery'
 import { Button } from './views/Button'
 import { Dialog, DialogTitle } from './views/Dialog'
 import { IconButton } from './views/IconButton'

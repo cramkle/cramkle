@@ -1,40 +1,40 @@
 export default [
   {
     path: '',
-    component: () => import('./components/routes/GuestRoute'),
+    component: () => import('./routes/GuestRoute'),
     children: [
       {
-        component: () => import('./components/pages/LandingPage'),
+        component: () => import('./pages/LandingPage'),
         path: '/',
       },
       {
-        component: () => import('./components/pages/LoginPage'),
+        component: () => import('./pages/LoginPage'),
         path: '/login',
       },
       {
-        component: () => import('./components/pages/RegisterPage'),
+        component: () => import('./pages/RegisterPage'),
         path: '/register',
       },
       {
-        component: () => import('./components/pages/ForgotPasswordPage'),
+        component: () => import('./pages/ForgotPasswordPage'),
         path: '/forgot-password',
       },
       {
-        component: () => import('./components/pages/ResetPasswordPage'),
+        component: () => import('./pages/ResetPasswordPage'),
         path: '/reset-password/:userId',
       },
     ],
   },
   {
     path: '',
-    component: () => import('./components/routes/UserRoute'),
+    component: () => import('./routes/UserRoute'),
     children: [
       {
         path: '',
         component: () => import('./components/Shell'),
         children: [
           {
-            component: () => import('./components/pages/HomePage'),
+            component: () => import('./pages/HomePage'),
             path: '/home',
           },
           {
@@ -58,57 +58,57 @@ export default [
             },
           },
           {
-            component: () => import('./components/pages/DeckPage'),
+            component: () => import('./pages/DeckPage'),
             path: '/d/:slug',
           },
           {
-            component: () => import('./components/pages/AddNotePage'),
+            component: () => import('./pages/AddNotePage'),
             path: '/d/:slug/new-note',
           },
           {
-            component: () => import('./components/pages/NotePage'),
+            component: () => import('./pages/NotePage'),
             path: '/d/:slug/note/:noteId',
           },
           {
-            component: () => import('./components/pages/AddModelPage'),
+            component: () => import('./pages/AddModelPage'),
             path: '/models/create',
           },
           {
-            component: () => import('./components/pages/ModelPage'),
+            component: () => import('./pages/ModelPage'),
             path: '/m/:id',
           },
           {
-            component: () => import('./components/pages/SettingsPage'),
+            component: () => import('./pages/SettingsPage'),
             path: '/settings',
             children: [
               {
                 path: '/preferences',
-                component: () => import('./components/pages/GeneralSettings'),
+                component: () => import('./pages/GeneralSettings'),
               },
               {
                 path: '/profile',
-                component: () => import('./components/pages/ProfileSettings'),
+                component: () => import('./pages/ProfileSettings'),
               },
             ],
           },
           {
-            component: () => import('./components/pages/StatisticsPage'),
+            component: () => import('./pages/StatisticsPage'),
             path: '/statistics',
           },
         ],
       },
       {
-        component: () => import('./components/pages/StudyPage'),
+        component: () => import('./pages/StudyPage'),
         path: '/study/:slug',
       },
     ],
   },
   {
-    component: () => import('./components/pages/AboutPage'),
+    component: () => import('./pages/AboutPage'),
     path: '/about',
   },
   {
-    component: () => import('./components/pages/NotFoundPage'),
+    component: () => import('./pages/NotFoundPage'),
     path: '*',
   },
 ]

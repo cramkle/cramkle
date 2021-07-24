@@ -177,7 +177,7 @@
   },
   "resolutions": {
     "@octokit/rest": "^18",
-    "graphql": "15.4.0"
+    "graphql": "15.5.1"
   },
   "browserslist": [
     ">0.2%",
