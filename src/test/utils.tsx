@@ -11,6 +11,7 @@ import { useLayoutEffect, useReducer, useRef } from 'react'
 import { HelmetProvider } from 'react-helmet-async'
 import { Router } from 'react-router'
 
+import { TopbarProvider } from '../hooks/useTopBarLoading'
 import { messages as enCatalog } from '../locales/en/messages'
 
 interface RenderOptions {
@@ -68,7 +69,9 @@ export function render(ui: ReactElement, options?: RenderOptions) {
             {...(options?.mocks ? { mocks: options.mocks } : undefined)}
             addTypename={false}
           >
-            {ui}
+            <TopbarProvider isLoading={false} setLoading={jest.fn()}>
+              {ui}
+            </TopbarProvider>
           </MockedProvider>
         </I18nProvider>
       </HelmetProvider>
