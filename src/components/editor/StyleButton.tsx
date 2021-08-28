@@ -8,7 +8,7 @@ import { useControlledTabIndex } from 'react-tab-controller'
 export interface Style {
   label: MessageDescriptor | string
   style: string
-  icon?: React.ReactElement
+  icon?: React.ReactElement | undefined
 }
 
 interface Props extends Style {

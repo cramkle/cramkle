@@ -38,9 +38,11 @@ registerRoute(
   new CacheFirst({
     cacheName: 'google-fonts-webfonts',
     plugins: [
+      // @ts-ignore: not compatible yet with exactOptionalPropertyTypes
       new CacheableResponsePlugin({
         statuses: [0, 200],
       }),
+      // @ts-ignore: not compatible yet with exactOptionalPropertyTypes
       new ExpirationPlugin({
         maxEntries: 20,
         // cache for a year
@@ -56,6 +58,7 @@ registerRoute(
   new CacheFirst({
     cacheName: 'images',
     plugins: [
+      // @ts-ignore: not compatible yet with exactOptionalPropertyTypes
       new ExpirationPlugin({
         maxEntries: 60,
         // cache for 30 days

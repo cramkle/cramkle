@@ -75,7 +75,7 @@ const EditFieldsDialog: React.FC<{
   onDismiss?: () => void
   fields: ModelQuery_model_fields[]
   modelId: string
-}> = ({ isOpen, onDismiss, fields, modelId }) => {
+}> = ({ isOpen = false, onDismiss, fields, modelId }) => {
   const { i18n } = useLingui()
   const inputRef = useRef<HTMLInputElement>(null)
   const [createField, { loading: createLoading }] = useMutation<

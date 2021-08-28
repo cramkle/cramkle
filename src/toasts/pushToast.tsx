@@ -21,7 +21,7 @@ export const pushToast = (
         }}
       />
     ),
-    timeoutMs,
+    ...(typeof timeoutMs !== 'undefined' ? { timeoutMs } : undefined),
   })
 
   return id

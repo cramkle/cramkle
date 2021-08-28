@@ -74,7 +74,14 @@ const AlertDialog: React.FC<AlertDialogProps> = ({
   ...props
 }) => {
   return (
-    <AlertDialogOverlay {...{ isOpen, onDismiss, leastDestructiveRef, id }}>
+    <AlertDialogOverlay
+      {...(typeof isOpen !== 'undefined' ? { isOpen } : undefined)}
+      onDismiss={onDismiss}
+      {...(typeof leastDestructiveRef !== 'undefined'
+        ? { leastDestructiveRef }
+        : undefined)}
+      {...(typeof id !== 'undefined' ? { id } : undefined)}
+    >
       <AlertDialogContent {...props} />
     </AlertDialogOverlay>
   )

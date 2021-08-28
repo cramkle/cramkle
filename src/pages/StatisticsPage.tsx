@@ -127,7 +127,7 @@ const StatisticsPage: React.FC = () => {
     DeckStatisticsVariables
   >(STATISTICS_QUERY, {
     variables: {
-      deckId: selectedDeck,
+      ...(selectedDeck ? { deckId: selectedDeck } : undefined),
       startDate: startDate.toISOString(),
       endDate: today.toISOString(),
       zoneInfo,
@@ -428,14 +428,13 @@ const StatisticsPage: React.FC = () => {
                 tickKeyFn={(tick) => tick.getTime()}
                 tickLabel={(tick) =>
                   i18n.date(tick, {
-                    day: daysInterval <= 30 ? 'numeric' : undefined,
-                    month:
-                      daysInterval <= 30
-                        ? 'short'
-                        : daysInterval <= 365
-                        ? 'long'
-                        : undefined,
-                    year: daysInterval > 365 ? 'numeric' : undefined,
+                    ...(daysInterval <= 30 ? { day: 'numeric' } : undefined),
+                    ...(daysInterval <= 30
+                      ? { month: 'short' }
+                      : daysInterval <= 365
+                      ? { month: 'long' }
+                      : undefined),
+                    ...(daysInterval > 365 ? { year: 'numeric' } : undefined),
                   })
                 }
                 tickSizeOuter={0}

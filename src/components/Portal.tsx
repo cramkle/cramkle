@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 
 interface PortalProps {
   children: ReactNode
-  target?: HTMLElement
+  target?: HTMLElement | undefined
 }
 
 const Portal: VFC<PortalProps> = ({

@@ -75,7 +75,7 @@ export const ListboxOption: React.FC<
   return (
     <Option
       {...props}
-      disabled={disabled}
+      disabled={disabled ?? false}
       className={classnames(
         className,
         styles.option,
@@ -99,7 +99,7 @@ export const Listbox = forwardRef<
   HTMLDivElement,
   Omit<ListboxProps, 'arrow'> & { className?: string; id?: string }
 >(function Listbox(
-  { className, button, children, portal = true, ...props },
+  { className = '', button, children, portal = true, ...props },
   forwardedRef
 ) {
   return (

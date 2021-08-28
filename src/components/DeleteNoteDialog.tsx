@@ -29,7 +29,7 @@ const DELETE_NOTE_MUTATION = gql`
 interface Props {
   note: DeckQuery_deck_notes_edges_node
   onClose?: () => void
-  onDeleted?: () => void
+  onDeleted?: (() => void) | undefined
 }
 
 const DeleteNoteDialog: React.FC<Props> = ({ note, onClose, onDeleted }) => {
