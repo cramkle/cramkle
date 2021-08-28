@@ -1,28 +1,42 @@
-import { useMutation } from '@apollo/react-hooks'
-import gql from 'graphql-tag'
-import { useEffect } from 'react'
+import type { FC } from 'react'
+import { createContext, useContext, useEffect, useMemo } from 'react'
 
-import type {
-  SetLoadingMutation,
-  SetLoadingMutationVariables,
-} from './__generated__/SetLoadingMutation'
+interface TopbarContext {
+  isLoading: boolean
+  setLoading: (value: boolean) => void
+}
 
-export const LOADING_MUTATION = gql`
-  mutation SetLoadingMutation($loading: Boolean) {
-    setTopBarLoading(loading: $loading) @client
-  }
-`
+const ctx = createContext<TopbarContext | undefined>(undefined)
 
 export const useTopBarLoading = (loading: boolean) => {
-  const [mutate] = useMutation<SetLoadingMutation, SetLoadingMutationVariables>(
-    LOADING_MUTATION
-  )
+  const ctxValue = useContext(ctx)
+
+  if (typeof ctxValue === 'undefined') {
+    throw new Error('useTopBarLoading must be used inside a TopBar context')
+  }
 
   useEffect(() => {
     if (process.env.NODE_ENV === 'test') {
       return
     }
 
-    mutate({ variables: { loading } })
-  }, [loading, mutate])
+    ctxValue.setLoading(loading)
+  }, [loading])
+}
+
+export const TopbarProvider: FC<TopbarContext> = ({
+  isLoading,
+  setLoading,
+  children,
+}) => {
+  return (
+    <ctx.Provider
+      value={useMemo(
+        () => ({ isLoading, setLoading }),
+        [isLoading, setLoading]
+      )}
+    >
+      {children}
+    </ctx.Provider>
+  )
 }

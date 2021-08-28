@@ -1,4 +1,4 @@
-import { ApolloProvider } from '@apollo/react-hooks'
+import { ApolloProvider } from '@apollo/client'
 import { Routes } from '@casterly/components'
 import { I18nProvider } from '@lingui/react'
 import { ErrorBoundary } from '@sentry/react'

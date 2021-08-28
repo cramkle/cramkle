@@ -1,6 +1,6 @@
+import type { ApolloError } from '@apollo/client'
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import type { ApolloError } from 'apollo-client'
 import classnames from 'classnames'
 import type { ContentState } from 'draft-js'
 import type { ReactNode } from 'react'

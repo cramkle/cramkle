@@ -1,8 +1,6 @@
-import { useQuery } from '@apollo/react-hooks'
 import { Trans } from '@lingui/macro'
 import classnames from 'classnames'
-import gql from 'graphql-tag'
-import { useCallback } from 'react'
+import { useCallback, useState } from 'react'
 import * as React from 'react'
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom'
 
@@ -10,11 +8,11 @@ import { ReactComponent as LogoGray } from '../assets/logo-gray.svg'
 import { ReactComponent as Logo } from '../assets/logo.svg'
 import { useDarkModePreferencesSync } from '../hooks/useDarkModePreferencesSync'
 import { useOffline } from '../hooks/useOffline'
+import { TopbarProvider } from '../hooks/useTopBarLoading'
 import { AppName } from './AppName'
 import { NoSSR } from './NoSSR'
 import { useTheme } from './Theme'
 import { useCurrentUser } from './UserContext'
-import type { TopBarLoadingQuery } from './__generated__/TopBarLoadingQuery'
 import { AnonymousIcon } from './icons/AnonymousIcon'
 import { DarkModeIcon } from './icons/DarkModeIcon'
 import { LogoutIcon } from './icons/LogoutIcon'
@@ -32,14 +30,6 @@ import { Header, HeaderContent, HeaderSection } from './views/Header'
 import { LoadingBar } from './views/LoadingBar'
 import { Menu, MenuButton, MenuItem, MenuList } from './views/MenuButton'
 import { Switch } from './views/Switch'
-
-const TOP_BAR_LOADING_QUERY = gql`
-  query TopBarLoadingQuery {
-    topBar @client {
-      loading
-    }
-  }
-`
 
 const DefaultMenuItems: React.FC = () => {
   const navigate = useNavigate()
@@ -219,9 +209,7 @@ const DefaultMenu: React.FC = () => {
 }
 
 const Shell: React.FC = () => {
-  const { data } = useQuery<TopBarLoadingQuery>(TOP_BAR_LOADING_QUERY)
-
-  const loading = data?.topBar?.loading ?? false
+  const [topbarLoading, setTopbarLoading] = useState(false)
 
   const isOffline = useOffline()
 
@@ -237,37 +225,39 @@ const Shell: React.FC = () => {
   }, [location.pathname, navigate])
 
   return (
-    <div className="w-full h-full flex flex-col relative bg-background bg-opacity-background">
-      <Header className="relative">
-        <HeaderContent>
-          <HeaderSection>
-            <Link className="flex items-center pl-1 link" to="/home">
-              {!isOffline ? <Logo width="32" /> : <LogoGray width="32" />}
-              <AppName className="ml-2" />
-            </Link>
-          </HeaderSection>
-          <div
-            id="header-portal-anchor"
-            className="flex-auto hidden md:inline-block"
+    <TopbarProvider isLoading={topbarLoading} setLoading={setTopbarLoading}>
+      <div className="w-full h-full flex flex-col relative bg-background bg-opacity-background">
+        <Header className="relative">
+          <HeaderContent>
+            <HeaderSection>
+              <Link className="flex items-center pl-1 link" to="/home">
+                {!isOffline ? <Logo width="32" /> : <LogoGray width="32" />}
+                <AppName className="ml-2" />
+              </Link>
+            </HeaderSection>
+            <div
+              id="header-portal-anchor"
+              className="flex-auto hidden md:inline-block"
+            />
+            <HeaderSection align="end">
+              <MobileMenu />
+              <DefaultMenu />
+            </HeaderSection>
+          </HeaderContent>
+          <div id="header-mobile-portal-anchor" />
+          <LoadingBar
+            className={classnames('absolute left-0 right-0 z-1', {
+              hidden: !topbarLoading,
+            })}
+            style={{ top: 'calc(100% + 1px)' }}
           />
-          <HeaderSection align="end">
-            <MobileMenu />
-            <DefaultMenu />
-          </HeaderSection>
-        </HeaderContent>
-        <div id="header-mobile-portal-anchor" />
-        <LoadingBar
-          className={classnames('absolute left-0 right-0 z-1', {
-            hidden: !loading,
-          })}
-          style={{ top: 'calc(100% + 1px)' }}
-        />
-      </Header>
-      <main className="flex-1 overflow-auto w-full relative">
-        <Outlet />
-        <div id="portal-anchor" />
-      </main>
-    </div>
+        </Header>
+        <main className="flex-1 overflow-auto w-full relative">
+          <Outlet />
+          <div id="portal-anchor" />
+        </main>
+      </div>
+    </TopbarProvider>
   )
 }
 

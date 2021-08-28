@@ -1,8 +1,7 @@
-import { useMutation } from '@apollo/react-hooks'
+import { gql, useMutation } from '@apollo/client'
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { Formik } from 'formik'
-import gql from 'graphql-tag'
 import React, { useState } from 'react'
 import * as yup from 'yup'
 

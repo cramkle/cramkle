@@ -1,5 +1,5 @@
-import type { MockedResponse } from '@apollo/react-testing'
-import { MockedProvider } from '@apollo/react-testing'
+import type { MockedResponse } from '@apollo/client/testing'
+import { MockedProvider } from '@apollo/client/testing'
 import { setupI18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
 import { act, fireEvent, render as rtlRender } from '@testing-library/react'
@@ -11,6 +11,7 @@ import { useLayoutEffect, useReducer, useRef } from 'react'
 import { HelmetProvider } from 'react-helmet-async'
 import { Router } from 'react-router'
 
+import { TopbarProvider } from '../hooks/useTopBarLoading'
 import { messages as enCatalog } from '../locales/en/messages'
 
 interface RenderOptions {
@@ -68,7 +69,9 @@ export function render(ui: ReactElement, options?: RenderOptions) {
             {...(options?.mocks ? { mocks: options.mocks } : undefined)}
             addTypename={false}
           >
-            {ui}
+            <TopbarProvider isLoading={false} setLoading={jest.fn()}>
+              {ui}
+            </TopbarProvider>
           </MockedProvider>
         </I18nProvider>
       </HelmetProvider>

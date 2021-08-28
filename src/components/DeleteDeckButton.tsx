@@ -1,6 +1,5 @@
-import { useMutation } from '@apollo/react-hooks'
+import { gql, useMutation } from '@apollo/client'
 import { Trans, t } from '@lingui/macro'
-import gql from 'graphql-tag'
 import { useCallback, useRef, useState } from 'react'
 import * as React from 'react'
 import { useNavigate } from 'react-router'
