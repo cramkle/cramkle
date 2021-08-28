@@ -10,7 +10,7 @@ const LabelContext = React.createContext<{ label: boolean } | undefined>(
 export interface LabelProps
   extends React.LabelHTMLAttributes<HTMLLabelElement> {
   text?: ReactNode
-  checkbox?: boolean
+  checkbox?: boolean | undefined
 }
 
 export const Label = forwardRef<HTMLLabelElement, LabelProps>(function Label(

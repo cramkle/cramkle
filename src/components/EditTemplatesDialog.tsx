@@ -90,7 +90,7 @@ const EditTemplatesDialog: React.FC<{
   onDismiss?: () => void
   templates: ModelQuery_model_templates[]
   modelId: string
-}> = ({ isOpen, onDismiss, templates, modelId }) => {
+}> = ({ isOpen = false, onDismiss, templates, modelId }) => {
   const { i18n } = useLingui()
   const inputRef = useRef<HTMLInputElement>(null)
   const [renameTemplate, { loading: editLoading }] = useMutation<

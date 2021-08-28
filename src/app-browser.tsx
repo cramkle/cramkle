@@ -30,10 +30,12 @@ i18n.loadLocaleData({ en: { plurals: enPlural }, pt: { plurals: ptPlural } })
 const apolloClient = createApolloClient('/_c/graphql')
 
 try {
-  if (process.env.CASTERLY_PUBLIC_SENTRY_DSN) {
+  const sentryDsn = process.env.CASTERLY_PUBLIC_SENTRY_DSN
+
+  if (typeof sentryDsn !== 'undefined') {
     import('@sentry/react').then((Sentry) => {
       Sentry.init({
-        dsn: process.env.CASTERLY_PUBLIC_SENTRY_DSN,
+        dsn: sentryDsn,
       })
     })
   }

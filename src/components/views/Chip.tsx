@@ -2,7 +2,7 @@ import classNames from 'classnames'
 import * as React from 'react'
 
 export interface ChipProps extends React.HTMLAttributes<HTMLDivElement> {
-  color?: 'primary' | 'green' | 'red' | 'violet'
+  color?: 'primary' | 'green' | 'red' | 'violet' | undefined
   size?: 'normal' | 'small'
   inverted?: boolean
   truncated?: boolean

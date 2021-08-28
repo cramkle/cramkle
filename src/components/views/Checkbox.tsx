@@ -39,9 +39,11 @@ export const Checkbox = forwardRef<
         'group w-auto h-auto flex items-center relative bg-surface p-3 outline-reset',
         { 'mr-3': !!children, 'mr-0': !children }
       )}
-      checked={checked}
-      defaultChecked={defaultChecked}
-      disabled={disabled}
+      {...(typeof checked !== 'undefined' ? { checked } : undefined)}
+      {...(typeof defaultChecked !== 'undefined'
+        ? { defaultChecked }
+        : undefined)}
+      {...(typeof disabled !== 'undefined' ? { disabled } : undefined)}
       onChange={onChange}
     >
       <div

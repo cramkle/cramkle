@@ -53,15 +53,21 @@ export const Pagination: React.FC<Props> = ({
   }
 
   const handleFirstPageClick = () => {
-    onChange({ page: pageCursors.first?.page })
+    if (pageCursors.first?.page) {
+      onChange({ page: pageCursors.first.page })
+    }
   }
 
   const handleLastPageClick = () => {
-    onChange({ page: pageCursors.last?.page })
+    if (pageCursors.last?.page) {
+      onChange({ page: pageCursors.last.page })
+    }
   }
 
   const handlePrevPageClick = () => {
-    onChange({ page: pageCursors.previous?.page })
+    if (pageCursors.previous?.page) {
+      onChange({ page: pageCursors.previous.page })
+    }
   }
 
   const handleNextPageClick = () => {

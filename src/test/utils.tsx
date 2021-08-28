@@ -58,11 +58,16 @@ export function render(ui: ReactElement, options?: RenderOptions) {
     )
   }
 
+  const history = options?.history
+
   const utils = rtlRender(
-    <BrowserRouter history={options?.history}>
+    <BrowserRouter {...(history ? { history } : undefined)}>
       <HelmetProvider>
         <I18nProvider i18n={i18n}>
-          <MockedProvider mocks={options?.mocks} addTypename={false}>
+          <MockedProvider
+            {...(options?.mocks ? { mocks: options.mocks } : undefined)}
+            addTypename={false}
+          >
             {ui}
           </MockedProvider>
         </I18nProvider>

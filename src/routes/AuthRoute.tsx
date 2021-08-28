@@ -37,7 +37,12 @@ export const createRoute = ({
       )
     }
 
-    return <Redirect to={redirectPath} appendReturnUrl={appendReturnUrl} />
+    return (
+      <Redirect
+        to={redirectPath}
+        {...(appendReturnUrl ? { appendReturnUrl } : undefined)}
+      />
+    )
   }
 
   const CustomRoute: React.VFC = () => {

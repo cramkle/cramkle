@@ -40,10 +40,11 @@ const Redirect: React.VFC<{
         encodeURIComponent(location.pathname)
     }
 
-    navigate(
-      url.pathname + search,
-      typeof to !== 'string' ? { state: to.state } : undefined
-    )
+    if (typeof to !== 'string' && typeof to.state !== 'undefined') {
+      navigate(url.pathname + search, { state: to.state })
+    } else {
+      navigate(url.pathname + search)
+    }
   }, [navigate, to, resolvedTo, location.pathname, appendReturnUrl])
 
   return <div dangerouslySetInnerHTML={{ __html: '' }} />

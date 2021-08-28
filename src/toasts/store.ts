@@ -3,7 +3,7 @@ import * as uuid from 'uuid'
 
 export interface ToastState {
   config: ToastConfig
-  timeoutId?: NodeJS.Timeout
+  timeoutId?: NodeJS.Timeout | undefined
   shown: boolean
   expired: boolean
   id: string

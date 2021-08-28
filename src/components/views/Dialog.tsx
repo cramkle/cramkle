@@ -54,7 +54,13 @@ const Dialog = forwardRef<
   HTMLDivElement,
   DialogProps & { style?: React.CSSProperties }
 >(function Dialog(
-  { isOpen, onDismiss = noop, initialFocusRef, allowPinchZoom, ...props },
+  {
+    isOpen = false,
+    onDismiss = noop,
+    initialFocusRef = React.createRef(),
+    allowPinchZoom = false,
+    ...props
+  },
   forwardedRef
 ) {
   return (

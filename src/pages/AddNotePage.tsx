@@ -155,8 +155,8 @@ const AddNotePage: React.FC = () => {
         ...prevValue,
         [field.id!]: {
           field: {
-            id: field.id,
-            name: field.name,
+            id: field.id!,
+            name: field.name!,
           },
           data: convertToRaw(content),
         },
