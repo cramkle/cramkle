@@ -1,8 +1,7 @@
-import { useMutation } from '@apollo/client'
+import { gql, useMutation } from '@apollo/client'
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import classnames from 'classnames'
-import gql from 'graphql-tag'
 import { useRef, useState } from 'react'
 import * as React from 'react'
 

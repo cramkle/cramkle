@@ -1,6 +1,6 @@
 import type { ApolloClient } from '@apollo/client'
+import { gql } from '@apollo/client'
 import type { NormalizedCacheObject } from '@apollo/client/cache'
-import gql from 'graphql-tag'
 
 import type { UserQuery } from '../components/__generated__/UserQuery'
 import userQuery from '../components/userQuery.gql'

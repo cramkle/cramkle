@@ -1,4 +1,4 @@
-import gql from 'graphql-tag'
+import { gql } from '@apollo/client'
 
 export const DRAFT_CONTENT_FRAGMENT = gql`
   fragment DraftContent on ContentState {

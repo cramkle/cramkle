@@ -1,7 +1,6 @@
-import { useMutation } from '@apollo/client'
+import { gql, useMutation } from '@apollo/client'
 import { Trans, t } from '@lingui/macro'
 import { Formik } from 'formik'
-import gql from 'graphql-tag'
 import * as yup from 'yup'
 
 import { pushSimpleToast } from '../toasts/pushToast'

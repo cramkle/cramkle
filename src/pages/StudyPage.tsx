@@ -1,7 +1,6 @@
-import { useLazyQuery, useMutation } from '@apollo/client'
+import { gql, useLazyQuery, useMutation } from '@apollo/client'
 import { Trans } from '@lingui/macro'
 import classnames from 'classnames'
-import gql from 'graphql-tag'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import * as React from 'react'
 import { useNavigate, useParams } from 'react-router'

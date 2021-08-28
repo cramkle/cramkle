@@ -1,7 +1,6 @@
-import { useQuery } from '@apollo/client'
+import { gql, useQuery } from '@apollo/client'
 import { Trans, plural } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import gql from 'graphql-tag'
 import { useCallback, useRef, useState } from 'react'
 import * as React from 'react'
 import { Helmet } from 'react-helmet-async'

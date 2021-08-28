@@ -1,6 +1,6 @@
+import { gql } from '@apollo/client'
 import { plural } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import gql from 'graphql-tag'
 import * as React from 'react'
 import { useNavigate } from 'react-router'
 
