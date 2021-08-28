@@ -1,6 +1,5 @@
-import { useQuery } from '@apollo/react-hooks'
+import { NetworkStatus, useQuery } from '@apollo/client'
 import { Trans } from '@lingui/macro'
-import { NetworkStatus } from 'apollo-client'
 import classNames from 'classnames'
 import gql from 'graphql-tag'
 import { useRef, useState } from 'react'

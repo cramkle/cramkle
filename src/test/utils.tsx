@@ -1,5 +1,5 @@
-import type { MockedResponse } from '@apollo/react-testing'
-import { MockedProvider } from '@apollo/react-testing'
+import type { MockedResponse } from '@apollo/client/testing'
+import { MockedProvider } from '@apollo/client/testing'
 import { setupI18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
 import { act, fireEvent, render as rtlRender } from '@testing-library/react'

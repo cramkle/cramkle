@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import type { Writable } from 'stream'
 
-import { renderToStringWithData } from '@apollo/react-ssr'
+import { renderToStringWithData } from '@apollo/client/react/ssr'
 import type { RootContext } from '@casterly/components'
 import { Scripts, Styles } from '@casterly/components'
 import { RootServer } from '@casterly/components/server'

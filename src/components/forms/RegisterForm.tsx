@@ -1,4 +1,4 @@
-import { useMutation } from '@apollo/react-hooks'
+import { useMutation } from '@apollo/client'
 import type { MessageDescriptor } from '@lingui/core'
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'

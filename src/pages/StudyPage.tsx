@@ -1,4 +1,4 @@
-import { useLazyQuery, useMutation } from '@apollo/react-hooks'
+import { useLazyQuery, useMutation } from '@apollo/client'
 import { Trans } from '@lingui/macro'
 import classnames from 'classnames'
 import gql from 'graphql-tag'

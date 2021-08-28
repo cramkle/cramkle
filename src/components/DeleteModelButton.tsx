@@ -1,4 +1,4 @@
-import { useMutation } from '@apollo/react-hooks'
+import { useMutation } from '@apollo/client'
 import { Plural, Trans, t } from '@lingui/macro'
 import gql from 'graphql-tag'
 import { useRef, useState } from 'react'

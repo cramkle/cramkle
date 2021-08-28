@@ -1,4 +1,4 @@
-import { useQuery } from '@apollo/react-hooks'
+import { useQuery } from '@apollo/client'
 import { Trans, plural } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import gql from 'graphql-tag'

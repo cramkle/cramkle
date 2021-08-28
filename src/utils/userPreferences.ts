@@ -1,5 +1,5 @@
-import type { NormalizedCacheObject } from 'apollo-cache-inmemory'
-import type { ApolloClient } from 'apollo-client'
+import type { ApolloClient } from '@apollo/client'
+import type { NormalizedCacheObject } from '@apollo/client/cache'
 import gql from 'graphql-tag'
 
 import type { UserQuery } from '../components/__generated__/UserQuery'

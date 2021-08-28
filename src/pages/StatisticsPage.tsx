@@ -1,4 +1,4 @@
-import { useQuery } from '@apollo/react-hooks'
+import { useQuery } from '@apollo/client'
 import { Trans, plural, select } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { extent, max } from 'd3-array'

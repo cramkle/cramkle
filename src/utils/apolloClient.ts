@@ -1,11 +1,7 @@
-import { InMemoryCache } from 'apollo-cache-inmemory'
-import type { NormalizedCacheObject } from 'apollo-cache-inmemory'
-import { ApolloClient } from 'apollo-client'
-import { ApolloLink } from 'apollo-link'
-import { onError } from 'apollo-link-error'
-import { createHttpLink } from 'apollo-link-http'
-
-import { defaults, resolvers } from '../resolvers/index'
+import { ApolloClient, ApolloLink, createHttpLink } from '@apollo/client'
+import { InMemoryCache } from '@apollo/client/cache'
+import type { NormalizedCacheObject } from '@apollo/client/cache'
+import { onError } from '@apollo/client/link/error'
 
 declare global {
   interface Window {
@@ -50,14 +46,11 @@ export const createApolloClient = (uri: string, cookie?: string) => {
   const client = new ApolloClient({
     ssrMode: !process.browser,
     link: ApolloLink.from([errorLink, httpLink]),
-    resolvers,
     cache:
       typeof window !== 'undefined'
         ? cache.restore(window.__APOLLO_STATE__)
         : cache,
   })
-
-  cache.writeData({ data: defaults })
 
   return client
 }

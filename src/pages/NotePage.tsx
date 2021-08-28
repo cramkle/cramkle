@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from '@apollo/react-hooks'
+import { useMutation, useQuery } from '@apollo/client'
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import type { ContentState, RawDraftContentState } from 'draft-js'
