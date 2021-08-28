@@ -29,7 +29,6 @@ export const Tooltip = forwardRef(function Tooltip(props, forwardedRef) {
       {cloneElement(child, trigger as any)}
       <TooltipPopup
         ref={forwardedRef}
-        label={props.label}
         aria-label={props.ariaLabel}
         {...tooltip}
         {...props}
