@@ -8,7 +8,7 @@ export const errorFallback = ({
   componentStack,
 }: {
   error: Error
-  componentStack: string
+  componentStack: string | null
 }) => {
   return (
     <div className="flex flex-col justify-center items-center py-8 min-h-screen bg-background  bg-opacity-background">
