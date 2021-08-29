@@ -1,3 +1,4 @@
+import type { Reference, StoreObject } from '@apollo/client'
 import { gql, useMutation } from '@apollo/client'
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
@@ -36,37 +37,47 @@ import { IconButton } from './views/IconButton'
 import { Input } from './views/Input'
 import { Body1, Body2, Caption } from './views/Typography'
 
+const FIELD_FRAGMENT = gql`
+  fragment EditFieldsDialog_field on Field {
+    id
+    name
+  }
+`
+
 const CREATE_FIELD_MUTATION = gql`
   mutation CreateField($fieldName: String!, $modelId: ID!) {
     addFieldToModel(input: { modelId: $modelId, name: $fieldName }) {
       field {
-        id
-        name
+        ...EditFieldsDialog_field
       }
     }
   }
+
+  ${FIELD_FRAGMENT}
 `
 
 const RENAME_FIELD_MUTATION = gql`
   mutation RenameField($fieldName: String!, $fieldId: ID!) {
     updateField(input: { id: $fieldId, name: $fieldName }) {
       field {
-        id
-        name
+        ...EditFieldsDialog_field
       }
     }
   }
+
+  ${FIELD_FRAGMENT}
 `
 
 const DELETE_FIELD_MUTATION = gql`
   mutation DeleteField($fieldId: ID!) {
     removeFieldFromModel(input: { fieldId: $fieldId }) {
       field {
-        id
-        name
+        ...EditFieldsDialog_field
       }
     }
   }
+
+  ${FIELD_FRAGMENT}
 `
 
 const EditFieldsDialog: React.FC<{
@@ -119,26 +130,28 @@ const EditFieldsDialog: React.FC<{
       variables: {
         fieldId: editingFieldId!,
       },
-      update: (proxy, mutationResult) => {
-        const data = proxy.readQuery<ModelQuery, ModelQueryVariables>({
+      update: (cache, mutationResult) => {
+        const data = cache.readQuery<ModelQuery, ModelQueryVariables>({
           query: MODEL_QUERY,
           variables: { id: modelId },
         })
 
-        const fieldIndex = data?.model?.fields.findIndex(
-          (field) =>
-            field.id === mutationResult.data?.removeFieldFromModel?.field?.id
-        )
+        const field = mutationResult.data?.removeFieldFromModel?.field
 
-        if (fieldIndex) {
-          data?.model?.fields.splice(fieldIndex, 1)
+        if (field) {
+          cache.modify({
+            id: cache.identify(data!.model! as unknown as StoreObject)!,
+            fields: {
+              fields(existingFields = []) {
+                return existingFields.filter(
+                  (oldField: Reference) =>
+                    cache.identify(oldField) !==
+                    cache.identify(field as unknown as StoreObject)
+                )
+              },
+            },
+          })
         }
-
-        proxy.writeQuery({
-          query: MODEL_QUERY,
-          variables: { id: modelId },
-          data,
-        })
       },
     })
 
@@ -148,21 +161,29 @@ const EditFieldsDialog: React.FC<{
   const confirmCreateField = async () => {
     await createField({
       variables: { modelId, fieldName },
-      update: (proxy, mutationResult) => {
-        const data = proxy.readQuery<ModelQuery, ModelQueryVariables>({
+      update: (cache, mutationResult) => {
+        const data = cache.readQuery<ModelQuery, ModelQueryVariables>({
           query: MODEL_QUERY,
           variables: { id: modelId },
         })
 
-        if (mutationResult.data?.addFieldToModel?.field) {
-          data?.model?.fields.push(mutationResult.data.addFieldToModel.field)
+        const field = mutationResult.data?.addFieldToModel?.field
+
+        if (field != null) {
+          cache.modify({
+            id: cache.identify(data!.model! as any)!,
+            fields: {
+              fields(existingFields = []) {
+                const newFieldRef = cache.writeFragment({
+                  data: field,
+                  fragment: FIELD_FRAGMENT,
+                })
+
+                return [...existingFields, newFieldRef]
+              },
+            },
+          })
         }
-
-        proxy.writeQuery({
-          query: MODEL_QUERY,
-          variables: { id: modelId },
-          data,
-        })
       },
     })
 

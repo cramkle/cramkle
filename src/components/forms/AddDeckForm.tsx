@@ -6,8 +6,6 @@ import * as React from 'react'
 import { useNavigate } from 'react-router'
 import * as yup from 'yup'
 
-import { DECKS_QUERY } from '../../pages/DecksSection'
-import type { DecksQuery } from '../../pages/__generated__/DecksQuery'
 import {
   TIMEOUT_MEDIUM,
   pushErrorToast,
@@ -68,20 +66,19 @@ const AddDeckForm: React.FunctionComponent<Props> = ({ open, onClose }) => {
         try {
           const mutationResult = await mutate({
             variables: values,
-            update: (proxy, mutationResult) => {
-              let data = null
+            update: (cache, mutationResult) => {
+              cache.modify({
+                fields: {
+                  decks(existingDecks = []) {
+                    const newDeckRef = cache.writeFragment({
+                      data: mutationResult.data!.createDeck!.deck!,
+                      fragment: deckCardFragment,
+                    })
 
-              try {
-                data = proxy.readQuery<DecksQuery>({ query: DECKS_QUERY }) ?? {
-                  decks: [],
-                }
-              } catch {
-                data = { decks: [] }
-              }
-
-              data.decks.push(mutationResult.data!.createDeck!.deck!)
-
-              proxy.writeQuery({ query: DECKS_QUERY, data })
+                    return [...existingDecks, newDeckRef]
+                  },
+                },
+              })
             },
           })
 
