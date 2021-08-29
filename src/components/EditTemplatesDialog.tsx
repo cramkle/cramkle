@@ -1,3 +1,4 @@
+import type { Reference, StoreObject } from '@apollo/client'
 import { gql, useMutation } from '@apollo/client'
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
@@ -36,52 +37,55 @@ import { IconButton } from './views/IconButton'
 import { Input } from './views/Input'
 import { Body1, Body2, Caption } from './views/Typography'
 
-const RENAME_TEMPLATE_MUTATION = gql`
-  ${DRAFT_CONTENT_FRAGMENT}
+const TEMPLATE_FRAGMENT = gql`
+  fragment EditTemplatesDialog_template on Template {
+    id
+    name
+    frontSide {
+      ...DraftContent
+    }
+    backSide {
+      ...DraftContent
+    }
+  }
 
+  ${DRAFT_CONTENT_FRAGMENT}
+`
+
+const RENAME_TEMPLATE_MUTATION = gql`
   mutation RenameTemplate($templateId: ID!, $templateName: String!) {
     updateTemplate(input: { id: $templateId, name: $templateName }) {
       template {
-        id
-        name
-        frontSide {
-          ...DraftContent
-        }
-        backSide {
-          ...DraftContent
-        }
+        ...EditTemplatesDialog_template
       }
     }
   }
+
+  ${TEMPLATE_FRAGMENT}
 `
 
 const CREATE_TEMPLATE_MUTATION = gql`
-  ${DRAFT_CONTENT_FRAGMENT}
-
   mutation CreateTemplate($modelId: ID!, $templateName: String!) {
     addTemplateToModel(input: { modelId: $modelId, name: $templateName }) {
       template {
-        id
-        name
-        frontSide {
-          ...DraftContent
-        }
-        backSide {
-          ...DraftContent
-        }
+        ...EditTemplatesDialog_template
       }
     }
   }
+
+  ${TEMPLATE_FRAGMENT}
 `
 
 const DELETE_TEMPLATE_MUTATION = gql`
   mutation DeleteTemplate($templateId: ID!) {
     removeTemplateFromModel(input: { templateId: $templateId }) {
       template {
-        id
+        ...EditTemplatesDialog_template
       }
     }
   }
+
+  ${TEMPLATE_FRAGMENT}
 `
 
 const EditTemplatesDialog: React.FC<{
@@ -145,27 +149,28 @@ const EditTemplatesDialog: React.FC<{
       variables: {
         templateId: editingTemplateId!,
       },
-      update: (proxy, mutationResult) => {
-        const data = proxy.readQuery<ModelQuery, ModelQueryVariables>({
+      update: (cache, mutationResult) => {
+        const data = cache.readQuery<ModelQuery, ModelQueryVariables>({
           query: MODEL_QUERY,
           variables: { id: modelId },
         })
 
-        const templateIndex = data?.model?.templates.findIndex(
-          (template) =>
-            template.id ===
-            mutationResult.data?.removeTemplateFromModel?.template?.id
-        )
+        const template = mutationResult.data?.removeTemplateFromModel?.template
 
-        if (templateIndex) {
-          data?.model?.templates.splice(templateIndex, 1)
+        if (template) {
+          cache.modify({
+            id: cache.identify(data!.model! as unknown as StoreObject)!,
+            fields: {
+              templates(existingTemplates = []) {
+                return existingTemplates.filter(
+                  (oldTemplate: Reference) =>
+                    cache.identify(oldTemplate) !==
+                    cache.identify(template as unknown as StoreObject)
+                )
+              },
+            },
+          })
         }
-
-        proxy.writeQuery({
-          query: MODEL_QUERY,
-          variables: { id: modelId },
-          data,
-        })
       },
     })
 
@@ -178,23 +183,30 @@ const EditTemplatesDialog: React.FC<{
         modelId,
         templateName,
       },
-      update: (proxy, mutationResult) => {
-        const data = proxy.readQuery<ModelQuery, ModelQueryVariables>({
+      update: (cache, mutationResult) => {
+        const data = cache.readQuery<ModelQuery, ModelQueryVariables>({
           query: MODEL_QUERY,
           variables: { id: modelId },
         })
 
-        if (mutationResult.data?.addTemplateToModel?.template) {
-          data?.model?.templates.push(
-            mutationResult.data.addTemplateToModel.template
-          )
+        const template = mutationResult.data?.addTemplateToModel?.template
+
+        if (template) {
+          cache.modify({
+            id: cache.identify(data!.model! as any)!,
+            fields: {
+              templates(existingTemplates = []) {
+                const newTemplateRef = cache.writeFragment({
+                  data: template,
+                  fragment: TEMPLATE_FRAGMENT,
+                  fragmentName: 'EditTemplatesDialog_template',
+                })
+
+                return [...existingTemplates, newTemplateRef]
+              },
+            },
+          })
         }
-
-        proxy.writeQuery({
-          query: MODEL_QUERY,
-          variables: { id: modelId },
-          data,
-        })
       },
     })
 

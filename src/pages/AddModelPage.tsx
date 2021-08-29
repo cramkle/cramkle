@@ -14,13 +14,26 @@ import StepTab from '../components/StepTab'
 import { Container } from '../components/views/Container'
 import { Headline1 } from '../components/views/Typography'
 import { TIMEOUT_MEDIUM, pushToast } from '../toasts/pushToast'
-import { MODELS_QUERY } from './ModelsSection'
 import type {
   CreateModelMutation,
   CreateModelMutationVariables,
   CreateModelMutation_createModel_model,
 } from './__generated__/CreateModelMutation'
-import type { ModelsQuery } from './__generated__/ModelsQuery'
+
+const MODEL_FRAGMENT = gql`
+  fragment ModelsSection_models on Model {
+    id
+    name
+    templates {
+      id
+      name
+    }
+    fields {
+      id
+      name
+    }
+  }
+`
 
 const CREATE_MODEL_MUTATION = gql`
   mutation CreateModelMutation(
@@ -33,18 +46,12 @@ const CREATE_MODEL_MUTATION = gql`
     ) {
       model {
         id
-        name
-        templates {
-          id
-          name
-        }
-        fields {
-          id
-          name
-        }
+        ...ModelsSection_models
       }
     }
   }
+
+  ${MODEL_FRAGMENT}
 `
 
 interface MachineContext {
@@ -172,22 +179,19 @@ const AddModelPage: React.VFC = () => {
       tryToCreateModel: (ctx) => {
         return mutate({
           variables: ctx,
-          update: (proxy, mutationResult) => {
-            let data: ModelsQuery | null
+          update: (cache, mutationResult) => {
+            cache.modify({
+              fields: {
+                models(existingModels = []) {
+                  const newModelRef = cache.writeFragment({
+                    data: mutationResult.data!.createModel!.model!,
+                    fragment: MODEL_FRAGMENT,
+                  })
 
-            try {
-              data = proxy.readQuery<ModelsQuery>({
-                query: MODELS_QUERY,
-              })
-            } catch {
-              return
-            }
-
-            const { createModel } = mutationResult!.data!
-
-            data?.models.push(createModel!.model!)
-
-            proxy.writeQuery({ query: MODELS_QUERY, data })
+                  return [...existingModels, newModelRef]
+                },
+              },
+            })
           },
         }).then(({ data }) => data)
       },
