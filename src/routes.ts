@@ -38,24 +38,12 @@ export default [
             path: '/home',
           },
           {
-            component: () => import('./components/Redirect'),
+            component: () => import('./pages/HomePage'),
             path: '/decks',
-            props: {
-              to: {
-                pathname: '/home',
-                state: { currentTab: 1 },
-              },
-            },
           },
           {
-            component: () => import('./components/Redirect'),
+            component: () => import('./pages/HomePage'),
             path: '/models',
-            props: {
-              to: {
-                pathname: '/home',
-                state: { currentTab: 2 },
-              },
-            },
           },
           {
             component: () => import('./pages/DeckPage'),

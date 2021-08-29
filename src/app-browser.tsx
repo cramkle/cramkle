@@ -67,6 +67,7 @@ import(/* webpackChunkName: "locale" */ `./locales/${language}/messages`).then(
               apolloClient={apolloClient}
               userAgent={navigator.userAgent}
               i18n={i18n}
+              userPreferredTheme={window.__theme}
             />
           </HelmetProvider>
         </RootBrowser>
