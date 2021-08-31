@@ -133,6 +133,8 @@ tags
 
 # Custom
 
-build
+build/
 src/locales/_build/
 src/locales/**/*.js
+src/locales/**/*.ts
+!src/locales/**/*.d.ts
