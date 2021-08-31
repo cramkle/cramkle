@@ -17,11 +17,12 @@ import './material.global.scss'
 import './app.global.scss'
 import './tailwind.global.scss'
 
-const App: FC<{ i18n: any; apolloClient: any; userAgent: string }> = ({
-  i18n,
-  apolloClient,
-  userAgent,
-}) => {
+const App: FC<{
+  i18n: any
+  apolloClient: any
+  userAgent: string
+  userPreferredTheme: Theme
+}> = ({ i18n, apolloClient, userAgent, userPreferredTheme }) => {
   return (
     <>
       <I18nProvider i18n={i18n}>
@@ -59,7 +60,7 @@ const App: FC<{ i18n: any; apolloClient: any; userAgent: string }> = ({
               }))}
             />
             <ErrorBoundary fallback={errorFallback}>
-              <ThemeProvider>
+              <ThemeProvider userPreferredTheme={userPreferredTheme}>
                 <CramkleToasts />
                 <Routes />
               </ThemeProvider>

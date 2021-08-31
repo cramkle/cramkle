@@ -95,6 +95,7 @@ export default async function handleRequest(
           i18n={i18n}
           userAgent={request.headers.get('userAgent')!}
           apolloClient={client}
+          userPreferredTheme={darkMode ? 'dark' : 'light'}
         />
       </Suspense>
     </HelmetProvider>

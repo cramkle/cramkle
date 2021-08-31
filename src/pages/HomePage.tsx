@@ -2,13 +2,12 @@ import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import classNames from 'classnames'
 import type { Location } from 'history'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect } from 'react'
 import * as React from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useLocation, useNavigate } from 'react-router'
 
 import { HeaderPortal } from '../components/HeaderPortal'
-import { useSsr } from '../components/NoSSR'
 import { useCurrentUser } from '../components/UserContext'
 import { DecksIcon } from '../components/icons/DecksIcon'
 import { ModelsIcon } from '../components/icons/ModelsIcon'
@@ -57,23 +56,27 @@ const HomePage: React.FunctionComponent = () => {
   const location = useLocation() as Location<{ currentTab?: number }>
   const { i18n } = useLingui()
 
-  const isSsr = useSsr()
-
   const me = useCurrentUser()
 
-  const [index, setIndex] = useState(location.state?.currentTab ?? 0)
+  let index: number
 
-  const prevTabRef = useRef(index)
-
-  useEffect(() => {
-    const stateIndex = location.state?.currentTab ?? 0
-
-    if (prevTabRef.current !== stateIndex) {
-      setIndex(stateIndex)
+  switch (location.pathname) {
+    case '/home': {
+      index = 0
+      break
     }
-
-    prevTabRef.current = stateIndex
-  }, [location.state])
+    case '/decks': {
+      index = 1
+      break
+    }
+    case '/models': {
+      index = 2
+      break
+    }
+    default: {
+      throw new Error(`Unexpected path ${JSON.stringify(location.pathname)}`)
+    }
+  }
 
   useEffect(() => {
     if (process.env.NODE_ENV !== 'production') {
@@ -113,7 +116,27 @@ const HomePage: React.FunctionComponent = () => {
 
   const handleTabChange = useCallback(
     (index: number) => {
-      navigate('/home', { state: { currentTab: index } })
+      let path: string
+
+      switch (index) {
+        case 0: {
+          path = '/home'
+          break
+        }
+        case 1: {
+          path = '/decks'
+          break
+        }
+        case 2: {
+          path = '/models'
+          break
+        }
+        default: {
+          throw new Error('Unexpected index ' + index)
+        }
+      }
+
+      navigate(path)
     },
     [navigate]
   )
@@ -150,19 +173,13 @@ const HomePage: React.FunctionComponent = () => {
                 </section>
               )}
 
-              <TabPanel
-                className={classNames({ hidden: isSsr || index !== 0 })}
-              >
+              <TabPanel className={classNames({ hidden: index !== 0 })}>
                 <StudySection />
               </TabPanel>
-              <TabPanel
-                className={classNames({ hidden: isSsr || index !== 1 })}
-              >
+              <TabPanel className={classNames({ hidden: index !== 1 })}>
                 <DecksSection />
               </TabPanel>
-              <TabPanel
-                className={classNames({ hidden: isSsr || index !== 2 })}
-              >
+              <TabPanel className={classNames({ hidden: index !== 2 })}>
                 <ModelsSection />
               </TabPanel>
             </TabPanels>

@@ -16,7 +16,6 @@ import { Button } from '../components/views/Button'
 import { CircularProgress } from '../components/views/CircularProgress'
 import { Container } from '../components/views/Container'
 import { Body1, Body2, Headline1 } from '../components/views/Typography'
-import { useTopBarLoading } from '../hooks/useTopBarLoading'
 import styles from './StudySection.css'
 import type { DecksToStudy } from './__generated__/DecksToStudy'
 
@@ -41,8 +40,6 @@ const StudySection: React.FunctionComponent = () => {
   const [selectedDeck, setSelectedDeck] = useState<DeckCard_deck | null>(null)
   const cancelRef = useRef<HTMLButtonElement>(null)
 
-  useTopBarLoading(loading)
-
   const handleDeckSelect = (deck: { id: string }) => {
     setSelectedDeck(data!.decks.find(({ id }) => deck.id === id)!)
   }
@@ -52,7 +49,11 @@ const StudySection: React.FunctionComponent = () => {
   }
 
   if (loading && networkStatus !== NetworkStatus.refetch) {
-    return null
+    return (
+      <span className="text-txt text-opacity-text-primary">
+        <Trans>Loading decks</Trans>
+      </span>
+    )
   }
 
   if (error || networkStatus === NetworkStatus.refetch) {

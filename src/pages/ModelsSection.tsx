@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router'
 import ModelCard from '../components/ModelCard'
 import { Button } from '../components/views/Button'
 import { Body1, Headline1 } from '../components/views/Typography'
-import { useTopBarLoading } from '../hooks/useTopBarLoading'
 import type { ModelsQuery } from './__generated__/ModelsQuery'
 
 export const MODELS_QUERY = gql`
@@ -37,10 +36,12 @@ const ModelsSection: React.FunctionComponent = () => {
   const { data: { models = [] } = {}, loading } =
     useQuery<ModelsQuery>(MODELS_QUERY)
 
-  useTopBarLoading(loading)
-
   if (loading) {
-    return null
+    return (
+      <span className="text-txt text-opacity-text-primary">
+        <Trans>Loading models</Trans>
+      </span>
+    )
   }
 
   return (

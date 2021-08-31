@@ -22,7 +22,7 @@ export const Button = forwardRef(function Button(
 ) {
   const classes = classnames(
     className,
-    'relative inline-block outline-reset overflow-hidden tracking-normal font-medium',
+    'relative inline-flex outline-reset overflow-hidden tracking-normal font-medium',
     'transition-opacity ease-in-out duration-200',
     {
       'cursor-pointer': !disabled,

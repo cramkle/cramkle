@@ -1,13 +1,3 @@
-declare global {
-  type Theme = 'dark' | 'light'
-
-  interface Window {
-    __theme: Theme
-    __onThemeChange: (newTheme: Theme) => void
-    __setPreferredTheme: (theme: Theme) => void
-  }
-}
-
 export const darkThemeHelmetScript = (darkMode?: boolean) => {
   return `
  (function() {

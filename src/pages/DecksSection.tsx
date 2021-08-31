@@ -8,7 +8,6 @@ import DeckCard, { deckCardFragment } from '../components/DeckCard'
 import AddDeckForm from '../components/forms/AddDeckForm'
 import { Button } from '../components/views/Button'
 import { Body1, Headline1 } from '../components/views/Typography'
-import { useTopBarLoading } from '../hooks/useTopBarLoading'
 import styles from './DecksSection.css'
 import type { DecksQuery } from './__generated__/DecksQuery'
 
@@ -38,10 +37,12 @@ const DecksSection: React.FunctionComponent = () => {
 
   const decks = data?.decks
 
-  useTopBarLoading(loading)
-
   if (loading) {
-    return null
+    return (
+      <span className="text-txt text-opacity-text-primary">
+        <Trans>Loading decks</Trans>
+      </span>
+    )
   }
 
   return (

@@ -220,7 +220,7 @@ const Shell: React.FC = () => {
 
   React.useEffect(() => {
     if (location.pathname === '/') {
-      navigate('/home')
+      navigate('/home', { replace: true })
     }
   }, [location.pathname, navigate])
 

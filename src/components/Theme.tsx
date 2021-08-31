@@ -1,6 +1,16 @@
 import { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import * as React from 'react'
 
+declare global {
+  type Theme = 'dark' | 'light'
+
+  interface Window {
+    __theme: Theme
+    __onThemeChange: (newTheme: Theme) => void
+    __setPreferredTheme: (theme: Theme) => void
+  }
+}
+
 interface ThemeValue {
   theme: Theme
   setTheme: (newTheme: Theme) => void
@@ -8,9 +18,14 @@ interface ThemeValue {
 
 const ctx = React.createContext<ThemeValue | undefined>(undefined)
 
-export const ThemeProvider: React.FC = ({ children }) => {
+export const ThemeProvider: React.FC<{ userPreferredTheme: Theme }> = ({
+  userPreferredTheme,
+  children,
+}) => {
   const [theme, setTheme] = useState(() =>
-    typeof window === 'undefined' ? 'light' : window.__theme ?? 'light'
+    typeof window === 'undefined'
+      ? userPreferredTheme
+      : window.__theme ?? 'light'
   )
 
   useEffect(() => {

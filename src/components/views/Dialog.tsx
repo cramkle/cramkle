@@ -57,7 +57,7 @@ const Dialog = forwardRef<
   {
     isOpen = false,
     onDismiss = noop,
-    initialFocusRef = React.createRef(),
+    initialFocusRef,
     allowPinchZoom = false,
     ...props
   },
@@ -65,7 +65,7 @@ const Dialog = forwardRef<
 ) {
   return (
     <DialogOverlay
-      initialFocusRef={initialFocusRef}
+      {...(initialFocusRef !== undefined ? { initialFocusRef } : undefined)}
       allowPinchZoom={allowPinchZoom}
       isOpen={isOpen}
       onDismiss={onDismiss}
