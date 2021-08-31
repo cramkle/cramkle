@@ -50,7 +50,7 @@ const StudySection: React.FunctionComponent = () => {
 
   if (loading && networkStatus !== NetworkStatus.refetch) {
     return (
-      <span>
+      <span className="text-txt text-opacity-text-primary">
         <Trans>Loading decks</Trans>
       </span>
     )
