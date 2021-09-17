@@ -41,6 +41,7 @@ if (( is_stable == 0 )); then
   image_versioned=$REGISTRY_SERVER/cramkle:$version
   image_latest=$REGISTRY_SERVER/cramkle:latest
 
+  docker tag $image_name $image_versioned
   docker tag $image_name $image_latest
 
   docker push $image_versioned
