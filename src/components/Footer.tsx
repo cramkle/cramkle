@@ -3,8 +3,8 @@ import { useLingui } from '@lingui/react'
 import type { VFC } from 'react'
 import { Link } from 'react-router-dom'
 
-import { ReactComponent as GithubLogo } from '../assets/github-logo.svg'
-import { ReactComponent as TwitterLogo } from '../assets/twitter-logo.svg'
+import { GithubLogo } from './GithubLogo'
+import { TwitterLogo } from './TwitterLogo'
 import { Body2, Overline, Subtitle2 } from './views/Typography'
 
 const links = [

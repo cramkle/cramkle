@@ -8,7 +8,7 @@ import { Helmet } from 'react-helmet-async'
 import { useLocation, useNavigate, useParams } from 'react-router'
 import * as yup from 'yup'
 
-import { ReactComponent as Logo } from '../assets/logo-white.svg'
+import { LogoCircle } from '../components/LogoCircle'
 import { TextInputField } from '../components/forms/Fields'
 import { Button } from '../components/views/Button'
 import { Card, CardContent } from '../components/views/Card'
@@ -68,7 +68,7 @@ const ResetPasswordPage: React.VFC = () => {
         <title>{i18n._(t`Reset password`)}</title>
       </Helmet>
 
-      <Logo className="w-16 mb-8" />
+      <LogoCircle className="w-16 mb-8" />
 
       <Card className="max-w-lg w-full">
         <CardContent>
