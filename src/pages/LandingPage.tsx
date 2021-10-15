@@ -7,9 +7,9 @@ import * as React from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Link, useNavigate } from 'react-router-dom'
 
-import { ReactComponent as Logo } from '../assets/logo.svg'
 import { AppName } from '../components/AppName'
 import { Footer } from '../components/Footer'
+import { Logo } from '../components/Logo'
 import { OverflowMenuIcon } from '../components/icons/OverflowMenuIcon'
 import { Button } from '../components/views/Button'
 import {

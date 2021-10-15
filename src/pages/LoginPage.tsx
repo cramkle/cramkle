@@ -4,7 +4,7 @@ import * as React from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 
-import { ReactComponent as Logo } from '../assets/logo-white.svg'
+import { LogoCircle } from '../components/LogoCircle'
 import LoginForm from '../components/forms/LoginForm'
 import { Button } from '../components/views/Button'
 import { Card, CardContent } from '../components/views/Card'
@@ -22,7 +22,7 @@ const LoginPage: React.FunctionComponent = () => {
         />
       </Helmet>
 
-      <Logo className="w-16 mb-8" />
+      <LogoCircle className="w-16 mb-8" />
 
       <Card className="w-full max-w-md">
         <CardContent>
