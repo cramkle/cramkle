@@ -4,7 +4,7 @@ import type { Readable, Writable } from 'stream'
 
 import { renderToStringWithData } from '@apollo/client/react/ssr'
 import type { RootContext } from '@casterly/components'
-import { Scripts, Styles } from '@casterly/components'
+import { Scripts } from '@casterly/components'
 import { RootServer } from '@casterly/components/server'
 import { i18n } from '@lingui/core'
 import { en as enPlural, pt as ptPlural } from 'make-plural/plurals'
@@ -109,64 +109,23 @@ export default async function handleRequest(
 
   const rootContainer = (
     <RootServer context={context} url={request.url}>
-      <html lang={i18n.locale} style={{ fontSize: '16px' }}>
-        <head>
-          <meta charSet="utf-8" />
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-          />
-          {context.matchedRoutesAssets
-            .concat(context.mainAssets)
-            .map((assetName) => (
-              <link
-                key={assetName}
-                rel="preload"
-                as={assetName.endsWith('.js') ? 'script' : 'style'}
-                href={`${process.env.ASSET_PATH}${assetName.slice(1)}`}
-              />
-            ))}
-          <link
-            rel="preload"
-            as="script"
-            href={getLanguageLocaleFile(language)}
-          />
-          {helmet.title.toComponent()}
-          {helmet.meta.toComponent()}
-          {helmet.link.toComponent()}
-          {icons.map(({ rel, sizes, href, type }) => (
-            <link key={href} rel={rel} sizes={sizes} href={href} type={type} />
-          ))}
-          <link rel="manifest" href="/manifest.json" />
-          <style
-            nonce={cspNonce}
-            dangerouslySetInnerHTML={{
-              __html:
-                'html,body{height: 100%;}body{overscroll-behavior-y:none;}',
-            }}
-          />
-          <Styles />
-        </head>
-        <body>
-          <script
-            nonce={cspNonce}
-            dangerouslySetInnerHTML={{
-              __html: darkThemeHelmetScript(darkMode),
-            }}
-          />
-          <div id="root" className="h-full">
-            {root}
-          </div>
-          <script
-            nonce={cspNonce}
-            dangerouslySetInnerHTML={{
-              __html: 'window.__APOLLO_STATE__ = ' + serializeJavascript(state),
-            }}
-          />
-          <script defer src={getLanguageLocaleFile(language)} />
-          <Scripts nonce={cspNonce} />
-        </body>
-      </html>
+      <script
+        nonce={cspNonce}
+        dangerouslySetInnerHTML={{
+          __html: darkThemeHelmetScript(darkMode),
+        }}
+      />
+      <div id="root" className="h-full">
+        {root}
+      </div>
+      <script
+        nonce={cspNonce}
+        dangerouslySetInnerHTML={{
+          __html: 'window.__APOLLO_STATE__ = ' + serializeJavascript(state),
+        }}
+      />
+      <script defer src={getLanguageLocaleFile(language)} />
+      <Scripts nonce={cspNonce} />
     </RootServer>
   )
 
@@ -209,6 +168,60 @@ export default async function handleRequest(
     stream = {
       ...reactStream,
       pipe(writable: Writable) {
+        writable.write(
+          `<!doctype html><html lang="${i18n.locale}" style="font-size: 16px;">`
+        )
+        writable.write('<head>')
+
+        // collect head and insert in writable
+        writable.write('<meta charSet="utf-8">')
+        writable.write(
+          '<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">'
+        )
+        context.matchedRoutesAssets
+          .concat(context.mainAssets)
+          .forEach((assetName) => {
+            const href = process.env.ASSET_PATH + assetName.slice(1)
+            const linkType = assetName.endsWith('.js') ? 'script' : 'style'
+
+            writable.write(
+              `<link rel="preload" as="${linkType}" href="${href}">`
+            )
+          })
+
+        const localeFile = getLanguageLocaleFile(language)
+
+        writable.write(`<link rel="preload" as="script" href="${localeFile}">`)
+
+        writable.write(helmet.title.toString())
+        writable.write(helmet.meta.toString())
+        writable.write(helmet.link.toString())
+
+        icons.forEach(({ rel, sizes, href, type }) => {
+          writable.write(
+            `<link rel="${rel}" sizes="${sizes}" href="${href}" type="${type}">`
+          )
+        })
+
+        writable.write('<link rel="manifest" href="/manifest.json">')
+        writable.write(
+          `<style nonce="${cspNonce}">html,body{height:100%;}body{overscroll-behavior-y:none;}</style>`
+        )
+
+        context.matchedRoutesAssets
+          .concat(context.mainAssets)
+          .filter((assetName) => assetName.endsWith('.css'))
+          .forEach((asset) => {
+            writable.write(
+              `<link rel="stylesheet" type="text/css" href="${
+                '/_casterly' + asset
+              }">`
+            )
+          })
+
+        // finish head and let react stream the rest
+        writable.write('</head><body>')
+
         reactStream.pipe(writable)
       },
     }
