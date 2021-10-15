@@ -22,6 +22,13 @@ export default [
     ],
   },
   {
+    path: '/home',
+    component: () => import('./components/Redirect'),
+    props: {
+      to: '/',
+    },
+  },
+  {
     component: () => import('./routes/GuestRoute'),
     children: [
       {
@@ -46,7 +53,7 @@ export default [
     component: () => import('./routes/UserRoute'),
     children: [
       {
-        component: () => import('./components/Shell'),
+        component: () => import('./routes/ShellRoute'),
         children: [
           {
             component: () => import('./pages/DeckPage'),

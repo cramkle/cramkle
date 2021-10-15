@@ -2,7 +2,7 @@ import { Trans } from '@lingui/macro'
 import classnames from 'classnames'
 import { useCallback, useState } from 'react'
 import * as React from 'react'
-import { Link, Outlet, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { useDarkModePreferencesSync } from '../hooks/useDarkModePreferencesSync'
 import { useOffline } from '../hooks/useOffline'
@@ -244,7 +244,7 @@ const Shell: React.FC = ({ children }) => {
           />
         </Header>
         <main className="flex-1 overflow-auto w-full relative">
-          {children ?? <Outlet />}
+          {children}
           <div id="portal-anchor" />
         </main>
       </div>
