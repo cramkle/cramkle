@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import type { Writable } from 'stream'
+import type { Readable, Writable } from 'stream'
 
 import { renderToStringWithData } from '@apollo/client/react/ssr'
 import type { RootContext } from '@casterly/components'
@@ -10,7 +10,7 @@ import { i18n } from '@lingui/core'
 import { en as enPlural, pt as ptPlural } from 'make-plural/plurals'
 import type { ReactElement } from 'react'
 import { Suspense } from 'react'
-import { pipeToNodeWritable } from 'react-dom/server'
+import { renderToPipeableStream } from 'react-dom/server'
 import type { FilledContext } from 'react-helmet-async'
 import { HelmetProvider } from 'react-helmet-async'
 import serializeJavascript from 'serialize-javascript'
@@ -32,15 +32,15 @@ declare module 'react-dom/server' {
   }
 
   interface StreamConfig {
-    onReadyToStream(): void
+    onCompleteShell?(): void
+    onCompleteAll?(): void
     onError(error: Error): void
   }
 
-  function pipeToNodeWritable(
+  function renderToPipeableStream(
     element: ReactElement,
-    writable: Writable,
     config: StreamConfig
-  ): StreamOptions
+  ): Readable
 }
 
 const locales = linguiConfig.locales.sort()
@@ -69,8 +69,7 @@ export default async function handleRequest(
   request: Request,
   statusCode: number,
   headers: Headers,
-  context: RootContext,
-  { responseStream }: { responseStream: Writable }
+  context: RootContext
 ) {
   const cookie = request.headers.get('cookie') ?? undefined
   const apiHost = process[ENV].API_HOST ?? request.headers.get('host')
@@ -179,16 +178,18 @@ export default async function handleRequest(
   let didRedirect = false
   let location = null
 
-  const startWriting = await new Promise<() => void>((resolve) => {
-    const { startWriting } = pipeToNodeWritable(rootContainer, responseStream, {
-      onReadyToStream() {
+  let stream
+
+  await new Promise<void>((resolve) => {
+    const reactStream = renderToPipeableStream(rootContainer, {
+      onCompleteShell() {
         if (didError) {
           status = 500
         } else if (didRedirect) {
           status = 302
         }
 
-        resolve(startWriting)
+        resolve()
       },
       onError(error) {
         if (error instanceof RedirectError) {
@@ -200,9 +201,20 @@ export default async function handleRequest(
           didRedirect = true
         } else {
           didError = true
+
+          if (process.env.NODE_ENV === 'development') {
+            console.error(error)
+          }
         }
       },
     })
+
+    stream = {
+      ...reactStream,
+      pipe(writable: Writable) {
+        reactStream.pipe(writable)
+      },
+    }
   })
 
   return {
@@ -212,16 +224,15 @@ export default async function handleRequest(
       ...(didRedirect ? { location } : {}),
       'content-type': 'text/html',
       'vary': Array.from(
-        new Set(
-          ('cookie' + (headers.has('vary') ? ', ' + headers.get('vary')! : ''))
-            .split(',')
-            .map((header) => header.trim())
-        )
+        new Set([
+          'cookie',
+          ...(headers
+            .get('vary')
+            ?.split(',')
+            .map((value) => value.trim()) ?? []),
+        ])
       ).join(', '),
     },
-    body: didRedirect ? null : responseStream,
-    onReadyToStream: () => {
-      startWriting()
-    },
+    body: didRedirect ? null : stream,
   }
 }

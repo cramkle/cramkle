@@ -3,7 +3,7 @@ import { Editor } from 'draft-js'
 import 'draft-js/dist/Draft.css'
 import * as React from 'react'
 
-import styles from './BaseEditor.css'
+import styles from './BaseEditor.module.css'
 import { useBaseEditorControls } from './BaseEditorControls'
 import { blockStyleFn } from './BlockStyleControls'
 

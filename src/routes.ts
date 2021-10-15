@@ -1,3 +1,7 @@
+export const notFound = {
+  component: () => import('./pages/NotFoundPage'),
+}
+
 export default [
   {
     path: '',
@@ -26,11 +30,9 @@ export default [
     ],
   },
   {
-    path: '',
     component: () => import('./routes/UserRoute'),
     children: [
       {
-        path: '',
         component: () => import('./components/Shell'),
         children: [
           {
@@ -70,11 +72,11 @@ export default [
             path: '/settings',
             children: [
               {
-                path: '/preferences',
+                path: 'preferences',
                 component: () => import('./pages/GeneralSettings'),
               },
               {
-                path: '/profile',
+                path: 'profile',
                 component: () => import('./pages/ProfileSettings'),
               },
             ],
@@ -94,9 +96,5 @@ export default [
   {
     component: () => import('./pages/AboutPage'),
     path: '/about',
-  },
-  {
-    component: () => import('./pages/NotFoundPage'),
-    path: '*',
   },
 ]

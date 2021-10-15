@@ -12,7 +12,7 @@ import type { HTMLAttributes } from 'react'
 import { forwardRef } from 'react'
 import * as React from 'react'
 
-import styles from './Tabs.css'
+import styles from './Tabs.module.css'
 
 export const TabList: React.FC<TabListProps & HTMLAttributes<HTMLDivElement>> =
   ({ children, className = '', ...props }) => {

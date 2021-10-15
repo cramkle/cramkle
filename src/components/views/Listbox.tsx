@@ -19,7 +19,7 @@ import * as React from 'react'
 
 import { ArrowDownIcon } from '../icons/ArrowDownIcon'
 import { DoneIcon } from '../icons/DoneIcon'
-import styles from './Listbox.css'
+import styles from './Listbox.module.css'
 
 export const ListboxInput = forwardRef<
   HTMLDivElement,

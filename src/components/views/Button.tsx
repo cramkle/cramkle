@@ -64,11 +64,14 @@ export const Button = forwardRef(function Button(
   return (
     <As {...props} className={classes} ref={inputRef} disabled={disabled}>
       <div
-        className={classnames('relative z-0 flex items-center justify-center', {
-          'text-xl': size === 'large',
-          'text-base': size === 'normal',
-          'text-sm': size === 'small',
-        })}
+        className={classnames(
+          'w-full relative z-0 flex items-center justify-center',
+          {
+            'text-xl': size === 'large',
+            'text-base': size === 'normal',
+            'text-sm': size === 'small',
+          }
+        )}
       >
         {children}
       </div>

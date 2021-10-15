@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import type { ReactNode } from 'react'
 
-import styles from './SettingItem.css'
+import styles from './SettingItem.module.css'
 import { Subtitle2 } from './views/Typography'
 
 interface Props {

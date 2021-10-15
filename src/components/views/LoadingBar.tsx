@@ -1,7 +1,7 @@
 import classnames from 'classnames'
 import * as React from 'react'
 
-import styles from './LoadingBar.css'
+import styles from './LoadingBar.module.css'
 
 export const LoadingBar: React.FC<React.HTMLAttributes<HTMLDivElement>> = (
   props

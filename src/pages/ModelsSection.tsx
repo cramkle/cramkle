@@ -38,9 +38,11 @@ const ModelsSection: React.FunctionComponent = () => {
 
   if (loading) {
     return (
-      <span className="text-txt text-opacity-text-primary">
-        <Trans>Loading models</Trans>
-      </span>
+      <div className="py-4">
+        <span className="text-txt text-opacity-text-primary">
+          <Trans>Loading models</Trans>
+        </span>
+      </div>
     )
   }
 

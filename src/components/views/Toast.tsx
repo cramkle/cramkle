@@ -1,16 +1,15 @@
 import classnames from 'classnames'
 import type { ReactElement, ReactNode } from 'react'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect } from 'react'
 import * as React from 'react'
 
 import { useFadeEffect } from '../../hooks/useFadeEffect'
-import type { ToastState } from '../../toasts/store'
 import { ToastStore } from '../../toasts/store'
 import { useTheme } from '../Theme'
 import { ClearIcon } from '../icons/ClearIcon'
 import { Button } from './Button'
 import { IconButton } from './IconButton'
-import styles from './Toast.css'
+import styles from './Toast.module.css'
 
 const toastStore = ToastStore.getInstance()
 
@@ -129,42 +128,4 @@ export const ToastAnimation: React.VFC<ToastAnimationProps> = ({
       {child}
     </li>
   ) : null
-}
-
-interface ToasterProps {
-  className?: string
-  children: (
-    toast: ReactElement,
-    id: string,
-    position: number,
-    expired: boolean
-  ) => void
-}
-
-export const Toaster: React.VFC<ToasterProps> = ({ className, children }) => {
-  const [toastState, setToasts] = useState<Record<string, ToastState>>({})
-
-  useEffect(() => {
-    const unregister = toastStore.registerView(setToasts)
-
-    return () => {
-      unregister()
-    }
-  }, [])
-
-  const toasts = useMemo(() => Object.values(toastState), [toastState])
-
-  return (
-    <ul className={className}>
-      {toasts.reverse().map((toastState, index) => {
-        const {
-          id,
-          config: { toast },
-          expired,
-        } = toastState
-
-        return children(toast, id, index, expired)
-      })}
-    </ul>
-  )
 }

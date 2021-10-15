@@ -25,7 +25,7 @@ import { useOffline } from '../hooks/useOffline'
 import { useTimezoneData } from '../hooks/useTimezoneData'
 import type { TimezoneEntry } from '../hooks/useTimezoneData'
 import { pushSimpleToast } from '../toasts/pushToast'
-import styles from './GeneralSettings.css'
+import styles from './GeneralSettings.module.css'
 import type {
   UpdatePreferences,
   UpdatePreferencesVariables,

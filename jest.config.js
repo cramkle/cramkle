@@ -11,16 +11,13 @@ module.exports = {
   transform: {
     '^.+\\.(ts|tsx)$': 'babel-jest',
     '^.+\\.(gql|graphql)$': 'jest-transform-graphql',
-    '^.+\\.css$': '<rootDir>/jest/cssTransform.js',
+    '^.+\\.module\\.s?css$': '<rootDir>/jest/cssTransform.js',
     '^(?!.*\\.(js|jsx|css|json)$)': '<rootDir>/jest/fileTransform.js',
   },
-  transformIgnorePatterns: [
-    '[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$',
-    '^.+\\.module\\.(css|sass|scss)$',
-  ],
+  transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$'],
   moduleNameMapper: {
     '^react-native$': 'react-native-web',
-    '^.+\\.global\\.(css|sass|scss)$': 'identity-obj-proxy',
+    '^.+(?!\\.module)\\.(css|sass|scss)$': 'identity-obj-proxy',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'json', 'jsx', 'node'],
 }

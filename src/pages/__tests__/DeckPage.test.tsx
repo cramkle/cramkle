@@ -92,9 +92,7 @@ describe('DeckPage', () => {
 
     const { getByText, queryByText } = render(
       <Routes>
-        <Route path="/d/:slug">
-          <DeckPage />
-        </Route>
+        <Route path="/d/:slug" element={<DeckPage />} />
       </Routes>,
       {
         history,
@@ -157,9 +155,7 @@ describe('DeckPage', () => {
 
     const { getByText, queryByText } = render(
       <Routes>
-        <Route path="/d/:slug">
-          <DeckPage />
-        </Route>
+        <Route path="/d/:slug" element={<DeckPage />} />
       </Routes>,
       {
         history,
@@ -204,9 +200,7 @@ describe('DeckPage', () => {
 
     const { getByText, queryByText } = render(
       <Routes>
-        <Route path="/d/:slug">
-          <DeckPage />
-        </Route>
+        <Route path="/d/:slug" element={<DeckPage />} />
       </Routes>,
       {
         history,

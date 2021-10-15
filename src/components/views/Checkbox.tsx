@@ -4,7 +4,7 @@ import classnames from 'classnames'
 import type { ReactNode } from 'react'
 import { forwardRef } from 'react'
 
-import styles from './Checkbox.css'
+import styles from './Checkbox.module.css'
 import { Label } from './Input'
 
 export type CheckboxProps = Omit<CustomCheckboxContainerProps, 'children'> & {

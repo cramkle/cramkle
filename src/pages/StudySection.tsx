@@ -16,7 +16,7 @@ import { Button } from '../components/views/Button'
 import { CircularProgress } from '../components/views/CircularProgress'
 import { Container } from '../components/views/Container'
 import { Body1, Body2, Headline1 } from '../components/views/Typography'
-import styles from './StudySection.css'
+import styles from './StudySection.module.css'
 import type { DecksToStudy } from './__generated__/DecksToStudy'
 
 const DECKS_TO_STUDY_QUERY = gql`
@@ -50,9 +50,11 @@ const StudySection: React.FunctionComponent = () => {
 
   if (loading && networkStatus !== NetworkStatus.refetch) {
     return (
-      <span className="text-txt text-opacity-text-primary">
-        <Trans>Loading decks</Trans>
-      </span>
+      <div className="py-4">
+        <span className="text-txt text-opacity-text-primary">
+          <Trans>Loading decks</Trans>
+        </span>
+      </div>
     )
   }
 
