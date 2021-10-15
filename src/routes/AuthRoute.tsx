@@ -9,7 +9,7 @@ import USER_QUERY from '../components/userQuery.gql'
 
 interface Input {
   challenge: (user: UserQuery['me']) => boolean
-  redirectPath: string
+  redirectPath?: string
   displayName: string
   appendReturnUrl?: boolean
 }
@@ -35,6 +35,10 @@ export const createRoute = ({
           <UserContext user={data!.me!}>{children}</UserContext>
         </>
       )
+    }
+
+    if (!redirectPath) {
+      return null
     }
 
     return (

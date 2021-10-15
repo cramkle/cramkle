@@ -180,7 +180,7 @@ const DeckPage: React.FunctionComponent = () => {
         <Headline2 className="text-center sm:text-left text-txt text-opacity-text-primary">
           <Trans>Deck not found</Trans>
         </Headline2>
-        <Link className="mt-8 sm:mt-4 text-primary" to="/home">
+        <Link className="mt-8 sm:mt-4 text-primary" to="/">
           <Trans>Go to home</Trans>
         </Link>
       </div>

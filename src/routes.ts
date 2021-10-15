@@ -4,13 +4,26 @@ export const notFound = {
 
 export default [
   {
-    path: '',
-    component: () => import('./routes/GuestRoute'),
+    path: '/',
+    component: () => import('./pages/IndexPage'),
     children: [
       {
-        component: () => import('./pages/LandingPage'),
-        path: '/',
+        component: () => import('./pages/StudySection'),
+        path: '',
       },
+      {
+        component: () => import('./pages/DecksSection'),
+        path: 'decks',
+      },
+      {
+        component: () => import('./pages/ModelsSection'),
+        path: 'models',
+      },
+    ],
+  },
+  {
+    component: () => import('./routes/GuestRoute'),
+    children: [
       {
         component: () => import('./pages/LoginPage'),
         path: '/login',
@@ -35,18 +48,6 @@ export default [
       {
         component: () => import('./components/Shell'),
         children: [
-          {
-            component: () => import('./pages/HomePage'),
-            path: '/home',
-          },
-          {
-            component: () => import('./pages/HomePage'),
-            path: '/decks',
-          },
-          {
-            component: () => import('./pages/HomePage'),
-            path: '/models',
-          },
           {
             component: () => import('./pages/DeckPage'),
             path: '/d/:slug',

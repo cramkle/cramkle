@@ -205,7 +205,7 @@ const StatisticsPage: React.FC = () => {
   if (error) {
     return (
       <Container className="py-4">
-        <BackButton to="/home" />
+        <BackButton to="/" />
 
         <Headline1 className="text-txt text-opacity-text-primary">
           <Trans>Deck Statistics</Trans>
@@ -224,7 +224,7 @@ const StatisticsPage: React.FC = () => {
   if (!data?.deckStatistics && !loading) {
     return (
       <Container className="py-4">
-        <BackButton to="/home" />
+        <BackButton to="/" />
 
         <Headline1 className="text-txt text-opacity-text-primary">
           <Trans>Deck Statistics</Trans>
@@ -289,7 +289,7 @@ const StatisticsPage: React.FC = () => {
 
   return (
     <Container className="py-4">
-      <BackButton to="/home" />
+      <BackButton to="/" />
 
       <Headline1 className="text-txt text-opacity-text-primary">
         <Trans>Deck Statistics</Trans>

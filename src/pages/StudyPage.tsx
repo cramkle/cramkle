@@ -107,7 +107,7 @@ const CancelStudyButton: React.FC = () => {
   }
 
   const handleCancel = () => {
-    navigate('/home')
+    navigate('/')
   }
 
   const cancelRef = useRef<HTMLButtonElement>(null)
@@ -210,7 +210,7 @@ const StudyPage: React.FC = () => {
   const navigate = useNavigate()
 
   const handleGoHomeClick = () => {
-    navigate('/home')
+    navigate('/')
   }
 
   if (loading || !data) {
