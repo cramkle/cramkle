@@ -2,7 +2,13 @@ import * as React from 'react'
 
 import { NoSSR } from './NoSSR'
 import Portal from './Portal'
-import { ToastAnimation, Toaster } from './views/Toast'
+import { Toaster } from './views/Toaster'
+
+const ToastAnimation = React.lazy(() =>
+  import('./views/Toast').then(({ ToastAnimation }) => ({
+    default: ToastAnimation,
+  }))
+)
 
 const CramkleToasts: React.VFC = () => {
   return (

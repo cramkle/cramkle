@@ -11,7 +11,7 @@ import { AlignRightIcon } from '../icons/AlignRightIcon'
 import { ListBulletedIcon } from '../icons/ListBulletedIcon'
 import { ListNumberedIcon } from '../icons/ListNumberedIcon'
 import { QuoteIcon } from '../icons/QuoteIcon'
-import styles from './BlockStyleControls.css'
+import styles from './BlockStyleControls.module.css'
 import type { Style } from './StyleButton'
 import StyleButton from './StyleButton'
 

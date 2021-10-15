@@ -7,7 +7,7 @@ import * as React from 'react'
 
 import { useBaseEditorControls } from './BaseEditorControls'
 import { blockStyleFn } from './BlockStyleControls'
-import styles from './TagEditor.css'
+import styles from './TagEditor.module.css'
 import type { TaggableEntry } from './TaggableEntry'
 import TagsPopup from './TagsPopup'
 import replaceTagInEditorState from './replaceTagInEditorState'

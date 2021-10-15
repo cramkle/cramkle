@@ -13,9 +13,9 @@ import { ThemeProvider } from './components/Theme'
 import { errorFallback } from './utils/errorFallback'
 
 import 'fontsource-libre-franklin/latin.css'
-import './material.global.scss'
-import './app.global.scss'
-import './tailwind.global.scss'
+import './material.scss'
+import './app.scss'
+import './tailwind.scss'
 
 const App: FC<{
   i18n: any

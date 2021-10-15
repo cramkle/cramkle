@@ -7,7 +7,6 @@ import * as React from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Link, useNavigate } from 'react-router-dom'
 
-import bgUrl from '../assets/landing-bg.svg'
 import { ReactComponent as Logo } from '../assets/logo.svg'
 import { AppName } from '../components/AppName'
 import { Footer } from '../components/Footer'
@@ -20,6 +19,7 @@ import {
 } from '../components/views/Header'
 import { Menu, MenuButton } from '../components/views/MenuButton'
 import { positionMatchWindowWidth } from '../utils/popover'
+import styles from './LandingPage.module.css'
 
 const RegisterForm = React.lazy(
   () => import('../components/forms/RegisterForm')
@@ -40,7 +40,6 @@ const LandingPage: React.VFC = () => {
             crossOrigin: 'anonymous',
             href: fontSrc,
           })),
-          { rel: 'preload', as: 'image', type: 'image/svg+xml', href: bgUrl },
         ]}
       />
       <Header>
@@ -103,12 +102,7 @@ const LandingPage: React.VFC = () => {
         </HeaderContent>
       </Header>
       <section className="bg-surface space-y-20 sm:space-y-32 md:space-y-40 lg:space-y-44">
-        <div
-          className="bg-primary text-on-primary"
-          style={{
-            backgroundImage: `url(${bgUrl})`,
-          }}
-        >
+        <div className={styles.hero + ' bg-primary text-on-primary'}>
           <section className="max-w-screen-lg xl:max-w-screen-xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-8 py-16 px-4 sm:px-6 md:px-8">
               <div className="self-center mx-auto lg:mx-none max-w-lg lg:max-w-none">

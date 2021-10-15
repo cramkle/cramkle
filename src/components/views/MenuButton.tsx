@@ -19,7 +19,7 @@ import * as React from 'react'
 import type { LinkProps } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
-import styles from './MenuButton.css'
+import styles from './MenuButton.module.css'
 
 export const MenuButton: React.FC<
   MenuButtonProps & { icon?: boolean; className?: string }

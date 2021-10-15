@@ -11,7 +11,7 @@ import 'draft-js/dist/Draft.css'
 import { useContext, useMemo } from 'react'
 import * as React from 'react'
 
-import styles from './FlashCardRenderer.css'
+import styles from './FlashCardRenderer.module.css'
 import { blockStyleFn } from './editor/BlockStyleControls'
 import { findTagEntities } from './editor/strategies'
 import { Divider } from './views/Divider'

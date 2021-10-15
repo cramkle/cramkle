@@ -8,7 +8,7 @@ import DeckCard, { deckCardFragment } from '../components/DeckCard'
 import AddDeckForm from '../components/forms/AddDeckForm'
 import { Button } from '../components/views/Button'
 import { Body1, Headline1 } from '../components/views/Typography'
-import styles from './DecksSection.css'
+import styles from './DecksSection.module.css'
 import type { DecksQuery } from './__generated__/DecksQuery'
 
 export const DECKS_QUERY = gql`
@@ -39,9 +39,11 @@ const DecksSection: React.FunctionComponent = () => {
 
   if (loading) {
     return (
-      <span className="text-txt text-opacity-text-primary">
-        <Trans>Loading decks</Trans>
-      </span>
+      <div className="py-4">
+        <span className="text-txt text-opacity-text-primary">
+          <Trans>Loading decks</Trans>
+        </span>
+      </div>
     )
   }
 

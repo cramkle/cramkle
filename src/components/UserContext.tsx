@@ -9,12 +9,17 @@ export const useCurrentUser = () => {
   const user = useContext(ctx)
 
   if (user == undefined) {
-    throw new Error('Hook useCurrentUser must be used inside <UserContext>')
+    throw new Error(
+      'No user found in context, are you inside a logged in route?'
+    )
   }
 
   return user
 }
 
-export const UserContext: FC<{ user: UserQuery_me }> = ({ user, children }) => {
+export const UserContext: FC<{ user?: UserQuery_me | undefined }> = ({
+  user,
+  children,
+}) => {
   return <ctx.Provider value={user}>{children}</ctx.Provider>
 }
