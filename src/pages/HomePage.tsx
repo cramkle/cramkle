@@ -1,32 +1,22 @@
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import classNames from 'classnames'
 import type { Location } from 'history'
 import { useCallback, useEffect } from 'react'
 import * as React from 'react'
 import { Helmet } from 'react-helmet-async'
-import { useLocation, useNavigate } from 'react-router'
+import { Outlet, useLocation, useNavigate } from 'react-router'
 
 import { HeaderPortal } from '../components/HeaderPortal'
 import { useCurrentUser } from '../components/UserContext'
 import { DecksIcon } from '../components/icons/DecksIcon'
 import { ModelsIcon } from '../components/icons/ModelsIcon'
 import { StudyIcon } from '../components/icons/StudyIcon'
-import {
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tabs,
-} from '../components/views/Tabs'
+import { Tab, TabList, TabPanels, Tabs } from '../components/views/Tabs'
 import { Tooltip } from '../components/views/Tooltip'
 import registerSW from '../registerSW'
 import { pushSimpleToast, pushToast } from '../toasts/pushToast'
 import { ToastStore } from '../toasts/store'
 import { positionMatchMinWidth } from '../utils/popover'
-import DecksSection from './DecksSection'
-import ModelsSection from './ModelsSection'
-import StudySection from './StudySection'
 
 const toastStore = ToastStore.getInstance()
 
@@ -61,7 +51,7 @@ const HomePage: React.FunctionComponent = () => {
   let index: number
 
   switch (location.pathname) {
-    case '/home': {
+    case '/': {
       index = 0
       break
     }
@@ -120,7 +110,7 @@ const HomePage: React.FunctionComponent = () => {
 
       switch (index) {
         case 0: {
-          path = '/home'
+          path = '/'
           break
         }
         case 1: {
@@ -173,15 +163,7 @@ const HomePage: React.FunctionComponent = () => {
                 </section>
               )}
 
-              <TabPanel className={classNames({ hidden: index !== 0 })}>
-                <StudySection />
-              </TabPanel>
-              <TabPanel className={classNames({ hidden: index !== 1 })}>
-                <DecksSection />
-              </TabPanel>
-              <TabPanel className={classNames({ hidden: index !== 2 })}>
-                <ModelsSection />
-              </TabPanel>
+              <Outlet />
             </TabPanels>
           </Tabs>
         </section>

@@ -39,11 +39,8 @@ module.exports = (config, { dev, isServer }) => {
   })
 
   config.module.rules.push({
-    include: [/\.svg$/, /\.woff2?$/],
-    loader: 'file-loader',
-    options: {
-      name: 'static/media/[name].[hash:8].[ext]',
-    },
+    test: /\.(svg|woff2?)$/,
+    type: 'asset/resource',
   })
 
   return config

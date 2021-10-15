@@ -2,7 +2,7 @@ import { Trans } from '@lingui/macro'
 import classnames from 'classnames'
 import { useCallback, useState } from 'react'
 import * as React from 'react'
-import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { useDarkModePreferencesSync } from '../hooks/useDarkModePreferencesSync'
 import { useOffline } from '../hooks/useOffline'
@@ -208,21 +208,12 @@ const DefaultMenu: React.FC = () => {
   )
 }
 
-const Shell: React.FC = () => {
+const Shell: React.FC = ({ children }) => {
   const [topbarLoading, setTopbarLoading] = useState(false)
 
   const isOffline = useOffline()
 
   useDarkModePreferencesSync()
-
-  const location = useLocation()
-  const navigate = useNavigate()
-
-  React.useEffect(() => {
-    if (location.pathname === '/') {
-      navigate('/home', { replace: true })
-    }
-  }, [location.pathname, navigate])
 
   return (
     <TopbarProvider isLoading={topbarLoading} setLoading={setTopbarLoading}>
@@ -230,7 +221,7 @@ const Shell: React.FC = () => {
         <Header className="relative">
           <HeaderContent>
             <HeaderSection>
-              <Link className="flex items-center pl-1 link" to="/home">
+              <Link className="flex items-center pl-1 link" to="/">
                 {!isOffline ? <Logo width="32" /> : <LogoGray width="32" />}
                 <AppName className="ml-2" />
               </Link>
@@ -253,7 +244,7 @@ const Shell: React.FC = () => {
           />
         </Header>
         <main className="flex-1 overflow-auto w-full relative">
-          <Outlet />
+          {children}
           <div id="portal-anchor" />
         </main>
       </div>
