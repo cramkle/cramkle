@@ -5,7 +5,6 @@ import { RootBrowser } from '@casterly/components/browser'
 import { i18n } from '@lingui/core'
 import { en as enPlural, pt as ptPlural } from 'make-plural/plurals'
 import type { ReactElement } from 'react'
-import { Suspense } from 'react'
 import ReactDOM from 'react-dom'
 import { HelmetProvider } from 'react-helmet-async'
 import Cookies from 'universal-cookie'
@@ -49,29 +48,18 @@ import(/* webpackChunkName: "locale" */ `./locales/${language}/messages`).then(
 
     i18n.activate(language)
 
-    const suspenseFallback = (
-      <div
-        className="h-full w-full flex items-center justify-center bg-background bg-opacity-background"
-        aria-busy="true"
-      >
-        <p className="text-txt text-opacity-text-primary">Loading...</p>
-      </div>
-    )
-
     ReactDOM.hydrateRoot(
       document.getElementById('root')!,
-      <Suspense fallback={suspenseFallback}>
-        <RootBrowser>
-          <HelmetProvider>
-            <App
-              apolloClient={apolloClient}
-              userAgent={navigator.userAgent}
-              i18n={i18n}
-              userPreferredTheme={window.__theme}
-            />
-          </HelmetProvider>
-        </RootBrowser>
-      </Suspense>
+      <RootBrowser>
+        <HelmetProvider>
+          <App
+            apolloClient={apolloClient}
+            userAgent={navigator.userAgent}
+            i18n={i18n}
+            userPreferredTheme={window.__theme}
+          />
+        </HelmetProvider>
+      </RootBrowser>
     )
   }
 )

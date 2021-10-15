@@ -9,7 +9,6 @@ import { RootServer } from '@casterly/components/server'
 import { i18n } from '@lingui/core'
 import { en as enPlural, pt as ptPlural } from 'make-plural/plurals'
 import type { ReactElement } from 'react'
-import { Suspense } from 'react'
 import { renderToPipeableStream } from 'react-dom/server'
 import type { FilledContext } from 'react-helmet-async'
 import { HelmetProvider } from 'react-helmet-async'
@@ -89,14 +88,12 @@ export default async function handleRequest(
 
   const root = (
     <HelmetProvider context={helmetContext}>
-      <Suspense fallback="loading...">
-        <App
-          i18n={i18n}
-          userAgent={request.headers.get('userAgent')!}
-          apolloClient={client}
-          userPreferredTheme={darkMode ? 'dark' : 'light'}
-        />
-      </Suspense>
+      <App
+        i18n={i18n}
+        userAgent={request.headers.get('userAgent')!}
+        apolloClient={client}
+        userPreferredTheme={darkMode ? 'dark' : 'light'}
+      />
     </HelmetProvider>
   )
 

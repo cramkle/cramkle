@@ -5,6 +5,7 @@ import { ErrorBoundary } from '@sentry/react'
 import font400normal from 'fontsource-libre-franklin/files/libre-franklin-latin-400-normal.woff2'
 import font500normal from 'fontsource-libre-franklin/files/libre-franklin-latin-500-normal.woff2'
 import type { FC } from 'react'
+import { Suspense } from 'react'
 import { Helmet } from 'react-helmet-async'
 
 import CramkleToasts from './components/CramkleToasts'
@@ -61,8 +62,21 @@ const App: FC<{
             />
             <ErrorBoundary fallback={errorFallback}>
               <ThemeProvider userPreferredTheme={userPreferredTheme}>
-                <CramkleToasts />
-                <Routes />
+                <Suspense
+                  fallback={
+                    <div
+                      className="h-full w-full flex items-center justify-center bg-background bg-opacity-background"
+                      aria-busy="true"
+                    >
+                      <p className="text-txt text-opacity-text-primary">
+                        Loading...
+                      </p>
+                    </div>
+                  }
+                >
+                  <CramkleToasts />
+                  <Routes />
+                </Suspense>
               </ThemeProvider>
             </ErrorBoundary>
           </HintsProvider>
