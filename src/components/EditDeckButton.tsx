@@ -5,6 +5,7 @@ import { Formik } from 'formik'
 import type { VFC } from 'react'
 import { useState } from 'react'
 
+import { TIMEOUT_MEDIUM, pushErrorToast } from '../toasts/pushToast'
 import { TextInputField } from './forms/Fields'
 import { Button } from './views/Button'
 import { Dialog, DialogTitle } from './views/Dialog'
@@ -43,15 +44,24 @@ export const EditDeckButton: VFC<Props> = ({ deckId, deck }) => {
       <Formik
         initialValues={{ title: deck.title, description: deck.description }}
         onSubmit={async (values) => {
-          await mutate({
-            variables: {
-              id: deckId,
-              title: values.title,
-              description: values.description,
-            },
-          })
+          try {
+            await mutate({
+              variables: {
+                id: deckId,
+                title: values.title,
+                description: values.description,
+              },
+            })
 
-          setDialogOpen(false)
+            setDialogOpen(false)
+          } catch {
+            pushErrorToast(
+              {
+                message: t`An error occurred when updating the deck`,
+              },
+              TIMEOUT_MEDIUM
+            )
+          }
         }}
       >
         {({ isValid, handleSubmit, isSubmitting, resetForm }) => {
