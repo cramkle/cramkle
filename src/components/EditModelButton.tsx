@@ -58,7 +58,7 @@ export const EditModelButton: VFC<Props> = ({ id, model }) => {
           } catch {
             pushErrorToast(
               {
-                message: t`An error has occurred when updating the deck`,
+                message: t`An error has occurred when updating the model`,
               },
               TIMEOUT_MEDIUM
             )
