@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom'
 
 import BackButton from '../components/BackButton'
 import DeleteDeckButton from '../components/DeleteDeckButton'
+import { EditDeckButton } from '../components/EditDeckButton'
 import NotesTable from '../components/NotesTable'
 import { Container } from '../components/views/Container'
 import {
@@ -196,12 +197,15 @@ const DeckPage: React.FunctionComponent = () => {
         <BackButton to="/decks" />
 
         <div className="flex flex-col mb-8">
-          <div className="flex justify-between items-baseline">
+          <div className="flex flex-col md:flex-row justify-between items-baseline">
             <Headline1 className="text-txt text-opacity-text-primary">
               <Trans>Deck details</Trans>
             </Headline1>
 
-            <DeleteDeckButton deckId={deck.id} />
+            <div className="flex items-center">
+              <EditDeckButton deckId={deck.id} deck={deck} />
+              <DeleteDeckButton deckId={deck.id} />
+            </div>
           </div>
           <Headline2 className="mt-4 text-txt text-opacity-text-primary">
             {deck.title}
