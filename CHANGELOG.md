@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Edit deck button.
 
+### Changed
+- Merge single page and landing page into a single route `/`.
+
 ## [0.18.0] - 2021-09-17
 ### Changed
 - Improve home page SSR.
