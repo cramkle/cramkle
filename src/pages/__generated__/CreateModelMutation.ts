@@ -42,7 +42,7 @@ export interface CreateModelMutation_createModel_model {
   /**
    * Name of this card model (e.g. "Basic", "Basic with Reversed")
    */
-  name: string | null;
+  name: string;
   /**
    * Templates associated with this model
    */

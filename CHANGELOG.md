@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - Edit deck button.
+- Edit model button.
 
 ### Changed
 - Merge single page and landing page into a single route `/`.

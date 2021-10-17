@@ -14,7 +14,7 @@ export interface DeckQuery_deck_notes_edges_node_model {
   /**
    * Name of this card model (e.g. "Basic", "Basic with Reversed")
    */
-  name: string | null;
+  name: string;
 }
 
 export interface DeckQuery_deck_notes_edges_node_flashCards_template {

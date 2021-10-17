@@ -14,6 +14,7 @@ import { Link } from 'react-router-dom'
 import BackButton from '../components/BackButton'
 import DeleteModelButton from '../components/DeleteModelButton'
 import EditFieldsDialog from '../components/EditFieldsDialog'
+import { EditModelButton } from '../components/EditModelButton'
 import EditTemplatesDialog from '../components/EditTemplatesDialog'
 import TemplateEditor from '../components/TemplateEditor'
 import PersistedEditor from '../components/editor/PersistedEditor'
@@ -219,12 +220,15 @@ const ModelPage: React.FC = () => {
       <Container className="py-4">
         <BackButton to="/models" />
         <div className="flex flex-col mb-8">
-          <div className="flex justify-between items-baseline">
+          <div className="flex flex-col md:flex-row justify-between items-baseline">
             <Headline1 className="text-txt text-opacity-text-primary">
               <Trans>Model details</Trans>
             </Headline1>
 
-            <DeleteModelButton model={model} />
+            <div className="flex items-center">
+              <EditModelButton id={model.id} model={model} />
+              <DeleteModelButton model={model} />
+            </div>
           </div>
 
           <Headline2 className="text-txt text-opacity-text-primary mt-4">

@@ -13,6 +13,7 @@
         "kind": "SCALAR",
         "name": "JSON",
         "description": "The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).",
+        "specifiedByUrl": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -23,6 +24,7 @@
         "kind": "SCALAR",
         "name": "JSONObject",
         "description": "The `JSONObject` scalar type represents JSON objects as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).",
+        "specifiedByUrl": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -33,6 +35,7 @@
         "kind": "INTERFACE",
         "name": "Node",
         "description": "An object with an ID",
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "id",
@@ -58,11 +61,6 @@
           {
             "kind": "OBJECT",
             "name": "Deck",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "User",
             "ofType": null
           },
           {
@@ -106,6 +104,7 @@
         "kind": "SCALAR",
         "name": "ID",
         "description": "The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `\"4\"`) or integer (such as `4`) input value will be accepted as an ID.",
+        "specifiedByUrl": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -116,6 +115,7 @@
         "kind": "OBJECT",
         "name": "Query",
         "description": null,
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "deck",
@@ -133,7 +133,9 @@
                     "ofType": null
                   }
                 },
-                "defaultValue": null
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
               }
             ],
             "type": {
@@ -156,7 +158,9 @@
                   "name": "ID",
                   "ofType": null
                 },
-                "defaultValue": null
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
               }
             ],
             "type": {
@@ -183,7 +187,9 @@
                     "ofType": null
                   }
                 },
-                "defaultValue": "false"
+                "defaultValue": "false",
+                "isDeprecated": false,
+                "deprecationReason": null
               }
             ],
             "type": {
@@ -234,7 +240,9 @@
                     "ofType": null
                   }
                 },
-                "defaultValue": null
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
               }
             ],
             "type": {
@@ -285,7 +293,9 @@
                     "ofType": null
                   }
                 },
-                "defaultValue": null
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
               }
             ],
             "type": {
@@ -312,7 +322,9 @@
                     "ofType": null
                   }
                 },
-                "defaultValue": null
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
               }
             ],
             "type": {
@@ -335,7 +347,9 @@
                   "name": "String",
                   "ofType": null
                 },
-                "defaultValue": null
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
               }
             ],
             "type": {
@@ -358,7 +372,9 @@
                   "name": "String",
                   "ofType": null
                 },
-                "defaultValue": null
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
               }
             ],
             "type": {
@@ -381,7 +397,9 @@
                   "name": "ID",
                   "ofType": null
                 },
-                "defaultValue": null
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
               }
             ],
             "type": {
@@ -402,6 +420,7 @@
         "kind": "OBJECT",
         "name": "Deck",
         "description": "Collection of notes",
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "id",
@@ -523,7 +542,9 @@
                     "ofType": null
                   }
                 },
-                "defaultValue": "1"
+                "defaultValue": "1",
+                "isDeprecated": false,
+                "deprecationReason": null
               },
               {
                 "name": "size",
@@ -537,7 +558,9 @@
                     "ofType": null
                   }
                 },
-                "defaultValue": "10"
+                "defaultValue": "10",
+                "isDeprecated": false,
+                "deprecationReason": null
               },
               {
                 "name": "search",
@@ -547,7 +570,9 @@
                   "name": "String",
                   "ofType": null
                 },
-                "defaultValue": null
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
               }
             ],
             "type": {
@@ -606,6 +631,7 @@
         "kind": "SCALAR",
         "name": "String",
         "description": "The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.",
+        "specifiedByUrl": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -616,6 +642,7 @@
         "kind": "OBJECT",
         "name": "User",
         "description": "User entity",
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "id",
@@ -723,13 +750,7 @@
           }
         ],
         "inputFields": null,
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "Node",
-            "ofType": null
-          }
-        ],
+        "interfaces": [],
         "enumValues": null,
         "possibleTypes": null
       },
@@ -737,6 +758,7 @@
         "kind": "ENUM",
         "name": "UserRoles",
         "description": null,
+        "specifiedByUrl": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -760,6 +782,7 @@
         "kind": "OBJECT",
         "name": "UserPreferences",
         "description": "Preferences associated with user account",
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "zoneInfo",
@@ -815,6 +838,7 @@
         "kind": "SCALAR",
         "name": "Boolean",
         "description": "The `Boolean` scalar type represents `true` or `false`.",
+        "specifiedByUrl": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -825,6 +849,7 @@
         "kind": "OBJECT",
         "name": "StudySessionDetails",
         "description": null,
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "newCount",
@@ -884,6 +909,7 @@
         "kind": "SCALAR",
         "name": "Int",
         "description": "The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.",
+        "specifiedByUrl": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -894,6 +920,7 @@
         "kind": "OBJECT",
         "name": "NoteConnection",
         "description": "A connection to a list of items.",
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "pageInfo",
@@ -969,6 +996,7 @@
         "kind": "OBJECT",
         "name": "PageInfo",
         "description": "Information about pagination in a connection.",
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "hasNextPage",
@@ -1036,6 +1064,7 @@
         "kind": "OBJECT",
         "name": "NoteEdge",
         "description": "An edge in a connection.",
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "node",
@@ -1075,6 +1104,7 @@
         "kind": "OBJECT",
         "name": "Note",
         "description": "A note is what the user registers on each deck.\n\nThis type auto generates a number of cards, based\non the number of templates.",
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "id",
@@ -1192,6 +1222,7 @@
         "kind": "OBJECT",
         "name": "Model",
         "description": "Represents a model for a collection of notes.",
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "id",
@@ -1214,9 +1245,13 @@
             "description": "Name of this card model (e.g. \"Basic\", \"Basic with Reversed\")",
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -1365,6 +1400,7 @@
         "kind": "OBJECT",
         "name": "Field",
         "description": null,
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "id",
@@ -1426,6 +1462,7 @@
         "kind": "OBJECT",
         "name": "Template",
         "description": "Template of the card. This is what structures the content\nof each card with values provided by the note",
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "id",
@@ -1515,6 +1552,7 @@
         "kind": "OBJECT",
         "name": "ContentState",
         "description": null,
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "id",
@@ -1588,6 +1626,7 @@
         "kind": "OBJECT",
         "name": "Block",
         "description": null,
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "key",
@@ -1723,6 +1762,7 @@
         "kind": "OBJECT",
         "name": "InlineStyleRange",
         "description": null,
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "style",
@@ -1782,6 +1822,7 @@
         "kind": "OBJECT",
         "name": "EntityRange",
         "description": null,
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "key",
@@ -1841,6 +1882,7 @@
         "kind": "OBJECT",
         "name": "FieldValue",
         "description": "Holds the value for a particular field in a card model.\n\nContained by the note.",
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "id",
@@ -1898,6 +1940,7 @@
         "kind": "OBJECT",
         "name": "FlashCard",
         "description": "Flashcards are what the user study/reviews in the study sessions.\n\nThe objects of this type are auto generated when creating\nthe note and depend of the number of templates that are\nassociated with the model.\n\nThe number of flashcards on each note is always equal to the\nnumber of templates.",
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "id",
@@ -2059,6 +2102,7 @@
         "kind": "ENUM",
         "name": "FlashCardStatus",
         "description": null,
+        "specifiedByUrl": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -2088,6 +2132,7 @@
         "kind": "SCALAR",
         "name": "Float",
         "description": "The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point).",
+        "specifiedByUrl": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -2098,6 +2143,7 @@
         "kind": "OBJECT",
         "name": "PageCursors",
         "description": null,
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "first",
@@ -2169,6 +2215,7 @@
         "kind": "OBJECT",
         "name": "PageCursor",
         "description": null,
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "cursor",
@@ -2228,6 +2275,7 @@
         "kind": "OBJECT",
         "name": "DeckStatistics",
         "description": null,
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "deck",
@@ -2309,7 +2357,9 @@
                     "ofType": null
                   }
                 },
-                "defaultValue": null
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
               },
               {
                 "name": "endDate",
@@ -2323,7 +2373,9 @@
                     "ofType": null
                   }
                 },
-                "defaultValue": null
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
               },
               {
                 "name": "zoneInfo",
@@ -2333,7 +2385,9 @@
                   "name": "String",
                   "ofType": null
                 },
-                "defaultValue": "\"UTC\""
+                "defaultValue": "\"UTC\"",
+                "isDeprecated": false,
+                "deprecationReason": null
               }
             ],
             "type": {
@@ -2366,6 +2420,7 @@
         "kind": "OBJECT",
         "name": "StudyFrequencyPoint",
         "description": null,
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "date",
@@ -2441,6 +2496,7 @@
         "kind": "OBJECT",
         "name": "Mutation",
         "description": null,
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "addFieldToModel",
@@ -2458,7 +2514,9 @@
                     "ofType": null
                   }
                 },
-                "defaultValue": null
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
               }
             ],
             "type": {
@@ -2485,7 +2543,9 @@
                     "ofType": null
                   }
                 },
-                "defaultValue": null
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
               }
             ],
             "type": {
@@ -2512,7 +2572,9 @@
                     "ofType": null
                   }
                 },
-                "defaultValue": null
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
               }
             ],
             "type": {
@@ -2539,7 +2601,9 @@
                     "ofType": null
                   }
                 },
-                "defaultValue": null
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
               }
             ],
             "type": {
@@ -2566,7 +2630,9 @@
                     "ofType": null
                   }
                 },
-                "defaultValue": null
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
               }
             ],
             "type": {
@@ -2593,7 +2659,9 @@
                     "ofType": null
                   }
                 },
-                "defaultValue": null
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
               }
             ],
             "type": {
@@ -2620,7 +2688,9 @@
                     "ofType": null
                   }
                 },
-                "defaultValue": null
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
               }
             ],
             "type": {
@@ -2647,7 +2717,9 @@
                     "ofType": null
                   }
                 },
-                "defaultValue": null
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
               }
             ],
             "type": {
@@ -2674,7 +2746,9 @@
                     "ofType": null
                   }
                 },
-                "defaultValue": null
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
               }
             ],
             "type": {
@@ -2701,7 +2775,9 @@
                     "ofType": null
                   }
                 },
-                "defaultValue": null
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
               }
             ],
             "type": {
@@ -2728,7 +2804,9 @@
                     "ofType": null
                   }
                 },
-                "defaultValue": null
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
               }
             ],
             "type": {
@@ -2755,7 +2833,9 @@
                     "ofType": null
                   }
                 },
-                "defaultValue": null
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
               }
             ],
             "type": {
@@ -2782,7 +2862,9 @@
                     "ofType": null
                   }
                 },
-                "defaultValue": null
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
               }
             ],
             "type": {
@@ -2809,7 +2891,9 @@
                     "ofType": null
                   }
                 },
-                "defaultValue": null
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
               }
             ],
             "type": {
@@ -2836,7 +2920,9 @@
                     "ofType": null
                   }
                 },
-                "defaultValue": null
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
               }
             ],
             "type": {
@@ -2863,7 +2949,9 @@
                     "ofType": null
                   }
                 },
-                "defaultValue": null
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
               }
             ],
             "type": {
@@ -2890,7 +2978,9 @@
                     "ofType": null
                   }
                 },
-                "defaultValue": null
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
               }
             ],
             "type": {
@@ -2917,7 +3007,9 @@
                     "ofType": null
                   }
                 },
-                "defaultValue": null
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
               }
             ],
             "type": {
@@ -2944,7 +3036,9 @@
                     "ofType": null
                   }
                 },
-                "defaultValue": null
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
               }
             ],
             "type": {
@@ -2971,7 +3065,9 @@
                     "ofType": null
                   }
                 },
-                "defaultValue": null
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
               }
             ],
             "type": {
@@ -2998,7 +3094,9 @@
                     "ofType": null
                   }
                 },
-                "defaultValue": null
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
               }
             ],
             "type": {
@@ -3025,7 +3123,9 @@
                     "ofType": null
                   }
                 },
-                "defaultValue": null
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
               }
             ],
             "type": {
@@ -3052,7 +3152,9 @@
                     "ofType": null
                   }
                 },
-                "defaultValue": null
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
               }
             ],
             "type": {
@@ -3079,7 +3181,9 @@
                     "ofType": null
                   }
                 },
-                "defaultValue": null
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
               }
             ],
             "type": {
@@ -3100,6 +3204,7 @@
         "kind": "OBJECT",
         "name": "AddFieldToModelPayload",
         "description": null,
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "field",
@@ -3135,6 +3240,7 @@
         "kind": "INPUT_OBJECT",
         "name": "AddFieldToModelInput",
         "description": null,
+        "specifiedByUrl": null,
         "fields": null,
         "inputFields": [
           {
@@ -3149,7 +3255,9 @@
                 "ofType": null
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "name",
@@ -3163,7 +3271,9 @@
                 "ofType": null
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "clientMutationId",
@@ -3173,7 +3283,9 @@
               "name": "String",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "interfaces": null,
@@ -3184,6 +3296,7 @@
         "kind": "OBJECT",
         "name": "AddTemplateToModelPayload",
         "description": null,
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "template",
@@ -3219,6 +3332,7 @@
         "kind": "INPUT_OBJECT",
         "name": "AddTemplateToModelInput",
         "description": null,
+        "specifiedByUrl": null,
         "fields": null,
         "inputFields": [
           {
@@ -3233,7 +3347,9 @@
                 "ofType": null
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "name",
@@ -3247,7 +3363,9 @@
                 "ofType": null
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "clientMutationId",
@@ -3257,7 +3375,9 @@
               "name": "String",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "interfaces": null,
@@ -3268,6 +3388,7 @@
         "kind": "OBJECT",
         "name": "AnswerFlashcardPayload",
         "description": null,
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "flashCard",
@@ -3323,6 +3444,7 @@
         "kind": "INPUT_OBJECT",
         "name": "AnswerFlashcardInput",
         "description": null,
+        "specifiedByUrl": null,
         "fields": null,
         "inputFields": [
           {
@@ -3333,7 +3455,9 @@
               "name": "ID",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "flashCardId",
@@ -3343,7 +3467,9 @@
               "name": "ID",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "flashcardId",
@@ -3353,7 +3479,9 @@
               "name": "ID",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "answer",
@@ -3363,7 +3491,9 @@
               "name": "FlashCardAnswer",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "timespan",
@@ -3373,7 +3503,9 @@
               "name": "Int",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "clientMutationId",
@@ -3383,7 +3515,9 @@
               "name": "String",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "interfaces": null,
@@ -3394,6 +3528,7 @@
         "kind": "ENUM",
         "name": "FlashCardAnswer",
         "description": null,
+        "specifiedByUrl": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -3429,6 +3564,7 @@
         "kind": "OBJECT",
         "name": "CreateDeckPayload",
         "description": null,
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "deck",
@@ -3464,6 +3600,7 @@
         "kind": "INPUT_OBJECT",
         "name": "CreateDeckInput",
         "description": null,
+        "specifiedByUrl": null,
         "fields": null,
         "inputFields": [
           {
@@ -3478,7 +3615,9 @@
                 "ofType": null
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "description",
@@ -3488,7 +3627,9 @@
               "name": "String",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "clientMutationId",
@@ -3498,7 +3639,9 @@
               "name": "String",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "interfaces": null,
@@ -3509,6 +3652,7 @@
         "kind": "OBJECT",
         "name": "CreateModelPayload",
         "description": null,
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "model",
@@ -3544,6 +3688,7 @@
         "kind": "INPUT_OBJECT",
         "name": "CreateModelInput",
         "description": null,
+        "specifiedByUrl": null,
         "fields": null,
         "inputFields": [
           {
@@ -3558,7 +3703,9 @@
                 "ofType": null
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "fields",
@@ -3580,7 +3727,9 @@
                 }
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "templates",
@@ -3602,7 +3751,9 @@
                 }
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "clientMutationId",
@@ -3612,7 +3763,9 @@
               "name": "String",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "interfaces": null,
@@ -3623,6 +3776,7 @@
         "kind": "INPUT_OBJECT",
         "name": "FieldInput",
         "description": null,
+        "specifiedByUrl": null,
         "fields": null,
         "inputFields": [
           {
@@ -3633,7 +3787,9 @@
               "name": "ID",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "name",
@@ -3643,7 +3799,9 @@
               "name": "String",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "interfaces": null,
@@ -3654,6 +3812,7 @@
         "kind": "INPUT_OBJECT",
         "name": "TemplateInput",
         "description": null,
+        "specifiedByUrl": null,
         "fields": null,
         "inputFields": [
           {
@@ -3668,7 +3827,9 @@
                 "ofType": null
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "interfaces": null,
@@ -3679,6 +3840,7 @@
         "kind": "OBJECT",
         "name": "CreateNotePayload",
         "description": null,
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "note",
@@ -3714,6 +3876,7 @@
         "kind": "INPUT_OBJECT",
         "name": "CreateNoteInput",
         "description": null,
+        "specifiedByUrl": null,
         "fields": null,
         "inputFields": [
           {
@@ -3724,7 +3887,9 @@
               "name": "ID",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "deckId",
@@ -3734,7 +3899,9 @@
               "name": "ID",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "fieldValues",
@@ -3756,7 +3923,9 @@
                 }
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "clientMutationId",
@@ -3766,7 +3935,9 @@
               "name": "String",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "interfaces": null,
@@ -3777,6 +3948,7 @@
         "kind": "INPUT_OBJECT",
         "name": "FieldValueInput",
         "description": null,
+        "specifiedByUrl": null,
         "fields": null,
         "inputFields": [
           {
@@ -3787,7 +3959,9 @@
               "name": "ContentStateInput",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "field",
@@ -3797,7 +3971,9 @@
               "name": "FieldInput",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "interfaces": null,
@@ -3808,6 +3984,7 @@
         "kind": "INPUT_OBJECT",
         "name": "ContentStateInput",
         "description": null,
+        "specifiedByUrl": null,
         "fields": null,
         "inputFields": [
           {
@@ -3830,7 +4007,9 @@
                 }
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "entityMap",
@@ -3840,7 +4019,9 @@
               "name": "JSONObject",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "interfaces": null,
@@ -3851,6 +4032,7 @@
         "kind": "INPUT_OBJECT",
         "name": "BlockInput",
         "description": null,
+        "specifiedByUrl": null,
         "fields": null,
         "inputFields": [
           {
@@ -3865,7 +4047,9 @@
                 "ofType": null
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "type",
@@ -3879,7 +4063,9 @@
                 "ofType": null
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "text",
@@ -3893,7 +4079,9 @@
                 "ofType": null
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "depth",
@@ -3907,7 +4095,9 @@
                 "ofType": null
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "inlineStyleRanges",
@@ -3929,7 +4119,9 @@
                 }
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "entityRanges",
@@ -3951,7 +4143,9 @@
                 }
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "data",
@@ -3961,7 +4155,9 @@
               "name": "JSONObject",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "interfaces": null,
@@ -3972,6 +4168,7 @@
         "kind": "INPUT_OBJECT",
         "name": "InlineStyleRangeInput",
         "description": null,
+        "specifiedByUrl": null,
         "fields": null,
         "inputFields": [
           {
@@ -3986,7 +4183,9 @@
                 "ofType": null
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "length",
@@ -4000,7 +4199,9 @@
                 "ofType": null
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "offset",
@@ -4014,7 +4215,9 @@
                 "ofType": null
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "interfaces": null,
@@ -4025,6 +4228,7 @@
         "kind": "INPUT_OBJECT",
         "name": "EntityRangeInput",
         "description": null,
+        "specifiedByUrl": null,
         "fields": null,
         "inputFields": [
           {
@@ -4039,7 +4243,9 @@
                 "ofType": null
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "length",
@@ -4053,7 +4259,9 @@
                 "ofType": null
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "offset",
@@ -4067,7 +4275,9 @@
                 "ofType": null
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "interfaces": null,
@@ -4078,6 +4288,7 @@
         "kind": "OBJECT",
         "name": "CreateUserPayload",
         "description": null,
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "user",
@@ -4125,6 +4336,7 @@
         "kind": "OBJECT",
         "name": "CreateUserError",
         "description": null,
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "type",
@@ -4188,6 +4400,7 @@
         "kind": "ENUM",
         "name": "Error",
         "description": "Type of error",
+        "specifiedByUrl": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -4217,6 +4430,7 @@
         "kind": "OBJECT",
         "name": "ErrorValue",
         "description": null,
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "fieldName",
@@ -4260,6 +4474,7 @@
         "kind": "INPUT_OBJECT",
         "name": "CreateUserInput",
         "description": null,
+        "specifiedByUrl": null,
         "fields": null,
         "inputFields": [
           {
@@ -4274,7 +4489,9 @@
                 "ofType": null
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "email",
@@ -4288,7 +4505,9 @@
                 "ofType": null
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "password",
@@ -4302,7 +4521,9 @@
                 "ofType": null
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "locale",
@@ -4312,7 +4533,9 @@
               "name": "String",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "zoneInfo",
@@ -4322,7 +4545,9 @@
               "name": "String",
               "ofType": null
             },
-            "defaultValue": "\"UTC\""
+            "defaultValue": "\"UTC\"",
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "clientMutationId",
@@ -4332,7 +4557,9 @@
               "name": "String",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "interfaces": null,
@@ -4343,6 +4570,7 @@
         "kind": "OBJECT",
         "name": "DeleteDeckPayload",
         "description": null,
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "deck",
@@ -4378,6 +4606,7 @@
         "kind": "INPUT_OBJECT",
         "name": "DeleteDeckInput",
         "description": null,
+        "specifiedByUrl": null,
         "fields": null,
         "inputFields": [
           {
@@ -4392,7 +4621,9 @@
                 "ofType": null
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "clientMutationId",
@@ -4402,7 +4633,9 @@
               "name": "String",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "interfaces": null,
@@ -4413,6 +4646,7 @@
         "kind": "OBJECT",
         "name": "DeleteModelPayload",
         "description": null,
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "model",
@@ -4448,6 +4682,7 @@
         "kind": "INPUT_OBJECT",
         "name": "DeleteModelInput",
         "description": null,
+        "specifiedByUrl": null,
         "fields": null,
         "inputFields": [
           {
@@ -4462,7 +4697,9 @@
                 "ofType": null
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "clientMutationId",
@@ -4472,7 +4709,9 @@
               "name": "String",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "interfaces": null,
@@ -4483,6 +4722,7 @@
         "kind": "OBJECT",
         "name": "DeleteNotePayload",
         "description": null,
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "note",
@@ -4518,6 +4758,7 @@
         "kind": "INPUT_OBJECT",
         "name": "DeleteNoteInput",
         "description": null,
+        "specifiedByUrl": null,
         "fields": null,
         "inputFields": [
           {
@@ -4532,7 +4773,9 @@
                 "ofType": null
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "clientMutationId",
@@ -4542,7 +4785,9 @@
               "name": "String",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "interfaces": null,
@@ -4553,6 +4798,7 @@
         "kind": "OBJECT",
         "name": "PublishDeckPayload",
         "description": null,
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "deck",
@@ -4588,6 +4834,7 @@
         "kind": "INPUT_OBJECT",
         "name": "PublishDeckInput",
         "description": null,
+        "specifiedByUrl": null,
         "fields": null,
         "inputFields": [
           {
@@ -4602,7 +4849,9 @@
                 "ofType": null
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "clientMutationId",
@@ -4612,7 +4861,9 @@
               "name": "String",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "interfaces": null,
@@ -4623,6 +4874,7 @@
         "kind": "OBJECT",
         "name": "RemoveFieldFromModelPayload",
         "description": null,
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "field",
@@ -4658,6 +4910,7 @@
         "kind": "INPUT_OBJECT",
         "name": "RemoveFieldFromModelInput",
         "description": null,
+        "specifiedByUrl": null,
         "fields": null,
         "inputFields": [
           {
@@ -4672,7 +4925,9 @@
                 "ofType": null
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "clientMutationId",
@@ -4682,7 +4937,9 @@
               "name": "String",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "interfaces": null,
@@ -4693,6 +4950,7 @@
         "kind": "OBJECT",
         "name": "RemoveTemplateFromModelPayload",
         "description": null,
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "template",
@@ -4728,6 +4986,7 @@
         "kind": "INPUT_OBJECT",
         "name": "RemoveTemplateFromModelInput",
         "description": null,
+        "specifiedByUrl": null,
         "fields": null,
         "inputFields": [
           {
@@ -4742,7 +5001,9 @@
                 "ofType": null
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "clientMutationId",
@@ -4752,7 +5013,9 @@
               "name": "String",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "interfaces": null,
@@ -4763,6 +5026,7 @@
         "kind": "OBJECT",
         "name": "RequestPasswordResetPayload",
         "description": null,
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "success",
@@ -4798,6 +5062,7 @@
         "kind": "INPUT_OBJECT",
         "name": "RequestPasswordResetInput",
         "description": null,
+        "specifiedByUrl": null,
         "fields": null,
         "inputFields": [
           {
@@ -4808,7 +5073,9 @@
               "name": "String",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "clientMutationId",
@@ -4818,7 +5085,9 @@
               "name": "String",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "interfaces": null,
@@ -4829,6 +5098,7 @@
         "kind": "OBJECT",
         "name": "ResetPasswordPayload",
         "description": null,
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "success",
@@ -4864,6 +5134,7 @@
         "kind": "INPUT_OBJECT",
         "name": "ResetPasswordInput",
         "description": null,
+        "specifiedByUrl": null,
         "fields": null,
         "inputFields": [
           {
@@ -4878,7 +5149,9 @@
                 "ofType": null
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "timestamp",
@@ -4892,7 +5165,9 @@
                 "ofType": null
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "userId",
@@ -4906,7 +5181,9 @@
                 "ofType": null
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "newPassword",
@@ -4920,7 +5197,9 @@
                 "ofType": null
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "clientMutationId",
@@ -4930,7 +5209,9 @@
               "name": "String",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "interfaces": null,
@@ -4941,6 +5222,7 @@
         "kind": "OBJECT",
         "name": "UnpublishDeckPayload",
         "description": null,
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "deck",
@@ -4976,6 +5258,7 @@
         "kind": "INPUT_OBJECT",
         "name": "UnpublishDeckInput",
         "description": null,
+        "specifiedByUrl": null,
         "fields": null,
         "inputFields": [
           {
@@ -4990,7 +5273,9 @@
                 "ofType": null
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "clientMutationId",
@@ -5000,7 +5285,9 @@
               "name": "String",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "interfaces": null,
@@ -5011,6 +5298,7 @@
         "kind": "OBJECT",
         "name": "UpdateDeckPayload",
         "description": null,
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "deck",
@@ -5046,6 +5334,7 @@
         "kind": "INPUT_OBJECT",
         "name": "UpdateDeckInput",
         "description": null,
+        "specifiedByUrl": null,
         "fields": null,
         "inputFields": [
           {
@@ -5060,7 +5349,9 @@
                 "ofType": null
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "title",
@@ -5070,7 +5361,9 @@
               "name": "String",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "description",
@@ -5080,7 +5373,9 @@
               "name": "String",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "clientMutationId",
@@ -5090,7 +5385,9 @@
               "name": "String",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "interfaces": null,
@@ -5101,6 +5398,7 @@
         "kind": "OBJECT",
         "name": "UpdateFieldPayload",
         "description": null,
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "field",
@@ -5136,6 +5434,7 @@
         "kind": "INPUT_OBJECT",
         "name": "UpdateFieldInput",
         "description": null,
+        "specifiedByUrl": null,
         "fields": null,
         "inputFields": [
           {
@@ -5150,7 +5449,9 @@
                 "ofType": null
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "name",
@@ -5164,7 +5465,9 @@
                 "ofType": null
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "clientMutationId",
@@ -5174,7 +5477,9 @@
               "name": "String",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "interfaces": null,
@@ -5185,6 +5490,7 @@
         "kind": "OBJECT",
         "name": "UpdateFieldValuePayload",
         "description": null,
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "fieldValue",
@@ -5220,6 +5526,7 @@
         "kind": "INPUT_OBJECT",
         "name": "UpdateFieldValueInput",
         "description": null,
+        "specifiedByUrl": null,
         "fields": null,
         "inputFields": [
           {
@@ -5234,7 +5541,9 @@
                 "ofType": null
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "fieldId",
@@ -5248,7 +5557,9 @@
                 "ofType": null
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "data",
@@ -5262,7 +5573,9 @@
                 "ofType": null
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "clientMutationId",
@@ -5272,7 +5585,9 @@
               "name": "String",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "interfaces": null,
@@ -5283,6 +5598,7 @@
         "kind": "OBJECT",
         "name": "UpdateModelPayload",
         "description": null,
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "model",
@@ -5318,6 +5634,7 @@
         "kind": "INPUT_OBJECT",
         "name": "UpdateModelInput",
         "description": null,
+        "specifiedByUrl": null,
         "fields": null,
         "inputFields": [
           {
@@ -5332,7 +5649,9 @@
                 "ofType": null
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "name",
@@ -5342,7 +5661,9 @@
               "name": "String",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "clientMutationId",
@@ -5352,7 +5673,9 @@
               "name": "String",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "interfaces": null,
@@ -5363,6 +5686,7 @@
         "kind": "OBJECT",
         "name": "UpdatePreferencesPayload",
         "description": null,
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "user",
@@ -5410,6 +5734,7 @@
         "kind": "OBJECT",
         "name": "UpdatePreferencesError",
         "description": null,
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "type",
@@ -5453,6 +5778,7 @@
         "kind": "INPUT_OBJECT",
         "name": "UpdatePreferencesInput",
         "description": null,
+        "specifiedByUrl": null,
         "fields": null,
         "inputFields": [
           {
@@ -5463,7 +5789,9 @@
               "name": "String",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "darkMode",
@@ -5473,7 +5801,9 @@
               "name": "Boolean",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "locale",
@@ -5483,7 +5813,9 @@
               "name": "String",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "clientMutationId",
@@ -5493,7 +5825,9 @@
               "name": "String",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "interfaces": null,
@@ -5504,6 +5838,7 @@
         "kind": "OBJECT",
         "name": "UpdateProfilePayload",
         "description": null,
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "user",
@@ -5551,6 +5886,7 @@
         "kind": "OBJECT",
         "name": "UpdateProfileError",
         "description": null,
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "type",
@@ -5614,6 +5950,7 @@
         "kind": "INPUT_OBJECT",
         "name": "UpdateProfileInput",
         "description": null,
+        "specifiedByUrl": null,
         "fields": null,
         "inputFields": [
           {
@@ -5624,7 +5961,9 @@
               "name": "String",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "username",
@@ -5634,7 +5973,9 @@
               "name": "String",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "password",
@@ -5644,7 +5985,9 @@
               "name": "String",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "currentPassword",
@@ -5654,7 +5997,9 @@
               "name": "String",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "clientMutationId",
@@ -5664,7 +6009,9 @@
               "name": "String",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "interfaces": null,
@@ -5675,6 +6022,7 @@
         "kind": "OBJECT",
         "name": "UpdateTemplatePayload",
         "description": null,
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "template",
@@ -5710,6 +6058,7 @@
         "kind": "INPUT_OBJECT",
         "name": "UpdateTemplateInput",
         "description": null,
+        "specifiedByUrl": null,
         "fields": null,
         "inputFields": [
           {
@@ -5724,7 +6073,9 @@
                 "ofType": null
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "name",
@@ -5734,7 +6085,9 @@
               "name": "String",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "frontSide",
@@ -5744,7 +6097,9 @@
               "name": "ContentStateInput",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "backSide",
@@ -5754,7 +6109,9 @@
               "name": "ContentStateInput",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "clientMutationId",
@@ -5764,7 +6121,9 @@
               "name": "String",
               "ofType": null
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "interfaces": null,
@@ -5775,6 +6134,7 @@
         "kind": "OBJECT",
         "name": "__Schema",
         "description": "A GraphQL Schema defines the capabilities of a GraphQL server. It exposes all available types and directives on the server, as well as the entry points for query, mutation, and subscription operations.",
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "description",
@@ -5886,6 +6246,7 @@
         "kind": "OBJECT",
         "name": "__Type",
         "description": "The fundamental unit of any GraphQL Schema is the type. There are many kinds of types in GraphQL as represented by the `__TypeKind` enum.\n\nDepending on the kind of a type, certain fields describe information about that type. Scalar types provide no information beyond a name, description and optional `specifiedByUrl`, while Enum types provide their values. Object and Interface types provide the fields they describe. Abstract types, Union and Interface, provide the Object types possible at runtime. List and NonNull types compose other types.",
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "kind",
@@ -5951,7 +6312,9 @@
                   "name": "Boolean",
                   "ofType": null
                 },
-                "defaultValue": "false"
+                "defaultValue": "false",
+                "isDeprecated": false,
+                "deprecationReason": null
               }
             ],
             "type": {
@@ -6022,7 +6385,9 @@
                   "name": "Boolean",
                   "ofType": null
                 },
-                "defaultValue": "false"
+                "defaultValue": "false",
+                "isDeprecated": false,
+                "deprecationReason": null
               }
             ],
             "type": {
@@ -6053,7 +6418,9 @@
                   "name": "Boolean",
                   "ofType": null
                 },
-                "defaultValue": "false"
+                "defaultValue": "false",
+                "isDeprecated": false,
+                "deprecationReason": null
               }
             ],
             "type": {
@@ -6094,6 +6461,7 @@
         "kind": "ENUM",
         "name": "__TypeKind",
         "description": "An enum describing what kind of type a given `__Type` is.",
+        "specifiedByUrl": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -6153,6 +6521,7 @@
         "kind": "OBJECT",
         "name": "__Field",
         "description": "Object and Interface types are described by a list of Fields, each of which has a name, potentially a list of arguments, and a return type.",
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "name",
@@ -6194,7 +6563,9 @@
                   "name": "Boolean",
                   "ofType": null
                 },
-                "defaultValue": "false"
+                "defaultValue": "false",
+                "isDeprecated": false,
+                "deprecationReason": null
               }
             ],
             "type": {
@@ -6271,6 +6642,7 @@
         "kind": "OBJECT",
         "name": "__InputValue",
         "description": "Arguments provided to Fields or Directives and the input fields of an InputObject are represented as Input Values which describe their type and optionally a default value.",
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "name",
@@ -6366,6 +6738,7 @@
         "kind": "OBJECT",
         "name": "__EnumValue",
         "description": "One possible value for a given Enum. Enum values are unique values, not a placeholder for a string or numeric value. However an Enum value is returned in a JSON response as a string.",
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "name",
@@ -6433,6 +6806,7 @@
         "kind": "OBJECT",
         "name": "__Directive",
         "description": "A Directive provides a way to describe alternate runtime execution and type validation behavior in a GraphQL document.\n\nIn some cases, you need to provide options to alter GraphQL's execution behavior in ways field arguments will not suffice, such as conditionally including or skipping a field. Directives provide this by describing additional information to the executor.",
+        "specifiedByUrl": null,
         "fields": [
           {
             "name": "name",
@@ -6536,6 +6910,7 @@
         "kind": "ENUM",
         "name": "__DirectiveLocation",
         "description": "A Directive can be adjacent to many parts of the GraphQL language, a __DirectiveLocation describes one such possible adjacencies.",
+        "specifiedByUrl": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -6677,7 +7052,9 @@
                 "ofType": null
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ]
       },
@@ -6699,7 +7076,9 @@
                 "ofType": null
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ]
       },
@@ -6722,7 +7101,9 @@
               "name": "String",
               "ofType": null
             },
-            "defaultValue": "\"No longer supported\""
+            "defaultValue": "\"No longer supported\"",
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ]
       },
@@ -6744,7 +7125,9 @@
                 "ofType": null
               }
             },
-            "defaultValue": null
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ]
       }
