@@ -4,10 +4,10 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: ModelsQuery
+// GraphQL fragment: ModelsSection_models
 // ====================================================
 
-export interface ModelsQuery_models_templates {
+export interface ModelsSection_models_templates {
   __typename: "Template";
   /**
    * The ID of an object
@@ -19,7 +19,7 @@ export interface ModelsQuery_models_templates {
   name: string;
 }
 
-export interface ModelsQuery_models_fields {
+export interface ModelsSection_models_fields {
   __typename: "Field";
   /**
    * The ID of an object
@@ -31,7 +31,7 @@ export interface ModelsQuery_models_fields {
   name: string;
 }
 
-export interface ModelsQuery_models {
+export interface ModelsSection_models {
   __typename: "Model";
   /**
    * The ID of an object
@@ -44,16 +44,9 @@ export interface ModelsQuery_models {
   /**
    * Templates associated with this model
    */
-  templates: ModelsQuery_models_templates[];
+  templates: ModelsSection_models_templates[];
   /**
    * Fields associated with this model
    */
-  fields: ModelsQuery_models_fields[];
-}
-
-export interface ModelsQuery {
-  /**
-   * Retrieve all models for the logged user
-   */
-  models: ModelsQuery_models[];
+  fields: ModelsSection_models_fields[];
 }

@@ -40,7 +40,7 @@ export interface NoteFormQuery_models {
   /**
    * Name of this card model (e.g. "Basic", "Basic with Reversed")
    */
-  name: string | null;
+  name: string;
   /**
    * Fields associated with this model
    */

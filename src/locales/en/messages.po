@@ -109,6 +109,10 @@ msgstr "An error has occurred when saving your note"
 msgid "An error has occurred when trying to get your decks to study."
 msgstr "An error has occurred when trying to get your decks to study."
 
+#: src/components/EditModelButton.tsx:44
+msgid "An error has occurred when updating the model"
+msgstr "An error has occurred when updating the model"
+
 #: src/pages/StatisticsPage.tsx:154
 msgid "An error has occurred, try refreshing the page or wait a few minutes before trying again"
 msgstr "An error has occurred, try refreshing the page or wait a few minutes before trying again"
@@ -125,7 +129,7 @@ msgstr "An error occurred when deleting the deck"
 msgid "An error occurred when deleting the model"
 msgstr "An error occurred when deleting the model"
 
-#: src/pages/ModelPage.tsx:71
+#: src/pages/ModelPage.tsx:72
 msgid "An error occurred when saving the template"
 msgstr "An error occurred when saving the template"
 
@@ -419,6 +423,7 @@ msgid "Easy"
 msgstr "Easy"
 
 #: src/components/EditDeckButton.tsx:36
+#: src/components/EditModelButton.tsx:35
 #: src/components/NotesTable.tsx:76
 msgid "Edit"
 msgstr "Edit"
@@ -427,13 +432,17 @@ msgstr "Edit"
 msgid "Edit deck"
 msgstr "Edit deck"
 
-#: src/pages/ModelPage.tsx:154
-#: src/pages/ModelPage.tsx:166
+#: src/pages/ModelPage.tsx:158
+#: src/pages/ModelPage.tsx:170
 msgid "Edit fields"
 msgstr "Edit fields"
 
-#: src/pages/ModelPage.tsx:151
-#: src/pages/ModelPage.tsx:162
+#: src/components/EditModelButton.tsx:55
+msgid "Edit model"
+msgstr "Edit model"
+
+#: src/pages/ModelPage.tsx:155
+#: src/pages/ModelPage.tsx:166
 msgid "Edit templates"
 msgstr "Edit templates"
 
@@ -571,7 +580,7 @@ msgid "Go to fields"
 msgstr "Go to fields"
 
 #: src/pages/DeckPage.tsx:143
-#: src/pages/ModelPage.tsx:100
+#: src/pages/ModelPage.tsx:101
 msgid "Go to home"
 msgstr "Go to home"
 
@@ -708,7 +717,7 @@ msgstr "Model created successfully"
 msgid "Model deleted successfully"
 msgstr "Model deleted successfully"
 
-#: src/pages/ModelPage.tsx:112
+#: src/pages/ModelPage.tsx:113
 msgid "Model details"
 msgstr "Model details"
 
@@ -716,7 +725,7 @@ msgstr "Model details"
 msgid "Model name"
 msgstr "Model name"
 
-#: src/pages/ModelPage.tsx:97
+#: src/pages/ModelPage.tsx:98
 msgid "Model not found"
 msgstr "Model not found"
 
@@ -735,6 +744,10 @@ msgstr "Monospace"
 #: src/pages/LandingPage.tsx:51
 msgid "More options"
 msgstr "More options"
+
+#: src/components/EditModelButton.tsx:60
+msgid "Name"
+msgstr "Name"
 
 #: src/components/ModelNameForm.tsx:13
 msgid "Name is required"
@@ -1023,11 +1036,11 @@ msgstr "Study today"
 msgid "Success"
 msgstr "Success"
 
-#: src/pages/ModelPage.tsx:79
+#: src/pages/ModelPage.tsx:80
 msgid "Template back side"
 msgstr "Template back side"
 
-#: src/pages/ModelPage.tsx:78
+#: src/pages/ModelPage.tsx:79
 msgid "Template front side"
 msgstr "Template front side"
 
@@ -1043,7 +1056,7 @@ msgstr "Template name is required"
 #: src/components/EditTemplatesDialog.tsx:171
 #: src/components/ModelTemplatesForm.tsx:33
 #: src/pages/AddModelPage.tsx:200
-#: src/pages/ModelPage.tsx:138
+#: src/pages/ModelPage.tsx:142
 msgid "Templates"
 msgstr "Templates"
 
@@ -1126,6 +1139,7 @@ msgid "Underline"
 msgstr "Underline"
 
 #: src/components/EditDeckButton.tsx:69
+#: src/components/EditModelButton.tsx:63
 msgid "Update"
 msgstr "Update"
 
@@ -1236,7 +1250,7 @@ msgstr "You haven't created any models yet"
 msgid "You haven't created any notes on this deck yet"
 msgstr "You haven't created any notes on this deck yet"
 
-#: src/pages/ModelPage.tsx:184
+#: src/pages/ModelPage.tsx:188
 msgid "You haven't created any templates on this model yet."
 msgstr "You haven't created any templates on this model yet."
 
@@ -1248,7 +1262,7 @@ msgstr "You've finished studying your decks for now."
 msgid "Your decks"
 msgstr "Your decks"
 
-#: src/pages/ModelPage.tsx:71
+#: src/pages/ModelPage.tsx:72
 msgid "Your model is not saved, are you sure you want to exit the page?"
 msgstr "Your model is not saved, are you sure you want to exit the page?"
 
@@ -1291,13 +1305,13 @@ msgstr "{0, plural, one {# field} other {# fields}}"
 
 #: src/components/DeckCard.tsx:64
 #: src/pages/DeckPage.tsx:173
-#: src/pages/ModelPage.tsx:127
+#: src/pages/ModelPage.tsx:131
 msgid "{0, plural, one {# flashcard} other {# flashcards}}"
 msgstr "{0, plural, one {# flashcard} other {# flashcards}}"
 
 #: src/components/DeckCard.tsx:59
 #: src/pages/DeckPage.tsx:171
-#: src/pages/ModelPage.tsx:122
+#: src/pages/ModelPage.tsx:126
 msgid "{0, plural, one {# note} other {# notes}}"
 msgstr "{0, plural, one {# note} other {# notes}}"
 
