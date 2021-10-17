@@ -13,7 +13,7 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/pages/DeckPage.tsx:179
+#: src/pages/DeckPage.tsx:183
 msgid "({0} notes)"
 msgstr "({0} notes)"
 
@@ -37,7 +37,7 @@ msgstr "<0>Click to change password.</0> Secure your account with a strong passw
 msgid "A model consist of both fields and templates. A field is used in a note to fill values that are used inside the template."
 msgstr "A model consist of both fields and templates. A field is used in a note to fill values that are used inside the template."
 
-#: src/pages/HomePage.tsx:63
+#: src/pages/HomePage.tsx:59
 msgid "A new update is available!"
 msgstr "A new update is available!"
 
@@ -92,7 +92,7 @@ msgstr "Align left"
 msgid "Align right"
 msgstr "Align right"
 
-#: src/pages/LandingPage.tsx:92
+#: src/pages/LandingPage.tsx:89
 #: src/pages/RegisterPage.tsx:21
 msgid "Already have an account? <0>Log In</0>"
 msgstr "Already have an account? <0>Log In</0>"
@@ -105,7 +105,7 @@ msgstr "An error has occurred when creating your model. Submit the form to try a
 msgid "An error has occurred when saving your note"
 msgstr "An error has occurred when saving your note"
 
-#: src/pages/StudySection.tsx:46
+#: src/pages/StudySection.tsx:48
 msgid "An error has occurred when trying to get your decks to study."
 msgstr "An error has occurred when trying to get your decks to study."
 
@@ -128,6 +128,10 @@ msgstr "An error occurred when deleting the model"
 #: src/pages/ModelPage.tsx:71
 msgid "An error occurred when saving the template"
 msgstr "An error occurred when saving the template"
+
+#: src/components/EditDeckButton.tsx:51
+msgid "An error occurred when updating the deck"
+msgstr "An error occurred when updating the deck"
 
 #: src/components/UpdatePasswordDialog.tsx:67
 #: src/components/UpdatePasswordDialog.tsx:72
@@ -202,7 +206,7 @@ msgstr "Bold"
 #: src/components/Shell.tsx:65
 #: src/components/UpdatePasswordDialog.tsx:100
 #: src/pages/StudyPage.tsx:127
-#: src/pages/StudySection.tsx:73
+#: src/pages/StudySection.tsx:75
 msgid "Cancel"
 msgstr "Cancel"
 
@@ -218,7 +222,7 @@ msgstr "Change your account username"
 msgid "Check your inbox!"
 msgstr "Check your inbox!"
 
-#: src/pages/StudySection.tsx:51
+#: src/pages/StudySection.tsx:53
 msgid "Check your internet connection and try again."
 msgstr "Check your internet connection and try again."
 
@@ -288,13 +292,13 @@ msgstr "Create a password for your account"
 msgid "Create an username for your account"
 msgstr "Create an username for your account"
 
-#: src/pages/DecksSection.tsx:46
+#: src/pages/DecksSection.tsx:48
 msgid "Create deck"
 msgstr "Create deck"
 
 #: src/components/ModelTemplatesForm.tsx:80
 #: src/pages/AddModelPage.tsx:188
-#: src/pages/ModelsSection.tsx:46
+#: src/pages/ModelsSection.tsx:48
 msgid "Create model"
 msgstr "Create model"
 
@@ -314,7 +318,7 @@ msgstr "Create template"
 msgid "Create your account today and start studying for free!"
 msgstr "Create your account today and start studying for free!"
 
-#: src/pages/LandingPage.tsx:149
+#: src/pages/LandingPage.tsx:146
 msgid "Create your account today!"
 msgstr "Create your account today!"
 
@@ -348,11 +352,11 @@ msgstr "Deck created successfully!"
 msgid "Deck deleted successfully"
 msgstr "Deck deleted successfully"
 
-#: src/pages/DeckPage.tsx:155
+#: src/pages/DeckPage.tsx:156
 msgid "Deck details"
 msgstr "Deck details"
 
-#: src/pages/DeckPage.tsx:139
+#: src/pages/DeckPage.tsx:140
 msgid "Deck not found"
 msgstr "Deck not found"
 
@@ -360,7 +364,7 @@ msgstr "Deck not found"
 msgid "Deck {0}"
 msgstr "Deck {0}"
 
-#: src/pages/HomePage.tsx:119
+#: src/pages/HomePage.tsx:115
 msgid "Decks"
 msgstr "Decks"
 
@@ -397,11 +401,12 @@ msgstr "Delete {0} field"
 msgid "Delete {0} template"
 msgstr "Delete {0} template"
 
+#: src/components/EditDeckButton.tsx:67
 #: src/components/forms/AddDeckForm.tsx:101
 msgid "Description"
 msgstr "Description"
 
-#: src/pages/StudySection.tsx:66
+#: src/pages/StudySection.tsx:68
 msgid "Do you want to start a study session of the deck {0}?"
 msgstr "Do you want to start a study session of the deck {0}?"
 
@@ -413,9 +418,14 @@ msgstr "Don't have an account? <0>Sign Up</0>"
 msgid "Easy"
 msgstr "Easy"
 
+#: src/components/EditDeckButton.tsx:36
 #: src/components/NotesTable.tsx:76
 msgid "Edit"
 msgstr "Edit"
+
+#: src/components/EditDeckButton.tsx:63
+msgid "Edit deck"
+msgstr "Edit deck"
 
 #: src/pages/ModelPage.tsx:154
 #: src/pages/ModelPage.tsx:166
@@ -531,7 +541,7 @@ msgstr "Forgot password?"
 msgid "Forgot your password?"
 msgstr "Forgot your password?"
 
-#: src/pages/LandingPage.tsx:126
+#: src/pages/LandingPage.tsx:123
 msgid "From creating simple front and back flashcards, to automating their creation with models and user-defined templates, you can achieve the flexibility you need without complicating your study routine."
 msgstr "From creating simple front and back flashcards, to automating their creation with models and user-defined templates, you can achieve the flexibility you need without complicating your study routine."
 
@@ -560,7 +570,7 @@ msgstr "Go to Home"
 msgid "Go to fields"
 msgstr "Go to fields"
 
-#: src/pages/DeckPage.tsx:142
+#: src/pages/DeckPage.tsx:143
 #: src/pages/ModelPage.tsx:100
 msgid "Go to home"
 msgstr "Go to home"
@@ -605,7 +615,7 @@ msgstr "H6"
 msgid "Hard"
 msgstr "Hard"
 
-#: src/pages/HomePage.tsx:108
+#: src/pages/HomePage.tsx:104
 msgid "Home"
 msgstr "Home"
 
@@ -646,7 +656,7 @@ msgstr "Language"
 msgid "Last page"
 msgstr "Last page"
 
-#: src/pages/LandingPage.tsx:116
+#: src/pages/LandingPage.tsx:113
 msgid "Learn about spaced repetition"
 msgstr "Learn about spaced repetition"
 
@@ -654,12 +664,12 @@ msgstr "Learn about spaced repetition"
 msgid "Learning"
 msgstr "Learning"
 
-#: src/pages/DecksSection.tsx:33
-#: src/pages/StudySection.tsx:40
+#: src/pages/DecksSection.tsx:34
+#: src/pages/StudySection.tsx:41
 msgid "Loading decks"
 msgstr "Loading decks"
 
-#: src/pages/ModelsSection.tsx:33
+#: src/pages/ModelsSection.tsx:34
 msgid "Loading models"
 msgstr "Loading models"
 
@@ -668,8 +678,8 @@ msgid "Log out"
 msgstr "Log out"
 
 #: src/components/forms/LoginForm.tsx:62
-#: src/pages/LandingPage.tsx:43
-#: src/pages/LandingPage.tsx:58
+#: src/pages/LandingPage.tsx:42
+#: src/pages/LandingPage.tsx:57
 #: src/pages/LoginPage.tsx:14
 msgid "Login"
 msgstr "Login"
@@ -682,7 +692,7 @@ msgstr "Login to your account to study your decks"
 msgid "Logout and delete account"
 msgstr "Logout and delete account"
 
-#: src/pages/LandingPage.tsx:78
+#: src/pages/LandingPage.tsx:75
 msgid "Make sure your knowledge will last"
 msgstr "Make sure your knowledge will last"
 
@@ -714,7 +724,7 @@ msgstr "Model not found"
 msgid "Model type"
 msgstr "Model type"
 
-#: src/pages/HomePage.tsx:120
+#: src/pages/HomePage.tsx:116
 msgid "Models"
 msgstr "Models"
 
@@ -722,7 +732,7 @@ msgstr "Models"
 msgid "Monospace"
 msgstr "Monospace"
 
-#: src/pages/LandingPage.tsx:52
+#: src/pages/LandingPage.tsx:51
 msgid "More options"
 msgstr "More options"
 
@@ -780,7 +790,7 @@ msgstr "Note details"
 msgid "Note's model"
 msgstr "Note's model"
 
-#: src/pages/DeckPage.tsx:177
+#: src/pages/DeckPage.tsx:181
 msgid "Notes"
 msgstr "Notes"
 
@@ -796,7 +806,7 @@ msgstr "Number of times studied"
 msgid "OL"
 msgstr "OL"
 
-#: src/pages/LandingPage.tsx:81
+#: src/pages/LandingPage.tsx:78
 msgid "Optimize your knowledge retention with this effective study method."
 msgstr "Optimize your knowledge retention with this effective study method."
 
@@ -860,11 +870,11 @@ msgstr "Profile"
 msgid "Profile updated successfully"
 msgstr "Profile updated successfully"
 
-#: src/pages/HomePage.tsx:73
+#: src/pages/HomePage.tsx:69
 msgid "Ready to work offline"
 msgstr "Ready to work offline"
 
-#: src/pages/HomePage.tsx:65
+#: src/pages/HomePage.tsx:61
 #: src/utils/errorFallback.tsx:13
 msgid "Refresh"
 msgstr "Refresh"
@@ -959,16 +969,16 @@ msgstr "Settings"
 msgid "Show"
 msgstr "Show"
 
-#: src/pages/LandingPage.tsx:46
-#: src/pages/LandingPage.tsx:61
+#: src/pages/LandingPage.tsx:45
+#: src/pages/LandingPage.tsx:60
 msgid "Sign up"
 msgstr "Sign up"
 
-#: src/pages/LandingPage.tsx:89
+#: src/pages/LandingPage.tsx:86
 msgid "Sign up now!"
 msgstr "Sign up now!"
 
-#: src/pages/LandingPage.tsx:121
+#: src/pages/LandingPage.tsx:118
 msgid "Simple for those who want it, powerful for those who need it"
 msgstr "Simple for those who want it, powerful for those who need it"
 
@@ -976,11 +986,11 @@ msgstr "Simple for those who want it, powerful for those who need it"
 msgid "Something went wrong"
 msgstr "Something went wrong"
 
-#: src/pages/StudySection.tsx:76
+#: src/pages/StudySection.tsx:78
 msgid "Start Session"
 msgstr "Start Session"
 
-#: src/pages/LandingPage.tsx:136
+#: src/pages/LandingPage.tsx:133
 msgid "Start studying now, anonymously"
 msgstr "Start studying now, anonymously"
 
@@ -993,11 +1003,11 @@ msgstr "Statistics"
 msgid "Step {0}"
 msgstr "Step {0}"
 
-#: src/pages/HomePage.tsx:118
+#: src/pages/HomePage.tsx:114
 msgid "Study"
 msgstr "Study"
 
-#: src/pages/StudySection.tsx:63
+#: src/pages/StudySection.tsx:65
 msgid "Study deck"
 msgstr "Study deck"
 
@@ -1005,7 +1015,7 @@ msgstr "Study deck"
 msgid "Study frequency"
 msgstr "Study frequency"
 
-#: src/pages/StudySection.tsx:81
+#: src/pages/StudySection.tsx:83
 msgid "Study today"
 msgstr "Study today"
 
@@ -1073,6 +1083,7 @@ msgstr "This link may be broken or the typed URL is incorrect."
 msgid "Time zone"
 msgstr "Time zone"
 
+#: src/components/EditDeckButton.tsx:66
 #: src/components/forms/AddDeckForm.tsx:100
 msgid "Title"
 msgstr "Title"
@@ -1086,7 +1097,7 @@ msgid "Total study time"
 msgstr "Total study time"
 
 #: src/components/editor/PersistedEditor.tsx:80
-#: src/pages/StudySection.tsx:55
+#: src/pages/StudySection.tsx:57
 msgid "Try again"
 msgstr "Try again"
 
@@ -1102,7 +1113,7 @@ msgstr "Try selecting a broader interval above."
 msgid "Twitter"
 msgstr "Twitter"
 
-#: src/pages/LandingPage.tsx:37
+#: src/pages/LandingPage.tsx:36
 msgid "Two overlapping blue rectangles"
 msgstr "Two overlapping blue rectangles"
 
@@ -1113,6 +1124,10 @@ msgstr "UL"
 #: src/components/editor/InlineStyleControls.tsx:10
 msgid "Underline"
 msgstr "Underline"
+
+#: src/components/EditDeckButton.tsx:69
+msgid "Update"
+msgstr "Update"
 
 #: src/components/UpdatePasswordDialog.tsx:104
 msgid "Update account password"
@@ -1193,11 +1208,11 @@ msgstr "We have sent you an email with instructions to help you reset your passw
 msgid "When you create a note, we will create the corresponding number of flashcards based on how much templates the note's model has, and will use the note's values to fill in the template."
 msgstr "When you create a note, we will create the corresponding number of flashcards based on how much templates the note's model has, and will use the note's values to fill in the template."
 
-#: src/pages/LandingPage.tsx:139
+#: src/pages/LandingPage.tsx:136
 msgid "With Cramkle you don't need to create an account to start studying, use the anonymous login to get a feel for the app and fill in your personal information later when you're comfortable to do so."
 msgstr "With Cramkle you don't need to create an account to start studying, use the anonymous login to get a feel for the app and fill in your personal information later when you're comfortable to do so."
 
-#: src/pages/HomePage.tsx:126
+#: src/pages/HomePage.tsx:122
 msgid "You are using an <0>anonymous account</0>, to persist your study history and created decks and flashcards, fill your profile info in the settings page."
 msgstr "You are using an <0>anonymous account</0>, to persist your study history and created decks and flashcards, fill your profile info in the settings page."
 
@@ -1209,11 +1224,11 @@ msgstr "You are using an anonymous account, if you logout now you will lose all 
 msgid "You haven't created a model yet."
 msgstr "You haven't created a model yet."
 
-#: src/pages/DecksSection.tsx:51
+#: src/pages/DecksSection.tsx:53
 msgid "You haven't created any decks yet."
 msgstr "You haven't created any decks yet."
 
-#: src/pages/ModelsSection.tsx:51
+#: src/pages/ModelsSection.tsx:53
 msgid "You haven't created any models yet"
 msgstr "You haven't created any models yet"
 
@@ -1225,11 +1240,11 @@ msgstr "You haven't created any notes on this deck yet"
 msgid "You haven't created any templates on this model yet."
 msgstr "You haven't created any templates on this model yet."
 
-#: src/pages/StudySection.tsx:89
+#: src/pages/StudySection.tsx:91
 msgid "You've finished studying your decks for now."
 msgstr "You've finished studying your decks for now."
 
-#: src/pages/DecksSection.tsx:38
+#: src/pages/DecksSection.tsx:40
 msgid "Your decks"
 msgstr "Your decks"
 
@@ -1237,7 +1252,7 @@ msgstr "Your decks"
 msgid "Your model is not saved, are you sure you want to exit the page?"
 msgstr "Your model is not saved, are you sure you want to exit the page?"
 
-#: src/pages/ModelsSection.tsx:38
+#: src/pages/ModelsSection.tsx:40
 msgid "Your models"
 msgstr "Your models"
 
@@ -1250,7 +1265,7 @@ msgstr "Your note is not saved, are you sure you want to exit the page?"
 msgid "empty note"
 msgstr "empty note"
 
-#: src/pages/LandingPage.tsx:152
+#: src/pages/LandingPage.tsx:149
 msgid "landing.cta"
 msgstr "Get started"
 
@@ -1262,7 +1277,7 @@ msgstr "Login"
 msgid "or"
 msgstr "or"
 
-#: src/pages/LandingPage.tsx:107
+#: src/pages/LandingPage.tsx:104
 msgid "product-description"
 msgstr "Cramkle is a flashcard-based study platform where you can create your own decks to group study subjects, and will automatically schedule study sessions using a spaced-repetition algorithm to maximize your knowledge retention"
 
@@ -1275,13 +1290,13 @@ msgid "{0, plural, one {# field} other {# fields}}"
 msgstr "{0, plural, one {# field} other {# fields}}"
 
 #: src/components/DeckCard.tsx:64
-#: src/pages/DeckPage.tsx:169
+#: src/pages/DeckPage.tsx:173
 #: src/pages/ModelPage.tsx:127
 msgid "{0, plural, one {# flashcard} other {# flashcards}}"
 msgstr "{0, plural, one {# flashcard} other {# flashcards}}"
 
 #: src/components/DeckCard.tsx:59
-#: src/pages/DeckPage.tsx:167
+#: src/pages/DeckPage.tsx:171
 #: src/pages/ModelPage.tsx:122
 msgid "{0, plural, one {# note} other {# notes}}"
 msgstr "{0, plural, one {# note} other {# notes}}"
@@ -1290,11 +1305,11 @@ msgstr "{0, plural, one {# note} other {# notes}}"
 msgid "{0, plural, one {# template} other {# templates}}"
 msgstr "{0, plural, one {# template} other {# templates}}"
 
-#: src/pages/DecksSection.tsx:43
+#: src/pages/DecksSection.tsx:45
 msgid "{0, plural, zero {# decks} one {# deck} other {# decks}}"
 msgstr "{0, plural, zero {# decks} one {# deck} other {# decks}}"
 
-#: src/pages/ModelsSection.tsx:43
+#: src/pages/ModelsSection.tsx:45
 msgid "{0, plural, zero {# models} one {# model} other {# models}}"
 msgstr "{0, plural, zero {# models} one {# model} other {# models}}"
 
