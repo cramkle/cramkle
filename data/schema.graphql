@@ -1,0 +1,1240 @@
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+"""
+The `JSONObject` scalar type represents JSON objects as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSONObject
+
+"""
+An object with an ID
+"""
+interface Node {
+  """
+  The id of the object.
+  """
+  id: ID!
+}
+
+type Query {
+  """
+  Get single deck by it's slug
+  """
+  deck(slug: String!): Deck
+
+  """
+  Get the statistics for the given deck.
+  """
+  deckStatistics(deckId: ID): DeckStatistics
+
+  """
+  Retrieve all decks for the logged user
+  """
+  decks(
+    """
+    Whether or not to filter only for decks pending to study
+    """
+    studyOnly: Boolean! = false
+  ): [Deck!]!
+
+  """
+  Get currently logged user
+  """
+  me: User
+
+  """
+  Get single model by it's id
+  """
+  model(id: ID!): Model
+
+  """
+  Retrieve all models for the logged user
+  """
+  models: [Model!]!
+
+  """
+  Fetches an object given its ID
+  """
+  node(
+    """
+    The ID of an object
+    """
+    id: ID!
+  ): Node
+
+  """
+  Get single note by it's id
+  """
+  note(id: ID!): Note
+
+  """
+  Retrieves the next flashcard for a study session in the given deck
+  """
+  studyFlashCard(deckSlug: String): FlashCard
+
+  """
+  Retrieves the next flashcard for a study session in the given deck
+  """
+  studyFlashcard(deckSlug: String): FlashCard
+
+  """
+  Get single template by it's id
+  """
+  template(id: ID): Template
+}
+
+"""
+Collection of notes
+"""
+type Deck implements Node {
+  """
+  The ID of an object
+  """
+  id: ID!
+
+  """
+  Title of the deck
+  """
+  title: String!
+
+  """
+  Description of the deck
+  """
+  description: String
+
+  """
+  Unique identifiable slug
+  """
+  slug: String!
+
+  """
+  Owner of the deck
+  """
+  owner: User
+
+  """
+  Whether this deck is published to the marketplace
+  """
+  published: Boolean!
+
+  """
+  Details of current study session
+  """
+  studySessionDetails: StudySessionDetails!
+
+  """
+  Notes contained in this deck
+  """
+  notes(page: Int! = 1, size: Int! = 10, search: String): NoteConnection
+
+  """
+  Number of notes in this deck
+  """
+  totalNotes: Int!
+
+  """
+  Number of flashcards in this deck
+  """
+  totalFlashcards: Int!
+}
+
+"""
+User entity
+"""
+type User {
+  """
+  The ID of an object
+  """
+  id: ID!
+
+  """
+  User's username
+  """
+  username: String!
+
+  """
+  User's email
+  """
+  email: String!
+  roles: [UserRoles!]!
+  preferences: UserPreferences!
+  anonymous: Boolean!
+}
+
+enum UserRoles {
+  REGULAR
+  ADMIN
+}
+
+"""
+Preferences associated with user account
+"""
+type UserPreferences {
+  """
+  User preferred timezone
+  """
+  zoneInfo: String!
+
+  """
+  User preferred locale
+  """
+  locale: String
+
+  """
+  User preferred dark mode or not
+  """
+  darkMode: Boolean!
+}
+
+type StudySessionDetails {
+  newCount: Int!
+  learningCount: Int!
+  reviewCount: Int!
+}
+
+"""
+A connection to a list of items.
+"""
+type NoteConnection {
+  """
+  Information to aid in pagination.
+  """
+  pageInfo: PageInfo!
+
+  """
+  A list of edges.
+  """
+  edges: [NoteEdge]
+  pageCursors: PageCursors!
+  totalCount: Int!
+}
+
+"""
+Information about pagination in a connection.
+"""
+type PageInfo {
+  """
+  When paginating forwards, are there more items?
+  """
+  hasNextPage: Boolean!
+
+  """
+  When paginating backwards, are there more items?
+  """
+  hasPreviousPage: Boolean!
+
+  """
+  When paginating backwards, the cursor to continue.
+  """
+  startCursor: String
+
+  """
+  When paginating forwards, the cursor to continue.
+  """
+  endCursor: String
+}
+
+"""
+An edge in a connection.
+"""
+type NoteEdge {
+  """
+  The item at the end of the edge
+  """
+  node: Note
+
+  """
+  A cursor for use in pagination
+  """
+  cursor: String!
+}
+
+"""
+A note is what the user registers on each deck.
+
+This type auto generates a number of cards, based
+on the number of templates.
+"""
+type Note implements Node {
+  """
+  The ID of an object
+  """
+  id: ID!
+
+  """
+  Deck containing this note
+  """
+  deck: Deck
+
+  """
+  Model of this note
+  """
+  model: Model
+
+  """
+  Values of this note
+  """
+  values: [FieldValue!]!
+
+  """
+  Generated flashcards
+  """
+  flashCards: [FlashCard!]!
+
+  """
+  Note text representation
+  """
+  text: String
+}
+
+"""
+Represents a model for a collection of notes.
+"""
+type Model implements Node {
+  """
+  The ID of an object
+  """
+  id: ID!
+
+  """
+  Name of this card model (e.g. "Basic", "Basic with Reversed")
+  """
+  name: String!
+
+  """
+  Owner user entity
+  """
+  owner: User
+
+  """
+  Primary field that should represent each individual note of this model.
+  """
+  primaryField: Field
+
+  """
+  Templates associated with this model
+  """
+  templates: [Template!]!
+
+  """
+  Fields associated with this model
+  """
+  fields: [Field!]!
+
+  """
+  Notes associated with this model
+  """
+  notes: [Note!]!
+
+  """
+  Total number of notes associated with this model
+  """
+  totalNotes: Int!
+
+  """
+  Total number of flashcards associated with this model
+  """
+  totalFlashcards: Int!
+}
+
+type Field implements Node {
+  """
+  The ID of an object
+  """
+  id: ID!
+
+  """
+  Name of the field
+  """
+  name: String!
+
+  """
+  Associated model
+  """
+  model: Model
+}
+
+"""
+Template of the card. This is what structures the content
+of each card with values provided by the note
+"""
+type Template implements Node {
+  """
+  The ID of an object
+  """
+  id: ID!
+
+  """
+  Name of the template
+  """
+  name: String!
+
+  """
+  Front side template
+  """
+  frontSide: ContentState
+
+  """
+  Back side template
+  """
+  backSide: ContentState
+
+  """
+  Associated model
+  """
+  model: Model!
+}
+
+type ContentState implements Node {
+  """
+  The ID of an object
+  """
+  id: ID!
+  entityMap: JSONObject!
+  blocks: [Block!]!
+}
+
+type Block {
+  key: String!
+  type: String!
+  text: String!
+  depth: Int!
+  inlineStyleRanges: [InlineStyleRange!]!
+  entityRanges: [EntityRange!]!
+  data: JSONObject
+}
+
+type InlineStyleRange {
+  style: String!
+  length: Int!
+  offset: Int!
+}
+
+type EntityRange {
+  key: Int!
+  length: Int!
+  offset: Int!
+}
+
+"""
+Holds the value for a particular field in a card model.
+
+Contained by the note.
+"""
+type FieldValue implements Node {
+  """
+  The ID of an object
+  """
+  id: ID!
+
+  """
+  Associated field
+  """
+  field: Field
+
+  """
+  Field data
+  """
+  data: ContentState
+}
+
+"""
+Flashcards are what the user study/reviews in the study sessions.
+
+The objects of this type are auto generated when creating
+the note and depend of the number of templates that are
+associated with the model.
+
+The number of flashcards on each note is always equal to the
+number of templates.
+"""
+type FlashCard implements Node {
+  """
+  The ID of an object
+  """
+  id: ID!
+
+  """
+  Parent note of the flashcard.
+  """
+  note: Note
+
+  """
+  Template associated with this flashcard.
+  """
+  template: Template
+
+  """
+  Current status of this flashcard.
+  """
+  status: FlashCardStatus
+
+  """
+  Due date of this flashcard, in a timestamp format.
+  """
+  due: Float
+
+  """
+  Whether to be filtered of not.
+
+  Acts like a logical deletion it when comes to the review.
+  """
+  active: Boolean!
+
+  """
+  Number of times the user has forgotten the answer to this flashcard.
+  """
+  lapses: Int!
+
+  """
+  Number of times the user has reviewed this flashcard.
+  """
+  reviews: Int!
+
+  """
+  Base interval number used for calculating the next due date.
+  """
+  interval: Int!
+
+  """
+  Ease factor used for calculating the interval when the user correctly answers the flashcard.
+  """
+  easeFactor: Float!
+}
+
+enum FlashCardStatus {
+  NEW
+  LEARNING
+  REVIEW
+}
+
+type PageCursors {
+  """
+  Optional, may be included in `around` (if current page is near the beginning).
+  """
+  first: PageCursor
+
+  """
+  Optional, may be included in `around` (if current page is near the end).
+  """
+  last: PageCursor
+
+  """
+  Always includes current page
+  """
+  around: [PageCursor!]!
+  previous: PageCursor
+}
+
+type PageCursor {
+  cursor: String!
+  page: Int!
+  isCurrent: Boolean!
+}
+
+type DeckStatistics {
+  deck: Deck!
+
+  """
+  The total amount of time studied in milliseconds
+  """
+  totalStudyTime: Float!
+
+  """
+  The number of times the user has studied this deck
+  """
+  totalTimesStudied: Int!
+
+  """
+  The number of flashcards the user has studied
+  """
+  totalFlashcardsStudied: Int!
+  studyFrequency(
+    """
+    Start interval date in ISO format
+    """
+    startDate: String!
+
+    """
+    End interval date in ISO format
+    """
+    endDate: String!
+
+    """
+    Timezone
+    """
+    zoneInfo: String = "UTC"
+  ): [StudyFrequencyPoint!]!
+}
+
+type StudyFrequencyPoint {
+  date: String!
+  learning: Int!
+  new: Int!
+  review: Int!
+}
+
+type Mutation {
+  """
+  Adds a new fields to a model
+  """
+  addFieldToModel(input: AddFieldToModelInput!): AddFieldToModelPayload
+
+  """
+  Adds a new template to a model
+  """
+  addTemplateToModel(input: AddTemplateToModelInput!): AddTemplateToModelPayload
+
+  """
+  Records an answer to the flashcard during the study session and re-schedules it to a future date.
+  """
+  answerFlashCard(input: AnswerFlashcardInput!): AnswerFlashcardPayload
+
+  """
+  Records an answer to the flashcard during the study session and re-schedules it to a future date.
+  """
+  answerFlashcard(input: AnswerFlashcardInput!): AnswerFlashcardPayload
+
+  """
+  Create a deck entity
+  """
+  createDeck(input: CreateDeckInput!): CreateDeckPayload
+
+  """
+  Create a new model
+  """
+  createModel(input: CreateModelInput!): CreateModelPayload
+
+  """
+  Creates a new note in a deck
+  """
+  createNote(input: CreateNoteInput!): CreateNotePayload
+
+  """
+  Create a new user
+  """
+  createUser(input: CreateUserInput!): CreateUserPayload
+
+  """
+  Delete a deck
+  """
+  deleteDeck(input: DeleteDeckInput!): DeleteDeckPayload
+
+  """
+  Deletes a model and all associated entities (such as flashcards and templates).
+  """
+  deleteModel(input: DeleteModelInput!): DeleteModelPayload
+
+  """
+  Deletes a given note
+  """
+  deleteNote(input: DeleteNoteInput!): DeleteNotePayload
+
+  """
+  Publish a deck to the marketplace
+  """
+  publishDeck(input: PublishDeckInput!): PublishDeckPayload
+
+  """
+  Removes the field from it's model
+  """
+  removeFieldFromModel(
+    input: RemoveFieldFromModelInput!
+  ): RemoveFieldFromModelPayload
+
+  """
+  Removes a template from it's model and delete associated flashcards
+  """
+  removeTemplateFromModel(
+    input: RemoveTemplateFromModelInput!
+  ): RemoveTemplateFromModelPayload
+
+  """
+  Request a user password reset given an email
+  """
+  requestPasswordReset(
+    input: RequestPasswordResetInput!
+  ): RequestPasswordResetPayload
+
+  """
+  Resets the user's password
+  """
+  resetPassword(input: ResetPasswordInput!): ResetPasswordPayload
+
+  """
+  Unpublish a deck from the marketplace
+  """
+  unpublishDeck(input: UnpublishDeckInput!): UnpublishDeckPayload
+
+  """
+  Update a deck
+  """
+  updateDeck(input: UpdateDeckInput!): UpdateDeckPayload
+
+  """
+  Updates an existing field
+  """
+  updateField(input: UpdateFieldInput!): UpdateFieldPayload
+
+  """
+  Updates the field value of a note
+  """
+  updateFieldValue(input: UpdateFieldValueInput!): UpdateFieldValuePayload
+
+  """
+  Update a model name
+  """
+  updateModel(input: UpdateModelInput!): UpdateModelPayload
+
+  """
+  Update user account preferences
+  """
+  updatePreferences(input: UpdatePreferencesInput!): UpdatePreferencesPayload
+
+  """
+  Update user profile information
+  """
+  updateProfile(input: UpdateProfileInput!): UpdateProfilePayload
+
+  """
+  Updates an existing template
+  """
+  updateTemplate(input: UpdateTemplateInput!): UpdateTemplatePayload
+}
+
+type AddFieldToModelPayload {
+  field: Field
+  clientMutationId: String
+}
+
+input AddFieldToModelInput {
+  """
+  Model id
+  """
+  modelId: ID!
+
+  """
+  Field name
+  """
+  name: String!
+  clientMutationId: String
+}
+
+type AddTemplateToModelPayload {
+  template: Template
+  clientMutationId: String
+}
+
+input AddTemplateToModelInput {
+  """
+  Model id
+  """
+  modelId: ID!
+
+  """
+  Template name
+  """
+  name: String!
+  clientMutationId: String
+}
+
+type AnswerFlashcardPayload {
+  flashCard: FlashCard! @deprecated(reason: "Use field 'flashcard' instead.")
+  flashcard: FlashCard!
+  clientMutationId: String
+}
+
+input AnswerFlashcardInput {
+  """
+  Id of the flashcard note
+  """
+  noteId: ID
+
+  """
+  (Deprecated) ID of the flashcard
+  """
+  flashCardId: ID
+
+  """
+  Id of the flashcard
+  """
+  flashcardId: ID
+
+  """
+  Answer value
+  """
+  answer: FlashCardAnswer
+
+  """
+  Time the user took to answer in milliseconds
+  """
+  timespan: Int
+  clientMutationId: String
+}
+
+enum FlashCardAnswer {
+  REPEAT
+  HARD
+  GOOD
+  EASY
+}
+
+type CreateDeckPayload {
+  """
+  Created deck
+  """
+  deck: Deck
+  clientMutationId: String
+}
+
+input CreateDeckInput {
+  """
+  Deck title
+  """
+  title: String!
+
+  """
+  Deck description
+  """
+  description: String
+  clientMutationId: String
+}
+
+type CreateModelPayload {
+  """
+  Created model
+  """
+  model: Model
+  clientMutationId: String
+}
+
+input CreateModelInput {
+  """
+  Model name
+  """
+  name: String!
+
+  """
+  Fields
+  """
+  fields: [FieldInput!]!
+
+  """
+  Templates
+  """
+  templates: [TemplateInput!]!
+  clientMutationId: String
+}
+
+input FieldInput {
+  id: ID
+  name: String
+}
+
+input TemplateInput {
+  name: String!
+}
+
+type CreateNotePayload {
+  note: Note
+  clientMutationId: String
+}
+
+input CreateNoteInput {
+  """
+  Model of the note
+  """
+  modelId: ID
+
+  """
+  Deck to add this note
+  """
+  deckId: ID
+
+  """
+  Values of this note, according to the model fields
+  """
+  fieldValues: [FieldValueInput!]!
+  clientMutationId: String
+}
+
+input FieldValueInput {
+  data: ContentStateInput
+  field: FieldInput
+}
+
+input ContentStateInput {
+  blocks: [BlockInput!]!
+  entityMap: JSONObject
+}
+
+input BlockInput {
+  key: String!
+  type: String!
+  text: String!
+  depth: Int!
+  inlineStyleRanges: [InlineStyleRangeInput!]!
+  entityRanges: [EntityRangeInput!]!
+  data: JSONObject
+}
+
+input InlineStyleRangeInput {
+  style: String!
+  length: Int!
+  offset: Int!
+}
+
+input EntityRangeInput {
+  key: Int!
+  length: Int!
+  offset: Int!
+}
+
+type CreateUserPayload {
+  """
+  Created user
+  """
+  user: User
+  error: CreateUserError
+  clientMutationId: String
+}
+
+type CreateUserError {
+  type: Error!
+  status: Int!
+  fields: [ErrorValue!]
+}
+
+"""
+Type of error
+"""
+enum Error {
+  serverError
+  authentication
+  badInput
+}
+
+type ErrorValue {
+  fieldName: String!
+  errorDescription: String!
+}
+
+input CreateUserInput {
+  """
+  User's username
+  """
+  username: String!
+
+  """
+  User's email
+  """
+  email: String!
+
+  """
+  User's password
+  """
+  password: String!
+
+  """
+  User preferred locale
+  """
+  locale: String
+
+  """
+  User timezone
+  """
+  zoneInfo: String = "UTC"
+  clientMutationId: String
+}
+
+type DeleteDeckPayload {
+  """
+  Deleted deck
+  """
+  deck: Deck
+  clientMutationId: String
+}
+
+input DeleteDeckInput {
+  """
+  Deck id
+  """
+  id: ID!
+  clientMutationId: String
+}
+
+type DeleteModelPayload {
+  model: Model
+  clientMutationId: String
+}
+
+input DeleteModelInput {
+  id: ID!
+  clientMutationId: String
+}
+
+type DeleteNotePayload {
+  note: Note
+  clientMutationId: String
+}
+
+input DeleteNoteInput {
+  """
+  Note id
+  """
+  noteId: ID!
+  clientMutationId: String
+}
+
+type PublishDeckPayload {
+  deck: Deck
+  clientMutationId: String
+}
+
+input PublishDeckInput {
+  """
+  Id of the deck to publish
+  """
+  id: ID!
+  clientMutationId: String
+}
+
+type RemoveFieldFromModelPayload {
+  field: Field
+  clientMutationId: String
+}
+
+input RemoveFieldFromModelInput {
+  """
+  Field id
+  """
+  fieldId: ID!
+  clientMutationId: String
+}
+
+type RemoveTemplateFromModelPayload {
+  template: Template
+  clientMutationId: String
+}
+
+input RemoveTemplateFromModelInput {
+  """
+  Template id
+  """
+  templateId: ID!
+  clientMutationId: String
+}
+
+type RequestPasswordResetPayload {
+  """
+  Whether we could successfully send the email or not
+  """
+  success: Boolean
+  clientMutationId: String
+}
+
+input RequestPasswordResetInput {
+  """
+  User's email
+  """
+  email: String
+  clientMutationId: String
+}
+
+type ResetPasswordPayload {
+  success: Boolean
+  clientMutationId: String
+}
+
+input ResetPasswordInput {
+  token: String!
+  timestamp: String!
+  userId: ID!
+  newPassword: String!
+  clientMutationId: String
+}
+
+type UnpublishDeckPayload {
+  deck: Deck
+  clientMutationId: String
+}
+
+input UnpublishDeckInput {
+  """
+  Id of the deck to remove from marketplace
+  """
+  id: ID!
+  clientMutationId: String
+}
+
+type UpdateDeckPayload {
+  """
+  Updated deck
+  """
+  deck: Deck
+  clientMutationId: String
+}
+
+input UpdateDeckInput {
+  """
+  Deck id
+  """
+  id: ID!
+
+  """
+  New title
+  """
+  title: String
+
+  """
+  New description
+  """
+  description: String
+  clientMutationId: String
+}
+
+type UpdateFieldPayload {
+  field: Field
+  clientMutationId: String
+}
+
+input UpdateFieldInput {
+  """
+  Field id
+  """
+  id: ID!
+
+  """
+  Field name
+  """
+  name: String!
+  clientMutationId: String
+}
+
+type UpdateFieldValuePayload {
+  fieldValue: FieldValue
+  clientMutationId: String
+}
+
+input UpdateFieldValueInput {
+  """
+  Note id
+  """
+  noteId: ID!
+
+  """
+  Field id
+  """
+  fieldId: ID!
+
+  """
+  Field value content
+  """
+  data: ContentStateInput!
+  clientMutationId: String
+}
+
+type UpdateModelPayload {
+  model: Model
+  clientMutationId: String
+}
+
+input UpdateModelInput {
+  id: ID!
+  name: String
+  clientMutationId: String
+}
+
+type UpdatePreferencesPayload {
+  user: User
+  error: UpdatePreferencesError
+  clientMutationId: String
+}
+
+type UpdatePreferencesError {
+  type: Error!
+  status: Int!
+}
+
+input UpdatePreferencesInput {
+  """
+  User timezone
+  """
+  zoneInfo: String
+
+  """
+  Whether dark mode is on or off
+  """
+  darkMode: Boolean
+
+  """
+  User preferred locale
+  """
+  locale: String
+  clientMutationId: String
+}
+
+type UpdateProfilePayload {
+  user: User
+  error: UpdateProfileError
+  clientMutationId: String
+}
+
+type UpdateProfileError {
+  type: Error!
+  status: Int!
+  fields: [ErrorValue!]
+}
+
+input UpdateProfileInput {
+  """
+  New email
+  """
+  email: String
+
+  """
+  New username
+  """
+  username: String
+
+  """
+  New password
+  """
+  password: String
+
+  """
+  Current password
+  """
+  currentPassword: String
+  clientMutationId: String
+}
+
+type UpdateTemplatePayload {
+  template: Template
+  clientMutationId: String
+}
+
+input UpdateTemplateInput {
+  """
+  Template id
+  """
+  id: ID!
+
+  """
+  template name
+  """
+  name: String
+
+  """
+  Front side template
+  """
+  frontSide: ContentStateInput
+
+  """
+  Back side template
+  """
+  backSide: ContentStateInput
+  clientMutationId: String
+}

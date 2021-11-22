@@ -9,6 +9,7 @@ module.exports = {
     ],
   ],
   plugins: [
+    'babel-plugin-relay',
     'babel-plugin-macros',
     ['@babel/plugin-proposal-class-properties', { loose: true }],
   ],

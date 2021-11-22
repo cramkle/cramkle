@@ -1,5 +1,8 @@
 const path = require('path')
 
+const RelayCompilerLanguageTypescript =
+  require('relay-compiler-language-typescript').default
+const RelayCompilerWebpackPlugin = require('relay-compiler-webpack-plugin')
 const webpack = require('webpack')
 const { InjectManifest } = require('workbox-webpack-plugin')
 
@@ -42,6 +45,14 @@ module.exports = (config, { dev, isServer }) => {
     test: /\.(svg|woff2?)$/,
     type: 'asset/resource',
   })
+
+  config.plugins.push(
+    new RelayCompilerWebpackPlugin({
+      languagePlugin: RelayCompilerLanguageTypescript,
+      schema: path.resolve(__dirname, './data/schema.graphql'),
+      src: path.resolve(__dirname, './src'),
+    })
+  )
 
   return config
 }
