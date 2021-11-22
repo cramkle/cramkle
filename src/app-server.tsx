@@ -2,20 +2,20 @@ import fs from 'fs'
 import path from 'path'
 import type { Readable, Writable } from 'stream'
 
-import { renderToStringWithData } from '@apollo/client/react/ssr'
 import type { RootContext } from '@casterly/components'
-import { Scripts } from '@casterly/components'
+// import { Scripts } from '@casterly/components'
 import { RootServer } from '@casterly/components/server'
 import { i18n } from '@lingui/core'
 import { en as enPlural, pt as ptPlural } from 'make-plural/plurals'
 import type { ReactElement } from 'react'
 import { renderToPipeableStream } from 'react-dom/server'
-import type { FilledContext } from 'react-helmet-async'
+// import type { FilledContext } from 'react-helmet-async'
 import { HelmetProvider } from 'react-helmet-async'
 import serializeJavascript from 'serialize-javascript'
 
 import linguiConfig from '../lingui.config'
 import App from './App'
+import { createRelayEnvironment } from './RelayEnvironment'
 import { RedirectError } from './components/Redirect'
 import { messages as enCatalog } from './locales/en/messages'
 import { messages as ptCatalog } from './locales/pt/messages'
@@ -34,6 +34,9 @@ declare module 'react-dom/server' {
     onCompleteShell?(): void
     onCompleteAll?(): void
     onError(error: Error): void
+    nonce?: string | undefined
+    bootstrapScripts?: string[] | undefined
+    bootstrapScriptContent?: string | undefined
   }
 
   function renderToPipeableStream(
@@ -64,17 +67,26 @@ const getLanguageLocaleFile = (() => {
 // hack to avoid DefinePlugin inlining value of `process.env`
 const ENV = ('env' + Math.random()).slice(0, 3) as 'env'
 
+export const getAppContext = (request: Request): AppContext => {
+  const cookie = request.headers.get('cookie') ?? undefined
+  const apiHost = process[ENV].API_HOST ?? request.headers.get('host')
+  const baseApiUrl = `http://${apiHost}`
+  const uri = `${baseApiUrl}/_c/graphql`
+
+  const apolloClient = createApolloClient(uri, cookie)
+  const relayEnvironment = createRelayEnvironment(uri, cookie)
+
+  return { apolloClient, relayEnvironment }
+}
+
 export default async function handleRequest(
   request: Request,
   statusCode: number,
   headers: Headers,
-  context: RootContext
+  context: RootContext,
+  { appContext: { apolloClient, relayEnvironment } }: { appContext: AppContext }
 ) {
-  const cookie = request.headers.get('cookie') ?? undefined
-  const apiHost = process[ENV].API_HOST ?? request.headers.get('host')
-  const baseApiUrl = `http://${apiHost}`
-  const client = createApolloClient(`${baseApiUrl}/_c/graphql`, cookie)
-  const { language, darkMode } = await getUserPreferences(client, request)
+  const { language, darkMode } = await getUserPreferences(apolloClient, request)
   const cspNonce = request.headers.get('x-cramkle-nonce') ?? undefined
 
   i18n.load('en', enCatalog)
@@ -91,21 +103,16 @@ export default async function handleRequest(
       <App
         i18n={i18n}
         userAgent={request.headers.get('userAgent')!}
-        apolloClient={client}
+        apolloClient={apolloClient}
         userPreferredTheme={darkMode ? 'dark' : 'light'}
+        relayEnvironment={relayEnvironment}
       />
     </HelmetProvider>
   )
 
-  await renderToStringWithData(
-    <RootServer context={context} url={request.url}>
-      {root}
-    </RootServer>
-  )
+  const state = apolloClient.extract()
 
-  const state = client.extract()
-
-  const { helmet } = helmetContext as FilledContext
+  // const { helmet } = helmetContext as FilledContext
 
   const rootContainer = (
     <RootServer context={context} url={request.url}>
@@ -124,8 +131,14 @@ export default async function handleRequest(
           __html: 'window.__APOLLO_STATE__ = ' + serializeJavascript(state),
         }}
       />
-      <script defer src={getLanguageLocaleFile(language)} />
-      <Scripts nonce={cspNonce} />
+      <script nonce={cspNonce} src={getLanguageLocaleFile(language)} async />
+      {/* <Scripts nonce={cspNonce} /> */}
+      <script
+        nonce={cspNonce}
+        dangerouslySetInnerHTML={{
+          __html: `window.__serverContext = ${JSON.stringify(context)}`,
+        }}
+      />
     </RootServer>
   )
 
@@ -138,6 +151,11 @@ export default async function handleRequest(
 
   await new Promise<void>((resolve) => {
     const reactStream = renderToPipeableStream(rootContainer, {
+      nonce: cspNonce,
+      bootstrapScripts: context.mainAssets
+        .concat(context.matchedRoutesAssets)
+        .filter((file) => file.endsWith('.js'))
+        .map((file) => process.env.ASSET_PATH + file.slice(1)),
       onCompleteShell() {
         if (didError) {
           status = 500
@@ -193,9 +211,9 @@ export default async function handleRequest(
 
         writable.write(`<link rel="preload" as="script" href="${localeFile}">`)
 
-        writable.write(helmet.title.toString())
-        writable.write(helmet.meta.toString())
-        writable.write(helmet.link.toString())
+        // writable.write(helmet.title.toString())
+        // writable.write(helmet.meta.toString())
+        // writable.write(helmet.link.toString())
 
         icons.forEach(({ rel, sizes, href, type }) => {
           writable.write(

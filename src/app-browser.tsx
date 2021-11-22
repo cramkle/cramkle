@@ -10,6 +10,7 @@ import { HelmetProvider } from 'react-helmet-async'
 import Cookies from 'universal-cookie'
 
 import App from './App'
+import { createRelayEnvironment } from './RelayEnvironment'
 import { createApolloClient } from './utils/apolloClient'
 
 declare module 'react-dom' {
@@ -27,6 +28,7 @@ const language = cookies.get('language') || 'en'
 i18n.loadLocaleData({ en: { plurals: enPlural }, pt: { plurals: ptPlural } })
 
 const apolloClient = createApolloClient('/_c/graphql')
+const relayEnvironment = createRelayEnvironment('/_c/graphql')
 
 try {
   const sentryDsn = process.env.CASTERLY_PUBLIC_SENTRY_DSN
@@ -50,13 +52,14 @@ import(/* webpackChunkName: "locale" */ `./locales/${language}/messages`).then(
 
     ReactDOM.hydrateRoot(
       document.getElementById('root')!,
-      <RootBrowser>
+      <RootBrowser appContext={{ relayEnvironment, apolloClient }}>
         <HelmetProvider>
           <App
             apolloClient={apolloClient}
             userAgent={navigator.userAgent}
             i18n={i18n}
             userPreferredTheme={window.__theme}
+            relayEnvironment={relayEnvironment}
           />
         </HelmetProvider>
       </RootBrowser>
