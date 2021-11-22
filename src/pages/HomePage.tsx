@@ -163,7 +163,15 @@ const HomePage: React.FunctionComponent = () => {
                 </section>
               )}
 
-              <Outlet />
+              <React.Suspense
+                fallback={
+                  <p className="py-4 text-txt text-opacity-text-primary">
+                    <Trans>Loading</Trans>
+                  </p>
+                }
+              >
+                <Outlet />
+              </React.Suspense>
             </TabPanels>
           </Tabs>
         </section>

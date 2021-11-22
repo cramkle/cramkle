@@ -1,63 +1,62 @@
-import { NetworkStatus, gql, useQuery } from '@apollo/client'
 import { Trans } from '@lingui/macro'
 import classNames from 'classnames'
 import { useRef, useState } from 'react'
 import * as React from 'react'
+import { graphql, usePreloadedQuery } from 'react-relay'
 import { useNavigate } from 'react-router'
 
-import DeckCard, { deckCardFragment } from '../components/DeckCard'
-import type { DeckCard_deck } from '../components/__generated__/DeckCard_deck'
 import {
   AlertDialog,
   AlertDialogDescription,
   AlertDialogLabel,
 } from '../components/views/AlertDialog'
 import { Button } from '../components/views/Button'
-import { CircularProgress } from '../components/views/CircularProgress'
-import { Container } from '../components/views/Container'
-import { Body1, Body2, Headline1 } from '../components/views/Typography'
+// import { CircularProgress } from '../components/views/CircularProgress'
+// import { Container } from '../components/views/Container'
+import { Body1, Headline1 } from '../components/views/Typography'
+import { RelayDeckCard } from '../relayComponents/RelayDeckCard'
+import type { RelayDeckCard_deck$data } from '../relayComponents/__generated__/RelayDeckCard_deck.graphql'
 import styles from './StudySection.module.css'
-import type { DecksToStudy } from './__generated__/DecksToStudy'
+import type { StudySectionQuery } from './__generated__/StudySectionQuery.graphql'
 
-const DECKS_TO_STUDY_QUERY = gql`
-  query DecksToStudy {
+const DECKS_TO_STUDY_QUERY = graphql`
+  query StudySectionQuery {
     decks(studyOnly: true) {
       id
-      ...DeckCard_deck
+      ...RelayDeckCard_deck
     }
   }
-
-  ${deckCardFragment}
 `
 
-const StudySection: React.FunctionComponent = () => {
+export const loaderMetadata = () => {
+  return { document: DECKS_TO_STUDY_QUERY, variables: {} }
+}
+
+interface Props {
+  preloadedData: any
+}
+
+const StudySection: React.FC<Props> = (props) => {
+  const { preloadedData } = props
   const navigate = useNavigate()
-  const { data, loading, error, refetch, networkStatus } =
-    useQuery<DecksToStudy>(DECKS_TO_STUDY_QUERY, {
-      fetchPolicy: 'network-only',
-      notifyOnNetworkStatusChange: true,
-    })
-  const [selectedDeck, setSelectedDeck] = useState<DeckCard_deck | null>(null)
+  const data = usePreloadedQuery<StudySectionQuery>(
+    DECKS_TO_STUDY_QUERY,
+    preloadedData
+  )
+
+  const [selectedDeck, setSelectedDeck] =
+    useState<RelayDeckCard_deck$data | null>(null)
   const cancelRef = useRef<HTMLButtonElement>(null)
 
-  const handleDeckSelect = (deck: { id: string }) => {
-    setSelectedDeck(data!.decks.find(({ id }) => deck.id === id)!)
+  const handleDeckSelect = (deck: RelayDeckCard_deck$data) => {
+    setSelectedDeck(deck)
   }
 
   const handleStudyDeck = () => {
     navigate(`/study/${selectedDeck!.slug}`)
   }
 
-  if (loading && networkStatus !== NetworkStatus.refetch) {
-    return (
-      <div className="py-4">
-        <span className="text-txt text-opacity-text-primary">
-          <Trans>Loading decks</Trans>
-        </span>
-      </div>
-    )
-  }
-
+  /*
   if (error || networkStatus === NetworkStatus.refetch) {
     return (
       <Container className="mt-0 md:mt-8 flex flex-col justify-center items-center text-center py-4">
@@ -85,8 +84,9 @@ const StudySection: React.FunctionComponent = () => {
       </Container>
     )
   }
+  */
 
-  const { decks } = data!
+  const { decks } = data
 
   return (
     <>
@@ -126,7 +126,7 @@ const StudySection: React.FunctionComponent = () => {
         <div className="mt-6 mb-4">
           <div className={classNames(styles.grid, 'grid gap-4')}>
             {decks.map((deck) => (
-              <DeckCard
+              <RelayDeckCard
                 key={deck.id}
                 deck={deck}
                 onClick={handleDeckSelect}

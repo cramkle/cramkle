@@ -8,7 +8,7 @@ export default [
     component: () => import('./pages/IndexPage'),
     children: [
       {
-        component: () => import('./pages/StudySection'),
+        component: () => import('./relayPages/StudySection'),
         path: '',
       },
       {

@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { Suspense, lazy } from 'react'
+import { lazy } from 'react'
 
 import Shell from '../components/Shell'
 import { UserContext } from '../components/UserContext'
@@ -22,18 +22,12 @@ export default function IndexPage() {
 
   if (data?.me != null) {
     content = (
-      <Suspense fallback="loading">
-        <Shell>
-          <HomePage />
-        </Shell>
-      </Suspense>
+      <Shell>
+        <HomePage />
+      </Shell>
     )
   } else {
-    content = (
-      <Suspense fallback="loading">
-        <LandingPage />
-      </Suspense>
-    )
+    content = <LandingPage />
   }
 
   return <UserContext user={data?.me ?? undefined}>{content}</UserContext>
