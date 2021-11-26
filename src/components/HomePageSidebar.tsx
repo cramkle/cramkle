@@ -24,17 +24,12 @@ const HomePageSidebar: FC<{ className?: string }> = ({ className }) => {
         <ListItem as={Link} to="/settings/profile" icon={<ProfileIcon />}>
           <Trans>Profile</Trans>
         </ListItem>
-        <ListItem
-          as={Link}
-          to="/marketplace"
-          icon={<MarketplaceIcon />}
-          disabled
-        >
+        <ListItem as={Link} to="/marketplace" icon={<MarketplaceIcon />}>
           <div className="flex items-center">
             <Trans>Marketplace</Trans>
 
             <Chip size="small" color="primary" className="ml-auto">
-              <Trans>soon</Trans>
+              <Trans>new</Trans>
             </Chip>
           </div>
         </ListItem>

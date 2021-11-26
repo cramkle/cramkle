@@ -93,6 +93,10 @@ export default [
             component: () => import('./pages/StatisticsPage'),
             path: '/statistics',
           },
+          {
+            component: () => import('./pages/MarketplacePage'),
+            path: '/marketplace',
+          },
         ],
       },
       {

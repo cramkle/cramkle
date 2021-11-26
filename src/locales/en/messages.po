@@ -684,6 +684,7 @@ msgid "Learning"
 msgstr "Learning"
 
 #: src/pages/DecksSection.tsx:34
+#: src/pages/MarketplacePage.tsx:26
 #: src/pages/StudySection.tsx:41
 msgid "Loading decks"
 msgstr "Loading decks"
@@ -716,6 +717,7 @@ msgid "Make sure your knowledge will last"
 msgstr "Make sure your knowledge will last"
 
 #: src/components/HomePageSidebar.tsx:25
+#: src/pages/MarketplacePage.tsx:36
 msgid "Marketplace"
 msgstr "Marketplace"
 
@@ -1102,6 +1104,10 @@ msgstr "The templates are used to define the frontside and backside of each flas
 msgid "The title is required"
 msgstr "The title is required"
 
+#: src/pages/MarketplacePage.tsx:46
+msgid "There are not any published decks yet."
+msgstr "There are not any published decks yet."
+
 #: src/components/EditTemplatesDialog.tsx:204
 msgid "This action will delete all flashcards associated with this template"
 msgstr "This action will delete all flashcards associated with this template"
@@ -1321,6 +1327,10 @@ msgstr "Get started"
 msgid "login.button"
 msgstr "Login"
 
+#: src/components/HomePageSidebar.tsx:28
+msgid "new"
+msgstr "new"
+
 #: src/pages/LoginPage.tsx:27
 msgid "or"
 msgstr "or"
@@ -1329,21 +1339,19 @@ msgstr "or"
 msgid "product-description"
 msgstr "Cramkle is a flashcard-based study platform where you can create your own decks to group study subjects, and will automatically schedule study sessions using a spaced-repetition algorithm to maximize your knowledge retention"
 
-#: src/components/HomePageSidebar.tsx:28
-msgid "soon"
-msgstr "soon"
-
 #: src/components/ModelCard.tsx:27
 msgid "{0, plural, one {# field} other {# fields}}"
 msgstr "{0, plural, one {# field} other {# fields}}"
 
 #: src/components/DeckCard.tsx:69
+#: src/components/PublishedDeckCard.tsx:51
 #: src/pages/DeckPage.tsx:176
 #: src/pages/ModelPage.tsx:131
 msgid "{0, plural, one {# flashcard} other {# flashcards}}"
 msgstr "{0, plural, one {# flashcard} other {# flashcards}}"
 
 #: src/components/DeckCard.tsx:64
+#: src/components/PublishedDeckCard.tsx:46
 #: src/pages/DeckPage.tsx:174
 #: src/pages/ModelPage.tsx:126
 msgid "{0, plural, one {# note} other {# notes}}"
@@ -1354,6 +1362,7 @@ msgid "{0, plural, one {# template} other {# templates}}"
 msgstr "{0, plural, one {# template} other {# templates}}"
 
 #: src/pages/DecksSection.tsx:45
+#: src/pages/MarketplacePage.tsx:41
 msgid "{0, plural, zero {# decks} one {# deck} other {# decks}}"
 msgstr "{0, plural, zero {# decks} one {# deck} other {# decks}}"
 
