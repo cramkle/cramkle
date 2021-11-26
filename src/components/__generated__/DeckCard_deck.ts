@@ -41,6 +41,10 @@ export interface DeckCard_deck {
    */
   totalFlashcards: number;
   /**
+   * Whether this deck is published to the marketplace
+   */
+  published: boolean;
+  /**
    * Details of current study session
    */
   studySessionDetails: DeckCard_deck_studySessionDetails;

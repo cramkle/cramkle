@@ -13,7 +13,7 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/pages/DeckPage.tsx:183
+#: src/pages/DeckPage.tsx:186
 msgid "({0} notes)"
 msgstr "({0} notas)"
 
@@ -182,6 +182,14 @@ msgstr "Você tem certeza que deseja apagar essa nota? {0, plural, one {Ela cont
 msgid "Are you sure you want to logout?"
 msgstr "Você tem certeza que quer sair?"
 
+#: src/components/PublishDeckButton.tsx:75
+msgid "Are you sure you want to publish this deck?"
+msgstr ""
+
+#: src/components/PublishDeckButton.tsx:97
+msgid "Are you sure you want to unpublish this deck?"
+msgstr ""
+
 #: src/components/FlashCardRenderer.tsx:70
 msgid "Back side"
 msgstr "Verso"
@@ -207,6 +215,8 @@ msgstr "Negrito"
 #: src/components/EditTemplatesDialog.tsx:184
 #: src/components/EditTemplatesDialog.tsx:211
 #: src/components/EditTemplatesDialog.tsx:236
+#: src/components/PublishDeckButton.tsx:86
+#: src/components/PublishDeckButton.tsx:107
 #: src/components/Shell.tsx:65
 #: src/components/UpdatePasswordDialog.tsx:100
 #: src/pages/StudyPage.tsx:127
@@ -356,11 +366,11 @@ msgstr "Deck criado com sucesso"
 msgid "Deck deleted successfully"
 msgstr "Deck apagado com sucesso"
 
-#: src/pages/DeckPage.tsx:156
+#: src/pages/DeckPage.tsx:158
 msgid "Deck details"
 msgstr "Detalhes do deck"
 
-#: src/pages/DeckPage.tsx:140
+#: src/pages/DeckPage.tsx:142
 msgid "Deck not found"
 msgstr "Deck não encontrado"
 
@@ -579,7 +589,7 @@ msgstr "Voltar para a Página Inicial"
 msgid "Go to fields"
 msgstr "Ir para campos"
 
-#: src/pages/DeckPage.tsx:143
+#: src/pages/DeckPage.tsx:145
 #: src/pages/ModelPage.tsx:101
 msgid "Go to home"
 msgstr "Voltar para a página inicial"
@@ -803,7 +813,7 @@ msgstr "Detalhes da nota"
 msgid "Note's model"
 msgstr "Modelo da nota"
 
-#: src/pages/DeckPage.tsx:181
+#: src/pages/DeckPage.tsx:184
 msgid "Notes"
 msgstr "Notas"
 
@@ -882,6 +892,18 @@ msgstr "Perfil"
 #: src/pages/ProfileSettings.tsx:89
 msgid "Profile updated successfully"
 msgstr "Perfil atualizado com sucesso"
+
+#: src/components/PublishDeckButton.tsx:64
+msgid "Publish"
+msgstr ""
+
+#: src/components/PublishDeckButton.tsx:89
+msgid "Publish on Marketplace"
+msgstr ""
+
+#: src/components/PublishDeckButton.tsx:64
+msgid "Published"
+msgstr ""
 
 #: src/pages/HomePage.tsx:69
 msgid "Ready to work offline"
@@ -1138,6 +1160,10 @@ msgstr "Lista de marcadores"
 msgid "Underline"
 msgstr "Sublinha"
 
+#: src/components/PublishDeckButton.tsx:110
+msgid "Unpublish from Marketplace"
+msgstr ""
+
 #: src/components/EditDeckButton.tsx:69
 #: src/components/EditModelButton.tsx:63
 msgid "Update"
@@ -1254,6 +1280,14 @@ msgstr "Você ainda não criou nenhuma nota neste deck"
 msgid "You haven't created any templates on this model yet."
 msgstr "Você ainda não criou nenhum template neste modelo."
 
+#: src/components/PublishDeckButton.tsx:100
+msgid "You will <0>stop sharing</0> this deck publicly with all Cramkle users via the Marketplace."
+msgstr ""
+
+#: src/components/PublishDeckButton.tsx:78
+msgid "You will share this deck publicly with all Cramkle users via the Marketplace. Be careful with sensitive or personal information in your deck."
+msgstr ""
+
 #: src/pages/StudySection.tsx:91
 msgid "You've finished studying your decks for now."
 msgstr "Você terminou de estudar seus decks por hora."
@@ -1303,14 +1337,14 @@ msgstr "em breve"
 msgid "{0, plural, one {# field} other {# fields}}"
 msgstr "{0, plural, one {# campo} other {# campos}}"
 
-#: src/components/DeckCard.tsx:64
-#: src/pages/DeckPage.tsx:173
+#: src/components/DeckCard.tsx:69
+#: src/pages/DeckPage.tsx:176
 #: src/pages/ModelPage.tsx:131
 msgid "{0, plural, one {# flashcard} other {# flashcards}}"
 msgstr "{0, plural, one {# flashcard} other {# flashcards}}"
 
-#: src/components/DeckCard.tsx:59
-#: src/pages/DeckPage.tsx:171
+#: src/components/DeckCard.tsx:64
+#: src/pages/DeckPage.tsx:174
 #: src/pages/ModelPage.tsx:126
 msgid "{0, plural, one {# note} other {# notes}}"
 msgstr "{0, plural, one {# nota} other {# notas}}"
@@ -1331,14 +1365,14 @@ msgstr "{0, plural, zero {# modelos} one {# modelo} other {# modelos}}"
 msgid "{0, select, millisecond {{1, plural, one {{formattedStudyTime} millisecond} other {{formattedStudyTime} milliseconds}}} second {{2, plural, one {{formattedStudyTime} second} other {{formattedStudyTime} seconds}}} minute {{3, plural, one {{formattedStudyTime} minute} other {{formattedStudyTime} minutes}}} hour {{4, plural, one {{formattedStudyTime} hour} other {{formattedStudyTime} hours}}} day {{5, plural, one {{formattedStudyTime} day} other {{formattedStudyTime} days}}}}"
 msgstr "{0, select, millisecond {{1, plural, one {{formattedStudyTime} millisegundo} other {{formattedStudyTime} millisegundos}}} second {{2, plural, one {{formattedStudyTime} segundo} other {{formattedStudyTime} segundos}}} minute {{3, plural, one {{formattedStudyTime} minuto} other {{formattedStudyTime} minutos}}} hour {{4, plural, one {{formattedStudyTime} hora} other {{formattedStudyTime} horas}}} day {{5, plural, one {{formattedStudyTime} dia} other {{formattedStudyTime} dias}}}}"
 
-#: src/components/DeckCard.tsx:50
+#: src/components/DeckCard.tsx:55
 msgid "{learningCount, plural, one {# learning} other {# learning}}"
 msgstr "{learningCount, plural, one {# aprendendo} other {# aprendendo}}"
 
-#: src/components/DeckCard.tsx:47
+#: src/components/DeckCard.tsx:52
 msgid "{newCount, plural, one {# new} other {# new}}"
 msgstr "{newCount, plural, one {# novo} other {# novos}}"
 
-#: src/components/DeckCard.tsx:56
+#: src/components/DeckCard.tsx:61
 msgid "{reviewCount, plural, one {# review} other {# review}}"
 msgstr "{reviewCount, plural, one {# revisando} other {# revisando}}"

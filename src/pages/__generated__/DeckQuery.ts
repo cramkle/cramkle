@@ -185,6 +185,10 @@ export interface DeckQuery_deck {
    */
   description: string | null;
   /**
+   * Whether this deck is published to the marketplace
+   */
+  published: boolean;
+  /**
    * Number of notes in this deck
    */
   totalNotes: number;

@@ -41,6 +41,10 @@ export interface CreateDeckMutation_createDeck_deck {
    */
   totalFlashcards: number;
   /**
+   * Whether this deck is published to the marketplace
+   */
+  published: boolean;
+  /**
    * Details of current study session
    */
   studySessionDetails: CreateDeckMutation_createDeck_deck_studySessionDetails;
