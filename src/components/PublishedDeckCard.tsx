@@ -40,12 +40,12 @@ const PublishedDeckCard: React.FunctionComponent<Props> = ({
     if (onClick) {
       onClick(deck)
     } else {
-      navigate(`/d/${deck.slug}`)
+      navigate(`/marketplace/d/${deck.slug}`)
     }
   }
 
   const uniqueId = `deck-${deck.id}`
-  const publisher_username = deck!.owner!.username
+  const publisherName = deck.owner.username
 
   return (
     <Card className="h-full">
@@ -66,7 +66,7 @@ const PublishedDeckCard: React.FunctionComponent<Props> = ({
       >
         <CardContent className="h-full flex flex-col">
           <Headline3 id={`${uniqueId}-title`}>{deck.title}</Headline3>
-          <Caption className="mb-3">by {publisher_username}</Caption>
+          <Caption className="mb-3">by {publisherName}</Caption>
           {deck.description && (
             <Body2 className="truncate mb-3">{deck.description}</Body2>
           )}

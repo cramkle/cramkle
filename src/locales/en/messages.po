@@ -14,6 +14,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #: src/pages/DeckPage.tsx:186
+#: src/pages/PublishedDeckPage.tsx:185
 msgid "({0} notes)"
 msgstr "({0} notes)"
 
@@ -215,6 +216,7 @@ msgstr "Bold"
 #: src/components/EditTemplatesDialog.tsx:184
 #: src/components/EditTemplatesDialog.tsx:211
 #: src/components/EditTemplatesDialog.tsx:236
+#: src/components/ImportPublishedDeckButton.tsx:34
 #: src/components/PublishDeckButton.tsx:86
 #: src/components/PublishDeckButton.tsx:107
 #: src/components/Shell.tsx:65
@@ -367,10 +369,12 @@ msgid "Deck deleted successfully"
 msgstr "Deck deleted successfully"
 
 #: src/pages/DeckPage.tsx:158
+#: src/pages/PublishedDeckPage.tsx:156
 msgid "Deck details"
 msgstr "Deck details"
 
 #: src/pages/DeckPage.tsx:142
+#: src/pages/PublishedDeckPage.tsx:139
 msgid "Deck not found"
 msgstr "Deck not found"
 
@@ -536,6 +540,7 @@ msgid "First page"
 msgstr "First page"
 
 #: src/components/NotesTable.tsx:47
+#: src/components/PublishedNotesTable.tsx:30
 #: src/pages/NotePage.tsx:185
 msgid "Flashcards"
 msgstr "Flashcards"
@@ -602,6 +607,10 @@ msgstr "Go to login"
 msgid "Go to templates"
 msgstr "Go to templates"
 
+#: src/pages/PublishedDeckPage.tsx:142
+msgid "Go to the Marketplace"
+msgstr "Go to the Marketplace"
+
 #: src/pages/StudyPage.tsx:216
 msgid "Good"
 msgstr "Good"
@@ -641,6 +650,15 @@ msgstr "Home"
 #: src/components/forms/RegisterForm.tsx:120
 msgid "I agree to the <0>Terms & Conditions</0>"
 msgstr "I agree to the <0>Terms & Conditions</0>"
+
+#: src/components/ImportPublishedDeckButton.tsx:37
+msgid "Import deck"
+msgstr "Import deck"
+
+#: src/components/ImportPublishedDeckButton.tsx:23
+#: src/components/ImportPublishedDeckButton.tsx:27
+msgid "Import published deck"
+msgstr "Import published deck"
 
 #: src/pages/StatisticsPage.tsx:271
 msgid "Interval"
@@ -742,6 +760,7 @@ msgid "Model not found"
 msgstr "Model not found"
 
 #: src/components/NotesTable.tsx:44
+#: src/components/PublishedNotesTable.tsx:27
 msgid "Model type"
 msgstr "Model type"
 
@@ -796,10 +815,12 @@ msgid "Next page"
 msgstr "Next page"
 
 #: src/components/NotesTable.tsx:59
+#: src/components/PublishedNotesTable.tsx:41
 msgid "No notes were found"
 msgstr "No notes were found"
 
 #: src/components/NotesTable.tsx:41
+#: src/components/PublishedNotesTable.tsx:24
 msgid "Note"
 msgstr "Note"
 
@@ -816,6 +837,7 @@ msgid "Note's model"
 msgstr "Note's model"
 
 #: src/pages/DeckPage.tsx:184
+#: src/pages/PublishedDeckPage.tsx:183
 msgid "Notes"
 msgstr "Notes"
 
@@ -984,6 +1006,7 @@ msgid "Saved successfully"
 msgstr "Saved successfully"
 
 #: src/components/NotesTable.tsx:34
+#: src/components/PublishedNotesTable.tsx:17
 msgid "Search notes..."
 msgstr "Search notes..."
 
@@ -1108,6 +1131,10 @@ msgstr "The title is required"
 msgid "There are not any published decks yet."
 msgstr "There are not any published decks yet."
 
+#: src/components/ImportPublishedDeckButton.tsx:30
+msgid "This action will add this deck to your library."
+msgstr "This action will add this deck to your library."
+
 #: src/components/EditTemplatesDialog.tsx:204
 msgid "This action will delete all flashcards associated with this template"
 msgstr "This action will delete all flashcards associated with this template"
@@ -1115,6 +1142,10 @@ msgstr "This action will delete all flashcards associated with this template"
 #: src/components/EditFieldsDialog.tsx:194
 msgid "This action will delete all values from the notes associated with this model and field"
 msgstr "This action will delete all values from the notes associated with this model and field"
+
+#: src/components/PublishedNotesTable.tsx:37
+msgid "This deck does not have any note yet"
+msgstr "This deck does not have any note yet"
 
 #: src/pages/NotFoundPage.tsx:11
 msgid "This link may be broken or the typed URL is incorrect."
@@ -1315,6 +1346,7 @@ msgid "Your note is not saved, are you sure you want to exit the page?"
 msgstr "Your note is not saved, are you sure you want to exit the page?"
 
 #: src/components/NotesTable.tsx:65
+#: src/components/PublishedNotesTable.tsx:47
 #: src/pages/NotePage.tsx:175
 msgid "empty note"
 msgstr "empty note"
@@ -1347,6 +1379,7 @@ msgstr "{0, plural, one {# field} other {# fields}}"
 #: src/components/PublishedDeckCard.tsx:51
 #: src/pages/DeckPage.tsx:176
 #: src/pages/ModelPage.tsx:131
+#: src/pages/PublishedDeckPage.tsx:175
 msgid "{0, plural, one {# flashcard} other {# flashcards}}"
 msgstr "{0, plural, one {# flashcard} other {# flashcards}}"
 
@@ -1354,6 +1387,7 @@ msgstr "{0, plural, one {# flashcard} other {# flashcards}}"
 #: src/components/PublishedDeckCard.tsx:46
 #: src/pages/DeckPage.tsx:174
 #: src/pages/ModelPage.tsx:126
+#: src/pages/PublishedDeckPage.tsx:173
 msgid "{0, plural, one {# note} other {# notes}}"
 msgstr "{0, plural, one {# note} other {# notes}}"
 
