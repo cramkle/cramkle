@@ -159,7 +159,7 @@ export interface PublishedDeckQuery_publishedDeck_notes {
 }
 
 export interface PublishedDeckQuery_publishedDeck {
-  __typename: "PublishedDeck";
+  __typename: "Deck";
   /**
    * The ID of an object
    */

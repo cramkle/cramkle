@@ -45,7 +45,7 @@ const PublishedDeckCard: React.FunctionComponent<Props> = ({
   }
 
   const uniqueId = `deck-${deck.id}`
-  const publisherName = deck.owner.username
+  const publisherName = deck?.owner?.username
 
   return (
     <Card className="h-full">
