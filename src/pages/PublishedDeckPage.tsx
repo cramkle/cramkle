@@ -117,7 +117,7 @@ const PublishedDeckPage: React.FunctionComponent = () => {
 
   const [searchVariable, setSearchVariable] = useState(searchInputValue)
 
-  const { data, loading, error, refetch } = useQuery<
+  const { data, loading, error } = useQuery<
     PublishedDeckQuery,
     PublishedDeckQueryVariables
   >(PUBLISHED_DECK_QUERY, {
@@ -156,10 +156,6 @@ const PublishedDeckPage: React.FunctionComponent = () => {
     handleSearchSubmit(search, true)
   })
 
-  const handleRefetchNotes = () => {
-    refetch()
-  }
-
   const handleSearchChange: React.ChangeEventHandler<HTMLInputElement> =
     useCallback(
       (evt) => {
@@ -195,7 +191,7 @@ const PublishedDeckPage: React.FunctionComponent = () => {
   }
 
   const deck = data.publishedDeck
-  const publisher_username = deck.owner.username
+  const publisherUsername = deck?.owner?.username
 
   return (
     <>
@@ -217,7 +213,7 @@ const PublishedDeckPage: React.FunctionComponent = () => {
             {deck.title}
           </Headline2>
           <Headline5 className="mb-3 text-opacity-text-secondary">
-            by {publisher_username}
+            by {publisherUsername}
           </Headline5>
           {deck.description && (
             <Body1 className="mt-2 whitespace-pre-line text-txt text-opacity-text-primary">
@@ -267,13 +263,11 @@ const PublishedDeckPage: React.FunctionComponent = () => {
                 },
               }
             }
-            deckSlug={deck.slug}
             onPaginationChange={onPaginationChange}
             pageSize={pageSize}
             searchQuery={searchInputValue ?? ''}
             onSearchChange={handleSearchChange}
             onSearchSubmit={handleSearchSubmit}
-            onRefetchNotes={handleRefetchNotes}
           />
         </div>
       </Container>
