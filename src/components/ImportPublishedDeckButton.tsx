@@ -11,7 +11,6 @@ import type {
   ImportDeckMutationVariables,
 } from './__generated__/ImportDeckMutation'
 import { GenericAddIcon } from './icons/GenericAddIcon'
-import { MarketplaceIcon } from './icons/MarketplaceIcon'
 import {
   AlertDialog,
   AlertDialogDescription,
@@ -108,14 +107,6 @@ const ImportPublishedDeckButton: React.FunctionComponent<Props> = ({
       >
         <GenericAddIcon className="mr-2 flex-shrink-0" />
         <Trans>Import published deck</Trans>
-      </Button>
-      <Button
-        className="my-2 flex-shrink-0"
-        variation="outline"
-        onClick={() => handleImport()}
-      >
-        <MarketplaceIcon className="mr-2 flex-shrink-0" />
-        <Trans>Import!</Trans>
       </Button>
       <AlertDialog
         isOpen={dialogOpen}

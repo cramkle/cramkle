@@ -130,7 +130,7 @@ msgstr "Ocorreu um erro ao apagar o deck"
 msgid "An error occurred when deleting the model"
 msgstr "Ocorreu um erro ao apagar o modelo"
 
-#: src/components/ImportPublishedDeckButton.tsx:70
+#: src/components/ImportPublishedDeckButton.tsx:69
 msgid "An error occurred when importing the deck"
 msgstr ""
 
@@ -220,7 +220,7 @@ msgstr "Negrito"
 #: src/components/EditTemplatesDialog.tsx:184
 #: src/components/EditTemplatesDialog.tsx:211
 #: src/components/EditTemplatesDialog.tsx:236
-#: src/components/ImportPublishedDeckButton.tsx:97
+#: src/components/ImportPublishedDeckButton.tsx:92
 #: src/components/PublishDeckButton.tsx:86
 #: src/components/PublishDeckButton.tsx:107
 #: src/components/Shell.tsx:65
@@ -377,7 +377,7 @@ msgstr "Deck apagado com sucesso"
 msgid "Deck details"
 msgstr "Detalhes do deck"
 
-#: src/components/ImportPublishedDeckButton.tsx:58
+#: src/components/ImportPublishedDeckButton.tsx:57
 msgid "Deck imported successfully!"
 msgstr ""
 
@@ -659,17 +659,13 @@ msgstr "Página Inicial"
 msgid "I agree to the <0>Terms & Conditions</0>"
 msgstr "Eu concordo com os <0>Termos e Condições</0>"
 
-#: src/components/ImportPublishedDeckButton.tsx:100
+#: src/components/ImportPublishedDeckButton.tsx:95
 msgid "Import deck"
 msgstr ""
 
-#: src/components/ImportPublishedDeckButton.tsx:82
-#: src/components/ImportPublishedDeckButton.tsx:90
+#: src/components/ImportPublishedDeckButton.tsx:81
+#: src/components/ImportPublishedDeckButton.tsx:85
 msgid "Import published deck"
-msgstr ""
-
-#: src/components/ImportPublishedDeckButton.tsx:86
-msgid "Import!"
 msgstr ""
 
 #: src/pages/StatisticsPage.tsx:271
@@ -1143,7 +1139,7 @@ msgstr "O título é obrigatório"
 msgid "There are not any published decks yet."
 msgstr ""
 
-#: src/components/ImportPublishedDeckButton.tsx:93
+#: src/components/ImportPublishedDeckButton.tsx:88
 msgid "This action will add this deck to your library."
 msgstr ""
 
@@ -1265,7 +1261,7 @@ msgstr "Nome de usuário precisa ter no máximo 20 caracteres"
 msgid "Username must consist only of alphanumeric characters and underscores"
 msgstr "O nome de usuário precisa conter apenas caracteres alfanuméricos e sublinhas"
 
-#: src/components/ImportPublishedDeckButton.tsx:60
+#: src/components/ImportPublishedDeckButton.tsx:59
 #: src/components/forms/AddDeckForm.tsx:73
 #: src/pages/AddModelPage.tsx:133
 #: src/pages/AddNotePage.tsx:106

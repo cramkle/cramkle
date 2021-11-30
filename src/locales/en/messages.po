@@ -130,7 +130,7 @@ msgstr "An error occurred when deleting the deck"
 msgid "An error occurred when deleting the model"
 msgstr "An error occurred when deleting the model"
 
-#: src/components/ImportPublishedDeckButton.tsx:70
+#: src/components/ImportPublishedDeckButton.tsx:69
 msgid "An error occurred when importing the deck"
 msgstr "An error occurred when importing the deck"
 
@@ -220,7 +220,7 @@ msgstr "Bold"
 #: src/components/EditTemplatesDialog.tsx:184
 #: src/components/EditTemplatesDialog.tsx:211
 #: src/components/EditTemplatesDialog.tsx:236
-#: src/components/ImportPublishedDeckButton.tsx:97
+#: src/components/ImportPublishedDeckButton.tsx:92
 #: src/components/PublishDeckButton.tsx:86
 #: src/components/PublishDeckButton.tsx:107
 #: src/components/Shell.tsx:65
@@ -377,7 +377,7 @@ msgstr "Deck deleted successfully"
 msgid "Deck details"
 msgstr "Deck details"
 
-#: src/components/ImportPublishedDeckButton.tsx:58
+#: src/components/ImportPublishedDeckButton.tsx:57
 msgid "Deck imported successfully!"
 msgstr "Deck imported successfully!"
 
@@ -659,18 +659,14 @@ msgstr "Home"
 msgid "I agree to the <0>Terms & Conditions</0>"
 msgstr "I agree to the <0>Terms & Conditions</0>"
 
-#: src/components/ImportPublishedDeckButton.tsx:100
+#: src/components/ImportPublishedDeckButton.tsx:95
 msgid "Import deck"
 msgstr "Import deck"
 
-#: src/components/ImportPublishedDeckButton.tsx:82
-#: src/components/ImportPublishedDeckButton.tsx:90
+#: src/components/ImportPublishedDeckButton.tsx:81
+#: src/components/ImportPublishedDeckButton.tsx:85
 msgid "Import published deck"
 msgstr "Import published deck"
-
-#: src/components/ImportPublishedDeckButton.tsx:86
-msgid "Import!"
-msgstr "Import!"
 
 #: src/pages/StatisticsPage.tsx:271
 msgid "Interval"
@@ -1143,7 +1139,7 @@ msgstr "The title is required"
 msgid "There are not any published decks yet."
 msgstr "There are not any published decks yet."
 
-#: src/components/ImportPublishedDeckButton.tsx:93
+#: src/components/ImportPublishedDeckButton.tsx:88
 msgid "This action will add this deck to your library."
 msgstr "This action will add this deck to your library."
 
@@ -1265,7 +1261,7 @@ msgstr "Username must be at most 20 characters"
 msgid "Username must consist only of alphanumeric characters and underscores"
 msgstr "Username must consist only of alphanumeric characters and underscores"
 
-#: src/components/ImportPublishedDeckButton.tsx:60
+#: src/components/ImportPublishedDeckButton.tsx:59
 #: src/components/forms/AddDeckForm.tsx:73
 #: src/pages/AddModelPage.tsx:133
 #: src/pages/AddNotePage.tsx:106
