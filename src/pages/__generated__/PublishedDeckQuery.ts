@@ -200,7 +200,7 @@ export interface PublishedDeckQuery_publishedDeck {
 
 export interface PublishedDeckQuery {
   /**
-   * Get single published deck by it's slug
+   * Get single published deck by its slug
    */
   publishedDeck: PublishedDeckQuery_publishedDeck | null;
 }

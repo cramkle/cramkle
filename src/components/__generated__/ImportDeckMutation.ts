@@ -22,7 +22,7 @@ export interface ImportDeckMutation_importDeck_deck {
 export interface ImportDeckMutation_importDeck {
   __typename: "ImportDeckPayload";
   /**
-   * Created deck
+   * Imported deck
    */
   deck: ImportDeckMutation_importDeck_deck | null;
 }
