@@ -12,6 +12,7 @@ import DeleteDeckButton from '../components/DeleteDeckButton'
 import { EditDeckButton } from '../components/EditDeckButton'
 import NotesTable from '../components/NotesTable'
 import { PublishDeckButton } from '../components/PublishDeckButton'
+import { useCurrentUser } from '../components/UserContext'
 import { Container } from '../components/views/Container'
 import {
   Body1,
@@ -99,6 +100,7 @@ const DeckPage: React.FunctionComponent = () => {
   const navigate = useNavigate()
   const { paginationParams, pageSize, onPaginationChange } =
     usePaginationParams()
+  const me = useCurrentUser()
 
   const [searchInputValue, setSearchInputValue] = useState(() => {
     const searchParams = new URLSearchParams(location.search)
@@ -206,7 +208,9 @@ const DeckPage: React.FunctionComponent = () => {
 
             <div className="flex items-center">
               <EditDeckButton deckId={deck.id} deck={deck} />
-              <PublishDeckButton deckId={deck.id} deck={deck} />
+              {!me.anonymous && (
+                <PublishDeckButton deckId={deck.id} deck={deck} />
+              )}
               <DeleteDeckButton deckId={deck.id} />
             </div>
           </div>
