@@ -2805,8 +2805,8 @@
             "deprecationReason": null
           },
           {
-            "name": "importDeck",
-            "description": "Import/Duplicate a deck entity",
+            "name": "installDeck",
+            "description": "Install/Duplicate a deck entity",
             "args": [
               {
                 "name": "input",
@@ -2816,7 +2816,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "ImportDeckInput",
+                    "name": "InstallDeckInput",
                     "ofType": null
                   }
                 },
@@ -2827,7 +2827,7 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "ImportDeckPayload",
+              "name": "InstallDeckPayload",
               "ofType": null
             },
             "isDeprecated": false,
@@ -3781,7 +3781,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "ImportDeckPayload",
+        "name": "InstallDeckPayload",
         "description": null,
         "specifiedByUrl": null,
         "fields": [
@@ -3817,7 +3817,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "ImportDeckInput",
+        "name": "InstallDeckInput",
         "description": null,
         "specifiedByUrl": null,
         "fields": null,

@@ -7,9 +7,9 @@ import { useNavigate } from 'react-router'
 import { TIMEOUT_MEDIUM, pushErrorToast, pushToast } from '../toasts/pushToast'
 import { deckCardFragment } from './DeckCard'
 import type {
-  ImportDeckMutation,
-  ImportDeckMutationVariables,
-} from './__generated__/ImportDeckMutation'
+  InstallDeckMutation,
+  InstallDeckMutationVariables,
+} from './__generated__/InstallDeckMutation'
 import { GenericAddIcon } from './icons/GenericAddIcon'
 import {
   AlertDialog,
@@ -18,9 +18,9 @@ import {
 } from './views/AlertDialog'
 import { Button } from './views/Button'
 
-const IMPORT_DECK_MUTATION = gql`
-  mutation ImportDeckMutation($id: ID!) {
-    importDeck(input: { id: $id }) {
+const INSTALL_DECK_MUTATION = gql`
+  mutation InstallDeckMutation($id: ID!) {
+    installDeck(input: { id: $id }) {
       deck {
         id
         slug
@@ -33,16 +33,17 @@ interface Props {
   deckId: string
 }
 
-const ImportPublishedDeckButton: React.FunctionComponent<Props> = ({
+const InstallPublishedDeckButton: React.FunctionComponent<Props> = ({
   deckId,
 }) => {
   const navigate = useNavigate()
   const [dialogOpen, setDialogOpen] = useState(false)
-  const [mutate] = useMutation<ImportDeckMutation, ImportDeckMutationVariables>(
-    IMPORT_DECK_MUTATION
-  )
+  const [mutate] = useMutation<
+    InstallDeckMutation,
+    InstallDeckMutationVariables
+  >(INSTALL_DECK_MUTATION)
 
-  const handleImport = async () => {
+  const handleInstall = async () => {
     try {
       const mutationResult = await mutate({
         variables: { id: deckId },
@@ -51,7 +52,7 @@ const ImportPublishedDeckButton: React.FunctionComponent<Props> = ({
             fields: {
               decks(existingDecks = []) {
                 const newDeckRef = cache.writeFragment({
-                  data: mutationResult.data!.importDeck!.deck!,
+                  data: mutationResult.data!.installDeck!.deck!,
                   fragment: deckCardFragment,
                 })
 
@@ -66,11 +67,11 @@ const ImportPublishedDeckButton: React.FunctionComponent<Props> = ({
         return
       }
 
-      const slug = mutationResult.data!.importDeck!.deck!.slug
+      const slug = mutationResult.data!.installDeck!.deck!.slug
 
       pushToast(
         {
-          message: t`Deck imported successfully!`,
+          message: t`Deck installed successfully!`,
           action: {
             label: t`View`,
             onPress: () => {
@@ -84,7 +85,7 @@ const ImportPublishedDeckButton: React.FunctionComponent<Props> = ({
       console.error(e)
       pushErrorToast(
         {
-          message: t`An error occurred when importing the deck`,
+          message: t`An error occurred when installing the deck`,
         },
         TIMEOUT_MEDIUM
       )
@@ -106,7 +107,7 @@ const ImportPublishedDeckButton: React.FunctionComponent<Props> = ({
         onClick={() => setDialogOpen(true)}
       >
         <GenericAddIcon className="mr-2 flex-shrink-0" />
-        <Trans>Import published deck</Trans>
+        <Trans>Install published deck</Trans>
       </Button>
       <AlertDialog
         isOpen={dialogOpen}
@@ -114,7 +115,7 @@ const ImportPublishedDeckButton: React.FunctionComponent<Props> = ({
         leastDestructiveRef={cancelRef}
       >
         <AlertDialogLabel>
-          <Trans>Import published deck</Trans>
+          <Trans>Install published deck</Trans>
         </AlertDialogLabel>
         <AlertDialogDescription>
           <Trans>This action will add this deck to your library.</Trans>
@@ -127,8 +128,8 @@ const ImportPublishedDeckButton: React.FunctionComponent<Props> = ({
           >
             <Trans>Cancel</Trans>
           </Button>
-          <Button className="ml-3" onClick={handleImport}>
-            <Trans>Import deck</Trans>
+          <Button className="ml-3" onClick={handleInstall}>
+            <Trans>Install deck</Trans>
           </Button>
         </div>
       </AlertDialog>
@@ -136,4 +137,4 @@ const ImportPublishedDeckButton: React.FunctionComponent<Props> = ({
   )
 }
 
-export default ImportPublishedDeckButton
+export default InstallPublishedDeckButton

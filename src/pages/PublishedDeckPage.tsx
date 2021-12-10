@@ -8,7 +8,7 @@ import { useLocation, useNavigate, useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 
 import BackButton from '../components/BackButton'
-import ImportPublishedDeckButton from '../components/ImportPublishedDeckButton'
+import InstallPublishedDeckButton from '../components/InstallPublishedDeckButton'
 import PublishedNotesTable from '../components/PublishedNotesTable'
 import { Container } from '../components/views/Container'
 import {
@@ -206,7 +206,7 @@ const PublishedDeckPage: React.FunctionComponent = () => {
             </Headline1>
 
             <div className="flex items-center">
-              <ImportPublishedDeckButton deckId={deck.id} />
+              <InstallPublishedDeckButton deckId={deck.id} />
             </div>
           </div>
           <Headline2 className="mt-4 text-txt text-opacity-text-primary">

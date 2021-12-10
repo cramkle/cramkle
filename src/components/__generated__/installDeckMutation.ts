@@ -4,10 +4,10 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: ImportDeckMutation
+// GraphQL mutation operation: InstallDeckMutation
 // ====================================================
 
-export interface ImportDeckMutation_importDeck_deck {
+export interface InstallDeckMutation_installDeck_deck {
   __typename: "Deck";
   /**
    * The ID of an object
@@ -19,21 +19,21 @@ export interface ImportDeckMutation_importDeck_deck {
   slug: string;
 }
 
-export interface ImportDeckMutation_importDeck {
-  __typename: "ImportDeckPayload";
+export interface InstallDeckMutation_installDeck {
+  __typename: "InstallDeckPayload";
   /**
    * Imported deck
    */
-  deck: ImportDeckMutation_importDeck_deck | null;
+  deck: InstallDeckMutation_installDeck_deck | null;
 }
 
-export interface ImportDeckMutation {
+export interface InstallDeckMutation {
   /**
-   * Import/Duplicate a deck entity
+   * Install/Duplicate a deck entity
    */
-  importDeck: ImportDeckMutation_importDeck | null;
+  installDeck: InstallDeckMutation_installDeck | null;
 }
 
-export interface ImportDeckMutationVariables {
+export interface InstallDeckMutationVariables {
   id: string;
 }
