@@ -569,6 +569,18 @@
             "deprecationReason": null
           },
           {
+            "name": "originalDeck",
+            "description": "Original deck",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Deck",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "published",
             "description": "Whether this deck is published to the marketplace",
             "args": [],
