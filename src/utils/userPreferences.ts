@@ -16,7 +16,7 @@ export async function getUserPreferences(
       data: { me: user },
     } = await client.query<UserQuery>({ query: userQuery })
 
-    if (user && user.preferences.locale == null) {
+    if (user && user.preferences?.locale == null) {
       await client.mutate({
         mutation: gql`
           mutation UpdateUserLocale($locale: String!) {
@@ -36,9 +36,9 @@ export async function getUserPreferences(
       })
     }
 
-    const language = user?.preferences.locale ?? cramkleLanguage
+    const language = user?.preferences?.locale ?? cramkleLanguage
 
-    return { language, darkMode: user?.preferences.darkMode }
+    return { language, darkMode: user?.preferences?.darkMode }
   } catch {
     return { language: cramkleLanguage, darkMode: false }
   }

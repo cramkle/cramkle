@@ -22,7 +22,7 @@ export interface UpdateProfile_updateProfile_user {
   /**
    * User's email
    */
-  email: string;
+  email: string | null;
   anonymous: boolean;
 }
 

@@ -21,7 +21,7 @@ export interface UpdateDarkMode_updatePreferences_user {
    * The ID of an object
    */
   id: string;
-  preferences: UpdateDarkMode_updatePreferences_user_preferences;
+  preferences: UpdateDarkMode_updatePreferences_user_preferences | null;
 }
 
 export interface UpdateDarkMode_updatePreferences {
