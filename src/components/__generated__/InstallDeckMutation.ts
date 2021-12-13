@@ -17,6 +17,10 @@ export interface InstallDeckMutation_installDeck_deck {
    * Unique identifiable slug
    */
   slug: string;
+  /**
+   * Whether this deck is already installed for current user
+   */
+  isDeckInstalled: boolean;
 }
 
 export interface InstallDeckMutation_installDeck {

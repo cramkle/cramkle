@@ -581,6 +581,22 @@
             "deprecationReason": null
           },
           {
+            "name": "isDeckInstalled",
+            "description": "Whether this deck is already installed for current user",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "published",
             "description": "Whether this deck is published to the marketplace",
             "args": [],

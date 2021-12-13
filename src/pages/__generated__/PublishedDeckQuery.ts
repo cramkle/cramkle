@@ -189,6 +189,10 @@ export interface PublishedDeckQuery_publishedDeck {
    */
   totalFlashcards: number;
   /**
+   * Whether this deck is already installed for current user
+   */
+  isDeckInstalled: boolean;
+  /**
    * Owner of the deck
    */
   owner: PublishedDeckQuery_publishedDeck_owner | null;
