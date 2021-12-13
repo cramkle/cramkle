@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router'
 import { FlashCardStatus } from '../globalTypes'
 import FlashCardStatusChip from './FlashCardStatus'
 import type { DeckCard_deck } from './__generated__/DeckCard_deck'
+import { MarketplaceIcon } from './icons/MarketplaceIcon'
 import { Card, CardContent, CardPressable } from './views/Card'
 import { Body2, Headline3 } from './views/Typography'
 
@@ -24,6 +25,7 @@ export const deckCardFragment = gql`
     description
     totalNotes
     totalFlashcards
+    published
     studySessionDetails {
       newCount
       learningCount
@@ -56,6 +58,11 @@ const DeckCard: React.FunctionComponent<Props> = ({
 
   return (
     <Card className="h-full">
+      {deck.published && (
+        <div className="float-right m-2 text-primary-light">
+          <MarketplaceIcon />
+        </div>
+      )}
       <CardPressable
         className="h-full"
         tabIndex={0}

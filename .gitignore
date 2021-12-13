@@ -108,6 +108,9 @@ jspm_packages/
 [._]ss[a-gi-z]
 [._]sw[a-p]
 
+### vs code ###
+.vscode/*
+
 # Session
 Session.vim
 

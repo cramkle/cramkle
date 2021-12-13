@@ -6,10 +6,18 @@
 import { FlashCardStatus } from "./../../globalTypes";
 
 // ====================================================
-// GraphQL query operation: DeckQuery
+// GraphQL query operation: PublishedDeckQuery
 // ====================================================
 
-export interface DeckQuery_deck_notes_edges_node_model {
+export interface PublishedDeckQuery_publishedDeck_owner {
+  __typename: "User";
+  /**
+   * User's username
+   */
+  username: string;
+}
+
+export interface PublishedDeckQuery_publishedDeck_notes_edges_node_model {
   __typename: "Model";
   /**
    * Name of this card model (e.g. "Basic", "Basic with Reversed")
@@ -17,7 +25,7 @@ export interface DeckQuery_deck_notes_edges_node_model {
   name: string;
 }
 
-export interface DeckQuery_deck_notes_edges_node_flashCards_template {
+export interface PublishedDeckQuery_publishedDeck_notes_edges_node_flashCards_template {
   __typename: "Template";
   /**
    * Name of the template
@@ -25,7 +33,7 @@ export interface DeckQuery_deck_notes_edges_node_flashCards_template {
   name: string;
 }
 
-export interface DeckQuery_deck_notes_edges_node_flashCards {
+export interface PublishedDeckQuery_publishedDeck_notes_edges_node_flashCards {
   __typename: "FlashCard";
   /**
    * The ID of an object
@@ -48,54 +56,38 @@ export interface DeckQuery_deck_notes_edges_node_flashCards {
   /**
    * Template associated with this flashcard.
    */
-  template: DeckQuery_deck_notes_edges_node_flashCards_template | null;
+  template: PublishedDeckQuery_publishedDeck_notes_edges_node_flashCards_template | null;
 }
 
-export interface DeckQuery_deck_notes_edges_node_deck {
-  __typename: "Deck";
-  /**
-   * Title of the deck
-   */
-  title: string;
-}
-
-export interface DeckQuery_deck_notes_edges_node {
+export interface PublishedDeckQuery_publishedDeck_notes_edges_node {
   __typename: "Note";
-  /**
-   * The ID of an object
-   */
-  id: string;
   /**
    * Note text representation
    */
   text: string | null;
   /**
+   * The ID of an object
+   */
+  id: string;
+  /**
    * Model of this note
    */
-  model: DeckQuery_deck_notes_edges_node_model | null;
+  model: PublishedDeckQuery_publishedDeck_notes_edges_node_model | null;
   /**
    * Generated flashcards
    */
-  flashCards: DeckQuery_deck_notes_edges_node_flashCards[];
-  /**
-   * Deck containing this note
-   */
-  deck: DeckQuery_deck_notes_edges_node_deck | null;
+  flashCards: PublishedDeckQuery_publishedDeck_notes_edges_node_flashCards[];
 }
 
-export interface DeckQuery_deck_notes_edges {
+export interface PublishedDeckQuery_publishedDeck_notes_edges {
   __typename: "NoteEdge";
   /**
    * The item at the end of the edge
    */
-  node: DeckQuery_deck_notes_edges_node | null;
-  /**
-   * A cursor for use in pagination
-   */
-  cursor: string;
+  node: PublishedDeckQuery_publishedDeck_notes_edges_node | null;
 }
 
-export interface DeckQuery_deck_notes_pageInfo {
+export interface PublishedDeckQuery_publishedDeck_notes_pageInfo {
   __typename: "PageInfo";
   /**
    * When paginating forwards, are there more items?
@@ -107,66 +99,66 @@ export interface DeckQuery_deck_notes_pageInfo {
   endCursor: string | null;
 }
 
-export interface DeckQuery_deck_notes_pageCursors_first {
+export interface PublishedDeckQuery_publishedDeck_notes_pageCursors_first {
   __typename: "PageCursor";
   cursor: string;
   page: number;
   isCurrent: boolean;
 }
 
-export interface DeckQuery_deck_notes_pageCursors_around {
+export interface PublishedDeckQuery_publishedDeck_notes_pageCursors_around {
   __typename: "PageCursor";
   cursor: string;
   page: number;
   isCurrent: boolean;
 }
 
-export interface DeckQuery_deck_notes_pageCursors_last {
+export interface PublishedDeckQuery_publishedDeck_notes_pageCursors_last {
   __typename: "PageCursor";
   cursor: string;
   page: number;
   isCurrent: boolean;
 }
 
-export interface DeckQuery_deck_notes_pageCursors_previous {
+export interface PublishedDeckQuery_publishedDeck_notes_pageCursors_previous {
   __typename: "PageCursor";
   cursor: string;
   page: number;
   isCurrent: boolean;
 }
 
-export interface DeckQuery_deck_notes_pageCursors {
+export interface PublishedDeckQuery_publishedDeck_notes_pageCursors {
   __typename: "PageCursors";
   /**
    * Optional, may be included in `around` (if current page is near the beginning).
    */
-  first: DeckQuery_deck_notes_pageCursors_first | null;
+  first: PublishedDeckQuery_publishedDeck_notes_pageCursors_first | null;
   /**
    * Always includes current page
    */
-  around: DeckQuery_deck_notes_pageCursors_around[];
+  around: PublishedDeckQuery_publishedDeck_notes_pageCursors_around[];
   /**
    * Optional, may be included in `around` (if current page is near the end).
    */
-  last: DeckQuery_deck_notes_pageCursors_last | null;
-  previous: DeckQuery_deck_notes_pageCursors_previous | null;
+  last: PublishedDeckQuery_publishedDeck_notes_pageCursors_last | null;
+  previous: PublishedDeckQuery_publishedDeck_notes_pageCursors_previous | null;
 }
 
-export interface DeckQuery_deck_notes {
+export interface PublishedDeckQuery_publishedDeck_notes {
   __typename: "NoteConnection";
   totalCount: number;
   /**
    * A list of edges.
    */
-  edges: (DeckQuery_deck_notes_edges | null)[] | null;
+  edges: (PublishedDeckQuery_publishedDeck_notes_edges | null)[] | null;
   /**
    * Information to aid in pagination.
    */
-  pageInfo: DeckQuery_deck_notes_pageInfo;
-  pageCursors: DeckQuery_deck_notes_pageCursors;
+  pageInfo: PublishedDeckQuery_publishedDeck_notes_pageInfo;
+  pageCursors: PublishedDeckQuery_publishedDeck_notes_pageCursors;
 }
 
-export interface DeckQuery_deck {
+export interface PublishedDeckQuery_publishedDeck {
   __typename: "Deck";
   /**
    * The ID of an object
@@ -197,19 +189,23 @@ export interface DeckQuery_deck {
    */
   totalFlashcards: number;
   /**
+   * Owner of the deck
+   */
+  owner: PublishedDeckQuery_publishedDeck_owner | null;
+  /**
    * Notes contained in this deck
    */
-  notes: DeckQuery_deck_notes | null;
+  notes: PublishedDeckQuery_publishedDeck_notes | null;
 }
 
-export interface DeckQuery {
+export interface PublishedDeckQuery {
   /**
-   * Get single deck by it's slug
+   * Get single published deck by its slug
    */
-  deck: DeckQuery_deck | null;
+  publishedDeck: PublishedDeckQuery_publishedDeck | null;
 }
 
-export interface DeckQueryVariables {
+export interface PublishedDeckQueryVariables {
   slug: string;
   page: number;
   size: number;

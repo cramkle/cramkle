@@ -60,6 +60,10 @@ export default [
             path: '/d/:slug',
           },
           {
+            component: () => import('./pages/PublishedDeckPage'),
+            path: '/marketplace/d/:slug',
+          },
+          {
             component: () => import('./pages/AddNotePage'),
             path: '/d/:slug/new-note',
           },
@@ -92,6 +96,10 @@ export default [
           {
             component: () => import('./pages/StatisticsPage'),
             path: '/statistics',
+          },
+          {
+            component: () => import('./pages/MarketplacePage'),
+            path: '/marketplace',
           },
         ],
       },

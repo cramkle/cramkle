@@ -4,17 +4,18 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL fragment: DeckCard_deck
+// GraphQL fragment: PublishedDeckCard_deck
 // ====================================================
 
-export interface DeckCard_deck_studySessionDetails {
-  __typename: "StudySessionDetails";
-  newCount: number;
-  learningCount: number;
-  reviewCount: number;
+export interface PublishedDeckCard_deck_owner {
+  __typename: "User";
+  /**
+   * User's username
+   */
+  username: string;
 }
 
-export interface DeckCard_deck {
+export interface PublishedDeckCard_deck {
   __typename: "Deck";
   /**
    * The ID of an object
@@ -45,7 +46,7 @@ export interface DeckCard_deck {
    */
   published: boolean;
   /**
-   * Details of current study session
+   * Owner of the deck
    */
-  studySessionDetails: DeckCard_deck_studySessionDetails;
+  owner: PublishedDeckCard_deck_owner | null;
 }

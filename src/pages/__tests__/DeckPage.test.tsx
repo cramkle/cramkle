@@ -23,6 +23,7 @@ const deckQueryResultForPage = ({
       description: '',
       totalNotes: 2,
       totalFlashcards: 2,
+      published: false,
       notes: {
         __typename: 'NoteConnection',
         totalCount: empty ? 0 : 1,
