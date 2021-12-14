@@ -9,6 +9,14 @@ import { FlashCardStatus } from "./../../globalTypes";
 // GraphQL query operation: DeckQuery
 // ====================================================
 
+export interface DeckQuery_deck_originalDeck {
+  __typename: "Deck";
+  /**
+   * The ID of an object
+   */
+  id: string;
+}
+
 export interface DeckQuery_deck_notes_edges_node_model {
   __typename: "Model";
   /**
@@ -188,6 +196,10 @@ export interface DeckQuery_deck {
    * Whether this deck is published to the marketplace
    */
   published: boolean;
+  /**
+   * Original deck
+   */
+  originalDeck: DeckQuery_deck_originalDeck | null;
   /**
    * Number of notes in this deck
    */

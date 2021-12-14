@@ -25,7 +25,7 @@ export interface UpdatePreferences_updatePreferences_user {
    * The ID of an object
    */
   id: string;
-  preferences: UpdatePreferences_updatePreferences_user_preferences;
+  preferences: UpdatePreferences_updatePreferences_user_preferences | null;
 }
 
 export interface UpdatePreferences_updatePreferences {

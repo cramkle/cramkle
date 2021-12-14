@@ -142,7 +142,7 @@ export interface PublishedDecksQuery {
   /**
    * Retrieve all published decks
    */
-  publishedDecks: PublishedDecksQuery_publishedDecks | null;
+  publishedDecks: PublishedDecksQuery_publishedDecks;
 }
 
 export interface PublishedDecksQueryVariables {

@@ -21,7 +21,7 @@ export interface UpdateUserLocale_updatePreferences_user {
    * The ID of an object
    */
   id: string;
-  preferences: UpdateUserLocale_updatePreferences_user_preferences;
+  preferences: UpdateUserLocale_updatePreferences_user_preferences | null;
 }
 
 export interface UpdateUserLocale_updatePreferences {
