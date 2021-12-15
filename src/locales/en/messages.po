@@ -13,8 +13,8 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/pages/DeckPage.tsx:186
-#: src/pages/PublishedDeckPage.tsx:189
+#: src/pages/DeckPage.tsx:191
+#: src/pages/PublishedDeckPage.tsx:187
 msgid "({0} notes)"
 msgstr "({0} notes)"
 
@@ -130,9 +130,9 @@ msgstr "An error occurred when deleting the deck"
 msgid "An error occurred when deleting the model"
 msgstr "An error occurred when deleting the model"
 
-#: src/components/ImportPublishedDeckButton.tsx:69
-msgid "An error occurred when importing the deck"
-msgstr "An error occurred when importing the deck"
+#: src/components/InstallPublishedDeckButton.tsx:70
+msgid "An error occurred when installing the deck"
+msgstr "An error occurred when installing the deck"
 
 #: src/pages/ModelPage.tsx:72
 msgid "An error occurred when saving the template"
@@ -220,7 +220,7 @@ msgstr "Bold"
 #: src/components/EditTemplatesDialog.tsx:184
 #: src/components/EditTemplatesDialog.tsx:211
 #: src/components/EditTemplatesDialog.tsx:236
-#: src/components/ImportPublishedDeckButton.tsx:92
+#: src/components/InstallPublishedDeckButton.tsx:98
 #: src/components/PublishDeckButton.tsx:86
 #: src/components/PublishDeckButton.tsx:107
 #: src/components/Shell.tsx:65
@@ -364,6 +364,10 @@ msgstr "Dark mode"
 msgid "Deck Statistics"
 msgstr "Deck Statistics"
 
+#: src/components/InstallPublishedDeckButton.tsx:86
+msgid "Deck already installed"
+msgstr "Deck already installed"
+
 #: src/components/forms/AddDeckForm.tsx:71
 msgid "Deck created successfully!"
 msgstr "Deck created successfully!"
@@ -372,17 +376,17 @@ msgstr "Deck created successfully!"
 msgid "Deck deleted successfully"
 msgstr "Deck deleted successfully"
 
-#: src/pages/DeckPage.tsx:158
-#: src/pages/PublishedDeckPage.tsx:160
+#: src/pages/DeckPage.tsx:163
+#: src/pages/PublishedDeckPage.tsx:158
 msgid "Deck details"
 msgstr "Deck details"
 
-#: src/components/ImportPublishedDeckButton.tsx:57
-msgid "Deck imported successfully!"
-msgstr "Deck imported successfully!"
+#: src/components/InstallPublishedDeckButton.tsx:58
+msgid "Deck installed successfully!"
+msgstr "Deck installed successfully!"
 
-#: src/pages/DeckPage.tsx:142
-#: src/pages/PublishedDeckPage.tsx:143
+#: src/pages/DeckPage.tsx:147
+#: src/pages/PublishedDeckPage.tsx:141
 msgid "Deck not found"
 msgstr "Deck not found"
 
@@ -602,7 +606,7 @@ msgstr "Go to Home"
 msgid "Go to fields"
 msgstr "Go to fields"
 
-#: src/pages/DeckPage.tsx:145
+#: src/pages/DeckPage.tsx:150
 #: src/pages/ModelPage.tsx:101
 msgid "Go to home"
 msgstr "Go to home"
@@ -615,7 +619,7 @@ msgstr "Go to login"
 msgid "Go to templates"
 msgstr "Go to templates"
 
-#: src/pages/PublishedDeckPage.tsx:146
+#: src/pages/PublishedDeckPage.tsx:144
 msgid "Go to the Marketplace"
 msgstr "Go to the Marketplace"
 
@@ -659,14 +663,14 @@ msgstr "Home"
 msgid "I agree to the <0>Terms & Conditions</0>"
 msgstr "I agree to the <0>Terms & Conditions</0>"
 
-#: src/components/ImportPublishedDeckButton.tsx:95
-msgid "Import deck"
-msgstr "Import deck"
+#: src/components/InstallPublishedDeckButton.tsx:101
+msgid "Install deck"
+msgstr "Install deck"
 
-#: src/components/ImportPublishedDeckButton.tsx:81
-#: src/components/ImportPublishedDeckButton.tsx:85
-msgid "Import published deck"
-msgstr "Import published deck"
+#: src/components/InstallPublishedDeckButton.tsx:83
+#: src/components/InstallPublishedDeckButton.tsx:91
+msgid "Install published deck"
+msgstr "Install published deck"
 
 #: src/pages/StatisticsPage.tsx:271
 msgid "Interval"
@@ -710,7 +714,7 @@ msgid "Learning"
 msgstr "Learning"
 
 #: src/pages/DecksSection.tsx:34
-#: src/pages/MarketplacePage.tsx:26
+#: src/pages/MarketplacePage.tsx:65
 #: src/pages/StudySection.tsx:41
 msgid "Loading decks"
 msgstr "Loading decks"
@@ -743,7 +747,7 @@ msgid "Make sure your knowledge will last"
 msgstr "Make sure your knowledge will last"
 
 #: src/components/HomePageSidebar.tsx:25
-#: src/pages/MarketplacePage.tsx:36
+#: src/pages/MarketplacePage.tsx:77
 msgid "Marketplace"
 msgstr "Marketplace"
 
@@ -844,8 +848,8 @@ msgstr "Note details"
 msgid "Note's model"
 msgstr "Note's model"
 
-#: src/pages/DeckPage.tsx:184
-#: src/pages/PublishedDeckPage.tsx:187
+#: src/pages/DeckPage.tsx:189
+#: src/pages/PublishedDeckPage.tsx:185
 msgid "Notes"
 msgstr "Notes"
 
@@ -1135,11 +1139,11 @@ msgstr "The templates are used to define the frontside and backside of each flas
 msgid "The title is required"
 msgstr "The title is required"
 
-#: src/pages/MarketplacePage.tsx:46
+#: src/pages/MarketplacePage.tsx:87
 msgid "There are not any published decks yet."
 msgstr "There are not any published decks yet."
 
-#: src/components/ImportPublishedDeckButton.tsx:88
+#: src/components/InstallPublishedDeckButton.tsx:94
 msgid "This action will add this deck to your library."
 msgstr "This action will add this deck to your library."
 
@@ -1261,7 +1265,7 @@ msgstr "Username must be at most 20 characters"
 msgid "Username must consist only of alphanumeric characters and underscores"
 msgstr "Username must consist only of alphanumeric characters and underscores"
 
-#: src/components/ImportPublishedDeckButton.tsx:59
+#: src/components/InstallPublishedDeckButton.tsx:60
 #: src/components/forms/AddDeckForm.tsx:73
 #: src/pages/AddModelPage.tsx:133
 #: src/pages/AddNotePage.tsx:106
@@ -1386,17 +1390,17 @@ msgstr "{0, plural, one {# field} other {# fields}}"
 
 #: src/components/DeckCard.tsx:69
 #: src/components/PublishedDeckCard.tsx:52
-#: src/pages/DeckPage.tsx:176
+#: src/pages/DeckPage.tsx:181
 #: src/pages/ModelPage.tsx:131
-#: src/pages/PublishedDeckPage.tsx:179
+#: src/pages/PublishedDeckPage.tsx:177
 msgid "{0, plural, one {# flashcard} other {# flashcards}}"
 msgstr "{0, plural, one {# flashcard} other {# flashcards}}"
 
 #: src/components/DeckCard.tsx:64
 #: src/components/PublishedDeckCard.tsx:47
-#: src/pages/DeckPage.tsx:174
+#: src/pages/DeckPage.tsx:179
 #: src/pages/ModelPage.tsx:126
-#: src/pages/PublishedDeckPage.tsx:177
+#: src/pages/PublishedDeckPage.tsx:175
 msgid "{0, plural, one {# note} other {# notes}}"
 msgstr "{0, plural, one {# note} other {# notes}}"
 
@@ -1405,7 +1409,7 @@ msgid "{0, plural, one {# template} other {# templates}}"
 msgstr "{0, plural, one {# template} other {# templates}}"
 
 #: src/pages/DecksSection.tsx:45
-#: src/pages/MarketplacePage.tsx:41
+#: src/pages/MarketplacePage.tsx:82
 msgid "{0, plural, zero {# decks} one {# deck} other {# decks}}"
 msgstr "{0, plural, zero {# decks} one {# deck} other {# decks}}"
 
