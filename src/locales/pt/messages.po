@@ -13,8 +13,8 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/pages/DeckPage.tsx:186
-#: src/pages/PublishedDeckPage.tsx:189
+#: src/pages/DeckPage.tsx:191
+#: src/pages/PublishedDeckPage.tsx:187
 msgid "({0} notes)"
 msgstr "({0} notas)"
 
@@ -130,9 +130,9 @@ msgstr "Ocorreu um erro ao apagar o deck"
 msgid "An error occurred when deleting the model"
 msgstr "Ocorreu um erro ao apagar o modelo"
 
-#: src/components/ImportPublishedDeckButton.tsx:69
-msgid "An error occurred when importing the deck"
-msgstr ""
+#: src/components/InstallPublishedDeckButton.tsx:70
+msgid "An error occurred when installing the deck"
+msgstr "Ocorreu um erro ao instalar o deck"
 
 #: src/pages/ModelPage.tsx:72
 msgid "An error occurred when saving the template"
@@ -189,11 +189,11 @@ msgstr "Você tem certeza que quer sair?"
 
 #: src/components/PublishDeckButton.tsx:75
 msgid "Are you sure you want to publish this deck?"
-msgstr ""
+msgstr "Você tem certeza que quer publicar esse deck?"
 
 #: src/components/PublishDeckButton.tsx:97
 msgid "Are you sure you want to unpublish this deck?"
-msgstr ""
+msgstr "Você tem certeza que quer despublicar esse deck?"
 
 #: src/components/FlashCardRenderer.tsx:70
 msgid "Back side"
@@ -220,7 +220,7 @@ msgstr "Negrito"
 #: src/components/EditTemplatesDialog.tsx:184
 #: src/components/EditTemplatesDialog.tsx:211
 #: src/components/EditTemplatesDialog.tsx:236
-#: src/components/ImportPublishedDeckButton.tsx:92
+#: src/components/InstallPublishedDeckButton.tsx:98
 #: src/components/PublishDeckButton.tsx:86
 #: src/components/PublishDeckButton.tsx:107
 #: src/components/Shell.tsx:65
@@ -364,6 +364,10 @@ msgstr "Modo escuro"
 msgid "Deck Statistics"
 msgstr "Estatísticas do deck"
 
+#: src/components/InstallPublishedDeckButton.tsx:86
+msgid "Deck already installed"
+msgstr "Deck já está instalado"
+
 #: src/components/forms/AddDeckForm.tsx:71
 msgid "Deck created successfully!"
 msgstr "Deck criado com sucesso"
@@ -372,17 +376,17 @@ msgstr "Deck criado com sucesso"
 msgid "Deck deleted successfully"
 msgstr "Deck apagado com sucesso"
 
-#: src/pages/DeckPage.tsx:158
-#: src/pages/PublishedDeckPage.tsx:160
+#: src/pages/DeckPage.tsx:163
+#: src/pages/PublishedDeckPage.tsx:158
 msgid "Deck details"
 msgstr "Detalhes do deck"
 
-#: src/components/ImportPublishedDeckButton.tsx:57
-msgid "Deck imported successfully!"
-msgstr ""
+#: src/components/InstallPublishedDeckButton.tsx:58
+msgid "Deck installed successfully!"
+msgstr "Deck instalado com sucesso!"
 
-#: src/pages/DeckPage.tsx:142
-#: src/pages/PublishedDeckPage.tsx:143
+#: src/pages/DeckPage.tsx:147
+#: src/pages/PublishedDeckPage.tsx:141
 msgid "Deck not found"
 msgstr "Deck não encontrado"
 
@@ -602,7 +606,7 @@ msgstr "Voltar para a Página Inicial"
 msgid "Go to fields"
 msgstr "Ir para campos"
 
-#: src/pages/DeckPage.tsx:145
+#: src/pages/DeckPage.tsx:150
 #: src/pages/ModelPage.tsx:101
 msgid "Go to home"
 msgstr "Voltar para a página inicial"
@@ -615,9 +619,9 @@ msgstr "Voltar para login"
 msgid "Go to templates"
 msgstr "Ir para templates"
 
-#: src/pages/PublishedDeckPage.tsx:146
+#: src/pages/PublishedDeckPage.tsx:144
 msgid "Go to the Marketplace"
-msgstr ""
+msgstr "Ir para o Marketplace"
 
 #: src/pages/StudyPage.tsx:216
 msgid "Good"
@@ -659,14 +663,14 @@ msgstr "Página Inicial"
 msgid "I agree to the <0>Terms & Conditions</0>"
 msgstr "Eu concordo com os <0>Termos e Condições</0>"
 
-#: src/components/ImportPublishedDeckButton.tsx:95
-msgid "Import deck"
-msgstr ""
+#: src/components/InstallPublishedDeckButton.tsx:101
+msgid "Install deck"
+msgstr "Instalar deck"
 
-#: src/components/ImportPublishedDeckButton.tsx:81
-#: src/components/ImportPublishedDeckButton.tsx:85
-msgid "Import published deck"
-msgstr ""
+#: src/components/InstallPublishedDeckButton.tsx:83
+#: src/components/InstallPublishedDeckButton.tsx:91
+msgid "Install published deck"
+msgstr "Instalar deck publicado"
 
 #: src/pages/StatisticsPage.tsx:271
 msgid "Interval"
@@ -710,7 +714,7 @@ msgid "Learning"
 msgstr "Aprendendo"
 
 #: src/pages/DecksSection.tsx:34
-#: src/pages/MarketplacePage.tsx:26
+#: src/pages/MarketplacePage.tsx:65
 #: src/pages/StudySection.tsx:41
 msgid "Loading decks"
 msgstr "Carregando decks"
@@ -743,7 +747,7 @@ msgid "Make sure your knowledge will last"
 msgstr "Garanta que seu conhecimento irá durar"
 
 #: src/components/HomePageSidebar.tsx:25
-#: src/pages/MarketplacePage.tsx:36
+#: src/pages/MarketplacePage.tsx:77
 msgid "Marketplace"
 msgstr "Marketplace"
 
@@ -844,8 +848,8 @@ msgstr "Detalhes da nota"
 msgid "Note's model"
 msgstr "Modelo da nota"
 
-#: src/pages/DeckPage.tsx:184
-#: src/pages/PublishedDeckPage.tsx:187
+#: src/pages/DeckPage.tsx:189
+#: src/pages/PublishedDeckPage.tsx:185
 msgid "Notes"
 msgstr "Notas"
 
@@ -927,15 +931,15 @@ msgstr "Perfil atualizado com sucesso"
 
 #: src/components/PublishDeckButton.tsx:64
 msgid "Publish"
-msgstr ""
+msgstr "Publicar"
 
 #: src/components/PublishDeckButton.tsx:89
 msgid "Publish on Marketplace"
-msgstr ""
+msgstr "Publicar no Marketplace"
 
 #: src/components/PublishDeckButton.tsx:64
 msgid "Published"
-msgstr ""
+msgstr "Publicado"
 
 #: src/pages/HomePage.tsx:69
 msgid "Ready to work offline"
@@ -1135,13 +1139,13 @@ msgstr "Os templates são usados para definir a frente e o verso de cada flashca
 msgid "The title is required"
 msgstr "O título é obrigatório"
 
-#: src/pages/MarketplacePage.tsx:46
+#: src/pages/MarketplacePage.tsx:87
 msgid "There are not any published decks yet."
-msgstr ""
+msgstr "Não existem decks publicados ainda."
 
-#: src/components/ImportPublishedDeckButton.tsx:88
+#: src/components/InstallPublishedDeckButton.tsx:94
 msgid "This action will add this deck to your library."
-msgstr ""
+msgstr "Essa ação irá adicionar esse deck na sua biblioteca."
 
 #: src/components/EditTemplatesDialog.tsx:204
 msgid "This action will delete all flashcards associated with this template"
@@ -1153,7 +1157,7 @@ msgstr "Essa ação irá apagar todos os valores das notas associadas com esse c
 
 #: src/components/PublishedNotesTable.tsx:37
 msgid "This deck does not have any note yet"
-msgstr ""
+msgstr "Esse deck não possui notas ainda"
 
 #: src/pages/NotFoundPage.tsx:11
 msgid "This link may be broken or the typed URL is incorrect."
@@ -1207,7 +1211,7 @@ msgstr "Sublinha"
 
 #: src/components/PublishDeckButton.tsx:110
 msgid "Unpublish from Marketplace"
-msgstr ""
+msgstr "Despublicar do Marketplace"
 
 #: src/components/EditDeckButton.tsx:69
 #: src/components/EditModelButton.tsx:63
@@ -1261,7 +1265,7 @@ msgstr "Nome de usuário precisa ter no máximo 20 caracteres"
 msgid "Username must consist only of alphanumeric characters and underscores"
 msgstr "O nome de usuário precisa conter apenas caracteres alfanuméricos e sublinhas"
 
-#: src/components/ImportPublishedDeckButton.tsx:59
+#: src/components/InstallPublishedDeckButton.tsx:60
 #: src/components/forms/AddDeckForm.tsx:73
 #: src/pages/AddModelPage.tsx:133
 #: src/pages/AddNotePage.tsx:106
@@ -1328,11 +1332,11 @@ msgstr "Você ainda não criou nenhum template neste modelo."
 
 #: src/components/PublishDeckButton.tsx:100
 msgid "You will <0>stop sharing</0> this deck publicly with all Cramkle users via the Marketplace."
-msgstr ""
+msgstr "Você vai <0>parar de compartilhar</0> esse deck publicamente com todos os usuários do Cramkle pelo Marketplace."
 
 #: src/components/PublishDeckButton.tsx:78
 msgid "You will share this deck publicly with all Cramkle users via the Marketplace. Be careful with sensitive or personal information in your deck."
-msgstr ""
+msgstr "Você vai compartilhar esse deck publicamente com todos os usuários do Cramkle pelo Marketplace. Tenha cuidado com dados sensíveis ou pessoais nesse deck."
 
 #: src/pages/StudySection.tsx:91
 msgid "You've finished studying your decks for now."
@@ -1370,7 +1374,7 @@ msgstr "Entrar"
 
 #: src/components/HomePageSidebar.tsx:28
 msgid "new"
-msgstr ""
+msgstr "novo"
 
 #: src/pages/LoginPage.tsx:27
 msgid "or"
@@ -1386,17 +1390,17 @@ msgstr "{0, plural, one {# campo} other {# campos}}"
 
 #: src/components/DeckCard.tsx:69
 #: src/components/PublishedDeckCard.tsx:52
-#: src/pages/DeckPage.tsx:176
+#: src/pages/DeckPage.tsx:181
 #: src/pages/ModelPage.tsx:131
-#: src/pages/PublishedDeckPage.tsx:179
+#: src/pages/PublishedDeckPage.tsx:177
 msgid "{0, plural, one {# flashcard} other {# flashcards}}"
 msgstr "{0, plural, one {# flashcard} other {# flashcards}}"
 
 #: src/components/DeckCard.tsx:64
 #: src/components/PublishedDeckCard.tsx:47
-#: src/pages/DeckPage.tsx:174
+#: src/pages/DeckPage.tsx:179
 #: src/pages/ModelPage.tsx:126
-#: src/pages/PublishedDeckPage.tsx:177
+#: src/pages/PublishedDeckPage.tsx:175
 msgid "{0, plural, one {# note} other {# notes}}"
 msgstr "{0, plural, one {# nota} other {# notas}}"
 
@@ -1405,7 +1409,7 @@ msgid "{0, plural, one {# template} other {# templates}}"
 msgstr "{0, plural, one {# template} other {# templates}}"
 
 #: src/pages/DecksSection.tsx:45
-#: src/pages/MarketplacePage.tsx:41
+#: src/pages/MarketplacePage.tsx:82
 msgid "{0, plural, zero {# decks} one {# deck} other {# decks}}"
 msgstr "{0, plural, zero {# decks} one {# deck} other {# decks}}"
 

@@ -76,7 +76,7 @@ const MarketplacePage: React.FunctionComponent = () => {
     fetchPolicy: 'cache-and-network',
   })
 
-  if (loading) {
+  if (loading || !data) {
     return (
       <div className="py-4">
         <span className="text-txt text-opacity-text-primary">
@@ -87,13 +87,16 @@ const MarketplacePage: React.FunctionComponent = () => {
   }
 
   const filterUserPublishedDecks = (
-    decks: PublishedDecksQuery_publishedDecks_edges_node[]
+    decks: (PublishedDecksQuery_publishedDecks_edges_node | null | undefined)[]
   ): PublishedDecksQuery_publishedDecks_edges_node[] => {
-    return decks.filter((deck) => deck.owner.username !== me.username)
+    return decks.filter(
+      (deck): deck is PublishedDecksQuery_publishedDecks_edges_node =>
+        deck?.owner?.username !== me.username
+    )
   }
 
   const decks = filterUserPublishedDecks(
-    data.publishedDecks.edges.map((e) => e.node)
+    data.publishedDecks.edges?.map((e) => e?.node) ?? []
   )
   const pageInfo = data.publishedDecks.pageInfo as PageInfo
   const pageCursors = data.publishedDecks.pageCursors as PageCursors

@@ -36,9 +36,9 @@ export interface UserQuery_me {
   /**
    * User's email
    */
-  email: string;
+  email: string | null;
   anonymous: boolean;
-  preferences: UserQuery_me_preferences;
+  preferences: UserQuery_me_preferences | null;
 }
 
 export interface UserQuery {

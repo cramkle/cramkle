@@ -35,6 +35,9 @@ export const DECK_QUERY = gql`
       title
       description
       published
+      originalDeck {
+        id
+      }
       totalNotes
       totalFlashcards
       notes(page: $page, size: $size, search: $search)
@@ -208,7 +211,7 @@ const DeckPage: React.FunctionComponent = () => {
 
             <div className="flex items-center">
               <EditDeckButton deckId={deck.id} deck={deck} />
-              {!me.anonymous && (
+              {!me.anonymous && deck.originalDeck == null && (
                 <PublishDeckButton deckId={deck.id} deck={deck} />
               )}
               <DeleteDeckButton deckId={deck.id} />

@@ -43,6 +43,7 @@ export const PUBLISHED_DECK_QUERY = gql`
       published
       totalNotes
       totalFlashcards
+      isDeckInstalled
       owner {
         username
       }
@@ -206,7 +207,10 @@ const PublishedDeckPage: React.FunctionComponent = () => {
             </Headline1>
 
             <div className="flex items-center">
-              <InstallPublishedDeckButton deckId={deck.id} />
+              <InstallPublishedDeckButton
+                deckId={deck.id}
+                isDeckInstalled={deck.isDeckInstalled}
+              />
             </div>
           </div>
           <Headline2 className="mt-4 text-txt text-opacity-text-primary">

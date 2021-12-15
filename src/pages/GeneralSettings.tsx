@@ -91,7 +91,7 @@ const TimezoneOption: React.FC<{
 const GeneralSettings: React.FC = () => {
   const { i18n } = useLingui()
   const me = useCurrentUser()
-  const zoneInfo = me.preferences.zoneInfo
+  const zoneInfo = me.preferences!.zoneInfo
   const [updatePreferences, { loading }] = useMutation<
     UpdatePreferences,
     UpdatePreferencesVariables

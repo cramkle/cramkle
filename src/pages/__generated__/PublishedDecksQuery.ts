@@ -8,144 +8,144 @@
 // ====================================================
 
 export interface PublishedDecksQuery_publishedDecks_edges_node_owner {
-  __typename: "User";
+  __typename: 'User'
   /**
    * User's username
    */
-  username: string;
+  username: string
 }
 
 export interface PublishedDecksQuery_publishedDecks_edges_node {
-  __typename: "Deck";
+  __typename: 'Deck'
   /**
    * The ID of an object
    */
-  id: string;
+  id: string
   /**
    * Unique identifiable slug
    */
-  slug: string;
+  slug: string
   /**
    * Title of the deck
    */
-  title: string;
+  title: string
   /**
    * Description of the deck
    */
-  description: string | null;
+  description: string | null
   /**
    * Number of notes in this deck
    */
-  totalNotes: number;
+  totalNotes: number
   /**
    * Number of flashcards in this deck
    */
-  totalFlashcards: number;
+  totalFlashcards: number
   /**
    * Whether this deck is published to the marketplace
    */
-  published: boolean;
+  published: boolean
   /**
    * Owner of the deck
    */
-  owner: PublishedDecksQuery_publishedDecks_edges_node_owner | null;
+  owner: PublishedDecksQuery_publishedDecks_edges_node_owner | null
 }
 
 export interface PublishedDecksQuery_publishedDecks_edges {
-  __typename: "DeckEdge";
+  __typename: 'DeckEdge'
   /**
    * The item at the end of the edge
    */
-  node: PublishedDecksQuery_publishedDecks_edges_node | null;
+  node: PublishedDecksQuery_publishedDecks_edges_node | null
 }
 
 export interface PublishedDecksQuery_publishedDecks_pageCursors_first {
-  __typename: "PageCursor";
-  cursor: string;
-  page: number;
-  isCurrent: boolean;
+  __typename: 'PageCursor'
+  cursor: string
+  page: number
+  isCurrent: boolean
 }
 
 export interface PublishedDecksQuery_publishedDecks_pageCursors_last {
-  __typename: "PageCursor";
-  cursor: string;
-  page: number;
-  isCurrent: boolean;
+  __typename: 'PageCursor'
+  cursor: string
+  page: number
+  isCurrent: boolean
 }
 
 export interface PublishedDecksQuery_publishedDecks_pageCursors_around {
-  __typename: "PageCursor";
-  isCurrent: boolean;
-  cursor: string;
-  page: number;
+  __typename: 'PageCursor'
+  isCurrent: boolean
+  cursor: string
+  page: number
 }
 
 export interface PublishedDecksQuery_publishedDecks_pageCursors_previous {
-  __typename: "PageCursor";
-  isCurrent: boolean;
-  page: number;
-  cursor: string;
+  __typename: 'PageCursor'
+  isCurrent: boolean
+  page: number
+  cursor: string
 }
 
 export interface PublishedDecksQuery_publishedDecks_pageCursors {
-  __typename: "PageCursors";
+  __typename: 'PageCursors'
   /**
    * Optional, may be included in `around` (if current page is near the beginning).
    */
-  first: PublishedDecksQuery_publishedDecks_pageCursors_first | null;
+  first: PublishedDecksQuery_publishedDecks_pageCursors_first | null
   /**
    * Optional, may be included in `around` (if current page is near the end).
    */
-  last: PublishedDecksQuery_publishedDecks_pageCursors_last | null;
+  last: PublishedDecksQuery_publishedDecks_pageCursors_last | null
   /**
    * Always includes current page
    */
-  around: PublishedDecksQuery_publishedDecks_pageCursors_around[];
-  previous: PublishedDecksQuery_publishedDecks_pageCursors_previous | null;
+  around: PublishedDecksQuery_publishedDecks_pageCursors_around[]
+  previous: PublishedDecksQuery_publishedDecks_pageCursors_previous | null
 }
 
 export interface PublishedDecksQuery_publishedDecks_pageInfo {
-  __typename: "PageInfo";
+  __typename: 'PageInfo'
   /**
    * When paginating forwards, the cursor to continue.
    */
-  endCursor: string | null;
+  endCursor: string | null
   /**
    * When paginating backwards, the cursor to continue.
    */
-  startCursor: string | null;
+  startCursor: string | null
   /**
    * When paginating backwards, are there more items?
    */
-  hasPreviousPage: boolean;
+  hasPreviousPage: boolean
   /**
    * When paginating forwards, are there more items?
    */
-  hasNextPage: boolean;
+  hasNextPage: boolean
 }
 
 export interface PublishedDecksQuery_publishedDecks {
-  __typename: "DeckConnection";
-  totalCount: number;
+  __typename: 'DeckConnection'
+  totalCount: number
   /**
    * A list of edges.
    */
-  edges: (PublishedDecksQuery_publishedDecks_edges | null)[] | null;
-  pageCursors: PublishedDecksQuery_publishedDecks_pageCursors;
+  edges: (PublishedDecksQuery_publishedDecks_edges | null)[] | null
+  pageCursors: PublishedDecksQuery_publishedDecks_pageCursors
   /**
    * Information to aid in pagination.
    */
-  pageInfo: PublishedDecksQuery_publishedDecks_pageInfo;
+  pageInfo: PublishedDecksQuery_publishedDecks_pageInfo
 }
 
 export interface PublishedDecksQuery {
   /**
    * Retrieve all published decks
    */
-  publishedDecks: PublishedDecksQuery_publishedDecks | null;
+  publishedDecks: PublishedDecksQuery_publishedDecks
 }
 
 export interface PublishedDecksQueryVariables {
-  page: number;
-  size: number;
+  page: number
+  size: number
 }
