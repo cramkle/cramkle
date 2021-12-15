@@ -24,6 +24,7 @@ const INSTALL_DECK_MUTATION = gql`
       deck {
         id
         slug
+        isDeckInstalled
       }
     }
   }
@@ -31,10 +32,12 @@ const INSTALL_DECK_MUTATION = gql`
 
 interface Props {
   deckId: string
+  isDeckInstalled: boolean
 }
 
 const InstallPublishedDeckButton: React.FunctionComponent<Props> = ({
   deckId,
+  isDeckInstalled,
 }) => {
   const navigate = useNavigate()
   const [dialogOpen, setDialogOpen] = useState(false)
@@ -105,9 +108,19 @@ const InstallPublishedDeckButton: React.FunctionComponent<Props> = ({
         className="my-2 flex-shrink-0"
         variation="outline"
         onClick={() => setDialogOpen(true)}
+        disabled={isDeckInstalled}
       >
-        <GenericAddIcon className="mr-2 flex-shrink-0" />
-        <Trans>Install published deck</Trans>
+        {!isDeckInstalled ? (
+          <>
+            <GenericAddIcon className="mr-2 flex-shrink-0" />
+            <Trans>Install published deck</Trans>
+          </>
+        ) : (
+          <>
+            <GenericAddIcon className="mr-2 flex-shrink-0" />
+            <Trans>Deck already installed</Trans>
+          </>
+        )}
       </Button>
       <AlertDialog
         isOpen={dialogOpen}
