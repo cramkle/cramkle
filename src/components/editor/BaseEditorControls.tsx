@@ -6,7 +6,12 @@ import type {
   EditorProps,
   RawDraftContentState,
 } from 'draft-js'
-import { EditorState, RichUtils, convertFromRaw } from 'draft-js'
+import {
+  AtomicBlockUtils,
+  EditorState,
+  RichUtils,
+  convertFromRaw,
+} from 'draft-js'
 import {
   createContext,
   useCallback,
@@ -20,7 +25,10 @@ import * as React from 'react'
 import { TabController } from 'react-tab-controller'
 
 import BlockStyleControls from './BlockStyleControls'
+import InlineFunctionControls from './InlineFunctionControls'
 import InlineStyleControls from './InlineStyleControls'
+import type { TaggableEntry } from './TaggableEntry'
+import type { FUNCTION_TAG_TYPE } from './constants'
 
 type BaseEditorContext = Pick<
   EditorProps,
@@ -46,6 +54,7 @@ interface Props extends Pick<EditorProps, 'handleKeyCommand'> {
   onChange?: (content: ContentState) => void
   className?: string
   decorators?: CompositeDecorator
+  fields?: TaggableEntry[]
 }
 
 const BaseEditorControls: React.FC<Props> = ({
@@ -55,6 +64,7 @@ const BaseEditorControls: React.FC<Props> = ({
   handleKeyCommand,
   decorators,
   children,
+  fields,
 }) => {
   const [editor, setEditor] = useState(() => {
     if (!initialContentState || initialContentState.blocks.length === 0) {
@@ -79,6 +89,33 @@ const BaseEditorControls: React.FC<Props> = ({
     prevContentState.current = contentState
     onChange?.(contentState)
   }, [onChange, contentState])
+
+  const handleFunctionEntityCreation = useCallback(
+    (
+      functionTagType: FUNCTION_TAG_TYPE,
+      objectData: Record<string, unknown>
+    ) => {
+      const contentState = editor.getCurrentContent()
+      const contentStateWithEntity = contentState.createEntity(
+        functionTagType,
+        'IMMUTABLE',
+        objectData
+      )
+      const entityKey = contentStateWithEntity.getLastCreatedEntityKey()
+      const newEditorState = AtomicBlockUtils.insertAtomicBlock(
+        editor,
+        entityKey,
+        ' '
+      )
+      setEditor(
+        EditorState.forceSelection(
+          newEditorState,
+          newEditorState.getCurrentContent().getSelectionAfter()
+        )
+      )
+    },
+    [editor]
+  )
 
   const handleStyleToggle = useCallback(
     (style: string) => {
@@ -149,6 +186,14 @@ const BaseEditorControls: React.FC<Props> = ({
                 onToggle={handleStyleToggle}
               />
             </TabController>
+            {fields && (
+              <TabController>
+                <InlineFunctionControls
+                  handleFunction={handleFunctionEntityCreation}
+                  fields={fields}
+                />
+              </TabController>
+            )}
           </div>
         </div>
         <div>{children}</div>

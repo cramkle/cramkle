@@ -43,6 +43,7 @@ const TemplateEditor: React.FunctionComponent<Props> = ({
       onChange={handleChange}
       initialContentState={initialContentState as RawDraftContentState}
       decorators={decorators}
+      fields={fields}
     >
       <TagEditor tagSource={fields} />
     </BaseEditorControls>

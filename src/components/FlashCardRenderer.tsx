@@ -10,14 +10,17 @@ import {
 import 'draft-js/dist/Draft.css'
 import { useContext, useMemo } from 'react'
 import * as React from 'react'
+import ReactAudioPlayer from 'react-audio-player'
 
 import styles from './FlashCardRenderer.module.css'
 import { blockStyleFn } from './editor/BlockStyleControls'
-import { findTagEntities } from './editor/strategies'
+import { findTagEntities, findTextToSpeechEntities } from './editor/strategies'
+import { VolumeUpIcon } from './icons/VolumeUpIcon'
+import { Button } from './views/Button'
 import { Divider } from './views/Divider'
 import { Body2, Caption } from './views/Typography'
 
-interface NoteValue {
+export interface NoteValue {
   data: RawDraftContentState
   field: { id: string }
   id: string
@@ -36,6 +39,77 @@ interface FlashCardValueProps {
   contentState: ContentState
   entityKey: string
 }
+
+interface FlashCardRendererAudioPlayerProps {
+  contentState: ContentState
+  entityKey: string
+}
+
+const FlashCardRendererAudioPlayer: React.FC<FlashCardRendererAudioPlayerProps> =
+  ({ entityKey, contentState }) => {
+    // TODO: Find a better way to handle audio requests
+    const AudioApiUrl =
+      'https://us-central1-slang-92215.cloudfunctions.net/vocabulary-getAudio'
+
+    const [isAudioReady, setIsAudioReady] = React.useState(false)
+    const [audioEl, setAudioEl] =
+      React.useState<React.RefObject<HTMLAudioElement>>()
+    const [audioUrl, setAudioUrl] = React.useState<string>()
+
+    const data = contentState.getEntity(entityKey).getData()
+    const values = useContext(ValuesContext)
+
+    const value = useMemo(
+      () => values?.find(({ field }) => field.id === data.fieldId),
+      [values, data.fieldId]
+    )
+    const fieldValue = value?.data.blocks[0].text
+    const languageCode = data.languageId
+
+    React.useEffect(() => {
+      const fetchURL = `${AudioApiUrl}?text=${fieldValue}&languageCode=${languageCode}`
+      fetch(fetchURL)
+        .then((res) => res.json())
+        .then(
+          (result) => {
+            setAudioUrl(result.audioUrl)
+          },
+          (_) => {}
+        )
+    }, [])
+
+    const playAudio = () => {
+      audioEl?.current?.play()
+    }
+
+    return (
+      <>
+        <Button
+          className="flex-shrink-0 "
+          variation="outline"
+          onClick={() => {
+            playAudio()
+          }}
+          disabled={!isAudioReady}
+        >
+          <VolumeUpIcon className="mr-2 flex-shrink-0" />
+          <Trans>Play</Trans>
+        </Button>
+        {audioUrl && (
+          <ReactAudioPlayer
+            src={audioUrl}
+            autoPlay
+            onLoadedMetadata={() => {
+              setIsAudioReady(true)
+            }}
+            ref={(element) => {
+              if (element) setAudioEl(element.audioEl)
+            }}
+          />
+        )}
+      </>
+    )
+  }
 
 const FlashCardValue: React.FC<FlashCardValueProps> = ({
   entityKey,
@@ -72,6 +146,10 @@ const decorators = new CompositeDecorator([
   {
     strategy: findTagEntities,
     component: FlashCardValue,
+  },
+  {
+    strategy: findTextToSpeechEntities,
+    component: FlashCardRendererAudioPlayer,
   },
 ])
 

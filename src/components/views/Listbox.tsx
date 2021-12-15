@@ -54,7 +54,7 @@ export const ListboxPopover = forwardRef<
       className={classnames(
         styles.popover,
         className,
-        'absolute z-40 border-0 border-none rounded shadow-xl bg-surface py-0 mt-1 outline-none'
+        'absolute z-50 border-0 border-none rounded shadow-xl bg-surface py-0 mt-1 outline-none'
       )}
       ref={ref}
     >
