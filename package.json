@@ -61,7 +61,7 @@
     "d3-shape": "^3.0.1",
     "date-fns": "^2.23.0",
     "draft-js": "^0.11.7",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-prom-bundle": "^6.3.6",
     "express-request-language": "^1.1.15",
     "formik": "^2.2.5",
