@@ -118,12 +118,7 @@ module.exports = {
       },
     },
   },
-  purge: {
-    content: ['./src/**/*.tsx'],
-    options: {
-      safelist: ['__light-mode', '__dark-mode', 'h-full'],
-    },
-  },
+  content: ['./src/**/*.tsx'],
   plugins: [
     // @ts-ignore
     require('@tailwindcss/forms'),
