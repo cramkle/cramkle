@@ -1,16 +1,11 @@
 'use client'
 
-import { useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { useCallback, useContext, useMemo, useState } from 'react'
 import * as React from 'react'
 
 declare global {
   type Theme = 'dark' | 'light'
-
-  interface Window {
-    __theme: Theme
-    __onThemeChange: (newTheme: Theme) => void
-    __setPreferredTheme: (theme: Theme) => void
-  }
 }
 
 interface ThemeValue {
@@ -20,25 +15,23 @@ interface ThemeValue {
 
 const ctx = React.createContext<ThemeValue | undefined>(undefined)
 
-export const ThemeProvider: React.FC<{ userPreferredTheme: Theme }> = ({
+export const ThemeProvider = ({
   userPreferredTheme,
   children,
+}: {
+  userPreferredTheme: Theme
+  children: React.ReactNode
 }) => {
-  const [theme, setTheme] = useState(() =>
-    typeof window === 'undefined'
-      ? userPreferredTheme
-      : window.__theme ?? 'light'
-  )
+  const [theme, setTheme] = useState(() => userPreferredTheme)
+  const router = useRouter()
 
-  useEffect(() => {
-    window.__onThemeChange = (newTheme: Theme) => {
+  const updateTheme = useCallback(
+    (newTheme: Theme) => {
       setTheme(newTheme)
-    }
-  }, [])
-
-  const updateTheme = useCallback((newTheme: Theme) => {
-    window.__setPreferredTheme(newTheme)
-  }, [])
+      router.refresh()
+    },
+    [router]
+  )
 
   const contextValue = useMemo(
     () => ({

@@ -1,3 +1,9 @@
+import 'fontsource-libre-franklin/latin.css'
+import '@src/material.scss'
+import '@src/app.scss'
+import '@src/tailwind.scss'
+
+import classNames from 'classnames'
 import { headers } from 'next/headers'
 import { Suspense } from 'react'
 
@@ -11,11 +17,6 @@ import type { UserQuery } from '@src/components/__generated__/UserQuery'
 import userQuery from '@src/components/userQuery.gql'
 import { createApolloClient } from '@src/utils/apolloClient'
 import { getUserPreferences } from '@src/utils/userPreferences'
-
-import 'fontsource-libre-franklin/latin.css'
-import '@src/material.scss'
-import '@src/app.scss'
-import '@src/tailwind.scss'
 
 export default async function RootLayout({
   children,
@@ -44,9 +45,15 @@ export default async function RootLayout({
   )
 
   return (
-    <html lang={language}>
-      <head />
-      <body>
+    <html
+      className={classNames('h-full', {
+        '__dark-mode': darkMode,
+        '__light-mode': !darkMode,
+      })}
+      lang={language}
+    >
+      <head></head>
+      <body className="h-full">
         <UserContext user={user ?? undefined}>
           <I18nProvider lang={language}>
             <ApolloProvider>
@@ -65,7 +72,7 @@ export default async function RootLayout({
                     }
                   >
                     <CramkleToasts />
-                    <div>{children}</div>
+                    <div className="h-full">{children}</div>
                   </Suspense>
                 </ThemeProvider>
               </HintsProvider>
