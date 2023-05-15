@@ -1,5 +1,5 @@
 module.exports = {
-  extends: '@lucasecdb',
+  extends: ['@lucasecdb', 'next/core-web-vitals'],
   env: {
     es6: true,
     node: true,

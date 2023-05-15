@@ -1,8 +1,8 @@
 import { plural } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
+import { useRouter } from 'next/navigation'
 import { useCallback } from 'react'
 import * as React from 'react'
-import { useNavigate } from 'react-router'
 
 import type { ModelsQuery_models } from '../pages/__generated__/ModelsQuery'
 import { Card, CardContent, CardPressable } from './views/Card'
@@ -20,9 +20,9 @@ const ModelCard: React.FunctionComponent<Props & ModelsQuery_models> = ({
   fields,
   templates,
 }) => {
-  const navigate = useNavigate()
+  const router = useRouter()
   const { i18n } = useLingui()
-  const handleClick = useCallback(() => navigate(`/m/${id}`), [navigate, id])
+  const handleClick = useCallback(() => router.push(`/m/${id}`), [router, id])
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => e.key === 'Enter' && handleClick(),
     [handleClick]

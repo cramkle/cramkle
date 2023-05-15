@@ -1,3 +1,5 @@
+'use client'
+
 import classnames from 'classnames'
 import type { ReactNode } from 'react'
 import { forwardRef, useContext } from 'react'

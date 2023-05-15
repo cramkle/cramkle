@@ -7,7 +7,7 @@ import { useRef, useState } from 'react'
 import * as React from 'react'
 
 import { useLatestRefEffect } from '../hooks/useLatestRefEffect'
-import { DRAFT_CONTENT_FRAGMENT, MODEL_QUERY } from '../pages/ModelQuery'
+// import { DRAFT_CONTENT_FRAGMENT, MODEL_QUERY } from '../pages/ModelQuery'
 import type {
   ModelQuery,
   ModelQueryVariables,
@@ -49,7 +49,7 @@ const TEMPLATE_FRAGMENT = gql`
     }
   }
 
-  ${DRAFT_CONTENT_FRAGMENT}
+  ${'' /*DRAFT_CONTENT_FRAGMENT*/}
 `
 
 const RENAME_TEMPLATE_MUTATION = gql`

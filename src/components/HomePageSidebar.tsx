@@ -1,7 +1,7 @@
 import { Trans } from '@lingui/macro'
 import classnames from 'classnames'
+import Link from 'next/link'
 import type { FC } from 'react'
-import { Link } from 'react-router-dom'
 
 import { CircleIcon } from './icons/CircleIcon'
 import { MarketplaceIcon } from './icons/MarketplaceIcon'
@@ -15,16 +15,20 @@ const HomePageSidebar: FC<{ className?: string }> = ({ className }) => {
   return (
     <nav className={classnames(className, 'w-full px-8 py-6 max-w-xs')}>
       <List>
-        <ListItem as={Link} to="/statistics" icon={<StatisticsIcon />}>
+        <ListItem as={Link} href="/statistics" icon={<StatisticsIcon />}>
           <Trans>Statistics</Trans>
         </ListItem>
-        <ListItem as={Link} icon={<SettingsIcon />} to="/settings/preferences">
+        <ListItem
+          as={Link}
+          icon={<SettingsIcon />}
+          href="/settings/preferences"
+        >
           <Trans>Settings</Trans>
         </ListItem>
-        <ListItem as={Link} to="/settings/profile" icon={<ProfileIcon />}>
+        <ListItem as={Link} href="/settings/profile" icon={<ProfileIcon />}>
           <Trans>Profile</Trans>
         </ListItem>
-        <ListItem as={Link} to="/marketplace" icon={<MarketplaceIcon />}>
+        <ListItem as={Link} href="/marketplace" icon={<MarketplaceIcon />}>
           <div className="flex items-center">
             <Trans>Marketplace</Trans>
 
@@ -36,7 +40,7 @@ const HomePageSidebar: FC<{ className?: string }> = ({ className }) => {
       </List>
 
       <footer className="max-w-xs mx-auto mt-10 px-8 flex justify-between items-center text-txt text-opacity-text-secondary text-xs">
-        <Link to="/about">
+        <Link href="/about">
           <Trans>About us</Trans>
         </Link>
 

@@ -1,11 +1,11 @@
 import { gql, useMutation } from '@apollo/client'
 import { Plural, Trans, t } from '@lingui/macro'
+import { useRouter } from 'next/navigation'
 import { useRef, useState } from 'react'
 import * as React from 'react'
-import { useNavigate } from 'react-router'
 
-import { MODELS_QUERY } from '../pages/ModelsSection'
-import type { ModelsQuery } from '../pages/__generated__/ModelsQuery'
+// import { MODELS_QUERY } from '../pages/ModelsSection'
+// import type { ModelsQuery } from '../pages/__generated__/ModelsQuery'
 import {
   TIMEOUT_MEDIUM,
   pushErrorToast,
@@ -38,7 +38,7 @@ const DELETE_MODEL_MUTATION = gql`
 `
 
 const DeleteModelButton: React.FunctionComponent<Props> = ({ model }) => {
-  const navigate = useNavigate()
+  const router = useRouter()
   const [mutate] = useMutation<
     DeleteModelMutation,
     DeleteModelMutationVariables
@@ -52,6 +52,7 @@ const DeleteModelButton: React.FunctionComponent<Props> = ({ model }) => {
 
     mutate({
       variables: { modelId: model.id },
+      /*
       update: (cache, { data }) => {
         const deletedModelId = data?.deleteModel?.model?.id
 
@@ -72,9 +73,10 @@ const DeleteModelButton: React.FunctionComponent<Props> = ({ model }) => {
           })
         }
       },
+      */
     })
       .then(() => {
-        navigate('/models')
+        router.push('/models')
 
         pushSimpleToast(t`Model deleted successfully`)
       })

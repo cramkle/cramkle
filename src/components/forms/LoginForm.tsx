@@ -1,8 +1,9 @@
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { Formik } from 'formik'
+import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 import * as React from 'react'
-import { Link, useSearchParams } from 'react-router-dom'
 import { object, string } from 'yup'
 
 import { Button } from '../views/Button'
@@ -20,7 +21,7 @@ const passwordRequired = t`Password is required`
 
 const LoginForm: React.FunctionComponent = () => {
   const { i18n } = useLingui()
-  const [searchParams] = useSearchParams()
+  const searchParams = useSearchParams()
 
   return (
     <Formik<LoginFormValues>
@@ -86,7 +87,10 @@ const LoginForm: React.FunctionComponent = () => {
             type="password"
             label={i18n._(t`Password`)}
           />
-          <Link className="text-primary hover:underline" to="/forgot-password">
+          <Link
+            className="text-primary hover:underline"
+            href="/forgot-password"
+          >
             <Trans>Forgot your password?</Trans>
           </Link>
 

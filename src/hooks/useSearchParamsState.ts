@@ -1,5 +1,5 @@
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { useCallback, useEffect, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
 
 export const useSearchParamsState = <DefaultValue extends string | undefined>(
   key: string,
@@ -8,41 +8,38 @@ export const useSearchParamsState = <DefaultValue extends string | undefined>(
   DefaultValue extends string ? string : string | undefined,
   (newValue: string) => void
 ] => {
-  const navigate = useNavigate()
-  const location = useLocation()
+  const router = useRouter()
+  const search = useSearchParams()
+  const pathname = usePathname()
 
   const [value, setValue] = useState(() => {
-    const searchParams = new URLSearchParams(location.search)
-
-    if (searchParams.has(key)) {
-      return searchParams.get(key)!
+    if (search.has(key)) {
+      return search.get(key)!
     }
 
     return defaultValue
   })
 
   useEffect(() => {
-    const searchParams = new URLSearchParams(location.search)
-
-    if (searchParams.has(key)) {
-      if (searchParams.get(key) === value) {
+    if (search.has(key)) {
+      if (search.get(key) === value) {
         return
       }
 
-      setValue(searchParams.get(key)!)
+      setValue(search.get(key)!)
       return
     }
-  }, [location, key, value])
+  }, [search, key, value])
 
   const updateValue = useCallback(
     (newValue: string) => {
-      const searchParams = new URLSearchParams(location.search)
+      const searchParams = new URLSearchParams(search)
 
       searchParams.set(key, newValue)
 
-      navigate(location.pathname + '?' + searchParams.toString())
+      router.push(pathname + '?' + searchParams.toString())
     },
-    [navigate, key, location.pathname, location.search]
+    [router, key, pathname, search]
   )
 
   return [value as any, updateValue]

@@ -1,19 +1,16 @@
-import type { Location } from 'history'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { useCallback, useMemo } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
 
 import type { PageArgs } from '../components/Pagination'
 
 type PaginationState = PageArgs
 
 export const usePaginationParams = () => {
-  const navigate = useNavigate()
-  const location = useLocation() as Location<PaginationState>
+  const router = useRouter()
+  const search = useSearchParams()
+  const pathname = usePathname()
 
-  const queryParams = useMemo(
-    () => new URLSearchParams(location.search),
-    [location.search]
-  )
+  const queryParams = useMemo(() => new URLSearchParams(search), [search])
 
   const paginationParams = useMemo<PaginationState>(() => {
     let page = 1
@@ -46,9 +43,9 @@ export const usePaginationParams = () => {
       updatedQueryParams.set('page', updatedParams.page.toString())
       updatedQueryParams.set('size', updatedParams.size.toString())
 
-      navigate(location.pathname + '?' + updatedQueryParams.toString())
+      router.push(pathname + '?' + updatedQueryParams.toString())
     },
-    [queryParams, paginationParams, navigate, location.pathname]
+    [queryParams, paginationParams, router, pathname]
   )
 
   return {

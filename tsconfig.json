@@ -1,6 +1,9 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "esModuleInterop": true,
+    "noEmit": true,
+    "forceConsistentCasingInFileNames": true,
     "allowJs": true,
     "sourceMap": true,
     "module": "esnext",
@@ -15,18 +18,29 @@
     "strictBindCallApply": true,
     "strictFunctionTypes": true,
     "target": "es5",
-    "lib": ["es2020", "dom"],
-    "jsx": "react-jsx",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "jsx": "preserve",
+    "incremental": true,
     "resolveJsonModule": true,
+    "isolatedModules": true,
     "useUnknownInCatchVariables": true,
-    "exactOptionalPropertyTypes": true
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "exactOptionalPropertyTypes": true,
+    "paths": {
+      "@src/*": ["src/*"]
+    }
   },
   "exclude": ["node_modules"],
   "include": [
-    "./**/*.ts",
-    "./**/*.tsx",
-    "./**/*.js",
-    "./.*.js",
-    "./src/typings/*.d.ts"
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.js",
+    ".*.js",
+    ".next/types/**/*.ts"
   ]
 }

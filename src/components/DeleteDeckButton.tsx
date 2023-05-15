@@ -1,11 +1,11 @@
 import { gql, useMutation } from '@apollo/client'
 import { Trans, t } from '@lingui/macro'
+import { useRouter } from 'next/navigation'
 import { useCallback, useRef, useState } from 'react'
 import * as React from 'react'
-import { useNavigate } from 'react-router'
 
-import { DECKS_QUERY } from '../pages/DecksSection'
-import type { DecksQuery } from '../pages/__generated__/DecksQuery'
+// import { DECKS_QUERY } from '../pages/DecksSection'
+// import type { DecksQuery } from '../pages/__generated__/DecksQuery'
 import {
   TIMEOUT_MEDIUM,
   pushErrorToast,
@@ -38,7 +38,7 @@ const DELETE_DECK_MUTATION = gql`
 `
 
 const DeleteDeckButton: React.FunctionComponent<Props> = ({ deckId }) => {
-  const navigate = useNavigate()
+  const router = useRouter()
   const [mutate] = useMutation<DeleteDeckMutation, DeleteDeckMutationVariables>(
     DELETE_DECK_MUTATION
   )
@@ -50,6 +50,7 @@ const DeleteDeckButton: React.FunctionComponent<Props> = ({ deckId }) => {
 
     mutate({
       variables: { deckId },
+      /*
       update: (cache, { data }) => {
         const deletedDeckId = data?.deleteDeck?.deck?.id
 
@@ -66,9 +67,10 @@ const DeleteDeckButton: React.FunctionComponent<Props> = ({ deckId }) => {
           })
         }
       },
+      */
     })
       .then(() => {
-        navigate('/decks')
+        router.push('/decks')
 
         pushSimpleToast(t`Deck deleted successfully`)
       })
@@ -82,7 +84,7 @@ const DeleteDeckButton: React.FunctionComponent<Props> = ({ deckId }) => {
           TIMEOUT_MEDIUM
         )
       })
-  }, [deckId, navigate, mutate])
+  }, [deckId, router, mutate])
 
   const handleClose = useCallback(() => {
     if (deleting) {

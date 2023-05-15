@@ -1,8 +1,8 @@
 import { gql, useMutation } from '@apollo/client'
 import { Trans, t } from '@lingui/macro'
+import { useRouter } from 'next/navigation'
 import { useRef, useState } from 'react'
 import * as React from 'react'
-import { useNavigate } from 'react-router'
 
 import { TIMEOUT_MEDIUM, pushErrorToast, pushToast } from '../toasts/pushToast'
 import { deckCardFragment } from './DeckCard'
@@ -39,7 +39,7 @@ const InstallPublishedDeckButton: React.FunctionComponent<Props> = ({
   deckId,
   isDeckInstalled,
 }) => {
-  const navigate = useNavigate()
+  const router = useRouter()
   const [dialogOpen, setDialogOpen] = useState(false)
   const [mutate] = useMutation<
     InstallDeckMutation,
@@ -78,7 +78,7 @@ const InstallPublishedDeckButton: React.FunctionComponent<Props> = ({
           action: {
             label: t`View`,
             onPress: () => {
-              navigate(`/d/${slug}`)
+              router.push(`/d/${slug}`)
             },
           },
         },

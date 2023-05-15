@@ -1,8 +1,11 @@
+'use client'
+
 import { Trans } from '@lingui/macro'
 import classnames from 'classnames'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { useCallback, useState } from 'react'
 import * as React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
 
 import { useDarkModePreferencesSync } from '../hooks/useDarkModePreferencesSync'
 import { useOffline } from '../hooks/useOffline'
@@ -32,15 +35,15 @@ import { Menu, MenuButton, MenuItem, MenuList } from './views/MenuButton'
 import { Switch } from './views/Switch'
 
 const DefaultMenuItems: React.FC = () => {
-  const navigate = useNavigate()
+  const router = useRouter()
   const { theme, setTheme } = useTheme()
   const me = useCurrentUser()
 
   const [showAnonLogoutModal, setShowAnonLogoutModal] = React.useState(false)
 
   const handleSettingsClick = useCallback(() => {
-    navigate('/settings/preferences')
-  }, [navigate])
+    router.push('/settings/preferences')
+  }, [router])
 
   const handleLogout = useCallback(() => {
     if (me.anonymous && !showAnonLogoutModal) {
@@ -152,9 +155,9 @@ const UserBanner: React.VFC = () => {
 }
 
 const MobileMenu: React.FC = () => {
-  const navigate = useNavigate()
+  const router = useRouter()
 
-  const handleStatisticsClick = () => navigate('/statistics')
+  const handleStatisticsClick = () => router.push('/statistics')
 
   return (
     <Menu>
@@ -221,7 +224,7 @@ const Shell: React.FC = ({ children }) => {
         <Header className="relative">
           <HeaderContent>
             <HeaderSection>
-              <Link className="flex items-center pl-1 link" to="/">
+              <Link className="flex items-center pl-1 link" href="/">
                 {!isOffline ? <Logo width="32" /> : <LogoGray width="32" />}
                 <AppName className="ml-2" />
               </Link>

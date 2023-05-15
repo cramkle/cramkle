@@ -4,7 +4,7 @@ import { useState } from 'react'
 import * as React from 'react'
 import type { VFC } from 'react'
 
-import { DECKS_QUERY } from '../pages/DecksSection'
+// import { DECKS_QUERY } from '../pages/DecksSection'
 import {
   AlertDialog,
   AlertDialogDescription,
@@ -52,7 +52,7 @@ export const PublishDeckButton: VFC<Props> = ({ deckId, deck }) => {
       variables: {
         id: deckId,
       },
-      refetchQueries: [{ query: DECKS_QUERY }],
+      // refetchQueries: [{ query: DECKS_QUERY }],
     })
     setDialogOpen(false)
   }
@@ -62,7 +62,7 @@ export const PublishDeckButton: VFC<Props> = ({ deckId, deck }) => {
       variables: {
         id: deckId,
       },
-      refetchQueries: [{ query: DECKS_QUERY }],
+      // refetchQueries: [{ query: DECKS_QUERY }],
     })
     setDialogOpen(false)
   }

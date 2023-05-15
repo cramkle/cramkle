@@ -1,3 +1,5 @@
+'use client'
+
 import type * as Polymorphic from '@reach/utils/polymorphic'
 import classnames from 'classnames'
 import { forwardRef } from 'react'

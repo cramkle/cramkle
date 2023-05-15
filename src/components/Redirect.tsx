@@ -1,7 +1,8 @@
 import type { Location } from 'history'
+import { usePathname, useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import * as React from 'react'
-import { useHref, useLocation, useNavigate } from 'react-router'
+import { useHref } from 'react-router'
 
 export class RedirectError extends Error {
   public url
@@ -20,13 +21,13 @@ const Redirect: React.VFC<{
   appendReturnUrl?: boolean
 }> = ({ to, appendReturnUrl = false }) => {
   const resolvedTo = useHref(to)
-  const location = useLocation()
+  const pathname = usePathname() ?? '/'
 
   if (typeof window === 'undefined') {
     throw new RedirectError(resolvedTo, appendReturnUrl)
   }
 
-  const navigate = useNavigate()
+  const router = useRouter()
 
   useEffect(() => {
     const url = new URL(window.location.origin + resolvedTo)
@@ -35,17 +36,11 @@ const Redirect: React.VFC<{
 
     if (appendReturnUrl) {
       search =
-        (search ? '&' : '?') +
-        'returnUrl=' +
-        encodeURIComponent(location.pathname)
+        (search ? '&' : '?') + 'returnUrl=' + encodeURIComponent(pathname)
     }
 
-    if (typeof to !== 'string' && typeof to.state !== 'undefined') {
-      navigate(url.pathname + search, { state: to.state })
-    } else {
-      navigate(url.pathname + search)
-    }
-  }, [navigate, to, resolvedTo, location.pathname, appendReturnUrl])
+    router.push(url.pathname + search)
+  }, [router, to, resolvedTo, pathname, appendReturnUrl])
 
   return <div dangerouslySetInnerHTML={{ __html: '' }} />
 }

@@ -1,14 +1,16 @@
+'use client'
+
 import { createContext, useContext, useMemo } from 'react'
 import * as React from 'react'
 
 export const HintsContext = createContext({ isMobile: true })
 
-export const HintsProvider: React.FC<{ userAgent?: string }> = ({
+export const HintsProvider: React.FC<{ userAgent?: string | null }> = ({
   children,
   userAgent = '',
 }) => {
   const isMobile = /android|ios|iphone|ipad/i.test(
-    !process.browser ? userAgent : navigator.userAgent
+    typeof window === 'undefined' ? userAgent ?? '' : navigator.userAgent
   )
 
   const context = useMemo(
