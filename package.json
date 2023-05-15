@@ -41,7 +41,6 @@
     "@lingui/core": "3.15.0",
     "@lingui/react": "3.15.0",
     "@material/icon-button": "^3.1.0",
-    "@next/font": "13.1.1",
     "@reach/alert": "~0.16.0",
     "@reach/alert-dialog": "~0.16.0",
     "@reach/checkbox": "~0.16.0",
