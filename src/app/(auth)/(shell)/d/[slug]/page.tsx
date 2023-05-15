@@ -104,19 +104,18 @@ export default function DeckPage({
   params: { slug: string }
 }) {
   const { i18n } = useLingui()
+  const searchParams = useSearchParams()
+  const pathname = usePathname()
   const router = useRouter()
   const { paginationParams, pageSize, onPaginationChange } =
     usePaginationParams()
   const me = useCurrentUser()
 
-  const search = useSearchParams()
-  const pathname = usePathname()
-
   const [searchInputValue, setSearchInputValue] = useState(() => {
-    const searchParams = new URLSearchParams(search)
+    const search = new URLSearchParams(searchParams)
 
-    if (searchParams.has('search')) {
-      return searchParams.get('search')
+    if (search.has('search')) {
+      return search.get('search')
     }
 
     return ''
@@ -140,24 +139,26 @@ export default function DeckPage({
         clearTimeout(searchDebounceRef.current)
       }
 
-      const searchParams = new URLSearchParams(search)
+      const searchParamsCopy = new URLSearchParams(searchParams)
 
-      searchParams.set('search', search)
-      searchParams.set('page', '1')
+      searchParamsCopy.set('search', search)
+      searchParamsCopy.set('page', '1')
 
       if (!skipHistoryPush) {
-        router.push(pathname + '?' + searchParams.toString())
+        router.push(pathname + '?' + searchParamsCopy.toString())
       }
 
       setSearchVariable(search)
     },
-    [router, searchInputValue, pathname]
+    [router, pathname, searchParams, searchInputValue]
   )
 
-  useLatestRefEffect(search, (latestLocationSearch) => {
-    const searchParams = new URLSearchParams(latestLocationSearch)
+  useLatestRefEffect(searchParams, (latestLocationSearch) => {
+    const searchParamsCopy = new URLSearchParams(latestLocationSearch)
 
-    const search = searchParams.has('search') ? searchParams.get('search') : ''
+    const search = searchParamsCopy.has('search')
+      ? searchParamsCopy.get('search')
+      : ''
 
     setSearchInputValue(search)
     handleSearchSubmit(search, true)

@@ -25,7 +25,7 @@ const DECKS_QUERY = gql`
   ${deckCardFragment}
 `
 
-const DecksSection: React.FunctionComponent = () => {
+export default function DecksSection() {
   const [dialogOpen, setDialogOpen] = useState(false)
 
   const handleDialogClose = useCallback(() => {
@@ -93,5 +93,3 @@ const DecksSection: React.FunctionComponent = () => {
     </>
   )
 }
-
-export default DecksSection

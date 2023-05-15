@@ -1,10 +1,12 @@
+'use client'
+
 import { Trans } from '@lingui/macro'
 import Link from 'next/link'
 import * as React from 'react'
 
-import { Body1, Headline5 } from '../components/views/Typography'
+import { Body1, Headline5 } from '@src/components/views/Typography'
 
-const NotFoundPage: React.FunctionComponent = () => {
+export default function NotFoundPage() {
   return (
     <div className="flex flex-col items-center justify-center px-4 sm:px-0 min-h-screen">
       <Headline5 className="font-bold text-center sm:text-left">
@@ -19,5 +21,3 @@ const NotFoundPage: React.FunctionComponent = () => {
     </div>
   )
 }
-
-export default NotFoundPage
