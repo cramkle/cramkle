@@ -19,7 +19,7 @@ import { Header, HeaderContent, HeaderSection } from './views/Header'
 
 const RegisterForm = React.lazy(() => import('./forms/RegisterForm'))
 
-const LandingPage: React.VFC = () => {
+export default function LandingPage() {
   // const router = useRouter()
   const { i18n } = useLingui()
 
@@ -155,5 +155,3 @@ const LandingPage: React.VFC = () => {
     </>
   )
 }
-
-export default LandingPage
