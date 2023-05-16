@@ -1,4 +1,4 @@
-FROM node:14-alpine AS build-env
+FROM node:16-alpine AS build-env
 WORKDIR /cramkle
 
 COPY . .
@@ -9,7 +9,7 @@ RUN npm run build
 
 RUN rm -rf build/cache
 
-FROM node:14-alpine
+FROM node:16-alpine
 WORKDIR /cramkle
 
 COPY --from=build-env \
