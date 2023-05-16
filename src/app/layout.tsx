@@ -1,7 +1,7 @@
 import 'fontsource-libre-franklin/latin.css'
-import '@src/material.scss'
-import '@src/app.scss'
-import '@src/tailwind.scss'
+import '@src/styles/material.scss'
+import '@src/styles/tailwind.scss'
+import './layout.scss'
 
 import classNames from 'classnames'
 import { headers } from 'next/headers'

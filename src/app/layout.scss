@@ -1,9 +1,9 @@
-@import './styles/_variables';
+@import '../styles/_variables';
 
 @import '~@reach/checkbox/styles.css';
 @import '~@reach/dialog/styles.css';
 
-@import './styles/_draft.scss';
+@import '../styles/_draft.scss';
 
 * {
   box-sizing: border-box;
