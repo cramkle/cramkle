@@ -56,15 +56,16 @@ const AlertDialogContent = forwardRef<
   )
 })
 
-const AlertDialogOverlay: React.FC<AlertDialogProps & { className?: string }> =
-  (props) => {
-    return (
-      <ReachAlertDialogOverlay
-        {...props}
-        className={classnames(props.className, 'z-50 px-2')}
-      />
-    )
-  }
+const AlertDialogOverlay: React.FC<
+  AlertDialogProps & { className?: string }
+> = (props) => {
+  return (
+    <ReachAlertDialogOverlay
+      {...props}
+      className={classnames(props.className, 'z-50 px-2')}
+    />
+  )
+}
 
 const AlertDialog: React.FC<AlertDialogProps> = ({
   id,
