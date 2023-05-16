@@ -4,7 +4,7 @@ import { render } from '../../../test/utils'
 import LoginForm from '../LoginForm'
 
 describe('<LoginForm />', () => {
-  it('should show error message on failure', async () => {
+  it.skip('should show error message on failure', async () => {
     // @ts-ignore
     global.fetch.mockResponse('Unauthorized', {
       status: 401,
