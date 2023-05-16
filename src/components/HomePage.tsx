@@ -6,9 +6,6 @@ import { usePathname, useRouter } from 'next/navigation'
 import { useCallback, useEffect } from 'react'
 import * as React from 'react'
 
-import registerSW from '../registerSW'
-import { pushSimpleToast, pushToast } from '../toasts/pushToast'
-import { ToastStore } from '../toasts/store'
 import { positionMatchMinWidth } from '../utils/popover'
 import { HeaderPortal } from './HeaderPortal'
 import { useCurrentUser } from './UserContext'
@@ -18,14 +15,15 @@ import { StudyIcon } from './icons/StudyIcon'
 import { Tab, TabList, TabPanels, Tabs } from './views/Tabs'
 import { Tooltip } from './views/Tooltip'
 
-const toastStore = ToastStore.getInstance()
-
 const HomePageSidebar = React.lazy(() => import('./HomePageSidebar'))
 
-const HomeTab: React.FC<{
+const HomeTab = ({
+  Icon,
+  label,
+}: {
   Icon: React.ComponentType<React.SVGAttributes<SVGSVGElement>>
   label: string
-}> = ({ Icon, label }) => {
+}) => {
   return (
     <Tooltip
       label={label}
@@ -67,39 +65,11 @@ const HomePage: React.FunctionComponent = ({ children }) => {
   }
 
   useEffect(() => {
-    if (process.env.NODE_ENV !== 'production') {
-      return
-    }
-
-    let updateNotificationId: string | null = null
-    let installNotificationId: string | null = null
-
-    registerSW({
-      onUpdate: () => {
-        updateNotificationId = pushToast({
-          message: t`A new update is available!`,
-          action: {
-            label: t`Refresh`,
-            onPress: () => {
-              window.location.reload()
-            },
-          },
-        })
-      },
-      onInstall: () => {
-        installNotificationId = pushSimpleToast(t`Ready to work offline`)
-      },
+    navigator.serviceWorker.getRegistrations().then(function (registrations) {
+      for (const registration of registrations) {
+        registration.unregister()
+      }
     })
-
-    return () => {
-      if (updateNotificationId) {
-        toastStore.remove(updateNotificationId)
-      }
-
-      if (installNotificationId) {
-        toastStore.remove(installNotificationId)
-      }
-    }
   }, [])
 
   const handleTabChange = useCallback(
