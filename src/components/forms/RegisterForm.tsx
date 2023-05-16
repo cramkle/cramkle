@@ -1,7 +1,6 @@
 'use client'
 
 import { gql, useMutation } from '@apollo/client'
-import type { MessageDescriptor } from '@lingui/core'
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { Formik } from 'formik'
@@ -22,7 +21,7 @@ import type {
 } from './__generated__/RegisterUser'
 
 interface Props {
-  title?: MessageDescriptor | string
+  title?: string
 }
 
 const REGISTER_MUTATION = gql`

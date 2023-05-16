@@ -1,5 +1,26 @@
+// @ts-check
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  poweredByHeader: false,
+  experimental: {
+    serverComponentsExternalPackages: [
+      '@lingui/core',
+      '@lingui/react',
+      'react-tab-controller',
+      '@material/icon-button',
+      '@reach/alert',
+      '@reach/alert-dialog',
+      '@reach/checkbox',
+      '@reach/dialog',
+      '@reach/listbox',
+      '@reach/menu-button',
+      '@reach/tabs',
+      '@reach/tooltip',
+      '@reach/visually-hidden',
+    ],
+    swcPlugins: [['@lingui/swc-plugin', {}]],
+  },
   async rewrites() {
     return [
       {
@@ -7,9 +28,6 @@ const nextConfig = {
         destination: 'http://localhost:5000/api/:path*',
       },
     ]
-  },
-  experimental: {
-    appDir: true,
   },
   webpack(config) {
     config.module.rules.push({

@@ -1,4 +1,3 @@
-import type { MessageDescriptor } from '@lingui/core'
 import { useLingui } from '@lingui/react'
 import classNames from 'classnames'
 import { memo, useRef } from 'react'
@@ -6,7 +5,7 @@ import * as React from 'react'
 import { useControlledTabIndex } from 'react-tab-controller'
 
 export interface Style {
-  label: MessageDescriptor | string
+  label: string
   style: string
   icon?: React.ReactElement | undefined
 }

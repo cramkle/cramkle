@@ -350,6 +350,7 @@ export default function StatisticsPage() {
               one: `${formattedStudyTime} day`,
               other: `${formattedStudyTime} days`,
             }),
+            other: '',
           })}
         />
         <StatisticsCard
