@@ -22,7 +22,7 @@ import type {
   PublishedDecksQuery_publishedDecks_edges_node,
 } from './__generated__/PublishedDecksQuery'
 
-export const PUBLISHED_DECK_QUERY = gql`
+const PUBLISHED_DECK_QUERY = gql`
   query PublishedDecksQuery($page: Int!, $size: Int!) {
     publishedDecks(page: $page, size: $size) {
       totalCount
