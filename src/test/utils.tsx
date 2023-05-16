@@ -3,20 +3,14 @@ import { MockedProvider } from '@apollo/client/testing'
 import { setupI18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
 import { act, fireEvent, render as rtlRender } from '@testing-library/react'
-import type { MemoryHistory, Update } from 'history'
-import { createMemoryHistory } from 'history'
 import { en as enPlural } from 'make-plural/plurals'
-import type { FC, ReactElement } from 'react'
-import { useLayoutEffect, useReducer, useRef } from 'react'
-import { HelmetProvider } from 'react-helmet-async'
-import { Router } from 'react-router'
+import type { ReactElement } from 'react'
 
 import { TopbarProvider } from '../hooks/useTopBarLoading'
 import { messages as enCatalog } from '../locales/en/messages'
 
 interface RenderOptions {
   mocks?: MockedResponse[]
-  history?: MemoryHistory
 }
 
 export function render(ui: ReactElement, options?: RenderOptions) {
@@ -27,55 +21,17 @@ export function render(ui: ReactElement, options?: RenderOptions) {
 
   i18n.activate('en')
 
-  const BrowserRouter: FC<{ history?: MemoryHistory }> = ({
-    children,
-    history: historyProps,
-  }) => {
-    const historyRef = useRef<MemoryHistory>()
-    if (historyRef.current == null) {
-      historyRef.current = historyProps ?? createMemoryHistory()
-    }
-
-    const history = historyRef.current
-
-    const [state, dispatch] = useReducer(
-      (_: Update, action: Update) => action,
-      {
-        action: history.action,
-        location: history.location,
-      }
-    )
-
-    useLayoutEffect(() => history.listen(dispatch), [history])
-
-    return (
-      <Router
-        action={state.action}
-        location={state.location}
-        navigator={history}
-      >
-        {children}
-      </Router>
-    )
-  }
-
-  const history = options?.history
-
   const utils = rtlRender(
-    <BrowserRouter {...(history ? { history } : undefined)}>
-      <HelmetProvider>
-        <I18nProvider i18n={i18n}>
-          <MockedProvider
-            {...(options?.mocks ? { mocks: options.mocks } : undefined)}
-            addTypename={false}
-          >
-            <TopbarProvider isLoading={false} setLoading={jest.fn()}>
-              {ui}
-            </TopbarProvider>
-          </MockedProvider>
-        </I18nProvider>
-      </HelmetProvider>
-    </BrowserRouter>
+    <I18nProvider i18n={i18n}>
+      <MockedProvider
+        {...(options?.mocks ? { mocks: options.mocks } : undefined)}
+        addTypename={false}
+      >
+        <TopbarProvider isLoading={false} setLoading={jest.fn()}>
+          {ui}
+        </TopbarProvider>
+      </MockedProvider>
+    </I18nProvider>
   )
 
   return { ...utils, history }

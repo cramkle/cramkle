@@ -3,7 +3,8 @@ import { Plural, Trans } from '@lingui/macro'
 import { useRef } from 'react'
 import * as React from 'react'
 
-import type { DeckQuery_deck_notes_edges_node } from '../pages/__generated__/DeckQuery'
+import type { DeckQuery_deck_notes_edges_node } from '@src/app/(auth)/(shell)/d/[slug]/__generated__/DeckQuery'
+
 import type {
   DeleteNoteMutation,
   DeleteNoteMutationVariables,

@@ -4,7 +4,8 @@ import * as React from 'react'
 import type {
   PublishedDeckQuery_publishedDeck_notes,
   PublishedDeckQuery_publishedDeck_notes_edges,
-} from '../pages/__generated__/PublishedDeckQuery'
+} from '@src/app/(auth)/(shell)/marketplace/d/[slug]/__generated__/PublishedDeckQuery'
+
 import type { PageArgs, PageCursors, PageInfo } from './Pagination'
 import { Pagination } from './Pagination'
 import { Card } from './views/Card'

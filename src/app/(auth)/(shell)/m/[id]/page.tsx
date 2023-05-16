@@ -44,8 +44,8 @@ import {
 import { useTopBarLoading } from '@src/hooks/useTopBarLoading'
 
 import { DRAFT_CONTENT_FRAGMENT, MODEL_QUERY } from './ModelQuery'
-import type { DraftContent } from './__generated__/DraftContent'
 import type {
+  ModelQuery_model_templates_frontSide as DraftContent,
   ModelQuery,
   ModelQueryVariables,
   ModelQuery_model_fields,

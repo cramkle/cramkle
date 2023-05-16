@@ -9,7 +9,8 @@ import type {
   DeckQuery_deck_notes,
   DeckQuery_deck_notes_edges,
   DeckQuery_deck_notes_edges_node,
-} from '../pages/__generated__/DeckQuery'
+} from '@src/app/(auth)/(shell)/d/[slug]/__generated__/DeckQuery'
+
 import DeleteNoteDialog from './DeleteNoteDialog'
 import type { PageArgs, PageCursors, PageInfo } from './Pagination'
 import { Pagination } from './Pagination'
