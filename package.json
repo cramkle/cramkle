@@ -14,7 +14,7 @@
     "lint": "eslint --ext js,ts,tsx .",
     "lint:css": "stylelint '**/*.{scss,css}'",
     "lint:ts": "tsc --noEmit --pretty",
-    "download-schema": "apollo service:download --endpoint=http://localhost:5000/_c/graphql -k",
+    "download-schema": "apollo service:download --endpoint=http://localhost:5000/api/graphql -k",
     "gen-types": "apollo client:codegen __generated__ --target=typescript --localSchemaFile=schema.json --globalTypesFile=src/globalTypes.ts",
     "add-locale": "lingui add-locale",
     "extract": "lingui extract --clean",

@@ -45,7 +45,7 @@ const LoginForm: React.FunctionComponent = () => {
         }
 
         try {
-          const res = await fetch('/_c/auth/login', {
+          const res = await fetch('/api/auth/login', {
             method: 'POST',
             credentials: 'include',
             headers: {

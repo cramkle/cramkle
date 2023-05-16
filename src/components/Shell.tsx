@@ -51,7 +51,7 @@ const DefaultMenuItems: React.FC = () => {
       return
     }
 
-    fetch('/_c/auth/logout', {
+    fetch('/api/auth/logout', {
       method: 'POST',
       credentials: 'include',
     }).then(() => window.location.assign('/login'))
