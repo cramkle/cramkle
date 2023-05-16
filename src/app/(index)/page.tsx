@@ -7,17 +7,18 @@ import { useRouter } from 'next/navigation'
 import { useRef, useState } from 'react'
 import * as React from 'react'
 
-import DeckCard, { deckCardFragment } from '../../components/DeckCard'
-import type { DeckCard_deck } from '../../components/__generated__/DeckCard_deck'
+import DeckCard, { deckCardFragment } from '@src/components/DeckCard'
+import type { DeckCard_deck } from '@src/components/__generated__/DeckCard_deck'
 import {
   AlertDialog,
   AlertDialogDescription,
   AlertDialogLabel,
-} from '../../components/views/AlertDialog'
-import { Button } from '../../components/views/Button'
-import { CircularProgress } from '../../components/views/CircularProgress'
-import { Container } from '../../components/views/Container'
-import { Body1, Body2, Headline1 } from '../../components/views/Typography'
+} from '@src/components/views/AlertDialog'
+import { Button } from '@src/components/views/Button'
+import { CircularProgress } from '@src/components/views/CircularProgress'
+import { Container } from '@src/components/views/Container'
+import { Body1, Body2, Headline1 } from '@src/components/views/Typography'
+
 import type { DecksToStudy } from './__generated__/DecksToStudy'
 import styles from './page.module.css'
 
