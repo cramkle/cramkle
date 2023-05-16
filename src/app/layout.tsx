@@ -15,7 +15,7 @@ import { ThemeProvider } from '@src/components/Theme'
 import { UserContext } from '@src/components/UserContext'
 import type { UserQuery } from '@src/components/__generated__/UserQuery'
 import userQuery from '@src/components/userQuery.gql'
-import { createApolloClient } from '@src/utils/apolloClient'
+import { getServerApolloClient } from '@src/utils/serverApolloClient'
 import { getUserPreferences } from '@src/utils/userPreferences'
 
 export default async function RootLayout({
@@ -23,20 +23,13 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const headersList = headers()
-
-  const apiHost = process.env.API_HOST ?? 'http://localhost:5000'
-
-  const apolloClient = createApolloClient(
-    `${apiHost}/api/graphql`,
-    headersList.get('cookie')
-  )
-
-  const cramkleLang = headersList.get('x-cramkle-lang') ?? 'en'
+  const apolloClient = getServerApolloClient()
 
   const {
     data: { me: user },
   } = await apolloClient.query<UserQuery>({ query: userQuery })
+
+  const cramkleLang = headers().get('x-cramkle-lang') ?? 'en'
 
   const { language, darkMode } = await getUserPreferences(
     apolloClient,
@@ -57,7 +50,7 @@ export default async function RootLayout({
         <UserContext user={user ?? undefined}>
           <I18nProvider lang={language}>
             <ApolloProvider>
-              <HintsProvider userAgent={headersList.get('user-agent')}>
+              <HintsProvider userAgent={headers().get('user-agent')}>
                 <ThemeProvider userPreferredTheme={darkMode ? 'dark' : 'light'}>
                   <Suspense
                     fallback={
