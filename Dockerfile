@@ -3,9 +3,9 @@ WORKDIR /cramkle
 
 COPY . .
 
-RUN yarn --frozen-lockfile --silent
+RUN npm install --legacy-peer-deps
 
-RUN yarn build
+RUN npm run build
 
 RUN rm -rf build/cache
 
@@ -13,15 +13,14 @@ FROM node:14-alpine
 WORKDIR /cramkle
 
 COPY --from=build-env \
-  /cramkle/casterly.config.js \
-  /cramkle/server.js \
+  /cramkle/next.config.js \
   /cramkle/package.json \
-  /cramkle/yarn.lock \
+  /cramkle/package-lock.json \
   ./
 
-COPY --from=build-env /cramkle/build/ ./build/
+COPY --from=build-env /cramkle/.next .next
 
-RUN yarn --prod --silent
+RUN npm install --legacy-peer-deps
 
 EXPOSE 3000
-CMD ["yarn", "start"]
+CMD ["npm", "start"]

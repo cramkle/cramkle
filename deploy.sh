@@ -4,12 +4,6 @@ unparsed_version=$(git describe --exact-match)
 
 is_stable=$?
 
-if [[ ! -z "$SENTRY_DSN" ]] && (( is_stable == 0 )); then
-  echo "CASTERLY_PUBLIC_SENTRY_DSN=$SENTRY_DSN" >> .env
-else
-  echo "No SENTRY_DSN or not stable build, skipping Sentry config.."
-fi
-
 if [[ -z "$REGISTRY_SERVER" ]]; then
   echo "No registry server, exiting.."
   exit 0;
