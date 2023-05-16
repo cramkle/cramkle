@@ -15,10 +15,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: NodeJS 14.x
+    - name: NodeJS 16.x
       uses: actions/setup-node@v1
       with:
-        node-version: 14.x
+        node-version: 16.x
     - run: npm install --legacy-peer-deps
     - uses: actions/cache@v2
       id: cache-build
@@ -53,10 +53,10 @@ jobs:
       with:
         path: ./*
         key: ${{ github.sha }}
-    - name: NodeJS 14.x
+    - name: NodeJS 16.x
       uses: actions/setup-node@v1
       with:
-        node-version: 14.x
+        node-version: 16.x
     - name: Messages compilation
       run: npm run compile
     - name: Lint
@@ -76,10 +76,10 @@ jobs:
       with:
         path: ./*
         key: ${{ github.sha }}
-    - name: NodeJS 14.x
+    - name: NodeJS 16.x
       uses: actions/setup-node@v1
       with:
-        node-version: 14.x
+        node-version: 16.x
     - name: Test App
       run: |
         npm run compile
@@ -96,10 +96,10 @@ jobs:
       with:
         path: ./*
         key: ${{ github.sha }}
-    - name: NodeJS 14.x
+    - name: NodeJS 16.x
       uses: actions/setup-node@v1
       with:
-        node-version: 14.x
+        node-version: 16.x
     - name: Build
       run: npm run build
     - uses: actions/upload-artifact@v2
