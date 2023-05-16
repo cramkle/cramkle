@@ -3,6 +3,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   poweredByHeader: false,
+  transpilePackages: ['uuid'],
+  output: 'standalone',
   experimental: {
     serverComponentsExternalPackages: [
       '@lingui/core',
