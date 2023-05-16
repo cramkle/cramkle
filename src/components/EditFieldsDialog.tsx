@@ -1,4 +1,4 @@
-// import type { Reference, StoreObject } from '@apollo/client'
+import type { Reference, StoreObject } from '@apollo/client'
 import { gql, useMutation } from '@apollo/client'
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
@@ -6,15 +6,14 @@ import classnames from 'classnames'
 import { useRef, useState } from 'react'
 import * as React from 'react'
 
-import { useLatestRefEffect } from '../hooks/useLatestRefEffect'
-// import { MODEL_QUERY } from '../pages/ModelQuery'
-/*
 import type {
   ModelQuery,
   ModelQueryVariables,
   ModelQuery_model_fields,
-} from '../pages/__generated__/ModelQuery'
-*/
+} from '@src/app/(auth)/(shell)/m/[id]//__generated__/ModelQuery'
+import { MODEL_QUERY } from '@src/app/(auth)/(shell)/m/[id]/ModelQuery'
+
+import { useLatestRefEffect } from '../hooks/useLatestRefEffect'
 import type {
   CreateField,
   CreateFieldVariables,
@@ -85,7 +84,7 @@ const DELETE_FIELD_MUTATION = gql`
 const EditFieldsDialog: React.FC<{
   isOpen?: boolean
   onDismiss?: () => void
-  fields: any[]
+  fields: ModelQuery_model_fields[]
   modelId: string
 }> = ({ isOpen = false, onDismiss, fields, modelId }) => {
   const { i18n } = useLingui()
@@ -111,7 +110,7 @@ const EditFieldsDialog: React.FC<{
     inputRef.current?.focus()
   })
 
-  const editField = (field?: any, isDelete = false) => {
+  const editField = (field?: ModelQuery_model_fields, isDelete = false) => {
     setEditingFieldId(field?.id ?? '')
     setFieldName(field?.name ?? '')
     setIsDelete(isDelete)
@@ -123,7 +122,7 @@ const EditFieldsDialog: React.FC<{
     setIsDelete(false)
   }
 
-  const handleDeleteField = (field: any) => {
+  const handleDeleteField = (field: ModelQuery_model_fields) => {
     editField(field, true)
   }
 
@@ -132,7 +131,6 @@ const EditFieldsDialog: React.FC<{
       variables: {
         fieldId: editingFieldId!,
       },
-      /*
       update: (cache, mutationResult) => {
         const data = cache.readQuery<ModelQuery, ModelQueryVariables>({
           query: MODEL_QUERY,
@@ -156,7 +154,6 @@ const EditFieldsDialog: React.FC<{
           })
         }
       },
-      */
     })
 
     clearEditField()
@@ -165,7 +162,6 @@ const EditFieldsDialog: React.FC<{
   const confirmCreateField = async () => {
     await createField({
       variables: { modelId, fieldName },
-      /*
       update: (cache, mutationResult) => {
         const data = cache.readQuery<ModelQuery, ModelQueryVariables>({
           query: MODEL_QUERY,
@@ -190,7 +186,6 @@ const EditFieldsDialog: React.FC<{
           })
         }
       },
-      */
     })
 
     clearEditField()
