@@ -39,7 +39,7 @@ export default function ForgotPasswordPage() {
   const { i18n } = useLingui()
   const router = useRouter()
   const pathname = usePathname()
-  const showSuccess = useSearchParams().has('showSuccess')
+  const showSuccess = !!useSearchParams()?.has('showSuccess')
 
   const [email, setEmail] = useState('')
   const [emailValid, setEmailValid] = useState(false)
