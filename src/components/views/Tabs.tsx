@@ -14,14 +14,15 @@ import * as React from 'react'
 
 import styles from './Tabs.module.css'
 
-export const TabList: React.FC<TabListProps & HTMLAttributes<HTMLDivElement>> =
-  ({ children, className = '', ...props }) => {
-    return (
-      <ReachTabList {...props} className={classNames(className, 'flex')}>
-        {children}
-      </ReachTabList>
-    )
-  }
+export const TabList: React.FC<
+  TabListProps & HTMLAttributes<HTMLDivElement>
+> = ({ children, className = '', ...props }) => {
+  return (
+    <ReachTabList {...props} className={classNames(className, 'flex')}>
+      {children}
+    </ReachTabList>
+  )
+}
 
 export const Tab = React.forwardRef(function Tab(
   { children, className = '', ...props },

@@ -6,13 +6,17 @@ import classnames from 'classnames'
 import { useRef, useState } from 'react'
 import * as React from 'react'
 
-import { useLatestRefEffect } from '../hooks/useLatestRefEffect'
-import { DRAFT_CONTENT_FRAGMENT, MODEL_QUERY } from '../pages/ModelQuery'
+import {
+  DRAFT_CONTENT_FRAGMENT,
+  MODEL_QUERY,
+} from '@src/app/(auth)/(shell)/m/[id]/ModelQuery'
 import type {
   ModelQuery,
   ModelQueryVariables,
   ModelQuery_model_templates,
-} from '../pages/__generated__/ModelQuery'
+} from '@src/app/(auth)/(shell)/m/[id]/__generated__/ModelQuery'
+
+import { useLatestRefEffect } from '../hooks/useLatestRefEffect'
 import type {
   CreateTemplate,
   CreateTemplateVariables,

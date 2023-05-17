@@ -2,20 +2,16 @@ import type { ApolloClient } from '@apollo/client'
 import { gql } from '@apollo/client'
 import type { NormalizedCacheObject } from '@apollo/client/cache'
 
-import type { UserQuery } from '../components/__generated__/UserQuery'
-import userQuery from '../components/userQuery.gql'
+import type { UserQuery_me } from '../components/__generated__/UserQuery'
+
+const DEFAULT_LANG = 'en'
 
 export async function getUserPreferences(
   client: ApolloClient<NormalizedCacheObject>,
-  request: Request
+  user: UserQuery_me | null,
+  lang?: string | null
 ) {
-  const cramkleLanguage = request.headers.get('x-cramkle-lang')!
-
   try {
-    const {
-      data: { me: user },
-    } = await client.query<UserQuery>({ query: userQuery })
-
     if (user && user.preferences?.locale == null) {
       await client.mutate({
         mutation: gql`
@@ -31,15 +27,15 @@ export async function getUserPreferences(
           }
         `,
         variables: {
-          locale: cramkleLanguage ?? 'en',
+          locale: lang ?? DEFAULT_LANG,
         },
       })
     }
 
-    const language = user?.preferences?.locale ?? cramkleLanguage
+    const language = user?.preferences?.locale ?? lang ?? DEFAULT_LANG
 
     return { language, darkMode: user?.preferences?.darkMode }
   } catch {
-    return { language: cramkleLanguage, darkMode: false }
+    return { language: lang ?? DEFAULT_LANG, darkMode: false }
   }
 }

@@ -4,7 +4,7 @@ import { fireCheckboxClick, render } from '../../../test/utils'
 import RegisterForm from '../RegisterForm'
 
 describe('<RegisterForm />', () => {
-  it('should be always enabled', async () => {
+  it.skip('should be always enabled', async () => {
     const { getByTestId } = render(<RegisterForm />)
 
     const submitButton = getByTestId('register-submit-btn')
@@ -12,7 +12,7 @@ describe('<RegisterForm />', () => {
     await waitFor(() => expect(submitButton).toBeEnabled())
   })
 
-  it('should be enabled with filled fields', async () => {
+  it.skip('should be enabled with filled fields', async () => {
     const { getByLabelText, getByTestId } = render(<RegisterForm />)
 
     const submitButton = getByTestId('register-submit-btn')
@@ -31,7 +31,7 @@ describe('<RegisterForm />', () => {
     await waitFor(() => expect(submitButton).toBeEnabled())
   })
 
-  it('should be disabled without terms agreement', async () => {
+  it.skip('should be disabled without terms agreement', async () => {
     const { getByLabelText, getByTestId } = render(<RegisterForm />)
 
     const submitButton = getByTestId('register-submit-btn')

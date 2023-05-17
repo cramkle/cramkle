@@ -1,14 +1,16 @@
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import * as React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
 
 import type {
   DeckQuery_deck_notes,
   DeckQuery_deck_notes_edges,
   DeckQuery_deck_notes_edges_node,
-} from '../pages/__generated__/DeckQuery'
+} from '@src/app/(auth)/(shell)/d/[slug]/__generated__/DeckQuery'
+
 import DeleteNoteDialog from './DeleteNoteDialog'
 import type { PageArgs, PageCursors, PageInfo } from './Pagination'
 import { Pagination } from './Pagination'
@@ -52,7 +54,7 @@ const NotesTable: React.FC<Props> = ({
   const [deletingNote, setDeletingNote] =
     useState<DeckQuery_deck_notes_edges_node | null>(null)
   const { i18n } = useLingui()
-  const navigate = useNavigate()
+  const router = useRouter()
 
   const handleDeleteNoteClose = () => {
     setDeletingNote(null)
@@ -76,7 +78,7 @@ const NotesTable: React.FC<Props> = ({
         <div className="p-4 flex items-center justify-between border-b border-divider border-opacity-divider">
           <Button
             className="flex-shrink-0"
-            onClick={() => navigate('new-note')}
+            onClick={() => router.push(`/d/${deckSlug}/new-note`)}
           >
             {i18n._(t`Add Note`)}
           </Button>
@@ -143,7 +145,7 @@ const NotesTable: React.FC<Props> = ({
                       >
                         <Link
                           className="text-primary"
-                          to={`/d/${deckSlug}/note/${note!.id}`}
+                          href={`/d/${deckSlug}/note/${note!.id}`}
                         >
                           <EditIcon aria-label={i18n._(t`Edit`)} />
                         </Link>

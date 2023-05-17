@@ -1,0 +1,23 @@
+@import '../styles/_variables';
+
+@import '~@reach/checkbox/styles.css';
+@import '~@reach/dialog/styles.css';
+
+@import '../styles/_draft.scss';
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: Libre Franklin, Helvetica, sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+  // Reach imports
+  --reach-tooltip: 1;
+  --reach-tabs: 1;
+}

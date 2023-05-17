@@ -4,7 +4,8 @@ import 'draft-js/dist/Draft.css'
 import { useCallback, useEffect, useRef } from 'react'
 import * as React from 'react'
 
-import type { ModelQuery_model_templates_frontSide as TemplateContent } from '../pages/__generated__/ModelQuery'
+import type { ModelQuery_model_templates_frontSide as TemplateContent } from '@src/app/(auth)/(shell)/m/[id]/__generated__/ModelQuery'
+
 import BaseEditorControls from './editor/BaseEditorControls'
 import TagEditor from './editor/TagEditor'
 import { decorators as tagsDecorators } from './editor/TagsPopup'

@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client'
 import { plural } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
+import { useRouter } from 'next/navigation'
 import * as React from 'react'
-import { useNavigate } from 'react-router'
 
 import type { PublishedDeckCard_deck } from './__generated__/PublishedDeckCard_deck'
 import { MarketplaceIcon } from './icons/MarketplaceIcon'
@@ -33,14 +33,14 @@ const PublishedDeckCard: React.FunctionComponent<Props> = ({
   onClick,
   deck,
 }) => {
-  const navigate = useNavigate()
+  const router = useRouter()
   const { i18n } = useLingui()
 
   const handleClick = () => {
     if (onClick) {
       onClick(deck)
     } else {
-      navigate(`/marketplace/d/${deck.slug}`)
+      router.push(`/marketplace/d/${deck.slug}`)
     }
   }
 

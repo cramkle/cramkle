@@ -7,15 +7,9 @@ declare global {
   interface Window {
     __APOLLO_STATE__: NormalizedCacheObject
   }
-
-  namespace NodeJS {
-    interface Process {
-      browser: boolean
-    }
-  }
 }
 
-export const createApolloClient = (uri: string, cookie?: string) => {
+export const createApolloClient = (uri: string, cookie?: string | null) => {
   const cache = new InMemoryCache()
 
   const errorLink = onError(({ graphQLErrors, networkError }) => {
@@ -44,7 +38,7 @@ export const createApolloClient = (uri: string, cookie?: string) => {
   })
 
   const client = new ApolloClient({
-    ssrMode: !process.browser,
+    ssrMode: typeof window === 'undefined',
     link: ApolloLink.from([errorLink, httpLink]),
     cache:
       typeof window !== 'undefined'

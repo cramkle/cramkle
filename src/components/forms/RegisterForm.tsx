@@ -1,11 +1,12 @@
+'use client'
+
 import { gql, useMutation } from '@apollo/client'
-import type { MessageDescriptor } from '@lingui/core'
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { Formik } from 'formik'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import * as React from 'react'
-import { useNavigate } from 'react-router'
-import { Link } from 'react-router-dom'
 import * as yup from 'yup'
 
 import { pushSimpleToast } from '../../toasts/pushToast'
@@ -20,7 +21,7 @@ import type {
 } from './__generated__/RegisterUser'
 
 interface Props {
-  title?: MessageDescriptor | string
+  title?: string
 }
 
 const REGISTER_MUTATION = gql`
@@ -63,7 +64,7 @@ const agreementRequired = t`Agreement is required`
 const RegisterForm: React.FunctionComponent<Props> = ({
   title = t`Register`,
 }) => {
-  const navigate = useNavigate()
+  const router = useRouter()
   const [register] = useMutation<RegisterUser, RegisterUserVariables>(
     REGISTER_MUTATION
   )
@@ -143,7 +144,7 @@ const RegisterForm: React.FunctionComponent<Props> = ({
 
           pushSimpleToast(t`Account created successfully`)
 
-          navigate('/login')
+          router.push('/login')
         })
       }}
     >
@@ -182,7 +183,7 @@ const RegisterForm: React.FunctionComponent<Props> = ({
                     I agree to the{' '}
                     <Link
                       className="text-primary hover:underline"
-                      to="/terms"
+                      href="/terms"
                       target="_blank"
                     >
                       Terms & Conditions

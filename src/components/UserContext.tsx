@@ -1,3 +1,5 @@
+'use client'
+
 import type { FC } from 'react'
 import { createContext, useContext } from 'react'
 
@@ -15,6 +17,12 @@ export const useCurrentUser = () => {
   }
 
   return user
+}
+
+export const useHasCurrentUser = () => {
+  const user = useContext(ctx)
+
+  return user != undefined
 }
 
 export const UserContext: FC<{ user?: UserQuery_me | undefined }> = ({

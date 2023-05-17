@@ -2,8 +2,8 @@ import { gql, useMutation } from '@apollo/client'
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { Formik } from 'formik'
+import { useRouter } from 'next/navigation'
 import * as React from 'react'
-import { useNavigate } from 'react-router'
 import * as yup from 'yup'
 
 import {
@@ -42,7 +42,7 @@ export const CREATE_DECK_MUTATION = gql`
 const titleRequired = t`The title is required`
 
 const AddDeckForm: React.FunctionComponent<Props> = ({ open, onClose }) => {
-  const navigate = useNavigate()
+  const router = useRouter()
   const [mutate] = useMutation<CreateDeckMutation, CreateDeckMutationVariables>(
     CREATE_DECK_MUTATION
   )
@@ -94,7 +94,7 @@ const AddDeckForm: React.FunctionComponent<Props> = ({ open, onClose }) => {
               action: {
                 label: t`View`,
                 onPress: () => {
-                  navigate(`/d/${slug}`)
+                  router.push(`/d/${slug}`)
                 },
               },
             },

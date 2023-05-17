@@ -1,3 +1,5 @@
+'use client'
+
 import type {
   MenuButtonProps,
   MenuItemProps,
@@ -13,11 +15,11 @@ import {
 } from '@reach/menu-button'
 import type * as Polymorphic from '@reach/utils/polymorphic'
 import classnames from 'classnames'
+import Link from 'next/link'
+import type { LinkProps } from 'next/link'
 import type { ReactNode } from 'react'
 import { forwardRef } from 'react'
 import * as React from 'react'
-import type { LinkProps } from 'react-router-dom'
-import { Link } from 'react-router-dom'
 
 import styles from './MenuButton.module.css'
 
