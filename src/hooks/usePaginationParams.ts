@@ -10,7 +10,10 @@ export const usePaginationParams = () => {
   const search = useSearchParams()
   const pathname = usePathname()
 
-  const queryParams = useMemo(() => new URLSearchParams(search), [search])
+  const queryParams = useMemo(
+    () => new URLSearchParams(search ?? undefined),
+    [search]
+  )
 
   const paginationParams = useMemo<PaginationState>(() => {
     let page = 1

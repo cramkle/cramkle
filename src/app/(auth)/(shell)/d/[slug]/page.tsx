@@ -112,7 +112,7 @@ export default function DeckPage({
   const me = useCurrentUser()
 
   const [searchInputValue, setSearchInputValue] = useState(() => {
-    const search = new URLSearchParams(searchParams)
+    const search = new URLSearchParams(searchParams ?? undefined)
 
     if (search.has('search')) {
       return search.get('search')
@@ -139,7 +139,7 @@ export default function DeckPage({
         clearTimeout(searchDebounceRef.current)
       }
 
-      const searchParamsCopy = new URLSearchParams(searchParams)
+      const searchParamsCopy = new URLSearchParams(searchParams ?? undefined)
 
       searchParamsCopy.set('search', search)
       searchParamsCopy.set('page', '1')
@@ -154,7 +154,9 @@ export default function DeckPage({
   )
 
   useLatestRefEffect(searchParams, (latestLocationSearch) => {
-    const searchParamsCopy = new URLSearchParams(latestLocationSearch)
+    const searchParamsCopy = new URLSearchParams(
+      latestLocationSearch ?? undefined
+    )
 
     const search = searchParamsCopy.has('search')
       ? searchParamsCopy.get('search')

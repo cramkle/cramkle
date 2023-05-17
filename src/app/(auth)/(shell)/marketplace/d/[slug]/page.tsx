@@ -4,12 +4,7 @@ import { gql, useQuery } from '@apollo/client'
 import { Trans, plural } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import Link from 'next/link'
-import {
-  useParams,
-  usePathname,
-  useRouter,
-  useSearchParams,
-} from 'next/navigation'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { useCallback, useRef, useState } from 'react'
 import * as React from 'react'
 
@@ -105,9 +100,12 @@ const PUBLISHED_DECK_QUERY = gql`
   }
 `
 
-export default function PublishedDeckPage() {
+export default function PublishedDeckPage({
+  params: { slug },
+}: {
+  params: { slug: string }
+}) {
   const { i18n } = useLingui()
-  const { slug } = useParams()
   const searchParams = useSearchParams()
   const pathname = usePathname()
   const router = useRouter()
@@ -115,7 +113,7 @@ export default function PublishedDeckPage() {
     usePaginationParams()
 
   const [searchInputValue, setSearchInputValue] = useState(() => {
-    if (searchParams.has('search')) {
+    if (searchParams?.has('search')) {
       return searchParams.get('search')
     }
 
@@ -140,7 +138,7 @@ export default function PublishedDeckPage() {
         clearTimeout(searchDebounceRef.current)
       }
 
-      const searchParamsCopy = new URLSearchParams(searchParams)
+      const searchParamsCopy = new URLSearchParams(searchParams ?? undefined)
 
       searchParamsCopy.set('search', search)
       searchParamsCopy.set('page', '1')

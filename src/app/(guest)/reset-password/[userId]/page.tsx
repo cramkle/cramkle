@@ -4,7 +4,7 @@ import { gql, useMutation } from '@apollo/client'
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { Formik } from 'formik'
-import { useParams, useRouter, useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
 import * as React from 'react'
 import * as yup from 'yup'
@@ -46,9 +46,12 @@ const RESET_PASSWORD_MUTATION = gql`
   }
 `
 
-export default function ResetPasswordPage() {
+export default function ResetPasswordPage({
+  params: { userId },
+}: {
+  params: { userId: string }
+}) {
   const { i18n } = useLingui()
-  const { userId } = useParams()
   const search = useSearchParams()
   const router = useRouter()
   const [mutateResetPassword, { loading }] = useMutation<
@@ -57,7 +60,7 @@ export default function ResetPasswordPage() {
   >(RESET_PASSWORD_MUTATION)
 
   useEffect(() => {
-    if (!search.has('token')) {
+    if (!search?.has('token')) {
       router.push('/login')
     }
   }, [search, router])
@@ -91,7 +94,7 @@ export default function ResetPasswordPage() {
                 .required(i18n._(t`Confirm password is required`)),
             })}
             onSubmit={async (values) => {
-              const urlParams = new URLSearchParams(search)
+              const urlParams = new URLSearchParams(search ?? undefined)
 
               const timestamp = urlParams.get('token')?.split('-')[0] ?? ''
               const token = urlParams.get('token')?.split('-')[1] ?? ''

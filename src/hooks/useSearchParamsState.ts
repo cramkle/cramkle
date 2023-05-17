@@ -13,7 +13,7 @@ export const useSearchParamsState = <DefaultValue extends string | undefined>(
   const pathname = usePathname()
 
   const [value, setValue] = useState(() => {
-    if (search.has(key)) {
+    if (search?.has(key)) {
       return search.get(key)!
     }
 
@@ -21,7 +21,7 @@ export const useSearchParamsState = <DefaultValue extends string | undefined>(
   })
 
   useEffect(() => {
-    if (search.has(key)) {
+    if (search?.has(key)) {
       if (search.get(key) === value) {
         return
       }
@@ -33,7 +33,7 @@ export const useSearchParamsState = <DefaultValue extends string | undefined>(
 
   const updateValue = useCallback(
     (newValue: string) => {
-      const searchParams = new URLSearchParams(search)
+      const searchParams = new URLSearchParams(search ?? undefined)
 
       searchParams.set(key, newValue)
 
