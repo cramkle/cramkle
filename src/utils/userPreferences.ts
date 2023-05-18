@@ -9,8 +9,10 @@ const DEFAULT_LANG = 'en'
 export async function getUserPreferences(
   client: ApolloClient<NormalizedCacheObject>,
   user: UserQuery_me | null,
-  lang?: string | null
+  locale?: string
 ) {
+  const fallbackLocale = locale ?? DEFAULT_LANG
+
   try {
     if (user && user.preferences?.locale == null) {
       await client.mutate({
@@ -27,15 +29,15 @@ export async function getUserPreferences(
           }
         `,
         variables: {
-          locale: lang ?? DEFAULT_LANG,
+          locale: fallbackLocale,
         },
       })
     }
 
-    const language = user?.preferences?.locale ?? lang ?? DEFAULT_LANG
+    const language = user?.preferences?.locale ?? fallbackLocale
 
     return { language, darkMode: user?.preferences?.darkMode }
   } catch {
-    return { language: lang ?? DEFAULT_LANG, darkMode: false }
+    return { language: fallbackLocale, darkMode: false }
   }
 }

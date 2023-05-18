@@ -4,7 +4,7 @@ import '@src/styles/tailwind.scss'
 import './layout.scss'
 
 import classNames from 'classnames'
-import { headers } from 'next/headers'
+import { cookies, headers } from 'next/headers'
 import { Suspense } from 'react'
 
 import { ApolloProvider } from '@src/components/ApolloProvider'
@@ -29,13 +29,16 @@ export default async function RootLayout({
     data: { me: user },
   } = await apolloClient.query<UserQuery>({ query: userQuery })
 
-  const cramkleLang = headers().get('x-cramkle-lang') ?? 'en'
+  const requestCookies = cookies()
+  const cookieLocale = requestCookies.get('language')
 
   const { language, darkMode } = await getUserPreferences(
     apolloClient,
     user,
-    cramkleLang
+    cookieLocale?.value
   )
+
+  const { messages } = await import(`../locales/${language}/messages`)
 
   return (
     <html
@@ -45,10 +48,10 @@ export default async function RootLayout({
       })}
       lang={language}
     >
-      <head></head>
+      <head />
       <body className="h-full">
-        <UserContext user={user ?? undefined}>
-          <I18nProvider lang={language}>
+        <I18nProvider lang={language} messages={messages}>
+          <UserContext user={user ?? undefined}>
             <ApolloProvider>
               <HintsProvider userAgent={headers().get('user-agent')}>
                 <ThemeProvider userPreferredTheme={darkMode ? 'dark' : 'light'}>
@@ -70,8 +73,8 @@ export default async function RootLayout({
                 </ThemeProvider>
               </HintsProvider>
             </ApolloProvider>
-          </I18nProvider>
-        </UserContext>
+          </UserContext>
+        </I18nProvider>
       </body>
     </html>
   )

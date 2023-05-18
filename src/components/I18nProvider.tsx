@@ -1,26 +1,22 @@
 'use client'
 
+import type { Messages } from '@lingui/core'
 import { i18n } from '@lingui/core'
 import { I18nProvider as Provider } from '@lingui/react'
-import { useEffect } from 'react'
-
-import { messages as enMessages } from '../locales/en/messages'
-
-if (typeof window !== 'undefined') {
-  i18n.load('en', enMessages as any)
-  i18n.activate('en')
-}
 
 export const I18nProvider = ({
   children,
   lang = 'en',
+  messages,
 }: {
   children: React.ReactNode
   lang: string
+  messages: Messages
 }) => {
-  useEffect(() => {
-    i18n.activate(lang)
-  }, [lang])
+  i18n.loadAndActivate({
+    locale: lang,
+    messages,
+  })
 
   return <Provider i18n={i18n}>{children}</Provider>
 }
