@@ -5,6 +5,7 @@ import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { positionRight } from '@reach/popover'
 import classNames from 'classnames'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import * as React from 'react'
 import { FixedSizeList as WindowList } from 'react-window'
@@ -102,6 +103,7 @@ export default function GeneralSettingsPage() {
   const [timeZone, setTimeZone] = useState(zoneInfo)
   const [currentLanguage, setCurrentLanguage] = useState(i18n.locale)
   const timezoneData = useTimezoneData()
+  const router = useRouter()
 
   const handleChangeLanguage = (language: string) => {
     setCurrentLanguage(language)
@@ -122,7 +124,7 @@ export default function GeneralSettingsPage() {
       pushSimpleToast(t`Preferences updated successfully`)
 
       if (currentLanguage !== i18n.locale) {
-        window.location.reload()
+        router.refresh()
       }
     })
   }
