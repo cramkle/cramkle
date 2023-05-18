@@ -1,7 +1,7 @@
 import 'fontsource-libre-franklin/latin.css'
 import '@src/styles/material.scss'
-import '@src/styles/tailwind.scss'
 import './layout.scss'
+import '@src/styles/tailwind.scss'
 
 import classNames from 'classnames'
 import { cookies, headers } from 'next/headers'
@@ -49,7 +49,7 @@ export default async function RootLayout({
       lang={language}
     >
       <head />
-      <body className="h-full">
+      <body className="h-full bg-background bg-opacity-background">
         <I18nProvider lang={language} messages={messages}>
           <UserContext user={user ?? undefined}>
             <ApolloProvider>
@@ -58,7 +58,7 @@ export default async function RootLayout({
                   <Suspense
                     fallback={
                       <div
-                        className="h-full w-full flex items-center justify-center bg-background bg-opacity-background"
+                        className="h-full w-full flex items-center justify-center"
                         aria-busy="true"
                       >
                         <p className="text-txt text-opacity-text-primary">
