@@ -4,7 +4,7 @@ import type { Messages } from '@lingui/core'
 import { i18n } from '@lingui/core'
 import { I18nProvider as Provider } from '@lingui/react'
 
-export const I18nProvider = ({
+export const LinguiProvider = ({
   children,
   lang = 'en',
   messages,

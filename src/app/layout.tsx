@@ -10,7 +10,7 @@ import { Suspense } from 'react'
 import { ApolloProvider } from '@src/components/ApolloProvider'
 import CramkleToasts from '@src/components/CramkleToasts'
 import { HintsProvider } from '@src/components/HintsContext'
-import { I18nProvider } from '@src/components/I18nProvider'
+import { LinguiProvider } from '@src/components/LinguiProvider'
 import { ThemeProvider } from '@src/components/Theme'
 import { UserContext } from '@src/components/UserContext'
 import type { UserQuery } from '@src/components/__generated__/UserQuery'
@@ -50,7 +50,7 @@ export default async function RootLayout({
     >
       <head />
       <body className="h-full bg-background bg-opacity-background">
-        <I18nProvider lang={language} messages={messages}>
+        <LinguiProvider lang={language} messages={messages}>
           <UserContext user={user ?? undefined}>
             <ApolloProvider>
               <HintsProvider userAgent={headers().get('user-agent')}>
@@ -74,7 +74,7 @@ export default async function RootLayout({
               </HintsProvider>
             </ApolloProvider>
           </UserContext>
-        </I18nProvider>
+        </LinguiProvider>
       </body>
     </html>
   )
