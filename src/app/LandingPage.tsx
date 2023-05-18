@@ -2,25 +2,26 @@
 
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-// import { MenuItem, MenuPopover } from '@reach/menu-button'
 import Link from 'next/link'
-// import { useRouter } from 'next/navigation'
 import * as React from 'react'
 
-// import { positionMatchWindowWidth } from '../utils/popover'
-import { AppName } from './AppName'
-import { Footer } from './Footer'
-import styles from './LandingPage.module.css'
-import { Logo } from './Logo'
-// import { OverflowMenuIcon } from './icons/OverflowMenuIcon'
-import { Button } from './views/Button'
-import { Header, HeaderContent, HeaderSection } from './views/Header'
-// import { Menu, MenuButton } from './views/MenuButton'
+import { AppName } from '@src/components/AppName'
+import { Footer } from '@src/components/Footer'
+import { Logo } from '@src/components/Logo'
+import { Button } from '@src/components/views/Button'
+import {
+  Header,
+  HeaderContent,
+  HeaderSection,
+} from '@src/components/views/Header'
 
-const RegisterForm = React.lazy(() => import('./forms/RegisterForm'))
+import styles from './LandingPage.module.css'
+
+const RegisterForm = React.lazy(
+  () => import('@src/components/forms/RegisterForm')
+)
 
 export default function LandingPage() {
-  // const router = useRouter()
   const { i18n } = useLingui()
 
   return (

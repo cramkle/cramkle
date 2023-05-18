@@ -19,8 +19,8 @@ import { CircularProgress } from '@src/components/views/CircularProgress'
 import { Container } from '@src/components/views/Container'
 import { Body1, Body2, Headline1 } from '@src/components/views/Typography'
 
+import styles from './StudyPage.module.css'
 import type { DecksToStudy } from './__generated__/DecksToStudy'
-import styles from './page.module.css'
 
 const DECKS_TO_STUDY_QUERY = gql`
   query DecksToStudy {
