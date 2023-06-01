@@ -91,7 +91,7 @@ const NotesTable: React.FC<Props> = ({
             />
           </form>
         </div>
-        <Table className="w-full">
+        <Table>
           <TableHead>
             <TableRow>
               <TableCell>

@@ -104,7 +104,7 @@ msgstr "Add field"
 msgid "Add new"
 msgstr "Add new"
 
-#: src/app/(auth)/(shell)/d/[slug]/new-note/page.tsx:250
+#: src/app/(auth)/(shell)/d/[slug]/new-note/page.tsx:248
 #: src/components/NotesTable.tsx:83
 msgid "Add Note"
 msgstr "Add Note"
@@ -130,8 +130,7 @@ msgid "Align right"
 msgstr "Align right"
 
 #: src/app/(guest)/register/page.tsx:18
-#: src/app/LandingPage.tsx:84
-#: src/components/LandingPage.tsx:78
+#: src/app/LandingPage.tsx:79
 msgid "Already have an account? <0>Log In</0>"
 msgstr "Already have an account? <0>Log In</0>"
 
@@ -179,7 +178,7 @@ msgstr "An error occurred when saving the template"
 msgid "An error occurred when updating the deck"
 msgstr "An error occurred when updating the deck"
 
-#: src/app/(auth)/(shell)/settings/preferences/page.tsx:118
+#: src/app/(auth)/(shell)/settings/preferences/page.tsx:120
 #: src/components/UpdatePasswordDialog.tsx:94
 #: src/components/UpdatePasswordDialog.tsx:100
 msgid "An unexpected error has occurred"
@@ -326,8 +325,7 @@ msgid "Continue without account"
 msgstr "Continue without account"
 
 #. js-lingui-explicit-id
-#: src/app/LandingPage.tsx:99
-#: src/components/LandingPage.tsx:93
+#: src/app/LandingPage.tsx:94
 msgid "product-description"
 msgstr "Cramkle is a flashcard-based study platform, where you can group subjects into decks, that automatically schedules study sessions using a spaced-repetition algorithm to maximize your knowledge retention"
 
@@ -335,7 +333,7 @@ msgstr "Cramkle is a flashcard-based study platform, where you can group subject
 msgid "Create"
 msgstr "Create"
 
-#: src/app/(auth)/(shell)/d/[slug]/new-note/page.tsx:290
+#: src/app/(auth)/(shell)/d/[slug]/new-note/page.tsx:288
 msgid "Create a model"
 msgstr "Create a model"
 
@@ -365,7 +363,7 @@ msgstr "Create model"
 msgid "Create new deck"
 msgstr "Create new deck"
 
-#: src/app/(auth)/(shell)/d/[slug]/new-note/page.tsx:183
+#: src/app/(auth)/(shell)/d/[slug]/new-note/page.tsx:181
 msgid "Create note for deck <0>{0}</0>"
 msgstr "Create note for deck <0>{0}</0>"
 
@@ -373,8 +371,7 @@ msgstr "Create note for deck <0>{0}</0>"
 msgid "Create template"
 msgstr "Create template"
 
-#: src/app/LandingPage.tsx:146
-#: src/components/LandingPage.tsx:140
+#: src/app/LandingPage.tsx:141
 msgid "Create your account today!"
 msgstr "Create your account today!"
 
@@ -394,7 +391,7 @@ msgstr "Current password is required to change your password"
 msgid "Dark mode"
 msgstr "Dark mode"
 
-#: src/app/(auth)/(shell)/d/[slug]/note/[noteId]/page.tsx:244
+#: src/app/(auth)/(shell)/d/[slug]/note/[noteId]/page.tsx:243
 msgid "Deck {0}"
 msgstr "Deck {0}"
 
@@ -531,7 +528,7 @@ msgstr "Email must be a valid email"
 msgid "Email sent!"
 msgstr "Email sent!"
 
-#: src/app/(auth)/(shell)/d/[slug]/note/[noteId]/page.tsx:252
+#: src/app/(auth)/(shell)/d/[slug]/note/[noteId]/page.tsx:251
 #: src/components/NotesTable.tsx:132
 #: src/components/PublishedNotesTable.tsx:97
 msgid "empty note"
@@ -545,7 +542,7 @@ msgstr "End"
 msgid "End study session"
 msgstr "End study session"
 
-#: src/app/(auth)/(shell)/settings/preferences/page.tsx:40
+#: src/app/(auth)/(shell)/settings/preferences/page.tsx:41
 msgid "English"
 msgstr "English"
 
@@ -574,7 +571,7 @@ msgstr "Field name is required"
 msgid "Field value..."
 msgstr "Field value..."
 
-#: src/app/(auth)/(shell)/d/[slug]/new-note/page.tsx:221
+#: src/app/(auth)/(shell)/d/[slug]/new-note/page.tsx:219
 #: src/app/(auth)/(shell)/models/new-model/page.tsx:261
 #: src/components/EditFieldsDialog.tsx:207
 #: src/components/ModelFieldsForm.tsx:48
@@ -593,7 +590,7 @@ msgstr "Fill the email for your account"
 msgid "First page"
 msgstr "First page"
 
-#: src/app/(auth)/(shell)/d/[slug]/note/[noteId]/page.tsx:265
+#: src/app/(auth)/(shell)/d/[slug]/note/[noteId]/page.tsx:264
 #: src/components/NotesTable.tsx:104
 #: src/components/PublishedNotesTable.tsx:69
 msgid "Flashcards"
@@ -615,8 +612,7 @@ msgstr "Forgot password?"
 msgid "Forgot your password?"
 msgstr "Forgot your password?"
 
-#: src/app/LandingPage.tsx:123
-#: src/components/LandingPage.tsx:117
+#: src/app/LandingPage.tsx:118
 msgid "From creating simple front and back flashcards, to automating their creation with models and user-defined templates, you can achieve the flexibility you need without complicating your study routine."
 msgstr "From creating simple front and back flashcards, to automating their creation with models and user-defined templates, you can achieve the flexibility you need without complicating your study routine."
 
@@ -629,8 +625,7 @@ msgid "Front side template is empty"
 msgstr "Front side template is empty"
 
 #. js-lingui-explicit-id
-#: src/app/LandingPage.tsx:155
-#: src/components/LandingPage.tsx:149
+#: src/app/LandingPage.tsx:150
 msgid "landing.cta"
 msgstr "Get started"
 
@@ -734,7 +729,7 @@ msgstr "Italic"
 msgid "Items per page"
 msgstr "Items per page"
 
-#: src/app/(auth)/(shell)/settings/preferences/page.tsx:135
+#: src/app/(auth)/(shell)/settings/preferences/page.tsx:137
 msgid "Language"
 msgstr "Language"
 
@@ -742,8 +737,7 @@ msgstr "Language"
 msgid "Last page"
 msgstr "Last page"
 
-#: src/app/LandingPage.tsx:113
-#: src/components/LandingPage.tsx:107
+#: src/app/LandingPage.tsx:108
 msgid "Learn about spaced repetition"
 msgstr "Learn about spaced repetition"
 
@@ -766,9 +760,8 @@ msgid "Log out"
 msgstr "Log out"
 
 #: src/app/(guest)/login/head.tsx:8
-#: src/app/LandingPage.tsx:52
+#: src/app/LandingPage.tsx:47
 #: src/components/forms/LoginForm.tsx:76
-#: src/components/LandingPage.tsx:46
 msgid "Login"
 msgstr "Login"
 
@@ -785,8 +778,7 @@ msgstr "Login to your account to study your decks"
 msgid "Logout and delete account"
 msgstr "Logout and delete account"
 
-#: src/app/LandingPage.tsx:71
-#: src/components/LandingPage.tsx:65
+#: src/app/LandingPage.tsx:66
 msgid "Make sure your knowledge will last"
 msgstr "Make sure your knowledge will last"
 
@@ -884,11 +876,11 @@ msgstr "Note"
 msgid "Note created successfully"
 msgstr "Note created successfully"
 
-#: src/app/(auth)/(shell)/d/[slug]/note/[noteId]/page.tsx:247
+#: src/app/(auth)/(shell)/d/[slug]/note/[noteId]/page.tsx:246
 msgid "Note details"
 msgstr "Note details"
 
-#: src/app/(auth)/(shell)/d/[slug]/new-note/page.tsx:194
+#: src/app/(auth)/(shell)/d/[slug]/new-note/page.tsx:192
 msgid "Note's model"
 msgstr "Note's model"
 
@@ -909,8 +901,7 @@ msgstr "Number of times studied"
 msgid "OL"
 msgstr "OL"
 
-#: src/app/LandingPage.tsx:74
-#: src/components/LandingPage.tsx:68
+#: src/app/LandingPage.tsx:69
 msgid "Optimize your knowledge retention with this effective study method."
 msgstr "Optimize your knowledge retention with this effective study method."
 
@@ -950,15 +941,15 @@ msgstr "Password must be at least 6 characters"
 msgid "Please, try reloading the page"
 msgstr "Please, try reloading the page"
 
-#: src/app/(auth)/(shell)/settings/preferences/page.tsx:44
+#: src/app/(auth)/(shell)/settings/preferences/page.tsx:45
 msgid "Portuguese"
 msgstr "Portuguese"
 
-#: src/app/(auth)/(shell)/settings/preferences/page.tsx:122
+#: src/app/(auth)/(shell)/settings/preferences/page.tsx:124
 msgid "Preferences updated successfully"
 msgstr "Preferences updated successfully"
 
-#: src/app/(auth)/(shell)/d/[slug]/note/[noteId]/page.tsx:298
+#: src/app/(auth)/(shell)/d/[slug]/note/[noteId]/page.tsx:297
 msgid "Preview"
 msgstr "Preview"
 
@@ -1043,7 +1034,7 @@ msgstr "Retry"
 msgid "Review"
 msgstr "Review"
 
-#: src/app/(auth)/(shell)/settings/preferences/page.tsx:233
+#: src/app/(auth)/(shell)/settings/preferences/page.tsx:235
 msgid "Save preferences"
 msgstr "Save preferences"
 
@@ -1060,7 +1051,7 @@ msgstr "Saved successfully"
 msgid "Search notes..."
 msgstr "Search notes..."
 
-#: src/app/(auth)/(shell)/d/[slug]/new-note/page.tsx:201
+#: src/app/(auth)/(shell)/d/[slug]/new-note/page.tsx:199
 msgid "Select a model"
 msgstr "Select a model"
 
@@ -1078,13 +1069,11 @@ msgstr "Settings"
 msgid "Show"
 msgstr "Show"
 
-#: src/app/LandingPage.tsx:60
-#: src/components/LandingPage.tsx:54
+#: src/app/LandingPage.tsx:55
 msgid "Sign up"
 msgstr "Sign up"
 
-#: src/app/LandingPage.tsx:118
-#: src/components/LandingPage.tsx:112
+#: src/app/LandingPage.tsx:113
 msgid "Simple for those who want it, powerful for those who need it"
 msgstr "Simple for those who want it, powerful for those who need it"
 
@@ -1096,8 +1085,7 @@ msgstr "Something went wrong"
 msgid "Start Session"
 msgstr "Start Session"
 
-#: src/app/LandingPage.tsx:133
-#: src/components/LandingPage.tsx:127
+#: src/app/LandingPage.tsx:128
 msgid "Start studying now, anonymously"
 msgstr "Start studying now, anonymously"
 
@@ -1158,7 +1146,7 @@ msgstr "Templates"
 msgid "Templates of the current model"
 msgstr "Templates of the current model"
 
-#: src/app/(auth)/(shell)/d/[slug]/new-note/page.tsx:258
+#: src/app/(auth)/(shell)/d/[slug]/new-note/page.tsx:256
 msgid "The selected model doesn't have any fields. <0>Click here to edit it</0>"
 msgstr "The selected model doesn't have any fields. <0>Click here to edit it</0>"
 
@@ -1194,7 +1182,7 @@ msgstr "This deck does not have any note yet"
 msgid "This link may be broken or the typed URL is incorrect."
 msgstr "This link may be broken or the typed URL is incorrect."
 
-#: src/app/(auth)/(shell)/settings/preferences/page.tsx:164
+#: src/app/(auth)/(shell)/settings/preferences/page.tsx:166
 msgid "Time zone"
 msgstr "Time zone"
 
@@ -1203,7 +1191,7 @@ msgstr "Time zone"
 msgid "Title"
 msgstr "Title"
 
-#: src/app/(auth)/(shell)/d/[slug]/new-note/page.tsx:281
+#: src/app/(auth)/(shell)/d/[slug]/new-note/page.tsx:279
 msgid "To create a note you need to associate it with a model."
 msgstr "To create a note you need to associate it with a model."
 
@@ -1224,8 +1212,7 @@ msgstr "Try creating a deck first and study it in order to see your study statis
 msgid "Try selecting a broader interval above."
 msgstr "Try selecting a broader interval above."
 
-#: src/app/LandingPage.tsx:39
-#: src/components/LandingPage.tsx:33
+#: src/app/LandingPage.tsx:34
 msgid "Two overlapping blue rectangles"
 msgstr "Two overlapping blue rectangles"
 
@@ -1254,11 +1241,11 @@ msgstr "Update account password"
 msgid "Update your account email"
 msgstr "Update your account email"
 
-#: src/app/(auth)/(shell)/settings/preferences/page.tsx:137
+#: src/app/(auth)/(shell)/settings/preferences/page.tsx:139
 msgid "Update your preferred language for headlines, buttons and other texts."
 msgstr "Update your preferred language for headlines, buttons and other texts."
 
-#: src/app/(auth)/(shell)/settings/preferences/page.tsx:166
+#: src/app/(auth)/(shell)/settings/preferences/page.tsx:168
 msgid "Used to compute the statistics and study schedule in your local time."
 msgstr "Used to compute the statistics and study schedule in your local time."
 
@@ -1326,8 +1313,7 @@ msgstr "We have sent you an email with instructions to help you reset your passw
 msgid "When you create a note, we will create the corresponding number of flashcards based on how much templates the note's model has, and will use the note's values to fill in the template."
 msgstr "When you create a note, we will create the corresponding number of flashcards based on how much templates the note's model has, and will use the note's values to fill in the template."
 
-#: src/app/LandingPage.tsx:136
-#: src/components/LandingPage.tsx:130
+#: src/app/LandingPage.tsx:131
 msgid "With Cramkle you don't need to create an account to start studying, use the anonymous login to get a feel for the app and fill in your personal information later when you're comfortable to do so."
 msgstr "With Cramkle you don't need to create an account to start studying, use the anonymous login to get a feel for the app and fill in your personal information later when you're comfortable to do so."
 
@@ -1339,7 +1325,7 @@ msgstr "You are using an <0>anonymous account</0>, to persist your study history
 msgid "You are using an anonymous account, if you logout now you will lose all your study history and created decks and flashcards. If you want to keep all your data, go back and fill your profile information in the settings page."
 msgstr "You are using an anonymous account, if you logout now you will lose all your study history and created decks and flashcards. If you want to keep all your data, go back and fill your profile information in the settings page."
 
-#: src/app/(auth)/(shell)/d/[slug]/new-note/page.tsx:277
+#: src/app/(auth)/(shell)/d/[slug]/new-note/page.tsx:275
 msgid "You haven't created a model yet."
 msgstr "You haven't created a model yet."
 
