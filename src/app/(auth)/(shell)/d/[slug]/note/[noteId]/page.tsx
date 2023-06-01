@@ -190,7 +190,6 @@ export default function NotePage({
 }: {
   params: { slug: string; noteId: string }
 }) {
-  console.log({ params })
   const { slug: deckSlug, noteId } = params
   const { data, loading } = useQuery<NoteQuery, NoteQueryVariables>(
     NOTE_QUERY,

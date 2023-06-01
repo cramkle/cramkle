@@ -56,7 +56,7 @@ const PublishedNotesTable: React.FC<Props> = ({
             />
           </form>
         </div>
-        <Table className="w-full">
+        <Table>
           <TableHead>
             <TableRow>
               <TableCell>

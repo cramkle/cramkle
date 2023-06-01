@@ -10,7 +10,7 @@ export const Table: React.FC<TableProps> = ({
   ...props
 }) => {
   return (
-    <table {...props} className={classnames(className, 'collapse w-full')}>
+    <table {...props} className={classnames(className, 'w-full')}>
       {children}
     </table>
   )

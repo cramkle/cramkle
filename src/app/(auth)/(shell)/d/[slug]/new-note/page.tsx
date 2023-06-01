@@ -173,8 +173,6 @@ export default function NewNotePage({
     return null
   }
 
-  console.log(models)
-
   return (
     <Container className="py-4">
       <BackButton to={`/d/${slug}`} />
