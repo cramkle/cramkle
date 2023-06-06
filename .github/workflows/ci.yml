@@ -21,24 +21,27 @@ jobs:
         node-version: 16.x
     - run: npm install --legacy-peer-deps
     - uses: actions/cache@v2
-      id: cache-build
+      id: cache-install
       with:
         path: |
-          ./*
+          node_modules
           ~/.cache/Cypress
-        key: install-cache-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+        key: install-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
 
   messages:
     runs-on: ubuntu-latest
     needs: install
 
     steps:
+    - uses: actions/checkout@v1
     - name: Restore cache
       uses: actions/cache@v2
-      id: restore-build
+      id: restore-install
       with:
-        path: ./*
-        key: ${{ github.sha }}
+        path: |
+          node_modules
+          ~/.cache/Cypress
+        key: install-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
     - name: Check messages
       run: |
         npm run extract
@@ -49,12 +52,15 @@ jobs:
     needs: install
 
     steps:
+    - uses: actions/checkout@v1
     - name: Restore cache
       uses: actions/cache@v2
       id: restore-build
       with:
-        path: ./*
-        key: ${{ github.sha }}
+        path: |
+          node_modules
+          ~/.cache/Cypress
+        key: install-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
     - name: NodeJS 16.x
       uses: actions/setup-node@v1
       with:
@@ -72,12 +78,15 @@ jobs:
     needs: install
 
     steps:
+    - uses: actions/checkout@v1
     - name: Restore cache
       uses: actions/cache@v2
       id: restore-build
       with:
-        path: ./*
-        key: ${{ github.sha }}
+        path: |
+          node_modules
+          ~/.cache/Cypress
+        key: install-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
     - name: NodeJS 16.x
       uses: actions/setup-node@v1
       with:
@@ -92,12 +101,15 @@ jobs:
     needs: install
 
     steps:
+    - uses: actions/checkout@v1
     - name: Restore cache
       uses: actions/cache@v2
       id: restore-build
       with:
-        path: ./*
-        key: ${{ github.sha }}
+        path: |
+          node_modules
+          ~/.cache/Cypress
+        key: install-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
     - name: NodeJS 16.x
       uses: actions/setup-node@v1
       with:
@@ -115,12 +127,15 @@ jobs:
     needs: install
 
     steps:
+    - uses: actions/checkout@v1
     - name: Restore cache
       uses: actions/cache@v2
       id: restore-build
       with:
-        path: ./*
-        key: ${{ github.sha }}
+        path: |
+          node_modules
+          ~/.cache/Cypress
+        key: install-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
     - name: Cypress run
       uses: cypress-io/github-action@v5
       with:
