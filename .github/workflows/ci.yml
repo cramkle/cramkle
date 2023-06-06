@@ -23,8 +23,10 @@ jobs:
     - uses: actions/cache@v2
       id: cache-build
       with:
-        path: ./*
-        key: ${{ github.sha }}
+        path: |
+          ./*
+          ~/.cache/Cypress
+        key: install-cache-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
 
   messages:
     runs-on: ubuntu-latest
