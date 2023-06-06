@@ -19,6 +19,7 @@
     "strictFunctionTypes": true,
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
+    "types": ["node", "@testing-library/jest-dom"],
     "jsx": "preserve",
     "incremental": true,
     "resolveJsonModule": true,
@@ -34,7 +35,7 @@
       "@src/*": ["src/*"]
     }
   },
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules", "cypress", "cypress.config.ts"],
   "include": [
     "next-env.d.ts",
     "**/*.ts",
