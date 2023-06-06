@@ -8,7 +8,7 @@ module.exports = {
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: './tsconfig.json',
+    project: ['./tsconfig.json', './tsconfig.cypress.json'],
   },
   rules: {
     'no-underscore-dangle': [
