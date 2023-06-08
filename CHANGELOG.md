@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [1.0.0] - 2023-06-07
 ### Changed
 - Upgrade to Next.JS 13.
 - Upgrade to React v18.
@@ -469,7 +471,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Hydration logic on production environment
 
 
-[Unreleased]: https://github.com/cramkle/cramkle/compare/v0.19.0...HEAD
+[unreleased]: https://github.com/cramkle/cramkle/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/cramkle/cramkle/compare/v0.19.0...v1.0.0
 [0.19.0]: https://github.com/cramkle/cramkle/compare/v0.18.0...v0.19.0
 [0.18.0]: https://github.com/cramkle/cramkle/compare/v0.17.0...v0.18.0
 [0.17.0]: https://github.com/cramkle/cramkle/compare/v0.16.0...v0.17.0
