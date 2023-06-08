@@ -4,6 +4,7 @@ import { gql, useMutation } from '@apollo/client'
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { Formik } from 'formik'
+import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import * as yup from 'yup'
 
@@ -47,6 +48,7 @@ const UPDATE_PROFILE_MUTATION = gql`
 
 export default function ProfileSettings() {
   const { i18n } = useLingui()
+  const router = useRouter()
 
   const me = useCurrentUser()
 
@@ -74,6 +76,7 @@ export default function ProfileSettings() {
           )}
 
           <Formik
+            key={me.anonymous ? 1 : 0}
             initialValues={
               me.anonymous
                 ? { username: '', email: '', password: '' }
@@ -133,6 +136,8 @@ export default function ProfileSettings() {
                 }
 
                 pushSimpleToast(t`Profile updated successfully`)
+
+                router.refresh()
               })
             }}
           >
