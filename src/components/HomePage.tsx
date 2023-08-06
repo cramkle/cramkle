@@ -65,11 +65,13 @@ const HomePage: React.FunctionComponent = ({ children }) => {
   }
 
   useEffect(() => {
-    navigator.serviceWorker.getRegistrations().then(function (registrations) {
-      for (const registration of registrations) {
-        registration.unregister()
-      }
-    })
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function (registrations) {
+        for (const registration of registrations) {
+          registration.unregister()
+        }
+      })
+    }
   }, [])
 
   const handleTabChange = useCallback(
