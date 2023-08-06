@@ -38,6 +38,10 @@
   },
   "dependencies": {
     "@apollo/client": "^3.4.10",
+    "@chakra-ui/next-js": "^2.1.5",
+    "@chakra-ui/react": "^2.8.0",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@lingui/core": "^4.1.0",
     "@lingui/react": "^4.1.0",
     "@material/icon-button": "^3.1.0",
@@ -59,6 +63,7 @@
     "date-fns": "^2.23.0",
     "draft-js": "^0.11.7",
     "formik": "^2.2.5",
+    "framer-motion": "^10.15.0",
     "keycode-js": "^3.1.0",
     "make-plural": "^6.2.2",
     "next": "^13.4.2",
