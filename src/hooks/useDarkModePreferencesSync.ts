@@ -1,4 +1,5 @@
 import { gql, useMutation } from '@apollo/client'
+import { useColorMode } from '@chakra-ui/react'
 import { useEffect, useRef } from 'react'
 
 import { useTheme } from '../components/Theme'
@@ -22,6 +23,7 @@ const UPDATE_DARK_MODE_PREFERENCE = gql`
 
 export function useDarkModePreferencesSync() {
   const { theme } = useTheme()
+  const { setColorMode } = useColorMode()
 
   const [updatePreferredTheme] = useMutation<
     UpdateDarkMode,
@@ -38,5 +40,6 @@ export function useDarkModePreferencesSync() {
     prevThemeRef.current = theme
 
     updatePreferredTheme({ variables: { darkMode: theme === 'dark' } })
-  }, [updatePreferredTheme, theme])
+    setColorMode(theme)
+  }, [updatePreferredTheme, theme, setColorMode])
 }

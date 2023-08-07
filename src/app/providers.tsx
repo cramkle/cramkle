@@ -1,7 +1,7 @@
 'use client'
 
 import { CacheProvider } from '@chakra-ui/next-js'
-import { ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider, ColorModeScript } from '@chakra-ui/react'
 import type { Messages } from '@lingui/core'
 import type { ReactElement } from 'react'
 
@@ -11,6 +11,7 @@ import { LinguiProvider } from '@src/components/LinguiProvider'
 import { ThemeProvider } from '@src/components/Theme'
 import { UserContext } from '@src/components/UserContext'
 import type { UserQuery_me } from '@src/components/__generated__/UserQuery'
+import createChakraTheme from '@src/theme'
 
 export function Providers({
   children,
@@ -27,19 +28,24 @@ export function Providers({
   messages: Messages
   userAgent: string | null
 }) {
+  const theme = createChakraTheme({ darkMode })
+
   return (
-    <LinguiProvider lang={language} messages={messages}>
-      <UserContext user={user ?? undefined}>
-        <ApolloProvider>
-          <HintsProvider userAgent={userAgent}>
-            <ThemeProvider userPreferredTheme={darkMode ? 'dark' : 'light'}>
-              <CacheProvider>
-                <ChakraProvider>{children}</ChakraProvider>
-              </CacheProvider>
-            </ThemeProvider>
-          </HintsProvider>
-        </ApolloProvider>
-      </UserContext>
-    </LinguiProvider>
+    <>
+      <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+      <LinguiProvider lang={language} messages={messages}>
+        <UserContext user={user ?? undefined}>
+          <ApolloProvider>
+            <HintsProvider userAgent={userAgent}>
+              <ThemeProvider userPreferredTheme={darkMode ? 'dark' : 'light'}>
+                <CacheProvider>
+                  <ChakraProvider theme={theme}>{children}</ChakraProvider>
+                </CacheProvider>
+              </ThemeProvider>
+            </HintsProvider>
+          </ApolloProvider>
+        </UserContext>
+      </LinguiProvider>
+    </>
   )
 }

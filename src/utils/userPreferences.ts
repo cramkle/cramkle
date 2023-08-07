@@ -36,7 +36,7 @@ export async function getUserPreferences(
 
     const language = user?.preferences?.locale ?? fallbackLocale
 
-    return { language, darkMode: user?.preferences?.darkMode }
+    return { language, darkMode: user?.preferences?.darkMode ?? false }
   } catch {
     return { language: fallbackLocale, darkMode: false }
   }
