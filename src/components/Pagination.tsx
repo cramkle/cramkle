@@ -1,3 +1,4 @@
+import { Button } from '@chakra-ui/react'
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import classnames from 'classnames'
@@ -7,8 +8,6 @@ import { CaretLeftIcon } from './icons/CaretLeftIcon'
 import { CaretRightIcon } from './icons/CaretRightIcon'
 import { FirstPageIcon } from './icons/FirstPageIcon'
 import { LastPageIcon } from './icons/LastPageIcon'
-import { Button } from './views/Button'
-import { IconButton } from './views/IconButton'
 import { Listbox, ListboxOption } from './views/Listbox'
 
 interface PageCursor {
@@ -98,28 +97,27 @@ export const Pagination: React.FC<Props> = ({
         </Listbox>
       </label>
       <div className="flex items-center mt-3 mx-auto sm:mt-0 sm:mx-0 text-txt text-opacity-text-primary">
-        <IconButton
+        <Button
           className="hidden sm:block"
           disabled={!pageCursors.first}
           onClick={handleFirstPageClick}
           aria-label={i18n._(t`First page`)}
         >
           <FirstPageIcon />
-        </IconButton>
-        <IconButton
+        </Button>
+        <Button
           className="mr-1"
           disabled={!pageCursors.previous}
           onClick={handlePrevPageClick}
           aria-label={i18n._(t`Previous page`)}
         >
           <CaretLeftIcon />
-        </IconButton>
+        </Button>
         {pageCursors.around.map((pageCursor) => (
           <Button
             className={classnames('mr-1', {
               'bg-surface': pageCursor.isCurrent,
             })}
-            variation="plain"
             key={pageCursor.cursor}
             onClick={() => handlePageClick(pageCursor.page)}
           >
@@ -128,21 +126,21 @@ export const Pagination: React.FC<Props> = ({
             </span>
           </Button>
         ))}
-        <IconButton
+        <Button
           disabled={!pageInfo.hasNextPage}
           onClick={handleNextPageClick}
           aria-label={i18n._(t`Next page`)}
         >
           <CaretRightIcon />
-        </IconButton>
-        <IconButton
+        </Button>
+        <Button
           className="hidden sm:block"
           disabled={!pageCursors.last}
           onClick={handleLastPageClick}
           aria-label={i18n._(t`Last page`)}
         >
           <LastPageIcon />
-        </IconButton>
+        </Button>
       </div>
     </div>
   )

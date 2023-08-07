@@ -1,5 +1,6 @@
 'use client'
 
+import { CloseButton } from '@chakra-ui/react'
 import classnames from 'classnames'
 import type { ReactElement, ReactNode } from 'react'
 import { useCallback, useEffect } from 'react'
@@ -8,9 +9,7 @@ import * as React from 'react'
 import { useFadeEffect } from '../../hooks/useFadeEffect'
 import { ToastStore } from '../../toasts/store'
 import { useTheme } from '../Theme'
-import { ClearIcon } from '../icons/ClearIcon'
 import { Button } from './Button'
-import { IconButton } from './IconButton'
 import styles from './Toast.module.css'
 
 const toastStore = ToastStore.getInstance()
@@ -73,9 +72,7 @@ export const Toast: React.VFC<ToastProps> = ({
           </div>
         )}
         <div className="flex items-center ml-4">
-          <IconButton className="h-6 w-6 p-0" onClick={onDismiss}>
-            <ClearIcon className="text-txt text-opacity-text-primary" />
-          </IconButton>
+          <CloseButton onClick={onDismiss} />
         </div>
       </div>
     </div>

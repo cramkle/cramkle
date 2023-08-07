@@ -10,7 +10,6 @@ const nextConfig = {
       '@lingui/core',
       '@lingui/react',
       'react-tab-controller',
-      '@material/icon-button',
       '@reach/alert',
       '@reach/alert-dialog',
       '@reach/checkbox',

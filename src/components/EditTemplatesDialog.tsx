@@ -1,5 +1,6 @@
 import type { Reference, StoreObject } from '@apollo/client'
 import { gql, useMutation } from '@apollo/client'
+import { Button } from '@chakra-ui/react'
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import classnames from 'classnames'
@@ -35,9 +36,7 @@ import { DoneIcon } from './icons/DoneIcon'
 import { EditIcon } from './icons/EditIcon'
 import { TrashBinIcon } from './icons/TrashBinIcon'
 import { WarningIcon } from './icons/WarningIcon'
-import { Button } from './views/Button'
 import { Dialog, DialogTitle } from './views/Dialog'
-import { IconButton } from './views/IconButton'
 import { Input } from './views/Input'
 import { Body1, Body2, Caption } from './views/Typography'
 
@@ -252,21 +251,21 @@ const EditTemplatesDialog: React.FC<{
                   onChange={({ target: { value } }) => setTemplateName(value)}
                 />
                 <div className="flex ml-2">
-                  <IconButton
+                  <Button
                     aria-label={i18n._(t`Cancel`)}
                     onClick={clearEditTemplate}
                     disabled={editLoading}
                   >
                     <ClearIcon />
-                  </IconButton>
-                  <IconButton
+                  </Button>
+                  <Button
                     className="ml-2"
                     aria-label={i18n._(t`Rename template`)}
                     onClick={handleRenameTemplate}
                     disabled={editLoading || !templateName.length}
                   >
                     <DoneIcon />
-                  </IconButton>
+                  </Button>
                 </div>
               </>
             ) : editingTemplateId === template.id && isDelete ? (
@@ -293,40 +292,40 @@ const EditTemplatesDialog: React.FC<{
                   </Caption>
                 </div>
                 <div className="flex ml-2">
-                  <IconButton
+                  <Button
                     aria-label={i18n._(t`Cancel`)}
                     onClick={clearEditTemplate}
                     disabled={deleteLoading}
                   >
                     <ClearIcon />
-                  </IconButton>
-                  <IconButton
+                  </Button>
+                  <Button
                     className="ml-2"
                     aria-label={i18n._(t`Delete template`)}
                     onClick={handleConfirmDeleteTemplate}
                     disabled={deleteLoading}
                   >
                     <DoneIcon />
-                  </IconButton>
+                  </Button>
                 </div>
               </>
             ) : (
               <>
                 <Body1>{template.name}</Body1>
                 <div className="flex">
-                  <IconButton
+                  <Button
                     aria-label={i18n._(t`Rename ${template.name} template`)}
                     onClick={() => handleEditTemplate(template)}
                   >
                     <EditIcon />
-                  </IconButton>
-                  <IconButton
+                  </Button>
+                  <Button
                     className="ml-2"
                     aria-label={i18n._(t`Delete ${template.name} template`)}
                     onClick={() => handleDeleteTemplate(template)}
                   >
                     <TrashBinIcon />
-                  </IconButton>
+                  </Button>
                 </div>
               </>
             )}
@@ -346,21 +345,21 @@ const EditTemplatesDialog: React.FC<{
           />
 
           <div className="flex ml-2">
-            <IconButton
+            <Button
               aria-label={i18n._(t`Cancel`)}
               onClick={clearEditTemplate}
               disabled={createLoading}
             >
               <ClearIcon />
-            </IconButton>
-            <IconButton
+            </Button>
+            <Button
               className="ml-2"
               aria-label={i18n._(t`Create template`)}
               onClick={handleCreateTemplate}
               disabled={createLoading || !templateName.length}
             >
               <DoneIcon />
-            </IconButton>
+            </Button>
           </div>
         </div>
       ) : (

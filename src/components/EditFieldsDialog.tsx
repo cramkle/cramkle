@@ -1,5 +1,6 @@
 import type { Reference, StoreObject } from '@apollo/client'
 import { gql, useMutation } from '@apollo/client'
+import { Button } from '@chakra-ui/react'
 import { Trans, t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import classnames from 'classnames'
@@ -32,9 +33,7 @@ import { DoneIcon } from './icons/DoneIcon'
 import { EditIcon } from './icons/EditIcon'
 import { TrashBinIcon } from './icons/TrashBinIcon'
 import { WarningIcon } from './icons/WarningIcon'
-import { Button } from './views/Button'
 import { Dialog, DialogTitle } from './views/Dialog'
-import { IconButton } from './views/IconButton'
 import { Input } from './views/Input'
 import { Body1, Body2, Caption } from './views/Typography'
 
@@ -236,16 +235,16 @@ const EditFieldsDialog: React.FC<{
                 />
 
                 <div className="flex ml-2">
-                  <IconButton onClick={clearEditField} disabled={updateLoading}>
+                  <Button onClick={clearEditField} disabled={updateLoading}>
                     <ClearIcon />
-                  </IconButton>
-                  <IconButton
+                  </Button>
+                  <Button
                     className="ml-2"
                     disabled={updateLoading || !fieldName.length}
                     onClick={confirmUpdateField}
                   >
                     <DoneIcon />
-                  </IconButton>
+                  </Button>
                 </div>
               </>
             ) : editingFieldId === field.id && isDelete ? (
@@ -274,35 +273,35 @@ const EditFieldsDialog: React.FC<{
                 </div>
 
                 <div className="flex ml-2">
-                  <IconButton onClick={clearEditField} disabled={deleteLoading}>
+                  <Button onClick={clearEditField} disabled={deleteLoading}>
                     <ClearIcon />
-                  </IconButton>
-                  <IconButton
+                  </Button>
+                  <Button
                     className="ml-2"
                     disabled={deleteLoading}
                     onClick={confirmDeleteField}
                   >
                     <DoneIcon />
-                  </IconButton>
+                  </Button>
                 </div>
               </>
             ) : (
               <>
                 <Body1>{field.name}</Body1>
                 <div className="flex">
-                  <IconButton
+                  <Button
                     aria-label={i18n._(t`Rename ${field.name} field`)}
                     onClick={() => editField(field)}
                   >
                     <EditIcon />
-                  </IconButton>
-                  <IconButton
+                  </Button>
+                  <Button
                     className="ml-2"
                     aria-label={i18n._(t`Delete ${field.name} field`)}
                     onClick={() => handleDeleteField(field)}
                   >
                     <TrashBinIcon />
-                  </IconButton>
+                  </Button>
                 </div>
               </>
             )}
@@ -322,17 +321,17 @@ const EditFieldsDialog: React.FC<{
           />
 
           <div className="flex ml-2">
-            <IconButton onClick={clearEditField} disabled={createLoading}>
+            <Button onClick={clearEditField} disabled={createLoading}>
               <ClearIcon />
-            </IconButton>
+            </Button>
 
-            <IconButton
+            <Button
               className="ml-2"
               onClick={confirmCreateField}
               disabled={createLoading || !fieldName.length}
             >
               <DoneIcon />
-            </IconButton>
+            </Button>
           </div>
         </div>
       ) : (
